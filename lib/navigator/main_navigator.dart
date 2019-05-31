@@ -64,4 +64,8 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
   void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
 
   void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
+
+  void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
+
+  void goBack<T>({result}) => navigationKey.currentState.pop(result);
 }
