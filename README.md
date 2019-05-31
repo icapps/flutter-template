@@ -23,8 +23,8 @@ This is an icapps template project to get started with Flutter quickly
 ```
 flutter packages pub run build_runner build
 flutter packages pub run build_runner build --delete-conflicting-outputs
-flutter packages pub run build_runner watc
-h```
+flutter packages pub run build_runner watch
+```
 
 ## Transform this template project
 
