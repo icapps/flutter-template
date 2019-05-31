@@ -1,0 +1,142 @@
+fastlane_version “2.93.1”
+#require ‘java-properties’
+
+# Don't generate README files.
+skip_docs
+
+# Install provisioning pro
+install_provisioning_profiles
+
+# Make sure all changes are committed.
+before_all do |lane|
+ clean_build_artifacts
+end
+
+keychain_password = ENV[‘JENKINS_KEYCHAIN_PASSWORD’]
+unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_ci? && keychain_password
+
+#####################
+### CONFIGURATION ###
+#####################
+
+# Hockey configuration.
+HOCKEY_APP_API_KEY = ENV['FL_HOCKEY_API_TOKEN']
+WORKSPACE = 'ios/Runner.xcworkspace'
+BUILD_NR = ENV["BUILD_NUMBER"]
+
+####################
+### PUBLIC LANES ###
+####################
+
+lane :alpha_android do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppAndroid(flavor: 'alpha')
+  upload_to_hockey_android(flavor: 'alpha') # Deploy the apk to HockeyApp.
+end
+
+lane :beta_android do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppAndroid(flavor: 'beta')
+  upload_to_hockey_android(flavor: 'beta') # Deploy the apk to HockeyApp.
+end
+
+lane :prod_android do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppAndroid(flavor: 'prod')
+  add_tag                 # Add tag
+end
+
+lane :alpha_ios do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppIOS(flavor: 'alpha')
+  upload_to_hockey_ios(flavor: 'alpha') # Deploy the apk to HockeyApp.
+end
+
+lane :beta_ios do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppIOS(flavor: 'alpha')
+  upload_to_hockey_ios(flavor: 'beta') # Deploy the apk to HockeyApp.
+end
+
+lane :prod_ios do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  push_to_git_remote      # Push the changes to the origin.
+
+  buildAppIOS(flavor: 'prod')
+  add_tag                 # Add tag
+end
+
+########################
+###   PRIVATE LANES  ###
+########################
+
+private_lane :buildAppAndroid do |options|
+    Dir.chdir ".." do
+      sh("flutter", "packages", "get")
+      sh("flutter", "clean")
+      sh("flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
+    end
+end
+
+private_lane :buildAppIOS do |options|
+    Dir.chdir ".." do
+      sh("flutter", "packages", "get")
+      sh("flutter", "clean")
+      sh("flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
+      convertAppToIpa(flavor: options[:flavor])
+    end
+end
+
+private_lane :convertAppToIpa do |options|
+     Dir.chdir "ios" do
+        gym(
+            workspace: WORKSPACE,
+            scheme: options[:flavor],
+            configuration: "Release-#{options[:flavor]}",
+            export_options: {
+                method: "enterprise",
+                provisioningProfiles: {
+                    "com.icapps.flutterpoc.dev" => "Flutter POC Debug",
+                    "com.icapps.flutterpoc.alpha" => "Flutter POC Alpha",
+                    "com.icapps.flutterpoc.beta" => "Flutter POC Beta",
+                    "com.icapps.flutterpoc" => "Flutter POC Production"
+                }
+            }
+        )
+    end
+end
+
+private_lane :upload_to_hockey_android do |options|
+  hockey(
+    api_token: HOCKEY_APP_API_KEY,
+    release_type: options[:buildVariant] == 'alpha' ? "2" : "0", # We set the release type to be beta.
+    status:       '2', # The status is available for download.
+    ipa: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk"
+  )
+end
+
+private_lane :upload_to_hockey_ios do |options|
+  hockey(
+    api_token: HOCKEY_APP_API_KEY,
+    release_type: options[:buildVariant] == 'alpha' ? "2" : "0", # We set the release type to be beta.
+    status:       '2', # The status is available for download.
+  )
+end
+
+private_lane :add_tag do
+  properties = JavaProperties.load("../app/gradle.properties")
+  add_git_tag(
+    prefix: "android/",
+    build_number: BUILD_NR
+  )
+end
