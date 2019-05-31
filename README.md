@@ -2,7 +2,7 @@
 
 This is an icapps template project to get started with Flutter quickly
 
-#Provided in the repo
+## Provided in the repo
 
 - dependency injection (kiwi)
 - network layer (dio)
@@ -13,20 +13,24 @@ This is an icapps template project to get started with Flutter quickly
 - themes
 - navigator
 
-#Update the translations
-`.translations.py`
+## Update the translations
+```
+.translations.py
+```
 
-#Json Serializable & Kiwi
+## Json Serializable & Kiwi
 
-`flutter packages pub run build_runner build`
-`flutter packages pub run build_runner build --delete-conflicting-outputs`
-`flutter packages pub run build_runner watch`
+```
+flutter packages pub run build_runner build
+flutter packages pub run build_runner build --delete-conflicting-outputs
+flutter packages pub run build_runner watc
+h```
 
-#Transform this template project
+## Transform this template project
 
-## Fastelane
+### Fastelane
 
-### fastlane/Fastfile
+#### fastlane/Fastfile
 
 ```
 private_lane :convertAppToIpa do |options|
@@ -50,33 +54,33 @@ end
 ```
 
 
-## Android
+### Android
 
-### app/src/main/AndroidManifest.xml
-
-```
-update the package name
-```
-
-### app/build.gradle
+#### app/src/main/AndroidManifest.xml
 
 ```
 update the package name
 ```
 
-### app/src/main/kotlin/...
+#### app/build.gradle
+
+```
+update the package name
+```
+
+#### app/src/main/kotlin/...
 
 ```
 update folder structure with matching packagename
 ```
 
 
-### Add app icons
+#### Add app icons
 
 ```
 Add app icons for each flavor
 ```
 
-## iOS
+### iOS
 
 For question contact Koen Van Looveren
