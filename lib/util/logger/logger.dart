@@ -11,13 +11,13 @@ class Logger {
 
   static void logNetworkResponse(Response response) {
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
-    print('<--------------- url: ${response.realUri.toString()} - statucode: ${response.statusCode}');
+    print('<--------------- url: ${response.request.uri.toString()} - statucode: ${response.statusCode}');
   }
 
   static logNetworkError(DioError error) {
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
     if (error.response == null) {
-      print('request | ${error.request}');
+      print('request | ${error.request.toString()}');
       print('message | ${error.message}');
     } else {
       print('response.data | ${error.response.data}');
