@@ -13,6 +13,7 @@ This is an icapps template project to get started with Flutter quickly
 - different environments
 - themes
 - navigator
+- linting (flutter analyze)
 
 ## Update the translations
 ```
@@ -62,6 +63,18 @@ flutter run --release --flavor prod -t lib/main_prod.dart
 
 currently only supported for internal use.
 Request access to this repo to get niddler working.
+
+## Linting
+
+To check your code matches our linting. The analysis_options.yaml contains all our code checks.
+
+```
+flutter analyze
+```
+
+## Fastlane
+
+Fastlane is used for building iOS and Android
 
 ## Transform this template project
 
@@ -158,3 +171,5 @@ Configure the required languages in xCode
 ```
 
 For question contact Koen Van Looveren
+
+When you have completed this readme. Replace it with the readme for your project.
