@@ -323,8 +323,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v0.0.4"
-      resolved-ref: dfbbf085d35ef21efb877b2729c1a0ac40d7ef03
+      ref: "v0.0.5"
+      resolved-ref: a198dc1d24139ecae5d29e23fc025b78e9a65da3
       url: "ssh://git@bitbucket.org/icapps/flutter_niddler.git"
     source: git
     version: "0.0.1"

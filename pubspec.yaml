@@ -17,7 +17,7 @@ dependencies:
   niddler_flutter:
     git:
       url: ssh://git@bitbucket.org/icapps/flutter_niddler.git
-      ref: v0.0.4
+      ref: v0.0.5
 
 
 dev_dependencies:

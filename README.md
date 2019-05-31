@@ -6,6 +6,7 @@ This is an icapps template project to get started with Flutter quickly
 
 - dependency injection (kiwi)
 - network layer (dio)
+- network logging (niddler, dio)
 - viewmodels (provider)
 - translations (icapps translations)
 - json serialization (json_serializable)
@@ -56,6 +57,11 @@ flutter run --flavor prod -t lib/main_prod.dart
 
 flutter run --release --flavor prod -t lib/main_prod.dart
 ```
+
+## Niddler
+
+currently only supported for internal use.
+Request access to this repo to get niddler working.
 
 ## Transform this template project
 
