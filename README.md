@@ -26,7 +26,7 @@ This is an icapps template project to get started with Flutter quickly
 
 ## Fastelane
 
-###fastlane/Fastfile
+### fastlane/Fastfile
 
 ```
 private_lane :convertAppToIpa do |options|
@@ -52,26 +52,26 @@ end
 
 ## Android
 
-###app/src/main/AndroidManifest.xml
+### app/src/main/AndroidManifest.xml
 
 ```
 update the package name
 ```
 
-###app/build.gradle
+### app/build.gradle
 
 ```
 update the package name
 ```
 
-###app/src/main/kotlin/...
+### app/src/main/kotlin/...
 
 ```
 update folder structure with matching packagename
 ```
 
 
-###Add app icons
+### Add app icons
 
 ```
 Add app icons for each flavor
