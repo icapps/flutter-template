@@ -1,0 +1,4 @@
+#include "Flutter/Generated.xcconfig"
+DEVELOPMENT_TEAM=//todo add development team
+CODE_SIGN_IDENTITY=iPhone Distribution
+

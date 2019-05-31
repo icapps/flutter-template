@@ -87,19 +87,19 @@ end
 
 ### Android
 
-#### app/src/main/AndroidManifest.xml
+#### android/app/src/main/AndroidManifest.xml
 
 ```
 update the package name
 ```
 
-#### app/build.gradle
+#### android/app/build.gradle
 
 ```
 update the package name
 ```
 
-#### app/src/main/kotlin/...
+#### android/app/src/main/kotlin/...
 
 ```
 update folder structure with matching packagename
@@ -113,5 +113,42 @@ Add app icons for each flavor
 ```
 
 ### iOS
+
+#### ios/Configuration/Shared.xconfig
+
+```
+Add the development team
+```
+
+#### ios/Configuration/Shared.xconfig
+
+```
+Add the development team
+```
+
+#### ios/Configuration/**
+
+```
+Edit the configuration files so every config is correct added
+```
+
+#### bundle identifier
+
+```
+Update the bundle identifier in xCode
+```
+
+#### Add provisioning files
+
+```
+place the provisioning profiles -> provision_profile/**
+naming should be the same as provided in the iOS/Configuration/** files (underscore will be replaced with a space in the configuration files)
+```
+
+#### Languages
+
+```
+Configure the required languages in xCode
+```
 
 For question contact Koen Van Looveren
