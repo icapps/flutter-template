@@ -9,6 +9,8 @@ class HomeViewModel with ChangeNotifier {
 
   HomeNavigator _navigator;
 
+  CancelToken _getUsersCancelToken;
+
   bool get loading => _loading;
   bool _loading = false;
 
@@ -30,7 +32,9 @@ class HomeViewModel with ChangeNotifier {
       _error = null;
       _loading = true;
       notifyListeners();
-      final newData = await _userRepo.getUsers();
+      _getUsersCancelToken?.cancel();
+      _getUsersCancelToken = CancelToken();
+      final newData = await _userRepo.getUsers(_getUsersCancelToken);
       _data
         ..clear()
         ..addAll(newData);
@@ -48,6 +52,12 @@ class HomeViewModel with ChangeNotifier {
 
   void onRetry() {
     getUsers();
+  }
+
+  @override
+  void dispose() {
+    _getUsersCancelToken?.cancel();
+    super.dispose();
   }
 }
 

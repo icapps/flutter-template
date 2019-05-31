@@ -12,8 +12,8 @@ class UserRepository {
    * Get Users will be requested from
    * https://jsonplaceholder.typicode.com/users
    */
-  Future<List<User>> getUsers() async {
-    final response = await dio.get<String>('/users');
+  Future<List<User>> getUsers(CancelToken cancelToken) async {
+    final response = await dio.get<String>('/users', cancelToken: cancelToken);
     final jsonStr = response.data;
     final List<dynamic> list = json.decode(jsonStr);
     return list.map((item) => User.fromJson(item)).toList();
