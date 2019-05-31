@@ -25,6 +25,37 @@ flutter packages pub run build_runner build
 flutter packages pub run build_runner build --delete-conflicting-outputs
 flutter packages pub run build_runner watch
 ```
+## Environments
+
+`--release` is not available for emulators. Performance will be better
+
+### Dev, Debug
+```
+flutter run --flavor dev -t lib/main.dart
+
+flutter run --release --flavor dev -t lib/main.dart
+```
+
+### Alpha
+```
+flutter run --flavor alpha -t lib/main_alpha.dart
+
+flutter run --release --flavor alpha -t lib/main_alpha.dart
+```
+
+### Beta
+```
+flutter run --flavor beta -t lib/main_beta.dart
+
+flutter run --release --flavor beta -t lib/main_beta.dart
+```
+
+### Prod, Release
+```
+flutter run --flavor prod -t lib/main_prod.dart
+
+flutter run --release --flavor prod -t lib/main_prod.dart
+```
 
 ## Transform this template project
 
