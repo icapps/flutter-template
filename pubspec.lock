@@ -322,11 +322,9 @@ packages:
   niddler_dart:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "0.1.1"
-      resolved-ref: e8ddd0c9a4ab7b242285daac8a850a301f13c6df
-      url: "https://github.com/Chimerapps/niddler_dart"
-    source: git
+      name: niddler_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.1.1"
   package_config:
     dependency: transitive
