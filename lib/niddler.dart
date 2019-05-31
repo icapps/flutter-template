@@ -1,5 +1,4 @@
-import 'package:niddler_flutter/niddler.dart';
-import 'package:niddler_flutter/niddler_flutter.dart';
+import 'package:niddler_dart/niddler_dart.dart';
 
 Future<void> initNiddler() async {
   final niddlerBuilder = NiddlerBuilder()

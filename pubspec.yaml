@@ -14,11 +14,10 @@ dependencies:
   provider: ^2.0.1
   json_serializable: ^3.0.0
   dio: ^2.1.6
-  niddler_flutter:
+  niddler_dart:
     git:
-      url: ssh://git@bitbucket.org/icapps/flutter_niddler.git
-      ref: v0.0.5
-
+      url: https://github.com/Chimerapps/niddler_dart
+      ref: 0.1.1
 
 dev_dependencies:
   flutter_test:

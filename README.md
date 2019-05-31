@@ -61,8 +61,12 @@ flutter run --release --flavor prod -t lib/main_prod.dart
 
 ## Niddler
 
-currently only supported for internal use.
-Request access to this repo to get niddler working.
+https://github.com/Chimerapps/niddler_dart
+Niddler is a network tracing tool written by Nicola Verbeeck.
+An Android Studio and Intelij plugin is available to download in the plugin store. (https://plugins.jetbrains.com/plugin/10347-niddler)
+Niddler is also available for Android & Java (OkHttp)
+https://github.com/icapps/niddler
+https://github.com/icapps/niddler-ui
 
 ## Linting
 

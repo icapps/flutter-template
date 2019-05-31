@@ -319,15 +319,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.6+3"
-  niddler_flutter:
+  niddler_dart:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v0.0.5"
-      resolved-ref: a198dc1d24139ecae5d29e23fc025b78e9a65da3
-      url: "ssh://git@bitbucket.org/icapps/flutter_niddler.git"
+      ref: "0.1.1"
+      resolved-ref: e8ddd0c9a4ab7b242285daac8a850a301f13c6df
+      url: "https://github.com/Chimerapps/niddler_dart"
     source: git
-    version: "0.0.1"
+    version: "0.1.1"
   package_config:
     dependency: transitive
     description:
