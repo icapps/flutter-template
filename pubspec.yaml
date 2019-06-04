@@ -14,7 +14,7 @@ dependencies:
   provider: ^2.0.1
   json_serializable: ^3.0.0
   dio: ^2.1.6
-  niddler_dart: ^0.1.1
+  niddler_dart: ^0.1.2
 
 dev_dependencies:
   flutter_test:
