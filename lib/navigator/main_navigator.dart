@@ -34,32 +34,28 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: navigationKey,
-      initialRoute: SplashScreen.routeName,
-      onGenerateRoute: onGenerateRoute,
+    return WillPopScope(
+      onWillPop: _willPop,
+      child: Navigator(
+        key: navigationKey,
+        initialRoute: SplashScreen.routeName,
+        onGenerateRoute: onGenerateRoute,
+      ),
     );
   }
 
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
-        return buildRoute<SplashScreen>(screen: SplashScreen(), settings: settings);
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
       case HomeScreen.routeName:
-        return buildRoute<HomeScreen>(screen: HomeScreen(), settings: settings);
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: HomeScreen()), settings: settings);
       default:
         return null;
     }
   }
 
-  Route buildRoute<T>({@required Widget screen, @required RouteSettings settings}) {
-    return MaterialPageRoute(
-      builder: (context) => FlavorBanner(
-            child: screen,
-          ),
-      settings: settings,
-    );
-  }
+  Future<bool> _willPop() async => !await navigationKey.currentState.maybePop();
 
   void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
 
