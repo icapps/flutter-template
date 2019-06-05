@@ -7,6 +7,11 @@ import 'package:flutter/widgets.dart';
  * AUTO-GENERATED FILE - DO NOT EDIT
  */
 class Localization {
+  static const List<Locale> supportedLanguages = [
+    Locale('en'),
+  ];
+  static const _defaultLanguage = 'nl';
+
   final Locale locale;
 
   Localization(this.locale);
@@ -23,7 +28,13 @@ class Localization {
   };
 
   String _t(String key) {
-    final value = _localizedValues[locale.languageCode][key];
+    Map<String, String> _values;
+    if (_localizedValues.containsKey(locale.languageCode)) {
+      _values = _localizedValues[locale.languageCode];
+    } else {
+      _values = _localizedValues[_defaultLanguage];
+    }
+    final value = _values[key];
     if (value == null) return '⚠$key⚠';
     return value;
   }

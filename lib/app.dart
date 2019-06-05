@@ -1,6 +1,7 @@
 import 'package:flutte_template/navigator/main_navigator.dart';
 import 'package:flutte_template/styles/theme_colors.dart';
 import 'package:flutte_template/styles/theme_fonts.dart';
+import 'package:flutte_template/util/locale/localization.dart';
 import 'package:flutte_template/util/locale/localization_delegate.dart';
 import 'package:flutte_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,7 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         FallbackCupertinoLocalisationsDelegate.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('nl'),
-        Locale('fr'),
-      ],
+      supportedLocales: Localization.supportedLanguages,
       theme: ThemeData(
         fontFamily: ThemeFonts.OpenSans,
         primaryColor: ThemeColors.primaryColor,
