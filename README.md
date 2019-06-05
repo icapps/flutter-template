@@ -173,6 +173,12 @@ naming should be the same as provided in the iOS/Configuration/** files (undersc
 Configure the required languages in xCode
 ```
 
+### icapps Translations
+
+```
+Update the translations.py file (edit the todos)
+```
+
 For question contact Koen Van Looveren
 
 When you have completed this readme. Replace it with the readme for your project.
