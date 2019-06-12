@@ -1,6 +1,7 @@
 import 'package:flutte_template/styles/theme_dimens.dart';
 import 'package:flutte_template/util/locale/localization.dart';
 import 'package:flutte_template/viewmodel/home/home_viewmodel.dart';
+import 'package:flutte_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutte_template/widget/user/user_row.dart';
 import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
@@ -18,13 +19,23 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(Localization.of(context).appTitle),
-      ),
-      body: ChangeNotifierProvider<HomeViewModel>(
-        child: Consumer<HomeViewModel>(
+    return ChangeNotifierProvider<HomeViewModel>(
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text(Localization.of(context).appTitle),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.language),
+              onPressed: () {
+                Localizations.localeOf(context).languageCode == 'en'
+                    ? Provider.of<LocaleViewModel>(context).onSwitchToDutch()
+                    : Provider.of<LocaleViewModel>(context).onSwitchToEnglish();
+              },
+            )
+          ],
+        ),
+        body: Consumer<HomeViewModel>(
           builder: (context, value, child) {
             if (value.loading) {
               return Center(
@@ -52,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
             }
             if (!value.loading && value.data.isEmpty) {
               return Center(
-                child: Text(Localization.of(context).notFound),
+                child: Text(Localization.of(context).usersNotFound),
               );
             }
             if (!value.loading && value.data.isNotEmpty) {
@@ -71,10 +82,11 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
                 },
               );
             }
+            return Container();
           },
         ),
-        builder: (context) => kiwi.Container().resolve()..init(this),
       ),
+      builder: (context) => kiwi.Container().resolve()..init(this),
     );
   }
 

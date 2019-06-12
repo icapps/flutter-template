@@ -12,5 +12,5 @@ class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<Cuper
   Future<CupertinoLocalizations> load(Locale locale) => DefaultCupertinoLocalizations.load(locale);
 
   @override
-  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
+  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => true;
 }

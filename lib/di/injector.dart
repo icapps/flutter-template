@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutte_template/repository/locale_repository.dart';
 import 'package:flutte_template/repository/user_repository.dart';
 import 'package:flutte_template/util/env/flavor_config.dart';
 import 'package:flutte_template/util/logger/logger.dart';
 import 'package:flutte_template/viewmodel/home/home_viewmodel.dart';
+import 'package:flutte_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutte_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:kiwi/kiwi.dart';
 
@@ -10,10 +12,12 @@ part 'injector.g.dart';
 
 abstract class Injector {
   @Register.singleton(UserRepository)
+  @Register.singleton(LocaleRepository)
   void registerCommonDependencies();
 
   @Register.factory(HomeViewModel)
   @Register.factory(SplashViewModel)
+  @Register.factory(LocaleViewModel)
   void registerViewModelFactories();
 }
 

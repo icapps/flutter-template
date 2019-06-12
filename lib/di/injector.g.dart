@@ -10,11 +10,13 @@ class _$Injector extends Injector {
   void registerCommonDependencies() {
     final Container container = Container();
     container.registerSingleton((c) => UserRepository(c<Dio>()));
+    container.registerSingleton((c) => LocaleRepository());
   }
 
   void registerViewModelFactories() {
     final Container container = Container();
     container.registerFactory((c) => HomeViewModel(c<UserRepository>()));
     container.registerFactory((c) => SplashViewModel());
+    container.registerFactory((c) => LocaleViewModel(c<LocaleRepository>()));
   }
 }

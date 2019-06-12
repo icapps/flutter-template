@@ -1,42 +1,33 @@
-import 'dart:ui';
+import 'dart:convert';
 
-import 'package:flutte_template/util/locale/translations/nl.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-/*
- * AUTO-GENERATED FILE - DO NOT EDIT
- */
+//============================================================//
+//THIS FILE IS AUTO GENERATED. DO NOT EDIT//
+//============================================================//
 class Localization {
-  static const List<Locale> supportedLanguages = [
-    Locale('en'),
-  ];
-  static const _defaultLanguage = 'nl';
-
-  final Locale locale;
-
-  Localization(this.locale);
+  Map<dynamic, dynamic> _localisedValues;
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
-
-  // ignore: prefer_constructors_over_static_methods
-  static Localization ofLanguage(String language) => Localization(Locale(language));
-
-  static final Map<String, Map<String, String>> _localizedValues = {
-    'en': nl,
-    'fr': nl,
-    'nl': nl,
-  };
+  
+  static Future<Localization> load(Locale locale) async {
+    final localizations = Localization();
+    print('Switching to ${locale.languageCode}');
+    final jsonContent = await rootBundle.loadString('assets/locale/${locale.languageCode}.json');
+    final Map<String, dynamic> values = json.decode(jsonContent);
+    localizations._localisedValues = values;
+    return localizations;
+  }
 
   String _t(String key) {
-    Map<String, String> _values;
-    if (_localizedValues.containsKey(locale.languageCode)) {
-      _values = _localizedValues[locale.languageCode];
-    } else {
-      _values = _localizedValues[_defaultLanguage];
+    try {
+      final value = _localisedValues[key];
+      if (value == null) return '⚠$key⚠';
+      return value;
+    } catch (e) {
+      return '⚠$key⚠';
     }
-    final value = _values[key];
-    if (value == null) return '⚠$key⚠';
-    return value;
   }
 
   String get appTitle => _t('app_title');
@@ -45,7 +36,7 @@ class Localization {
 
   String get userClickMessage => _t('user_click_message');
 
-  String get notFound => _t('users_not_found');
+  String get usersNotFound => _t('users_not_found');
 
   String get retryBtn => _t('retry_btn');
 }
