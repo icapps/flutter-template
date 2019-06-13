@@ -239,7 +239,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.1.2"
   intl:
     dependency: transitive
     description:
