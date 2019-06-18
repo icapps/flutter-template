@@ -127,6 +127,15 @@ update the package name
 update folder structure with matching packagename
 ```
 
+#### update app_name
+
+```
+android/app/src/debug/value/string.xml
+android/app/src/alpha/value/string.xml
+android/app/src/beta/value/string.xml
+android/app/src/prod/value/string.xml
+```
+
 
 #### Add app icons
 
@@ -142,22 +151,10 @@ Add app icons for each flavor
 Add the development team
 ```
 
-#### ios/Configuration/Shared.xconfig
-
-```
-Add the development team
-```
-
 #### ios/Configuration/**
 
 ```
 Edit the configuration files so every config is correct added
-```
-
-#### bundle identifier
-
-```
-Update the bundle identifier in xCode
 ```
 
 #### Add provisioning files
@@ -179,6 +176,12 @@ Configure the required languages in xCode
 Update the translations.py file (edit the todos)
 ```
 
+
+
+### Questions?
+
 For question contact Koen Van Looveren
+
+### Finish
 
 When you have completed this readme. Replace it with the readme for your project.
