@@ -1,4 +1,4 @@
-import 'package:flutte_template/model/user/address.dart';
+import 'package:flutter_template/model/user/address.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';

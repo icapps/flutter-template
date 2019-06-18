@@ -1,5 +1,5 @@
-import 'package:flutte_template/navigator/main_navigator.dart';
-import 'package:flutte_template/viewmodel/splash/splash_viewmodel.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:provider/provider.dart';

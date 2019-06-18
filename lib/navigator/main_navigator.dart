@@ -1,6 +1,6 @@
-import 'package:flutte_template/screen/home/home_screen.dart';
-import 'package:flutte_template/screen/splash/splash_screen.dart';
-import 'package:flutte_template/widget/general/flavor_banner.dart';
+import 'package:flutter_template/screen/home/home_screen.dart';
+import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigatorWidget extends StatefulWidget {

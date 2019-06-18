@@ -1,4 +1,4 @@
-import 'package:flutte_template/styles/theme_durations.dart';
+import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewModel with ChangeNotifier {

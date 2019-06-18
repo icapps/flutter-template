@@ -1,5 +1,5 @@
-import 'package:flutte_template/repository/locale_repository.dart';
-import 'package:flutte_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/repository/locale_repository.dart';
+import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter/material.dart';
 
 class LocaleViewModel with ChangeNotifier {

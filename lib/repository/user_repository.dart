@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutte_template/model/user/user.dart';
+import 'package:flutter_template/model/user/user.dart';
 
 class UserRepository {
   final Dio dio;

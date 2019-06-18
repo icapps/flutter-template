@@ -1,9 +1,9 @@
-import 'package:flutte_template/navigator/main_navigator.dart';
-import 'package:flutte_template/styles/theme_colors.dart';
-import 'package:flutte_template/styles/theme_fonts.dart';
-import 'package:flutte_template/util/locale/localization_delegate.dart';
-import 'package:flutte_template/util/locale/localization_fallback_cupertino_delegate.dart';
-import 'package:flutte_template/viewmodel/locale/locale_viewmodel.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_fonts.dart';
+import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutte_template/repository/locale_repository.dart';
-import 'package:flutte_template/repository/user_repository.dart';
-import 'package:flutte_template/util/env/flavor_config.dart';
-import 'package:flutte_template/util/logger/logger.dart';
-import 'package:flutte_template/viewmodel/home/home_viewmodel.dart';
-import 'package:flutte_template/viewmodel/locale/locale_viewmodel.dart';
-import 'package:flutte_template/viewmodel/splash/splash_viewmodel.dart';
+import 'package:flutter_template/repository/locale_repository.dart';
+import 'package:flutter_template/repository/user_repository.dart';
+import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/logger/logger.dart';
+import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
+import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
+import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:kiwi/kiwi.dart';
 
 part 'injector.g.dart';

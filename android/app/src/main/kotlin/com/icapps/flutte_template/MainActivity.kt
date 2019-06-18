@@ -1,4 +1,4 @@
-package com.icapps.flutte_template
+package com.icapps.flutter_template
 
 import android.os.Bundle
 

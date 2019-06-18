@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutte_template/model/user/user.dart';
-import 'package:flutte_template/repository/user_repository.dart';
+import 'package:flutter_template/model/user/user.dart';
+import 'package:flutter_template/repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.icapps.flutte_template">
+    package="com.icapps.flutter_template">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutte_template"
+        android:label="flutter_template"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
