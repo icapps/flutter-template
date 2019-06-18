@@ -176,7 +176,13 @@ Configure the required languages in xCode
 Update the translations.py file (edit the todos)
 ```
 
+### Common issues
 
+```
+No Flavor provided
+```
+
+Add a flavor to your configuration. Extra info can be found in this issue -> https://github.com/icapps/flutter-template/issues/3
 
 ### Questions?
 
