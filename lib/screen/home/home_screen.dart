@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
           title: Text(Localization.of(context).appTitle),
           actions: [
             IconButton(
-              icon: Icon(Icons.language),
+              icon: const Icon(Icons.language),
               onPressed: () {
                 Localizations.localeOf(context).languageCode == 'en'
                     ? Provider.of<LocaleViewModel>(context).onSwitchToDutch()

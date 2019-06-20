@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.36.3"
-  analyzer_plugin:
-    dependency: transitive
-    description:
-      name: analyzer_plugin
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1-alpha.8"
   args:
     dependency: transitive
     description:
@@ -49,14 +42,14 @@ packages:
       name: build_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.2"
+    version: "0.4.0"
   build_daemon:
     dependency: transitive
     description:
       name: build_daemon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "1.0.0"
   build_resolvers:
     dependency: transitive
     description:
@@ -70,14 +63,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.3"
+    version: "1.5.2"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3"
+    version: "3.0.6"
   built_collection:
     dependency: transitive
     description:
@@ -89,13 +82,6 @@ packages:
     dependency: transitive
     description:
       name: built_value
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.6.0"
-  built_value_generator:
-    dependency: "direct dev"
-    description:
-      name: built_value_generator
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.6.0"
@@ -161,7 +147,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.7"
   fixnum:
     dependency: transitive
     description:
@@ -225,7 +211,7 @@ packages:
       name: http_multi_server
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -239,7 +225,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2"
+    version: "0.1.4"
   intl:
     dependency: transitive
     description:
@@ -288,16 +274,14 @@ packages:
       name: kiwi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   kiwi_generator:
     dependency: "direct dev"
     description:
-      path: kiwi_generator
-      ref: "6ead6e68b535bf935df37b29f7d25b283337225e"
-      resolved-ref: "6ead6e68b535bf935df37b29f7d25b283337225e"
-      url: "https://github.com/simolus3/kiwi.git"
-    source: git
-    version: "0.3.1"
+      name: kiwi_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   logging:
     dependency: transitive
     description:
@@ -542,5 +526,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.2.0 <2.3.2"
+  dart: ">=2.3.0-dev.0.1 <2.3.2"
   flutter: ">=1.5.0 <2.0.0"
