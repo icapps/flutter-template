@@ -10,7 +10,7 @@ class Localization {
   Map<dynamic, dynamic> _localisedValues;
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
-
+  
   static Future<Localization> load(Locale locale) async {
     final localizations = Localization();
     print('Switching to ${locale.languageCode}');
@@ -44,11 +44,12 @@ class Localization {
 
   String get appTitle => _t('app_title');
 
-  String get welcomeMessage => _t('welcome_message');
+  String get retryBtn => _t('retry_btn');
 
   String userClickMessage(String arg1) => _t('user_click_message', args: [arg1]);
 
   String get usersNotFound => _t('users_not_found');
 
-  String get retryBtn => _t('retry_btn');
+  String get welcomeMessage => _t('welcome_message');
+
 }

@@ -1,7 +1,7 @@
 {
   "app_title": "Flutter Template NL",
-  "welcome_message": "Welkom",
+  "retry_btn": "Opnieuw",
   "user_click_message": "Je hebt op %1$s geklikt",
   "users_not_found": "Geen gebruikers gevonded",
-  "retry_btn": "Probeer opnieuw"
+  "welcome_message": "Welkom"
 }
