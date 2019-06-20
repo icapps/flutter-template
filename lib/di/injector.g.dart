@@ -7,6 +7,11 @@ part of 'injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
+  void registerNetworkDependencies() {
+    final Container container = Container();
+    container.registerFactory((c) => NetworkLogInterceptor());
+  }
+
   void registerCommonDependencies() {
     final Container container = Container();
     container.registerSingleton((c) => UserRepository(c<Dio>()));
