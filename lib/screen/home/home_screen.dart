@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter_template/widget/user/user_row.dart';
-import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:provider/provider.dart';
 
@@ -37,18 +37,18 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
         ),
         body: Consumer<HomeViewModel>(
           builder: (context, value, child) {
-            if (value.loading) {
+            if (value.showLoading()) {
               return Center(
                 child: const CircularProgressIndicator(),
               );
             }
-            if (value.error != null) {
+            if (value.showError()) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    value.error,
+                    value.getError(),
                     textAlign: TextAlign.center,
                   ),
                   Padding(
@@ -61,23 +61,22 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
                 ],
               );
             }
-            if (!value.loading && value.data.isEmpty) {
+            if (value.showNoUsersFound()) {
               return Center(
                 child: Text(Localization.of(context).usersNotFound),
               );
             }
-            if (!value.loading && value.data.isNotEmpty) {
+            if (value.showUserList()) {
               return ListView.builder(
                 padding: const EdgeInsets.all(ThemeDimens.padding16),
-                itemCount: value.data.length,
+                itemCount: value.getUserLength(),
                 itemBuilder: (context, index) {
-                  final item = value.data[index];
                   return UserRow(
-                    title: item.name,
+                    title: value.getNameAtIndex(index),
                     titleIcon: Icons.person,
-                    subtitle: item.address.street,
+                    subtitle: value.getCityAtIndex(index),
                     subtitleIcon: Icons.location_city,
-                    onClick: value.onUserClicked,
+                    onClick: () => value.onUserClicked(index),
                   );
                 },
               );
@@ -91,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
   }
 
   @override
-  void goToUserDetail() {
+  void goToUserDetail(String name) {
     final snackBar = SnackBar(
-      content: Text(Localization.of(context).userClickMessage),
+      content: Text(Localization.of(context).userClickMessage(name)),
     );
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
