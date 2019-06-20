@@ -16,8 +16,29 @@ This is an icapps template project to get started with Flutter quickly
 - linting (flutter analyze)
 
 ## Update the translations
+
+A custom dart program is used for updating the translations
+
+https://pub.dev/packages/icapps_translations
+
+Update your config in the pubspec.yaml
 ```
-.translations.py
+icapps_translations:
+  api_key: 'enter-your-api-key'
+  default_language: 'nl'
+  languages: ['en', 'nl']
+```
+
+Add your locale folder to your flutter config
+```
+flutter:
+  assets:
+    - assets/locale/
+```
+
+Command to run to update the translations
+```
+flutter packages pub run icapps_translations
 ```
 
 ## Json Serializable & Kiwi
