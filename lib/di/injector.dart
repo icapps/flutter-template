@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/locale_repository.dart';
 import 'package:flutter_template/repository/user_repository.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/logger/logger.dart';
+import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
@@ -11,6 +11,9 @@ import 'package:kiwi/kiwi.dart';
 part 'injector.g.dart';
 
 abstract class Injector {
+  @Register.factory(NetworkLogInterceptor)
+  void registerNetworkDependencies();
+
   @Register.singleton(UserRepository)
   @Register.singleton(LocaleRepository)
   void registerCommonDependencies();
@@ -22,29 +25,16 @@ abstract class Injector {
 }
 
 void setupDependencyTree() {
-  final injector = _$Injector();
-  Container().registerSingleton((c) => provideDio());
+  final injector = _$Injector()..registerNetworkDependencies();
+  Container().registerSingleton((c) => provideDio(c.resolve()));
   injector
     ..registerCommonDependencies()
     ..registerViewModelFactories();
 }
 
-Dio provideDio() {
+Dio provideDio(NetworkLogInterceptor networkInterceptor) {
   final dio = Dio();
   dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
-  dio.interceptors.add(InterceptorsWrapper(
-    onRequest: (options) {
-      Logger.logNetworkRequest(options);
-      return options;
-    },
-    onResponse: (response) {
-      Logger.logNetworkResponse(response);
-      return response;
-    },
-    onError: (error) {
-      Logger.logNetworkError(error);
-      return error;
-    },
-  ));
+  dio.interceptors.add(networkInterceptor);
   return dio;
 }
