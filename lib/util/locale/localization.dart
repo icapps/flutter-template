@@ -10,7 +10,7 @@ class Localization {
   Map<dynamic, dynamic> _localisedValues;
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
-  
+
   static Future<Localization> load(Locale locale) async {
     final localizations = Localization();
     print('Switching to ${locale.languageCode}');
@@ -20,21 +20,33 @@ class Localization {
     return localizations;
   }
 
-  String _t(String key) {
+  String _t(String key, {List<dynamic> args}) {
     try {
-      final value = _localisedValues[key];
+      String value = _localisedValues[key];
       if (value == null) return '⚠$key⚠';
+      if (args == null || args.isEmpty) return value;
+      args.asMap().forEach((index, arg) => value = _replaceWith(value, arg, index + 1));
       return value;
     } catch (e) {
       return '⚠$key⚠';
     }
   }
 
+  String _replaceWith(String value, arg, argIndex) {
+    if (arg == null) return value;
+    if (arg is String) {
+      return value.replaceAll('%$argIndex\$s', arg);
+    } else if (arg is num) {
+      return value.replaceAll('%$argIndex\$d', '$arg');
+    }
+    return value;
+  }
+
   String get appTitle => _t('app_title');
 
   String get welcomeMessage => _t('welcome_message');
 
-  String get userClickMessage => _t('user_click_message');
+  String userClickMessage(String arg1) => _t('user_click_message', args: [arg1]);
 
   String get usersNotFound => _t('users_not_found');
 

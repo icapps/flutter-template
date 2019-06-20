@@ -11,13 +11,10 @@ class HomeViewModel with ChangeNotifier {
 
   CancelToken _getUsersCancelToken;
 
-  bool get loading => _loading;
   bool _loading = false;
 
-  String get error => _error;
   String _error;
 
-  List<User> get data => _data;
   final List<User> _data = List();
 
   HomeViewModel(this._userRepo);
@@ -46,12 +43,44 @@ class HomeViewModel with ChangeNotifier {
     }
   }
 
-  void onUserClicked() {
-    _navigator.goToUserDetail();
+  void onUserClicked(int index) {
+    _navigator.goToUserDetail(_data[index].name);
   }
 
   void onRetry() {
     getUsers();
+  }
+
+  int getUserLength() {
+    return _data.length;
+  }
+
+  bool showLoading() {
+    return _loading;
+  }
+
+  bool showError() {
+    return _error != null;
+  }
+
+  String getError() {
+    return _error;
+  }
+
+  bool showNoUsersFound() {
+    return !_loading && _data.isEmpty;
+  }
+
+  bool showUserList() {
+    return !_loading && _data.isNotEmpty;
+  }
+
+  String getCityAtIndex(int index) {
+    return _data[index].address.city;
+  }
+
+  String getNameAtIndex(int index) {
+    return _data[index].name;
   }
 
   @override
@@ -63,5 +92,5 @@ class HomeViewModel with ChangeNotifier {
 
 // ignore: one_member_abstracts
 abstract class HomeNavigator {
-  void goToUserDetail();
+  void goToUserDetail(String name);
 }

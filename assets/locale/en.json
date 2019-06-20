@@ -1,7 +1,7 @@
 {
   "app_title": "Flutter Template EN",
   "welcome_message": "Welcome",
-  "user_click_message": "you clicked on a user",
+  "user_click_message": "you clicked on a %1$s",
   "users_not_found": "users not found",
   "retry_btn": "retry"
 }
