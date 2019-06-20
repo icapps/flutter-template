@@ -18,6 +18,7 @@ This is an icapps template project to get started with Flutter quickly
 ## Update the translations
 
 A custom dart program is used for updating the translations
+
 https://pub.dev/packages/icapps_translations
 
 Update your config in the pubspec.yaml
