@@ -12,15 +12,15 @@ dependencies:
     sdk: flutter
   kiwi: ^0.2.0
   provider: ^3.0.0+1
-  json_serializable: ^3.0.0
-  dio: ^2.1.7
+  json_serializable: ^3.1.0
+  dio: ^2.1.13
   niddler_dart: ^0.4.0
-  shared_preferences: ^0.5.3+1
+  shared_preferences: ^0.5.3+4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.5.2
+  build_runner: ^1.6.5
   icapps_translations: ^0.1.7
   kiwi_generator: ^0.4.0
 
