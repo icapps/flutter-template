@@ -14,6 +14,7 @@ end
 
 keychain_password = ENV[‘JENKINS_KEYCHAIN_PASSWORD’]
 unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_ci? && keychain_password
+release_type = "3" # defaults to Enterprice
 
 #####################
 ### CONFIGURATION ###
@@ -117,26 +118,41 @@ private_lane :convertAppToIpa do |options|
 end
 
 private_lane :upload_to_hockey_android do |options|
+  getReleaseType(flavor: options[:flavor])
   hockey(
     api_token: HOCKEY_APP_API_KEY,
-    release_type: options[:buildVariant] == 'alpha' ? "2" : "0", # We set the release type to be beta.
+    release_type: release_type,
     status:       '2', # The status is available for download.
     ipa: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk"
   )
 end
 
 private_lane :upload_to_hockey_ios do |options|
+  getReleaseType(flavor: options[:flavor])
   hockey(
     api_token: HOCKEY_APP_API_KEY,
-    release_type: options[:buildVariant] == 'alpha' ? "2" : "0", # We set the release type to be beta.
+    release_type: release_type,
     status:       '2', # The status is available for download.
   )
 end
 
 private_lane :add_tag do
-  properties = JavaProperties.load("../app/gradle.properties")
   add_git_tag(
     prefix: "android/",
     build_number: BUILD_NR
   )
+end
+
+private_lane :getReleaseType do |options|
+    flavor = options[:flavor]
+    sh("echo", flavor)
+    if flavor == "alpha"
+        release_type = "2"
+    elsif flavor == "beta"
+        release_type = "0"
+    elsif flavor == "prod"
+        release_type = "3" # Enterprise for prod because store builds can't be downloaded with hockey
+    elsif flavor == "debug"
+        release_type = "3" # Enterprise build. (debug should never be build with fastlane)
+    end
 end
