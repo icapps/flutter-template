@@ -14,14 +14,15 @@ end
 
 keychain_password = ENV[‘JENKINS_KEYCHAIN_PASSWORD’]
 unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_ci? && keychain_password
-release_type = "3" # defaults to Enterprice
+appcenter_app_name = ''
 
 #####################
 ### CONFIGURATION ###
 #####################
 
 # Hockey configuration.
-HOCKEY_APP_API_KEY = ENV['FL_HOCKEY_API_TOKEN']
+APPCENTER_API_KEY = '<enter-your-api-key>'
+APPCENTER_ORGANIZATION_NAME = '<enter-your-organization>'
 WORKSPACE = 'ios/Runner.xcworkspace'
 BUILD_NR = ENV["BUILD_NUMBER"]
 
@@ -34,7 +35,7 @@ lane :alpha_android do
   push_to_git_remote      # Push the changes to the origin.
 
   buildAppAndroid(flavor: 'alpha')
-  upload_to_hockey_android(flavor: 'alpha') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to HockeyApp.
 end
 
 lane :beta_android do
@@ -42,7 +43,7 @@ lane :beta_android do
   push_to_git_remote      # Push the changes to the origin.
 
   buildAppAndroid(flavor: 'beta')
-  upload_to_hockey_android(flavor: 'beta') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to HockeyApp.
 end
 
 lane :prod_android do
@@ -58,7 +59,7 @@ lane :alpha_ios do
   push_to_git_remote      # Push the changes to the origin.
 
   buildAppIOS(flavor: 'alpha')
-  upload_to_hockey_ios(flavor: 'alpha') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to HockeyApp.
 end
 
 lane :beta_ios do
@@ -66,7 +67,7 @@ lane :beta_ios do
   push_to_git_remote      # Push the changes to the origin.
 
   buildAppIOS(flavor: 'alpha')
-  upload_to_hockey_ios(flavor: 'beta') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to HockeyApp.
 end
 
 lane :prod_ios do
@@ -116,23 +117,34 @@ private_lane :convertAppToIpa do |options|
         )
     end
 end
-
-private_lane :upload_to_hockey_android do |options|
-  getReleaseType(flavor: options[:flavor])
-  hockey(
-    api_token: HOCKEY_APP_API_KEY,
-    release_type: release_type,
-    status:       '2', # The status is available for download.
-    ipa: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk"
+private_lane :upload_to_appcenter_android do |options|
+  getAppNameAndroid(flavor: options[:flavor])
+  appcenter_upload(
+    api_token: APPCENTER_API_KEY,
+    app_name: appcenter_app_name,
+    owner_name: APPCENTER_ORGANIZATION_NAME,
+    apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
+    notify_testers: true
   )
 end
 
-private_lane :upload_to_hockey_ios do |options|
-  getReleaseType(flavor: options[:flavor])
-  hockey(
-    api_token: HOCKEY_APP_API_KEY,
-    release_type: release_type,
-    status:       '2', # The status is available for download.
+private_lane :upload_to_appcenter_ios do |options|
+  getAppNameIOS(flavor: options[:flavor])
+  appcenter_upload(
+    api_token: APPCENTER_API_KEY,
+    app_name: appcenter_app_name,
+    owner_name: APPCENTER_ORGANIZATION_NAME,
+    notify_testers: true
+  )
+end
+
+private_lane :upload_to_appcenter_mac do |options|
+  getAppNameIOS(flavor: options[:flavor])
+  appcenter_upload(
+    api_token: APPCENTER_API_KEY,
+    app_name: appcenter_app_name,
+    owner_name: APPCENTER_ORGANIZATION_NAME,
+    notify_testers: true
   )
 end
 
@@ -143,16 +155,25 @@ private_lane :add_tag do
   )
 end
 
-private_lane :getReleaseType do |options|
+private_lane :getAppNameAndroid do |options|
     flavor = options[:flavor]
-    sh("echo", flavor)
-    if flavor == "alpha"
-        release_type = "2"
+    if flavor == "alpha" &&
+        appcenter_app_name = "Flutter-Template-Android-Alpha"
     elsif flavor == "beta"
-        release_type = "0"
+        appcenter_app_name = "Flutter-Template-Android-Beta"
     elsif flavor == "prod"
-        release_type = "3" # Enterprise for prod because store builds can't be downloaded with hockey
-    elsif flavor == "debug"
-        release_type = "3" # Enterprise build. (debug should never be build with fastlane)
+        appcenter_app_name = "Flutter-Template-Android"
+    end
+end
+
+
+private_lane :getAppNameIOS do |options|
+    flavor = options[:flavor]
+    if flavor == "alpha" &&
+        appcenter_app_name = "Flutter-Template-iOS-Alpha"
+    elsif flavor == "beta"
+        appcenter_app_name = "Flutter-Template-iOS-Beta"
+    elsif flavor == "prod"
+        appcenter_app_name = "Flutter-Template-iOS"
     end
 end
