@@ -1,5 +1,4 @@
 fastlane_version “2.93.1”
-#require ‘java-properties’
 
 # Don't generate README files.
 skip_docs
@@ -21,8 +20,6 @@ appcenter_app_name = ''
 #####################
 
 # Hockey configuration.
-APPCENTER_API_KEY = '<enter-your-api-key>'
-APPCENTER_ORGANIZATION_NAME = '<enter-your-organization>'
 WORKSPACE = 'ios/Runner.xcworkspace'
 BUILD_NR = ENV["BUILD_NUMBER"]
 
@@ -117,12 +114,11 @@ private_lane :convertAppToIpa do |options|
         )
     end
 end
+
 private_lane :upload_to_appcenter_android do |options|
   getAppNameAndroid(flavor: options[:flavor])
   appcenter_upload(
-    api_token: APPCENTER_API_KEY,
     app_name: appcenter_app_name,
-    owner_name: APPCENTER_ORGANIZATION_NAME,
     apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
     notify_testers: true
   )
@@ -131,28 +127,13 @@ end
 private_lane :upload_to_appcenter_ios do |options|
   getAppNameIOS(flavor: options[:flavor])
   appcenter_upload(
-    api_token: APPCENTER_API_KEY,
     app_name: appcenter_app_name,
-    owner_name: APPCENTER_ORGANIZATION_NAME,
-    notify_testers: true
-  )
-end
-
-private_lane :upload_to_appcenter_mac do |options|
-  getAppNameIOS(flavor: options[:flavor])
-  appcenter_upload(
-    api_token: APPCENTER_API_KEY,
-    app_name: appcenter_app_name,
-    owner_name: APPCENTER_ORGANIZATION_NAME,
     notify_testers: true
   )
 end
 
 private_lane :add_tag do
-  add_git_tag(
-    prefix: "android/",
-    build_number: BUILD_NR
-  )
+  add_git_tag(build_number: BUILD_NR)
 end
 
 private_lane :getAppNameAndroid do |options|
