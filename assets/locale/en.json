@@ -1,5 +1,10 @@
 {
   "app_title": "Flutter Template EN",
+  "background_cancel_all_tasks": "Cancel all tasks",
+  "background_periodic_network_task": "Periodic Network Task ",
+  "background_periodic_task": "Periodic Task",
+  "background_simple_task": "Simple task",
+  "background_title": "Background",
   "retry_btn": "Retry",
   "user_click_message": "you clicked on a %1$s",
   "users_not_found": "users not found",

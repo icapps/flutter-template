@@ -232,7 +232,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.8"
+    version: "0.1.9"
   intl:
     dependency: transitive
     description:

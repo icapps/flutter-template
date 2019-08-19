@@ -1,5 +1,10 @@
 {
   "app_title": "Flutter Template NL",
+  "background_cancel_all_tasks": "Annuleer alle tasks",
+  "background_periodic_network_task": "Herhaaldelijke netwerk taak",
+  "background_periodic_task": "Herhaalde taak",
+  "background_simple_task": "Simpele Taak",
+  "background_title": "Achtergrond",
   "retry_btn": "Opnieuw",
   "user_click_message": "Je hebt op %1$s geklikt",
   "users_not_found": "Geen gebruikers gevonded",

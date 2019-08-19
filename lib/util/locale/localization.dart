@@ -44,6 +44,16 @@ class Localization {
 
   String get appTitle => _t('app_title');
 
+  String get backgroundCancelAllTasks => _t('background_cancel_all_tasks');
+
+  String get backgroundPeriodicNetworkTask => _t('background_periodic_network_task');
+
+  String get backgroundPeriodicTask => _t('background_periodic_task');
+
+  String get backgroundSimpleTask => _t('background_simple_task');
+
+  String get backgroundTitle => _t('background_title');
+
   String get retryBtn => _t('retry_btn');
 
   String userClickMessage(String arg1) => _t('user_click_message', args: [arg1]);

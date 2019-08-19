@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter/material.dart';
 
 //============================================================//
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   static const defaultLocale = Locale('nl');
-  static const _supportedLanguages = [
+  static const supportedLanguages = [
     'nl',
     'en',
   ];
@@ -28,7 +28,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool isSupported(Locale locale) => _supportedLanguages.contains(locale.languageCode);
+  bool isSupported(Locale locale) => supportedLanguages.contains(locale.languageCode);
 
   @override
   Future<Localization> load(Locale locale) async {
@@ -38,4 +38,5 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool shouldReload(LocalizationsDelegate<Localization> old) => true;
+
 }
