@@ -19,6 +19,9 @@ appcenter_app_name = ''
 ### CONFIGURATION ###
 #####################
 
+# Flutter configuration.
+FLUTTER_VERSION = '' # Configure if you want to use a specific version.
+
 # Hockey configuration.
 WORKSPACE = 'ios/Runner.xcworkspace'
 BUILD_NR = ENV["BUILD_NUMBER"]
@@ -29,7 +32,8 @@ BUILD_NR = ENV["BUILD_NUMBER"]
 
 lane :alpha_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppAndroid(flavor: 'alpha')
   upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to HockeyApp.
@@ -37,7 +41,8 @@ end
 
 lane :beta_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppAndroid(flavor: 'beta')
   upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to HockeyApp.
@@ -45,7 +50,8 @@ end
 
 lane :prod_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppAndroid(flavor: 'prod')
   add_tag                 # Add tag
@@ -53,7 +59,8 @@ end
 
 lane :alpha_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppIOS(flavor: 'alpha')
   upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to HockeyApp.
@@ -61,7 +68,8 @@ end
 
 lane :beta_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppIOS(flavor: 'alpha')
   upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to HockeyApp.
@@ -69,7 +77,8 @@ end
 
 lane :prod_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  push_to_git_remote      # Push the changes to the origin.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppIOS(flavor: 'prod')
   add_tag                 # Add tag
@@ -78,6 +87,15 @@ end
 ########################
 ###   PRIVATE LANES  ###
 ########################
+
+private_lane :ensureFlutterVersion do
+    if FLUTTER_VERSION == "" &&
+       sh("echo", "Flutter will use the latest version")
+    else
+       sh("flutter", "version", FLUTTER_VERSION)
+    end
+
+end
 
 private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
