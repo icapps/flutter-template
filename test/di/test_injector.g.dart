@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'injector.dart';
+part of 'test_injector.dart';
 
 // **************************************************************************
 // InjectorGenerator
@@ -16,9 +16,9 @@ class _$Injector extends Injector {
     final Container container = Container();
     container.registerSingleton((c) => UserRepository(c<Api>()));
     container.registerSingleton((c) => LocaleRepository(c<SharedPrefs>()));
-    container.registerFactory<Api, FlutterApi>((c) => FlutterApi(c<Dio>()));
-    container.registerSingleton<SharedPrefs, FlutterSharedPrefs>(
-        (c) => FlutterSharedPrefs(c<SharedPreferences>()));
+    container.registerFactory<Api, TestApi>((c) => TestApi());
+    container.registerFactory<SharedPrefs, TestSharedPrefs>(
+        (c) => TestSharedPrefs());
   }
 
   void registerViewModelFactories() {

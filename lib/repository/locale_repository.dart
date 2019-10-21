@@ -1,24 +1,24 @@
 import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_template/repository/shared_prefs.dart';
 
 class LocaleRepository {
   static const STORE_LOCALE = 'locale';
 
-  LocaleRepository();
+  final SharedPrefs _sharedPrefs;
+
+  LocaleRepository(this._sharedPrefs);
 
   Future<void> setCustomLocale(Locale locale) async {
-    final prefs = await SharedPreferences.getInstance();
     if (locale == null) {
-      await prefs.remove(STORE_LOCALE);
+      await _sharedPrefs.deleteKey(STORE_LOCALE);
       return;
     }
-    await prefs.setString(STORE_LOCALE, locale.languageCode);
+    await _sharedPrefs.saveString(STORE_LOCALE, locale.languageCode);
   }
 
   //can be null
   Future<Locale> getCustomLocale() async {
-    final prefs = await SharedPreferences.getInstance();
-    final localeCode = prefs.getString(STORE_LOCALE);
+    final localeCode = _sharedPrefs.getString(STORE_LOCALE);
     if (localeCode == null || localeCode.isEmpty) return null;
     return Locale(localeCode);
   }

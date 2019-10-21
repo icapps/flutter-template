@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 enum Flavor {
+  TEST,
   DEV,
   ALPHA,
   BETA,
@@ -43,4 +44,6 @@ class FlavorConfig {
   static bool isAlpha() => _instance.flavor == Flavor.ALPHA;
 
   static bool isBeta() => _instance.flavor == Flavor.BETA;
+
+  static bool isInTest() => _instance.flavor == Flavor.TEST;
 }
