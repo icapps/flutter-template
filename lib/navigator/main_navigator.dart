@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/util/route/fade_in_route.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
-import 'package:flutter/material.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({Key key}) : super(key: key);
@@ -49,7 +50,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
       case SplashScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
       case HomeScreen.routeName:
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: HomeScreen()), settings: settings);
+        return FadeInRoute(child: FlavorBanner(child: HomeScreen()));
       default:
         return null;
     }

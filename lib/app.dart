@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
-import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           home: const MainNavigatorWidget(),
         ),
       ),
-      builder: (context) => kiwi.Container().resolve()..init(),
+      builder: (context) => KiwiContainer.resolve()..init(),
     );
   }
 }

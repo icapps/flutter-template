@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/app.dart';
-import 'package:flutter_template/di/injector.dart' as kiwi;
+import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/niddler.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
   await initNiddler();
@@ -17,6 +17,6 @@ Future<void> main() async {
     color: Colors.red,
     values: values,
   );
-  kiwi.setupDependencyTree();
+  await KiwiContainer.init();
   runApp(MyApp());
 }

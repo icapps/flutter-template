@@ -24,7 +24,7 @@ abstract class Injector {
   void registerViewModelFactories();
 }
 
-void setupDependencyTree() {
+Future<void> setupDependencyTree() async {
   final injector = _$Injector()..registerNetworkDependencies();
   Container().registerSingleton((c) => provideDio(c.resolve()));
   injector
