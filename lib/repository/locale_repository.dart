@@ -9,7 +9,6 @@ class LocaleRepository {
   Future<void> setCustomLocale(Locale locale) async {
     final prefs = await SharedPreferences.getInstance();
     if (locale == null) {
-      print('Reset custom locale. Use system language');
       await prefs.remove(STORE_LOCALE);
       return;
     }

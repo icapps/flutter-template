@@ -1,7 +1,8 @@
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:flutter_template/di/kiwi_container.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,11 +16,14 @@ class _SplashScreenState extends State<SplashScreen> implements SplashNavigator 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeColors.primaryColor,
       body: ChangeNotifierProvider<SplashViewModel>(
         child: Center(
-          child: const CircularProgressIndicator(),
+          child: const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(ThemeColors.white),
+          ),
         ),
-        builder: (context) => kiwi.Container().resolve()..init(this),
+        builder: (context) => KiwiContainer.resolve()..init(this),
       ),
     );
   }

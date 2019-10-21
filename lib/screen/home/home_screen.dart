@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter_template/widget/user/user_row.dart';
-import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
           },
         ),
       ),
-      builder: (context) => kiwi.Container().resolve()..init(this),
+      builder: (context) => KiwiContainer.resolve()..init(this),
     );
   }
 
