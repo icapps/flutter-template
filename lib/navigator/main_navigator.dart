@@ -41,8 +41,15 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
         key: navigationKey,
         initialRoute: SplashScreen.routeName,
         onGenerateRoute: onGenerateRoute,
+        observers: [
+          HeroController(createRectTween: _createRectTween),
+        ],
       ),
     );
+  }
+
+  RectTween _createRectTween(Rect begin, Rect end) {
+    return MaterialRectArcTween(begin: begin, end: end);
   }
 
   Route onGenerateRoute(RouteSettings settings) {
