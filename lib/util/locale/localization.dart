@@ -7,13 +7,15 @@ import 'package:flutter/widgets.dart';
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class Localization {
-  Map<dynamic, dynamic> _localisedValues;
+  Map<dynamic, dynamic> _localisedValues = Map();
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
-  
-  static Future<Localization> load(Locale locale) async {
+
+  static Future<Localization> load(Locale locale, {bool isInTest = false}) async {
     final localizations = Localization();
-    print('Switching to ${locale.languageCode}');
+    if (isInTest) {
+      return localizations;
+    }
     final jsonContent = await rootBundle.loadString('assets/locale/${locale.languageCode}.json');
     final Map<String, dynamic> values = json.decode(jsonContent);
     localizations._localisedValues = values;

@@ -21,8 +21,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.6.5
-  icapps_translations: ^0.1.9
   kiwi_generator: ^0.4.0
+  icapps_translations: ^0.2.0
+  icapps_generator: ^0.2.0
+  model_generator: ^0.3.0
 
 flutter:
   uses-material-design: true
@@ -30,6 +32,6 @@ flutter:
     - assets/locale/
 
 icapps_translations:
-  api_key: 'lIWZxNlOz3d461rVMeh3dw'
+  api_key: 'your-api-key'
   default_language: 'nl'
   languages: ['nl','en']
