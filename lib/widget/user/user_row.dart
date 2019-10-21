@@ -1,5 +1,7 @@
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 
 class UserRow extends StatelessWidget {
   final String title;
@@ -12,13 +14,12 @@ class UserRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: ThemeDimens.padding8),
+      child: TouchFeedBack(
+        color: ThemeColors.userRowBackground,
         borderRadius: BorderRadius.circular(ThemeDimens.cardBorderRadius),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(ThemeDimens.cardBorderRadius),
-        onTap: onClick,
+        onClick: onClick,
         child: Padding(
           padding: const EdgeInsets.all(ThemeDimens.padding16),
           child: Column(

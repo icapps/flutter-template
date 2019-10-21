@@ -9,8 +9,6 @@ class HomeViewModel with ChangeNotifier {
 
   HomeNavigator _navigator;
 
-  CancelToken _getUsersCancelToken;
-
   bool _loading = false;
 
   String _error;
@@ -19,19 +17,17 @@ class HomeViewModel with ChangeNotifier {
 
   HomeViewModel(this._userRepo);
 
-  void init(HomeNavigator navigator) {
+  Future<void> init(HomeNavigator navigator) async {
     _navigator = navigator;
-    getUsers();
+    await _getUsers();
   }
 
-  Future<void> getUsers() async {
+  Future<void> _getUsers() async {
     try {
       _error = null;
       _loading = true;
       notifyListeners();
-      _getUsersCancelToken?.cancel();
-      _getUsersCancelToken = CancelToken();
-      final newData = await _userRepo.getUsers(_getUsersCancelToken);
+      final newData = await _userRepo.getUsers();
       _data
         ..clear()
         ..addAll(newData);
@@ -48,7 +44,7 @@ class HomeViewModel with ChangeNotifier {
   }
 
   void onRetry() {
-    getUsers();
+    _getUsers();
   }
 
   int getUserLength() {
@@ -81,12 +77,6 @@ class HomeViewModel with ChangeNotifier {
 
   String getNameAtIndex(int index) {
     return _data[index].name;
-  }
-
-  @override
-  void dispose() {
-    _getUsersCancelToken?.cancel();
-    super.dispose();
   }
 }
 
