@@ -96,6 +96,20 @@ To check your code matches our linting. The analysis_options.yaml contains all o
 flutter analyze
 ```
 
+## Testing
+
+In order to run our test we need to run
+
+```
+flutter test
+```
+
+If we want to update our golden files we need to run
+
+```
+flutter test --update-goldens
+```
+
 ## Fastlane
 
 Fastlane is used for building iOS and Android
