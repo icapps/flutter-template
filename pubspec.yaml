@@ -14,7 +14,7 @@ dependencies:
   provider: ^3.0.0+1
   json_serializable: ^3.1.0
   dio: ^2.1.13
-  niddler_dart: ^0.4.0
+  niddler_dart: ^0.5.0
   shared_preferences: ^0.5.3+4
   mockito: ^4.1.1
 
