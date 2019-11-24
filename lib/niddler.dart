@@ -10,6 +10,6 @@ Future<void> initNiddler() async {
 
   print('Starting niddler');
   await niddler.start();
-  NiddlerInjector.install(niddler);
+  niddler.install();
   print('Niddler is running');
 }
