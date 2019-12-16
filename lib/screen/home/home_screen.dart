@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
         body: Consumer<HomeViewModel>(
           builder: (context, value, child) {
             if (value.showLoading()) {
-              return Center(
-                child: const CircularProgressIndicator(),
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             if (value.showError()) {

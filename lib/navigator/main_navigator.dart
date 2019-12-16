@@ -11,13 +11,8 @@ class MainNavigatorWidget extends StatefulWidget {
   MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
 
   static MainNavigatorWidgetState of(context, {rootNavigator = false, nullOk = false}) {
-    final MainNavigatorWidgetState navigator = rootNavigator
-        ? context.rootAncestorStateOfType(
-            const TypeMatcher<MainNavigatorWidgetState>(),
-          )
-        : context.ancestorStateOfType(
-            const TypeMatcher<MainNavigatorWidgetState>(),
-          );
+    final MainNavigatorWidgetState navigator =
+        rootNavigator ? context.findRootAncestorStateOfType<MainNavigatorWidgetState>() : context.findAncestorStateOfType<MainNavigatorWidgetState>();
     assert(() {
       if (navigator == null && !nullOk) {
         throw FlutterError('MainNavigatorWidget operation requested with a context that does not include a MainNavigatorWidget.\n'

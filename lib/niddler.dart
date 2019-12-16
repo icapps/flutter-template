@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:niddler_dart/niddler_dart.dart';
 
 Future<void> initNiddler() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   final niddlerBuilder = NiddlerBuilder()
     ..port = 0
     ..serverInfo = NiddlerServerInfo('FlutterTemplate', 'Flutter Template')

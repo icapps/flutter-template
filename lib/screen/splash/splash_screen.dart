@@ -18,8 +18,8 @@ class _SplashScreenState extends State<SplashScreen> implements SplashNavigator 
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor,
       body: ChangeNotifierProvider<SplashViewModel>(
-        child: Center(
-          child: const CircularProgressIndicator(
+        child: const Center(
+          child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation(ThemeColors.white),
           ),
         ),
