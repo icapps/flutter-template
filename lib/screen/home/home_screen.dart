@@ -36,47 +36,47 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
           ],
         ),
         body: Consumer<HomeViewModel>(
-          builder: (context, value, child) {
-            if (value.showLoading()) {
+          builder: (context, viewModel, child) {
+            if (viewModel.showLoading()) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (value.showError()) {
+            if (viewModel.showError()) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    value.getError(),
+                    viewModel.getError(),
                     textAlign: TextAlign.center,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: ThemeDimens.padding8),
                     child: RaisedButton(
                       child: Text(Localization.of(context).retryBtn),
-                      onPressed: value.onRetry,
+                      onPressed: viewModel.onRetry,
                     ),
                   )
                 ],
               );
             }
-            if (value.showNoUsersFound()) {
+            if (viewModel.showNoUsersFound()) {
               return Center(
                 child: Text(Localization.of(context).usersNotFound),
               );
             }
-            if (value.showUserList()) {
+            if (viewModel.showUserList()) {
               return ListView.builder(
                 padding: const EdgeInsets.all(ThemeDimens.padding16),
-                itemCount: value.getUserLength(),
+                itemCount: viewModel.getUserLength(),
                 itemBuilder: (context, index) {
                   return UserRow(
-                    title: value.getNameAtIndex(index),
+                    title: viewModel.getNameAtIndex(index),
                     titleIcon: Icons.person,
-                    subtitle: value.getCityAtIndex(index),
+                    subtitle: viewModel.getCityAtIndex(index),
                     subtitleIcon: Icons.location_city,
-                    onClick: () => value.onUserClicked(index),
+                    onClick: () => viewModel.onUserClicked(index),
                   );
                 },
               );
