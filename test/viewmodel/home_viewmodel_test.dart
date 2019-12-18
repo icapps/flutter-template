@@ -12,7 +12,7 @@ void main() {
     final viewModel = KiwiContainer.resolve<HomeViewModel>();
     final mock = HomeNavigatorMockInterface();
     await viewModel.init(mock);
-    expect(viewModel.getUserLength(), 10);
+    expect(viewModel.getUserLength(), 0);
   });
 }
 

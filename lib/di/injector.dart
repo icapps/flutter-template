@@ -1,7 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/repository/api.dart';
-import 'package:flutter_template/repository/flutter_api.dart';
-import 'package:flutter_template/repository/flutter_shared_prefs.dart';
 import 'package:flutter_template/repository/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs.dart';
 import 'package:flutter_template/repository/user_repository.dart';
@@ -10,18 +7,21 @@ import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
+import 'package:flutter_template/webservice/user_webservice.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'injector.g.dart';
 
 abstract class Injector {
-  @Register.factory(NetworkLogInterceptor)
+  @Register.singleton(NetworkLogInterceptor)
   void registerNetworkDependencies();
+
+  @Register.singleton(UserService, from: UserWebservice)
+  void registerWebservices();
 
   @Register.singleton(UserRepository)
   @Register.singleton(LocaleRepository)
-  @Register.factory(Api, from: FlutterApi)
   @Register.singleton(SharedPrefs, from: FlutterSharedPrefs)
   void registerCommonDependencies();
 
@@ -36,6 +36,7 @@ Future<void> setupDependencyTree() async {
   final injector = _$Injector()..registerNetworkDependencies();
   Container().registerSingleton((c) => provideDio(c.resolve()));
   injector
+    ..registerWebservices()
     ..registerCommonDependencies()
     ..registerViewModelFactories();
 }
