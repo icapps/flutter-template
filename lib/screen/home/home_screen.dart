@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/kiwi_container.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
-import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
+import 'package:flutter_template/widget/provider/provider_widet.dart';
 import 'package:flutter_template/widget/user/user_row.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<HomeViewModel>(
+    return ProviderWidget<HomeViewModel>(
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -29,10 +31,14 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
               icon: const Icon(Icons.language),
               onPressed: () {
                 Localizations.localeOf(context).languageCode == 'en'
-                    ? Provider.of<LocaleViewModel>(context).onSwitchToDutch()
-                    : Provider.of<LocaleViewModel>(context).onSwitchToEnglish();
+                    ? Provider.of<GlobalViewModel>(context).onSwitchToDutch()
+                    : Provider.of<GlobalViewModel>(context).onSwitchToEnglish();
               },
-            )
+            ),
+            IconButton(
+              icon: const Icon(Icons.developer_mode),
+              onPressed: MainNavigatorWidget.of(context).goToDebug,
+            ),
           ],
         ),
         body: Consumer<HomeViewModel>(
@@ -85,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
           },
         ),
       ),
-      builder: (context) => KiwiContainer.resolve()..init(this),
+      create: () => KiwiContainer.resolve()..init(this),
     );
   }
 

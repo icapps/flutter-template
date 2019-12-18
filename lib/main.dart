@@ -5,6 +5,8 @@ import 'package:flutter_template/niddler.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await initNiddler();
 
   const values = FlavorValues(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
+import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/route/fade_in_route.dart';
@@ -53,6 +55,10 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
       case HomeScreen.routeName:
         return FadeInRoute(child: FlavorBanner(child: HomeScreen()));
+      case DebugScreen.routeName:
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugScreen()), settings: settings);
+      case DebugPlatformSelectorScreen.routeName:
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       default:
         return null;
     }
@@ -63,6 +69,10 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
   void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
 
   void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
+
+  void goToDebug() => navigationKey.currentState.pushNamed(DebugScreen.routeName);
+
+  Future<void> goToDebugPlatformSelector() async => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
 
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
 

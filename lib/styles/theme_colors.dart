@@ -7,4 +7,5 @@ class ThemeColors {
   static const accentColor = Color(0xFF009AC7);
   static const white = Color(0xFFFFFFFF);
   static const userRowBackground = Color(0xFFEFEFEF);
+  static const debugRowTitle = Color(0xFFEEEEEE);
 }

@@ -1,8 +1,9 @@
+import 'package:flutter_template/repository/debug_repository.dart';
 import 'package:flutter_template/repository/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs.dart';
 import 'package:flutter_template/repository/user_repository.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
-import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/webservice/user_webservice.dart';
 import 'package:kiwi/kiwi.dart';
@@ -17,13 +18,14 @@ abstract class Injector {
   void registerWebservices();
 
   @Register.singleton(UserRepository)
+  @Register.singleton(DebugRepository)
   @Register.singleton(LocaleRepository)
   @Register.singleton(SharedPrefs, from: TestSharedPrefs)
   void registerCommonDependencies();
 
   @Register.factory(HomeViewModel)
   @Register.factory(SplashViewModel)
-  @Register.factory(LocaleViewModel)
+  @Register.factory(GlobalViewModel)
   void registerViewModelFactories();
 }
 

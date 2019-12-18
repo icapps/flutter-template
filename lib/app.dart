@@ -6,24 +6,25 @@ import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
-import 'package:flutter_template/viewmodel/locale/locale_viewmodel.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LocaleViewModel>(
-      child: Consumer<LocaleViewModel>(
-        builder: (context, value, child) => MaterialApp(
+    return ChangeNotifierProvider<GlobalViewModel>(
+      child: Consumer<GlobalViewModel>(
+        builder: (context, viewModel, child) => MaterialApp(
           localizationsDelegates: [
-            value.localeDelegate,
+            viewModel.localeDelegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             FallbackCupertinoLocalisationsDelegate.delegate,
           ],
-          locale: value.localeDelegate.activeLocale,
+          locale: viewModel.localeDelegate.activeLocale,
           supportedLocales: LocalizationDelegate.supportedLocales,
           theme: ThemeData(
+            platform: viewModel.targetPlatform,
             fontFamily: ThemeFonts.OpenSans,
             primaryColor: ThemeColors.primaryColor,
             accentColor: ThemeColors.accentColor,
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           home: const MainNavigatorWidget(),
         ),
       ),
-      builder: (context) => KiwiContainer.resolve()..init(),
+      create: (context) => KiwiContainer.resolve()..init(),
     );
   }
 }

@@ -16,6 +16,8 @@ class _$Injector extends Injector {
   void registerCommonDependencies() {
     final Container container = Container();
     container.registerSingleton((c) => UserRepository(c<UserService>()));
+    container.registerSingleton(
+        (c) => DebugRepository(c<PlatformUtil>(), c<SharedPrefs>()));
     container.registerSingleton((c) => LocaleRepository(c<SharedPrefs>()));
     container.registerSingleton<SharedPrefs, TestSharedPrefs>(
         (c) => TestSharedPrefs());
@@ -25,6 +27,7 @@ class _$Injector extends Injector {
     final Container container = Container();
     container.registerFactory((c) => HomeViewModel(c<UserRepository>()));
     container.registerFactory((c) => SplashViewModel());
-    container.registerFactory((c) => LocaleViewModel(c<LocaleRepository>()));
+    container.registerFactory(
+        (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
   }
 }
