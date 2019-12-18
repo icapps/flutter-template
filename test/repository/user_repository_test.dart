@@ -10,6 +10,6 @@ void main() {
   test('Test User repository check if users start empty', () async {
     final userRepo = KiwiContainer.resolve<UserRepository>();
     final users = await userRepo.getUsers();
-    expect(users.length, 10);
+    expect(users.length, 0);
   });
 }

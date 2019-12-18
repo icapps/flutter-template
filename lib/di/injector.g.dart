@@ -9,14 +9,19 @@ part of 'injector.dart';
 class _$Injector extends Injector {
   void registerNetworkDependencies() {
     final Container container = Container();
-    container.registerFactory((c) => NetworkLogInterceptor());
+    container.registerSingleton((c) => NetworkLogInterceptor());
+  }
+
+  void registerWebservices() {
+    final Container container = Container();
+    container.registerSingleton<UserService, UserWebservice>(
+        (c) => UserWebservice(c<Dio>()));
   }
 
   void registerCommonDependencies() {
     final Container container = Container();
-    container.registerSingleton((c) => UserRepository(c<Api>()));
+    container.registerSingleton((c) => UserRepository(c<UserService>()));
     container.registerSingleton((c) => LocaleRepository(c<SharedPrefs>()));
-    container.registerFactory<Api, FlutterApi>((c) => FlutterApi(c<Dio>()));
     container.registerSingleton<SharedPrefs, FlutterSharedPrefs>(
         (c) => FlutterSharedPrefs(c<SharedPreferences>()));
   }

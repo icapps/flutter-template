@@ -7,17 +7,17 @@ part of 'test_injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
-  void registerNetworkDependencies() {
+  void registerWebservices() {
     final Container container = Container();
-    container.registerFactory((c) => NetworkLogInterceptor());
+    container.registerSingleton<UserService, TestUserService>(
+        (c) => TestUserService());
   }
 
   void registerCommonDependencies() {
     final Container container = Container();
-    container.registerSingleton((c) => UserRepository(c<Api>()));
+    container.registerSingleton((c) => UserRepository(c<UserService>()));
     container.registerSingleton((c) => LocaleRepository(c<SharedPrefs>()));
-    container.registerFactory<Api, TestApi>((c) => TestApi());
-    container.registerFactory<SharedPrefs, TestSharedPrefs>(
+    container.registerSingleton<SharedPrefs, TestSharedPrefs>(
         (c) => TestSharedPrefs());
   }
 

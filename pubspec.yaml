@@ -11,9 +11,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   kiwi: ^0.2.0
+  dio: ^3.0.7
+  retrofit: ^1.0.1+1
   provider: ^3.2.0
   json_serializable: ^3.1.0
-  dio: ^3.0.7
   niddler_dart: ^0.5.0
   shared_preferences: ^0.5.6
   mockito: ^4.1.1
@@ -22,6 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.7.2
+  retrofit_generator: ^1.0.2+2
   kiwi_generator: ^0.4.0
   icapps_translations: ^0.2.0
   icapps_generator: ^0.2.0
