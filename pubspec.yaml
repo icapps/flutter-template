@@ -11,23 +11,31 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   kiwi: ^0.2.0
-  dio: ^3.0.7
+  dio: ^3.0.8
   retrofit: ^1.0.1+1
-  provider: ^3.2.0
-  json_serializable: ^3.1.0
+  provider: ^4.0.1
+  json_serializable: ^3.2.5
   niddler_dart: ^0.5.1
   shared_preferences: ^0.5.6
   mockito: ^4.1.1
+  moor: ^2.2.0
+  moor_ffi: ^0.3.1
+  path_provider: ^1.5.1
+  path: ^1.6.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  moor_generator: ^2.2.0
   build_runner: ^1.7.2
   retrofit_generator: ^1.0.2+2
   kiwi_generator: ^0.4.0
-  icapps_translations: ^0.2.0
-  icapps_generator: ^0.2.0
-  model_generator: ^0.3.0
+  icapps_translations: ^0.2.1
+  icapps_generator: ^0.2.1
+  model_generator: ^0.4.2
+
+dependency_overrides:
+  analyzer: ^0.39.2+1 #kiwi uses an outdated version of analyzer
 
 flutter:
   uses-material-design: true

@@ -1,4 +1,5 @@
-import 'package:flutter_template/model/user/address.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_template/model/dto/user/address.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -16,7 +17,13 @@ class User {
   @JsonKey(name: 'address')
   final Address address;
 
-  User(this.id, this.name, this.email, this.username, this.address);
+  User({
+    @required this.id,
+    @required this.name,
+    @required this.email,
+    @required this.username,
+    @required this.address,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

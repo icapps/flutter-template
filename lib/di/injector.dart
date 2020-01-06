@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/database/user_dao.dart';
+import 'package:flutter_template/database/user_database.dart';
 import 'package:flutter_template/repository/debug_repository.dart';
 import 'package:flutter_template/repository/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs.dart';
@@ -20,6 +22,10 @@ part 'injector.g.dart';
 abstract class Injector {
   @Register.singleton(NetworkLogInterceptor)
   void registerNetworkDependencies();
+
+  @Register.singleton(UserDatabase)
+  @Register.singleton(UserDao)
+  void registerDatabase();
 
   @Register.singleton(UserService, from: UserWebservice)
   void registerWebservices();
@@ -44,6 +50,7 @@ Future<void> setupDependencyTree() async {
   final injector = _$Injector()..registerNetworkDependencies();
   Container().registerSingleton((c) => provideDio(c.resolve()));
   injector
+    ..registerDatabase()
     ..registerWebservices()
     ..registerCommonDependencies()
     ..registerViewModelFactories();

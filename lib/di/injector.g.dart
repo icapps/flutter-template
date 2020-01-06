@@ -12,6 +12,12 @@ class _$Injector extends Injector {
     container.registerSingleton((c) => NetworkLogInterceptor());
   }
 
+  void registerDatabase() {
+    final Container container = Container();
+    container.registerSingleton((c) => UserDatabase());
+    container.registerSingleton((c) => UserDao(c<UserDatabase>()));
+  }
+
   void registerWebservices() {
     final Container container = Container();
     container.registerSingleton<UserService, UserWebservice>(

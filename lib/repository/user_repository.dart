@@ -1,4 +1,4 @@
-import 'package:flutter_template/model/user/user.dart';
+import 'package:flutter_template/model/dto/user/user.dart';
 import 'package:flutter_template/webservice/user_webservice.dart';
 
 class UserRepository {

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/model/user/user.dart';
+import 'package:flutter_template/model/dto/user/user.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'user_webservice.g.dart';

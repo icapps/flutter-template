@@ -29,5 +29,7 @@ class _$Injector extends Injector {
     container.registerFactory((c) => SplashViewModel());
     container.registerFactory(
         (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
+    container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
+    container.registerFactory((c) => DebugPlatformSelectorViewModel());
   }
 }
