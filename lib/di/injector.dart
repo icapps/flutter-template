@@ -1,3 +1,4 @@
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/database/user_dao.dart';
 import 'package:flutter_template/database/user_database.dart';
@@ -42,6 +43,7 @@ abstract class Injector {
   @Register.factory(GlobalViewModel)
   @Register.factory(DebugViewModel)
   @Register.factory(DebugPlatformSelectorViewModel)
+  @Register.factory(LicenseViewModel)
   void registerViewModelFactories();
 }
 

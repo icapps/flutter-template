@@ -44,5 +44,6 @@ class _$Injector extends Injector {
         (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
     container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
     container.registerFactory((c) => DebugPlatformSelectorViewModel());
+    container.registerFactory((c) => LicenseViewModel());
   }
 }

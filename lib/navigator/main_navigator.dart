@@ -1,3 +1,5 @@
+import 'package:flutter_template/screen/license/license_screen.dart';
+import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
@@ -59,6 +61,8 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+      case LicenseScreen.routeName:
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: LicenseScreen()), settings: settings);
       default:
         return null;
     }
@@ -73,6 +77,8 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
   void goToDebug() => navigationKey.currentState.pushNamed(DebugScreen.routeName);
 
   Future<void> goToDebugPlatformSelector() async => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
+
+  void goToLicense() => navigationKey.currentState.pushNamed(LicenseScreen.routeName);
 
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
 

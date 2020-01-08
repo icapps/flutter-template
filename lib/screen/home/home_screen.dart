@@ -31,9 +31,13 @@ class _HomeScreenState extends State<HomeScreen> implements HomeNavigator {
               icon: const Icon(Icons.language),
               onPressed: () {
                 Localizations.localeOf(context).languageCode == 'en'
-                    ? Provider.of<GlobalViewModel>(context).onSwitchToDutch()
-                    : Provider.of<GlobalViewModel>(context).onSwitchToEnglish();
+                    ? Provider.of<GlobalViewModel>(context, listen: false).onSwitchToDutch()
+                    : Provider.of<GlobalViewModel>(context, listen: false).onSwitchToEnglish();
               },
+            ),
+            IconButton(
+              icon: const Icon(Icons.description),
+              onPressed: MainNavigatorWidget.of(context).goToLicense,
             ),
             IconButton(
               icon: const Icon(Icons.developer_mode),
