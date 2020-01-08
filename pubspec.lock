@@ -84,7 +84,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "1.7.3"
   build_runner_core:
     dependency: transitive
     description:
@@ -258,7 +258,7 @@ packages:
       name: icapps_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   icapps_license:
     dependency: "direct dev"
     description:
