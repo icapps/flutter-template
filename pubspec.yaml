@@ -33,6 +33,7 @@ dev_dependencies:
   icapps_translations: ^0.2.1
   icapps_generator: ^0.2.1
   model_generator: ^0.4.2
+  icapps_license: ^0.0.6
 
 dependency_overrides:
   analyzer: ^0.39.2+1 #kiwi uses an outdated version of analyzer
@@ -46,3 +47,9 @@ icapps_translations:
   api_key: 'your-api-key'
   default_language: 'nl'
   languages: ['nl','en']
+
+icapps_license:
+  licenses:
+    provider: https://raw.githubusercontent.com/rrousselGit/provider/master/packages/provider/LICENSE
+    flutter_cache_manager: https://raw.githubusercontent.com/renefloor/flutter_cache_manager/master/LICENSE.md
+    moor_ffi: https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE
