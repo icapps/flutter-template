@@ -22,7 +22,7 @@ appcenter_app_name = ''
 # Flutter configuration.
 FLUTTER_VERSION = '' # Configure if you want to use a specific version.
 
-# Hockey configuration.
+# AppCenter configuration.
 WORKSPACE = 'ios/Runner.xcworkspace'
 BUILD_NR = ENV["BUILD_NUMBER"]
 
@@ -36,7 +36,7 @@ lane :alpha_android do
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppAndroid(flavor: 'alpha')
-  upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
 
 lane :beta_android do
@@ -45,7 +45,7 @@ lane :beta_android do
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppAndroid(flavor: 'beta')
-  upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to AppCenter.
 end
 
 lane :prod_android do
@@ -63,7 +63,7 @@ lane :alpha_ios do
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
   buildAppIOS(flavor: 'alpha')
-  upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to HockeyApp.
+  upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
 
 lane :beta_ios do
@@ -71,8 +71,8 @@ lane :beta_ios do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
-  buildAppIOS(flavor: 'alpha')
-  upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to HockeyApp.
+  buildAppIOS(flavor: 'beta')
+  upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to AppCenter.
 end
 
 lane :prod_ios do

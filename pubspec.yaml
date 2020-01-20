@@ -51,5 +51,4 @@ icapps_translations:
 icapps_license:
   licenses:
     provider: https://raw.githubusercontent.com/rrousselGit/provider/master/packages/provider/LICENSE
-    flutter_cache_manager: https://raw.githubusercontent.com/renefloor/flutter_cache_manager/master/LICENSE.md
     moor_ffi: https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE

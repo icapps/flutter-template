@@ -107,33 +107,6 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'provider',
-        version: '^4.0.1',
-        url: 'https://github.com/rrousselGit/provider',
-        licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/packages/provider/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2018 Remi Rousselet
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.''',
-      ))
-      ..add(License(
         name: 'json_serializable',
         version: '^3.2.5',
         url: 'https://github.com/dart-lang/json_serializable',
@@ -465,36 +438,6 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'moor_ffi',
-        version: '^0.3.1',
-        url: 'https://github.com/simolus3/moor/tree/develop/moor_ffi',
-        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2019 Simon Binder
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-This project also bundles sqlite, which is in the Public Domain.
-See https://www.sqlite.org/copyright.html''',
-      ))
-      ..add(License(
         name: 'path_provider',
         version: '^1.5.1',
         url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider',
@@ -589,7 +532,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'build_runner',
-        version: '^1.7.2',
+        version: '^1.7.3',
         url: 'https://github.com/dart-lang/build/tree/master/build_runner',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/build/master/build_runner/LICENSE',
         license: '''Copyright 2016, the Dart project authors. All rights reserved.
@@ -706,7 +649,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'icapps_generator',
-        version: '^0.2.1',
+        version: '^0.3.0',
         url: 'https://github.com/icapps/flutter-icapps-generator',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-generator/master/LICENSE',
         license: '''MIT License
