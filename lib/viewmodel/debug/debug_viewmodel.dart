@@ -30,9 +30,20 @@ class DebugViewModel with ChangeNotifier {
     await _navigator.goToTargetPlatformSelector();
     notifyListeners();
   }
+
+  void onSelectLanguageClicked() {
+    _navigator.goToSelectLanguage();
+  }
+
+  void onLicensesClicked() {
+    _navigator.goToLicenses();
+  }
 }
 
-// ignore: one_member_abstracts
 abstract class DebugNavigator {
   Future<void> goToTargetPlatformSelector();
+
+  void goToSelectLanguage();
+
+  void goToLicenses();
 }

@@ -1,12 +1,12 @@
-import 'package:flutter_template/screen/license/license_screen.dart';
+import 'package:flutter_template/screen/login/login_screen.dart';
+import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
+import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
-import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/route/fade_in_route.dart';
-import 'package:flutter_template/widget/general/flavor_banner.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({Key key}) : super(key: key);
@@ -55,10 +55,12 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
     switch (settings.name) {
       case SplashScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
+      case LoginScreen.routeName:
+        return FadeInRoute(child: FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
         return FadeInRoute(child: FlavorBanner(child: HomeScreen()));
-      case DebugScreen.routeName:
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugScreen()), settings: settings);
+      case TodoAddScreen.routeName:
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: TodoAddScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       case LicenseScreen.routeName:
@@ -72,9 +74,11 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
 
   void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
 
+  void goToLogin() => navigationKey.currentState.pushReplacementNamed(LoginScreen.routeName);
+
   void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
 
-  void goToDebug() => navigationKey.currentState.pushNamed(DebugScreen.routeName);
+  Future<void> goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
 
   Future<void> goToDebugPlatformSelector() async => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
 
@@ -82,5 +86,5 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
 
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
 
-  void goBack<T>({result}) => navigationKey.currentState.pop(result);
+  void goBack<T>({T result}) => navigationKey.currentState.pop(result);
 }

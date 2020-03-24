@@ -1,22 +1,49 @@
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
+import 'dart:io';
+import 'dart:isolate';
+
 import 'package:dio/dio.dart';
-import 'package:flutter_template/database/user_dao.dart';
-import 'package:flutter_template/database/user_database.dart';
+import 'package:flutter_template/repository/login/todo_repo.dart';
+import 'package:flutter_template/repository/login/todo_repository.dart';
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
+import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
+import 'package:kiwi/kiwi.dart';
+import 'package:moor/isolate.dart';
+import 'package:moor/moor.dart';
+import 'package:moor_ffi/moor_ffi.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_template/database/todo/todo_dao_storage.dart';
+import 'package:flutter_template/database/todo/todo_dao_storing.dart';
+import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/repository/shared_prefs/shared_prefs_storage.dart';
+import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/repository/debug_repository.dart';
 import 'package:flutter_template/repository/locale_repository.dart';
-import 'package:flutter_template/repository/shared_prefs.dart';
-import 'package:flutter_template/repository/user_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
+import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
-import 'package:flutter_template/util/platform_util.dart';
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
-import 'package:flutter_template/webservice/user_webservice.dart';
-import 'package:kiwi/kiwi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
+import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
+import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
+import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
+import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
+import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
+import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
+import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
+import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';
+import 'package:flutter_template/webservice/todo/todo_service.dart';
+import 'package:flutter_template/webservice/todo/todo_webservice.dart';
 
 part 'injector.g.dart';
 
@@ -24,37 +51,60 @@ abstract class Injector {
   @Register.singleton(NetworkLogInterceptor)
   void registerNetworkDependencies();
 
-  @Register.singleton(UserDatabase)
-  @Register.singleton(UserDao)
+  @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)
   void registerDatabase();
 
-  @Register.singleton(UserService, from: UserWebservice)
+  @Register.singleton(TodoService, from: TodoWebService)
   void registerWebservices();
 
-  @Register.singleton(UserRepository)
+  @Register.singleton(TodoService, from: TodoDummyService)
+  void registerDummyServices();
+
+  @Register.singleton(TodoRepo, from: TodoRepository)
+  @Register.singleton(LoginRepo, from: LoginRepository)
+  void registerRepositories();
+
   @Register.singleton(DebugRepository)
   @Register.singleton(LocaleRepository)
-  @Register.singleton(PlatformUtil, from: FlutterPlatformUtil)
-  @Register.singleton(SharedPrefs, from: FlutterSharedPrefs)
+  @Register.singleton(SharedPrefsStoring, from: SharedPrefsStorage)
+  @Register.singleton(SecureStoring, from: SecureStorage)
+  @Register.singleton(AuthStoring, from: AuthStorage)
   void registerCommonDependencies();
 
-  @Register.factory(HomeViewModel)
-  @Register.factory(SplashViewModel)
   @Register.factory(GlobalViewModel)
+  @Register.factory(SplashViewModel)
+  @Register.factory(HomeViewModel)
   @Register.factory(DebugViewModel)
   @Register.factory(DebugPlatformSelectorViewModel)
   @Register.factory(LicenseViewModel)
+  @Register.factory(TodoListViewModel)
+  @Register.factory(TodoAddViewModel)
+  @Register.factory(LoginViewModel)
   void registerViewModelFactories();
+
+  @Register.singleton(FlutterSecureStorage)
+  void registerThirdPartyServices();
 }
 
 Future<void> setupDependencyTree() async {
   await provideSharedPreferences();
   final injector = _$Injector()..registerNetworkDependencies();
+  await provideDatabaseConnection();
+  Container().registerSingleton((c) => provideFlutterTemplateDatabase(c.resolve()));
+  Container().registerSingleton((c) => provideCombiningSmartInterceptor(c.resolve(), c.resolve(), c.resolve(), c.resolve()));
   Container().registerSingleton((c) => provideDio(c.resolve()));
+
+  injector.registerThirdPartyServices();
+
+  if (FlavorConfig.isDummy()) {
+    injector.registerDummyServices();
+  } else {
+    injector.registerWebservices();
+  }
   injector
     ..registerDatabase()
-    ..registerWebservices()
     ..registerCommonDependencies()
+    ..registerRepositories()
     ..registerViewModelFactories();
 }
 
@@ -63,9 +113,60 @@ Future<void> provideSharedPreferences() async {
   Container().registerSingleton((c) => sharedPreferences);
 }
 
+//Networking
+CombiningSmartInterceptor provideCombiningSmartInterceptor(
+  NetworkLogInterceptor logInterceptor,
+  NetworkAuthInterceptor authInterceptor,
+  NetworkErrorInterceptor errorInterceptor,
+  NetworkRefreshInterceptor refreshInterceptor,
+) =>
+    CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
+
 Dio provideDio(NetworkLogInterceptor networkInterceptor) {
   final dio = Dio();
   dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
   dio.interceptors.add(networkInterceptor);
   return dio;
 }
+
+//end Networking
+
+//Database
+FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
+
+Future<void> provideDatabaseConnection() async {
+  final dbFolder = await getApplicationDocumentsDirectory();
+  final file = File(join(dbFolder.path, 'db.sqlite'));
+  if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {
+    file.deleteSync();
+    FlutterTemplateLogger.logVerbose('Databasefile `db.sqlite` is deleted');
+  }
+  final receivePort = ReceivePort();
+
+  await Isolate.spawn(
+    _startBackground,
+    _IsolateStartRequest(receivePort.sendPort, file.path),
+  );
+
+  // ignore: avoid_as
+  final isolate = await receivePort.first as MoorIsolate;
+  final databaseConnection = await isolate.connect();
+
+  Container().registerSingleton((c) => databaseConnection);
+}
+
+void _startBackground(_IsolateStartRequest request) {
+  final executor = VmDatabase(File(request.targetPath));
+  final moorIsolate = MoorIsolate.inCurrent(
+    () => DatabaseConnection.fromExecutor(executor),
+  );
+  request.sendMoorIsolate.send(moorIsolate);
+}
+
+class _IsolateStartRequest {
+  final SendPort sendMoorIsolate;
+  final String targetPath;
+
+  _IsolateStartRequest(this.sendMoorIsolate, this.targetPath);
+}
+//end Database

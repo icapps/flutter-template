@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 
 //============================================================//
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
@@ -25,7 +26,7 @@ class Localization {
   String _t(String key, {List<dynamic> args}) {
     try {
       String value = _localisedValues[key];
-      if (value == null) return '⚠$key⚠';
+      if (value == null) return '$key';
       if (args == null || args.isEmpty) return value;
       args.asMap().forEach((index, arg) => value = _replaceWith(value, arg, index + 1));
       return value;
@@ -44,24 +45,66 @@ class Localization {
     return value;
   }
 
-  String get appTitle => _t('app_title');
+  String get debugAnimationsTitle => _t(LocalizationKeys.debugAnimationsTitle);
 
-  String get backgroundCancelAllTasks => _t('background_cancel_all_tasks');
+  String get debugLicensesGoTo => _t(LocalizationKeys.debugLicensesGoTo);
 
-  String get backgroundPeriodicNetworkTask => _t('background_periodic_network_task');
+  String get debugLicensesTitle => _t(LocalizationKeys.debugLicensesTitle);
 
-  String get backgroundPeriodicTask => _t('background_periodic_task');
+  String debugLocaleCurrentLanguage(String arg1) => _t(LocalizationKeys.debugLocaleCurrentLanguage, args: [arg1]);
 
-  String get backgroundSimpleTask => _t('background_simple_task');
+  String get debugLocaleSelector => _t(LocalizationKeys.debugLocaleSelector);
 
-  String get backgroundTitle => _t('background_title');
+  String get debugLocaleTitle => _t(LocalizationKeys.debugLocaleTitle);
 
-  String get retryBtn => _t('retry_btn');
+  String get debugShowTranslations => _t(LocalizationKeys.debugShowTranslations);
 
-  String userClickMessage(String arg1) => _t('user_click_message', args: [arg1]);
+  String get debugSlowAnimations => _t(LocalizationKeys.debugSlowAnimations);
 
-  String get usersNotFound => _t('users_not_found');
+  String debugTargetPlatformSubtitle(String arg1) => _t(LocalizationKeys.debugTargetPlatformSubtitle, args: [arg1]);
 
-  String get welcomeMessage => _t('welcome_message');
+  String get debugTargetPlatformTitle => _t(LocalizationKeys.debugTargetPlatformTitle);
+
+  String get debugThemeTitle => _t(LocalizationKeys.debugThemeTitle);
+
+  String get debugTitle => _t(LocalizationKeys.debugTitle);
+
+  String get debugTranslationsTitle => _t(LocalizationKeys.debugTranslationsTitle);
+
+  String get errorBadRequest => _t(LocalizationKeys.errorBadRequest);
+
+  String get errorDuringDev => _t(LocalizationKeys.errorDuringDev);
+
+  String get errorForbidden => _t(LocalizationKeys.errorForbidden);
+
+  String get errorGeneral => _t(LocalizationKeys.errorGeneral);
+
+  String get errorInternalServer => _t(LocalizationKeys.errorInternalServer);
+
+  String get errorUnauthorized => _t(LocalizationKeys.errorUnauthorized);
+
+  String get generalLabelCancel => _t(LocalizationKeys.generalLabelCancel);
+
+  String get generalLabelDelete => _t(LocalizationKeys.generalLabelDelete);
+
+  String get generalLabelNo => _t(LocalizationKeys.generalLabelNo);
+
+  String get generalLabelOk => _t(LocalizationKeys.generalLabelOk);
+
+  String get generalLabelSave => _t(LocalizationKeys.generalLabelSave);
+
+  String get generalLabelYes => _t(LocalizationKeys.generalLabelYes);
+
+  String get settingsTitle => _t(LocalizationKeys.settingsTitle);
+
+  String get todoAddInputHint => _t(LocalizationKeys.todoAddInputHint);
+
+  String get todoAddTitle => _t(LocalizationKeys.todoAddTitle);
+
+  String get todoEmptyState => _t(LocalizationKeys.todoEmptyState);
+
+  String get todoTitle => _t(LocalizationKeys.todoTitle);
+
+  String getTranslation(String key, {List<dynamic> args}) => _t(key, args: args ?? List());
 
 }

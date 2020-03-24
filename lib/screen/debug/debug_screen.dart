@@ -7,8 +7,10 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
+import 'package:flutter_template/widget/debug/language_selector/platform_selector_item.dart';
+import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/general/responsive/response_widget.dart';
-import 'package:flutter_template/widget/provider/provider_widet.dart';
+import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
@@ -25,22 +27,38 @@ class _DebugScreenState extends State<DebugScreen> implements DebugNavigator {
     return ProviderWidget<DebugViewModel>(
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
-          title: const Text('Debug'),
+          title: Text(localization.settingsTitle),
         ),
         body: ResponsiveWidget(
           builder: (context, info) => ListView(
             children: [
-              const DebugRowTitle(title: 'Animations'),
+              DebugRowTitle(title: localization.debugAnimationsTitle),
               DebugRowSwitchItem(
-                title: 'Slow Animations',
+                title: localization.debugSlowAnimations,
                 value: viewModel.slowAnimationsEnabled,
                 onChanged: viewModel.onSlowAnimationsChanged,
               ),
-              const DebugRowTitle(title: 'Theme'),
+              DebugRowTitle(title: localization.debugThemeTitle),
               DebugRowItem(
-                title: 'Target Platform',
-                subTitle: 'Current Platform: ${Provider.of<GlobalViewModel>(context).getCurrentPlatform(localization)}',
+                title: localization.debugTargetPlatformTitle,
+                subTitle: localization.debugTargetPlatformSubtitle(Provider.of<GlobalViewModel>(context).getCurrentPlatform(localization)),
                 onClick: viewModel.onTargetPlatformClicked,
+              ),
+              DebugRowTitle(title: localization.debugLocaleTitle),
+              DebugRowItem(
+                title: localization.debugLocaleSelector,
+                subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
+                onClick: viewModel.onSelectLanguageClicked,
+              ),
+              DebugRowSwitchItem(
+                title: localization.debugShowTranslations,
+                value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
+                onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
+              ),
+              DebugRowTitle(title: localization.debugLicensesTitle),
+              DebugRowItem(
+                title: localization.debugLicensesGoTo,
+                onClick: viewModel.onLicensesClicked,
               ),
             ],
           ),
@@ -52,4 +70,46 @@ class _DebugScreenState extends State<DebugScreen> implements DebugNavigator {
 
   @override
   Future<void> goToTargetPlatformSelector() => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
+
+  @override
+  void goToLicenses() => MainNavigatorWidget.of(context).goToLicense();
+
+  @override
+  void goToSelectLanguage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        final globalViewModel = Provider.of<GlobalViewModel>(context);
+        final localization = Localization.of(context);
+        return AlertDialog(
+          title: Text(localization.debugLocaleSelector),
+          content: Container(
+            height: 100,
+            width: MediaQuery.of(context).size.width / 1.2,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                SelectorItem(
+                  title: 'English',
+                  selected: globalViewModel.isLanguageSelected('en'),
+                  onClick: () {
+                    globalViewModel.onSwitchToEnglish();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SelectorItem(
+                  title: 'Nederlands',
+                  selected: globalViewModel.isLanguageSelected('nl'),
+                  onClick: () {
+                    globalViewModel.onSwitchToDutch();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }

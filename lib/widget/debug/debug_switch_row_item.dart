@@ -44,7 +44,7 @@ class DebugRowSwitchItem extends StatelessWidget {
             Switch.adaptive(
               value: value,
               onChanged: onChanged,
-              activeColor: ThemeColors.primaryColor,
+              activeColor: ThemeColors.primary,
             )
           ],
         ),

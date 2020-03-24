@@ -8,6 +8,7 @@ class GlobalViewModel with ChangeNotifier {
   final LocaleRepository _localeRepo;
   final DebugRepository _debugRepo;
   var localeDelegate = LocalizationDelegate();
+  var showsTranslationKeys = false;
 
   TargetPlatform targetPlatform;
 
@@ -71,5 +72,23 @@ class GlobalViewModel with ChangeNotifier {
       return 'iOS';
     }
     return 'System default';
+  }
+
+  String getCurrentLanguage() {
+    switch (localeDelegate.activeLocale.languageCode) {
+      case 'nl':
+        return 'Nederlands';
+      case 'en':
+        return 'English';
+    }
+    return 'English';
+  }
+
+  bool isLanguageSelected(String languageCode) => localeDelegate.activeLocale.languageCode == languageCode;
+
+  void toggleTranslationKeys() {
+    showsTranslationKeys = !showsTranslationKeys;
+    localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, isInTest: showsTranslationKeys);
+    notifyListeners();
   }
 }

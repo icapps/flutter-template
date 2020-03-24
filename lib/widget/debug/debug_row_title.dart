@@ -14,7 +14,7 @@ class DebugRowTitle extends StatelessWidget {
         horizontal: ThemeDimens.padding16,
         vertical: ThemeDimens.padding8,
       ),
-      color: ThemeColors.debugRowTitle,
+      color: ThemeColors.disabledGrey,
       child: Text(
         title,
         style: Theme.of(context).textTheme.title,

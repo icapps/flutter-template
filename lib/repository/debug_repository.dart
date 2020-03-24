@@ -1,24 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_template/repository/shared_prefs.dart';
-import 'package:flutter_template/util/platform_util.dart';
+import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 
 class DebugRepository {
-  static const KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
-  static const KEY_SELECTED_PLATFORM = 'selected_platform';
+  static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
+  static const _KEY_SELECTED_PLATFORM = 'selected_platform';
 
-  final PlatformUtil _platformUtil;
-  final SharedPrefs _sharedPrefs;
+  final SharedPrefsStoring _sharedPrefs;
 
-  DebugRepository(this._platformUtil, this._sharedPrefs);
+  DebugRepository(this._sharedPrefs);
 
   Future<void> saveSlowAnimations({bool enabled}) async {
-    await _sharedPrefs.saveBoolean(KEY_ENABLE_SLOW_ANIMATIONS, enabled);
+    await _sharedPrefs.saveBoolean(key: _KEY_ENABLE_SLOW_ANIMATIONS, value: enabled);
   }
 
   bool isSlowAnimationsEnabled() {
-    final slowAnimations = _sharedPrefs.getBoolean(KEY_ENABLE_SLOW_ANIMATIONS) ?? false;
+    final slowAnimations = _sharedPrefs.getBoolean(_KEY_ENABLE_SLOW_ANIMATIONS) ?? false;
     if (slowAnimations) {
       timeDilation = 4.0;
     } else {
@@ -29,27 +27,20 @@ class DebugRepository {
 
   Future<void> saveSelectedPlatform(String selectedPlatform) async {
     if (selectedPlatform == null) {
-      await _sharedPrefs.deleteKey(KEY_SELECTED_PLATFORM);
+      await _sharedPrefs.deleteKey(_KEY_SELECTED_PLATFORM);
     } else {
-      await _sharedPrefs.saveString(KEY_SELECTED_PLATFORM, selectedPlatform);
+      await _sharedPrefs.saveString(key: _KEY_SELECTED_PLATFORM, value: selectedPlatform);
     }
   }
 
   TargetPlatform getTargetPlatform() {
-    final selectedPlatform = _sharedPrefs.getString(KEY_SELECTED_PLATFORM);
+    final selectedPlatform = _sharedPrefs.getString(_KEY_SELECTED_PLATFORM);
     if (selectedPlatform == null) {
-      if (_platformUtil.isAndroid()) {
-        return null;
-      } else if (_platformUtil.isIOS()) {
-        return null;
-      }
-      throw UnsupportedError('Unsupported platform');
+      return null;
     }
-    if (selectedPlatform == 'android') {
-      return TargetPlatform.android;
-    } else if (selectedPlatform == 'ios') {
+    if (selectedPlatform == 'ios') {
       return TargetPlatform.iOS;
     }
-    throw UnsupportedError('Unsupported platform');
+    return TargetPlatform.android;
   }
 }

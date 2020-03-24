@@ -1,0 +1,17 @@
+import 'package:flutter_template/repository/login/todo_repo.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
+import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+
+class LoginRepository extends LoginRepo {
+  final AuthStoring _authStoring;
+
+  LoginRepository(this._authStoring);
+
+  @override
+  Future<bool> isLoggedIn() async => _authStoring.hasLoggedInUser();
+
+  @override
+  Future<void> login() async {
+    FlutterTemplateLogger.logDebug('Login should be implemented');
+  }
+}

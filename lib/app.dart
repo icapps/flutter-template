@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             platform: viewModel.targetPlatform,
             fontFamily: ThemeFonts.OpenSans,
-            primaryColor: ThemeColors.primaryColor,
-            accentColor: ThemeColors.accentColor,
+            primaryColor: ThemeColors.primary,
+            accentColor: ThemeColors.accent,
           ),
           home: const MainNavigatorWidget(),
         ),
