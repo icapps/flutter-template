@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:moor/moor.dart';
-
 main() {
   print('Start a check to make sure we have a test file for every sourcecode file');
   final sourceCodeFolder = Directory('lib');

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/widget/general/responsive/device_screen_type.dart';
-import 'package:flutter_template/widget/general/responsive/sizing_information.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   final WidgetBuilder tabletBuilder;
@@ -52,4 +50,23 @@ class ResponsiveWidget extends StatelessWidget {
     }
     return DeviceScreenType.Mobile;
   }
+}
+
+enum DeviceScreenType {
+  Mobile,
+  Tablet,
+}
+
+class SizeInformation {
+  final Orientation orientation;
+  final DeviceScreenType deviceType;
+  final Size screenSize;
+  final Size localWidgetSize;
+
+  SizeInformation({
+    this.orientation,
+    this.deviceType,
+    this.screenSize,
+    this.localWidgetSize,
+  });
 }

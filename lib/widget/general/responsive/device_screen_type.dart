@@ -1,4 +1,0 @@
-enum DeviceScreenType {
-  Mobile,
-  Tablet,
-}
