@@ -14,7 +14,7 @@ main() {
   final sourceFiles = getFiles(sourceCodeFolder);
 
   print('');
-  print('Detected ${sourceFiles.length} source files (with excluded folders/files: .g.dart, **dummy_service.dart, lib/vendor/**, lib/util/locale**)');
+  print('Detected ${sourceFiles.length} source files (with excluded folders/files: .g.dart, **dummy_service.dart, lib/vendor/**, lib/util/locale**, lib/webservice/)');
 
   final sourceCodeFiles = sourceFiles.where((file) {
     final path = file.path;
@@ -25,6 +25,8 @@ main() {
     } else if (path.startsWith('lib/vendor/')) {
       return false;
     } else if (path.startsWith('lib/util/locale')) {
+      return false;
+    } else if (path.startsWith('lib/webservice')) {
       return false;
     }
     return true;
