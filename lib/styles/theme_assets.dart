@@ -22,4 +22,6 @@ class ThemeAssets {
   static String closeIcon(BuildContext context) => _getIcon(context, 'close');
 
   static String backIcon(BuildContext context) => _getIcon(context, 'back');
+
+  static String doneIcon(BuildContext context) => _getIcon(context, 'done');
 }

@@ -17,12 +17,10 @@ class _SplashScreenState extends State<SplashScreen> implements SplashNavigator 
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
       create: () => KiwiContainer.resolve()..init(this),
-      childBuilderWithViewModel: (context, viewModel) => Scaffold(
+      childBuilderWithViewModel: (context, viewModel) => const Scaffold(
         backgroundColor: ThemeColors.primary,
-        body: const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation(ThemeColors.white),
-          ),
+        body: Center(
+          child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(ThemeColors.white)),
         ),
       ),
     );

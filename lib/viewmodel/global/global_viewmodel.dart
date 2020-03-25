@@ -10,6 +10,8 @@ class GlobalViewModel with ChangeNotifier {
   var localeDelegate = LocalizationDelegate();
   var showsTranslationKeys = false;
 
+  final themeMode = ThemeMode.system;
+
   TargetPlatform targetPlatform;
 
   GlobalViewModel(this._localeRepo, this._debugRepo);

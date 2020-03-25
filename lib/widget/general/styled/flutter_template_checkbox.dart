@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/extension/context_extensions.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/widget/general/svg_icon.dart';
 
 class FlutterTemplateCheckBox extends StatelessWidget {
   final bool value;
@@ -15,10 +17,22 @@ class FlutterTemplateCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (context.isIOS) {
-      return Container(
-        height: ThemeDimens.padding48,
-        width: ThemeDimens.padding48,
-        child: value ? Icon(Icons.check) : Container(),
+      return GestureDetector(
+        onTap: () => onChanged(!value),
+        child: Container(
+          color: Colors.transparent,
+          height: ThemeDimens.padding48,
+          width: ThemeDimens.padding48,
+          child: value
+              ? Center(
+                  child: SvgIcon(
+                    svgAsset: ThemeAssets.doneIcon(context),
+                    color: ThemeColors.accent,
+                    size: ThemeDimens.padding24,
+                  ),
+                )
+              : Container(),
+        ),
       );
     }
     return Checkbox(

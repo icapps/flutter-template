@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 
 class SelectorItem extends StatelessWidget {
@@ -26,8 +28,8 @@ class SelectorItem extends StatelessWidget {
             ),
             Opacity(
               opacity: selected ? 1 : 0,
-              child: Icon(
-                Icons.check_circle,
+              child: SvgIcon(
+                svgAsset: ThemeAssets.doneIcon(context),
                 color: ThemeColors.primary,
               ),
             ),

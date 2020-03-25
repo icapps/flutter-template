@@ -3,16 +3,14 @@ import 'package:flutter_template/widget/general/responsive/device_screen_type.da
 import 'package:flutter_template/widget/general/responsive/sizing_information.dart';
 
 class ResponsiveWidget extends StatelessWidget {
-  final WidgetBuilder mobileBuilder;
   final WidgetBuilder tabletBuilder;
-  final WidgetBuilder mobileLandscapeBuilder;
+  final WidgetBuilder landscapeBuilder;
   final WidgetBuilder tabletLandscapeBuilder;
   final Widget Function(BuildContext context, SizeInformation sizeInformation) builder;
 
   const ResponsiveWidget({
-    this.mobileBuilder,
     this.tabletBuilder,
-    this.mobileLandscapeBuilder,
+    this.landscapeBuilder,
     this.tabletLandscapeBuilder,
     this.builder,
     Key key,
@@ -32,10 +30,8 @@ class ResponsiveWidget extends StatelessWidget {
         return tabletLandscapeBuilder(context);
       } else if (info.deviceType == DeviceScreenType.Tablet && tabletBuilder != null) {
         return tabletBuilder(context);
-      } else if (info.orientation == Orientation.landscape && mobileLandscapeBuilder != null) {
-        return mobileLandscapeBuilder(context);
-      } else if (mobileBuilder != null) {
-        return mobileBuilder(context);
+      } else if (info.orientation == Orientation.landscape && landscapeBuilder != null) {
+        return landscapeBuilder(context);
       } else if (builder != null) {
         return builder(context, info);
       }
