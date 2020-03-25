@@ -54,7 +54,7 @@ class TestUtil {
 
   // This method should be used when taking screenshot tests of the full app
   // Full integration tests
-  static Future<Widget> loadSibosApp(WidgetTester tester) async {
+  static Future<Widget> loadFlutterTemplateApp(WidgetTester tester) async {
     return _internalLoadWidget(tester, MyApp());
   }
 
