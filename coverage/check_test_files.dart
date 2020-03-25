@@ -53,7 +53,7 @@ main() {
 
   print('');
   print('There are no test yet created for:');
-  sourceCodeTodoFiles.forEach((file) {
+  (sourceCodeTodoFiles..sort((file1, file2) => file1.path.compareTo(file2.path))).forEach((file) {
     print('${file.path}');
   });
   print('');
