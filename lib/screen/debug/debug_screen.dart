@@ -8,7 +8,7 @@ import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
-import 'package:flutter_template/widget/general/responsive/response_widget.dart';
+import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
