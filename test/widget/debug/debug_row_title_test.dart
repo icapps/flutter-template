@@ -8,7 +8,7 @@ void main() {
   setUp(() async => TestKiwiUtil.init());
 
   testWidgets('DebugRowTitle default', (tester) async {
-    const widget = DebugRowTitle(title: 'Title');
+    final widget = DebugRowTitle(title: TestUtil.getVariableString());
 
     await TestUtil.loadWidgetWithText(tester, widget);
     await TestUtil.takeScreenshot(tester, 'debug_row_title_default_state');

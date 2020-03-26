@@ -112,6 +112,10 @@ class TestUtil {
     final fontLoader = FontLoader(fontName)..addFont(Future.value(fontData));
     await fontLoader.load();
   }
+
+  static String getVariableString(){
+    return 'Title';
+  }
 }
 
 class TestWrapper extends StatelessWidget {

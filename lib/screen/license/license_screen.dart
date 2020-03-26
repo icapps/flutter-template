@@ -1,5 +1,4 @@
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
@@ -19,15 +18,15 @@ class _LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin i
   Widget build(BuildContext context) {
     final localization = Localization.of(context);
     return ProviderWidget<LicenseViewModel>(
-      consumer: (context, value, child) => Scaffold(
+      consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           title: Text(localization.debugLicensesTitle),
         ),
         body: ListView.builder(
           padding: const EdgeInsets.all(ThemeDimens.padding16),
-          itemCount: LicenseUtil.getLicenses().length,
+          itemCount: viewModel.licenses.length,
           itemBuilder: (context, index) {
-            final item = LicenseUtil.getLicenses()[index];
+            final item = viewModel.licenses[index];
             return Card(
               child: Padding(
                 padding: const EdgeInsets.all(ThemeDimens.padding16),
