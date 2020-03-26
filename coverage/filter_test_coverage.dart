@@ -90,6 +90,9 @@ List<String> getFilteredBody(List<String> body, List<String> lines) {
   }).toList();
 }
 
-const excludedLines = [];
+const excludedLines = [
+  'EnvUtils._();',
+  'EnvUtils._();',
+];
 
 const excludedStartsWithLines = [];
