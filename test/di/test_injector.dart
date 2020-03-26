@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/login/todo_repo.dart';
+import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
@@ -24,10 +26,12 @@ import '../mocks/database/todo/mock_todo_dao_storage.dart';
 import '../mocks/repository/debug/mock_debug_repository.dart';
 import '../mocks/repository/locale/mock_locale_repository.dart';
 import '../mocks/repository/login/mock_login_repository.dart';
+import '../mocks/repository/refresh/mock_refresh_repository.dart';
 import '../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
 import '../mocks/repository/secure_storage/mock_secure_storage.dart';
 import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
 import '../mocks/repository/todo/mock_todo_repository.dart';
+import '../mocks/webservice/mock_dio.dart';
 import '../mocks/webservice/mock_todo_service.dart';
 
 part 'test_injector.g.dart';
@@ -41,11 +45,13 @@ abstract class Injector {
   @Register.singleton(TodoRepo, from: MockTodoRepository)
   @Register.singleton(DebugRepo, from: MockDebugRepository)
   @Register.singleton(LocaleRepo, from: MockLocaleRepoitory)
+  @Register.singleton(RefreshRepo, from: MockRefreshRepository)
   void registerRepositories();
 
   @Register.singleton(SharedPrefsStoring, from: MockSharedPrefsStorage)
   @Register.singleton(SecureStoring, from: MockSecureStorage)
   @Register.singleton(AuthStoring, from: MockAuthStorage)
+  @Register.singleton(Dio, from: MockDio)
   void registerCommonDependencies();
 
   @Register.singleton(TodoService, from: MockTodoService)

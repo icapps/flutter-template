@@ -25,6 +25,8 @@ class _$Injector extends Injector {
         (c) => MockDebugRepository());
     container.registerSingleton<LocaleRepo, MockLocaleRepoitory>(
         (c) => MockLocaleRepoitory());
+    container.registerSingleton<RefreshRepo, MockRefreshRepository>(
+        (c) => MockRefreshRepository());
   }
 
   void registerCommonDependencies() {
@@ -35,6 +37,7 @@ class _$Injector extends Injector {
         (c) => MockSecureStorage());
     container.registerSingleton<AuthStoring, MockAuthStorage>(
         (c) => MockAuthStorage());
+    container.registerSingleton<Dio, MockDio>((c) => MockDio());
   }
 
   void registerMockServices() {

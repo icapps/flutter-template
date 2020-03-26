@@ -6,6 +6,8 @@ import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/login/todo_repo.dart';
 import 'package:flutter_template/repository/login/todo_repository.dart';
+import 'package:flutter_template/repository/refresh/refresh_repo.dart';
+import 'package:flutter_template/repository/refresh/refresh_repository.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:kiwi/kiwi.dart';
@@ -63,6 +65,7 @@ abstract class Injector {
 
   @Register.singleton(TodoRepo, from: TodoRepository)
   @Register.singleton(LoginRepo, from: LoginRepository)
+  @Register.singleton(RefreshRepo, from: RefreshRepository)
   @Register.singleton(DebugRepo, from: DebugRepository)
   @Register.singleton(LocaleRepo, from: LocaleRepository)
   void registerRepositories();

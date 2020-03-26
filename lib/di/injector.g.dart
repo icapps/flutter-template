@@ -36,6 +36,8 @@ class _$Injector extends Injector {
         (c) => TodoRepository(c<TodoService>(), c<TodoDaoStoring>()));
     container.registerSingleton<LoginRepo, LoginRepository>(
         (c) => LoginRepository(c<AuthStoring>()));
+    container.registerSingleton<RefreshRepo, RefreshRepository>(
+        (c) => RefreshRepository(c<AuthStoring>()));
     container.registerSingleton<DebugRepo, DebugRepository>(
         (c) => DebugRepository(c<SharedPrefsStoring>()));
     container.registerSingleton<LocaleRepo, LocaleRepository>(
