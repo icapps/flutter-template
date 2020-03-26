@@ -55,9 +55,9 @@ class _$Injector extends Injector {
   void registerViewModelFactories() {
     final Container container = Container();
     container.registerFactory(
-        (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
+        (c) => GlobalViewModel(c<LocaleRepo>(), c<DebugRepo>()));
     container.registerFactory((c) => SplashViewModel(c<LoginRepo>()));
-    container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
+    container.registerFactory((c) => DebugViewModel(c<DebugRepo>()));
     container.registerFactory((c) => DebugPlatformSelectorViewModel());
     container.registerFactory((c) => LicenseViewModel());
     container.registerFactory((c) => TodoListViewModel(c<TodoRepo>()));

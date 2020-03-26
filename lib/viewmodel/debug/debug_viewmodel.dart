@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
 
 class DebugViewModel with ChangeNotifier {
-  final DebugRepository _debugRepo;
+  final DebugRepo _debugRepo;
 
   DebugNavigator _navigator;
 
