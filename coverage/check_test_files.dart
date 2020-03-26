@@ -45,7 +45,7 @@ main() {
   print('Detected ${sourceCodeTodoFiles.length} untested files');
 
   print('');
-  print('Filter ${excludedFiles.length} untested files');
+  print('Exclude ${excludedFiles.length} files (no tests needed for these)');
   sourceCodeTodoFiles.removeWhere((file) => excludedFiles.contains(file.path.replaceFirst('test/', '').replaceFirst('_test.dart', '.dart')));
 
   print('');
@@ -92,4 +92,11 @@ const excludedFiles = [
   'util/keys.dart',
   'util/license.dart',
   'util/app_constants.dart',
+  //Styles
+  'styles/theme_colors.dart',
+  'styles/theme_data.dart',
+  'styles/theme_dimens.dart',
+  'styles/theme_durations.dart',
+  'styles/theme_fonts.dart',
+  'styles/theme_text_styles.dart',
 ];
