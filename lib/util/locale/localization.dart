@@ -83,15 +83,21 @@ class Localization {
 
   String get errorUnauthorized => _t(LocalizationKeys.errorUnauthorized);
 
+  String get generalLabelAndroid => _t(LocalizationKeys.generalLabelAndroid);
+
   String get generalLabelCancel => _t(LocalizationKeys.generalLabelCancel);
 
   String get generalLabelDelete => _t(LocalizationKeys.generalLabelDelete);
+
+  String get generalLabelIos => _t(LocalizationKeys.generalLabelIos);
 
   String get generalLabelNo => _t(LocalizationKeys.generalLabelNo);
 
   String get generalLabelOk => _t(LocalizationKeys.generalLabelOk);
 
   String get generalLabelSave => _t(LocalizationKeys.generalLabelSave);
+
+  String get generalLabelSystemDefault => _t(LocalizationKeys.generalLabelSystemDefault);
 
   String get generalLabelYes => _t(LocalizationKeys.generalLabelYes);
 

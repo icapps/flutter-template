@@ -41,15 +41,21 @@ class LocalizationKeys {
 
   static const errorUnauthorized = 'error_unauthorized';
 
+  static const generalLabelAndroid = 'general_label_android';
+
   static const generalLabelCancel = 'general_label_cancel';
 
   static const generalLabelDelete = 'general_label_delete';
+
+  static const generalLabelIos = 'general_label_ios';
 
   static const generalLabelNo = 'general_label_no';
 
   static const generalLabelOk = 'general_label_ok';
 
   static const generalLabelSave = 'general_label_save';
+
+  static const generalLabelSystemDefault = 'general_label_system_default';
 
   static const generalLabelYes = 'general_label_yes';
 

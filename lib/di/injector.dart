@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
+import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/login/todo_repo.dart';
 import 'package:flutter_template/repository/login/todo_repository.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
@@ -18,8 +20,8 @@ import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storage.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
-import 'package:flutter_template/repository/debug_repository.dart';
-import 'package:flutter_template/repository/locale_repository.dart';
+import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
@@ -29,7 +31,6 @@ import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/viewmodel/home/home_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
@@ -62,10 +63,10 @@ abstract class Injector {
 
   @Register.singleton(TodoRepo, from: TodoRepository)
   @Register.singleton(LoginRepo, from: LoginRepository)
+  @Register.singleton(DebugRepo, from: DebugRepository)
+  @Register.singleton(LocaleRepo, from: LocaleRepository)
   void registerRepositories();
 
-  @Register.singleton(DebugRepository)
-  @Register.singleton(LocaleRepository)
   @Register.singleton(SharedPrefsStoring, from: SharedPrefsStorage)
   @Register.singleton(SecureStoring, from: SecureStorage)
   @Register.singleton(AuthStoring, from: AuthStorage)
@@ -73,7 +74,6 @@ abstract class Injector {
 
   @Register.factory(GlobalViewModel)
   @Register.factory(SplashViewModel)
-  @Register.factory(HomeViewModel)
   @Register.factory(DebugViewModel)
   @Register.factory(DebugPlatformSelectorViewModel)
   @Register.factory(LicenseViewModel)

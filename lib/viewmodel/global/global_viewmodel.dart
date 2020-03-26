@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/debug_repository.dart';
-import 'package:flutter_template/repository/locale_repository.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
+import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 
 class GlobalViewModel with ChangeNotifier {
-  final LocaleRepository _localeRepo;
-  final DebugRepository _debugRepo;
+  final LocaleRepo _localeRepo;
+  final DebugRepo _debugRepo;
   var localeDelegate = LocalizationDelegate();
   var showsTranslationKeys = false;
 
@@ -16,8 +17,8 @@ class GlobalViewModel with ChangeNotifier {
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
-  void init() {
-    _initLocale();
+  Future<void> init() async {
+    await _initLocale();
     _initTargetPlatform();
   }
 
@@ -52,32 +53,32 @@ class GlobalViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedPlatformToAndroid() {
-    _debugRepo.saveSelectedPlatform('android');
+  Future<void> setSelectedPlatformToAndroid() async {
+    await _debugRepo.saveSelectedPlatform('android');
     _initTargetPlatform();
   }
 
-  void setSelectedPlatformToIOS() {
-    _debugRepo.saveSelectedPlatform('ios');
+  Future<void> setSelectedPlatformToIOS() async {
+    await _debugRepo.saveSelectedPlatform('ios');
     _initTargetPlatform();
   }
 
-  void setSelectedPlatformToDefault() {
-    _debugRepo.saveSelectedPlatform(null);
+  Future<void> setSelectedPlatformToDefault() async {
+    await _debugRepo.saveSelectedPlatform(null);
     _initTargetPlatform();
   }
 
-  String getCurrentPlatform(Localization localization) {
+  String getCurrentPlatform() {
     if (targetPlatform == TargetPlatform.android) {
-      return 'Android';
+      return LocalizationKeys.generalLabelAndroid;
     } else if (targetPlatform == TargetPlatform.iOS) {
-      return 'iOS';
+      return LocalizationKeys.generalLabelIos;
     }
-    return 'System default';
+    return LocalizationKeys.generalLabelSystemDefault;
   }
 
   String getCurrentLanguage() {
-    switch (localeDelegate.activeLocale.languageCode) {
+    switch (localeDelegate.activeLocale?.languageCode) {
       case 'nl':
         return 'Nederlands';
       case 'en':
@@ -86,7 +87,10 @@ class GlobalViewModel with ChangeNotifier {
     return 'English';
   }
 
-  bool isLanguageSelected(String languageCode) => localeDelegate.activeLocale.languageCode == languageCode;
+  bool isLanguageSelected(String languageCode) {
+    if (localeDelegate.activeLocale == null && languageCode == 'en') return true;
+    return localeDelegate.activeLocale?.languageCode == languageCode;
+  }
 
   void toggleTranslationKeys() {
     showsTranslationKeys = !showsTranslationKeys;

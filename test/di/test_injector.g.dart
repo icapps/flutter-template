@@ -21,6 +21,10 @@ class _$Injector extends Injector {
         (c) => MockLoginRepository());
     container.registerSingleton<TodoRepo, MockTodoRepository>(
         (c) => MockTodoRepository());
+    container.registerSingleton<DebugRepo, MockDebugRepository>(
+        (c) => MockDebugRepository());
+    container.registerSingleton<LocaleRepo, MockLocaleRepoitory>(
+        (c) => MockLocaleRepoitory());
   }
 
   void registerMockServices() {
@@ -34,7 +38,6 @@ class _$Injector extends Injector {
     container.registerFactory(
         (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
     container.registerFactory((c) => SplashViewModel(c<LoginRepo>()));
-    container.registerFactory((c) => HomeViewModel());
     container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
     container.registerFactory((c) => DebugPlatformSelectorViewModel());
     container.registerFactory((c) => LicenseViewModel());

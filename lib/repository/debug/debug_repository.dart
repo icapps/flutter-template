@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 
-class DebugRepository {
+class DebugRepository extends DebugRepo {
   static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
   static const _KEY_SELECTED_PLATFORM = 'selected_platform';
 
@@ -11,10 +12,12 @@ class DebugRepository {
 
   DebugRepository(this._sharedPrefs);
 
+  @override
   Future<void> saveSlowAnimations({bool enabled}) async {
     await _sharedPrefs.saveBoolean(key: _KEY_ENABLE_SLOW_ANIMATIONS, value: enabled);
   }
 
+  @override
   bool isSlowAnimationsEnabled() {
     final slowAnimations = _sharedPrefs.getBoolean(_KEY_ENABLE_SLOW_ANIMATIONS) ?? false;
     if (slowAnimations) {
@@ -25,6 +28,7 @@ class DebugRepository {
     return slowAnimations;
   }
 
+  @override
   Future<void> saveSelectedPlatform(String selectedPlatform) async {
     if (selectedPlatform == null) {
       await _sharedPrefs.deleteKey(_KEY_SELECTED_PLATFORM);
@@ -33,6 +37,7 @@ class DebugRepository {
     }
   }
 
+  @override
   TargetPlatform getTargetPlatform() {
     final selectedPlatform = _sharedPrefs.getString(_KEY_SELECTED_PLATFORM);
     if (selectedPlatform == null) {

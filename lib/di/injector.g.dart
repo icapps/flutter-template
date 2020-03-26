@@ -36,14 +36,14 @@ class _$Injector extends Injector {
         (c) => TodoRepository(c<TodoService>(), c<TodoDaoStoring>()));
     container.registerSingleton<LoginRepo, LoginRepository>(
         (c) => LoginRepository(c<AuthStoring>()));
+    container.registerSingleton<DebugRepo, DebugRepository>(
+        (c) => DebugRepository(c<SharedPrefsStoring>()));
+    container.registerSingleton<LocaleRepo, LocaleRepository>(
+        (c) => LocaleRepository(c<SharedPrefsStoring>()));
   }
 
   void registerCommonDependencies() {
     final Container container = Container();
-    container
-        .registerSingleton((c) => DebugRepository(c<SharedPrefsStoring>()));
-    container
-        .registerSingleton((c) => LocaleRepository(c<SharedPrefsStoring>()));
     container.registerSingleton<SharedPrefsStoring, SharedPrefsStorage>(
         (c) => SharedPrefsStorage(c<SharedPreferences>()));
     container.registerSingleton<SecureStoring, SecureStorage>(
@@ -57,7 +57,6 @@ class _$Injector extends Injector {
     container.registerFactory(
         (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
     container.registerFactory((c) => SplashViewModel(c<LoginRepo>()));
-    container.registerFactory((c) => HomeViewModel());
     container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
     container.registerFactory((c) => DebugPlatformSelectorViewModel());
     container.registerFactory((c) => LicenseViewModel());

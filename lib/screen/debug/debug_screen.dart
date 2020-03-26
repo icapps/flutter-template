@@ -40,7 +40,7 @@ class _DebugScreenState extends State<DebugScreen> implements DebugNavigator {
               DebugRowTitle(title: localization.debugThemeTitle),
               DebugRowItem(
                 title: localization.debugTargetPlatformTitle,
-                subTitle: localization.debugTargetPlatformSubtitle(Provider.of<GlobalViewModel>(context).getCurrentPlatform(localization)),
+                subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
                 onClick: viewModel.onTargetPlatformClicked,
               ),
               DebugRowTitle(title: localization.debugLocaleTitle),
