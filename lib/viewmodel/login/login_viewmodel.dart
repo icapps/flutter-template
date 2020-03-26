@@ -34,13 +34,9 @@ class LoginViewModel with ChangeNotifier {
   }
 
   Future<void> onLoginClicked() async {
-    await _login();
-  }
-
-  Future<void> _login() async {
     try {
       _isLoading = true;
-      await _loginRepo.login();
+      await _loginRepo.login(email: _email, password: _password);
       _navigator.goToHome();
     } catch (e) {
       FlutterTemplateLogger.logError(message: 'Failed to login', error: e);
