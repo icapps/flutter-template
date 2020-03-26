@@ -27,6 +27,16 @@ class _$Injector extends Injector {
         (c) => MockLocaleRepoitory());
   }
 
+  void registerCommonDependencies() {
+    final Container container = Container();
+    container.registerSingleton<SharedPrefsStoring, MockSharedPrefsStorage>(
+        (c) => MockSharedPrefsStorage());
+    container.registerSingleton<SecureStoring, MockSecureStorage>(
+        (c) => MockSecureStorage());
+    container.registerSingleton<AuthStoring, MockAuthStorage>(
+        (c) => MockAuthStorage());
+  }
+
   void registerMockServices() {
     final Container container = Container();
     container.registerSingleton<TodoService, MockTodoService>(

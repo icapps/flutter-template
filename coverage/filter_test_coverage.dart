@@ -91,8 +91,18 @@ List<String> getFilteredBody(List<String> body, List<String> lines) {
 }
 
 const excludedLines = [
+  'AppConstants._();',
   'EnvUtils._();',
-  'EnvUtils._();',
+  'FlutterTemplateLogger._();',
+  'FlutterTemplateThemeData._();',
+  'Keys._();',
+  'LicenseUtil._();',
+  'ThemeAssets._();',
+  'ThemeColors._();',
+  'ThemeDimens._();',
+  'ThemeDurations._();',
+  'ThemeFonts._();',
+  'ThemeTextStyles._();',
 ];
 
 const excludedStartsWithLines = [];

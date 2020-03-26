@@ -17,14 +17,14 @@ void main() {
     FlavorValues values;
 
     setUp(() {
-      values = FlavorValues(baseUrl: TestUtil.getVariableString(), logNetworkInfo: false);
+      values = FlavorValues(baseUrl: 'http://${TestUtil.getVariableString()}', logNetworkInfo: false);
       FlavorConfig(flavor: Flavor.TEST, name: 'flavor_config_test', color: Colors.amber, values: values);
     });
 
     test('FlavorConfig instance should be correct', () {
       expect(FlavorConfig.instance, isNotNull);
       expect(FlavorConfig.instance.values.logNetworkInfo, false);
-      expect(FlavorConfig.instance.values.baseUrl, 'https://url.com/');
+      expect(FlavorConfig.instance.values.baseUrl, 'http://${TestUtil.getVariableString()}');
       expect(FlavorConfig.instance.flavor, Flavor.TEST);
       expect(FlavorConfig.instance.name, 'flavor_config_test');
       expect(FlavorConfig.instance.color, Colors.amber);

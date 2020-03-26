@@ -88,4 +88,8 @@ const excludedFiles = [
   'app.dart',
   // Niddler
   'niddler.dart',
+  //Util
+  'util/keys.dart',
+  'util/license.dart',
+  'util/app_constants.dart',
 ];
