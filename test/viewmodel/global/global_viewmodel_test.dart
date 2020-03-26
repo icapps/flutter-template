@@ -23,7 +23,7 @@ void main() {
     sut = GlobalViewModel(localeRepo, debugRepo);
   });
 
-  test('LicenseViewModel init', () async {
+  test('GlobalViewModel init', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) async => null);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
@@ -35,7 +35,7 @@ void main() {
     verifyNoMoreInteractions(debugRepo);
   });
 
-  test('LicenseViewModel init with saved locale', () async {
+  test('GlobalViewModel init with saved locale', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) async => const Locale('nl'));
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
@@ -56,7 +56,7 @@ void main() {
       reset(debugRepo);
     });
 
-    test('LicenseViewModel onSwitchToDutch', () async {
+    test('GlobalViewModel onSwitchToDutch', () async {
       expect(sut.showsTranslationKeys, false);
       sut.toggleTranslationKeys();
       expect(sut.showsTranslationKeys, true);
@@ -65,7 +65,7 @@ void main() {
     });
 
     group('Locale', () {
-      test('LicenseViewModel onSwitchToDutch', () async {
+      test('GlobalViewModel onSwitchToDutch', () async {
         await sut.onSwitchToDutch();
         expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
@@ -73,7 +73,7 @@ void main() {
         verifyZeroInteractions(debugRepo);
       });
 
-      test('LicenseViewModel onSwitchToEnglish', () async {
+      test('GlobalViewModel onSwitchToEnglish', () async {
         await sut.onSwitchToDutch();
         expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
         reset(localeRepo);
@@ -85,7 +85,7 @@ void main() {
         verifyZeroInteractions(debugRepo);
       });
 
-      test('LicenseViewModel onSwitchToSystemLanguage', () async {
+      test('GlobalViewModel onSwitchToSystemLanguage', () async {
         await sut.onSwitchToDutch();
         expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
         reset(localeRepo);
@@ -99,7 +99,7 @@ void main() {
       });
 
       group('getCurrentLanguage', () {
-        test('LicenseViewModel getCurrentLanguage English', () async {
+        test('GlobalViewModel getCurrentLanguage English', () async {
           await sut.onSwitchToEnglish();
           reset(localeRepo);
           reset(debugRepo);
@@ -110,7 +110,7 @@ void main() {
           verifyZeroInteractions(debugRepo);
         });
 
-        test('LicenseViewModel getCurrentLanguage Nederlands', () async {
+        test('GlobalViewModel getCurrentLanguage Nederlands', () async {
           await sut.onSwitchToDutch();
           reset(localeRepo);
           reset(debugRepo);
@@ -121,7 +121,7 @@ void main() {
           verifyZeroInteractions(debugRepo);
         });
 
-        test('LicenseViewModel getCurrentPlatform default', () async {
+        test('GlobalViewModel getCurrentPlatform default', () async {
           await sut.onSwitchToSystemLanguage();
           reset(localeRepo);
           reset(debugRepo);
@@ -135,7 +135,7 @@ void main() {
     });
 
     group('Selected Platform', () {
-      test('LicenseViewModel setSelectedPlatformToAndroid', () async {
+      test('GlobalViewModel setSelectedPlatformToAndroid', () async {
         await sut.setSelectedPlatformToAndroid();
         verify(debugRepo.saveSelectedPlatform('android')).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();
@@ -143,7 +143,7 @@ void main() {
         verifyNoMoreInteractions(debugRepo);
       });
 
-      test('LicenseViewModel setSelectedPlatformToIOS', () async {
+      test('GlobalViewModel setSelectedPlatformToIOS', () async {
         await sut.setSelectedPlatformToIOS();
         verify(debugRepo.saveSelectedPlatform('ios')).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();
@@ -151,7 +151,7 @@ void main() {
         verifyNoMoreInteractions(debugRepo);
       });
 
-      test('LicenseViewModel setSelectedPlatformToDefault', () async {
+      test('GlobalViewModel setSelectedPlatformToDefault', () async {
         await sut.setSelectedPlatformToDefault();
         verify(debugRepo.saveSelectedPlatform(null)).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();
@@ -160,7 +160,7 @@ void main() {
       });
 
       group('getCurrentPlatform', () {
-        test('LicenseViewModel getCurrentPlatform android', () async {
+        test('GlobalViewModel getCurrentPlatform android', () async {
           when(debugRepo.getTargetPlatform()).thenAnswer((_) => TargetPlatform.android);
           await sut.setSelectedPlatformToAndroid();
           reset(localeRepo);
@@ -170,7 +170,7 @@ void main() {
           verifyZeroInteractions(debugRepo);
         });
 
-        test('LicenseViewModel getCurrentPlatform ios', () async {
+        test('GlobalViewModel getCurrentPlatform ios', () async {
           when(debugRepo.getTargetPlatform()).thenAnswer((_) => TargetPlatform.iOS);
           await sut.setSelectedPlatformToIOS();
           reset(localeRepo);
@@ -180,7 +180,7 @@ void main() {
           verifyZeroInteractions(debugRepo);
         });
 
-        test('LicenseViewModel getCurrentPlatform android', () async {
+        test('GlobalViewModel getCurrentPlatform android', () async {
           when(debugRepo.getTargetPlatform()).thenAnswer((_) => null);
           await sut.setSelectedPlatformToDefault();
           reset(localeRepo);

@@ -68,7 +68,7 @@ class _DebugScreenState extends State<DebugScreen> implements DebugNavigator {
   }
 
   @override
-  Future<void> goToTargetPlatformSelector() => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
+  void goToTargetPlatformSelector() => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
 
   @override
   void goToLicenses() => MainNavigatorWidget.of(context).goToLicense();

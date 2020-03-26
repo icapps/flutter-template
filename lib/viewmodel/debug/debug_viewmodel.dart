@@ -26,22 +26,15 @@ class DebugViewModel with ChangeNotifier {
     _initValues();
   }
 
-  Future<void> onTargetPlatformClicked() async {
-    await _navigator.goToTargetPlatformSelector();
-    notifyListeners();
-  }
+  void onTargetPlatformClicked() => _navigator.goToTargetPlatformSelector();
 
-  void onSelectLanguageClicked() {
-    _navigator.goToSelectLanguage();
-  }
+  void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
 
-  void onLicensesClicked() {
-    _navigator.goToLicenses();
-  }
+  void onLicensesClicked() => _navigator.goToLicenses();
 }
 
 abstract class DebugNavigator {
-  Future<void> goToTargetPlatformSelector();
+  void goToTargetPlatformSelector();
 
   void goToSelectLanguage();
 

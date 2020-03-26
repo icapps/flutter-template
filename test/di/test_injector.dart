@@ -1,9 +1,7 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
-import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
-import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/login/todo_repo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
