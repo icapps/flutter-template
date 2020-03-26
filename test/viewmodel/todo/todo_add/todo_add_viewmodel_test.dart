@@ -10,7 +10,7 @@ import '../../../util/test_extensions.dart';
 void main() {
   TodoAddViewModel sut;
   MockTodoRepository todoRepo;
-  MockTodoAddNavigator navigator;
+  TodoAddNavigator navigator;
 
   setUp(() async {
     await TestKiwiUtil.init();
