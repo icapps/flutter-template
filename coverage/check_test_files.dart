@@ -96,7 +96,6 @@ const excludedFiles = [
   'styles/theme_colors.dart',
   'styles/theme_data.dart',
   'styles/theme_dimens.dart',
-  'styles/theme_durations.dart',
   'styles/theme_fonts.dart',
   'styles/theme_text_styles.dart',
 ];
