@@ -24,9 +24,7 @@ class TodoAddViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onBackClicked() {
-    _navigator.goBack();
-  }
+  void onBackClicked() => _navigator.goBack();
 
   Future<void> onSaveClicked() async {
     await todoRepo.saveTodo(_todo);
