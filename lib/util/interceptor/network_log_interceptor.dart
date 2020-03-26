@@ -21,7 +21,7 @@ class NetworkLogInterceptor extends Interceptor {
     if (err is NetworkError) {
       FlutterTemplateLogger.logNetworkError(err);
     } else {
-      FlutterTemplateLogger.logNetworkError(GeneralError(err));
+      FlutterTemplateLogger.logNetworkError(GeneralNetworkError(err));
     }
     return super.onError(err);
   }

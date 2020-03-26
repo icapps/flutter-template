@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 
-class GeneralNetworkError extends NetworkError {
-  GeneralNetworkError(DioError dioError) : super(dioError);
+class GeneralError with FlutterTemplateError {
+  GeneralError() : super();
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorGeneral;

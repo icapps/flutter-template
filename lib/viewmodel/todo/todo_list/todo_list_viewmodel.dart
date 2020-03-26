@@ -50,9 +50,7 @@ class TodoListViewModel with ChangeNotifier {
     }
   }
 
-  void onAddClicked() {
-    _navigator.goToAddTodo();
-  }
+  void onAddClicked() => _navigator.goToAddTodo();
 
   Future<void> onTodoChanged({@required int id, @required bool value}) async {
     await _todoRepo.setTodoState(id: id, value: value);

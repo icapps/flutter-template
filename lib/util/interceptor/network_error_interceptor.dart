@@ -22,7 +22,7 @@ class NetworkErrorInterceptor extends Interceptor {
       case InternalServerError.statusCode:
         return InternalServerError(err);
       default:
-        return GeneralError(err);
+        return GeneralNetworkError(err);
     }
   }
 }
