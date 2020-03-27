@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 
 class DebugRowSwitchItem extends StatelessWidget {
@@ -41,10 +42,9 @@ class DebugRowSwitchItem extends StatelessWidget {
                 ],
               ),
             ),
-            Switch.adaptive(
+            FlutterTemplateSwitch(
               value: value,
               onChanged: onChanged,
-              activeColor: ThemeColors.primary,
             )
           ],
         ),
