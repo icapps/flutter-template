@@ -1,7 +1,5 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:moor/moor.dart';
 
 import '../di/test_kiwi_util.dart';
 
@@ -30,7 +28,7 @@ void main() {
     await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo3', completed: true));
 
     final resultTodos2 = await sut.select(sut.dbTodoTable).get();
-    expect(resultTodos2.isEmpty, true);
+    expect(resultTodos2.isEmpty, false);
     expect(resultTodos2.length, 3);
 
     await sut.deleteAllData();
