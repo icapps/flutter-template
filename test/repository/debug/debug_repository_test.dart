@@ -7,6 +7,7 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/test_kiwi_util.dart';
 import '../../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
+import '../../util/test_extensions.dart';
 
 void main() {
   MockSharedPrefsStorage shardPrefs;
@@ -21,19 +22,19 @@ void main() {
   group('saveSlowAnimations', () {
     test('saveSlowAnimations enabled true', () async {
       await sut.saveSlowAnimations(enabled: true);
-      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: true));
+      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: true)).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('saveSlowAnimations enabled false', () async {
       await sut.saveSlowAnimations(enabled: false);
-      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false));
+      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false)).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('saveSlowAnimations enabled set to null', () async {
       await sut.saveSlowAnimations(enabled: null);
-      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false));
+      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false)).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });
@@ -42,7 +43,7 @@ void main() {
     test('isSlowAnimationsEnabled when enabled was not set', () async {
       final result = sut.isSlowAnimationsEnabled();
       expect(result, false);
-      verify(shardPrefs.getBoolean('enable_slow_animations'));
+      verify(shardPrefs.getBoolean('enable_slow_animations')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -50,7 +51,7 @@ void main() {
       when(shardPrefs.getBoolean('enable_slow_animations')).thenAnswer((_) => false);
       final result = sut.isSlowAnimationsEnabled();
       expect(result, false);
-      verify(shardPrefs.getBoolean('enable_slow_animations'));
+      verify(shardPrefs.getBoolean('enable_slow_animations')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -58,7 +59,7 @@ void main() {
       when(shardPrefs.getBoolean('enable_slow_animations')).thenAnswer((_) => true);
       final result = sut.isSlowAnimationsEnabled();
       expect(result, true);
-      verify(shardPrefs.getBoolean('enable_slow_animations'));
+      verify(shardPrefs.getBoolean('enable_slow_animations')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });
@@ -66,19 +67,19 @@ void main() {
   group('saveSelectedPlatform', () {
     test('saveSelectedPlatform set to ios', () async {
       await sut.saveSelectedPlatform('ios');
-      verify(shardPrefs.saveString(key: 'selected_platform', value: 'ios'));
+      verify(shardPrefs.saveString(key: 'selected_platform', value: 'ios')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('saveSelectedPlatform set to android', () async {
       await sut.saveSelectedPlatform('android');
-      verify(shardPrefs.saveString(key: 'selected_platform', value: 'android'));
+      verify(shardPrefs.saveString(key: 'selected_platform', value: 'android')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('saveSelectedPlatform set to null', () async {
       await sut.saveSelectedPlatform(null);
-      verify(shardPrefs.deleteKey('selected_platform'));
+      verify(shardPrefs.deleteKey('selected_platform')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });
@@ -88,7 +89,7 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'ios');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.iOS);
-      verify(shardPrefs.getString('selected_platform'));
+      verify(shardPrefs.getString('selected_platform')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -96,7 +97,7 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'android');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.android);
-      verify(shardPrefs.getString('selected_platform'));
+      verify(shardPrefs.getString('selected_platform')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -104,7 +105,7 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'iasdofiodsaf');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.android);
-      verify(shardPrefs.getString('selected_platform'));
+      verify(shardPrefs.getString('selected_platform')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -112,7 +113,7 @@ void main() {
       when(shardPrefs.getString('select_platform')).thenAnswer((_) => null);
       final result = sut.getTargetPlatform();
       expect(result, null);
-      verify(shardPrefs.getString('selected_platform'));
+      verify(shardPrefs.getString('selected_platform')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });

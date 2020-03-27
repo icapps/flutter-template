@@ -7,6 +7,7 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/test_kiwi_util.dart';
 import '../../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
+import '../../util/test_extensions.dart';
 
 void main() {
   MockSharedPrefsStorage shardPrefs;
@@ -21,19 +22,19 @@ void main() {
   group('setCustomLocale', () {
     test('setCustomLocale enabled true', () async {
       await sut.setCustomLocale(const Locale('en'));
-      verify(shardPrefs.saveString(key: 'locale', value: 'en'));
+      verify(shardPrefs.saveString(key: 'locale', value: 'en')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('setCustomLocale enabled false', () async {
       await sut.setCustomLocale(const Locale('nl'));
-      verify(shardPrefs.saveString(key: 'locale', value: 'nl'));
+      verify(shardPrefs.saveString(key: 'locale', value: 'nl')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
     test('setCustomLocale enabled set to null', () async {
       await sut.setCustomLocale(null);
-      verify(shardPrefs.deleteKey('locale'));
+      verify(shardPrefs.deleteKey('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });
@@ -42,7 +43,7 @@ void main() {
     test('getCustomLocale when enabled was not set', () async {
       final result = sut.getCustomLocale();
       expect(result, null);
-      verify(shardPrefs.getString('locale'));
+      verify(shardPrefs.getString('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -58,7 +59,7 @@ void main() {
       when(shardPrefs.getString('locale')).thenAnswer((_) => 'en');
       final result = sut.getCustomLocale();
       expect(result.languageCode, 'en');
-      verify(shardPrefs.getString('locale'));
+      verify(shardPrefs.getString('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -66,7 +67,7 @@ void main() {
       when(shardPrefs.getString('locale')).thenAnswer((_) => 'nl');
       final result = sut.getCustomLocale();
       expect(result.languageCode, 'nl');
-      verify(shardPrefs.getString('locale'));
+      verify(shardPrefs.getString('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
   });
