@@ -7,9 +7,9 @@ import 'package:flutter_template/webservice/todo/todo_service.dart';
 
 class TodoRepository extends TodoRepo {
   final TodoDaoStoring _todoDao;
-  final TodoService _userService;
+  final TodoService _todoService;
 
-  TodoRepository(this._userService, this._todoDao);
+  TodoRepository(this._todoService, this._todoDao);
 
   @override
   Stream<List<Todo>> getTodos() => _todoDao.getAllTodosStream().map((list) => list.map((item) => item.getModel()).toList());
@@ -20,7 +20,7 @@ class TodoRepository extends TodoRepo {
    */
   @override
   Future<List<Todo>> fetchTodos() async {
-    final results = await _userService.getTodos();
+    final results = await _todoService.getTodos();
     for (final todo in results) {
       await _todoDao.createTodoWithValue(todo);
     }

@@ -1,4 +1,5 @@
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storage.dart';
+import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -8,7 +9,7 @@ import '../../util/test_extensions.dart';
 
 void main() {
   MockSharedPreferences sharedPreferences;
-  SharedPrefsStorage sut;
+  SharedPrefsStoring sut;
 
   setUp(() async {
     await TestKiwiUtil.init();
