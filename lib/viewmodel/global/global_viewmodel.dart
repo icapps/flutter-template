@@ -17,7 +17,7 @@ class GlobalViewModel with ChangeNotifier {
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
   Future<void> init() async {
-    await _initLocale();
+    _initLocale();
     _initTargetPlatform();
   }
 
@@ -26,8 +26,8 @@ class GlobalViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _initLocale() async {
-    final locale = await _localeRepo.getCustomLocale();
+  void _initLocale() {
+    final locale = _localeRepo.getCustomLocale();
     if (locale != null) {
       localeDelegate = LocalizationDelegate(newLocale: locale);
       notifyListeners();

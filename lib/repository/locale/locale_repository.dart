@@ -13,13 +13,13 @@ class LocaleRepository extends LocaleRepo {
   Future<void> setCustomLocale(Locale locale) async {
     if (locale == null) {
       await _sharedPrefs.deleteKey(_STORE_LOCALE);
-      return;
+    } else {
+      await _sharedPrefs.saveString(key: _STORE_LOCALE, value: locale.languageCode);
     }
-    await _sharedPrefs.saveString(key: _STORE_LOCALE, value: locale.languageCode);
   }
 
   @override
-  Future<Locale> getCustomLocale() async {
+  Locale getCustomLocale() {
     final localeCode = _sharedPrefs.getString(_STORE_LOCALE);
     if (localeCode == null || localeCode.isEmpty) return null;
     return Locale(localeCode);

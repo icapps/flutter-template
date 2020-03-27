@@ -24,7 +24,7 @@ void main() {
   });
 
   test('GlobalViewModel init', () async {
-    when(localeRepo.getCustomLocale()).thenAnswer((_) async => null);
+    when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNull);
@@ -36,7 +36,7 @@ void main() {
   });
 
   test('GlobalViewModel init with saved locale', () async {
-    when(localeRepo.getCustomLocale()).thenAnswer((_) async => const Locale('nl'));
+    when(localeRepo.getCustomLocale()).thenAnswer((_) => const Locale('nl'));
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNotNull);
@@ -50,7 +50,7 @@ void main() {
 
   group('After init', () {
     setUp(() async {
-      when(localeRepo.getCustomLocale()).thenAnswer((_) async => null);
+      when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
       await sut.init();
       reset(localeRepo);
       reset(debugRepo);
