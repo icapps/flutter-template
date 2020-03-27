@@ -28,6 +28,11 @@ main() {
       return false;
     } else if (path.startsWith('lib/webservice')) {
       return false;
+    } else if (path.startsWith('lib/model/exceptions/')) {
+      return false;
+    }
+    for (final excludedFile in excludedEndsWithFiles) {
+      if (path.endsWith(excludedFile)) return false;
     }
     return true;
   });
@@ -98,4 +103,9 @@ const excludedFiles = [
   'styles/theme_dimens.dart',
   'styles/theme_fonts.dart',
   'styles/theme_text_styles.dart',
+];
+
+const excludedEndsWithFiles = [
+  '_repo.dart',
+  '_storing.dart',
 ];
