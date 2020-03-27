@@ -105,4 +105,9 @@ const excludedLines = [
   'ThemeTextStyles._();',
 ];
 
-const excludedStartsWithLines = [];
+const excludedStartsWithLines = [
+  'IntColumn get ',
+  'TextColumn get ',
+  'BoolColumn get ',
+  'DateTimeColumn get ',
+];

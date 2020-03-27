@@ -9,9 +9,7 @@ abstract class TodoDaoStoring {
 
   Future<void> createTodo(String todo);
 
+  Future<void> createTodoWithValue(Todo todo);
+
   Future<void> updateTodo({@required int id, @required bool completed});
-
-  Future<void> createBackendTodo(Todo todo);
-
-  Future<void> setTodoState({@required int id, @required bool value});
 }

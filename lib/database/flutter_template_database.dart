@@ -13,4 +13,12 @@ class FlutterTemplateDatabase extends _$FlutterTemplateDatabase {
 
   @override
   int get schemaVersion => 1;
+
+  Future<void> deleteAllData() {
+    return transaction(() async {
+      for (final table in allTables) {
+        await delete(table).go();
+      }
+    });
+  }
 }

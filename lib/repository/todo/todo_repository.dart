@@ -22,7 +22,7 @@ class TodoRepository extends TodoRepo {
   Future<List<Todo>> fetchTodos() async {
     final results = await _userService.getTodos();
     for (final todo in results) {
-      await _todoDao.createBackendTodo(todo);
+      await _todoDao.createTodoWithValue(todo);
     }
     return results;
   }
@@ -34,6 +34,6 @@ class TodoRepository extends TodoRepo {
 
   @override
   Future<void> setTodoState({@required int id, @required bool value}) async {
-    await _todoDao.setTodoState(id: id, value: value);
+    await _todoDao.updateTodo(id: id, completed: value);
   }
 }

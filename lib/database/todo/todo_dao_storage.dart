@@ -16,20 +16,15 @@ class TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$To
   Future<List<DbTodo>> getAllTodos() => select(db.dbTodoTable).get();
 
   @override
+  Stream<List<DbTodo>> getAllTodosStream() => select(db.dbTodoTable).watch();
+
+  @override
   Future<void> createTodo(String todo) => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo, completed: false));
+
+  @override
+  Future<void> createTodoWithValue(Todo todo) async => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo.title, completed: todo.completed));
 
   @override
   Future<void> updateTodo({@required int id, @required bool completed}) =>
       (update(db.dbTodoTable)..where((todo) => todo.id.equals(id))).write(DbTodoTableCompanion(completed: Value(completed)));
-
-  @override
-  Stream<List<DbTodo>> getAllTodosStream() => select(db.dbTodoTable).watch();
-
-  @override
-  Future<void> createBackendTodo(Todo todo) async => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo.title, completed: todo.completed));
-
-  @override
-  Future<void> setTodoState({int id, bool value}) async {
-    await (update(db.dbTodoTable)..where((item) => item.id.equals(id))).write(DbTodoTableCompanion(completed: Value(value)));
-  }
 }
