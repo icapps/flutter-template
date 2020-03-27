@@ -30,9 +30,9 @@ class RefreshRepository extends RefreshRepo {
         throw UnAuthorizedError(err);
       }
       try {
-        // final refreshToken = await _authStoring.getRefreshToken();
-        // perform refresh call
-        // await _authStoring.saveRefreshToken(refreshToken: result.refreshToken, accessToken: result.accessToken);
+         await _authStoring.getRefreshToken();
+         // TODO implement refresh call
+         // await _authStoring.saveRefreshToken(refreshToken: result.refreshToken, accessToken: result.accessToken);
       } catch (e) {
         _failure = true;
         if (logoutCallback != null) {
