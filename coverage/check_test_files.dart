@@ -58,6 +58,7 @@ main() {
 
   print('');
   print('There are no test yet created for:');
+  print('');
   (sourceCodeTodoFiles..sort((file1, file2) => file1.path.compareTo(file2.path))).forEach((file) {
     print('${file.path}');
   });
@@ -89,10 +90,12 @@ const excludedFiles = [
   'main_alpha.dart',
   'main_beta.dart',
   'main_dummy.dart',
+  'main_prod.dart',
   // App
   'app.dart',
   // Niddler
   'niddler.dart',
+  'di/injector.dart',
   //Util
   'util/keys.dart',
   'util/license.dart',
