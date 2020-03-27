@@ -7,6 +7,13 @@ part of 'test_injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
+  void registerMocks() {
+    final Container container = Container();
+    container.registerSingleton((c) => MockFlutterSecureStorage());
+    container.registerSingleton((c) => MockSharedPreferences());
+    container.registerSingleton<Dio, MockDio>((c) => MockDio());
+  }
+
   void registerDatabase() {
     final Container container = Container();
     container
@@ -37,7 +44,6 @@ class _$Injector extends Injector {
         (c) => MockSecureStorage());
     container.registerSingleton<AuthStoring, MockAuthStorage>(
         (c) => MockAuthStorage());
-    container.registerSingleton<Dio, MockDio>((c) => MockDio());
   }
 
   void registerMockServices() {

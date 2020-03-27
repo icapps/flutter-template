@@ -1,5 +1,3 @@
-import 'package:mockito/mockito.dart';
-
 class MockedAnswer<T> {
   final T Function(Invocation invocation, int amountOfTimesCalled) callback;
 

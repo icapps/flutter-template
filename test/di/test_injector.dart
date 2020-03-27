@@ -23,6 +23,8 @@ import 'package:moor/moor.dart';
 import 'package:moor_ffi/moor_ffi.dart';
 
 import '../mocks/database/todo/mock_todo_dao_storage.dart';
+import '../mocks/mock_flutter_secure_storage.dart';
+import '../mocks/mock_shared_preferences.dart';
 import '../mocks/repository/debug/mock_debug_repository.dart';
 import '../mocks/repository/locale/mock_locale_repository.dart';
 import '../mocks/repository/login/mock_login_repository.dart';
@@ -37,6 +39,12 @@ import '../mocks/webservice/mock_todo_service.dart';
 part 'test_injector.g.dart';
 
 abstract class Injector {
+
+  @Register.singleton(MockFlutterSecureStorage)
+  @Register.singleton(MockSharedPreferences)
+  @Register.singleton(Dio, from: MockDio)
+  void registerMocks();
+
   @Register.singleton(FlutterTemplateDatabase)
   @Register.singleton(TodoDaoStoring, from: MockTodoDaoStorage)
   void registerDatabase();
@@ -51,7 +59,6 @@ abstract class Injector {
   @Register.singleton(SharedPrefsStoring, from: MockSharedPrefsStorage)
   @Register.singleton(SecureStoring, from: MockSecureStorage)
   @Register.singleton(AuthStoring, from: MockAuthStorage)
-  @Register.singleton(Dio, from: MockDio)
   void registerCommonDependencies();
 
   @Register.singleton(TodoService, from: MockTodoService)
@@ -72,6 +79,7 @@ Future<void> setupDependencyTree() async {
   Container().registerSingleton<QueryExecutor, LazyDatabase>((c) => VmDatabase.memory());
 
   _$Injector()
+    ..registerMocks()
     ..registerMockServices()
     ..registerDatabase()
     ..registerCommonDependencies()
