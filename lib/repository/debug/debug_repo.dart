@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 abstract class DebugRepo {
-  Future<void> saveSlowAnimations({bool enabled});
+  Future<void> saveSlowAnimations({@required bool enabled});
 
   bool isSlowAnimationsEnabled();
 
