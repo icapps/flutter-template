@@ -3,23 +3,30 @@ import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/di/kiwi_container.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter/material.dart';
 
 class LicenseScreen extends StatefulWidget {
   static const String routeName = 'license';
 
+  const LicenseScreen({
+    Key key,
+  }) : super(key: key);
+
   @override
-  _LicenseScreenState createState() => _LicenseScreenState();
+  LicenseScreenState createState() => LicenseScreenState();
 }
 
-class _LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin implements LicenseNavigator {
+@visibleForTesting
+class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin implements LicenseNavigator {
   @override
   Widget build(BuildContext context) {
     final localization = Localization.of(context);
     return ProviderWidget<LicenseViewModel>(
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
+          leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),
         ),
         body: ListView.builder(
