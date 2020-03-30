@@ -49,7 +49,12 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
         ),
         body: Stack(
           children: [
-            if (viewModel.isLoading) ...{const Center(child: CircularProgressIndicator())} else
+            if (!viewModel.isLoading && viewModel.errorKey != null)
+              Center(
+                child: Text(localization.getTranslation(viewModel.errorKey)),
+              ),
+            if (viewModel.isLoading) const Center(child: CircularProgressIndicator()),
+            if (!viewModel.isLoading && viewModel.errorKey == null)
               Scrollbar(
                 child: StreamBuilder<List<Todo>>(
                   stream: viewModel.dataStream,
