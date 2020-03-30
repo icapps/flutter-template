@@ -18,9 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final localization = Localization.of(context);
     return Scaffold(
       body: IndexedStack(
-        children: [
+        children: const [
           TodoListScreen(),
-          const DebugScreen(),
+          DebugScreen(),
         ],
         index: _currentIndex,
       ),

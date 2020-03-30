@@ -27,7 +27,7 @@ void main() {
     const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen__show_locale_key_disabled');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_show_locale_key_disabled');
 
     final target = find.byKey(Keys.debugShowTranslations);
     expect(target, findsOneWidget);
