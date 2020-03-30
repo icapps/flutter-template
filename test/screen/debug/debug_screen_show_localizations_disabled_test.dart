@@ -11,7 +11,9 @@ import '../../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
+import '../seed.dart';
 import 'debug_screen_slow_animations_true_test.dart';
+import 'debug_screen_test.dart';
 
 void main() {
   MockDebugViewModel debugViewModel;
@@ -28,11 +30,7 @@ void main() {
     seedGlobalViewModel();
     when(globalViewModel.showsTranslationKeys).thenReturn(false);
 
-    final mockNavigation = MockMainNavigation();
-    final sut = MockMainNavigator(
-      mock: mockNavigation,
-      child: DebugScreen(),
-    );
+    const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen__show_locale_key_disabled');
@@ -42,11 +40,9 @@ void main() {
     await tester.tap(target);
     await tester.pumpAndSettle();
 
-    verify(debugViewModel.init(any)).calledOnce();
-    verify(debugViewModel.slowAnimationsEnabled);
     verify(globalViewModel.toggleTranslationKeys()).calledOnce();
-    verifyNoMoreInteractions(debugViewModel);
-    verifyZeroInteractions(mockNavigation);
+    verifyDebugViewModel();
+    verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
   });
 }

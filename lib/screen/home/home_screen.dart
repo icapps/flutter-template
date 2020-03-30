@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         children: [
           TodoListScreen(),
-          DebugScreen(),
+          const DebugScreen(),
         ],
         index: _currentIndex,
       ),

@@ -14,6 +14,8 @@ import '../../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
+import '../seed.dart';
+import 'debug_screen_test.dart';
 
 void main() {
   MockDebugViewModel debugViewModel;
@@ -27,11 +29,7 @@ void main() {
     when(debugViewModel.slowAnimationsEnabled).thenReturn(true);
     seedGlobalViewModel();
 
-    final mockNavigation = MockMainNavigation();
-    final sut = MockMainNavigator(
-      mock: mockNavigation,
-      child: DebugScreen(),
-    );
+    const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_slow_animations_enabled');
@@ -41,31 +39,9 @@ void main() {
     await tester.tap(target);
     await tester.pumpAndSettle();
 
-    verify(debugViewModel.init(any)).calledOnce();
-    verify(debugViewModel.slowAnimationsEnabled);
     verify(debugViewModel.onSlowAnimationsChanged(false)).calledOnce();
-    verifyNoMoreInteractions(debugViewModel);
-    verifyZeroInteractions(mockNavigation);
+    verifyDebugViewModel();
+    verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
   });
-}
-
-void seedGlobalViewModel() {
-  final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
-  when(globalViewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
-  when(globalViewModel.showsTranslationKeys).thenAnswer((_) => false);
-  when(globalViewModel.localeDelegate).thenAnswer((_) => LocalizationDelegate(newLocale: const Locale('en'), isInTest: true));
-  when(globalViewModel.locale).thenAnswer((_) => const Locale('en'));
-  when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
-}
-
-void verifyGlobalViewModel() {
-  final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
-  verify(globalViewModel.targetPlatform);
-  verify(globalViewModel.localeDelegate);
-  verify(globalViewModel.locale);
-  verify(globalViewModel.themeMode);
-  verify(globalViewModel.showsTranslationKeys);
-  verify(globalViewModel.getCurrentLanguage());
-  verify(globalViewModel.getCurrentPlatform());
 }

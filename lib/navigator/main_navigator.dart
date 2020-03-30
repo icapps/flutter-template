@@ -62,7 +62,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
       case TodoAddScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: TodoAddScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       case LicenseScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: LicenseScreen()), settings: settings);
       default:

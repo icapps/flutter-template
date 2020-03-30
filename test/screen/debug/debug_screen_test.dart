@@ -15,8 +15,6 @@ import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
-import 'debug_screen_slow_animations_true_test.dart';
-import 'debug_screen_test.dart';
 
 void main() {
   MockDebugViewModel debugViewModel;
@@ -26,21 +24,34 @@ void main() {
     debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
   });
 
-  testWidgets('Test debug screen on select target clicked', (tester) async {
-    when(debugViewModel.slowAnimationsEnabled).thenReturn(true);
+  testWidgets('Test debug screen initial state', (tester) async {
+    when(debugViewModel.slowAnimationsEnabled).thenReturn(false);
     seedGlobalViewModel();
 
-    const sut = DebugScreen();
-    await TestUtil.loadScreen(tester, sut);
+    final mockNavigation = MockMainNavigation();
+    final sut = MockMainNavigator(
+      mock: mockNavigation,
+      child: const DebugScreen(),
+    );
+    final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    final target = find.byKey(Keys.debugTargetPlatform);
-    expect(target, findsOneWidget);
-    await tester.tap(target);
-    await tester.pumpAndSettle();
-
-    verify(debugViewModel.onTargetPlatformClicked()).calledOnce();
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_inital_state');
     verifyDebugViewModel();
     verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
   });
+}
+
+void verifyDebugViewModel() {
+  final debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
+  verify(debugViewModel.init(any)).calledOnce();
+  verify(debugViewModel.slowAnimationsEnabled);
+  verifyNoMoreInteractions(debugViewModel);
+}
+
+void verifyGlobalViewModelForDebugScreen() {
+  final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+  verify(globalViewModel.showsTranslationKeys);
+  verify(globalViewModel.getCurrentLanguage());
+  verify(globalViewModel.getCurrentPlatform());
 }

@@ -10,7 +10,7 @@ import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
-import 'debug_screen_slow_animations_true_test.dart';
+import '../seed.dart';
 
 void main() {
   MockDebugViewModel debugViewModel;

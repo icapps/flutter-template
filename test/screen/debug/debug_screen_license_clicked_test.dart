@@ -14,7 +14,9 @@ import '../../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
+import '../seed.dart';
 import 'debug_screen_slow_animations_true_test.dart';
+import 'debug_screen_test.dart';
 
 void main() {
   MockDebugViewModel debugViewModel;
@@ -28,11 +30,7 @@ void main() {
     when(debugViewModel.slowAnimationsEnabled).thenReturn(true);
     seedGlobalViewModel();
 
-    final mockNavigation = MockMainNavigation();
-    final sut = MockMainNavigator(
-      mock: mockNavigation,
-      child: DebugScreen(),
-    );
+    final sut = const DebugScreen();
     await TestUtil.loadScreen(tester, sut);
 
     final target = find.byKey(Keys.debugLicense);
@@ -40,11 +38,9 @@ void main() {
     await tester.tap(target);
     await tester.pumpAndSettle();
 
-    verify(debugViewModel.init(any)).calledOnce();
-    verify(debugViewModel.slowAnimationsEnabled);
     verify(debugViewModel.onLicensesClicked()).calledOnce();
-    verifyNoMoreInteractions(debugViewModel);
-    verifyZeroInteractions(mockNavigation);
+    verifyDebugViewModel();
+    verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
   });
 }
