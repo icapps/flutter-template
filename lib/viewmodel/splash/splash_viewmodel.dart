@@ -9,7 +9,7 @@ class SplashViewModel with ChangeNotifier {
   SplashViewModel(this._loginRepo);
 
   Future<void> init(SplashNavigator navigator) async {
-    final result = await _loginRepo.isLoggedIn().ensureDuration(ThemeDurations.splashAnimationDuration());
+    final result = await _loginRepo.isLoggedIn();
     if (result) {
       navigator.goToHome();
     } else {
