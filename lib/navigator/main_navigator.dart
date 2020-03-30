@@ -95,4 +95,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
 
   @override
   void goBack<T>({T result}) => navigationKey.currentState.pop(result);
+
+  @override
+  void showCustomDialog<T>({WidgetBuilder builder}) => showDialog(context: context, builder: builder);
 }

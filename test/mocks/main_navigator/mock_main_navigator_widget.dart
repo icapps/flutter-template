@@ -23,39 +23,28 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void closeDialog() => widget.mock.closeDialog();
 
   @override
-  void goBack<T>({T result}) {
-    // TODO: implement goBack
-  }
+  void goBack<T>({T result}) => widget.mock.goBack(result: result);
 
   @override
-  Future<void> goToAddTodo() async {
-    // TODO: implement goToAddTodo
-  }
+  Future<void> goToAddTodo() async => widget.mock.goToAddTodo();
 
   @override
-  Future<void> goToDebugPlatformSelector() async {
-    await widget.mock.goToDebugPlatformSelector();
-  }
+  Future<void> goToDebugPlatformSelector() async => widget.mock.goToDebugPlatformSelector();
 
   @override
-  void goToHome() {
-    // TODO: implement goToHome
-  }
+  void goToHome() => widget.mock.goToHome();
 
   @override
-  void goToLicense() {
-    // TODO: implement goToLicense
-  }
+  void goToLicense() => widget.mock.goToLicense();
 
   @override
-  void goToLogin() {
-    // TODO: implement goToLogin
-  }
+  void goToLogin() => widget.mock.goToLogin();
 
   @override
-  void goToSplash() {
-    // TODO: implement goToSplash
-  }
+  void goToSplash() => widget.mock.goToSplash();
+
+  @override
+  void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog(builder: builder);
 }
 
 class MockMainNavigation extends Mock implements MainNavigation {}

@@ -41,7 +41,7 @@ class InternalApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],
-        locale: viewModel.localeDelegate.activeLocale,
+        locale: viewModel.locale,
         supportedLocales: LocalizationDelegate.supportedLocales,
         themeMode: viewModel.themeMode,
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),

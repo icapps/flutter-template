@@ -54,14 +54,22 @@ class _$Injector extends Injector {
 
   void registerViewModelFactories() {
     final Container container = Container();
-    container.registerFactory(
-        (c) => GlobalViewModel(c<LocaleRepo>(), c<DebugRepo>()));
-    container.registerFactory((c) => SplashViewModel(c<LoginRepo>()));
-    container.registerFactory((c) => DebugViewModel(c<DebugRepo>()));
-    container.registerFactory((c) => DebugPlatformSelectorViewModel());
-    container.registerFactory((c) => LicenseViewModel());
-    container.registerFactory((c) => TodoListViewModel(c<TodoRepo>()));
-    container.registerFactory((c) => TodoAddViewModel(c<TodoRepo>()));
-    container.registerFactory((c) => LoginViewModel(c<LoginRepo>()));
+    container.registerSingleton<GlobalViewModel, MockGlobalViewModel>(
+        (c) => MockGlobalViewModel());
+    container.registerSingleton<SplashViewModel, MockSplashViewModel>(
+        (c) => MockSplashViewModel());
+    container.registerSingleton<DebugViewModel, MockDebugViewModel>(
+        (c) => MockDebugViewModel());
+    container.registerSingleton<DebugPlatformSelectorViewModel,
+            MockDebugPlatformSelectorViewModel>(
+        (c) => MockDebugPlatformSelectorViewModel());
+    container.registerSingleton<LicenseViewModel, MockLicenseViewModel>(
+        (c) => MockLicenseViewModel());
+    container.registerSingleton<TodoListViewModel, MockTodoListViewModel>(
+        (c) => MockTodoListViewModel());
+    container.registerSingleton<TodoAddViewModel, MockTodoAddViewModel>(
+        (c) => MockTodoAddViewModel());
+    container.registerSingleton<LoginViewModel, MockLoginViewModel>(
+        (c) => MockLoginViewModel());
   }
 }

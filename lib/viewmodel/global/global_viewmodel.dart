@@ -7,14 +7,24 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 class GlobalViewModel with ChangeNotifier {
   final LocaleRepo _localeRepo;
   final DebugRepo _debugRepo;
-  var localeDelegate = LocalizationDelegate();
-  var showsTranslationKeys = false;
+  var _localeDelegate = LocalizationDelegate();
+  var _showsTranslationKeys = false;
 
-  final themeMode = ThemeMode.system;
+  final _themeMode = ThemeMode.system;
 
-  TargetPlatform targetPlatform;
+  TargetPlatform _targetPlatform;
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
+
+  get themeMode => _themeMode;
+
+  get locale => _localeDelegate.newLocale;
+
+  get targetPlatform => _targetPlatform;
+
+  get localeDelegate => _localeDelegate;
+
+  get showsTranslationKeys => _showsTranslationKeys;
 
   Future<void> init() async {
     _initLocale();
@@ -22,14 +32,14 @@ class GlobalViewModel with ChangeNotifier {
   }
 
   void _initTargetPlatform() {
-    targetPlatform = _debugRepo.getTargetPlatform();
+    _targetPlatform = _debugRepo.getTargetPlatform();
     notifyListeners();
   }
 
   void _initLocale() {
     final locale = _localeRepo.getCustomLocale();
     if (locale != null) {
-      localeDelegate = LocalizationDelegate(newLocale: locale);
+      _localeDelegate = LocalizationDelegate(newLocale: locale);
       notifyListeners();
     }
   }
@@ -48,7 +58,7 @@ class GlobalViewModel with ChangeNotifier {
 
   Future<void> _onUpdateLocaleClicked(Locale locale) async {
     await _localeRepo.setCustomLocale(locale);
-    localeDelegate = LocalizationDelegate(newLocale: locale);
+    _localeDelegate = LocalizationDelegate(newLocale: locale);
     notifyListeners();
   }
 
@@ -92,8 +102,8 @@ class GlobalViewModel with ChangeNotifier {
   }
 
   void toggleTranslationKeys() {
-    showsTranslationKeys = !showsTranslationKeys;
-    localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, isInTest: showsTranslationKeys);
+    _showsTranslationKeys = !showsTranslationKeys;
+    _localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, isInTest: showsTranslationKeys);
     notifyListeners();
   }
 }

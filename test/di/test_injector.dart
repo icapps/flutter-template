@@ -33,13 +33,20 @@ import '../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
 import '../mocks/repository/secure_storage/mock_secure_storage.dart';
 import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
 import '../mocks/repository/todo/mock_todo_repository.dart';
+import '../mocks/viewmodel/debug/mock_debug_platform_selector_viewmodel.dart';
+import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
+import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
+import '../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
+import '../mocks/viewmodel/login/mock_login_viewmodel.dart';
+import '../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
+import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
+import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../mocks/webservice/mock_dio.dart';
 import '../mocks/webservice/mock_todo_service.dart';
 
 part 'test_injector.g.dart';
 
 abstract class Injector {
-
   @Register.singleton(MockFlutterSecureStorage)
   @Register.singleton(MockSharedPreferences)
   @Register.singleton(Dio, from: MockDio)
@@ -64,14 +71,14 @@ abstract class Injector {
   @Register.singleton(TodoService, from: MockTodoService)
   void registerMockServices();
 
-  @Register.factory(GlobalViewModel)
-  @Register.factory(SplashViewModel)
-  @Register.factory(DebugViewModel)
-  @Register.factory(DebugPlatformSelectorViewModel)
-  @Register.factory(LicenseViewModel)
-  @Register.factory(TodoListViewModel)
-  @Register.factory(TodoAddViewModel)
-  @Register.factory(LoginViewModel)
+  @Register.singleton(GlobalViewModel, from: MockGlobalViewModel)
+  @Register.singleton(SplashViewModel, from: MockSplashViewModel)
+  @Register.singleton(DebugViewModel, from: MockDebugViewModel)
+  @Register.singleton(DebugPlatformSelectorViewModel, from: MockDebugPlatformSelectorViewModel)
+  @Register.singleton(LicenseViewModel, from: MockLicenseViewModel)
+  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)
+  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)
+  @Register.singleton(LoginViewModel, from: MockLoginViewModel)
   void registerViewModelFactories();
 }
 
