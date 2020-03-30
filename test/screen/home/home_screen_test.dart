@@ -6,6 +6,7 @@ import '../../di/test_kiwi_util.dart';
 import '../../util/test_util.dart';
 import '../debug/debug_screen_test.dart';
 import '../seed.dart';
+import '../todo/todo_list/todo_list_screen_test.dart';
 
 void main() {
   setUp(() async {
@@ -21,7 +22,7 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state');
-    await print(''); //verifyTodoListScreen();
+    verifyTodoListViewModel();
     verifyDebugViewModel();
     verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();

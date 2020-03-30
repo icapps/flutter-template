@@ -15,11 +15,16 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 
 class TodoListScreen extends StatefulWidget {
+  const TodoListScreen({
+    Key key,
+  }) : super(key: key);
+
   @override
-  _TodoListScreenState createState() => _TodoListScreenState();
+  TodoListScreenState createState() => TodoListScreenState();
 }
 
-class _TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoListViewNavigator {
+@visibleForTesting
+class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoListViewNavigator {
   final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoListScaffoldKey');
 
   @override
