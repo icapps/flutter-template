@@ -11,11 +11,9 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockLicenseViewModel licenseViewModel;
 
   setUp(() async {
     await TestKiwiUtil.init();
-    licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   });
 
   testWidgets('Test splash screen initial state', (tester) async {

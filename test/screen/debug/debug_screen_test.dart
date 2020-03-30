@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,15 +13,13 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockDebugViewModel debugViewModel;
 
   setUp(() async {
     await TestKiwiUtil.init();
-    debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
-    when(debugViewModel.slowAnimationsEnabled).thenReturn(false);
+    seedDebugViewModel();
     seedGlobalViewModel();
 
     final mockNavigation = MockMainNavigation();
@@ -41,6 +35,7 @@ void main() {
     verifyGlobalViewModel();
   });
 }
+
 
 void verifyDebugViewModel() {
   final debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();

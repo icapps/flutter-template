@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _currentIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTap,
+        onTap: _onTap,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void onTap(int newIndex) {
+  void _onTap(int newIndex) {
     setState(() => _currentIndex = newIndex);
   }
 }

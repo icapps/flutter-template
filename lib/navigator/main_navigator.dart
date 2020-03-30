@@ -54,7 +54,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   Route _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
+        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
       case LoginScreen.routeName:
         return FadeInRoute(child: FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
@@ -64,7 +64,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
       case DebugPlatformSelectorScreen.routeName:
         return MaterialPageRoute(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       case LicenseScreen.routeName:
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: LicenseScreen()), settings: settings);
+        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
       default:
         return null;
     }
