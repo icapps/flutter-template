@@ -3,14 +3,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
-import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../mocks/mocked_network_images.dart';
@@ -46,8 +40,8 @@ class TestUtil {
   static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
     return _internalLoadWidget(
       tester,
-      ScreenTestWrapper(
-        child: widget,
+      InternalApp(
+        home: widget,
       ),
     );
   }
@@ -134,28 +128,3 @@ class TestWrapper extends StatelessWidget {
   }
 }
 
-class ScreenTestWrapper extends StatelessWidget {
-  final Widget child;
-
-  const ScreenTestWrapper({@required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    const locale = Locale('en-EN');
-    return ProviderWidget<GlobalViewModel>(
-      consumerChild: child,
-      consumer: (context, viewModel, child) => MaterialApp(
-        locale: locale,
-        localizationsDelegates: [
-          LocalizationDelegate(newLocale: locale, isInTest: true),
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          FallbackCupertinoLocalisationsDelegate.delegate,
-        ],
-        debugShowCheckedModeBanner: false,
-        home: child,
-      ),
-      create: () => KiwiContainer.resolve()..init(),
-    );
-  }
-}

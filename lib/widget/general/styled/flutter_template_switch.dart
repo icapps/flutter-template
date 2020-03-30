@@ -13,7 +13,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch.adaptive(
-      value: value,
+      value: value ?? false,
       onChanged: onChanged,
       activeColor: ThemeColors.accent,
     );

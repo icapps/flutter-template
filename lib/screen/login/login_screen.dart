@@ -2,6 +2,7 @@ import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_text_styles.dart';
+import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/di/kiwi_container.dart';
@@ -43,12 +44,14 @@ class _LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin impl
                     ),
                     Container(height: ThemeDimens.padding16),
                     FlutterTemplateInputField(
+                      key: Keys.emailInput,
                       enabled: !viewModel.isLoading,
                       onChanged: viewModel.onEmailUpdated,
                       hint: 'Email',
                     ),
                     Container(height: ThemeDimens.padding16),
                     FlutterTemplateInputField(
+                      key: Keys.passwordInput,
                       enabled: !viewModel.isLoading,
                       onChanged: viewModel.onPasswordUpdated,
                       hint: 'Password',
@@ -58,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin impl
                       const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeColors.white)),
                     } else
                       FlutterTemplateButton(
+                        key: Keys.loginButton,
                         isEnabled: viewModel.isLoginEnabled,
                         text: 'Login',
                         onClick: viewModel.onLoginClicked,

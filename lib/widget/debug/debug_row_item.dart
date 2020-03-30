@@ -11,7 +11,8 @@ class DebugRowItem extends StatelessWidget {
     @required this.title,
     @required this.onClick,
     this.subTitle,
-  });
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

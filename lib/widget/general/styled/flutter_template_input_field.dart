@@ -10,7 +10,8 @@ class FlutterTemplateInputField extends StatelessWidget {
     @required this.hint,
     @required this.onChanged,
     @required this.enabled,
-  });
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

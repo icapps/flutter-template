@@ -1,3 +1,4 @@
+import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
@@ -14,13 +15,12 @@ class MainNavigatorWidget extends StatefulWidget {
   @override
   MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
 
-  static MainNavigatorWidgetState of(context, {rootNavigator = false, nullOk = false}) {
-    final MainNavigatorWidgetState navigator =
-        rootNavigator ? context.findRootAncestorStateOfType<MainNavigatorWidgetState>() : context.findAncestorStateOfType<MainNavigatorWidgetState>();
+  static MainNavigationMixin of(context, {rootNavigator = false, nullOk = false}) {
+    final MainNavigationMixin navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
     assert(() {
       if (navigator == null && !nullOk) {
-        throw FlutterError('MainNavigatorWidget operation requested with a context that does not include a MainNavigatorWidget.\n'
-            'The context used to push or pop routes from the MainNavigatorWidget must be that of a '
+        throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
+            'The context used to push or pop routes from the MainNavigation must be that of a '
             'widget that is a descendant of a MainNavigatorWidget widget.');
       }
       return true;
@@ -29,7 +29,7 @@ class MainNavigatorWidget extends StatefulWidget {
   }
 }
 
-class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
+class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
 
   @override
@@ -39,7 +39,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
       child: Navigator(
         key: navigationKey,
         initialRoute: SplashScreen.routeName,
-        onGenerateRoute: onGenerateRoute,
+        onGenerateRoute: _onGenerateRoute,
         observers: [
           HeroController(createRectTween: _createRectTween),
         ],
@@ -51,7 +51,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
     return MaterialRectArcTween(begin: begin, end: end);
   }
 
-  Route onGenerateRoute(RouteSettings settings) {
+  Route _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
         return MaterialPageRoute(builder: (context) => FlavorBanner(child: SplashScreen()), settings: settings);
@@ -72,19 +72,27 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> {
 
   Future<bool> _willPop() async => !await navigationKey.currentState.maybePop();
 
+  @override
   void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
 
+  @override
   void goToLogin() => navigationKey.currentState.pushReplacementNamed(LoginScreen.routeName);
 
+  @override
   void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
 
+  @override
   Future<void> goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
 
+  @override
   Future<void> goToDebugPlatformSelector() async => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
 
+  @override
   void goToLicense() => navigationKey.currentState.pushNamed(LicenseScreen.routeName);
 
+  @override
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
 
+  @override
   void goBack<T>({T result}) => navigationKey.currentState.pop(result);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -39,6 +40,7 @@ class _DebugScreenState extends State<DebugScreen> implements DebugNavigator {
               ),
               DebugRowTitle(title: localization.debugThemeTitle),
               DebugRowItem(
+                key: Keys.targetPlatform,
                 title: localization.debugTargetPlatformTitle,
                 subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
                 onClick: viewModel.onTargetPlatformClicked,
