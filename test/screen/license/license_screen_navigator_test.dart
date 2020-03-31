@@ -9,7 +9,6 @@ import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
-import 'license_screen_test.dart';
 
 void main() {
   setUp(() async {
