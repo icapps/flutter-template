@@ -7,17 +7,21 @@ import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 
 class TodoAddScreen extends StatefulWidget {
   static const String routeName = 'todo_add';
 
+  const TodoAddScreen({Key key}) : super(key: key);
+
   @override
-  _TodoAddScreenState createState() => _TodoAddScreenState();
+  TodoAddScreenState createState() => TodoAddScreenState();
 }
 
-class _TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
+@visibleForTesting
+class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
   final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoAddScaffoldKey');
 
   @override
@@ -37,11 +41,8 @@ class _TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, 
                 physics: ScrollWhenNeededPhysics(targetPlatform: Theme.of(context).platform),
                 padding: const EdgeInsets.all(ThemeDimens.padding16),
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      hintText: localization.todoAddInputHint,
-                    ),
+                  FlutterTemplateInputField(
+                    hint: localization.todoAddInputHint,
                     onChanged: viewModel.onTodoChanged,
                   ),
                   Container(height: ThemeDimens.padding16),
