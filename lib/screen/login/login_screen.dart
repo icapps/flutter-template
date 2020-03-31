@@ -15,11 +15,14 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
 
+  const LoginScreen({Key key}) : super(key: key);
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
+@visibleForTesting
+class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
   final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'LoginScaffoldKey');
 
   @override
