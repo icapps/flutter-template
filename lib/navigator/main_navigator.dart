@@ -56,7 +56,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
       case SplashScreen.routeName:
         return MaterialPageRoute(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
       case LoginScreen.routeName:
-        return FadeInRoute(child: FlavorBanner(child: LoginScreen()), settings: settings);
+        return FadeInRoute(child: const FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
         return FadeInRoute(child: FlavorBanner(child: HomeScreen()));
       case TodoAddScreen.routeName:
