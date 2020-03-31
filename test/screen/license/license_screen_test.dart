@@ -1,4 +1,5 @@
 import 'package:flutter_template/screen/license/license_screen.dart';
+import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,9 +12,11 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
+  MockLicenseViewModel licenseViewModel;
 
   setUp(() async {
     await TestKiwiUtil.init();
+    licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   });
 
   testWidgets('Test splash screen initial state', (tester) async {
@@ -27,20 +30,37 @@ void main() {
     verifyLicenseViewModel();
     verifyGlobalViewModel();
   });
-}
 
-void seedsLicenses() {
-  final licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
-  when(licenseViewModel.licenses).thenReturn([
-    for (var i = 0; i < 100; ++i)
-      License(
-        name: 'name$i',
-        version: 'version$i',
-        url: 'url$i',
-        license: 'license$i',
-        licenseUrl: 'licenseUrl$i',
-      ),
-  ]);
+  testWidgets('Test splash screen initial state', (tester) async {
+    when(licenseViewModel.licenses).thenReturn([]);
+    seedGlobalViewModel();
+
+    const sut = LicenseScreen();
+    final testWidget = await TestUtil.loadScreen(tester, sut);
+
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'license_screen_empty_list');
+    verifyLicenseViewModel();
+    verifyGlobalViewModel();
+  });
+
+  group('Actions', () {
+    testWidgets('Test license screen on back clicked', (tester) async {
+      seedsLicenses();
+      seedGlobalViewModel();
+
+      const sut = LicenseScreen();
+      await TestUtil.loadScreen(tester, sut);
+
+      final target = find.byKey(Keys.backButton);
+      expect(target, findsOneWidget);
+      await tester.tap(target);
+      await tester.pumpAndSettle();
+
+      verify(licenseViewModel.onBackClicked()).calledOnce();
+      verifyLicenseViewModel();
+      verifyGlobalViewModel();
+    });
+  });
 }
 
 void verifyLicenseViewModel() {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:mockito/mockito.dart';
@@ -11,6 +13,7 @@ import 'package:mockito/mockito.dart';
 import '../di/test_kiwi_util.dart';
 import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
+import '../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
 import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
 import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../util/test_extensions.dart';
@@ -32,6 +35,20 @@ void seedTodoListViewModel() {
 void seedTodoAddViewModel() {
   final todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
+}
+
+void seedsLicenses() {
+  final licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
+  when(licenseViewModel.licenses).thenReturn([
+    for (var i = 0; i < 100; ++i)
+      License(
+        name: 'name$i',
+        version: 'version$i',
+        url: 'url$i',
+        license: 'license$i',
+        licenseUrl: 'licenseUrl$i',
+      ),
+  ]);
 }
 
 void seedGlobalViewModel() {
