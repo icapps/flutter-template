@@ -30,6 +30,7 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
     return ChangeNotifierProvider<TodoAddViewModel>(
       child: Consumer<TodoAddViewModel>(
         builder: (context, viewModel, child) => Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
             leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
             title: Text(localization.todoAddTitle),

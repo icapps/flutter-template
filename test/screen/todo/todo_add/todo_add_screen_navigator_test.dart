@@ -16,7 +16,7 @@ void main() {
   });
 
   testWidgets('Test todo add screen navigator', (tester) async {
-    seedTodoListViewModel();
+    seedTodoAddViewModel();
     seedGlobalViewModel();
 
     final mockNavigation = MockMainNavigation();

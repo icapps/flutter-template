@@ -4,12 +4,14 @@ import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:mockito/mockito.dart';
 
 import '../di/test_kiwi_util.dart';
 import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
+import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
 import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../util/test_extensions.dart';
 
@@ -25,6 +27,11 @@ void seedTodoListViewModel() {
       ]));
   when(todoListViewModel.isLoading).thenReturn(false);
   when(todoListViewModel.errorKey).thenReturn(null);
+}
+
+void seedTodoAddViewModel() {
+  final todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  when(todoAddViewModel.isSaveEnabled).thenReturn(false);
 }
 
 void seedGlobalViewModel() {

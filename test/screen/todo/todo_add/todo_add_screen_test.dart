@@ -18,11 +18,11 @@ void main() {
   setUp(() async {
     await TestKiwiUtil.init();
     todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+    seedTodoAddViewModel();
     seedGlobalViewModel();
   });
 
   testWidgets('Test todo add screen initial state', (tester) async {
-    when(todoAddViewModel.isSaveEnabled).thenReturn(false);
     const sut = TodoAddScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
@@ -43,7 +43,6 @@ void main() {
 
   group('Actions', () {
     testWidgets('Test todo add screen button enabled disabled on back clicked', (tester) async {
-      when(todoAddViewModel.isSaveEnabled).thenReturn(true);
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -57,7 +56,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test todo add screen button disabled on back clicked', (tester) async {
+    testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
       when(todoAddViewModel.isSaveEnabled).thenReturn(true);
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -73,7 +72,6 @@ void main() {
     });
 
     testWidgets('Test todo add screen button disabled on back clicked', (tester) async {
-      when(todoAddViewModel.isSaveEnabled).thenReturn(false);
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -87,7 +85,6 @@ void main() {
     });
 
     testWidgets('Test todo add screen should have an input field', (tester) async {
-      when(todoAddViewModel.isSaveEnabled).thenReturn(true);
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
