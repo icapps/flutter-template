@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/login/todo_repo.dart';
+import 'package:flutter_template/repository/login/login_repo.dart';
 
 class SplashViewModel with ChangeNotifier {
   final LoginRepo _loginRepo;
