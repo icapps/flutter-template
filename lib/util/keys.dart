@@ -17,4 +17,8 @@ class Keys {
   static const emailInput = ValueKey('email_input');
   static const passwordInput = ValueKey('password_input');
   static const loginButton = ValueKey('login_button');
+
+  //Todo List
+  static const downloadAction = ValueKey('download_actions');
+  static const addAction = ValueKey('add_action');
 }
