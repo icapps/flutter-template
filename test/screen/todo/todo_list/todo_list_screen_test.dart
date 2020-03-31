@@ -27,7 +27,6 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_inital_state');
-    verify(todoListViewModel.dataStream);
     verifyTodoListViewModel();
     verifyGlobalViewModel();
   });
@@ -38,7 +37,6 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_empty_state');
-    verify(todoListViewModel.dataStream);
     verifyTodoListViewModel();
     verifyGlobalViewModel();
   });
@@ -49,7 +47,10 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_error_state');
-    verifyTodoListViewModel();
+    verify(todoListViewModel.isLoading);
+    verify(todoListViewModel.errorKey);
+    verify(todoListViewModel.init(any)).calledOnce();
+    verifyNoMoreInteractions(todoListViewModel);
     verifyGlobalViewModel();
   });
 
@@ -68,7 +69,6 @@ void main() {
   group('With Data', () {
 
     tearDown(() async {
-      verify(todoListViewModel.dataStream);
       verifyTodoListViewModel();
       verifyGlobalViewModel();
     });
@@ -115,6 +115,7 @@ void main() {
 
 void verifyTodoListViewModel() {
   final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);
   verify(todoListViewModel.init(any)).calledOnce();
