@@ -12,7 +12,6 @@ class FadeInRoute<T> extends PageRouteBuilder<T> {
     this.curve = Curves.linear,
     this.alignment,
     RouteSettings settings,
-    this.maintainState = true,
     this.duration = const Duration(milliseconds: 300),
   }) : super(
           pageBuilder: (context, animation, secondaryAnimation) => child,
@@ -23,6 +22,4 @@ class FadeInRoute<T> extends PageRouteBuilder<T> {
             child: child,
           ),
         );
-  @override
-  bool maintainState;
 }
