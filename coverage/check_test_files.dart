@@ -93,6 +93,8 @@ const excludedFiles = [
   'main_prod.dart',
   // App
   'app.dart',
+  // Navigation
+  'navigator/main_navigation.dart',
   // Niddler
   'niddler.dart',
   'di/injector.dart',
