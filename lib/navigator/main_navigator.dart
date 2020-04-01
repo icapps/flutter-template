@@ -1,6 +1,8 @@
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,9 @@ import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/route/fade_in_route.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
-  const MainNavigatorWidget({Key key}) : super(key: key);
+  const MainNavigatorWidget({
+    Key key,
+  }) : super(key: key);
 
   @override
   MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
@@ -38,7 +42,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
       onWillPop: _willPop,
       child: Navigator(
         key: navigationKey,
-        initialRoute: SplashScreen.routeName,
+        initialRoute: FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName,
         onGenerateRoute: _onGenerateRoute,
         observers: [
           HeroController(createRectTween: _createRectTween),
@@ -47,9 +51,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
     );
   }
 
-  RectTween _createRectTween(Rect begin, Rect end) {
-    return MaterialRectArcTween(begin: begin, end: end);
-  }
+  RectTween _createRectTween(Rect begin, Rect end) => MaterialRectArcTween(begin: begin, end: end);
 
   Route _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -58,13 +60,16 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
       case LoginScreen.routeName:
         return FadeInRoute(child: const FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
-        return FadeInRoute(child: FlavorBanner(child: HomeScreen()));
+        return FadeInRoute(child: FlavorBanner(child: HomeScreen()), settings: settings);
       case TodoAddScreen.routeName:
         return MaterialPageRoute(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
         return MaterialPageRoute(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       case LicenseScreen.routeName:
         return MaterialPageRoute(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
+      case 'test_route':
+        if (!FlavorConfig.isInTest()) return null;
+        return MaterialPageRoute(builder: (context) => FlavorBanner(child: Container(color: ThemeColors.grey)), settings: settings);
       default:
         return null;
     }
@@ -82,10 +87,10 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
 
   @override
-  Future<void> goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
 
   @override
-  Future<void> goToDebugPlatformSelector() async => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
+  void goToDebugPlatformSelector() => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
 
   @override
   void goToLicense() => navigationKey.currentState.pushNamed(LicenseScreen.routeName);

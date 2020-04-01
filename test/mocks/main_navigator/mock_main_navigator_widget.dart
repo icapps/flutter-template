@@ -26,7 +26,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void goBack<T>({T result}) => widget.mock.goBack(result: result);
 
   @override
-  Future<void> goToAddTodo() async => widget.mock.goToAddTodo();
+  void goToAddTodo() => widget.mock.goToAddTodo();
 
   @override
   Future<void> goToDebugPlatformSelector() async => widget.mock.goToDebugPlatformSelector();

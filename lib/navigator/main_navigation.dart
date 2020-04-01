@@ -7,9 +7,9 @@ abstract class MainNavigation {
 
   void goToHome();
 
-  Future<void> goToAddTodo();
+  void goToAddTodo();
 
-  Future<void> goToDebugPlatformSelector();
+  void goToDebugPlatformSelector();
 
   void goToLicense();
 

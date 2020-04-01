@@ -99,9 +99,10 @@ const excludedFiles = [
   'niddler.dart',
   'di/injector.dart',
   //Util
+  'util/app_constants.dart',
   'util/keys.dart',
   'util/license.dart',
-  'util/app_constants.dart',
+  'util/route/fade_in_route.dart',
   //Styles
   'styles/theme_colors.dart',
   'styles/theme_data.dart',
