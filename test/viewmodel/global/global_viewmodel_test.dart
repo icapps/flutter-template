@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
@@ -29,6 +30,7 @@ void main() {
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNull);
     expect(sut.localeDelegate.newLocale, isNull);
+    expect(sut.locale, isNull);
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
@@ -42,10 +44,16 @@ void main() {
     expect(sut.localeDelegate.activeLocale, isNotNull);
     expect(sut.localeDelegate.newLocale, isNotNull);
     expect(sut.localeDelegate.newLocale.languageCode, 'nl');
+    expect(sut.locale, isNotNull);
+    expect(sut.locale.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
     verifyNoMoreInteractions(debugRepo);
+  });
+
+  test('GlobalViewModel check thememode', () async {
+    expect(sut.themeMode, ThemeMode.system);
   });
 
   group('After init', () {
