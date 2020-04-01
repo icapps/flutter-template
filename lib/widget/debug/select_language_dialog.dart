@@ -5,6 +5,10 @@ import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:provider/provider.dart';
 
 class SelectLanguageDialog extends StatelessWidget {
+  final VoidCallback goBack;
+
+  const SelectLanguageDialog({@required this.goBack});
+
   @override
   Widget build(BuildContext context) {
     final globalViewModel = Provider.of<GlobalViewModel>(context);
@@ -12,20 +16,25 @@ class SelectLanguageDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(localization.debugLocaleSelector),
       content: Container(
-        height: 100,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width / 1.2,
+        height: 150,
+        width: MediaQuery.of(context).size.width / 1.2,
         child: ListView(
           shrinkWrap: true,
           children: [
+            SelectorItem(
+              title: localization.generalLabelSystemDefault,
+              selected: globalViewModel.isLanguageSelected(null),
+              onClick: () {
+                globalViewModel.onSwitchToSystemLanguage();
+                goBack();
+              },
+            ),
             SelectorItem(
               title: 'English',
               selected: globalViewModel.isLanguageSelected('en'),
               onClick: () {
                 globalViewModel.onSwitchToEnglish();
-                Navigator.of(context).pop();
+                goBack();
               },
             ),
             SelectorItem(
@@ -33,7 +42,7 @@ class SelectLanguageDialog extends StatelessWidget {
               selected: globalViewModel.isLanguageSelected('nl'),
               onClick: () {
                 globalViewModel.onSwitchToDutch();
-                Navigator.of(context).pop();
+                goBack();
               },
             ),
           ],

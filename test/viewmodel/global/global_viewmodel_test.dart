@@ -103,6 +103,7 @@ void main() {
           await sut.onSwitchToEnglish();
           reset(localeRepo);
           reset(debugRepo);
+          expect(sut.isLanguageSelected(null), false);
           expect(sut.isLanguageSelected('en'), true);
           expect(sut.isLanguageSelected('nl'), false);
           expect(sut.getCurrentLanguage(), 'English');
@@ -114,6 +115,7 @@ void main() {
           await sut.onSwitchToDutch();
           reset(localeRepo);
           reset(debugRepo);
+          expect(sut.isLanguageSelected(null), false);
           expect(sut.isLanguageSelected('en'), false);
           expect(sut.isLanguageSelected('nl'), true);
           expect(sut.getCurrentLanguage(), 'Nederlands');
@@ -125,7 +127,8 @@ void main() {
           await sut.onSwitchToSystemLanguage();
           reset(localeRepo);
           reset(debugRepo);
-          expect(sut.isLanguageSelected('en'), true);
+          expect(sut.isLanguageSelected(null), true);
+          expect(sut.isLanguageSelected('en'), false);
           expect(sut.isLanguageSelected('nl'), false);
           expect(sut.getCurrentLanguage(), 'English');
           verifyZeroInteractions(localeRepo);
