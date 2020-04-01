@@ -7,29 +7,69 @@ part of 'test_injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
-  void registerWebservices() {
+  void registerMocks() {
     final Container container = Container();
-    container.registerSingleton<UserService, TestUserService>(
-        (c) => TestUserService());
+    container.registerSingleton((c) => MockFlutterSecureStorage());
+    container.registerSingleton((c) => MockSharedPreferences());
+    container.registerSingleton<Dio, MockDio>((c) => MockDio());
+  }
+
+  void registerDatabase() {
+    final Container container = Container();
+    container
+        .registerSingleton((c) => FlutterTemplateDatabase(c<QueryExecutor>()));
+    container.registerSingleton<TodoDaoStoring, MockTodoDaoStorage>(
+        (c) => MockTodoDaoStorage());
+  }
+
+  void registerRepositories() {
+    final Container container = Container();
+    container.registerSingleton<LoginRepo, MockLoginRepository>(
+        (c) => MockLoginRepository());
+    container.registerSingleton<TodoRepo, MockTodoRepository>(
+        (c) => MockTodoRepository());
+    container.registerSingleton<DebugRepo, MockDebugRepository>(
+        (c) => MockDebugRepository());
+    container.registerSingleton<LocaleRepo, MockLocaleRepoitory>(
+        (c) => MockLocaleRepoitory());
+    container.registerSingleton<RefreshRepo, MockRefreshRepository>(
+        (c) => MockRefreshRepository());
   }
 
   void registerCommonDependencies() {
     final Container container = Container();
-    container.registerSingleton((c) => UserRepository(c<UserService>()));
-    container.registerSingleton(
-        (c) => DebugRepository(c<PlatformUtil>(), c<SharedPrefs>()));
-    container.registerSingleton((c) => LocaleRepository(c<SharedPrefs>()));
-    container.registerSingleton<SharedPrefs, TestSharedPrefs>(
-        (c) => TestSharedPrefs());
+    container.registerSingleton<SharedPrefsStoring, MockSharedPrefsStorage>(
+        (c) => MockSharedPrefsStorage());
+    container.registerSingleton<SecureStoring, MockSecureStorage>(
+        (c) => MockSecureStorage());
+    container.registerSingleton<AuthStoring, MockAuthStorage>(
+        (c) => MockAuthStorage());
+  }
+
+  void registerMockServices() {
+    final Container container = Container();
+    container.registerSingleton<TodoService, MockTodoService>(
+        (c) => MockTodoService());
   }
 
   void registerViewModelFactories() {
     final Container container = Container();
-    container.registerFactory((c) => HomeViewModel(c<UserRepository>()));
-    container.registerFactory((c) => SplashViewModel());
-    container.registerFactory(
-        (c) => GlobalViewModel(c<LocaleRepository>(), c<DebugRepository>()));
-    container.registerFactory((c) => DebugViewModel(c<DebugRepository>()));
-    container.registerFactory((c) => DebugPlatformSelectorViewModel());
+    container.registerSingleton<GlobalViewModel, MockGlobalViewModel>(
+        (c) => MockGlobalViewModel());
+    container.registerSingleton<SplashViewModel, MockSplashViewModel>(
+        (c) => MockSplashViewModel());
+    container.registerSingleton<DebugViewModel, MockDebugViewModel>(
+        (c) => MockDebugViewModel());
+    container.registerSingleton<DebugPlatformSelectorViewModel,
+            MockDebugPlatformSelectorViewModel>(
+        (c) => MockDebugPlatformSelectorViewModel());
+    container.registerSingleton<LicenseViewModel, MockLicenseViewModel>(
+        (c) => MockLicenseViewModel());
+    container.registerSingleton<TodoListViewModel, MockTodoListViewModel>(
+        (c) => MockTodoListViewModel());
+    container.registerSingleton<TodoAddViewModel, MockTodoAddViewModel>(
+        (c) => MockTodoAddViewModel());
+    container.registerSingleton<LoginViewModel, MockLoginViewModel>(
+        (c) => MockLoginViewModel());
   }
 }

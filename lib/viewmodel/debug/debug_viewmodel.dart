@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/debug_repository.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
 
 class DebugViewModel with ChangeNotifier {
-  final DebugRepository _debugRepo;
+  final DebugRepo _debugRepo;
 
   DebugNavigator _navigator;
 
@@ -26,13 +26,17 @@ class DebugViewModel with ChangeNotifier {
     _initValues();
   }
 
-  Future<void> onTargetPlatformClicked() async {
-    await _navigator.goToTargetPlatformSelector();
-    notifyListeners();
-  }
+  void onTargetPlatformClicked() => _navigator.goToTargetPlatformSelector();
+
+  void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
+
+  void onLicensesClicked() => _navigator.goToLicenses();
 }
 
-// ignore: one_member_abstracts
 abstract class DebugNavigator {
-  Future<void> goToTargetPlatformSelector();
+  void goToTargetPlatformSelector();
+
+  void goToSelectLanguage();
+
+  void goToLicenses();
 }

@@ -72,3 +72,14 @@
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Test Coverage
+/coverage/lcov.info
+/coverage/coverage.xml
+/coverage/html/**
+
+# Test Golden files
+**/failures/i_isolatedDiff.png
+**/failures/i_maskedDiff.png
+**/failures/i_masterImage.png
+**/failures/i_testImage.png

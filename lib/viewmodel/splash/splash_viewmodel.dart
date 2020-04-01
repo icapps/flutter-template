@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_durations.dart';
+import 'package:flutter_template/repository/login/login_repo.dart';
 
 class SplashViewModel with ChangeNotifier {
+  final LoginRepo _loginRepo;
+
+  SplashViewModel(this._loginRepo);
+
   Future<void> init(SplashNavigator navigator) async {
-    await Future.delayed(ThemeDurations.longAnimationDuration());
-    navigator.goToHome();
+    final result = await _loginRepo.isLoggedIn();
+    if (result) {
+      navigator.goToHome();
+    } else {
+      navigator.goToLogin();
+    }
   }
 }
 
-// ignore: one_member_abstracts
 abstract class SplashNavigator {
   void goToHome();
+
+  void goToLogin();
 }

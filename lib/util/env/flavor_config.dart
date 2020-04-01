@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 
 enum Flavor {
   TEST,
+  DUMMY,
   DEV,
   ALPHA,
   BETA,
@@ -31,7 +32,7 @@ class FlavorConfig {
     @required Color color,
     @required FlavorValues values,
   }) =>
-      _instance ??= FlavorConfig._internal(flavor, name, color, values);
+      _instance = FlavorConfig._internal(flavor, name, color, values);
 
   FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
 
@@ -46,4 +47,6 @@ class FlavorConfig {
   static bool isBeta() => _instance.flavor == Flavor.BETA;
 
   static bool isInTest() => _instance.flavor == Flavor.TEST;
+
+  static bool isDummy() => _instance.flavor == Flavor.DUMMY;
 }

@@ -1,32 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/debug_repository.dart';
-import 'package:flutter_template/repository/locale_repository.dart';
-import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
+import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 
 class GlobalViewModel with ChangeNotifier {
-  final LocaleRepository _localeRepo;
-  final DebugRepository _debugRepo;
-  var localeDelegate = LocalizationDelegate();
+  final LocaleRepo _localeRepo;
+  final DebugRepo _debugRepo;
+  var _localeDelegate = LocalizationDelegate();
+  var _showsTranslationKeys = false;
 
-  TargetPlatform targetPlatform;
+  final _themeMode = ThemeMode.system;
+
+  TargetPlatform _targetPlatform;
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
-  void init() {
+  get themeMode => _themeMode;
+
+  get locale => _localeDelegate.newLocale;
+
+  get targetPlatform => _targetPlatform;
+
+  get localeDelegate => _localeDelegate;
+
+  get showsTranslationKeys => _showsTranslationKeys;
+
+  Future<void> init() async {
     _initLocale();
     _initTargetPlatform();
   }
 
   void _initTargetPlatform() {
-    targetPlatform = _debugRepo.getTargetPlatform();
+    _targetPlatform = _debugRepo.getTargetPlatform();
     notifyListeners();
   }
 
-  Future<void> _initLocale() async {
-    final locale = await _localeRepo.getCustomLocale();
+  void _initLocale() {
+    final locale = _localeRepo.getCustomLocale();
     if (locale != null) {
-      localeDelegate = LocalizationDelegate(newLocale: locale);
+      _localeDelegate = LocalizationDelegate(newLocale: locale);
       notifyListeners();
     }
   }
@@ -45,31 +58,52 @@ class GlobalViewModel with ChangeNotifier {
 
   Future<void> _onUpdateLocaleClicked(Locale locale) async {
     await _localeRepo.setCustomLocale(locale);
-    localeDelegate = LocalizationDelegate(newLocale: locale);
+    _localeDelegate = LocalizationDelegate(newLocale: locale);
     notifyListeners();
   }
 
-  void setSelectedPlatformToAndroid() {
-    _debugRepo.saveSelectedPlatform('android');
+  Future<void> setSelectedPlatformToAndroid() async {
+    await _debugRepo.saveSelectedPlatform('android');
     _initTargetPlatform();
   }
 
-  void setSelectedPlatformToIOS() {
-    _debugRepo.saveSelectedPlatform('ios');
+  Future<void> setSelectedPlatformToIOS() async {
+    await _debugRepo.saveSelectedPlatform('ios');
     _initTargetPlatform();
   }
 
-  void setSelectedPlatformToDefault() {
-    _debugRepo.saveSelectedPlatform(null);
+  Future<void> setSelectedPlatformToDefault() async {
+    await _debugRepo.saveSelectedPlatform(null);
     _initTargetPlatform();
   }
 
-  String getCurrentPlatform(Localization localization) {
+  String getCurrentPlatform() {
     if (targetPlatform == TargetPlatform.android) {
-      return 'Android';
+      return LocalizationKeys.generalLabelAndroid;
     } else if (targetPlatform == TargetPlatform.iOS) {
-      return 'iOS';
+      return LocalizationKeys.generalLabelIos;
     }
-    return 'System default';
+    return LocalizationKeys.generalLabelSystemDefault;
+  }
+
+  String getCurrentLanguage() {
+    switch (localeDelegate.activeLocale?.languageCode) {
+      case 'nl':
+        return 'Nederlands';
+      case 'en':
+        return 'English';
+    }
+    return 'English';
+  }
+
+  bool isLanguageSelected(String languageCode) {
+    if (localeDelegate.activeLocale == null && languageCode == null) return true;
+    return localeDelegate.activeLocale?.languageCode == languageCode;
+  }
+
+  void toggleTranslationKeys() {
+    _showsTranslationKeys = !showsTranslationKeys;
+    _localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, isInTest: showsTranslationKeys);
+    notifyListeners();
   }
 }

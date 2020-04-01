@@ -3,31 +3,36 @@ import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
-import 'package:flutter_template/widget/provider/provider_widet.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = 'splash';
 
+  const SplashScreen({
+    Key key,
+  }) : super(key: key);
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> implements SplashNavigator {
+@visibleForTesting
+class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
       create: () => KiwiContainer.resolve()..init(this),
       childBuilderWithViewModel: (context, viewModel) => Scaffold(
-        backgroundColor: ThemeColors.primaryColor,
-        body: const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation(ThemeColors.white),
-          ),
-        ),
+        backgroundColor: ThemeColors.primary,
+        body: Center(child: FlutterTemplateProgressIndicator()),
       ),
     );
   }
 
   @override
   void goToHome() => MainNavigatorWidget.of(context).goToHome();
+
+  @override
+  void goToLogin() => MainNavigatorWidget.of(context).goToLogin();
 }
