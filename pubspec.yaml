@@ -14,7 +14,7 @@ dependencies:
   dio: ^3.0.9
   retrofit: ^1.3.1+1
   provider: ^4.0.4
-  json_serializable: ^3.2.5
+  json_serializable: ^3.3.0
   niddler_dart: ^0.7.4
   shared_preferences: ^0.5.6+3
   flutter_secure_storage: 3.3.1+1
@@ -30,10 +30,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   moor_generator: ^2.4.0
-  build_runner: ^1.8.0
+  build_runner: ^1.8.1
   retrofit_generator: ^1.3.1+9
   kiwi_generator: ^0.4.0
-  icapps_translations: ^1.0.1
+  icapps_translations: ^2.0.0
   icapps_generator: ^0.3.0
   model_generator: ^1.1.0
   icapps_license: ^0.0.6
@@ -63,5 +63,4 @@ icapps_translations:
 
 icapps_license:
   licenses:
-    provider: https://raw.githubusercontent.com/rrousselGit/provider/master/packages/provider/LICENSE
     moor_ffi: https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE
