@@ -19,19 +19,3 @@ Future<Tuple4<A, B, C, D>> await4<A, B, C, D>(Future<A> a, Future<B> b, Future<C
     return Tuple4.fromList(values);
   });
 }
-
-extension EnsureTime<T> on Future<T> {
-  Future<T> ensureDuration(Duration duration) {
-    final start = DateTime.now();
-    final otherFuture = Completer<T>();
-    then((value) async {
-      final difference = DateTime.now().difference(start);
-      final timeToSleep = duration.inMicroseconds - difference.inMicroseconds;
-      if (timeToSleep > 0) {
-        await Future.delayed(Duration(microseconds: timeToSleep));
-      }
-      otherFuture.complete(value);
-    }, onError: otherFuture.completeError);
-    return otherFuture.future;
-  }
-}
