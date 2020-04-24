@@ -14,7 +14,7 @@ Future<void> main() async {
     logNetworkInfo: true,
   );
   FlavorConfig(
-    flavor: Flavor.DUMMY,
+    flavor: Flavor.DEV,
     name: 'DEV',
     color: Colors.red,
     values: values,
