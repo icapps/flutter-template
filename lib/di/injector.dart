@@ -9,6 +9,8 @@ import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/refresh/refresh_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controller.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
@@ -74,9 +76,10 @@ abstract class Injector {
   void registerRepositories();
 
   @Register.singleton(SharedPrefsStoring, from: SharedPrefsStorage)
-  @Register.singleton(ConnectivityControlling, from: ConnectivityController)
+  @Register.singleton(LocalStoring, from: LocalStorage)
   @Register.singleton(SecureStoring, from: SecureStorage)
   @Register.singleton(AuthStoring, from: AuthStorage)
+  @Register.singleton(ConnectivityControlling, from: ConnectivityController)
   void registerCommonDependencies();
 
   @Register.factory(GlobalViewModel)

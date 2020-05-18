@@ -69,7 +69,7 @@ void main() {
       expect(logoutCallbackCalled, true);
       verify(authStorage.getAccessToken()).calledTwice();
       verify(authStorage.getRefreshToken()).calledOnce();
-      verify(authStorage.logoutUser()).calledOnce();
+      verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
       when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
@@ -112,7 +112,7 @@ void main() {
       expect(logoutCallbackCalled, true);
       verify(authStorage.getAccessToken()).calledTwice();
       verify(authStorage.getRefreshToken()).calledOnce();
-      verify(authStorage.logoutUser()).calledOnce();
+      verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
       when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
@@ -157,7 +157,7 @@ void main() {
       expect(logoutCallbackCalled, true);
       verify(authStorage.getAccessToken()).calledTwice();
       verify(authStorage.getRefreshToken()).calledOnce();
-      verify(authStorage.logoutUser()).calledOnce();
+      verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
       when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');

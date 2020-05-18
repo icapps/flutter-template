@@ -37,7 +37,7 @@ class RefreshRepository extends RefreshRepo {
       } catch (e) {
         _failure = true;
         if (logoutCallback != null) {
-          await _authStoring.logoutUser();
+          await _authStoring.clear();
           logoutCallback();
         }
         rethrow;

@@ -61,9 +61,8 @@ void main() {
       when(secureStorage.delete(key: 'ACCESS_REFRESH_TOKEN')).thenAnswer((_) => Future.value());
       when(secureStorage.delete(key: 'ACCESS_TOKEN')).thenAnswer((_) => Future.value());
 
-      await sut.logoutUser();
-      verify(secureStorage.delete(key: 'ACCESS_REFRESH_TOKEN')).calledOnce();
-      verify(secureStorage.delete(key: 'ACCESS_TOKEN')).calledOnce();
+      await sut.clear();
+      verify(secureStorage.deleteAll()).calledOnce();
       verifyNoMoreInteractions(secureStorage);
     });
   });

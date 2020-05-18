@@ -48,20 +48,23 @@ class _$Injector extends Injector {
     final Container container = Container();
     container.registerSingleton<SharedPrefsStoring, SharedPrefsStorage>(
         (c) => SharedPrefsStorage(c<SharedPreferences>()));
-    container
-        .registerSingleton<ConnectivityControlling, ConnectivityController>(
-            (c) => ConnectivityController(c<Connectivity>()));
+    container.registerSingleton<LocalStoring, LocalStorage>(
+        (c) => LocalStorage(c<AuthStoring>(), c<SharedPrefsStoring>()));
     container.registerSingleton<SecureStoring, SecureStorage>(
         (c) => SecureStorage(c<FlutterSecureStorage>()));
     container.registerSingleton<AuthStoring, AuthStorage>(
         (c) => AuthStorage(c<SecureStoring>()));
+    container
+        .registerSingleton<ConnectivityControlling, ConnectivityController>(
+            (c) => ConnectivityController(c<Connectivity>()));
   }
 
   void registerViewModelFactories() {
     final Container container = Container();
     container.registerFactory(
         (c) => GlobalViewModel(c<LocaleRepo>(), c<DebugRepo>()));
-    container.registerFactory((c) => SplashViewModel(c<LoginRepo>()));
+    container.registerFactory(
+        (c) => SplashViewModel(c<LoginRepo>(), c<LocalStoring>()));
     container.registerFactory((c) => DebugViewModel(c<DebugRepo>()));
     container.registerFactory((c) => DebugPlatformSelectorViewModel());
     container.registerFactory((c) => LicenseViewModel());

@@ -5,18 +5,21 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/test_kiwi_util.dart';
 import '../../mocks/repository/login/mock_login_repository.dart';
+import '../../mocks/repository/shared_prefs/local/mock_local_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   SplashViewModel sut;
   MockLoginRepository loginRepo;
+  MockLocalStorage localStorage;
   SplashNavigator navigator;
 
   setUp(() async {
     await TestKiwiUtil.init();
     loginRepo = TestKiwiUtil.resolveAs<LoginRepo, MockLoginRepository>();
     navigator = MockSplashNavigator();
-    sut = SplashViewModel(loginRepo);
+    localStorage = MockLocalStorage();
+    sut = SplashViewModel(loginRepo, localStorage);
   });
 
   test('SplashViewModel init with loggedin user', () async {

@@ -37,12 +37,7 @@ class AuthStorage extends AuthStoring {
   }
 
   @override
-  Future<void> logoutUser() {
-    return Future.wait(
-      [
-        _storage.delete(key: _ACCESS_TOKEN),
-        _storage.delete(key: _REFRESH_TOKEN),
-      ],
-    );
+  Future<void> clear() async {
+    await _storage.deleteAll();
   }
 }
