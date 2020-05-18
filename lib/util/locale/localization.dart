@@ -57,6 +57,10 @@ class Localization {
 
   String get debugLocaleTitle => _t(LocalizationKeys.debugLocaleTitle);
 
+  String get debugNativeBridge => _t(LocalizationKeys.debugNativeBridge);
+
+  String get debugNativeBridgeLog => _t(LocalizationKeys.debugNativeBridgeLog);
+
   String get debugShowTranslations => _t(LocalizationKeys.debugShowTranslations);
 
   String get debugSlowAnimations => _t(LocalizationKeys.debugSlowAnimations);

@@ -15,6 +15,10 @@ class LocalizationKeys {
 
   static const debugLocaleTitle = 'debug_locale_title';
 
+  static const debugNativeBridge = 'debug_native_bridge';
+
+  static const debugNativeBridgeLog = 'debug_native_bridge_log';
+
   static const debugShowTranslations = 'debug_show_translations';
 
   static const debugSlowAnimations = 'debug_slow_animations';

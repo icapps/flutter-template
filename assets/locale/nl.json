@@ -5,6 +5,8 @@
   "debug_locale_current_language": "Huidige taal: %1$s",
   "debug_locale_selector": "Selecteer uw taal",
   "debug_locale_title": "Taal",
+  "debug_native_bridge": "Native brug",
+  "debug_native_bridge_log": "Stuur native log",
   "debug_show_translations": "Toon vertalingen",
   "debug_slow_animations": "Trage animaties",
   "debug_target_platform_subtitle": "Huidig platfrom: %1$s",
