@@ -31,7 +31,7 @@ void main() {
     });
 
     test('FlavorConfig is not in production', () {
-      expect(FlavorConfig.isProduction(), false);
+      expect(FlavorConfig.isProd(), false);
     });
 
     test('FlavorConfig is not in alpha', () {

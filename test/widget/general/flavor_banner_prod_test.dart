@@ -17,7 +17,7 @@ void main() {
       logNetworkInfo: false,
     );
     FlavorConfig(
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       color: Colors.purple,
       name: 'Test',
       values: values,

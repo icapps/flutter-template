@@ -57,11 +57,11 @@ void main() {
     FlavorConfig(
       color: Colors.amber,
       name: 'PRODUCTION',
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       values: null,
     );
     output = null;
-    expect(FlavorConfig.isProduction(), true);
+    expect(FlavorConfig.isProd(), true);
     FlutterTemplateLogger.logDebug('isProduction');
     expect(output, null);
   });
@@ -116,11 +116,11 @@ void main() {
     FlavorConfig(
       color: Colors.amber,
       name: 'PRODUCTION',
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       values: null,
     );
     output = null;
-    expect(FlavorConfig.isProduction(), true);
+    expect(FlavorConfig.isProd(), true);
     FlutterTemplateLogger.logVerbose('isProduction');
     expect(output, null);
   });
@@ -176,11 +176,11 @@ void main() {
     FlavorConfig(
       color: Colors.amber,
       name: 'PRODUCTION',
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       values: null,
     );
     output = null;
-    expect(FlavorConfig.isProduction(), true);
+    expect(FlavorConfig.isProd(), true);
     FlutterTemplateLogger.logInfo('isProduction');
     expect(output, null);
   });
@@ -236,11 +236,11 @@ void main() {
     FlavorConfig(
       color: Colors.amber,
       name: 'PRODUCTION',
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       values: null,
     );
     output = null;
-    expect(FlavorConfig.isProduction(), true);
+    expect(FlavorConfig.isProd(), true);
     FlutterTemplateLogger.logWarning('isProduction');
     expect(output, null);
   });
@@ -322,11 +322,11 @@ void main() {
     FlavorConfig(
       color: Colors.amber,
       name: 'PRODUCTION',
-      flavor: Flavor.PRODUCTION,
+      flavor: Flavor.PROD,
       values: null,
     );
     output = null;
-    expect(FlavorConfig.isProduction(), true);
+    expect(FlavorConfig.isProd(), true);
     FlutterTemplateLogger.logError(message: 'isProduction', error: null);
     expect(output, null);
     FlutterTemplateLogger.logError(message: 'isProduction', error: Error());

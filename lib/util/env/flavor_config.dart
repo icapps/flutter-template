@@ -6,10 +6,10 @@ import 'package:meta/meta.dart';
 enum Flavor {
   TEST,
   DUMMY,
-  DEV,
+  DEV, //We use DEV instead of DEBUG because android already has a release type Debug.
   ALPHA,
   BETA,
-  PRODUCTION,
+  PROD,
 }
 
 class FlavorValues {
@@ -38,7 +38,7 @@ class FlavorConfig {
 
   static FlavorConfig get instance => _instance;
 
-  static bool isProduction() => _instance.flavor == Flavor.PRODUCTION;
+  static bool isProd() => _instance.flavor == Flavor.PROD;
 
   static bool isDev() => _instance.flavor == Flavor.DEV;
 

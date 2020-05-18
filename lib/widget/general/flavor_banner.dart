@@ -8,7 +8,7 @@ class FlavorBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (FlavorConfig.isProduction()) return child;
+    if (FlavorConfig.isProd()) return child;
     return Stack(
       children: [
         child,
