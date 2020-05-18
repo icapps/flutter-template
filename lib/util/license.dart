@@ -79,7 +79,7 @@ SOFTWARE.''',
       ))
       ..add(License(
         name: 'retrofit',
-        version: '^1.3.1+1',
+        version: '^1.3.4',
         url: 'https://mings.in/retrofit.dart/',
         licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
         license: '''MIT License
@@ -107,7 +107,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'provider',
-        version: '^4.0.4',
+        version: '^4.1.2',
         url: 'https://github.com/rrousselGit/provider',
         licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
         license: '''MIT License
@@ -167,7 +167,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ))
       ..add(License(
         name: 'niddler_dart',
-        version: '^0.7.4',
+        version: '^0.8.0',
         url: 'https://github.com/Chimerapps/niddler_dart',
         licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/niddler_dart/master/LICENSE',
         license: '''MIT License
@@ -195,7 +195,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'shared_preferences',
-        version: '^0.5.6+3',
+        version: '^0.5.7+2',
         url: 'https://github.com/flutter/plugins/tree/master/packages/shared_preferences/shared_preferences',
         licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/shared_preferences/shared_preferences/LICENSE',
         license: '''// Copyright 2017 The Chromium Authors. All rights reserved.
@@ -471,7 +471,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'moor',
-        version: '^2.4.2',
+        version: '^3.0.2',
         url: 'https://moor.simonbinder.eu/',
         licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
@@ -499,7 +499,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'moor_ffi',
-        version: '^0.4.0',
+        version: '^0.5.0',
         url: 'https://github.com/simolus3/moor/tree/develop/moor_ffi',
         licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE',
         license: '''MIT License
@@ -529,7 +529,7 @@ See https://www.sqlite.org/copyright.html''',
       ))
       ..add(License(
         name: 'path_provider',
-        version: '^1.6.5',
+        version: '^1.6.8',
         url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
         licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
         license: '''Copyright 2017, the Flutter project authors. All rights reserved.
@@ -586,7 +586,7 @@ SOFTWARE.''',
       ))
       ..add(License(
         name: 'path',
-        version: '^1.6.4',
+        version: '^1.7.0',
         url: 'https://github.com/dart-lang/path',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
         license: '''Copyright 2014, the Dart project authors. All rights reserved.
@@ -627,7 +627,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ))
       ..add(License(
         name: 'moor_generator',
-        version: '^2.4.0',
+        version: '^3.0.0',
         url: 'https://moor.simonbinder.eu/',
         licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
@@ -655,7 +655,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'build_runner',
-        version: '^1.8.1',
+        version: '^1.10.0',
         url: 'https://github.com/dart-lang/build/tree/master/build_runner',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/build/master/build_runner/LICENSE',
         license: '''Copyright 2016, the Dart project authors. All rights reserved.
@@ -688,7 +688,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ))
       ..add(License(
         name: 'retrofit_generator',
-        version: '^1.3.1+9',
+        version: '^1.3.4+2',
         url: 'https://mings.in/retrofit.dart/',
         licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
         license: '''MIT License
@@ -800,7 +800,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'model_generator',
-        version: '^1.1.0',
+        version: '^1.3.0',
         url: 'https://github.com/icapps/flutter-model-generator',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-model-generator/master/LICENSE',
         license: '''MIT License

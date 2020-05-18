@@ -122,10 +122,10 @@ private_lane :convertAppToIpa do |options|
             export_options: {
                 method: "enterprise",
                 provisioningProfiles: {
-                    "com.icapps.flutterpoc.dev" => "Flutter POC Debug",
-                    "com.icapps.flutterpoc.alpha" => "Flutter POC Alpha",
-                    "com.icapps.flutterpoc.beta" => "Flutter POC Beta",
-                    "com.icapps.flutterpoc" => "Flutter POC Production"
+                    "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
+                    "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
+                    "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
+                    "com.icapps.fluttertemplate" => "Flutter Template Production"
                 }
             }
         )

@@ -26,6 +26,21 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
           boolType.mapFromDatabaseResponse(data['${effectivePrefix}completed']),
     );
   }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || id != null) {
+      map['id'] = Variable<int>(id);
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String>(title);
+    }
+    if (!nullToAbsent || completed != null) {
+      map['completed'] = Variable<bool>(completed);
+    }
+    return map;
+  }
+
   factory DbTodo.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
@@ -43,18 +58,6 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
       'title': serializer.toJson<String>(title),
       'completed': serializer.toJson<bool>(completed),
     };
-  }
-
-  @override
-  DbTodoTableCompanion createCompanion(bool nullToAbsent) {
-    return DbTodoTableCompanion(
-      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
-      title:
-          title == null && nullToAbsent ? const Value.absent() : Value(title),
-      completed: completed == null && nullToAbsent
-          ? const Value.absent()
-          : Value(completed),
-    );
   }
 
   DbTodo copyWith({int id, String title, bool completed}) => DbTodo(
@@ -99,6 +102,18 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
     @required bool completed,
   })  : title = Value(title),
         completed = Value(completed);
+  static Insertable<DbTodo> custom({
+    Expression<int> id,
+    Expression<String> title,
+    Expression<bool> completed,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (title != null) 'title': title,
+      if (completed != null) 'completed': completed,
+    });
+  }
+
   DbTodoTableCompanion copyWith(
       {Value<int> id, Value<String> title, Value<bool> completed}) {
     return DbTodoTableCompanion(
@@ -106,6 +121,21 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
       title: title ?? this.title,
       completed: completed ?? this.completed,
     );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (completed.present) {
+      map['completed'] = Variable<bool>(completed.value);
+    }
+    return map;
   }
 }
 
@@ -156,21 +186,22 @@ class $DbTodoTableTable extends DbTodoTable
   @override
   final String actualTableName = 'db_todo_table';
   @override
-  VerificationContext validateIntegrity(DbTodoTableCompanion d,
+  VerificationContext validateIntegrity(Insertable<DbTodo> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
-    if (d.id.present) {
-      context.handle(_idMeta, id.isAcceptableValue(d.id.value, _idMeta));
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id'], _idMeta));
     }
-    if (d.title.present) {
+    if (data.containsKey('title')) {
       context.handle(
-          _titleMeta, title.isAcceptableValue(d.title.value, _titleMeta));
+          _titleMeta, title.isAcceptableOrUnknown(data['title'], _titleMeta));
     } else if (isInserting) {
       context.missing(_titleMeta);
     }
-    if (d.completed.present) {
+    if (data.containsKey('completed')) {
       context.handle(_completedMeta,
-          completed.isAcceptableValue(d.completed.value, _completedMeta));
+          completed.isAcceptableOrUnknown(data['completed'], _completedMeta));
     } else if (isInserting) {
       context.missing(_completedMeta);
     }
@@ -183,21 +214,6 @@ class $DbTodoTableTable extends DbTodoTable
   DbTodo map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
     return DbTodo.fromData(data, _db, prefix: effectivePrefix);
-  }
-
-  @override
-  Map<String, Variable> entityToSql(DbTodoTableCompanion d) {
-    final map = <String, Variable>{};
-    if (d.id.present) {
-      map['id'] = Variable<int, IntType>(d.id.value);
-    }
-    if (d.title.present) {
-      map['title'] = Variable<String, StringType>(d.title.value);
-    }
-    if (d.completed.present) {
-      map['completed'] = Variable<bool, BoolType>(d.completed.value);
-    }
-    return map;
   }
 
   @override

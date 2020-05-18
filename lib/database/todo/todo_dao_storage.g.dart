@@ -7,5 +7,5 @@ part of 'todo_dao_storage.dart';
 // **************************************************************************
 
 mixin _$TodoDaoStorageMixin on DatabaseAccessor<FlutterTemplateDatabase> {
-  $DbTodoTableTable get dbTodoTable => db.dbTodoTable;
+  $DbTodoTableTable get dbTodoTable => attachedDatabase.dbTodoTable;
 }
