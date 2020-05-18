@@ -29,12 +29,51 @@ BUILD_NR = ENV["BUILD_NUMBER"]
 ####################
 ### PUBLIC LANES ###
 ####################
+lane :pr do
+  Dir.chdir ".." do
+    sh("flutter", "analyze")
+    sh("flutter", "test")
+    #sh("flutter", "test", "--coverage")
+    #sh("dart", "--version")
+    #sh("dart", "coverage/filter_test_coverage.dart")
+    #sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
+  end
+end
+
+lane :ci_alpha do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+
+  prepareBuild()
+
+  buildAppAndroid(flavor: 'alpha')
+  upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to AppCenter.
+
+  buildAppIOS(flavor: 'alpha')
+  upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to AppCenter.
+end
+
+lane :ci_beta do
+  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+
+  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+
+  prepareBuild()
+
+  buildAppAndroid(flavor: 'beta')
+  upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to AppCenter.
+
+  buildAppIOS(flavor: 'beta')
+  upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to AppCenter.
+end
 
 lane :alpha_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppAndroid(flavor: 'alpha')
   upload_to_appcenter_android(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
@@ -44,6 +83,7 @@ lane :beta_android do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppAndroid(flavor: 'beta')
   upload_to_appcenter_android(flavor: 'beta') # Deploy the apk to AppCenter.
 end
@@ -53,6 +93,7 @@ lane :prod_android do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppAndroid(flavor: 'prod')
   add_tag                 # Add tag
 end
@@ -62,6 +103,7 @@ lane :alpha_ios do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppIOS(flavor: 'alpha')
   upload_to_appcenter_ios(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
@@ -71,6 +113,7 @@ lane :beta_ios do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppIOS(flavor: 'beta')
   upload_to_appcenter_ios(flavor: 'beta') # Deploy the apk to AppCenter.
 end
@@ -80,6 +123,7 @@ lane :prod_ios do
 
   ensureFlutterVersion # Make sure Flutter is using the right version to build this project
 
+  prepareBuild()
   buildAppIOS(flavor: 'prod')
   add_tag                 # Add tag
 end
@@ -96,18 +140,21 @@ private_lane :ensureFlutterVersion do
     end
 end
 
-private_lane :buildAppAndroid do |options|
+private_lane :prepareBuild do
     Dir.chdir ".." do
       sh("flutter", "packages", "get")
       sh("flutter", "clean")
+    end
+end
+
+private_lane :buildAppAndroid do |options|
+    Dir.chdir ".." do
       sh("flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
     end
 end
 
 private_lane :buildAppIOS do |options|
     Dir.chdir ".." do
-      sh("flutter", "packages", "get")
-      sh("flutter", "clean")
       sh("flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
       convertAppToIpa(flavor: options[:flavor])
     end
