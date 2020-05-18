@@ -29,13 +29,13 @@ class DebugRowItem extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: textTheme.title,
+                    style: textTheme.headline6,
                   ),
                   if (subTitle != null) ...[
                     Container(height: ThemeDimens.padding4),
                     Text(
                       subTitle,
-                      style: textTheme.subtitle,
+                      style: textTheme.subtitle2,
                     ),
                   ],
                 ],
