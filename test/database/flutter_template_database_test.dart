@@ -11,10 +11,6 @@ void main() {
     sut = TestKiwiUtil.resolve();
   });
 
-  tearDown(() async {
-    await sut.close();
-  });
-
   test('FlutterTemplateDatabase should have the correct version', () {
     expect(sut.schemaVersion, 1);
   });
