@@ -57,7 +57,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
               Center(
                 child: Text(localization.getTranslation(viewModel.errorKey)),
               ),
-            if (viewModel.isLoading) Center(child: FlutterTemplateProgressIndicator()),
+            if (viewModel.isLoading) const Center(child: FlutterTemplateProgressIndicator.dark()),
             if (!viewModel.isLoading && viewModel.errorKey == null)
               Scrollbar(
                 child: StreamBuilder<List<Todo>>(

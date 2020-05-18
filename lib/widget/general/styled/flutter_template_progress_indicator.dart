@@ -3,6 +3,12 @@ import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 
 class FlutterTemplateProgressIndicator extends StatelessWidget {
+  final bool dark;
+
+  const FlutterTemplateProgressIndicator.dark() : dark = true;
+
+  const FlutterTemplateProgressIndicator.light() : dark = false;
+
   @override
   Widget build(BuildContext context) {
     if (FlavorConfig.isInTest()) {
@@ -16,8 +22,8 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
         ),
       );
     }
-    return const CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation(ThemeColors.white),
+    return CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(dark ? ThemeColors.primary : ThemeColors.white),
     );
   }
 }

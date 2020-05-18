@@ -3,6 +3,8 @@ import 'dart:isolate';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_template/bridge/logging/logging_bridge.dart';
+import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
@@ -62,6 +64,9 @@ abstract class Injector {
   @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)
   void registerDatabase();
 
+  @Register.singleton(LoggingBridging, from: LoggingBridge)
+  void registerBridge();
+
   @Register.singleton(TodoService, from: TodoWebService)
   void registerWebservices();
 
@@ -113,6 +118,7 @@ Future<void> setupDependencyTree() async {
     injector.registerWebservices();
   }
   injector
+    ..registerBridge()
     ..registerDatabase()
     ..registerCommonDependencies()
     ..registerRepositories()

@@ -18,6 +18,12 @@ class _$Injector extends Injector {
         (c) => TodoDaoStorage(c<FlutterTemplateDatabase>()));
   }
 
+  void registerBridge() {
+    final Container container = Container();
+    container.registerSingleton<LoggingBridging, LoggingBridge>(
+        (c) => LoggingBridge());
+  }
+
   void registerWebservices() {
     final Container container = Container();
     container.registerSingleton<TodoService, TodoWebService>(

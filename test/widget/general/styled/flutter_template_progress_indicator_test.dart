@@ -10,9 +10,16 @@ void main() {
   });
 
   testWidgets('FlutterTemplateProgressIndicator initial state', (tester) async {
-    final sut = FlutterTemplateProgressIndicator();
+    const sut = FlutterTemplateProgressIndicator.light();
 
     await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(tester, 'flutter_template_progress_indicator');
+    await TestUtil.takeScreenshot(tester, 'flutter_template_progress_indicator_light');
+  });
+
+  testWidgets('FlutterTemplateProgressIndicator initial state dark', (tester) async {
+    const sut = FlutterTemplateProgressIndicator.dark();
+
+    await TestUtil.loadWidgetWithText(tester, sut);
+    await TestUtil.takeScreenshot(tester, 'flutter_template_progress_indicator_dark');
   });
 }

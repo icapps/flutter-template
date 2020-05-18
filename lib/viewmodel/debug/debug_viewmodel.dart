@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/bridge/logging/logging_bridging.dart';
+import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 
 class DebugViewModel with ChangeNotifier {
@@ -31,6 +33,10 @@ class DebugViewModel with ChangeNotifier {
   void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
 
   void onLicensesClicked() => _navigator.goToLicenses();
+
+  void onLogNativeBridge() {
+    KiwiContainer.resolve<LoggingBridging>().log('TEST From the debug screen.');
+  }
 }
 
 abstract class DebugNavigator {

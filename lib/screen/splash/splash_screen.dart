@@ -25,7 +25,7 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
       create: () => KiwiContainer.resolve()..init(this),
       childBuilderWithViewModel: (context, viewModel) => Scaffold(
         backgroundColor: ThemeColors.primary,
-        body: Center(child: FlutterTemplateProgressIndicator()),
+        body: const Center(child: FlutterTemplateProgressIndicator.light()),
       ),
     );
   }
