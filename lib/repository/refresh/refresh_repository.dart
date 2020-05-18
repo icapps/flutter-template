@@ -33,6 +33,7 @@ class RefreshRepository extends RefreshRepo {
          await _authStoring.getRefreshToken();
          // TODO implement refresh call
          // await _authStoring.saveRefreshToken(refreshToken: result.refreshToken, accessToken: result.accessToken);
+        throw UnimplementedError('No implementatino for the refresh in the refresh repository');
       } catch (e) {
         _failure = true;
         if (logoutCallback != null) {
