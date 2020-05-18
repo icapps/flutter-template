@@ -16,7 +16,7 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
         ),
       );
     }
-    return CircularProgressIndicator(
+    return const CircularProgressIndicator(
       valueColor: AlwaysStoppedAnimation(ThemeColors.white),
     );
   }

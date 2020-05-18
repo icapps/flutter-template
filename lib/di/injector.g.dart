@@ -48,6 +48,9 @@ class _$Injector extends Injector {
     final Container container = Container();
     container.registerSingleton<SharedPrefsStoring, SharedPrefsStorage>(
         (c) => SharedPrefsStorage(c<SharedPreferences>()));
+    container
+        .registerSingleton<ConnectivityControlling, ConnectivityController>(
+            (c) => ConnectivityController(c<Connectivity>()));
     container.registerSingleton<SecureStoring, SecureStorage>(
         (c) => SecureStorage(c<FlutterSecureStorage>()));
     container.registerSingleton<AuthStoring, AuthStorage>(
@@ -70,5 +73,6 @@ class _$Injector extends Injector {
   void registerThirdPartyServices() {
     final Container container = Container();
     container.registerSingleton((c) => FlutterSecureStorage());
+    container.registerSingleton((c) => Connectivity());
   }
 }

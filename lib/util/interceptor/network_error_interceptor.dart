@@ -4,12 +4,26 @@ import 'package:flutter_template/model/exceptions/code_error.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
+import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 
 class NetworkErrorInterceptor extends Interceptor {
+  final ConnectivityControlling connectivityControlling;
+
+  NetworkErrorInterceptor(this.connectivityControlling);
+
+  @override
+  Future onRequest(RequestOptions options) async {
+    final hasConnection = await connectivityControlling.hasConnection();
+    if (!hasConnection) throw NoNetworkError();
+    return super.onRequest(options);
+  }
+
   @override
   Future onError(DioError err) async {
     if (err == null) return CodeError();
+    if (err.error is NoNetworkError) return NoInternetError(err);
     if (err.response == null) return CodeError();
     final statusCode = err.response.statusCode;
     switch (statusCode) {

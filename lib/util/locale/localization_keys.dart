@@ -39,6 +39,8 @@ class LocalizationKeys {
 
   static const errorInternalServer = 'error_internal_server';
 
+  static const errorNoNetwork = 'error_no_network';
+
   static const errorUnauthorized = 'error_unauthorized';
 
   static const generalLabelAndroid = 'general_label_android';

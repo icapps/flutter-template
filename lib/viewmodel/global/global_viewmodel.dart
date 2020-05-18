@@ -103,7 +103,7 @@ class GlobalViewModel with ChangeNotifier {
 
   void toggleTranslationKeys() {
     _showsTranslationKeys = !showsTranslationKeys;
-    _localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, isInTest: showsTranslationKeys);
+    _localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, showLocalizationKeys: showsTranslationKeys);
     notifyListeners();
   }
 }

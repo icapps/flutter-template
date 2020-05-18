@@ -7,9 +7,10 @@ Future<void> initNiddler() async {
     ..bundleId = 'com.icapps.flutter_template'
     ..maxCacheSize = 10 * 1024 * 1024;
   final niddler = niddlerBuilder.build();
-
+  // ignore: avoid_print
   print('Starting niddler');
   await niddler.start();
   niddler.install();
+  // ignore: avoid_print
   print('Niddler is running');
 }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 main() {
-  print('Start a check to make sure we have a test file for every sourcecode file');
+  printMessage('Start a check to make sure we have a test file for every sourcecode file');
   final sourceCodeFolder = Directory('lib');
   final testSourceCodeFolder = Directory('test');
 
@@ -13,8 +13,8 @@ main() {
   final sourceCodeTodoFiles = List<File>();
   final sourceFiles = getFiles(sourceCodeFolder);
 
-  print('');
-  print('Detected ${sourceFiles.length} source files (with excluded folders/files: .g.dart, **dummy_service.dart, lib/vendor/**, lib/util/locale**, lib/webservice/)');
+  printMessage('');
+  printMessage('Detected ${sourceFiles.length} source files (with excluded folders/files: .g.dart, **dummy_service.dart, lib/vendor/**, lib/util/locale**, lib/webservice/)');
 
   final sourceCodeFiles = sourceFiles.where((file) {
     final path = file.path;
@@ -36,8 +36,8 @@ main() {
     }
     return true;
   });
-  print('');
-  print('Detected ${sourceCodeFiles.length} source files');
+  printMessage('');
+  printMessage('Detected ${sourceCodeFiles.length} source files');
 
   sourceCodeFiles.forEach((file) {
     final cleanupFile = file.path.replaceFirst('lib/', '').replaceFirst('.dart', '');
@@ -46,25 +46,25 @@ main() {
       sourceCodeTodoFiles.add(testFile);
     }
   });
-  print('');
-  print('Detected ${sourceCodeTodoFiles.length} untested files');
+  printMessage('');
+  printMessage('Detected ${sourceCodeTodoFiles.length} untested files');
 
-  print('');
-  print('Exclude ${excludedFiles.length} files (no tests needed for these)');
+  printMessage('');
+  printMessage('Exclude ${excludedFiles.length} files (no tests needed for these)');
   sourceCodeTodoFiles.removeWhere((file) => excludedFiles.contains(file.path.replaceFirst('test/', '').replaceFirst('_test.dart', '.dart')));
 
-  print('');
-  print('Detected ${sourceCodeTodoFiles.length} untested files after filter');
+  printMessage('');
+  printMessage('Detected ${sourceCodeTodoFiles.length} untested files after filter');
 
-  print('');
-  print('There are no test yet created for:');
-  print('');
+  printMessage('');
+  printMessage('There are no test yet created for:');
+  printMessage('');
   (sourceCodeTodoFiles..sort((file1, file2) => file1.path.compareTo(file2.path))).forEach((file) {
-    print('${file.path}');
+    printMessage('${file.path}');
   });
-  print('');
+  printMessage('');
   if (sourceCodeTodoFiles.isNotEmpty) {
-    print('You need to create ${sourceCodeTodoFiles.length} extra test files');
+    printMessage('You need to create ${sourceCodeTodoFiles.length} extra test files');
     exit(-1);
   }
 }
@@ -115,3 +115,8 @@ const excludedEndsWithFiles = [
   '_repo.dart',
   '_storing.dart',
 ];
+
+void printMessage(String message){
+  // ignore: avoid_print
+  print(message);
+}

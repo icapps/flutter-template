@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
@@ -8,6 +9,8 @@ import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/refresh/refresh_repository.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controller.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:kiwi/kiwi.dart';
@@ -71,6 +74,7 @@ abstract class Injector {
   void registerRepositories();
 
   @Register.singleton(SharedPrefsStoring, from: SharedPrefsStorage)
+  @Register.singleton(ConnectivityControlling, from: ConnectivityController)
   @Register.singleton(SecureStoring, from: SecureStorage)
   @Register.singleton(AuthStoring, from: AuthStorage)
   void registerCommonDependencies();
@@ -86,6 +90,7 @@ abstract class Injector {
   void registerViewModelFactories();
 
   @Register.singleton(FlutterSecureStorage)
+  @Register.singleton(Connectivity)
   void registerThirdPartyServices();
 }
 

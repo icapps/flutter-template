@@ -63,7 +63,7 @@ void seedGlobalViewModel() {
   final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
   when(globalViewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
   when(globalViewModel.showsTranslationKeys).thenAnswer((_) => false);
-  when(globalViewModel.localeDelegate).thenAnswer((_) => LocalizationDelegate(newLocale: const Locale('en'), isInTest: true));
+  when(globalViewModel.localeDelegate).thenAnswer((_) => LocalizationDelegate(newLocale: const Locale('en'), showLocalizationKeys: true));
   when(globalViewModel.locale).thenAnswer((_) => const Locale('en'));
   when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
 }

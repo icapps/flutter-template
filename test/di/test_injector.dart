@@ -9,6 +9,7 @@ import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dar
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -33,6 +34,7 @@ import '../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
 import '../mocks/repository/secure_storage/mock_secure_storage.dart';
 import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
 import '../mocks/repository/todo/mock_todo_repository.dart';
+import '../mocks/util/mock_connectivity_controller.dart';
 import '../mocks/viewmodel/debug/mock_debug_platform_selector_viewmodel.dart';
 import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
@@ -64,6 +66,7 @@ abstract class Injector {
   void registerRepositories();
 
   @Register.singleton(SharedPrefsStoring, from: MockSharedPrefsStorage)
+  @Register.singleton(ConnectivityControlling, from: MockConnectivityController)
   @Register.singleton(SecureStoring, from: MockSecureStorage)
   @Register.singleton(AuthStoring, from: MockAuthStorage)
   void registerCommonDependencies();

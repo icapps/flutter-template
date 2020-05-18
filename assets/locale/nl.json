@@ -17,6 +17,7 @@
   "error_forbidden": "Geen toegang error",
   "error_general": "Er liep iets mis",
   "error_internal_server": "Intern server probleem",
+  "error_no_network": "Geen internet verbinding beschikbaar",
   "error_unauthorized": "Ongeautoriseerde fout",
   "general_label_android": "Android",
   "general_label_cancel": "Annuleer",

@@ -7,18 +7,22 @@ import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../di/test_kiwi_util.dart';
+import '../../mocks/util/mock_connectivity_controller.dart';
 
 void main() {
   NetworkErrorInterceptor sut;
+  MockConnectivityController connectivityController;
   setUp(() async {
     await TestKiwiUtil.init();
-    sut = NetworkErrorInterceptor();
+    connectivityController = TestKiwiUtil.resolveAs<ConnectivityControlling, MockConnectivityController>();
+    sut = NetworkErrorInterceptor(connectivityController);
   });
 
   group('GeneralError', () {

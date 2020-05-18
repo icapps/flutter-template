@@ -1,10 +1,10 @@
 import 'dart:io';
 
 main() {
-  print('Start filtering the lcov.info file');
+  printMessage('Start filtering the lcov.info file');
   final file = File('coverage/lcov.info');
   if (!file.existsSync()) {
-    print('"lcov.info" does not exist');
+    printMessage('"lcov.info" does not exist');
     return;
   }
   const endOfRecord = 'end_of_record';
@@ -30,7 +30,7 @@ main() {
     sb.write(section.toString());
   });
   file.writeAsStringSync(sb.toString());
-  print('Filtered the lcov.info file');
+  printMessage('Filtered the lcov.info file');
 }
 
 class LcovSection {
@@ -111,3 +111,8 @@ const excludedStartsWithLines = [
   'BoolColumn get ',
   'DateTimeColumn get ',
 ];
+
+void printMessage(String message){
+  // ignore: avoid_print
+  print(message);
+}

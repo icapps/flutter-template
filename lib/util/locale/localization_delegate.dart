@@ -20,13 +20,13 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   Locale newLocale;
   Locale activeLocale;
-  bool isInTest;
+  bool showLocalizationKeys;
 
-  LocalizationDelegate({this.newLocale, this.isInTest = false}) {
+  LocalizationDelegate({this.newLocale, this.showLocalizationKeys = false}) {
     if (newLocale != null) {
       activeLocale = newLocale;
     }
-    isInTest ??= false;
+    showLocalizationKeys ??= false;
   }
 
   @override
@@ -35,7 +35,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   @override
   Future<Localization> load(Locale locale) async {
     activeLocale = newLocale ?? locale;
-    return Localization.load(activeLocale, isInTest: isInTest);
+    return Localization.load(activeLocale, showLocalizationKeys: showLocalizationKeys);
   }
 
   @override

@@ -17,6 +17,7 @@
   "error_forbidden": "Forbidden error",
   "error_general": "Something went wrong",
   "error_internal_server": "Internal server error",
+  "error_no_network": "No internet connection available",
   "error_unauthorized": "Unauthorized error",
   "general_label_android": "Android",
   "general_label_cancel": "Cancel",

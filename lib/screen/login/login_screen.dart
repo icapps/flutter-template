@@ -40,13 +40,13 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                 child: Column(
                   children: [
                     Container(height: ThemeDimens.padding16),
-                    Text(
+                    const Text(
                       'Login',
                       style: ThemeTextStyles.title,
                       textAlign: TextAlign.center,
                     ),
                     Container(height: ThemeDimens.padding32),
-                    Text(
+                    const Text(
                       'Just fill in some text. There is no validator for the login',
                       style: ThemeTextStyles.lightButtonTextStyle,
                     ),

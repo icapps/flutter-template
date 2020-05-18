@@ -40,6 +40,8 @@ class _$Injector extends Injector {
     final Container container = Container();
     container.registerSingleton<SharedPrefsStoring, MockSharedPrefsStorage>(
         (c) => MockSharedPrefsStorage());
+    container.registerSingleton<ConnectivityControlling,
+        MockConnectivityController>((c) => MockConnectivityController());
     container.registerSingleton<SecureStoring, MockSecureStorage>(
         (c) => MockSecureStorage());
     container.registerSingleton<AuthStoring, MockAuthStorage>(
