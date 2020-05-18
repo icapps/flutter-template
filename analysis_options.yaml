@@ -10,6 +10,7 @@ analyzer:
 
 linter:
   rules:
+    - avoid_print
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     - annotate_overrides
