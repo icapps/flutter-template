@@ -59,6 +59,9 @@ part 'injector.g.dart';
 
 abstract class Injector {
   @Register.singleton(NetworkLogInterceptor)
+  @Register.singleton(NetworkAuthInterceptor)
+  @Register.singleton(NetworkErrorInterceptor)
+  @Register.singleton(NetworkRefreshInterceptor)
   void registerNetworkDependencies();
 
   @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)
@@ -106,9 +109,9 @@ Future<void> setupDependencyTree() async {
   await provideSharedPreferences();
   final injector = _$Injector()..registerNetworkDependencies();
   await provideDatabaseConnection();
-  Container().registerSingleton((c) => provideFlutterTemplateDatabase(c.resolve()));
-  Container().registerSingleton((c) => provideCombiningSmartInterceptor(c.resolve(), c.resolve(), c.resolve(), c.resolve()));
-  Container().registerSingleton((c) => provideDio(c.resolve()));
+  KiwiContainer().registerSingleton((c) => provideFlutterTemplateDatabase(c.resolve()));
+  KiwiContainer().registerSingleton((c) => provideCombiningSmartInterceptor(c.resolve(), c.resolve(), c.resolve(), c.resolve()));
+  KiwiContainer().registerSingleton((c) => provideDio(c.resolve()));
 
   injector.registerThirdPartyServices();
 
@@ -127,7 +130,7 @@ Future<void> setupDependencyTree() async {
 
 Future<void> provideSharedPreferences() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-  Container().registerSingleton((c) => sharedPreferences);
+  KiwiContainer().registerSingleton((c) => sharedPreferences);
 }
 
 //Networking
@@ -169,7 +172,7 @@ Future<void> provideDatabaseConnection() async {
   final isolate = await receivePort.first as MoorIsolate;
   final databaseConnection = await isolate.connect();
 
-  Container().registerSingleton((c) => databaseConnection);
+  KiwiContainer().registerSingleton((c) => databaseConnection);
 }
 
 void _startBackground(_IsolateStartRequest request) {

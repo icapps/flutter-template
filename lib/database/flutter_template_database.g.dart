@@ -41,6 +41,17 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
     return map;
   }
 
+  DbTodoTableCompanion toCompanion(bool nullToAbsent) {
+    return DbTodoTableCompanion(
+      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
+      title:
+          title == null && nullToAbsent ? const Value.absent() : Value(title),
+      completed: completed == null && nullToAbsent
+          ? const Value.absent()
+          : Value(completed),
+    );
+  }
+
   factory DbTodo.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;

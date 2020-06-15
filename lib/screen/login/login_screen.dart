@@ -1,3 +1,4 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_template/styles/theme_text_styles.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -81,7 +81,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
           ),
         ),
       ),
-      create: (context) => KiwiContainer.resolve()..init(this),
+      create: (context) => KiwiContainer().resolve()..init(this),
     );
   }
 

@@ -31,6 +31,6 @@ class _TodoWebService implements TodoWebService {
     var value = _result.data
         .map((dynamic i) => Todo.fromJson(i as Map<String, dynamic>))
         .toList();
-    return Future.value(value);
+    return value;
   }
 }

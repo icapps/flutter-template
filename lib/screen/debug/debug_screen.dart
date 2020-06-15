@@ -1,5 +1,5 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization.dart';
@@ -81,7 +81,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
           ),
         ),
       ),
-      create: () => KiwiContainer.resolve()..init(this),
+      create: () => KiwiContainer().resolve()..init(this),
     );
   }
 

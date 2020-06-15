@@ -8,14 +8,14 @@ part of 'test_injector.dart';
 
 class _$Injector extends Injector {
   void registerMocks() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => MockFlutterSecureStorage());
     container.registerSingleton((c) => MockSharedPreferences());
     container.registerSingleton<Dio, MockDio>((c) => MockDio());
   }
 
   void registerDatabase() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container
         .registerSingleton((c) => FlutterTemplateDatabase(c<QueryExecutor>()));
     container.registerSingleton<TodoDaoStoring, MockTodoDaoStorage>(
@@ -23,7 +23,7 @@ class _$Injector extends Injector {
   }
 
   void registerRepositories() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<LoginRepo, MockLoginRepository>(
         (c) => MockLoginRepository());
     container.registerSingleton<TodoRepo, MockTodoRepository>(
@@ -37,7 +37,7 @@ class _$Injector extends Injector {
   }
 
   void registerCommonDependencies() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<SharedPrefsStoring, MockSharedPrefsStorage>(
         (c) => MockSharedPrefsStorage());
     container.registerSingleton<SecureStoring, MockSecureStorage>(
@@ -51,13 +51,13 @@ class _$Injector extends Injector {
   }
 
   void registerMockServices() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService, MockTodoService>(
         (c) => MockTodoService());
   }
 
   void registerViewModelFactories() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<GlobalViewModel, MockGlobalViewModel>(
         (c) => MockGlobalViewModel());
     container.registerSingleton<SplashViewModel, MockSplashViewModel>(
