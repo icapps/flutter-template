@@ -8,36 +8,42 @@ part of 'injector.dart';
 
 class _$Injector extends Injector {
   void registerNetworkDependencies() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => NetworkLogInterceptor());
+    container
+        .registerSingleton((c) => NetworkAuthInterceptor(c<AuthStoring>()));
+    container.registerSingleton(
+        (c) => NetworkErrorInterceptor(c<ConnectivityControlling>()));
+    container.registerSingleton(
+        (c) => NetworkRefreshInterceptor(c<AuthStoring>(), c<RefreshRepo>()));
   }
 
   void registerDatabase() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoDaoStoring, TodoDaoStorage>(
         (c) => TodoDaoStorage(c<FlutterTemplateDatabase>()));
   }
 
   void registerBridge() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<LoggingBridging, LoggingBridge>(
         (c) => LoggingBridge());
   }
 
   void registerWebservices() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService, TodoWebService>(
         (c) => TodoWebService(c<Dio>()));
   }
 
   void registerDummyServices() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService, TodoDummyService>(
         (c) => TodoDummyService());
   }
 
   void registerRepositories() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoRepo, TodoRepository>(
         (c) => TodoRepository(c<TodoService>(), c<TodoDaoStoring>()));
     container.registerSingleton<LoginRepo, LoginRepository>(
@@ -51,7 +57,7 @@ class _$Injector extends Injector {
   }
 
   void registerCommonDependencies() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton<SharedPrefsStoring, SharedPrefsStorage>(
         (c) => SharedPrefsStorage(c<SharedPreferences>()));
     container.registerSingleton<LocalStoring, LocalStorage>(
@@ -66,7 +72,7 @@ class _$Injector extends Injector {
   }
 
   void registerViewModelFactories() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerFactory(
         (c) => GlobalViewModel(c<LocaleRepo>(), c<DebugRepo>()));
     container.registerFactory(
@@ -80,7 +86,7 @@ class _$Injector extends Injector {
   }
 
   void registerThirdPartyServices() {
-    final Container container = Container();
+    final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => FlutterSecureStorage());
     container.registerSingleton((c) => Connectivity());
   }

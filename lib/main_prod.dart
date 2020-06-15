@@ -1,7 +1,8 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/app.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/extension/kiwi_extensions.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,6 @@ Future<void> main() async {
     color: Colors.transparent,
     values: values,
   );
-  await KiwiContainer.init();
+  await KiwiContainer().init();
   runApp(MyApp());
 }

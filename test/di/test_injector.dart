@@ -89,7 +89,7 @@ abstract class Injector {
 }
 
 Future<void> setupDependencyTree() async {
-  Container().registerSingleton<QueryExecutor, LazyDatabase>((c) => VmDatabase.memory());
+  KiwiContainer().registerSingleton<QueryExecutor, LazyDatabase>((c) => VmDatabase.memory());
 
   _$Injector()
     ..registerMocks()

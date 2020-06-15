@@ -1,5 +1,5 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
@@ -53,7 +53,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
           ),
         ),
       ),
-      create: () => KiwiContainer.resolve()..init(this),
+      create: () => KiwiContainer().resolve()..init(this),
     );
   }
 }

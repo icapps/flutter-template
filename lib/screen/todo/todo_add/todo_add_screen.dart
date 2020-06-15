@@ -1,9 +1,9 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -58,7 +58,7 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
           ),
         ),
       ),
-      create: (context) => KiwiContainer.resolve()..init(this),
+      create: (context) => KiwiContainer().resolve()..init(this),
     );
   }
 

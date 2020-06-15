@@ -1,5 +1,5 @@
+import 'package:kiwi/kiwi.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_template/di/kiwi_container.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
@@ -34,7 +34,7 @@ class NetworkRefreshInterceptor extends Interceptor {
     }
 
     FlutterTemplateLogger.logDebug('Refreshing');
-    final _dio = KiwiContainer.resolve<Dio>();
+    final _dio = KiwiContainer().resolve<Dio>();
 
     if (err is! UnAuthorizedError) {
       return super.onError(err);
