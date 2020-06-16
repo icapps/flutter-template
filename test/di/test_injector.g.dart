@@ -3,7 +3,7 @@
 part of 'test_injector.dart';
 
 // **************************************************************************
-// InjectorGenerator
+// KiwiInjectorGenerator
 // **************************************************************************
 
 class _$Injector extends Injector {
@@ -11,69 +11,54 @@ class _$Injector extends Injector {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => MockFlutterSecureStorage());
     container.registerSingleton((c) => MockSharedPreferences());
-    container.registerSingleton<Dio, MockDio>((c) => MockDio());
+    container.registerSingleton<Dio>((c) => MockDio());
   }
 
   void registerDatabase() {
     final KiwiContainer container = KiwiContainer();
     container
         .registerSingleton((c) => FlutterTemplateDatabase(c<QueryExecutor>()));
-    container.registerSingleton<TodoDaoStoring, MockTodoDaoStorage>(
-        (c) => MockTodoDaoStorage());
+    container.registerSingleton<TodoDaoStoring>((c) => MockTodoDaoStorage());
   }
 
   void registerRepositories() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<LoginRepo, MockLoginRepository>(
-        (c) => MockLoginRepository());
-    container.registerSingleton<TodoRepo, MockTodoRepository>(
-        (c) => MockTodoRepository());
-    container.registerSingleton<DebugRepo, MockDebugRepository>(
-        (c) => MockDebugRepository());
-    container.registerSingleton<LocaleRepo, MockLocaleRepoitory>(
-        (c) => MockLocaleRepoitory());
-    container.registerSingleton<RefreshRepo, MockRefreshRepository>(
-        (c) => MockRefreshRepository());
+    container.registerSingleton<LoginRepo>((c) => MockLoginRepository());
+    container.registerSingleton<TodoRepo>((c) => MockTodoRepository());
+    container.registerSingleton<DebugRepo>((c) => MockDebugRepository());
+    container.registerSingleton<LocaleRepo>((c) => MockLocaleRepoitory());
+    container.registerSingleton<RefreshRepo>((c) => MockRefreshRepository());
   }
 
   void registerCommonDependencies() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<SharedPrefsStoring, MockSharedPrefsStorage>(
-        (c) => MockSharedPrefsStorage());
-    container.registerSingleton<SecureStoring, MockSecureStorage>(
-        (c) => MockSecureStorage());
-    container.registerSingleton<AuthStoring, MockAuthStorage>(
-        (c) => MockAuthStorage());
-    container.registerSingleton<LocalStoring, MockLocalStorage>(
-        (c) => MockLocalStorage());
-    container.registerSingleton<ConnectivityControlling,
-        MockConnectivityController>((c) => MockConnectivityController());
+    container
+        .registerSingleton<SharedPrefsStoring>((c) => MockSharedPrefsStorage());
+    container.registerSingleton<SecureStoring>((c) => MockSecureStorage());
+    container.registerSingleton<AuthStoring>((c) => MockAuthStorage());
+    container.registerSingleton<LocalStoring>((c) => MockLocalStorage());
+    container.registerSingleton<ConnectivityControlling>(
+        (c) => MockConnectivityController());
   }
 
   void registerMockServices() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<TodoService, MockTodoService>(
-        (c) => MockTodoService());
+    container.registerSingleton<TodoService>((c) => MockTodoService());
   }
 
   void registerViewModelFactories() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<GlobalViewModel, MockGlobalViewModel>(
-        (c) => MockGlobalViewModel());
-    container.registerSingleton<SplashViewModel, MockSplashViewModel>(
-        (c) => MockSplashViewModel());
-    container.registerSingleton<DebugViewModel, MockDebugViewModel>(
-        (c) => MockDebugViewModel());
-    container.registerSingleton<DebugPlatformSelectorViewModel,
-            MockDebugPlatformSelectorViewModel>(
+    container.registerSingleton<GlobalViewModel>((c) => MockGlobalViewModel());
+    container.registerSingleton<SplashViewModel>((c) => MockSplashViewModel());
+    container.registerSingleton<DebugViewModel>((c) => MockDebugViewModel());
+    container.registerSingleton<DebugPlatformSelectorViewModel>(
         (c) => MockDebugPlatformSelectorViewModel());
-    container.registerSingleton<LicenseViewModel, MockLicenseViewModel>(
-        (c) => MockLicenseViewModel());
-    container.registerSingleton<TodoListViewModel, MockTodoListViewModel>(
-        (c) => MockTodoListViewModel());
-    container.registerSingleton<TodoAddViewModel, MockTodoAddViewModel>(
-        (c) => MockTodoAddViewModel());
-    container.registerSingleton<LoginViewModel, MockLoginViewModel>(
-        (c) => MockLoginViewModel());
+    container
+        .registerSingleton<LicenseViewModel>((c) => MockLicenseViewModel());
+    container
+        .registerSingleton<TodoListViewModel>((c) => MockTodoListViewModel());
+    container
+        .registerSingleton<TodoAddViewModel>((c) => MockTodoAddViewModel());
+    container.registerSingleton<LoginViewModel>((c) => MockLoginViewModel());
   }
 }

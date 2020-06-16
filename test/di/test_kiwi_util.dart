@@ -27,8 +27,8 @@ class TestKiwiUtil {
     KiwiContainer().registerSingleton((c) => singleton);
   }
 
-  static void registerAs<S, T extends S>(T singleton) {
-    KiwiContainer().registerSingleton<S, T>((c) => singleton);
+  static void registerAs<S>(S singleton) {
+    KiwiContainer().registerSingleton<S>((c) => singleton);
   }
 
   static T resolve<T>() => KiwiContainer().resolve<T>();
