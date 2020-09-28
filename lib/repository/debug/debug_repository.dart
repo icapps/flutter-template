@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 
 class DebugRepository extends DebugRepo {
   static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
@@ -43,5 +44,14 @@ class DebugRepository extends DebugRepo {
     if (selectedPlatform == null) return null;
     if (selectedPlatform == 'ios') return TargetPlatform.iOS;
     return TargetPlatform.android;
+  }
+
+  static String getCurrentPlatform(TargetPlatform targetPlatform) {
+    if (targetPlatform == TargetPlatform.android) {
+      return LocalizationKeys.generalLabelAndroid;
+    } else if (targetPlatform == TargetPlatform.iOS) {
+      return LocalizationKeys.generalLabelIos;
+    }
+    return LocalizationKeys.generalLabelSystemDefault;
   }
 }

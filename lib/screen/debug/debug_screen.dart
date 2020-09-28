@@ -1,100 +1,100 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/cubit/global/global_cubit.dart';
+import 'package:flutter_template/bridge/logging/logging_bridging.dart';
+import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigators/main_navigator.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:provider/provider.dart';
 
-class DebugScreen extends StatefulWidget {
-  static const String routeName = 'debug';
-
-  const DebugScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  DebugScreenState createState() => DebugScreenState();
-}
-
-@visibleForTesting
-class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
+class DebugScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final localization = Localization.of(context);
-    return ProviderWidget<DebugViewModel>(
-      consumer: (context, viewModel, child) => Scaffold(
-        appBar: AppBar(
-          title: Text(localization.settingsTitle),
-        ),
-        body: ResponsiveWidget(
-          builder: (context, info) => ListView(
-            children: [
-              DebugRowTitle(title: localization.debugAnimationsTitle),
-              DebugRowSwitchItem(
-                key: Keys.debugSlowAnimations,
-                title: localization.debugSlowAnimations,
-                value: viewModel.slowAnimationsEnabled,
-                onChanged: viewModel.onSlowAnimationsChanged,
-              ),
-              DebugRowTitle(title: localization.debugThemeTitle),
-              DebugRowItem(
-                key: Keys.debugTargetPlatform,
-                title: localization.debugTargetPlatformTitle,
-                subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
-                onClick: viewModel.onTargetPlatformClicked,
-              ),
-              DebugRowTitle(title: localization.debugLocaleTitle),
-              DebugRowItem(
-                key: Keys.debugSelectLanguage,
-                title: localization.debugLocaleSelector,
-                subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
-                onClick: viewModel.onSelectLanguageClicked,
-              ),
-              DebugRowSwitchItem(
-                key: Keys.debugShowTranslations,
-                title: localization.debugShowTranslations,
-                value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
-                onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
-              ),
-              DebugRowTitle(title: localization.debugLicensesTitle),
-              DebugRowItem(
-                key: Keys.debugLicense,
-                title: localization.debugLicensesGoTo,
-                onClick: viewModel.onLicensesClicked,
-              ),
-              DebugRowTitle(
-                title: localization.debugNativeBridge,
-              ),
-              DebugRowItem(
-                title: localization.debugNativeBridgeLog,
-                onClick: viewModel.onLogNativeBridge,
-              ),
-            ],
-          ),
-        ),
-      ),
-      create: () => KiwiContainer().resolve()..init(this),
+    return BlocBuilder<GlobalCubit, GlobalState>(
+      cubit: BlocProvider.of<GlobalCubit>(context),
+      builder: (context, state) {
+        if (state is InitialGlobalState) {
+          return buildContent(context, state: state);
+        } else {
+          return buildContent(context);
+        }
+      },
     );
   }
 
-  @override
-  void goToTargetPlatformSelector() => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
+  Widget buildContent(BuildContext context, {GlobalState state}) {
+    final localization = Localization.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(localization.settingsTitle),
+      ),
+      body: ResponsiveWidget(
+        builder: (context, info) => ListView(
+          children: [
+            DebugRowTitle(title: localization.debugAnimationsTitle),
+            DebugRowSwitchItem(
+              key: Keys.debugSlowAnimations,
+              title: localization.debugSlowAnimations,
+              value: state?.slowAnimationsEnabled,
+              onChanged: (enabled) => context.bloc<GlobalCubit>().changeSlowAnimations(enabled: enabled),
+            ),
+            DebugRowTitle(title: localization.debugThemeTitle),
+            DebugRowItem(
+              key: Keys.debugTargetPlatform,
+              title: localization.debugTargetPlatformTitle,
+              subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(DebugRepository.getCurrentPlatform(state?.targetPlatform))),
+              onClick: () => goToTargetPlatformSelector(context),
+            ),
+            DebugRowTitle(title: localization.debugLocaleTitle),
+            DebugRowItem(
+              key: Keys.debugSelectLanguage,
+              title: localization.debugLocaleSelector,
+              subTitle: localization.debugLocaleCurrentLanguage(LocaleRepository.getCurrentLanguage(state?.locale?.languageCode)),
+              onClick: () => goToSelectLanguage(context),
+            ),
+            DebugRowSwitchItem(
+              key: Keys.debugShowTranslations,
+              title: localization.debugShowTranslations,
+              value: state.showsTranslationKeys,
+              onChanged: (_) => context.bloc<GlobalCubit>().toggleTranslationKeys(),
+            ),
+            DebugRowTitle(title: localization.debugLicensesTitle),
+            DebugRowItem(
+              key: Keys.debugLicense,
+              title: localization.debugLicensesGoTo,
+              onClick: () => goToLicenses(context),
+            ),
+            DebugRowTitle(
+              title: localization.debugNativeBridge,
+            ),
+            DebugRowItem(
+              title: localization.debugNativeBridgeLog,
+              onClick: onLogNativeBridge,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-  @override
-  void goToLicenses() => MainNavigatorWidget.of(context).goToLicense();
+  void onLogNativeBridge() {
+    KiwiContainer().resolve<LoggingBridging>().log('TEST From the debug screen.');
+  }
 
-  @override
-  void goToSelectLanguage() => MainNavigatorWidget.of(context).showCustomDialog(
+  void goToTargetPlatformSelector(BuildContext context) => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
+
+  void goToLicenses(BuildContext context) => MainNavigatorWidget.of(context).goToLicense();
+
+  void goToSelectLanguage(BuildContext context) => MainNavigatorWidget.of(context).showCustomDialog(
         builder: (context) => SelectLanguageDialog(
-          goBack: () => MainNavigatorWidget.of(this.context).closeDialog(),
+          goBack: MainNavigatorWidget.of(context).closeDialog,
         ),
       );
 }

@@ -62,6 +62,18 @@ class TestUtil {
     return testWidget;
   }
 
+  static Future<Widget> loadWidgetWithBuilder(WidgetTester tester, Widget widget, Function(BuildContext) builder) async {
+    final testWidget = TestWrapper(child: widget);
+    tester.allWidgets.toList().clear();
+    await provideMockedNetworkImages(() async {
+      await tester.pumpWidget(
+        Builder(builder: builder),
+      );
+    });
+    await tester.pumpAndSettle();
+    return testWidget;
+  }
+
   static Future<void> takeScreenshotForAllSizes(WidgetTester tester, Widget widget, String snapshotName) async {
     for (final screen in ScreenType.values) {
       await takeScreenshotForScreenType(tester, widget, snapshotName, screen: screen);
@@ -107,7 +119,7 @@ class TestUtil {
     await fontLoader.load();
   }
 
-  static String getVariableString(){
+  static String getVariableString() {
     return 'Title';
   }
 }
@@ -127,4 +139,3 @@ class TestWrapper extends StatelessWidget {
     );
   }
 }
-

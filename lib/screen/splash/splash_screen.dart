@@ -1,12 +1,11 @@
-import 'package:kiwi/kiwi.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/cubit/splash/splash_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigators/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   static const String routeName = 'splash';
 
   const SplashScreen({
@@ -14,25 +13,32 @@ class SplashScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  SplashScreenState createState() => SplashScreenState();
-}
-
-@visibleForTesting
-class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
-  @override
   Widget build(BuildContext context) {
-    return ProviderWidget<SplashViewModel>(
-      create: () => KiwiContainer().resolve()..init(this),
-      childBuilderWithViewModel: (context, viewModel) => const Scaffold(
-        backgroundColor: ThemeColors.primary,
-        body: Center(child: FlutterTemplateProgressIndicator.light()),
+    return BlocProvider(
+      create: (context) => SplashCubit()..checkLoggedIn(),
+      child: BlocListener<SplashCubit, SplashState>(
+        listener: (context, state) {
+          if (state is LoadedSplashState) {
+            init(context, isLoggedIn: state?.isLoggedIn);
+          }
+        },
+        child: const Scaffold(
+          backgroundColor: ThemeColors.primary,
+          body: Center(child: FlutterTemplateProgressIndicator.light()),
+        ),
       ),
     );
   }
 
-  @override
-  void goToHome() => MainNavigatorWidget.of(context).goToHome();
+  Future<void> init(BuildContext context, {bool isLoggedIn}) async {
+    if (isLoggedIn) {
+      goToHome(context);
+    } else {
+      goToLogin(context);
+    }
+  }
 
-  @override
-  void goToLogin() => MainNavigatorWidget.of(context).goToLogin();
+  void goToHome(BuildContext context) => MainNavigatorWidget.of(context).goToHome();
+
+  void goToLogin(BuildContext context) => MainNavigatorWidget.of(context).goToLogin();
 }

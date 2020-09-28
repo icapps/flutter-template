@@ -67,23 +67,15 @@ class _$Injector extends Injector {
         (c) => ConnectivityController(c<Connectivity>()));
   }
 
-  void registerViewModelFactories() {
-    final KiwiContainer container = KiwiContainer();
-    container.registerFactory(
-        (c) => GlobalViewModel(c<LocaleRepo>(), c<DebugRepo>()));
-    container.registerFactory(
-        (c) => SplashViewModel(c<LoginRepo>(), c<LocalStoring>()));
-    container.registerFactory((c) => DebugViewModel(c<DebugRepo>()));
-    container.registerFactory((c) => DebugPlatformSelectorViewModel());
-    container.registerFactory((c) => LicenseViewModel());
-    container.registerFactory((c) => TodoListViewModel(c<TodoRepo>()));
-    container.registerFactory((c) => TodoAddViewModel(c<TodoRepo>()));
-    container.registerFactory((c) => LoginViewModel(c<LoginRepo>()));
-  }
-
   void registerThirdPartyServices() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => FlutterSecureStorage());
     container.registerSingleton((c) => Connectivity());
+  }
+
+  void registerBlocs() {
+    final KiwiContainer container = KiwiContainer();
+    container.registerSingleton((c) =>
+        GlobalCubit(debugRepo: c<DebugRepo>(), localeRepo: c<LocaleRepo>()));
   }
 }

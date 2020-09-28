@@ -2,8 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

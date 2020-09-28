@@ -26,6 +26,9 @@ dependencies:
   flutter_svg: ^0.17.4
   path: 1.7.0
   scroll_when_needed: 1.0.0
+  equatable: ^1.2.0
+  flutter_bloc: ^6.0.5
+  bloc_test: ^7.0.4
 
 dev_dependencies:
   flutter_test:

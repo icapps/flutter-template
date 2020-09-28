@@ -38,9 +38,5 @@ void main() {
     debugKey.currentState.goToAddTodo();
     verify(mockNavigation.goToAddTodo()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
-
-    final key = debugKey.currentState.getScaffoldState();
-    expect(key, isNotNull);
-    verifyNoMoreInteractions(mockNavigation);
   });
 }

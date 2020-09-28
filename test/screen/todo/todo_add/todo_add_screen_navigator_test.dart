@@ -34,9 +34,5 @@ void main() {
     debugKey.currentState.goBack(result: 'testing');
     verify(mockNavigation.goBack(result: 'testing')).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
-
-    final key = debugKey.currentState.getScaffoldState();
-    expect(key, isNotNull);
-    verifyNoMoreInteractions(mockNavigation);
   });
 }

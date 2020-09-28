@@ -24,4 +24,14 @@ class LocaleRepository extends LocaleRepo {
     if (localeCode == null || localeCode.isEmpty) return null;
     return Locale(localeCode);
   }
+
+  static String getCurrentLanguage(String languageCode) {
+    switch (languageCode) {
+      case 'nl':
+        return 'Nederlands';
+      case 'en':
+        return 'English';
+    }
+    return 'English';
+  }
 }

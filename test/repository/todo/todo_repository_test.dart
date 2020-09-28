@@ -87,14 +87,14 @@ void main() {
   group('setTodoState', () {
     test('setTodoState', () async {
       when(todoDao.updateTodo(id: 1, completed: true)).thenAnswer((_) => Future.value());
-      await sut.setTodoState(id: 1, value: true);
+      await sut.setTodoState(id: 1, completed: true);
       verify(todoDao.updateTodo(id: 1, completed: true)).calledOnce();
       verifyNoMoreInteractions(todoDao);
       verifyZeroInteractions(todoService);
     });
     test('setTodoState with false', () async {
       when(todoDao.updateTodo(id: 1, completed: false)).thenAnswer((_) => Future.value());
-      await sut.setTodoState(id: 1, value: false);
+      await sut.setTodoState(id: 1, completed: false);
       verify(todoDao.updateTodo(id: 1, completed: false)).calledOnce();
       verifyNoMoreInteractions(todoDao);
       verifyZeroInteractions(todoService);

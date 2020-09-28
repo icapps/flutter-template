@@ -22,7 +22,6 @@ void main() {
   });
 
   testWidgets('Test login screen initial state', (tester) async {
-
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
@@ -42,7 +41,6 @@ void main() {
   });
 
   group('Actions', () {
-
     testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
       const sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -89,7 +87,7 @@ void main() {
     });
 
     testWidgets('Test login screen should have an password input field', (tester) async {
-      const sut = LoginScreen();
+      final sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
 
       final finder = find.byKey(Keys.passwordInput);

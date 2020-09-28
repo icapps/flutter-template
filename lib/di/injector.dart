@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_template/cubit/global/global_cubit.dart';
 import 'package:flutter_template/bridge/logging/logging_bridge.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
@@ -15,8 +16,6 @@ import 'package:flutter_template/repository/shared_prefs/local/local_storage.dar
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controller.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
-import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
-import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:moor/isolate.dart';
 import 'package:moor/moor.dart';
@@ -36,11 +35,6 @@ import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
-import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
@@ -50,7 +44,6 @@ import 'package:flutter_template/util/interceptor/combining_smart_interceptor.da
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';
 import 'package:flutter_template/webservice/todo/todo_service.dart';
 import 'package:flutter_template/webservice/todo/todo_webservice.dart';
@@ -90,19 +83,12 @@ abstract class Injector {
   @Register.singleton(ConnectivityControlling, from: ConnectivityController)
   void registerCommonDependencies();
 
-  @Register.factory(GlobalViewModel)
-  @Register.factory(SplashViewModel)
-  @Register.factory(DebugViewModel)
-  @Register.factory(DebugPlatformSelectorViewModel)
-  @Register.factory(LicenseViewModel)
-  @Register.factory(TodoListViewModel)
-  @Register.factory(TodoAddViewModel)
-  @Register.factory(LoginViewModel)
-  void registerViewModelFactories();
-
   @Register.singleton(FlutterSecureStorage)
   @Register.singleton(Connectivity)
   void registerThirdPartyServices();
+
+  @Register.singleton(GlobalCubit)
+  void registerBlocs();
 }
 
 Future<void> setupDependencyTree() async {
@@ -125,7 +111,7 @@ Future<void> setupDependencyTree() async {
     ..registerDatabase()
     ..registerCommonDependencies()
     ..registerRepositories()
-    ..registerViewModelFactories();
+    ..registerBlocs();
 }
 
 Future<void> provideSharedPreferences() async {

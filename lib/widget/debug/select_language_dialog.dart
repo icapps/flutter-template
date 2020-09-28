@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/cubit/global/global_cubit.dart';
+import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
-import 'package:provider/provider.dart';
 
 class SelectLanguageDialog extends StatelessWidget {
   final VoidCallback goBack;
@@ -11,37 +12,50 @@ class SelectLanguageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final globalViewModel = Provider.of<GlobalViewModel>(context);
+    return BlocBuilder<GlobalCubit, GlobalState>(
+      cubit: BlocProvider.of<GlobalCubit>(context),
+      buildWhen: (previous, current) => previous.locale != current.locale,
+      builder: (context, state) {
+        if (state is InitialGlobalState) {
+          return buildContent(context, state.locale);
+        } else {
+          return buildContent(context, null);
+        }
+      },
+    );
+  }
+
+  Widget buildContent(BuildContext context, Locale currentLanguage) {
     final localization = Localization.of(context);
     return AlertDialog(
       title: Text(localization.debugLocaleSelector),
       content: Container(
-        height: 150,
+        height: ThemeDimens.selectLanguageDialogHeight,
         width: MediaQuery.of(context).size.width / 1.2,
         child: ListView(
           shrinkWrap: true,
           children: [
             SelectorItem(
               title: localization.generalLabelSystemDefault,
-              selected: globalViewModel.isLanguageSelected(null),
+              selected: isLanguageSelected(currentLanguage, null),
               onClick: () {
-                globalViewModel.onSwitchToSystemLanguage();
+                context.bloc<GlobalCubit>().changeLanguageToDefault();
                 goBack();
               },
             ),
             SelectorItem(
               title: 'English',
-              selected: globalViewModel.isLanguageSelected('en'),
+              selected: isLanguageSelected(currentLanguage, 'en'),
               onClick: () {
-                globalViewModel.onSwitchToEnglish();
+                context.bloc<GlobalCubit>().changeLanguageToEnglish();
                 goBack();
               },
             ),
             SelectorItem(
               title: 'Nederlands',
-              selected: globalViewModel.isLanguageSelected('nl'),
+              selected: isLanguageSelected(currentLanguage, 'nl'),
               onClick: () {
-                globalViewModel.onSwitchToDutch();
+                context.bloc<GlobalCubit>().changeLanguageToDutch();
                 goBack();
               },
             ),
@@ -49,5 +63,10 @@ class SelectLanguageDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isLanguageSelected(Locale locale, String languageCode) {
+    if (locale == null && languageCode == null) return true;
+    return locale?.languageCode == languageCode;
   }
 }

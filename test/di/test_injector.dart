@@ -1,4 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/cubit/global/global_cubit.dart';
+import 'package:flutter_template/cubit/license/license_cubit.dart';
+import 'package:flutter_template/cubit/login/login_cubit.dart';
+import 'package:flutter_template/cubit/splash/splash_cubit.dart';
+import 'package:flutter_template/cubit/todoAdd/todo_add_cubit.dart';
+import 'package:flutter_template/cubit/todoList/todo_list_cubit.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
@@ -11,14 +17,6 @@ import 'package:flutter_template/repository/shared_prefs/local/local_storing.dar
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
-import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
-import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
-import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/webservice/todo/todo_service.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:moor/moor.dart';
@@ -37,14 +35,6 @@ import '../mocks/repository/shared_prefs/local/mock_local_storage.dart';
 import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
 import '../mocks/repository/todo/mock_todo_repository.dart';
 import '../mocks/util/mock_connectivity_controller.dart';
-import '../mocks/viewmodel/debug/mock_debug_platform_selector_viewmodel.dart';
-import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
-import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
-import '../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
-import '../mocks/viewmodel/login/mock_login_viewmodel.dart';
-import '../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
-import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
-import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../mocks/webservice/mock_dio.dart';
 import '../mocks/webservice/mock_todo_service.dart';
 
@@ -77,15 +67,13 @@ abstract class Injector {
   @Register.singleton(TodoService, from: MockTodoService)
   void registerMockServices();
 
-  @Register.singleton(GlobalViewModel, from: MockGlobalViewModel)
-  @Register.singleton(SplashViewModel, from: MockSplashViewModel)
-  @Register.singleton(DebugViewModel, from: MockDebugViewModel)
-  @Register.singleton(DebugPlatformSelectorViewModel, from: MockDebugPlatformSelectorViewModel)
-  @Register.singleton(LicenseViewModel, from: MockLicenseViewModel)
-  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)
-  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)
-  @Register.singleton(LoginViewModel, from: MockLoginViewModel)
-  void registerViewModelFactories();
+  @Register.singleton(GlobalCubit)
+  @Register.singleton(LicenseCubit)
+  @Register.singleton(LoginCubit)
+  @Register.singleton(SplashCubit)
+  @Register.singleton(TodoAddCubit)
+  @Register.singleton(TodoListCubit)
+  void registerBlocs();
 }
 
 Future<void> setupDependencyTree() async {
@@ -97,5 +85,5 @@ Future<void> setupDependencyTree() async {
     ..registerDatabase()
     ..registerCommonDependencies()
     ..registerRepositories()
-    ..registerViewModelFactories();
+    ..registerBlocs();
 }

@@ -46,19 +46,15 @@ class _$Injector extends Injector {
     container.registerSingleton<TodoService>((c) => MockTodoService());
   }
 
-  void registerViewModelFactories() {
+  void registerBlocs() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<GlobalViewModel>((c) => MockGlobalViewModel());
-    container.registerSingleton<SplashViewModel>((c) => MockSplashViewModel());
-    container.registerSingleton<DebugViewModel>((c) => MockDebugViewModel());
-    container.registerSingleton<DebugPlatformSelectorViewModel>(
-        (c) => MockDebugPlatformSelectorViewModel());
-    container
-        .registerSingleton<LicenseViewModel>((c) => MockLicenseViewModel());
-    container
-        .registerSingleton<TodoListViewModel>((c) => MockTodoListViewModel());
-    container
-        .registerSingleton<TodoAddViewModel>((c) => MockTodoAddViewModel());
-    container.registerSingleton<LoginViewModel>((c) => MockLoginViewModel());
+    container.registerSingleton((c) =>
+        GlobalCubit(debugRepo: c<DebugRepo>(), localeRepo: c<LocaleRepo>()));
+    container.registerSingleton((c) => LicenseCubit());
+    container.registerSingleton((c) => LoginCubit(loginRepo: c<LoginRepo>()));
+    container.registerSingleton((c) => SplashCubit(
+        loginRepo: c<LoginRepo>(), localStoring: c<LocalStoring>()));
+    container.registerSingleton((c) => TodoAddCubit(todoRepo: c<TodoRepo>()));
+    container.registerSingleton((c) => TodoListCubit(todoRepo: c<TodoRepo>()));
   }
 }

@@ -33,7 +33,7 @@ class TodoRepository extends TodoRepo {
   }
 
   @override
-  Future<void> setTodoState({@required int id, @required bool value}) async {
-    await _todoDao.updateTodo(id: id, completed: value);
+  Future<void> setTodoState({@required int id, @required bool completed}) async {
+    await _todoDao.updateTodo(id: id, completed: completed);
   }
 }

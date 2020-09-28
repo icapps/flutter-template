@@ -19,4 +19,6 @@ class ThemeDimens {
 
   static const double enabledOpacity = 1;
   static const double disabledOpacity = 0.24;
+
+  static const double selectLanguageDialogHeight = 150;
 }

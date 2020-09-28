@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:flutter_template/navigators/main_navigation.dart';
 import 'package:mockito/mockito.dart';
 
 class MockMainNavigator extends StatefulWidget {
