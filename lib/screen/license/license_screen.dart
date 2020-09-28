@@ -5,6 +5,7 @@ import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:kiwi/kiwi.dart';
 
 class LicenseScreen extends StatelessWidget with BackNavigatorMixin, BackNavigator {
   static const String routeName = 'license';
@@ -16,7 +17,7 @@ class LicenseScreen extends StatelessWidget with BackNavigatorMixin, BackNavigat
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LicenseCubit()..loadLicenses(),
+      create: (context) => KiwiContainer().resolve<LicenseCubit>()..loadLicenses(),
       child: BlocBuilder<LicenseCubit, LicenseState>(
         builder: (context, state) {
           if (state is InitialLicenseState) {

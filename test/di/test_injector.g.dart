@@ -55,6 +55,7 @@ class _$Injector extends Injector {
     container.registerSingleton((c) => SplashCubit(
         loginRepo: c<LoginRepo>(), localStoring: c<LocalStoring>()));
     container.registerSingleton((c) => TodoAddCubit(todoRepo: c<TodoRepo>()));
-    container.registerSingleton((c) => TodoListCubit(todoRepo: c<TodoRepo>()));
+    container.registerSingleton((c) => TodoListCubit(
+        todoRepo: c<TodoRepo>(), todoAddCubit: c<TodoAddCubit>()));
   }
 }

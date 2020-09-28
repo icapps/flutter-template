@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:kiwi/kiwi.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 
 class TodoAddScreen extends StatefulWidget {
@@ -26,20 +27,18 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TodoAddCubit(),
-      child: BlocListener<TodoAddCubit, TodoAddState>(
-        listener: (context, state) {
-          if (state is TodoAddSaved) {
-            goBack(context);
-          }
+      create: (context) => KiwiContainer().resolve<TodoAddCubit>(),
+      child: BlocBuilder<TodoAddCubit, TodoAddState>(
+        builder: (context, state) {
+          return buildContent(context);
         },
-        child: buildContent(context),
       ),
     );
   }
 
   Widget buildContent(BuildContext context) {
     final localization = Localization.of(context);
+    final cubit = context.bloc<TodoAddCubit>();
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -60,8 +59,11 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
               Container(height: ThemeDimens.padding16),
               FlutterTemplateButton(
                 text: localization.generalLabelSave,
-                isEnabled: _todo?.isNotEmpty,
-                onClick: () => context.bloc<TodoAddCubit>().saveTodo(_todo),
+                isEnabled: _todo?.isNotEmpty == true,
+                onClick: () async {
+                  await cubit.saveTodo(_todo);
+                  goBack(context);
+                },
               ),
             ],
           ),

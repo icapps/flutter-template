@@ -12,6 +12,7 @@ import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/util/extension/context_extensions.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
+import 'package:kiwi/kiwi.dart';
 
 class TodoListScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoListScaffoldKey');
@@ -20,28 +21,28 @@ class TodoListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final localization = Localization.of(context);
     return BlocProvider(
-      create: (context) => TodoListCubit(),
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          centerTitle: context.isIOS,
-          title: Text(localization.todoTitle),
-          actions: [
-            ActionItem(
-              key: Keys.downloadAction,
-              svgAsset: ThemeAssets.downloadIcon(context),
-              onClick: context.bloc<TodoListCubit>().fetchTodos,
+      create: (context) => KiwiContainer().resolve<TodoListCubit>(),
+      child: BlocBuilder<TodoListCubit, TodoListState>(
+        builder: (context, state) {
+          return Scaffold(
+            key: _scaffoldKey,
+            appBar: AppBar(
+              centerTitle: context.isIOS,
+              title: Text(localization.todoTitle),
+              actions: [
+                ActionItem(
+                  key: Keys.downloadAction,
+                  svgAsset: ThemeAssets.downloadIcon(context),
+                  onClick: () => context.bloc<TodoListCubit>().fetchTodos(),
+                ),
+                ActionItem(
+                  key: Keys.addAction,
+                  svgAsset: ThemeAssets.addIcon(context),
+                  onClick: () => goToAddTodo(context),
+                ),
+              ],
             ),
-            ActionItem(
-              key: Keys.addAction,
-              svgAsset: ThemeAssets.addIcon(context),
-              onClick: () => goToAddTodo(context),
-            ),
-          ],
-        ),
-        body: BlocBuilder<TodoListCubit, TodoListState>(
-          builder: (context, state) {
-            return Stack(
+            body: Stack(
               children: [
                 if (state is TodoListError) ...{
                   buildError(localization, state),
@@ -51,9 +52,9 @@ class TodoListScreen extends StatelessWidget {
                   buildContent(context, localization, state),
                 }
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

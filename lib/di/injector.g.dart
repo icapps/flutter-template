@@ -77,5 +77,12 @@ class _$Injector extends Injector {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) =>
         GlobalCubit(debugRepo: c<DebugRepo>(), localeRepo: c<LocaleRepo>()));
+    container.registerSingleton((c) => LicenseCubit());
+    container.registerSingleton((c) => LoginCubit(loginRepo: c<LoginRepo>()));
+    container.registerSingleton((c) => SplashCubit(
+        loginRepo: c<LoginRepo>(), localStoring: c<LocalStoring>()));
+    container.registerSingleton((c) => TodoAddCubit(todoRepo: c<TodoRepo>()));
+    container.registerSingleton((c) => TodoListCubit(
+        todoRepo: c<TodoRepo>(), todoAddCubit: c<TodoAddCubit>()));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
+import 'package:equatable/equatable.dart';
 
 part 'todo_add_state.dart';
 

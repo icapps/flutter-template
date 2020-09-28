@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:kiwi/kiwi.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
@@ -28,7 +29,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => KiwiContainer().resolve<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginState>(
         builder: buildContent,
         listener: (context, state) {
@@ -38,6 +39,8 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin {
             } else {
               showErrorWithLocaleKey(LocalizationKeys.errorGeneral, context);
             }
+          } else if (state is LoadedLoginState) {
+            goToHome();
           }
         },
       ),
@@ -70,23 +73,23 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin {
                 FlutterTemplateInputField(
                   key: Keys.emailInput,
                   enabled: state is InitialLoginState || state is ErrorLoginState,
-                  onChanged: (newValue) => email = newValue,
+                  onChanged: (newValue) => setState(() => email = newValue),
                   hint: 'Email',
                 ),
                 Container(height: ThemeDimens.padding16),
                 FlutterTemplateInputField(
                   key: Keys.passwordInput,
                   enabled: state is InitialLoginState || state is ErrorLoginState,
-                  onChanged: (newValue) => password = newValue,
+                  onChanged: (newValue) => setState(() => password = newValue),
                   hint: 'Password',
                 ),
                 Container(height: ThemeDimens.padding16),
                 if (state is LoadingLoginState) ...{
                   const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeColors.white)),
-                } else if (state is LoadedLoginState) ...{
+                } else if (state is InitialLoginState || state is ErrorLoginState) ...{
                   FlutterTemplateButton(
                     key: Keys.loginButton,
-                    isEnabled: password.isNotEmpty && email.isNotEmpty,
+                    isEnabled: password != null && password.isNotEmpty && email != null && email.isNotEmpty,
                     text: 'Login',
                     onClick: () => context.bloc<LoginCubit>().onLoginClicked(email, password),
                   ),

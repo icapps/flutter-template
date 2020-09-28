@@ -20,7 +20,7 @@ class DebugScreen extends StatelessWidget {
     return BlocBuilder<GlobalCubit, GlobalState>(
       cubit: BlocProvider.of<GlobalCubit>(context),
       builder: (context, state) {
-        if (state is InitialGlobalState) {
+        if (state is LoadedGlobalState) {
           return buildContent(context, state: state);
         } else {
           return buildContent(context);
@@ -93,7 +93,7 @@ class DebugScreen extends StatelessWidget {
   void goToLicenses(BuildContext context) => MainNavigatorWidget.of(context).goToLicense();
 
   void goToSelectLanguage(BuildContext context) => MainNavigatorWidget.of(context).showCustomDialog(
-        builder: (context) => SelectLanguageDialog(
+        builder: (_) => SelectLanguageDialog(
           goBack: MainNavigatorWidget.of(context).closeDialog,
         ),
       );

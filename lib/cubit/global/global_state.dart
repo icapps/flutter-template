@@ -25,8 +25,10 @@ abstract class GlobalState extends Equatable {
       ];
 }
 
-class InitialGlobalState extends GlobalState {
-  const InitialGlobalState({
+class InitialGlobalState extends GlobalState {}
+
+class LoadedGlobalState extends GlobalState {
+  const LoadedGlobalState({
     locale,
     targetPlatform,
     showsTranslationKeys,

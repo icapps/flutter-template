@@ -8,6 +8,7 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:kiwi/kiwi.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +31,7 @@ class InternalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GlobalCubit(),
+      create: (context) => KiwiContainer().resolve<GlobalCubit>()..loadInitialState(),
       child: BlocBuilder<GlobalCubit, GlobalState>(
         buildWhen: (previous, current) =>
             previous.locale != current.locale ||
@@ -38,10 +39,10 @@ class InternalApp extends StatelessWidget {
             previous.showsTranslationKeys != current.showsTranslationKeys ||
             previous.localizationDelegate != current.localizationDelegate,
         builder: (context, state) {
-          if (state is InitialGlobalState) {
+          if (state is LoadedGlobalState) {
             return buildContent(context, state: state);
-          } else if (state is LoadingGlobalState) {
-            return buildContent(context); // Or show a loading circle
+            // } else if (state is LoadingGlobalState) {
+            //   return buildContent(context); // Show a loading circle
           } else {
             // LoadingFailedGlobalState
             return buildContent(context); // Usually you will build an error build here
@@ -51,11 +52,11 @@ class InternalApp extends StatelessWidget {
     );
   }
 
-  Widget buildContent(BuildContext context, {InitialGlobalState state}) {
+  Widget buildContent(BuildContext context, {GlobalState state}) {
     return MaterialApp(
       debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
       localizationsDelegates: [
-        state?.localizationDelegate,
+        if (state != null) state.localizationDelegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         FallbackCupertinoLocalisationsDelegate.delegate,

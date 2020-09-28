@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/navigators/main_navigator.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:kiwi/kiwi.dart';
 
 class SplashScreen extends StatelessWidget {
   static const String routeName = 'splash';
@@ -15,7 +16,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SplashCubit()..checkLoggedIn(),
+      create: (context) => KiwiContainer().resolve<SplashCubit>()..checkLoggedIn(),
       child: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
           if (state is LoadedSplashState) {

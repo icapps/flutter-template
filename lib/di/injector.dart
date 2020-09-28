@@ -6,6 +6,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/cubit/global/global_cubit.dart';
 import 'package:flutter_template/bridge/logging/logging_bridge.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
+import 'package:flutter_template/cubit/license/license_cubit.dart';
+import 'package:flutter_template/cubit/login/login_cubit.dart';
+import 'package:flutter_template/cubit/splash/splash_cubit.dart';
+import 'package:flutter_template/cubit/todoAdd/todo_add_cubit.dart';
+import 'package:flutter_template/cubit/todoList/todo_list_cubit.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
@@ -88,6 +93,11 @@ abstract class Injector {
   void registerThirdPartyServices();
 
   @Register.singleton(GlobalCubit)
+  @Register.singleton(LicenseCubit)
+  @Register.singleton(LoginCubit)
+  @Register.singleton(SplashCubit)
+  @Register.singleton(TodoAddCubit)
+  @Register.singleton(TodoListCubit)
   void registerBlocs();
 }
 

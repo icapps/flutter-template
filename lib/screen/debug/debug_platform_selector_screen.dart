@@ -17,10 +17,10 @@ class DebugPlatformSelectorScreen extends StatelessWidget with BackNavigatorMixi
       cubit: BlocProvider.of<GlobalCubit>(context),
       buildWhen: (previous, current) => previous.targetPlatform != current.targetPlatform,
       builder: (context, state) {
-        if (state is InitialGlobalState) {
+        if (state is LoadedGlobalState) {
           return buildContent(context, state.targetPlatform);
         } else {
-          return buildContent(context, null); // Usually you will build the initial build here
+          return buildContent(context, null);
         }
       },
     );
@@ -37,17 +37,17 @@ class DebugPlatformSelectorScreen extends StatelessWidget with BackNavigatorMixi
         children: [
           SelectorItem(
             title: localization.generalLabelSystemDefault,
-            onClick: context.bloc<GlobalCubit>().changePlatformToDefault,
+            onClick: () => context.bloc<GlobalCubit>().changePlatformToDefault(),
             selected: targetPlatform == null,
           ),
           SelectorItem(
             title: localization.generalLabelAndroid,
-            onClick: context.bloc<GlobalCubit>().changePlatformToAndroid,
+            onClick: () => context.bloc<GlobalCubit>().changePlatformToAndroid(),
             selected: targetPlatform == TargetPlatform.android,
           ),
           SelectorItem(
             title: localization.generalLabelIos,
-            onClick: context.bloc<GlobalCubit>().changePlatformToIos,
+            onClick: () => context.bloc<GlobalCubit>().changePlatformToIos(),
             selected: targetPlatform == TargetPlatform.iOS,
           ),
         ],

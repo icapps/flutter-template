@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/cubit/todoAdd/todo_add_cubit.dart';
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
@@ -11,8 +14,22 @@ part 'todo_list_state.dart';
 
 class TodoListCubit extends Cubit<TodoListState> {
   final TodoRepo todoRepo;
+  final TodoAddCubit todoAddCubit;
+  StreamSubscription todosSubscription;
 
-  TodoListCubit({this.todoRepo}) : super(const TodoListInitial(null));
+  TodoListCubit({this.todoRepo, this.todoAddCubit}) : super(const TodoListInitial(null)) {
+    if (todoAddCubit != null) {
+      todosSubscription = todoAddCubit.listen(
+        (state) => {if (state is TodoAddSaved) getTodos()},
+      );
+    }
+  }
+
+  @override
+  Future<void> close() async {
+    await todosSubscription?.cancel();
+    await super.close();
+  }
 
   Future<void> todoChanged({@required int id, @required bool completed}) async {
     await todoRepo.setTodoState(id: id, completed: completed);
@@ -22,7 +39,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     try {
       emit(TodoListLoading());
       await todoRepo.fetchTodos();
-      emit(TodoListInitial(todoRepo.getTodos()));
+      await getTodos();
     } catch (e) {
       FlutterTemplateLogger.logError(message: 'failed to get todos', error: e);
       String errorKey;
@@ -33,5 +50,9 @@ class TodoListCubit extends Cubit<TodoListState> {
       }
       emit(TodoListError(errorKey));
     }
+  }
+
+  Future<void> getTodos() async {
+    emit(TodoListInitial(todoRepo.getTodos()));
   }
 }

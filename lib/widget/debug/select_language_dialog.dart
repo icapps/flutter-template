@@ -16,7 +16,7 @@ class SelectLanguageDialog extends StatelessWidget {
       cubit: BlocProvider.of<GlobalCubit>(context),
       buildWhen: (previous, current) => previous.locale != current.locale,
       builder: (context, state) {
-        if (state is InitialGlobalState) {
+        if (state is LoadedGlobalState) {
           return buildContent(context, state.locale);
         } else {
           return buildContent(context, null);

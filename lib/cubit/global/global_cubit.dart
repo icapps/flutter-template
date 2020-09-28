@@ -14,59 +14,76 @@ class GlobalCubit extends Cubit<GlobalState> {
   final DebugRepo debugRepo;
   final LocaleRepo localeRepo;
 
-  GlobalCubit({this.debugRepo, this.localeRepo}) : super(const InitialGlobalState());
+  GlobalCubit({this.debugRepo, this.localeRepo}) : super(InitialGlobalState());
+
+  Future<void> loadInitialState() async {
+    await localeRepo.setCustomLocale(null);
+    final localizationDelegate = LocalizationDelegate(newLocale: null);
+    final selectedPlatform = debugRepo.getTargetPlatform();
+    emit(LoadedGlobalState(
+      targetPlatform: selectedPlatform,
+      locale: null,
+      localizationDelegate: localizationDelegate,
+      slowAnimationsEnabled: false,
+      showsTranslationKeys: false,
+    ));
+  }
 
   Future<void> changeLanguage(Locale newLanguage) async {
+    final currentState = state;
     emit(LoadingGlobalState());
     await localeRepo.setCustomLocale(newLanguage);
     final localizationDelegate = LocalizationDelegate(newLocale: newLanguage);
-    emit(InitialGlobalState(
+    emit(LoadedGlobalState(
       locale: newLanguage,
       localizationDelegate: localizationDelegate,
-      targetPlatform: state.targetPlatform,
-      slowAnimationsEnabled: state.slowAnimationsEnabled,
-      showsTranslationKeys: state.showsTranslationKeys,
+      targetPlatform: currentState.targetPlatform,
+      slowAnimationsEnabled: currentState.slowAnimationsEnabled,
+      showsTranslationKeys: currentState.showsTranslationKeys,
     ));
   }
 
   Future<void> changePlatform(String newPlatform) async {
+    final currentState = state;
     emit(LoadingGlobalState());
     await debugRepo.saveSelectedPlatform(newPlatform);
     final selectedPlatform = debugRepo.getTargetPlatform();
-    emit(InitialGlobalState(
+    emit(LoadedGlobalState(
       targetPlatform: selectedPlatform,
-      locale: state.locale,
-      localizationDelegate: state.localizationDelegate,
-      slowAnimationsEnabled: state.slowAnimationsEnabled,
-      showsTranslationKeys: state.showsTranslationKeys,
+      locale: currentState.locale,
+      localizationDelegate: currentState.localizationDelegate,
+      slowAnimationsEnabled: currentState.slowAnimationsEnabled,
+      showsTranslationKeys: currentState.showsTranslationKeys,
     ));
   }
 
   Future<void> toggleTranslationKeys() async {
+    final currentState = state;
     emit(LoadingGlobalState());
-    final localizationDelegate = LocalizationDelegate(newLocale: state?.localizationDelegate?.activeLocale, showLocalizationKeys: !state.showsTranslationKeys);
-    emit(InitialGlobalState(
-      showsTranslationKeys: !state.showsTranslationKeys,
+    final localizationDelegate = LocalizationDelegate(newLocale: currentState?.localizationDelegate?.activeLocale, showLocalizationKeys: !currentState.showsTranslationKeys);
+    emit(LoadedGlobalState(
+      showsTranslationKeys: !currentState.showsTranslationKeys,
       localizationDelegate: localizationDelegate,
-      slowAnimationsEnabled: state.slowAnimationsEnabled,
-      locale: state.locale,
-      targetPlatform: state.targetPlatform,
+      slowAnimationsEnabled: currentState.slowAnimationsEnabled,
+      locale: currentState.locale,
+      targetPlatform: currentState.targetPlatform,
     ));
   }
 
   Future<void> changeSlowAnimations({bool enabled}) async {
-    emit(InitialGlobalState(
+    final currentState = state;
+    emit(LoadedGlobalState(
       slowAnimationsEnabled: enabled,
-      showsTranslationKeys: state.showsTranslationKeys,
-      localizationDelegate: state.localizationDelegate,
-      locale: state.locale,
-      targetPlatform: state.targetPlatform,
+      showsTranslationKeys: currentState.showsTranslationKeys,
+      localizationDelegate: currentState.localizationDelegate,
+      locale: currentState.locale,
+      targetPlatform: currentState.targetPlatform,
     ));
   }
 
   Future<void> changePlatformToDefault() => changePlatform(null);
-  Future<void> changePlatformToIos() => changePlatform('android');
-  Future<void> changePlatformToAndroid() => changePlatform('ios');
+  Future<void> changePlatformToIos() => changePlatform('ios');
+  Future<void> changePlatformToAndroid() => changePlatform('android');
 
   Future<void> changeLanguageToDefault() => changeLanguage(null);
   Future<void> changeLanguageToEnglish() => changeLanguage(const Locale('en'));
