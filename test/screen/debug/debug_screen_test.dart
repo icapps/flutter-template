@@ -194,5 +194,5 @@ void verifyGlobalViewModelForDebugScreen() {
   final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
   verify(globalViewModel.showsTranslationKeys);
   verify(globalViewModel.getCurrentLanguage());
-  verify(globalViewModel.getCurrentPlatform());
+  // verify(globalViewModel.getCurrentPlatform());
 }

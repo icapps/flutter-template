@@ -8,8 +8,9 @@ import 'package:flutter_template/widget/general/styled/flutter_template_back_but
 
 class DebugPlatformSelectorScreen extends StatelessWidget with BackNavigatorMixin {
   static const String routeName = 'debug_platform_selector';
+  final Function overrideGoBack;
 
-  const DebugPlatformSelectorScreen({Key key}) : super(key: key);
+  const DebugPlatformSelectorScreen({Key key, this.overrideGoBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class DebugPlatformSelectorScreen extends StatelessWidget with BackNavigatorMixi
     final localization = Localization.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: FlutterTemplateBackButton.light(onClick: () => goBack(context)),
+        leading: FlutterTemplateBackButton.light(onClick: () => (overrideGoBack != null) ? overrideGoBack() : goBack(context)),
         title: const Text('Select a platform'),
       ),
       body: ListView(

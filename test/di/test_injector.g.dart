@@ -26,7 +26,7 @@ class _$Injector extends Injector {
     container.registerSingleton<LoginRepo>((c) => MockLoginRepository());
     container.registerSingleton<TodoRepo>((c) => MockTodoRepository());
     container.registerSingleton<DebugRepo>((c) => MockDebugRepository());
-    container.registerSingleton<LocaleRepo>((c) => MockLocaleRepoitory());
+    container.registerSingleton<LocaleRepo>((c) => MockLocaleRepository());
     container.registerSingleton<RefreshRepo>((c) => MockRefreshRepository());
   }
 
@@ -48,14 +48,11 @@ class _$Injector extends Injector {
 
   void registerBlocs() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton((c) =>
-        GlobalCubit(debugRepo: c<DebugRepo>(), localeRepo: c<LocaleRepo>()));
-    container.registerSingleton((c) => LicenseCubit());
-    container.registerSingleton((c) => LoginCubit(loginRepo: c<LoginRepo>()));
-    container.registerSingleton((c) => SplashCubit(
-        loginRepo: c<LoginRepo>(), localStoring: c<LocalStoring>()));
-    container.registerSingleton((c) => TodoAddCubit(todoRepo: c<TodoRepo>()));
-    container.registerSingleton((c) => TodoListCubit(
-        todoRepo: c<TodoRepo>(), todoAddCubit: c<TodoAddCubit>()));
+    container.registerSingleton<GlobalCubit>((c) => MockGlobalCubit());
+    container.registerSingleton<LicenseCubit>((c) => MockLicenseCubit());
+    container.registerSingleton<LoginCubit>((c) => MockLoginCubit());
+    container.registerSingleton<SplashCubit>((c) => MockSplashCubit());
+    container.registerSingleton<TodoAddCubit>((c) => MockTodoAddCubit());
+    container.registerSingleton<TodoListCubit>((c) => MockTodoListCubit());
   }
 }

@@ -46,7 +46,9 @@ class DebugRepository extends DebugRepo {
     return TargetPlatform.android;
   }
 
-  static String getCurrentPlatform(TargetPlatform targetPlatform) {
+  @override
+  String getCurrentPlatform() {
+    final targetPlatform = getTargetPlatform();
     if (targetPlatform == TargetPlatform.android) {
       return LocalizationKeys.generalLabelAndroid;
     } else if (targetPlatform == TargetPlatform.iOS) {

@@ -8,4 +8,6 @@ abstract class DebugRepo {
   Future<void> saveSelectedPlatform(String selectedPlatform);
 
   TargetPlatform getTargetPlatform();
+
+  String getCurrentPlatform();
 }

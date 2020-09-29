@@ -22,6 +22,7 @@ import 'package:kiwi/kiwi.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_ffi/moor_ffi.dart';
 
+import '../mocks/bloc/mock_blocs.dart';
 import '../mocks/database/todo/mock_todo_dao_storage.dart';
 import '../mocks/mock_flutter_secure_storage.dart';
 import '../mocks/mock_shared_preferences.dart';
@@ -53,7 +54,7 @@ abstract class Injector {
   @Register.singleton(LoginRepo, from: MockLoginRepository)
   @Register.singleton(TodoRepo, from: MockTodoRepository)
   @Register.singleton(DebugRepo, from: MockDebugRepository)
-  @Register.singleton(LocaleRepo, from: MockLocaleRepoitory)
+  @Register.singleton(LocaleRepo, from: MockLocaleRepository)
   @Register.singleton(RefreshRepo, from: MockRefreshRepository)
   void registerRepositories();
 
@@ -67,12 +68,12 @@ abstract class Injector {
   @Register.singleton(TodoService, from: MockTodoService)
   void registerMockServices();
 
-  @Register.singleton(GlobalCubit)
-  @Register.singleton(LicenseCubit)
-  @Register.singleton(LoginCubit)
-  @Register.singleton(SplashCubit)
-  @Register.singleton(TodoAddCubit)
-  @Register.singleton(TodoListCubit)
+  @Register.singleton(GlobalCubit, from: MockGlobalCubit)
+  @Register.singleton(LicenseCubit, from: MockLicenseCubit)
+  @Register.singleton(LoginCubit, from: MockLoginCubit)
+  @Register.singleton(SplashCubit, from: MockSplashCubit)
+  @Register.singleton(TodoAddCubit, from: MockTodoAddCubit)
+  @Register.singleton(TodoListCubit, from: MockTodoListCubit)
   void registerBlocs();
 }
 

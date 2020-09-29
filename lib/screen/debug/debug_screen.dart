@@ -49,7 +49,7 @@ class DebugScreen extends StatelessWidget {
             DebugRowItem(
               key: Keys.debugTargetPlatform,
               title: localization.debugTargetPlatformTitle,
-              subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(DebugRepository.getCurrentPlatform(state?.targetPlatform))),
+              subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(context.bloc<GlobalCubit>().targetPlatformAsString)),
               onClick: () => goToTargetPlatformSelector(context),
             ),
             DebugRowTitle(title: localization.debugLocaleTitle),

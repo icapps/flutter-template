@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -89,7 +90,8 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'ios');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.iOS);
-      verify(shardPrefs.getString('selected_platform')).calledOnce();
+      expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelIos);
+      verify(shardPrefs.getString('selected_platform')).calledTwice();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -97,7 +99,8 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'android');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.android);
-      verify(shardPrefs.getString('selected_platform')).calledOnce();
+      expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelAndroid);
+      verify(shardPrefs.getString('selected_platform')).calledTwice();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -105,7 +108,8 @@ void main() {
       when(shardPrefs.getString('selected_platform')).thenAnswer((_) => 'iasdofiodsaf');
       final result = sut.getTargetPlatform();
       expect(result, TargetPlatform.android);
-      verify(shardPrefs.getString('selected_platform')).calledOnce();
+      expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelAndroid);
+      verify(shardPrefs.getString('selected_platform')).calledTwice();
       verifyNoMoreInteractions(shardPrefs);
     });
 
@@ -113,7 +117,8 @@ void main() {
       when(shardPrefs.getString('select_platform')).thenAnswer((_) => null);
       final result = sut.getTargetPlatform();
       expect(result, null);
-      verify(shardPrefs.getString('selected_platform')).calledOnce();
+      expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelSystemDefault);
+      verify(shardPrefs.getString('selected_platform')).calledTwice();
       verifyNoMoreInteractions(shardPrefs);
     });
   });

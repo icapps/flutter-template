@@ -16,6 +16,8 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   GlobalCubit({this.debugRepo, this.localeRepo}) : super(InitialGlobalState());
 
+  String get targetPlatformAsString => debugRepo.getCurrentPlatform();
+
   Future<void> loadInitialState() async {
     await localeRepo.setCustomLocale(null);
     final localizationDelegate = LocalizationDelegate(newLocale: null);
