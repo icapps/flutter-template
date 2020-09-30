@@ -3,7 +3,6 @@ import 'package:flutter_template/navigators/main_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../di/test_kiwi_util.dart';
-import '../screen/seed.dart';
 import '../util/test_util.dart';
 
 void main() {
@@ -12,9 +11,6 @@ void main() {
   });
 
   testWidgets('Test main navigator widget login', (tester) async {
-    seedLoginViewModel();
-    seedGlobalViewModel();
-
     final key = GlobalKey<MainNavigatorWidgetState>();
     final sut = MainNavigatorWidget(key: key);
     final testWidget = await TestUtil.loadScreen(tester, sut);

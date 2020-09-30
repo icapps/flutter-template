@@ -1,3 +1,4 @@
+import 'package:flutter_template/cubit/todoList/todo_list_cubit.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/test_kiwi_util.dart';
+import '../../../mocks/bloc/mock_blocs.dart';
 import '../../../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
@@ -27,8 +29,6 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_inital_state');
-    verifyTodoListViewModel();
-    verifyGlobalViewModel();
   });
 
   testWidgets('Test splash screen empty state', (tester) async {
@@ -37,8 +37,6 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_empty_state');
-    verifyTodoListViewModel();
-    verifyGlobalViewModel();
   });
 
   testWidgets('Test splash screen error state', (tester) async {
@@ -51,7 +49,6 @@ void main() {
     verify(todoListViewModel.errorKey);
     verify(todoListViewModel.init(any)).calledOnce();
     verifyNoMoreInteractions(todoListViewModel);
-    verifyGlobalViewModel();
   });
 
   testWidgets('Test splash screen loading state', (tester) async {
@@ -63,16 +60,9 @@ void main() {
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.init(any)).calledOnce();
     verifyNoMoreInteractions(todoListViewModel);
-    verifyGlobalViewModel();
   });
 
   group('With Data', () {
-
-    tearDown(() async {
-      verifyTodoListViewModel();
-      verifyGlobalViewModel();
-    });
-
     group('Actions', () {
       testWidgets('Test splash screen on download clicked', (tester) async {
         const sut = TodoListScreen();
@@ -111,13 +101,4 @@ void main() {
       });
     });
   });
-}
-
-void verifyTodoListViewModel() {
-  final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
-  verify(todoListViewModel.dataStream);
-  verify(todoListViewModel.isLoading);
-  verify(todoListViewModel.errorKey);
-  verify(todoListViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(todoListViewModel);
 }

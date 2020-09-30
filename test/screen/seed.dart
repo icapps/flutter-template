@@ -11,7 +11,7 @@ import '../mocks/repository/debug/mock_debug_repository.dart';
 void seedGlobalCubitWith({
   Locale locale,
   TargetPlatform targetPlatform,
-  bool showsTranslationKeys = true,
+  bool showsTranslationKeys = false,
   bool slowAnimationsEnabled = false,
   LocalizationDelegate localizationDelegate,
 }) {
@@ -22,7 +22,7 @@ void seedGlobalCubitWith({
     targetPlatform: targetPlatform ?? debugRepo.getTargetPlatform(),
     showsTranslationKeys: showsTranslationKeys,
     slowAnimationsEnabled: slowAnimationsEnabled,
-    localizationDelegate: localizationDelegate ?? LocalizationDelegate(newLocale: locale, showLocalizationKeys: showsTranslationKeys),
+    localizationDelegate: localizationDelegate ?? LocalizationDelegate(newLocale: locale, showLocalizationKeys: true),
   );
   when(globalCubit.state).thenReturn(state);
 }

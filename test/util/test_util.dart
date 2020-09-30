@@ -4,13 +4,34 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/app.dart';
+import 'package:flutter_template/cubit/global/global_cubit.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../mocks/mocked_network_images.dart';
 import 'test_screen_type.dart';
 
 class TestUtil {
+  static Future<Widget> loadScreenWithGlobalBloc(WidgetTester tester, Widget widget, GlobalCubit cubit, [MockMainNavigation mockNavigation]) async {
+    return _internalLoadWidget(
+      tester,
+      MockMainNavigator(
+        mock: mockNavigation ?? MockMainNavigation(),
+        child: InternalApp(
+          home: widget,
+          overwriteCubit: cubit,
+        ),
+      ),
+    );
+  }
+
+  static Future<void> navigateWithButton(WidgetTester tester, Key buttonKey) async {
+    expect(find.byKey(buttonKey), findsOneWidget);
+    await tester.tap(find.byKey(buttonKey));
+    await tester.pumpAndSettle();
+  }
+
   // This method should be used when taking screenshot tests of a widget that should not display text
   // Widget snapshot tests
   static Future<Widget> loadWidget(WidgetTester tester, Widget widget) async {

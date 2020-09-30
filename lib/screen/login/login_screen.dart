@@ -72,21 +72,21 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin {
                 Container(height: ThemeDimens.padding32),
                 FlutterTemplateInputField(
                   key: Keys.emailInput,
-                  enabled: state is InitialLoginState || state is ErrorLoginState,
+                  enabled: !(state is LoadingLoginState),
                   onChanged: (newValue) => setState(() => email = newValue),
                   hint: 'Email',
                 ),
                 Container(height: ThemeDimens.padding16),
                 FlutterTemplateInputField(
                   key: Keys.passwordInput,
-                  enabled: state is InitialLoginState || state is ErrorLoginState,
+                  enabled: !(state is LoadingLoginState),
                   onChanged: (newValue) => setState(() => password = newValue),
                   hint: 'Password',
                 ),
                 Container(height: ThemeDimens.padding16),
                 if (state is LoadingLoginState) ...{
                   const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeColors.white)),
-                } else if (state is InitialLoginState || state is ErrorLoginState) ...{
+                } else if (!(state is LoadingLoginState)) ...{
                   FlutterTemplateButton(
                     key: Keys.loginButton,
                     isEnabled: password != null && password.isNotEmpty && email != null && email.isNotEmpty,

@@ -25,13 +25,15 @@ class MyApp extends StatelessWidget {
 
 class InternalApp extends StatelessWidget {
   final Widget home;
+  final GlobalCubit overwriteCubit; // For testing
 
-  const InternalApp({@required this.home});
+  const InternalApp({@required this.home, this.overwriteCubit});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => KiwiContainer().resolve<GlobalCubit>()..loadInitialState(),
+      create: (context) => overwriteCubit ?? KiwiContainer().resolve<GlobalCubit>()
+        ..loadInitialState(),
       child: BlocBuilder<GlobalCubit, GlobalState>(
         buildWhen: (previous, current) =>
             previous.locale != current.locale ||

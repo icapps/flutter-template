@@ -15,6 +15,8 @@ import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 
 class DebugScreen extends StatelessWidget {
+  const DebugScreen({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GlobalCubit, GlobalState>(
