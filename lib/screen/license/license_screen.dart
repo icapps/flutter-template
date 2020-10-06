@@ -47,7 +47,7 @@ class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin im
                     Container(height: ThemeDimens.padding8),
                     Text(
                       item.license,
-                      style: TextStyle(color: Colors.black54),
+                      style: const TextStyle(color: Colors.black54),
                     ),
                   ],
                 ),

@@ -13,7 +13,10 @@ import os
 public class LoggerPlugin: NSObject, FlutterPlugin {
     let os_app = OSLog(subsystem: "com.icapps.fluttertemplate", category: "logging")
 
-    public static func register(with registrar: FlutterPluginRegistrar) {
+    public static func register(with registrar: FlutterPluginRegistrar?) {
+        guard let registrar = registrar else {
+            return;
+        }
         let channel = FlutterMethodChannel(name: "com.icapps.fluttertemplate/logging", binaryMessenger: registrar.messenger())
         let instance = LoggerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)

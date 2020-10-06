@@ -29,12 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            title: Text(localization.todoTitle),
+            icon: const Icon(Icons.list),
+            label: localization.todoTitle,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text(localization.settingsTitle),
+            icon: const Icon(Icons.settings),
+            label: localization.settingsTitle,
           ),
         ],
       ),
