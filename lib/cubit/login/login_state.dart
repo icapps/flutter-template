@@ -11,9 +11,7 @@ class InitialLoginState extends LoginState {}
 
 class LoadingLoginState extends LoginState {}
 
-class LoadedLoginState extends LoginState {
-  // final onEmailUpdated
-}
+class LoadedLoginState extends LoginState {}
 
 class ErrorLoginState extends LoginState {
   final String message;
