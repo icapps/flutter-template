@@ -270,7 +270,9 @@ void _renameDartFile(String path, String newPackageName) {
 
 void _renameKotlinFile(String path, String newPackageName) {
   final newPath = path.replaceAll(originalAndroidFolderPath, newPackageName.replaceAll('.', '/'));
-  File(path).renameSync(newPath);
+  File(path)
+    ..copySync(newPath)
+    ..deleteSync();
 }
 
 void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String value}) {
