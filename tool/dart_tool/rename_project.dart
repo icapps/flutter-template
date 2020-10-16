@@ -192,6 +192,7 @@ void _packagesGet() {
 }
 
 void _performFinalCheck() {
+  var valid = true;
   Directory('.').listSync(recursive: true).forEach((element) {
     if (element.path.contains(originalProjectName) ||
         element.path.contains(originalClassNamePrefix) ||
@@ -199,6 +200,7 @@ void _performFinalCheck() {
         element.path.contains(originalAndroidPackageName) ||
         element.path.contains(originalAppName)) {
       Logger.debug('${element.path} path still contains some template references');
+      valid = false;
     }
   });
   Directory('.').listSync(recursive: true).where((element) {
@@ -213,7 +215,13 @@ void _performFinalCheck() {
         content.contains(originalAndroidPackageName) ||
         content.contains(originalAppName)) {
       Logger.debug('${element.path} content still contains some template references');
+      valid = false;
     }
+    if(valid){
+      Logger.debug('rename_project.dart could not finish successfully');
+      exit(-1);
+    }
+    Logger.debug('rename_project.dart finished successfully');
   });
 }
 
