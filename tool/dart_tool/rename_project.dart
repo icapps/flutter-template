@@ -2,15 +2,30 @@ import 'dart:io';
 
 const originalProjectName = 'flutter_template';
 const originalClassNamePrefix = 'FlutterTemplate';
+const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
+const originalAndroidPackageName = 'com.icapps.fluttertemplate';
+const originalAppName = 'Flutter Template';
 
 void main() {
+  Logger.info('Enter name Application:');
+  final appName = stdin.readLineSync();
   Logger.info('Enter Dart Package Name:');
   final dartPackageName = stdin.readLineSync();
   Logger.info('Enter Dart Class Name Prefix:');
   final classNamePrefix = stdin.readLineSync();
 
-  Logger.info('\nEnter Android Package Name / iOS Bundle Identifier:');
-  final androidPackageName = stdin.readLineSync();
+  String androidPackageName;
+  String iosBundleIdentifier;
+  do {
+    Logger.info('\nEnter Android Package Name / iOS Bundle Identifier');
+    Logger.info('No uppercase & no underscores:');
+    final result = stdin.readLineSync();
+    final validResult = result == result.toLowerCase() && !result.contains('_');
+    if (validResult) {
+      iosBundleIdentifier = result;
+      androidPackageName = result;
+    }
+  } while (iosBundleIdentifier == null && androidPackageName == null);
 
   bool specificAppCenterIds;
   do {
@@ -23,36 +38,12 @@ void main() {
   } while (specificAppCenterIds == null);
 
   _renameAppCenterIds(classNamePrefix, specificAppCenterIds);
+  _renameAndroidPackageName(androidPackageName);
+  _renameiOSBundleIdentifier(iosBundleIdentifier);
+  _renameNiddlerPackageName(androidPackageName, iosBundleIdentifier);
+  _renameAppName(appName);
   _renamePackage(dartPackageName, classNamePrefix);
   _packagesGet();
-}
-
-void _renamePackage(String packageName, String classNamePrefix) {
-  Logger.info('Using `$packageName` as your new dart package name');
-  Logger.info('Replace text in Pubspec.yaml ...');
-  _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
-
-  Logger.info('Replace text in files ...');
-  Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
-    _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
-    _replaceImportInFile(element.path, originalProjectName, packageName);
-    _replaceImportInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _renameFile(element.path, packageName);
-  });
-
-  Logger.info('Replace text in test files ...');
-  Directory('test').listSync(recursive: true).where((element) {
-    if (element.path.endsWith('.png')) return false;
-    if (Directory(element.path).existsSync()) return false;
-    return true;
-  }).forEach((element) {
-    _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
-    _replaceImportInFile(element.path, originalProjectName, packageName);
-    _replaceImportInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _renameFile(element.path, packageName);
-  });
-
-  Logger.info('Replace text in specific files ...');
 }
 
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
@@ -86,6 +77,80 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
   }
 }
 
+void _renameAndroidPackageName(String androidPackageName) {
+  _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
+  Directory('android/app/src/main').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+  });
+}
+
+void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
+  _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
+  Directory('ios/Configuration').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+  });
+  Directory('ios/Runner').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+  });
+}
+
+void _renameAppName(String appName) {
+  _replaceInFile('fastlane/Fastfile', originalAppName, appName);
+  Directory('ios/Configuration').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalAppName, appName);
+  });
+  Directory('android/app/src').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalAppName, appName);
+  });
+}
+
+void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier) {
+  _replaceInFile('lib/niddler.dart', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('lib/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
+}
+
+void _renamePackage(String packageName, String classNamePrefix) {
+  Logger.info('Using `$packageName` as your new dart package name');
+  Logger.info('Replace text in Pubspec.yaml ...');
+  _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
+
+  Logger.info('Replace text in files ...');
+  Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
+    _replaceInFile(element.path, originalProjectName, packageName);
+    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
+    _renameFile(element.path, packageName);
+  });
+
+  Logger.info('Replace text in test files ...');
+  Directory('test').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalProjectName, packageName);
+    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
+    _renameFile(element.path, packageName);
+  });
+
+  Logger.info('Replace text in specific files ...');
+}
+
 void _packagesGet() {
   _executeCommand('flutter', ['packages', 'get']);
 }
@@ -98,13 +163,6 @@ void _replaceInFile(String path, String originalString, String newString) {
   final original = file.readAsStringSync();
   final newContent = original.replaceAll(originalString, newString);
   file.writeAsStringSync(newContent);
-}
-
-void _replaceImportInFile(String path, String originalString, String newString) {
-  final file = File(path);
-  final originalLines = file.readAsLinesSync();
-  final newContent = originalLines.map((element) => element.replaceAll(originalString, newString));
-  file.writeAsStringSync(newContent.join('\n'));
 }
 
 void _renameFile(String path, String newPackageName) {

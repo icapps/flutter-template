@@ -1,4 +1,4 @@
-package com.icapps.flutter_template.bridge
+package com.icapps.fluttertemplate.bridge
 
 import android.content.Context
 import android.util.Log
@@ -7,7 +7,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 
 object LoggerPlugin {
-    private const val CHANNEL = "com.com.icapps.fluttertemplate/logging"
+    private const val CHANNEL = "com.icapps.fluttertemplate/logging"
 
     fun registerWith(binaryMessenger: BinaryMessenger) {
         MethodChannel(binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
