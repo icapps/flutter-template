@@ -17,6 +17,7 @@ void _renamePackage(String packageName) {
   Logger.info('Replace text in files ...');
   Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
     _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
+    _replaceImportInFile(element.path, originalProjectName, packageName);
     _renameFile(element.path, packageName);
   });
 
