@@ -193,7 +193,10 @@ void _packagesGet() {
 
 void _performFinalCheck() {
   var valid = true;
-  Directory('.').listSync(recursive: true).forEach((element) {
+  Directory('.').listSync(recursive: true).where((element) {
+    if (element.path.startsWith('./.git/')) return false;
+    return true;
+  }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
         element.path.contains(originalClassNamePrefix) ||
         element.path.contains(originalIOSBundleIdentifier) ||
@@ -204,6 +207,7 @@ void _performFinalCheck() {
     }
   });
   Directory('.').listSync(recursive: true).where((element) {
+    if (element.path.startsWith('./.git/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
@@ -217,7 +221,7 @@ void _performFinalCheck() {
       Logger.debug('${element.path} content still contains some template references');
       valid = false;
     }
-    if(valid){
+    if (valid) {
       Logger.debug('rename_project.dart could not finish successfully');
       exit(-1);
     }
