@@ -220,7 +220,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
-    if (element.path == 'rename_project.dart') return false;
+    if (element.path == './tool/dart_tool/rename_project.dart') return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
