@@ -170,7 +170,7 @@ void _renamePackage(String packageName, String description, String classNamePref
   Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
     _replaceInFile(element.path, originalProjectName, packageName);
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _renameFile(element.path, packageName);
+    _renameDartFile(element.path, packageName);
   });
 
   Logger.info('Replace text in test files ...');
@@ -181,13 +181,13 @@ void _renamePackage(String packageName, String description, String classNamePref
   }).forEach((element) {
     _replaceInFile(element.path, originalProjectName, packageName);
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _renameFile(element.path, packageName);
+    _renameDartFile(element.path, packageName);
   });
 
   Directory('test').listSync(recursive: true).where((element) {
     return element.path.endsWith('.png');
   }).forEach((element) {
-    _renameFile(element.path, packageName);
+    _renameDartFile(element.path, packageName);
   });
 
   Logger.info('Replace text in specific files ...');
@@ -251,7 +251,7 @@ void _replaceInFile(String path, String originalString, String newString) {
   file.writeAsStringSync(newContent);
 }
 
-void _renameFile(String path, String newPackageName) {
+void _renameDartFile(String path, String newPackageName) {
   final newPath = path.replaceAll(originalProjectName, newPackageName);
   File(path).renameSync(newPath);
 }
