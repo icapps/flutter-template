@@ -198,7 +198,7 @@ void _packagesGet() {
 }
 
 void _performFinalCheck() {
-  print('Starting the final path reference check...');
+  Logger.debug('Starting the final path reference check...');
   var valid = true;
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
@@ -213,9 +213,9 @@ void _performFinalCheck() {
       valid = false;
     }
   });
-  print('Final path reference check finished');
-
-  print('Starting the final content reference check...');
+  Logger.debug('Final path reference check finished');
+  Logger.debug('');
+  Logger.debug('Starting the final content reference check...');
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.endsWith('.png')) return false;
@@ -234,7 +234,8 @@ void _performFinalCheck() {
       valid = false;
     }
   });
-  print('Final content reference check finished');
+  Logger.debug('Final content reference check finished');
+  Logger.debug('');
   if (!valid) {
     Logger.debug('rename_project.dart could not finish successfully');
     exit(-1);
