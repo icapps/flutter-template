@@ -184,6 +184,12 @@ void _renamePackage(String packageName, String description, String classNamePref
     _renameFile(element.path, packageName);
   });
 
+  Directory('test').listSync(recursive: true).where((element) {
+    return element.path.endsWith('.png');
+  }).forEach((element) {
+    _renameFile(element.path, packageName);
+  });
+
   Logger.info('Replace text in specific files ...');
 }
 
@@ -213,6 +219,7 @@ void _performFinalCheck() {
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.endsWith('.png')) return false;
+    if (element.path.endsWith('.ttf')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
