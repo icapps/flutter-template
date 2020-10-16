@@ -99,6 +99,7 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _renameKotlinFile(element.path, androidPackageName);
   });
+  _deleteOldKotlinFiles(androidPackageName);
   Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     return true;
@@ -112,6 +113,16 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
+}
+
+void _deleteOldKotlinFiles(String androidPackageName) {
+  if (androidPackageName.startsWith('com.icapps')) {
+    File('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
+  } else if (androidPackageName.startsWith('com')) {
+    File('android/app/src/main/kotlin/com/icapps').deleteSync();
+  } else {
+    File('android/app/src/main/kotlin/com').deleteSync();
+  }
 }
 
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
