@@ -27,8 +27,8 @@ void _renamePackage(String packageName) {
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
-    _renameFile(element.path, packageName);
     _replaceImportInFile(element.path, originalProjectName, packageName);
+    _renameFile(element.path, packageName);
   });
 }
 
