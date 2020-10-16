@@ -81,6 +81,7 @@ void _renameAndroidPackageName(String androidPackageName) {
   _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
   _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
@@ -113,6 +114,7 @@ void _renameAppName(String appName) {
     _replaceInFile(element.path, originalAppName, appName);
   });
   Directory('android/app/src').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
