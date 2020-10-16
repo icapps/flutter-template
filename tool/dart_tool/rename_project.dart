@@ -5,10 +5,13 @@ const originalClassNamePrefix = 'FlutterTemplate';
 const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
 const originalAndroidPackageName = 'com.icapps.fluttertemplate';
 const originalAppName = 'Flutter Template';
+const originalDescription = 'A Flutter Template to get started quickly';
 
 void main() {
   Logger.info('Enter name Application:');
   final appName = stdin.readLineSync();
+  Logger.info('Enter description for the pubspec.yaml:');
+  final description = stdin.readLineSync();
   Logger.info('Enter Dart Package Name:');
   final dartPackageName = stdin.readLineSync();
   Logger.info('Enter Dart Class Name Prefix:');
@@ -42,8 +45,9 @@ void main() {
   _renameiOSBundleIdentifier(iosBundleIdentifier);
   _renameNiddlerPackageName(androidPackageName, iosBundleIdentifier, appName);
   _renameAppName(appName);
-  _renamePackage(dartPackageName, classNamePrefix);
+  _renamePackage(dartPackageName, description, classNamePrefix);
   _packagesGet();
+  _performFinalCheck();
 }
 
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
@@ -155,10 +159,11 @@ void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdenti
   _replaceInFile('lib/niddler.dart', originalAppName, appName);
 }
 
-void _renamePackage(String packageName, String classNamePrefix) {
+void _renamePackage(String packageName, String description, String classNamePrefix) {
   Logger.info('Using `$packageName` as your new dart package name');
   Logger.info('Replace text in Pubspec.yaml ...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
+  _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
   _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix, classNamePrefix);
 
   Logger.info('Replace text in files ...');
@@ -184,6 +189,32 @@ void _renamePackage(String packageName, String classNamePrefix) {
 
 void _packagesGet() {
   _executeCommand('flutter', ['packages', 'get']);
+}
+
+void _performFinalCheck() {
+  Directory('.').listSync(recursive: true).forEach((element) {
+    if (element.path.contains(originalProjectName) ||
+        element.path.contains(originalClassNamePrefix) ||
+        element.path.contains(originalIOSBundleIdentifier) ||
+        element.path.contains(originalAndroidPackageName) ||
+        element.path.contains(originalAppName)) {
+      Logger.debug('${element.path} path still contains some template references');
+    }
+  });
+  Directory('.').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    final content = File(element.path).readAsStringSync();
+    if (content.contains(originalProjectName) ||
+        content.contains(originalClassNamePrefix) ||
+        content.contains(originalIOSBundleIdentifier) ||
+        content.contains(originalAndroidPackageName) ||
+        content.contains(originalAppName)) {
+      Logger.debug('${element.path} content still contains some template references');
+    }
+  });
 }
 
 /// ==============
