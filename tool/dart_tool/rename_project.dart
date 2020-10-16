@@ -269,7 +269,12 @@ void _renameDartFile(String path, String newPackageName) {
 }
 
 void _renameKotlinFile(String path, String newPackageName) {
-  final newPath = path.replaceAll(originalAndroidFolderPath, newPackageName.replaceAll('.', '/'));
+  final newPathFolder = newPackageName.replaceAll('.', '/');
+  final newPath = path.replaceAll('android/app/src/main/kotlin/$originalAndroidFolderPath/', 'android/app/src/main/kotlin/$newPackageName/');
+  final newFolder = Directory('android/app/src/main/kotlin/$newPathFolder');
+  if (!newFolder.existsSync()) {
+    newFolder.createSync(recursive: true);
+  }
   File(path)
     ..copySync(newPath)
     ..deleteSync();
