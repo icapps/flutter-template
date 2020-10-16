@@ -11,7 +11,7 @@ void main() {
 
   Logger.info('\nEnter Android Package Name / iOS Bundle Identifier:');
   final androidPackageName = stdin.readLineSync();
-  
+
   bool specificAppCenterIds;
   do {
     Logger.info('\nDo you want to specify the AppCenter ids?\nOr use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
@@ -22,8 +22,8 @@ void main() {
     }
   } while (specificAppCenterIds == null);
 
-  _renamePackage(dartPackageName, classNamePrefix);
   _renameAppCenterIds(classNamePrefix, specificAppCenterIds);
+  _renamePackage(dartPackageName, classNamePrefix);
   _packagesGet();
 }
 
@@ -59,30 +59,30 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
   if (specificAppCenterIds) {
     Logger.info('Enter iOS AppCenter Alpha id: (Default is $classNamePrefix-iOS-Alpha)');
     final appCenterIosAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, appCenterIosAlphaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, classNamePrefix, value: appCenterIosAlphaId);
     Logger.info('Enter iOS AppCenter Beta id: (Default is $classNamePrefix-iOS-Beta)');
     final appCenterIosBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, appCenterIosBetaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, classNamePrefix, value: appCenterIosBetaId);
     Logger.info('Enter iOS AppCenter Prod id: (Default is $classNamePrefix-iOS)');
     final appCenterIosProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, appCenterIosProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, classNamePrefix, value: appCenterIosProdId);
 
     Logger.info('Enter Android AppCenter Alpha id: (Default is $classNamePrefix-Android-Alpha)');
     final appCenterAndroidAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, appCenterAndroidAlphaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, classNamePrefix, value: appCenterAndroidAlphaId);
     Logger.info('Enter Android AppCenter Beta id: (Default is $classNamePrefix-Android-Beta)');
     final appCenterAndroidBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, appCenterAndroidBetaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, classNamePrefix, value: appCenterAndroidBetaId);
     Logger.info('Enter Android AppCenter Prod id: (Default is $classNamePrefix-Android)');
     final appCenterAndroidProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, appCenterAndroidProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, classNamePrefix, value: appCenterAndroidProdId);
   } else {
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, '$classNamePrefix-iOS-Alpha');
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, '$classNamePrefix-iOS-Beta');
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, '$classNamePrefix-iOS');
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, '$classNamePrefix-Android-Alpha');
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, '$classNamePrefix-Android-Beta');
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, '$classNamePrefix-Android');
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, classNamePrefix);
   }
 }
 
@@ -117,25 +117,31 @@ void _renameFile(String path, String newPackageName) {
     ..writeAsStringSync(oldFileContent);
 }
 
-void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String value) {
+void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String value}) {
   switch (appCenterApp) {
     case AppCenterApp.ANDROID_ALPHA:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android-Alpha"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Alpha' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.ANDROID_BETA:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android-Beta"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Beta' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.ANDROID_PROD:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-Android"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_ALPHA:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS-Alpha"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Alpha' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_BETA:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS-Beta"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Beta' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_PROD:
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS"', 'appcenter_app_name = "$value"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "FlutterTemplate-iOS"', 'appcenter_app_name = "$newValue"');
       break;
   }
 }
