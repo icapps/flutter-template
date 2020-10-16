@@ -116,6 +116,7 @@ void _renameAndroidPackageName(String androidPackageName) {
 }
 
 void _deleteOldKotlinFiles(String androidPackageName) {
+  Directory('android/app/src/main/kotlin/$originalAndroidFolderPath/bridge').deleteSync();
   if (androidPackageName.startsWith('com.icapps')) {
     Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
