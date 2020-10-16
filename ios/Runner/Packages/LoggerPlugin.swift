@@ -34,10 +34,10 @@ public class LoggerPlugin: NSObject, FlutterPlugin {
     
     private func logMessage(_ arguments: Any?) {
         guard let arguments = arguments as? [String: Any], let message = arguments["message"] as? String else {
-            os_log("flutter_template - error - could not parse message", log: os_app, type: .error)
+            os_log("LoggerPlugin - error - could not parse message", log: os_app, type: .error)
             return
         }
-        os_log("flutter_template - message - %{public}@", log: os_app, type: .error, message)
+        os_log("LoggerPlugin - message - %{public}@", log: os_app, type: .error, message)
 
     }
 }
