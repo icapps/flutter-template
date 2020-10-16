@@ -93,7 +93,7 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
-  Directory('android/app/src/kotlin').listSync(recursive: true).where((element) {
+  Directory('android/app/src/main/kotlin').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
