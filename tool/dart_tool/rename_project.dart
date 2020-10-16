@@ -252,13 +252,8 @@ void _replaceInFile(String path, String originalString, String newString) {
 }
 
 void _renameFile(String path, String newPackageName) {
-  final oldFile = File(path);
-  final oldFileContent = oldFile.readAsStringSync();
-  oldFile.deleteSync();
   final newPath = path.replaceAll(originalProjectName, newPackageName);
-  File(newPath)
-    ..createSync()
-    ..writeAsStringSync(oldFileContent);
+  File(path).renameSync(newPath);
 }
 
 void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String value}) {
