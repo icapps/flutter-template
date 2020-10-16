@@ -31,6 +31,8 @@ void _renamePackage(String packageName) {
     _replaceImportInFile(element.path, originalProjectName, packageName);
     _renameFile(element.path, packageName);
   });
+
+  Logger.info('Replace text in specific files ...');
 }
 
 void _packagesGet() {
@@ -50,10 +52,7 @@ void _replaceInFile(String path, String originalString, String newString) {
 void _replaceImportInFile(String path, String originalString, String newString) {
   final file = File(path);
   final originalLines = file.readAsLinesSync();
-  final newContent = originalLines.map((element) {
-    if (element.startsWith("import 'package:$newString/")) return element.replaceAll(originalString, newString);
-    return element;
-  });
+  final newContent = originalLines.map((element) => element.replaceAll(originalString, newString));
   file.writeAsStringSync(newContent.join('\n'));
 }
 
