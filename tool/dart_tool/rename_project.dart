@@ -1,6 +1,6 @@
 import 'dart:io';
 
-const originalProjectName = 'test';
+const originalProjectName = 'flutter_template';
 
 void main() {
   Logger.info('Enter Dart Package Name:');
@@ -15,19 +15,21 @@ void _renamePackage(String packageName) {
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
 
   Logger.info('Replace text in files ...');
-  final dir = Directory('lib');
-  dir
-      .listSync(recursive: true)
-      .where((element) => !Directory(element.path).existsSync())
-      .forEach((element) => _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/"));
+  Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
+    _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
+    _renameFile(element.path, packageName);
+  });
 
   Logger.info('Replace text in test files ...');
-  final testDir = Directory('test');
-  testDir
-      .listSync(recursive: true)
-      .where((element) => !Directory(element.path).existsSync())
-      .where((element) => !element.path.endsWith('.png'))
-      .forEach((element) => _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/"));
+  Directory('test').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
+    _renameFile(element.path, packageName);
+    _replaceImportInFile(element.path, originalProjectName, packageName);
+  });
 }
 
 void _packagesGet() {
@@ -42,6 +44,26 @@ void _replaceInFile(String path, String originalString, String newString) {
   final original = file.readAsStringSync();
   final newContent = original.replaceAll(originalString, newString);
   file.writeAsStringSync(newContent);
+}
+
+void _replaceImportInFile(String path, String originalString, String newString) {
+  final file = File(path);
+  final originalLines = file.readAsLinesSync();
+  final newContent = originalLines.map((element) {
+    if (element.startsWith("import 'package:$newString/")) return element.replaceAll(originalString, newString);
+    return element;
+  });
+  file.writeAsStringSync(newContent.join('\n'));
+}
+
+void _renameFile(String path, String newPackageName) {
+  final oldFile = File(path);
+  final oldFileContent = oldFile.readAsStringSync();
+  oldFile.deleteSync();
+  final newPath = path.replaceAll(originalProjectName, newPackageName);
+  File(newPath)
+    ..createSync()
+    ..writeAsStringSync(oldFileContent);
 }
 
 void _executeCommand(String cmd, List<String> params) {
