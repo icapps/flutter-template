@@ -72,6 +72,7 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
     final appCenterAndroidProdId = stdin.readLineSync();
     _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, classNamePrefix, value: appCenterAndroidProdId);
   } else {
+    Logger.info('Replace the AppCenter ids with default values...');
     _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, classNamePrefix);
     _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, classNamePrefix);
     _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, classNamePrefix);
@@ -82,7 +83,7 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
 }
 
 void _renameAndroidPackageName(String androidPackageName) {
-  _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
+  Logger.info('Replace the android package name ...');
   _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -107,6 +108,7 @@ void _renameAndroidPackageName(String androidPackageName) {
 }
 
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
+  Logger.info('Replace the ios bundle identifier ...');
   _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
@@ -137,6 +139,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
 }
 
 void _renameAppName(String appName) {
+  Logger.info('Replace the app name ...');
   _replaceInFile('fastlane/Fastfile', originalAppName, appName);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
@@ -154,26 +157,26 @@ void _renameAppName(String appName) {
 }
 
 void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier, String appName) {
+  Logger.info('Replace text in lib/niddler.dart ...');
   _replaceInFile('lib/niddler.dart', originalAndroidPackageName, androidPackageName);
   _replaceInFile('lib/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
   _replaceInFile('lib/niddler.dart', originalAppName, appName);
 }
 
 void _renamePackage(String packageName, String description, String classNamePrefix) {
-  Logger.info('Using `$packageName` as your new dart package name');
-  Logger.info('Replace text in Pubspec.yaml ...');
+  Logger.info('Replace the description & name in the pubspec.yaml...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
   _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
   _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix, classNamePrefix);
 
-  Logger.info('Replace text in files ...');
+  Logger.info('Replace the package names & class names in lib ...');
   Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
     _replaceInFile(element.path, originalProjectName, packageName);
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
     _renameDartFile(element.path, packageName);
   });
 
-  Logger.info('Replace text in test files ...');
+  Logger.info('Replace the package names & class names in test ...');
   Directory('test').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
@@ -189,8 +192,6 @@ void _renamePackage(String packageName, String description, String classNamePref
   }).forEach((element) {
     _renameDartFile(element.path, packageName);
   });
-
-  Logger.info('Replace text in specific files ...');
 }
 
 void _packagesGet() {
@@ -290,7 +291,6 @@ void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePref
 void _executeCommand(String cmd, List<String> params) {
   final fullCommand = '$cmd ${params.join(' ')}';
   try {
-    Logger.debug('Executing command:');
     Logger.info('$fullCommand');
     final result = Process.runSync(cmd, params);
     final output = result.stdout;
