@@ -4,6 +4,7 @@ const originalProjectName = 'flutter_template';
 const originalClassNamePrefix = 'FlutterTemplate';
 const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
 const originalAndroidPackageName = 'com.icapps.fluttertemplate';
+const originalAndroidFolderPath = 'com/icapps/fluttertemplate';
 const originalAppName = 'Flutter Template';
 const originalDescription = 'A Flutter Template to get started quickly';
 
@@ -209,6 +210,7 @@ void _performFinalCheck() {
         element.path.contains(originalClassNamePrefix) ||
         element.path.contains(originalIOSBundleIdentifier) ||
         element.path.contains(originalAndroidPackageName) ||
+        element.path.contains(originalAndroidFolderPath) ||
         element.path.contains(originalAppName)) {
       Logger.debug('${element.path} path still contains some template references');
       valid = false;
@@ -230,6 +232,7 @@ void _performFinalCheck() {
         content.contains(originalClassNamePrefix) ||
         content.contains(originalIOSBundleIdentifier) ||
         content.contains(originalAndroidPackageName) ||
+        content.contains(originalAndroidFolderPath) ||
         content.contains(originalAppName)) {
       Logger.debug('${element.path} content still contains some template references');
       valid = false;
