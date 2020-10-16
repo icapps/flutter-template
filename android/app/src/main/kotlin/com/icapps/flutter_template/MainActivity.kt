@@ -1,15 +1,15 @@
 package com.icapps.flutter_template
 
-import android.os.Bundle
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugins.GeneratedPluginRegistrant
 import com.icapps.flutter_template.bridge.LoggerPlugin
 
-import io.flutter.app.FlutterActivity
-import io.flutter.plugins.GeneratedPluginRegistrant
-
-class MainActivity: FlutterActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    GeneratedPluginRegistrant.registerWith(this)
-    LoggerPlugin.registerWith(flutterView, applicationContext)
-  }
+class MainActivity : FlutterActivity() {
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
+        //Custom plugins
+        val binaryMessenger = flutterEngine.dartExecutor.binaryMessenger
+        LoggerPlugin.registerWith(binaryMessenger)
+    }
 }

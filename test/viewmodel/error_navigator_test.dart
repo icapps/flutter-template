@@ -62,7 +62,7 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
           children: [
             MaterialButton(
               key: const ValueKey('showErrorWithLocaleKey'),
-              child: Text(
+              child: const Text(
                 'Show Error with locale key',
                 style: ThemeTextStyles.lightButtonTextStyle,
               ),
@@ -73,7 +73,7 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
             ),
             MaterialButton(
               key: const ValueKey('showError'),
-              child: Text(
+              child: const Text(
                 'Show Error',
                 style: ThemeTextStyles.lightButtonTextStyle,
               ),
