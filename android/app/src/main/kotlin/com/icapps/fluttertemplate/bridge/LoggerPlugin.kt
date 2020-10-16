@@ -24,12 +24,12 @@ object LoggerPlugin {
     private fun log(call: MethodCall, result: MethodChannel.Result) {
         val messageParam = "message"
         if (!call.hasArgument(messageParam)) {
-            Log.e("flutter_template", "error - could not parse message")
+            Log.e("LoggerPlugin", "error - could not parse message")
             result.error("400", "Not all arguments are passed", null)
             return
         }
         val message = call.argument<String>(messageParam)
-        Log.d("flutter_template", "message - $message")
+        Log.d("LoggerPlugin", "message - $message")
         result.success(true)
     }
 }
