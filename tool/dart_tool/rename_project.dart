@@ -120,8 +120,11 @@ void _deleteOldKotlinFiles(String androidPackageName) {
   if (androidPackageName.startsWith('com.icapps')) {
     Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
     Directory('android/app/src/main/kotlin/com/icapps').deleteSync();
   } else {
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
+    Directory('android/app/src/main/kotlin/com/icapps').deleteSync();
     Directory('android/app/src/main/kotlin/com').deleteSync();
   }
 }
