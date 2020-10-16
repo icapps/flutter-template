@@ -221,12 +221,12 @@ void _performFinalCheck() {
       Logger.debug('${element.path} content still contains some template references');
       valid = false;
     }
-    if (valid) {
-      Logger.debug('rename_project.dart could not finish successfully');
-      exit(-1);
-    }
-    Logger.debug('rename_project.dart finished successfully');
   });
+  if (valid) {
+    Logger.debug('rename_project.dart could not finish successfully');
+    exit(-1);
+  }
+  Logger.debug('rename_project.dart finished successfully');
 }
 
 /// ==============
