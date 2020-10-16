@@ -159,6 +159,7 @@ void _renamePackage(String packageName, String classNamePrefix) {
   Logger.info('Using `$packageName` as your new dart package name');
   Logger.info('Replace text in Pubspec.yaml ...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
+  _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix, classNamePrefix);
 
   Logger.info('Replace text in files ...');
   Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
