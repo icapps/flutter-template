@@ -117,11 +117,11 @@ void _renameAndroidPackageName(String androidPackageName) {
 
 void _deleteOldKotlinFiles(String androidPackageName) {
   if (androidPackageName.startsWith('com.icapps')) {
-    File('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
-    File('android/app/src/main/kotlin/com/icapps').deleteSync();
+    Directory('android/app/src/main/kotlin/com/icapps').deleteSync();
   } else {
-    File('android/app/src/main/kotlin/com').deleteSync();
+    Directory('android/app/src/main/kotlin/com').deleteSync();
   }
 }
 
