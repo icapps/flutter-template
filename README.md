@@ -1,7 +1,3 @@
-# Flutter Template
-
-This is an icapps template project to get started with Flutter quickly
-
 ## Provided in the repo
 
 - dependency injection (kiwi)
