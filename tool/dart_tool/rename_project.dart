@@ -275,6 +275,10 @@ void _renameKotlinFile(String path, String newPackageName) {
   if (!newFolder.existsSync()) {
     newFolder.createSync(recursive: true);
   }
+  final bridgeFolder = Directory('android/app/src/main/kotlin/$newPathFolder/bridge');
+  if (!bridgeFolder.existsSync()) {
+    bridgeFolder.createSync(recursive: true);
+  }
   File(path)
     ..copySync(newPath)
     ..deleteSync();
