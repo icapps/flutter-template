@@ -98,6 +98,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   Directory('ios/Runner').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
