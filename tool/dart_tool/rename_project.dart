@@ -93,6 +93,12 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
+  Directory('android/app/src/kotlin').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _renameKotlinFile(element.path, androidPackageName);
+  });
   Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     return true;
@@ -259,6 +265,11 @@ void _replaceInFile(String path, String originalString, String newString) {
 
 void _renameDartFile(String path, String newPackageName) {
   final newPath = path.replaceAll(originalProjectName, newPackageName);
+  File(path).renameSync(newPath);
+}
+
+void _renameKotlinFile(String path, String newPackageName) {
+  final newPath = path.replaceAll(originalAndroidFolderPath, newPackageName.replaceAll('.', '/'));
   File(path).renameSync(newPath);
 }
 
