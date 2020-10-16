@@ -1,15 +1,18 @@
 import 'dart:io';
 
 const originalProjectName = 'flutter_template';
+const originalClassNamePrefix = 'FlutterTemplate';
 
 void main() {
-  Logger.info('Enter Dart Package Name:');
-  final packageName = stdin.readLineSync();
-  _renamePackage(packageName);
+  _renamePackage();
   _packagesGet();
 }
 
-void _renamePackage(String packageName) {
+void _renamePackage() {
+  Logger.info('Enter Dart Package Name:');
+  final packageName = stdin.readLineSync();
+  Logger.info('Enter Dart Class Name Prefix:');
+  final classNamePrefix = stdin.readLineSync();
   Logger.info('Using `$packageName` as your new dart package name');
   Logger.info('Replace text in Pubspec.yaml ...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
@@ -18,6 +21,7 @@ void _renamePackage(String packageName) {
   Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
     _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
     _replaceImportInFile(element.path, originalProjectName, packageName);
+    _replaceImportInFile(element.path, originalClassNamePrefix, classNamePrefix);
     _renameFile(element.path, packageName);
   });
 
@@ -29,6 +33,7 @@ void _renamePackage(String packageName) {
   }).forEach((element) {
     _replaceInFile(element.path, "import 'package:$originalProjectName/", "import 'package:$packageName/");
     _replaceImportInFile(element.path, originalProjectName, packageName);
+    _replaceImportInFile(element.path, originalClassNamePrefix, classNamePrefix);
     _renameFile(element.path, packageName);
   });
 
