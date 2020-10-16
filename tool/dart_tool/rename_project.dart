@@ -234,7 +234,7 @@ void _performFinalCheck() {
     }
   });
   print('Final content reference check finished');
-  if (valid) {
+  if (!valid) {
     Logger.debug('rename_project.dart could not finish successfully');
     exit(-1);
   }
