@@ -40,7 +40,7 @@ void main() {
   _renameAppCenterIds(classNamePrefix, specificAppCenterIds);
   _renameAndroidPackageName(androidPackageName);
   _renameiOSBundleIdentifier(iosBundleIdentifier);
-  _renameNiddlerPackageName(androidPackageName, iosBundleIdentifier);
+  _renameNiddlerPackageName(androidPackageName, iosBundleIdentifier, appName);
   _renameAppName(appName);
   _renamePackage(dartPackageName, classNamePrefix);
   _packagesGet();
@@ -87,6 +87,19 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
+  Directory('lib').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+  });
+  Directory('test').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+  });
 }
 
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
@@ -98,6 +111,19 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   Directory('ios/Runner').listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+  });
+  Directory('lib').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+  });
+  Directory('test').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
@@ -123,9 +149,10 @@ void _renameAppName(String appName) {
   });
 }
 
-void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier) {
+void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier, String appName) {
   _replaceInFile('lib/niddler.dart', originalAndroidPackageName, androidPackageName);
   _replaceInFile('lib/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile('lib/niddler.dart', originalAppName, appName);
 }
 
 void _renamePackage(String packageName, String classNamePrefix) {
