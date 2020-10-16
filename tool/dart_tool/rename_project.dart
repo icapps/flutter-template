@@ -9,7 +9,7 @@ void main() {
 void renamePackage(String packageName) {
   Logger.info('Using `$packageName` as your new dart package name');
   final dir = Directory('lib');
-  dir.listSync(recursive: true).forEach((element) {
+  dir.listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
     final file = File(element.path);
     final original = file.readAsStringSync();
     final newContent = original.replaceAll("import 'package:flutter_template/", "import 'package:$packageName/");
