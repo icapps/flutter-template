@@ -41,6 +41,16 @@ void main() {
     }
   } while (specificAppCenterIds == null);
 
+  bool replaceReadmeContent;
+  do {
+    Logger.info('\nDo you want to replace the README.md content? (yes/no)');
+    final result = stdin.readLineSync();
+    final validResult = result == 'y' || result == 'n' || result == 'yes' || result == 'no';
+    if (validResult) {
+      replaceReadmeContent = result == 'y' || result == 'yes';
+    }
+  } while (replaceReadmeContent == null);
+
   _renameAppCenterIds(classNamePrefix, specificAppCenterIds);
   _renameAndroidPackageName(androidPackageName);
   _renameiOSBundleIdentifier(iosBundleIdentifier);
@@ -48,6 +58,7 @@ void main() {
   _renameAppName(appName);
   _renamePackage(dartPackageName, description, classNamePrefix);
   _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
+  _renameReadMe(replaceReadmeContent, dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
   _packagesGet();
   _performFinalCheck();
   _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName, force: true);
@@ -234,6 +245,22 @@ void _renameTools(String dartPackageName, String description, String classNamePr
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
+}
+
+void _renameReadMe(bool replaceAll, String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName) {
+  Logger.info('Renaming the README.md file ...');
+  const readmePath = 'README.md';
+  if (replaceAll) {
+    File(readmePath).writeAsString('#### $appName');
+    return;
+  }
+
+  _replaceInFile(readmePath, originalDescription, description);
+  _replaceInFile(readmePath, originalAppName, appName);
+  _replaceInFile(readmePath, originalProjectName, dartPackageName);
+  _replaceInFile(readmePath, originalClassNamePrefix, classNamePrefix);
+  _replaceInFile(readmePath, originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile(readmePath, originalAndroidPackageName, androidPackageName);
 }
 
 void _packagesGet() {
