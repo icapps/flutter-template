@@ -2,6 +2,8 @@
 
 This is an icapps template project to get started with Flutter quickly
 
+[![Build Status](https://travis-ci.com/icapps/flutter-template.svg?branch=master)](https://travis-ci.com/icapps/flutter-template)
+
 ## Provided in the repo
 
 - dependency injection (kiwi)
