@@ -62,6 +62,8 @@ void main() {
   _packagesGet();
   _performFinalCheck();
   _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName, force: true);
+  Logger.debug('');
+  Logger.debug('rename_project.dart finished successfully');
 }
 
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
@@ -319,7 +321,6 @@ void _performFinalCheck() {
     Logger.debug('rename_project.dart could not finish successfully');
     exit(-1);
   }
-  Logger.debug('rename_project.dart finished successfully');
 }
 
 /// ==============
