@@ -52,21 +52,6 @@ void main() {
   _performFinalCheck();
 }
 
-void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName) {
-  Logger.info('Replace the package names in the tools folder ...');
-  Directory('tool').listSync(recursive: true).where((element) {
-    if (Directory(element.path).existsSync()) return false;
-    return true;
-  }).forEach((element) {
-    _replaceInFile(element.path, originalDescription, description);
-    _replaceInFile(element.path, originalAppName, appName);
-    _replaceInFile(element.path, originalProjectName, dartPackageName);
-    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
-    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
-  });
-}
-
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
   if (specificAppCenterIds) {
     Logger.info('Enter iOS AppCenter Alpha id: (Default is $classNamePrefix-iOS-Alpha)');
@@ -231,6 +216,21 @@ void _renamePackage(String packageName, String description, String classNamePref
     return element.path.endsWith('.png');
   }).forEach((element) {
     _renameDartFile(element.path, packageName);
+  });
+}
+
+void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName) {
+  Logger.info('Replace the package names in the tools folder ...');
+  Directory('tool').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalDescription, description);
+    _replaceInFile(element.path, originalAppName, appName);
+    _replaceInFile(element.path, originalProjectName, dartPackageName);
+    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
 }
 
