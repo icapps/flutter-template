@@ -211,7 +211,7 @@ void _renamePackage(String packageName, String description, String classNamePref
 
 
   Logger.info('Replace the package names in the tools folder ...');
-  Directory('tools').listSync(recursive: true).where((element) {
+  Directory('tool').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
