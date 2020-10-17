@@ -21,6 +21,7 @@ main() {
   }
   final content = '${imports.join('\n')}\nvoid main(){}';
   testFile.writeAsStringSync(content);
+
   Logger.debug('====');
   Logger.debug('Finished');
   Logger.debug('====');
