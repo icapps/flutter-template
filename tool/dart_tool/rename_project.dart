@@ -289,6 +289,7 @@ void _performFinalCheck() {
 /// ==============
 void _replaceInFile(String path, String originalString, String newString) {
   final file = File(path);
+  if (!file.existsSync()) return;
   final original = file.readAsStringSync();
   final newContent = original.replaceAll(originalString, newString);
   file.writeAsStringSync(newContent);
