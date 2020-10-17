@@ -225,7 +225,7 @@ void _performFinalCheck() {
   var valid = true;
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
-    if (element.path.startsWith('build/')) return false;
+    if (element.path.startsWith('./build/')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
@@ -243,7 +243,7 @@ void _performFinalCheck() {
   Logger.debug('Starting the final content reference check...');
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
-    if (element.path.startsWith('build/')) return false;
+    if (element.path.startsWith('./build/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
