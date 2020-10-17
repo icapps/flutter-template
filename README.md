@@ -3,6 +3,7 @@
 This is an icapps template project to get started with Flutter quickly
 
 [![Build Status](https://travis-ci.com/icapps/flutter-template.svg?branch=master)](https://travis-ci.com/icapps/flutter-template)
+[![Coverage Status](https://coveralls.io/repos/github/icapps/flutter-template/badge.svg)](https://coveralls.io/github/icapps/flutter-template)
 
 ## Provided in the repo
 
