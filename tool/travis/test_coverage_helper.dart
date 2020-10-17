@@ -5,6 +5,8 @@ const packageName = 'flutter_template';
 main() {
   Logger.debug('====');
   Logger.debug('First create a file with all other files imported so flutter test coverage uses all files');
+  Logger.debug('====');
+
   final imports = Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     if (element.path.endsWith('.g.dart')) return false;
@@ -19,6 +21,8 @@ main() {
   }
   final content = '${imports.join('\n')}\nvoid main(){}';
   testFile.writeAsStringSync(content);
+  Logger.debug('====');
+  Logger.debug('Finished');
   Logger.debug('====');
 }
 
