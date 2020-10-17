@@ -238,6 +238,7 @@ void _performFinalCheck() {
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
+    if (element.path.startsWith('./.idea/')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
@@ -256,6 +257,7 @@ void _performFinalCheck() {
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
+    if (element.path.startsWith('./.idea/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
