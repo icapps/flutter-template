@@ -226,7 +226,7 @@ void _renameTools(String dartPackageName, String description, String classNamePr
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    if (force == false || force == null && element.path == './tool/dart_tool/rename_project.dart') return;
+    if ((force == false || force == null) && element.path == './tool/dart_tool/rename_project.dart') return;
     _replaceInFile(element.path, originalDescription, description);
     _replaceInFile(element.path, originalAppName, appName);
     _replaceInFile(element.path, originalProjectName, dartPackageName);
