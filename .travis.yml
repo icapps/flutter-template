@@ -26,6 +26,9 @@ jobs:
     - stage: quality
       name: "Analyze"
       script: ./tool/travis/analyze.sh
+    - stage: quality
+      name: "Rename Project Test"
+      script: ./tool/travis/rename_project.sh
 
 stages:
   - quality
