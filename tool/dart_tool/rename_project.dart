@@ -1,12 +1,12 @@
 import 'dart:io';
 
-const originalProjectName = 'test_project';
-const originalClassNamePrefix = 'TestProject';
-const originalIOSBundleIdentifier = 'com.test.project';
-const originalAndroidPackageName = 'com.test.project';
+const originalProjectName = 'flutter_template';
+const originalClassNamePrefix = 'FlutterTemplate';
+const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
+const originalAndroidPackageName = 'com.icapps.fluttertemplate';
 const originalAndroidFolderPath = 'com/icapps/fluttertemplate';
-const originalAppName = 'Test Project';
-const originalDescription = 'description';
+const originalAppName = 'Flutter Template';
+const originalDescription = 'A Flutter Template to get started quickly';
 
 void main() {
   Logger.info('Enter name Application:');
@@ -50,6 +50,7 @@ void main() {
   _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
   _packagesGet();
   _performFinalCheck();
+  _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName, force: true);
 }
 
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
@@ -219,12 +220,13 @@ void _renamePackage(String packageName, String description, String classNamePref
   });
 }
 
-void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName) {
+void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName, {bool force = false}) {
   Logger.info('Replace the package names in the tools folder ...');
   Directory('tool').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
+    if (force == false || force == null && element.path == './tool/dart_tool/rename_project.dart') return;
     _replaceInFile(element.path, originalDescription, description);
     _replaceInFile(element.path, originalAppName, appName);
     _replaceInFile(element.path, originalProjectName, dartPackageName);
@@ -270,6 +272,9 @@ void _performFinalCheck() {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
+    if (element.path == './tool/dart_tool/rename_project.dart') {
+      return;
+    }
     final content = File(element.path).readAsStringSync();
     if (content.contains(originalProjectName) ||
         content.contains(originalClassNamePrefix) ||
