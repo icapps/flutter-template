@@ -1,12 +1,12 @@
 import 'dart:io';
 
-const originalProjectName = 'flutter_template';
-const originalClassNamePrefix = 'FlutterTemplate';
-const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
-const originalAndroidPackageName = 'com.icapps.fluttertemplate';
+const originalProjectName = 'test_project';
+const originalClassNamePrefix = 'TestProject';
+const originalIOSBundleIdentifier = 'com.test.project';
+const originalAndroidPackageName = 'com.test.project';
 const originalAndroidFolderPath = 'com/icapps/fluttertemplate';
-const originalAppName = 'Flutter Template';
-const originalDescription = 'A Flutter Template to get started quickly';
+const originalAppName = 'Test Project';
+const originalDescription = 'description';
 
 void main() {
   Logger.info('Enter name Application:');
@@ -326,27 +326,27 @@ void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePref
   switch (appCenterApp) {
     case AppCenterApp.ANDROID_ALPHA:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Alpha' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-Android-Alpha"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.ANDROID_BETA:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Beta' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-Android-Beta"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.ANDROID_PROD:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-Android"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_ALPHA:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Alpha' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-iOS-Alpha"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_BETA:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Beta' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-iOS-Beta"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.IOS_PROD:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS' : value;
-      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "TestProject-iOS"', 'appcenter_app_name = "$newValue"');
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS"', 'appcenter_app_name = "$newValue"');
       break;
   }
 }
