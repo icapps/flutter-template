@@ -209,6 +209,18 @@ void _renamePackage(String packageName, String description, String classNamePref
     _renameDartFile(element.path, packageName);
   });
 
+
+  Logger.info('Replace the package names in the tools folder ...');
+  Directory('tools').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    _replaceInFile(element.path, originalProjectName, packageName);
+    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
+    _renameDartFile(element.path, packageName);
+  });
+
+  Logger.info('Rename snapshot files ...');
   Directory('test').listSync(recursive: true).where((element) {
     return element.path.endsWith('.png');
   }).forEach((element) {
