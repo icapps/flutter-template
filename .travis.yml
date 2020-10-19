@@ -1,0 +1,38 @@
+os: osx
+osx_image: xcode12.2
+
+before_install:
+  - chmod +x ./tool/travis/test.sh
+  - chmod +x ./tool/travis/analyze.sh
+
+sudo: required
+
+before_script:
+  - git clone https://github.com/flutter/flutter.git -b stable ../flutter
+  - export PATH="$PATH":`pwd`/../flutter/bin
+  - export PATH="$PATH":`pwd`/../flutter/bin/cache/dart-sdk/bin
+  - flutter config --no-analytics
+  - flutter doctor
+  - export FLUTTER_SDK=`pwd`/../flutter
+  - gem install coveralls-lcov
+  - flutter pub global activate dart_style
+  - flutter packages get || exit -1;
+
+jobs:
+  include:
+    - stage: quality
+      name: "Tests"
+      script: ./tool/travis/test.sh
+    - stage: quality
+      name: "Analyze"
+      script: ./tool/travis/analyze.sh
+
+stages:
+  - quality
+
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - $HOME/.pub-cache

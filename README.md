@@ -2,6 +2,10 @@
 
 This is an icapps template project to get started with Flutter quickly
 
+[![Build Status](https://travis-ci.com/icapps/flutter-template.svg?branch=master)](https://travis-ci.com/icapps/flutter-template)
+[![Coverage Status](https://coveralls.io/repos/github/icapps/flutter-template/badge.svg)](https://coveralls.io/github/icapps/flutter-template)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
 ## Provided in the repo
 
 - dependency injection (kiwi)

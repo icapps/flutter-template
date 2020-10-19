@@ -81,10 +81,10 @@
 /coverage/html/**
 
 # Test Golden files
-**/failures/i_isolatedDiff.png
-**/failures/i_maskedDiff.png
-**/failures/i_masterImage.png
-**/failures/i_testImage.png
+**_isolatedDiff.png
+**_maskedDiff.png
+**_masterImage.png
+**_testImage.png
 
 # Fvm
 .fvm/flutter_sdk
