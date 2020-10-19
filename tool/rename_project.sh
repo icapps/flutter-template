@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dart run tool/dart_tool/rename_project.dart
+flutter pub run tool/dart_tool/rename_project.dart
