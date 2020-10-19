@@ -1,12 +1,8 @@
 # Flutter Template
 
-This is an icapps template project to get started with Flutter quickly
-
 [![Build Status](https://travis-ci.com/icapps/flutter-template.svg?branch=master)](https://travis-ci.com/icapps/flutter-template)
 [![Coverage Status](https://coveralls.io/repos/github/icapps/flutter-template/badge.svg)](https://coveralls.io/github/icapps/flutter-template)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-
-## Provided in the repo
 
 - dependency injection (kiwi)
 - network layer (dio)
@@ -120,80 +116,11 @@ Fastlane is used for building iOS and Android
 
 ## Transform this template project
 
-### Fastelane
+#### Rename this project
 
-#### fastlane/Fastfile
-
+This script will run a dart script. The dart script itself will ask you some input to complete the full rename 
 ```
-private_lane :convertAppToIpa do |options|
-    Dir.chdir "ios" do
-        gym(
-            workspace: WORKSPACE,
-            scheme: options[:flavor],
-            configuration: "Release-#{options[:flavor]}",
-            export_options: {
-                method: "enterprise",
-                provisioningProfiles: {
-                    "com.icapps.fluttertemplate.dev" => "Flutter Template Debug", //TODO edit this
-                    "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha", //TODO edit this
-                    "com.icapps.fluttertemplate.beta" => "Flutter Template Beta", //TODO edit this
-                    "com.icapps.fluttertemplate" => "Flutter Template Production" //TODO edit this
-                }
-            }
-        )
-    end
-end
-```
-
-
-### Android
-
-#### android/app/src/main/AndroidManifest.xml
-
-```
-update the package name
-```
-
-#### android/app/build.gradle
-
-```
-update the package name
-```
-
-#### android/app/src/main/kotlin/...
-
-```
-update folder structure with matching packagename
-```
-
-#### update app_name
-
-```
-android/app/src/debug/value/string.xml
-android/app/src/alpha/value/string.xml
-android/app/src/beta/value/string.xml
-android/app/src/prod/value/string.xml
-```
-
-
-#### Add app icons
-
-```
-Add app icons for each flavor
-```
-
-### iOS
-
-#### ios/Configuration/Shared.xconfig
-
-```
-Add the development team
-```
-
-#### ios/Configuration/**
-
-```
-Edit the configuration files so every config is correct added
+./tool/rename_project.sh
 ```
 
 #### Add provisioning files

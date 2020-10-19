@@ -203,11 +203,11 @@ end
 private_lane :getAppNameAndroid do |options|
     flavor = options[:flavor]
     if flavor == "alpha" &&
-        appcenter_app_name = "Flutter-Template-Android-Alpha"
+        appcenter_app_name = "FlutterTemplate-Android-Alpha"
     elsif flavor == "beta"
-        appcenter_app_name = "Flutter-Template-Android-Beta"
+        appcenter_app_name = "FlutterTemplate-Android-Beta"
     elsif flavor == "prod"
-        appcenter_app_name = "Flutter-Template-Android"
+        appcenter_app_name = "FlutterTemplate-Android"
     end
 end
 
@@ -215,10 +215,10 @@ end
 private_lane :getAppNameIOS do |options|
     flavor = options[:flavor]
     if flavor == "alpha" &&
-        appcenter_app_name = "Flutter-Template-iOS-Alpha"
+        appcenter_app_name = "FlutterTemplate-iOS-Alpha"
     elsif flavor == "beta"
-        appcenter_app_name = "Flutter-Template-iOS-Beta"
+        appcenter_app_name = "FlutterTemplate-iOS-Beta"
     elsif flavor == "prod"
-        appcenter_app_name = "Flutter-Template-iOS"
+        appcenter_app_name = "FlutterTemplate-iOS"
     end
 end
