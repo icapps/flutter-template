@@ -85,3 +85,6 @@
 **/failures/i_maskedDiff.png
 **/failures/i_masterImage.png
 **/failures/i_testImage.png
+
+# Fvm
+.fvm/flutter_sdk
