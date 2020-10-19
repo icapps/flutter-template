@@ -40,7 +40,7 @@ dev_dependencies:
   icapps_license: ^0.0.6
 
 dependency_overrides:
-  path: 1.7.0 #Because every version of flutter_test from sdk depends on path 1.6.4 and flutter_template depends on path 1.7.0, flutter_test from sdk is forbidden.
+  path: 1.7.0
 
 flutter:
   uses-material-design: true
