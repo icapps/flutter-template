@@ -148,6 +148,16 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
     }
     return map;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('DbTodoTableCompanion(')
+          ..write('id: $id, ')
+          ..write('title: $title, ')
+          ..write('completed: $completed')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class $DbTodoTableTable extends DbTodoTable

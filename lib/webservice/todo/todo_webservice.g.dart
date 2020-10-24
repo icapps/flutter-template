@@ -16,11 +16,11 @@ class _TodoWebService implements TodoWebService {
   String baseUrl;
 
   @override
-  getTodos() async {
+  Future<List<Todo>> getTodos() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final Response<List<dynamic>> _result = await _dio.request('/todos',
+    final _result = await _dio.request<List<dynamic>>('/todos',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

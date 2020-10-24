@@ -7,6 +7,7 @@ part of 'injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
+  @override
   void registerNetworkDependencies() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => NetworkLogInterceptor());
@@ -18,27 +19,32 @@ class _$Injector extends Injector {
         (c) => NetworkRefreshInterceptor(c<AuthStoring>(), c<RefreshRepo>()));
   }
 
+  @override
   void registerDatabase() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoDaoStoring>(
         (c) => TodoDaoStorage(c<FlutterTemplateDatabase>()));
   }
 
+  @override
   void registerBridge() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<LoggingBridging>((c) => LoggingBridge());
   }
 
+  @override
   void registerWebservices() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService>((c) => TodoWebService(c<Dio>()));
   }
 
+  @override
   void registerDummyServices() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService>((c) => TodoDummyService());
   }
 
+  @override
   void registerRepositories() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoRepo>(
@@ -53,6 +59,7 @@ class _$Injector extends Injector {
         (c) => LocaleRepository(c<SharedPrefsStoring>()));
   }
 
+  @override
   void registerCommonDependencies() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<SharedPrefsStoring>(
@@ -67,6 +74,7 @@ class _$Injector extends Injector {
         (c) => ConnectivityController(c<Connectivity>()));
   }
 
+  @override
   void registerViewModelFactories() {
     final KiwiContainer container = KiwiContainer();
     container.registerFactory(
@@ -81,6 +89,7 @@ class _$Injector extends Injector {
     container.registerFactory((c) => LoginViewModel(c<LoginRepo>()));
   }
 
+  @override
   void registerThirdPartyServices() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => FlutterSecureStorage());
