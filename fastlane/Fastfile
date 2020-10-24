@@ -19,9 +19,6 @@ appcenter_app_name = ''
 ### CONFIGURATION ###
 #####################
 
-# Flutter configuration.
-FLUTTER_VERSION = '' # Configure if you want to use a specific version.
-
 # AppCenter configuration.
 WORKSPACE = 'ios/Runner.xcworkspace'
 BUILD_NR = ENV["BUILD_NUMBER"]
@@ -30,6 +27,8 @@ BUILD_NR = ENV["BUILD_NUMBER"]
 ### PUBLIC LANES ###
 ####################
 lane :pr do
+  installFvmVersion()
+
   Dir.chdir ".." do
     sh("flutter", "analyze")
     sh("flutter", "test")
@@ -42,8 +41,7 @@ end
 
 lane :ci_alpha do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
 
@@ -56,8 +54,7 @@ end
 
 lane :ci_beta do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
 
@@ -70,8 +67,7 @@ end
 
 lane :alpha_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppAndroid(flavor: 'alpha')
@@ -80,8 +76,7 @@ end
 
 lane :beta_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppAndroid(flavor: 'beta')
@@ -90,8 +85,7 @@ end
 
 lane :prod_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppAndroid(flavor: 'prod')
@@ -100,8 +94,7 @@ end
 
 lane :alpha_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppIOS(flavor: 'alpha')
@@ -110,8 +103,7 @@ end
 
 lane :beta_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppIOS(flavor: 'beta')
@@ -120,8 +112,7 @@ end
 
 lane :prod_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-
-  ensureFlutterVersion # Make sure Flutter is using the right version to build this project
+  installFvmVersion()
 
   prepareBuild()
   buildAppIOS(flavor: 'prod')
@@ -131,12 +122,9 @@ end
 ########################
 ###   PRIVATE LANES  ###
 ########################
-
-private_lane :ensureFlutterVersion do
-    if FLUTTER_VERSION == "" &&
-       sh("echo", "Flutter will use the latest version")
-    else
-       sh("flutter", "version", FLUTTER_VERSION)
+private_lane :installFvmVersion do
+    Dir.chdir ".." do
+      sh("dart", "./tool/dart_tool/install_fvm.dart")
     end
 end
 

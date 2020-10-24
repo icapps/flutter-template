@@ -7,6 +7,7 @@ part of 'test_injector.dart';
 // **************************************************************************
 
 class _$Injector extends Injector {
+  @override
   void registerMocks() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => MockFlutterSecureStorage());
@@ -14,6 +15,7 @@ class _$Injector extends Injector {
     container.registerSingleton<Dio>((c) => MockDio());
   }
 
+  @override
   void registerDatabase() {
     final KiwiContainer container = KiwiContainer();
     container
@@ -21,6 +23,7 @@ class _$Injector extends Injector {
     container.registerSingleton<TodoDaoStoring>((c) => MockTodoDaoStorage());
   }
 
+  @override
   void registerRepositories() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<LoginRepo>((c) => MockLoginRepository());
@@ -30,6 +33,7 @@ class _$Injector extends Injector {
     container.registerSingleton<RefreshRepo>((c) => MockRefreshRepository());
   }
 
+  @override
   void registerCommonDependencies() {
     final KiwiContainer container = KiwiContainer();
     container
@@ -41,11 +45,13 @@ class _$Injector extends Injector {
         (c) => MockConnectivityController());
   }
 
+  @override
   void registerMockServices() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<TodoService>((c) => MockTodoService());
   }
 
+  @override
   void registerViewModelFactories() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<GlobalViewModel>((c) => MockGlobalViewModel());
