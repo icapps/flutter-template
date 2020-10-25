@@ -31,7 +31,7 @@ void main() {
       flavor: Flavor.DUMMY,
       values: null,
     );
-    Error error;
+    dynamic error;
     try {
       await DummyApiUtil.getResponse<List<dynamic>>('not-existing-dummy-json');
     } catch (e) {

@@ -24,11 +24,11 @@ class TodoAddViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onBackClicked() => _navigator.goBack();
+  void onBackClicked() => _navigator.goBack<void>();
 
   Future<void> onSaveClicked() async {
     await todoRepo.saveTodo(_todo);
-    _navigator.goBack();
+    _navigator.goBack(result: true);
   }
 }
 

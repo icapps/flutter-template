@@ -37,7 +37,7 @@ void main() {
     verifyNoMoreInteractions(mockNavigation);
 
     debugKey.currentState.goToSelectLanguage();
-    verify(mockNavigation.showCustomDialog(builder: anyNamed('builder'))).calledOnce();
+    verify(mockNavigation.showCustomDialog<void>(builder: anyNamed('builder'))).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });
 }

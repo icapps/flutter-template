@@ -92,7 +92,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
   void goToLicenses() => MainNavigatorWidget.of(context).goToLicense();
 
   @override
-  void goToSelectLanguage() => MainNavigatorWidget.of(context).showCustomDialog(
+  void goToSelectLanguage() => MainNavigatorWidget.of(context).showCustomDialog<void>(
         builder: (context) => SelectLanguageDialog(
           goBack: () => MainNavigatorWidget.of(this.context).closeDialog(),
         ),

@@ -20,7 +20,7 @@ void main() {
 
   test('NetworkTokenInterceptor test authenticate call', () async {
     final request = RequestOptions(path: 'login');
-    final result = await sut.onRequest(request);
+    final dynamic result = await sut.onRequest(request);
     expect(result, request);
     verifyZeroInteractions(authStorage);
   });
@@ -29,7 +29,7 @@ void main() {
     when(authStorage.getAccessToken()).thenAnswer((_) async => accessToken);
 
     final request = RequestOptions(path: '/some-other-api-call');
-    final result = await sut.onRequest(request);
+    final dynamic result = await sut.onRequest(request);
     expect(result, request);
     // ignore: avoid_as
     expect((result as RequestOptions).headers['Authorization'], 'Bearer $accessToken');

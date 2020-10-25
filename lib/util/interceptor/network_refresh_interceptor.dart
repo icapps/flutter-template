@@ -45,6 +45,6 @@ class NetworkRefreshInterceptor extends Interceptor {
     final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
     options.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
 
-    return _dio.request(options.path, options: options);
+    return _dio.request<dynamic>(options.path, options: options);
   }
 }

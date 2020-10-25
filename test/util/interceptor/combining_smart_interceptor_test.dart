@@ -31,7 +31,7 @@ void main() {
     final interceptor3 = TestInterceptor();
     sut..addInterceptor(interceptor1)..addInterceptor(interceptor2)..addInterceptor(interceptor3);
 
-    final response = Response();
+    final response = Response<void>();
     await sut.onResponse(response);
     expect(interceptor1.onResponseCalled.isAfter(interceptor2.onResponseCalled), true);
     expect(interceptor2.onResponseCalled.isAfter(interceptor3.onResponseCalled), true);

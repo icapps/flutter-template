@@ -16,15 +16,15 @@ class GlobalViewModel with ChangeNotifier {
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
-  get themeMode => _themeMode;
+  ThemeMode get themeMode => _themeMode;
 
-  get locale => _localeDelegate.newLocale;
+  Locale get locale => _localeDelegate.newLocale;
 
-  get targetPlatform => _targetPlatform;
+  TargetPlatform get targetPlatform => _targetPlatform;
 
-  get localeDelegate => _localeDelegate;
+  LocalizationDelegate get localeDelegate => _localeDelegate;
 
-  get showsTranslationKeys => _showsTranslationKeys;
+  bool get showsTranslationKeys => _showsTranslationKeys;
 
   Future<void> init() async {
     _initLocale();

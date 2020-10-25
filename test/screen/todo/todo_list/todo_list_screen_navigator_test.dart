@@ -27,8 +27,8 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goBack();
-    verify(mockNavigation.goBack()).calledOnce();
+    debugKey.currentState.goBack<void>();
+    verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
     debugKey.currentState.goBack(result: 'testing');

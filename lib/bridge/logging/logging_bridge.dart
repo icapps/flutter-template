@@ -8,9 +8,7 @@ class LoggingBridge extends LoggingBridging {
   final _channel = const MethodChannel(CHANNEL);
 
   @override
-  Future<void> log(String message) async {
-    await _channel.invokeMethod(METHOD_CONSOLE_LOG_CHANNEL, {
-      'message': message,
-    });
-  }
+  Future<void> log(String message) async => _channel.invokeMethod(METHOD_CONSOLE_LOG_CHANNEL, {
+        'message': message,
+      });
 }

@@ -4,6 +4,9 @@ analyzer:
     missing_return: error
     todo: ignore
     sdk_version_async_exported_from_core: ignore
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
   exclude:
     - '**.g.dart'
     - 'lib/util/locale/**'
@@ -16,7 +19,6 @@ linter:
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     - annotate_overrides
-    - avoid_annotating_with_dynamic
     - avoid_as
     - avoid_bool_literals_in_conditional_expressions
     - avoid_catching_errors

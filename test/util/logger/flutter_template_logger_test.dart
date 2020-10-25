@@ -374,7 +374,7 @@ void main() {
       values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(response: Response())));
+    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(response: Response<void>())));
   });
 
   test('FlutterTemplateLogger test logNetworkRequest', () async {
@@ -411,7 +411,7 @@ void main() {
       values: const FlavorValues(baseUrl: 'https', logNetworkInfo: true),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkResponse(Response(
+    FlutterTemplateLogger.logNetworkResponse(Response<dynamic>(
       request: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
@@ -426,6 +426,6 @@ void main() {
       values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkResponse(Response());
+    FlutterTemplateLogger.logNetworkResponse(Response<dynamic>());
   });
 }

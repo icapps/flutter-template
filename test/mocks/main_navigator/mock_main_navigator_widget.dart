@@ -44,7 +44,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void goToSplash() => widget.mock.goToSplash();
 
   @override
-  void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog(builder: builder);
+  void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog<T>(builder: builder);
 }
 
 class MockMainNavigation extends Mock implements MainNavigation {}
