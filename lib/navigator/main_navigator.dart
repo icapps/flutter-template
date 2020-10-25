@@ -38,15 +38,19 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _willPop,
-      child: Navigator(
-        key: navigationKey,
-        initialRoute: FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName,
-        onGenerateRoute: _onGenerateRoute,
-        observers: [
-          HeroController(createRectTween: _createRectTween),
-        ],
+    final mediaQuery = MediaQuery.of(context);
+    return MediaQuery(
+      data: mediaQuery.copyWith(textScaleFactor: 1),
+      child: WillPopScope(
+        onWillPop: _willPop,
+        child: Navigator(
+          key: navigationKey,
+          initialRoute: FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName,
+          onGenerateRoute: _onGenerateRoute,
+          observers: [
+            HeroController(createRectTween: _createRectTween),
+          ],
+        ),
       ),
     );
   }
