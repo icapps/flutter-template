@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_template/bridge/logging/logging_bridge.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
@@ -145,10 +147,14 @@ CombiningSmartInterceptor provideCombiningSmartInterceptor(
 Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
   final dio = Dio();
   dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
+  (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson; // ignore: avoid_as
   dio.interceptors.add(networkInterceptor);
   return dio;
 }
 
+dynamic _parseAndDecode(String response) => jsonDecode(response);
+
+dynamic parseJson(String text) => compute<String, dynamic>(_parseAndDecode, text);
 //end Networking
 
 //Database
