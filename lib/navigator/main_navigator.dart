@@ -10,6 +10,7 @@ import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dar
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/route/fade_in_route.dart';
+import 'package:flutter_template/widget/general/text_scale_factor.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({
@@ -38,9 +39,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    return MediaQuery(
-      data: mediaQuery.copyWith(textScaleFactor: 1),
+    return TextScaleFactor(
       child: WillPopScope(
         onWillPop: _willPop,
         child: Navigator(
