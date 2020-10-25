@@ -29,7 +29,7 @@ void main() {
     when(refreshRepo.refresh(any)).thenAnswer((_) => Future.value());
 
     final dioError = DioError(response: Response(statusCode: 401));
-    final requestHeaders = Map<String, dynamic>();
+    final requestHeaders = <String, dynamic>{};
     final requestOption = RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
     dioError.request = requestOption;
     dioError.response.request = requestOption;

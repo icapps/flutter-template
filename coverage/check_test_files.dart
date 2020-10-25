@@ -10,7 +10,7 @@ main() {
   } else if (!testSourceCodeFolder.existsSync()) {
     throw ArgumentError('test dir not found');
   }
-  final sourceCodeTodoFiles = List<File>();
+  final sourceCodeTodoFiles = <File>[];
   final sourceFiles = getFiles(sourceCodeFolder);
 
   printMessage('');
@@ -70,7 +70,7 @@ main() {
 }
 
 List<File> getFiles(Directory directory) {
-  final files = List<File>();
+  final files = <File>[];
   final data = directory.listSync();
   for (final info in data) {
     final file = File(info.path);

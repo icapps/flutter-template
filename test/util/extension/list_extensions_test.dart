@@ -9,7 +9,7 @@ void main() {
   test('ListExtExtension replace all', () async {
     final list = ['B', 'D', 'C', 'Z', 'A', null];
     final list2 = ['B2', 'D2'];
-    final testList = List()..addAll(list);
+    final testList = <String>[]..addAll(list);
     expect(testList.length, 6);
     testList.replaceAll(list2);
     expect(testList.length, 2);

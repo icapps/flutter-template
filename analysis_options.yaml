@@ -7,9 +7,11 @@ analyzer:
   exclude:
     - '**.g.dart'
     - 'lib/util/locale/**'
+    - 'lib/util/license.dart'
 
 linter:
   rules:
+    - prefer_collection_literals
     - avoid_print
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters

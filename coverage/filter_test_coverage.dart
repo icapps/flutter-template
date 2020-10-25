@@ -8,7 +8,7 @@ main() {
     return;
   }
   const endOfRecord = 'end_of_record';
-  final sections = List<LcovSection>();
+  final sections = <LcovSection>[];
   final lines = file.readAsLinesSync();
   LcovSection currentSection;
   lines.forEach((line) {
@@ -36,7 +36,7 @@ main() {
 class LcovSection {
   String filePath;
   String header;
-  final body = List<String>();
+  final body = <String>[];
   String footer;
 
   String getBodyString() {
