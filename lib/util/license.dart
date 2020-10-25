@@ -560,7 +560,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ))
       ..add(License(
         name: 'path_provider',
-        version: '1.6.21',
+        version: '1.6.22',
         url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
         licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
         license: '''Copyright 2017, the Flutter project authors. All rights reserved.
@@ -851,7 +851,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'model_generator',
-        version: '3.2.0',
+        version: '3.3.0',
         url: 'https://github.com/icapps/flutter-model-generator',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-model-generator/master/LICENSE',
         license: '''MIT License

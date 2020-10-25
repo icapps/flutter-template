@@ -419,7 +419,7 @@ packages:
       name: model_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.0"
+    version: "3.3.0"
   moor:
     dependency: "direct main"
     description:
@@ -503,7 +503,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.21"
+    version: "1.6.22"
   path_provider_linux:
     dependency: transitive
     description:

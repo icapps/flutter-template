@@ -22,7 +22,7 @@ dependencies:
   moor: 3.4.0
   moor_ffi: 0.8.0
   connectivity: 2.0.0
-  path_provider: 1.6.21
+  path_provider: 1.6.22
   flutter_svg: 0.19.1
   path: 1.8.0-nullsafety.1
   scroll_when_needed: 1.0.0
@@ -36,7 +36,7 @@ dev_dependencies:
   kiwi_generator: 2.1.1
   icapps_translations: 3.0.5
   icapps_generator: 0.3.0
-  model_generator: 3.2.0
+  model_generator: 3.3.0
   icapps_license: 0.0.6
 
 
