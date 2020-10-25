@@ -93,7 +93,7 @@ void main() {
     });
 
     test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
-      final data = Map<String, dynamic>();
+      final data = <String, dynamic>{};
       data['code'] = '45648';
       final dioError = DioError(response: Response(statusCode: 403, data: data));
       final newError = await sut.onError(dioError);

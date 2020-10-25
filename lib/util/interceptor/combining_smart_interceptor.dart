@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
 
 class CombiningSmartInterceptor implements Interceptor {
-  final _interceptors = List<Interceptor>();
+  final _interceptors = <Interceptor>[];
 
   void addInterceptor(Interceptor interceptor) {
     _interceptors.add(interceptor);
