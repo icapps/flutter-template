@@ -1,4 +1,5 @@
 {
+  "climb_title": "klimb",
   "debug_animations_title": "Animaties",
   "debug_licenses_go_to": "Bekijk de licenties",
   "debug_licenses_title": "Licenties",
@@ -18,6 +19,7 @@
   "error_during_dev": "Je hebt een programmeerfout gemaakt",
   "error_forbidden": "Geen toegang error",
   "error_general": "Er liep iets mis",
+  "error_general_with_code": "Er liep iets mis (code: %1$s)",
   "error_internal_server": "Intern server probleem",
   "error_no_network": "Geen internet verbinding beschikbaar",
   "error_unauthorized": "Ongeautoriseerde fout",

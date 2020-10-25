@@ -7,7 +7,11 @@ import '../test_util.dart';
 void main() {
   group('FlavorValues', () {
     test('FlavorValues should be correctly initialized', () {
-      const config = FlavorValues(baseUrl: 'https://url.com/', logNetworkInfo: false);
+      const config = FlavorValues(
+        baseUrl: 'https://url.com/',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      );
       expect(config.baseUrl, 'https://url.com/');
       expect(config.logNetworkInfo, false);
     });
@@ -17,7 +21,11 @@ void main() {
     FlavorValues values;
 
     setUp(() {
-      values = FlavorValues(baseUrl: 'http://${TestUtil.getVariableString()}', logNetworkInfo: false);
+      values = FlavorValues(
+        baseUrl: 'http://${TestUtil.getVariableString()}',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      );
       FlavorConfig(flavor: Flavor.TEST, name: 'flavor_config_test', color: Colors.amber, values: values);
     });
 

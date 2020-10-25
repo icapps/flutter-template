@@ -13,6 +13,7 @@ void main() {
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,
+          showFullErrorMessages: false,
         ),
       );
     });
@@ -47,6 +48,7 @@ void main() {
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,
+          showFullErrorMessages: false,
         ),
       );
     });
