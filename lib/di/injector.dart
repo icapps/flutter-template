@@ -142,7 +142,7 @@ CombiningSmartInterceptor provideCombiningSmartInterceptor(
 ) =>
     CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
 
-Dio provideDio(NetworkLogInterceptor networkInterceptor) {
+Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
   final dio = Dio();
   dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
   dio.interceptors.add(networkInterceptor);
