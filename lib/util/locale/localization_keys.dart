@@ -3,6 +3,8 @@
 //============================================================//
 class LocalizationKeys {
 
+  static const climbTitle = 'climb_title';
+
   static const debugAnimationsTitle = 'debug_animations_title';
 
   static const debugLicensesGoTo = 'debug_licenses_go_to';
@@ -40,6 +42,8 @@ class LocalizationKeys {
   static const errorForbidden = 'error_forbidden';
 
   static const errorGeneral = 'error_general';
+
+  static const errorGeneralWithCode = 'error_general_with_code';
 
   static const errorInternalServer = 'error_internal_server';
 

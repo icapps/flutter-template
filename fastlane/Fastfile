@@ -130,7 +130,7 @@ lane :prod_ios do
 
   prepareBuild()
   buildAppIOS(flavor: 'prod')
-  # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.damme.Gaia')
+  # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate')
   add_tag                 # Add tag
 end
 

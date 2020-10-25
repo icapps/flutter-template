@@ -338,7 +338,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: true),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: true,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(
@@ -353,7 +357,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: true),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: true,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkError(InternalServerError(DioError()));
@@ -362,7 +370,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkError(InternalServerError(DioError()));
@@ -371,7 +383,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(response: Response<void>())));
@@ -382,7 +398,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: true),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: true,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkRequest(
@@ -397,7 +417,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkRequest(RequestOptions());
@@ -408,7 +432,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: true),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: true,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkResponse(Response<dynamic>(
@@ -423,7 +451,11 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: const FlavorValues(baseUrl: 'https', logNetworkInfo: false),
+      values: const FlavorValues(
+        baseUrl: 'https',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      ),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkResponse(Response<dynamic>());

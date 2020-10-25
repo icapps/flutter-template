@@ -15,6 +15,7 @@ void main() {
     const values = FlavorValues(
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: false,
+      showFullErrorMessages: false,
     );
     FlavorConfig(
       flavor: Flavor.PROD,

@@ -1,4 +1,5 @@
 {
+  "climb_title": "Climb",
   "debug_animations_title": "Animations",
   "debug_licenses_go_to": "View licenses",
   "debug_licenses_title": "Licenses",
@@ -18,6 +19,7 @@
   "error_during_dev": "You coded something wrong",
   "error_forbidden": "Forbidden error",
   "error_general": "Something went wrong",
+  "error_general_with_code": "Something went wrong (code: %1$s)",
   "error_internal_server": "Internal server error",
   "error_no_network": "No internet connection available",
   "error_unauthorized": "Unauthorized error",

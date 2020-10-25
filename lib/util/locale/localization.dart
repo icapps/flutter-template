@@ -8,7 +8,7 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class Localization {
-  Map<dynamic, dynamic> _localisedValues = Map();
+  Map<String, dynamic> _localisedValues = Map();
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
 
@@ -18,14 +18,15 @@ class Localization {
       return localizations;
     }
     final jsonContent = await rootBundle.loadString('assets/locale/${locale.languageCode}.json');
-    final Map<String, dynamic> values = json.decode(jsonContent);
-    localizations._localisedValues = values;
+    // ignore: avoid_as
+    localizations._localisedValues = json.decode(jsonContent) as Map<String, dynamic>;
     return localizations;
   }
 
   String _t(String key, {List<dynamic> args}) {
     try {
-      String value = _localisedValues[key];
+      // ignore: avoid_as
+      var value = _localisedValues[key] as String;
       if (value == null) return '$key';
       if (args == null || args.isEmpty) return value;
       args.asMap().forEach((index, arg) => value = _replaceWith(value, arg, index + 1));
@@ -44,6 +45,8 @@ class Localization {
     }
     return value;
   }
+
+  String get climbTitle => _t(LocalizationKeys.climbTitle);
 
   String get debugAnimationsTitle => _t(LocalizationKeys.debugAnimationsTitle);
 
@@ -82,6 +85,8 @@ class Localization {
   String get errorForbidden => _t(LocalizationKeys.errorForbidden);
 
   String get errorGeneral => _t(LocalizationKeys.errorGeneral);
+
+  String errorGeneralWithCode(String arg1) => _t(LocalizationKeys.errorGeneralWithCode, args: [arg1]);
 
   String get errorInternalServer => _t(LocalizationKeys.errorInternalServer);
 
