@@ -2,7 +2,7 @@ import 'dart:io';
 
 const packageName = 'flutter_template';
 
-main() {
+void main() {
   Logger.debug('====');
   Logger.debug('First create a file with all other files imported so flutter test coverage uses all files');
   Logger.debug('====');
@@ -30,5 +30,5 @@ main() {
 class Logger {
   Logger._();
 
-  static debug(value) => print(value); // ignore: avoid_print
+  static void debug(Object value) => print(value); // ignore: avoid_print
 }

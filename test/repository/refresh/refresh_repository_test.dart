@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
@@ -58,7 +57,7 @@ void main() {
       when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       final err = DioError();
-      FlutterTemplateError error;
+      dynamic error;
       var logoutCallbackCalled = false;
       try {
         sut
@@ -101,7 +100,7 @@ void main() {
       when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       final err = DioError();
-      FlutterTemplateError error;
+      dynamic error;
       var logoutCallbackCalled = false;
       try {
         sut

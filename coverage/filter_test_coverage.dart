@@ -1,6 +1,6 @@
 import 'dart:io';
 
-main() {
+void main() {
   printMessage('Start filtering the lcov.info file');
   final file = File('coverage/lcov.info');
   if (!file.existsSync()) {

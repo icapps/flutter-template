@@ -18,7 +18,7 @@ class FlutterTemplateLogger {
     logDebug('<--------------- ${response.request.method} - url: ${response.request.uri.toString()} - statucode: ${response.statusCode ?? 'N/A'}');
   }
 
-  static logNetworkError(NetworkError error) {
+  static void logNetworkError(NetworkError error) {
     final dioError = error;
     final message = StringBuffer();
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
@@ -33,19 +33,19 @@ class FlutterTemplateLogger {
     logError(message: '${message.toString()}', error: Error());
   }
 
-  static logDebug(String message) {
+  static void logDebug(String message) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       printToConsole('🐛 - ${DateTime.now()} - $message');
     }
   }
 
-  static logWarning(String message) {
+  static void logWarning(String message) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       printToConsole('⚠️ $message');
     }
   }
 
-  static logError({@required String message, @required error}) {
+  static void logError({@required String message, @required dynamic error}) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       final sb = StringBuffer()..writeln('---⛔ ERROR ⛔---')..writeln(message);
       if (error is Error && error.stackTrace != null) {
@@ -58,13 +58,13 @@ class FlutterTemplateLogger {
     }
   }
 
-  static logInfo(String message) {
+  static void logInfo(String message) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       printToConsole('💡️ $message');
     }
   }
 
-  static logVerbose(String message) {
+  static void logVerbose(String message) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       printToConsole('$message');
     }

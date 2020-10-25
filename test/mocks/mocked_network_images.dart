@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_template/vendor/transparant_image.dart';
@@ -31,14 +30,14 @@ MockHttpClient _createMockImageHttpClient(SecurityContext _, List<int> imageByte
   when(request.close()).thenAnswer((_) => Future<HttpClientResponse>.value(response));
   when(response.contentLength).thenReturn(TransparantImageUtil.transparentImage.length);
   when(response.statusCode).thenReturn(HttpStatus.ok);
-  when(response.listen(any)).thenAnswer((invocation) {
-    final void Function(List<int>) onData = invocation.positionalArguments[0];
-    final void Function() onDone = invocation.namedArguments[#onDone];
-    final void Function(Object, [StackTrace]) onError = invocation.namedArguments[#onError];
-    final bool cancelOnError = invocation.namedArguments[#cancelOnError];
-
-    return Stream<List<int>>.fromIterable(<List<int>>[imageBytes]).listen(onData, onDone: onDone, onError: onError, cancelOnError: cancelOnError);
-  });
+  // when(response.listen(any)).thenAnswer((invocation) {
+  //   final void Function(List<int>) onData = invocation.positionalArguments[0];
+  //   final void Function() onDone = invocation.namedArguments[#onDone];
+  //   final void Function(Object, [StackTrace]) onError = invocation.namedArguments[#onError];
+  //   final bool cancelOnError = invocation.namedArguments[#cancelOnError];
+  //
+  //   return Stream<List<int>>.fromIterable(<List<int>>[imageBytes]).listen(onData, onDone: onDone, onError: onError, cancelOnError: cancelOnError);
+  // });
 
   return client;
 }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-main() {
+void main() {
   printMessage('Start a check to make sure we have a test file for every sourcecode file');
   final sourceCodeFolder = Directory('lib');
   final testSourceCodeFolder = Directory('test');

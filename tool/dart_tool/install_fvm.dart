@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-main() {
+void main() {
   final file = File('.fvm/fvm_config.json');
-  final jsonObject = json.decode(file.readAsStringSync());
-  final version = jsonObject['flutterSdkVersion'];
+  final dynamic jsonObject = json.decode(file.readAsStringSync());
+  final map = jsonObject as Map<String, String>; // ignore: avoid_as
+  final version = map['flutterSdkVersion'];
 
   executeCommand('rm', ['.fvm/flutter_sdk']);
   executeCommand('fvm', ['version']);
@@ -17,7 +18,7 @@ void executeCommand(String cmd, List<String> params) {
   try {
     printMessage('\nExecuting command:\n$fullCommand');
     final result = Process.runSync(cmd, params);
-    final output = result.stdout;
+    final dynamic output = result.stdout;
     if (output.toString().isNotEmpty) {
       printMessage('$output');
     }

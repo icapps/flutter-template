@@ -27,8 +27,8 @@ void main() {
 
   group('GeneralError', () {
     test('NetworkErrorInterceptorTest parse general error', () async {
-      final dioError = DioError(response: Response(statusCode: 4686845));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<void>(statusCode: 4686845));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is GeneralNetworkError, true);
@@ -44,8 +44,8 @@ void main() {
 
   group('UnAuthorizedError', () {
     test('NetworkErrorInterceptorTest parse 401 error', () async {
-      final dioError = DioError(response: Response(statusCode: 401));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<void>(statusCode: 401));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is UnAuthorizedError, true);
@@ -61,8 +61,8 @@ void main() {
 
   group('InternalServerError', () {
     test('NetworkErrorInterceptorTest parse 500 error', () async {
-      final dioError = DioError(response: Response(statusCode: 500));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<void>(statusCode: 500));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is InternalServerError, true);
@@ -78,8 +78,8 @@ void main() {
 
   group('Forbidden Error', () {
     test('NetworkErrorInterceptorTest parse 403 error', () async {
-      final dioError = DioError(response: Response(statusCode: 403));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<void>(statusCode: 403));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is ForbiddenError, true);
@@ -95,8 +95,8 @@ void main() {
     test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
       final data = <String, dynamic>{};
       data['code'] = '45648';
-      final dioError = DioError(response: Response(statusCode: 403, data: data));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<Map<String,dynamic>>(statusCode: 403, data: data));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is ForbiddenError, true);
@@ -111,8 +111,8 @@ void main() {
   });
   group('BadRequestError', () {
     test('NetworkErrorInterceptorTest parse 400 error', () async {
-      final dioError = DioError(response: Response(statusCode: 400));
-      final newError = await sut.onError(dioError);
+      final dioError = DioError(response: Response<void>(statusCode: 400));
+      final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
       expect(newError is BadRequestError, true);
@@ -128,7 +128,7 @@ void main() {
 
   group('Code Error', () {
     test('NetworkErrorInterceptorTest code error', () async {
-      final newError = await sut.onError(null);
+      final dynamic newError = await sut.onError(null);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, false);
       expect(newError is CodeError, true);
@@ -148,7 +148,7 @@ void main() {
         name: 'Test',
         values: values,
       );
-      final newError = await sut.onError(null);
+      final dynamic newError = await sut.onError(null);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, false);
       expect(newError is CodeError, true);

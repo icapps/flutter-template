@@ -33,8 +33,8 @@ void main() {
     await TestUtil.loadScreen(tester, sut);
     reset(globalViewModel);
 
-    key.currentState.goBack();
-    verify(mockNavigation.goBack()).calledOnce();
+    key.currentState.goBack<void>();
+    verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
     key.currentState.goBack(result: 'test');

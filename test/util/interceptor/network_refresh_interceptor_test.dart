@@ -26,9 +26,9 @@ void main() {
   });
 
   test('NetworkRefreshInterceptor should intercept 401', () async {
-    when(refreshRepo.refresh(any)).thenAnswer((_) => Future.value());
+    when(refreshRepo.refresh(any)).thenAnswer((_) => Future<void>.value());
 
-    final dioError = DioError(response: Response(statusCode: 401));
+    final dioError = DioError(response: Response<void>(statusCode: 401));
     final requestHeaders = <String, dynamic>{};
     final requestOption = RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
     dioError.request = requestOption;
@@ -41,11 +41,11 @@ void main() {
     await sut.onError(unAuthorizedError);
 
     verify(refreshRepo.refresh(unAuthorizedError)).calledOnce();
-    verify(dio.request('https://somthing.com', options: anyNamed('options')));
+    verify(dio.request<void>('https://somthing.com', options: anyNamed('options')));
   });
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
-    final dioError = DioError(response: Response(statusCode: 499));
+    final dioError = DioError(response: Response<void>(statusCode: 499));
     final requestOption = RequestOptions(path: 'https://somthing.com');
     dioError.request = requestOption;
 
@@ -64,7 +64,7 @@ void main() {
   });
 
   test('NetworkRefreshInterceptor should do nothing when authorization call', () async {
-    final dioError = DioError(response: Response(statusCode: 401));
+    final dioError = DioError(response: Response<void>(statusCode: 401));
     final requestOption = RequestOptions(path: 'login');
     dioError.request = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);

@@ -22,7 +22,7 @@ void main() {
     key.currentState.goToAddTodo();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_1');
-    key.currentState.goBack();
+    key.currentState.goBack<void>();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_2_go_back');
   });

@@ -19,19 +19,19 @@ void main() {
       path: 'testing',
       method: 'GET',
     );
-    final result = await sut.onRequest(request);
+    final dynamic result = await sut.onRequest(request);
     expect(result, request);
   });
 
   test('NetworkLogInterceptor test log response', () async {
-    final response = Response(
+    final response = Response<void>(
       request: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
         method: 'GET',
       ),
     );
-    final result = await sut.onResponse(response);
+    final dynamic result = await sut.onResponse(response);
     expect(result, response);
   });
 
@@ -43,7 +43,7 @@ void main() {
         method: 'GET',
       ),
     );
-    final result = await sut.onError(error);
+    final dynamic result = await sut.onError(error);
     expect(result, error);
   });
 
@@ -57,7 +57,7 @@ void main() {
         ),
       ),
     );
-    final result = await sut.onError(error);
+    final dynamic result = await sut.onError(error);
     expect(result, error);
   });
 }

@@ -389,7 +389,7 @@ void _executeCommand(String cmd, List<String> params) {
   try {
     Logger.info('$fullCommand');
     final result = Process.runSync(cmd, params);
-    final output = result.stdout;
+    final dynamic output = result.stdout;
     if (output.toString().isNotEmpty) {
       Logger.debug('$output');
     }
@@ -411,8 +411,8 @@ enum AppCenterApp {
 class Logger {
   Logger._();
 
-  static void debug(value) => print(value); // ignore: avoid_print
+  static void debug(Object value) => print(value); // ignore: avoid_print
 
-  static void info(value) => print(value); // ignore: avoid_print
-  static void error(value) => print(value); // ignore: avoid_print
+  static void info(Object value) => print(value); // ignore: avoid_print
+  static void error(Object value) => print(value); // ignore: avoid_print
 }

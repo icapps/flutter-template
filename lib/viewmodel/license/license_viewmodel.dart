@@ -11,7 +11,7 @@ class LicenseViewModel with ChangeNotifier {
     _navigator = navigator;
   }
 
-  void onBackClicked() => _navigator.goBack();
+  void onBackClicked() => _navigator.goBack<void>();
 }
 
 abstract class LicenseNavigator with BackNavigator {}

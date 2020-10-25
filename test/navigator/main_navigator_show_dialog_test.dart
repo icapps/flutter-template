@@ -29,7 +29,7 @@ void main() {
     final sut = MainNavigatorWidget(key: key);
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_0_initial_screen');
-    key.currentState.showCustomDialog(
+    key.currentState.showCustomDialog<void>(
       builder: (context) => SelectLanguageDialog(
         goBack: () {},
       ),

@@ -19,8 +19,8 @@ class MainNavigatorWidget extends StatefulWidget {
   @override
   MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
 
-  static MainNavigationMixin of(context, {rootNavigator = false, nullOk = false}) {
-    final MainNavigationMixin navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
+  static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false, bool nullOk = false}) {
+    final navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
     assert(() {
       if (navigator == null && !nullOk) {
         throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
@@ -60,20 +60,20 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   Route _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
       case LoginScreen.routeName:
-        return FadeInRoute(child: const FlavorBanner(child: LoginScreen()), settings: settings);
+        return FadeInRoute<void>(child: const FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
-        return FadeInRoute(child: FlavorBanner(child: HomeScreen()), settings: settings);
+        return FadeInRoute<void>(child: FlavorBanner(child: HomeScreen()), settings: settings);
       case TodoAddScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
       case LicenseScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
       case 'test_route':
         if (!FlavorConfig.isInTest()) return null;
-        return MaterialPageRoute(builder: (context) => FlavorBanner(child: Container(color: ThemeColors.grey)), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => FlavorBanner(child: Container(color: ThemeColors.grey)), settings: settings);
       default:
         return null;
     }
@@ -106,5 +106,5 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void goBack<T>({T result}) => navigationKey.currentState.pop(result);
 
   @override
-  void showCustomDialog<T>({WidgetBuilder builder}) => showDialog(context: navigationKey.currentContext, builder: builder);
+  void showCustomDialog<T>({WidgetBuilder builder}) => showDialog<T>(context: navigationKey.currentContext, builder: builder);
 }

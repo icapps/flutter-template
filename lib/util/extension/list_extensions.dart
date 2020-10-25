@@ -30,7 +30,7 @@ extension ListExtensions<T> on List<T> {
   }
 }
 
-int _compareValues<T extends Comparable>(T a, T b) {
+int _compareValues<T extends Comparable<dynamic>>(T a, T b) {
   if (identical(a, b)) return 0;
   return a.compareTo(b);
 }
