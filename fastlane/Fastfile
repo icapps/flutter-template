@@ -143,9 +143,16 @@ end
 
 private_lane :buildAppIOS do |options|
     Dir.chdir ".." do
+      podRepoUpdate()
       sh("flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
       convertAppToIpa(flavor: options[:flavor])
     end
+end
+
+private_lane :podRepoUpdate do |options|
+      Dir.chdir "ios" do
+        sh("pod", "repo", "update")
+      end
 end
 
 private_lane :convertAppToIpa do |options|
