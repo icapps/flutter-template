@@ -4,9 +4,18 @@ import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 
 class FlutterTemplateLogger {
-  static Function(Object obj) printToConsole = print;
+  static Function(Object obj) printToConsole = _wrappedPrint;
 
   FlutterTemplateLogger._();
+
+  static void _wrappedPrint(Object object) {
+    if (object is String) {
+      final pattern = RegExp('.{1,800}');
+      pattern.allMatches(object).forEach((match) => print(match.group(0))); // ignore: avoid_print
+    } else {
+      print(object); // ignore: avoid_print
+    }
+  }
 
   static void logNetworkRequest(RequestOptions options) {
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
