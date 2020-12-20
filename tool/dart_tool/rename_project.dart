@@ -33,7 +33,7 @@ void main() {
 
   bool specificAppCenterIds;
   do {
-    Logger.info('\nDo you want to specify the AppCenter ids?\nOr use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
+    Logger.info('\nDo you want to specify the AppCenter ids?\n"no" will use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
     final result = stdin.readLineSync();
     final validResult = result == 'y' || result == 'n' || result == 'yes' || result == 'no';
     if (validResult) {
@@ -121,13 +121,16 @@ void _renameAndroidPackageName(String androidPackageName) {
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
-  Directory('test').listSync(recursive: true).where((element) {
-    if (element.path.endsWith('.png')) return false;
-    if (Directory(element.path).existsSync()) return false;
-    return true;
-  }).forEach((element) {
-    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
-  });
+  final testDir = Directory('test');
+  if (testDir.existsSync()) {
+    testDir.listSync(recursive: true).where((element) {
+      if (element.path.endsWith('.png')) return false;
+      if (Directory(element.path).existsSync()) return false;
+      return true;
+    }).forEach((element) {
+      _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+    });
+  }
 }
 
 void _deleteOldKotlinFiles(String androidPackageName) {
@@ -166,13 +169,16 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   }).forEach((element) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
-  Directory('test').listSync(recursive: true).where((element) {
-    if (element.path.endsWith('.png')) return false;
-    if (Directory(element.path).existsSync()) return false;
-    return true;
-  }).forEach((element) {
-    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
-  });
+  final testDir = Directory('test');
+  if (testDir.existsSync()) {
+    testDir.listSync(recursive: true).where((element) {
+      if (element.path.endsWith('.png')) return false;
+      if (Directory(element.path).existsSync()) return false;
+      return true;
+    }).forEach((element) {
+      _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    });
+  }
 }
 
 void _renameAppName(String appName) {
@@ -215,22 +221,25 @@ void _renamePackage(String packageName, String description, String classNamePref
   });
 
   Logger.info('Replace the package names & class names in test ...');
-  Directory('test').listSync(recursive: true).where((element) {
-    if (element.path.endsWith('.png')) return false;
-    if (Directory(element.path).existsSync()) return false;
-    return true;
-  }).forEach((element) {
-    _replaceInFile(element.path, originalProjectName, packageName);
-    _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _renameDartFile(element.path, packageName);
-  });
+  final testDir = Directory('test');
+  if (testDir.existsSync()) {
+    testDir.listSync(recursive: true).where((element) {
+      if (element.path.endsWith('.png')) return false;
+      if (Directory(element.path).existsSync()) return false;
+      return true;
+    }).forEach((element) {
+      _replaceInFile(element.path, originalProjectName, packageName);
+      _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
+      _renameDartFile(element.path, packageName);
+    });
 
-  Logger.info('Rename snapshot files ...');
-  Directory('test').listSync(recursive: true).where((element) {
-    return element.path.endsWith('.png');
-  }).forEach((element) {
-    _renameDartFile(element.path, packageName);
-  });
+    Logger.info('Rename snapshot files ...');
+    testDir.listSync(recursive: true).where((element) {
+      return element.path.endsWith('.png');
+    }).forEach((element) {
+      _renameDartFile(element.path, packageName);
+    });
+  }
 }
 
 void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName, {bool force = false}) {
@@ -275,6 +284,8 @@ void _performFinalCheck() {
   Directory('.').listSync(recursive: true).where((element) {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
+    if (element.path.startsWith('./.dart_tool/')) return false;
+    if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
     return true;
   }).forEach((element) {
@@ -295,25 +306,31 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
+    if (element.path.startsWith('./.dart_tool/')) return false;
+    if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
+    if (element.path.endsWith('lcov.info')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
+    if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    if (element.path == './tool/dart_tool/rename_project.dart') {
+    if (element.path == './tool/dart_tool/rename_project.dart' || element.path == './tool/travis/rename_project.dart') {
       return;
     }
-    final content = File(element.path).readAsStringSync();
-    if (content.contains(originalProjectName) ||
-        content.contains(originalClassNamePrefix) ||
-        content.contains(originalIOSBundleIdentifier) ||
-        content.contains(originalAndroidPackageName) ||
-        content.contains(originalAndroidFolderPath) ||
-        content.contains(originalAppName)) {
-      Logger.debug('${element.path} content still contains some template references');
-      valid = false;
-    }
+    try {
+      final content = File(element.path).readAsStringSync();
+      if (content.contains(originalProjectName) ||
+          content.contains(originalClassNamePrefix) ||
+          content.contains(originalIOSBundleIdentifier) ||
+          content.contains(originalAndroidPackageName) ||
+          content.contains(originalAndroidFolderPath) ||
+          content.contains(originalAppName)) {
+        Logger.debug('${element.path} content still contains some template references');
+        valid = false;
+      }
+    } on FileSystemException catch (_) {}
   });
   Logger.debug('Final content reference check finished');
   Logger.debug('');
