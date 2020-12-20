@@ -18,4 +18,6 @@ abstract class SharedPrefsStoring {
   double getDouble(String key);
 
   Future<void> deleteKey(String key);
+
+  bool containsKey(String key);
 }

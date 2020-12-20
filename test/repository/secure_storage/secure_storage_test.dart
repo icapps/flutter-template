@@ -19,20 +19,30 @@ void main() {
   test('SecureStorage should write', () {
     sut.write(key: 'Key', value: 'Value');
     verify(secureStorage.write(key: anyNamed('key'), value: anyNamed('value'))).calledOnce();
+    verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage should read', () {
     sut.read(key: 'key');
     verify(secureStorage.read(key: anyNamed('key'))).calledOnce();
+    verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage should delete', () {
     sut.delete(key: 'ke');
     verify(secureStorage.delete(key: anyNamed('key'))).calledOnce();
+    verifyNoMoreInteractions(secureStorage);
   });
 
-  test('SecureStoreage should delete all', () {
+  test('SecureStorage should delete all', () {
     sut.deleteAll();
     verify(secureStorage.deleteAll()).calledOnce();
+    verifyNoMoreInteractions(secureStorage);
+  });
+
+  test('SecureStorage containsKey', () {
+    sut.containsKey(key: 'KEY');
+    verify(secureStorage.containsKey(key: 'KEY')).calledOnce();
+    verifyNoMoreInteractions(secureStorage);
   });
 }

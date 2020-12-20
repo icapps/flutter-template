@@ -88,4 +88,10 @@ void main() {
     verify(sharedPreferences.remove('KEY')).calledOnce();
     verifyNoMoreInteractions(sharedPreferences);
   });
+
+  test('SharedPrefsStorage containsKey', () {
+    sut.containsKey('KEY');
+    verify(sharedPreferences.containsKey('KEY')).calledOnce();
+    verifyNoMoreInteractions(sharedPreferences);
+  });
 }

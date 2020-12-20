@@ -8,47 +8,32 @@ class SharedPrefsStorage extends SharedPrefsStoring {
   SharedPrefsStorage(this._sharedPreferences);
 
   @override
-  Future<void> saveString({@required String key, @required String value}) async {
-    await _sharedPreferences.setString(key, value);
-  }
+  Future<void> saveString({@required String key, @required String value}) => _sharedPreferences.setString(key, value);
 
   @override
-  Future<void> saveBoolean({@required String key, @required bool value}) async {
-    await _sharedPreferences.setBool(key, value);
-  }
+  Future<void> saveBoolean({@required String key, @required bool value}) => _sharedPreferences.setBool(key, value);
 
   @override
-  Future<void> saveInt({@required String key, @required int value}) async {
-    await _sharedPreferences.setInt(key, value);
-  }
+  Future<void> saveInt({@required String key, @required int value}) => _sharedPreferences.setInt(key, value);
 
   @override
-  Future<void> saveDouble({@required String key, @required double value}) async {
-    await _sharedPreferences.setDouble(key, value);
-  }
+  Future<void> saveDouble({@required String key, @required double value}) => _sharedPreferences.setDouble(key, value);
 
   @override
-  String getString(String key) {
-    return _sharedPreferences.getString(key);
-  }
+  String getString(String key) => _sharedPreferences.getString(key);
 
   @override
-  bool getBoolean(String key) {
-    return _sharedPreferences.getBool(key);
-  }
+  bool getBoolean(String key) => _sharedPreferences.getBool(key);
 
   @override
-  int getInt(String key) {
-    return _sharedPreferences.getInt(key);
-  }
+  int getInt(String key) => _sharedPreferences.getInt(key);
 
   @override
-  double getDouble(String key) {
-    return _sharedPreferences.getDouble(key);
-  }
+  double getDouble(String key) => _sharedPreferences.getDouble(key);
 
   @override
-  Future<void> deleteKey(String key) async {
-    await _sharedPreferences.remove(key);
-  }
+  Future<void> deleteKey(String key) => _sharedPreferences.remove(key);
+
+  @override
+  bool containsKey(String key) => _sharedPreferences.containsKey(key);
 }
