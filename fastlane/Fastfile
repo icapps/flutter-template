@@ -40,12 +40,12 @@ end
 ### PUBLIC LANES ###
 ####################
 lane :pr do
-  installFvmVersion()
+  installFvmVersion
 
   Dir.chdir ".." do
-    sh("flutter", "analyze")
-    sh("flutter", "test")
-    #sh("flutter", "test", "--coverage")
+    sh("fvm", "flutter", "analyze")
+    sh("fvm", "flutter", "test")
+    #sh("fvm", "flutter", "test", "--coverage")
     #sh("dart", "--version")
     #sh("dart", "coverage/filter_test_coverage.dart")
     #sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
@@ -54,9 +54,9 @@ end
 
 lane :ci_alpha do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
 
   buildAppAndroid(flavor: 'alpha')
   uploadToAppcenterAndroid(flavor: 'alpha') # Deploy the apk to AppCenter.
@@ -67,9 +67,9 @@ end
 
 lane :ci_beta do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
 
   buildAppAndroid(flavor: 'beta')
   uploadToAppcenterAndroid(flavor: 'beta') # Deploy the apk to AppCenter.
@@ -80,27 +80,27 @@ end
 
 lane :alpha_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppAndroid(flavor: 'alpha')
   uploadToAppcenterAndroid(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
 
 lane :beta_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppAndroid(flavor: 'beta')
   uploadToAppcenterAndroid(flavor: 'beta') # Deploy the apk to AppCenter.
 end
 
 lane :prod_android do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppBundleAndroid(flavor: 'prod')
   # uploadToPlaystore()
   add_tag                 # Add tag
@@ -108,27 +108,27 @@ end
 
 lane :alpha_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppIOS(flavor: 'alpha')
   uploadToAppcenterIos(flavor: 'alpha') # Deploy the apk to AppCenter.
 end
 
 lane :beta_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppIOS(flavor: 'beta')
   uploadToAppcenterIos(flavor: 'beta') # Deploy the apk to AppCenter.
 end
 
 lane :prod_ios do
   ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion()
+  installFvmVersion
 
-  prepareBuild()
+  prepareBuild
   buildAppIOS(flavor: 'prod')
   # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate')
   add_tag                 # Add tag
@@ -145,27 +145,27 @@ end
 
 private_lane :prepareBuild do
     Dir.chdir ".." do
-      sh("flutter", "packages", "get")
-      sh("flutter", "clean")
+      sh("fvm", "flutter", "packages", "get")
+      sh("fvm", "flutter", "clean")
     end
 end
 
 private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
-      sh("flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
     end
 end
 
 private_lane :buildAppBundleAndroid do |options|
     Dir.chdir ".." do
-      sh("flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
     end
 end
 
 private_lane :buildAppIOS do |options|
     Dir.chdir ".." do
-      podRepoUpdate()
-      sh("flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
+      podRepoUpdate
+      sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
       convertAppToIpa(flavor: options[:flavor])
     end
 end
