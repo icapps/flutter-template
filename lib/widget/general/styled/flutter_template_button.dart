@@ -3,6 +3,7 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flutter_template/util/extension/context_extensions.dart';
+import 'package:flutter_template/util/extension/text_style_extensions.dart';
 
 class FlutterTemplateButton extends StatelessWidget {
   final String text;
@@ -26,7 +27,7 @@ class FlutterTemplateButton extends StatelessWidget {
         child: Text(
           text,
         ),
-        style: isEnabled ? theme.lightTextTheme.labelButtonSmall : theme.darkTextTheme.labelButtonSmall,
+        style: isEnabled ? theme.lightTextTheme.labelButtonSmall : theme.darkTextTheme.labelButtonSmall.withOpacity20(),
         duration: ThemeDurations.shortAnimationDuration(),
       ),
     );
