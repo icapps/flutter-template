@@ -34,13 +34,13 @@ void main() {
     verifyNoMoreInteractions(secureStorage);
   });
 
-  test('SecureStoreage should delete all', () {
+  test('SecureStorage should delete all', () {
     sut.deleteAll();
     verify(secureStorage.deleteAll()).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 
-  test('SecureStoreage containsKey', () {
+  test('SecureStorage containsKey', () {
     sut.containsKey(key: 'KEY');
     verify(secureStorage.containsKey(key: 'KEY')).calledOnce();
     verifyNoMoreInteractions(secureStorage);
