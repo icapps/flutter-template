@@ -1,12 +1,12 @@
 import 'dart:io';
 
-const originalProjectName = 'test_project';
-const originalClassNamePrefix = 'TestProject';
-const originalIOSBundleIdentifier = 'com.test.project';
-const originalAndroidPackageName = 'com.test.project';
+const originalProjectName = 'flutter_template';
+const originalClassNamePrefix = 'FlutterTemplate';
+const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
+const originalAndroidPackageName = 'com.icapps.fluttertemplate';
 const originalAndroidFolderPath = 'com/icapps/fluttertemplate';
-const originalAppName = 'Test Project';
-const originalDescription = 'description';
+const originalAppName = 'Flutter Template';
+const originalDescription = 'A Flutter Template to get started quickly';
 
 void main() {
   Logger.info('Enter name Application:');
@@ -285,6 +285,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
     if (element.path.startsWith('./.dart_tool/')) return false;
+    if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
     return true;
   }).forEach((element) {
@@ -308,11 +309,12 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
+    if (element.path.endsWith('lcov.info')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    if (element.path == './tool/dart_tool/rename_project.dart') {
+    if (element.path == './tool/dart_tool/rename_project.dart' || element.path == './tool/travis/rename_project.dart') {
       return;
     }
     try {
