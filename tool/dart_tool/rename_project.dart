@@ -312,6 +312,7 @@ void _performFinalCheck() {
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('lcov.info')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
+    if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
