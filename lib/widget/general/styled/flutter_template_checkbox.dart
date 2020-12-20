@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/extension/context_extensions.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
@@ -16,6 +16,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     if (context.isIOS) {
       return GestureDetector(
         onTap: () => onChanged(!value),
@@ -27,7 +28,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
               ? Center(
                   child: SvgIcon(
                     svgAsset: ThemeAssets.doneIcon(context),
-                    color: ThemeColors.accent,
+                    color: theme.colorsTheme.accent,
                     size: ThemeDimens.padding24,
                   ),
                 )
@@ -38,7 +39,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
     return Checkbox(
       value: value,
       onChanged: onChanged,
-      activeColor: ThemeColors.accent,
+      activeColor: theme.colorsTheme.accent,
     );
   }
 }

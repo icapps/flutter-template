@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
@@ -12,12 +12,13 @@ class ActionItem extends StatelessWidget {
   const ActionItem({
     @required this.svgAsset,
     @required this.onClick,
-    this.color = ThemeColors.white,
+    this.color,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     return Container(
       height: ThemeDimens.padding56,
       width: ThemeDimens.padding56,
@@ -31,7 +32,7 @@ class ActionItem extends StatelessWidget {
               child: SvgIcon(
                 svgAsset: svgAsset,
                 size: ThemeDimens.padding24,
-                color: color,
+                color: color ?? theme.colorsTheme.lightIcon,
               ),
             ),
             onClick: onClick,

@@ -1,9 +1,9 @@
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization.dart';
@@ -31,6 +31,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     final localization = Localization.of(context);
     return ProviderWidget<TodoListViewModel>(
       consumer: (context, viewModel, child) => Scaffold(
@@ -89,7 +90,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
                         padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16),
                         child: Container(
                           height: 1,
-                          color: ThemeColors.primary.withOpacity(0.1),
+                          color: theme.colorsTheme.primary.withOpacity(0.1),
                         ),
                       ),
                     );

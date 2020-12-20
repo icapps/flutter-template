@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 
 class FlutterTemplateSwitch extends StatelessWidget {
   final bool value;
@@ -12,10 +12,11 @@ class FlutterTemplateSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     return Switch.adaptive(
       value: value ?? false,
       onChanged: onChanged,
-      activeColor: ThemeColors.accent,
+      activeColor: theme.colorsTheme.accent,
     );
   }
 }
