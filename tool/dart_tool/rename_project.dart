@@ -309,6 +309,7 @@ void _performFinalCheck() {
     if (element.path.endsWith('.DS_Store')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
+    if (element.path.endsWith('UserInterfaceState.xcuserstate')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
