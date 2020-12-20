@@ -4,8 +4,8 @@ import 'dart:io';
 void main() {
   final file = File('.fvm/fvm_config.json');
   final dynamic jsonObject = json.decode(file.readAsStringSync());
-  final map = jsonObject as Map<String, String>; // ignore: avoid_as
-  final version = map['flutterSdkVersion'];
+  final map = jsonObject as Map<String, dynamic>; // ignore: avoid_as
+  final version = map['flutterSdkVersion'] as String; // ignore: avoid_as
 
   executeCommand('rm', ['.fvm/flutter_sdk']);
   executeCommand('fvm', ['version']);
