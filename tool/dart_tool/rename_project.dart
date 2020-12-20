@@ -306,6 +306,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.git/')) return false;
     if (element.path.startsWith('./build/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
+    if (element.path.startsWith('./.dart_tool/')) return false;
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
