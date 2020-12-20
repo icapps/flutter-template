@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
-import 'package:flutter_template/styles/theme_text_styles.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -64,9 +62,8 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
               key: const ValueKey('showErrorWithLocaleKey'),
               child: const Text(
                 'Show Error with locale key',
-                style: ThemeTextStyles.lightButtonTextStyle,
               ),
-              color: ThemeColors.accent,
+              color: Colors.amber,
               onPressed: () {
                 showErrorWithLocaleKey(LocalizationKeys.errorUnauthorized);
               },
@@ -75,9 +72,8 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
               key: const ValueKey('showError'),
               child: const Text(
                 'Show Error',
-                style: ThemeTextStyles.lightButtonTextStyle,
               ),
-              color: ThemeColors.accent,
+              color: Colors.amber,
               onPressed: () {
                 showError('SOMETHING something');
               },

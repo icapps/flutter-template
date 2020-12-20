@@ -26,6 +26,7 @@ dependencies:
   flutter_svg: 0.19.1
   path: 1.8.0-nullsafety.1
   scroll_when_needed: 1.0.0
+  device_info: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 
 class FlutterTemplateBackButton extends StatelessWidget {
   final VoidCallback onClick;
   final bool fullScreen;
-  final Color color;
+  final bool isLight;
 
   const FlutterTemplateBackButton.light({
     @required this.onClick,
     this.fullScreen = false,
-  }) : color = ThemeColors.white;
+  }) : isLight = true;
 
   const FlutterTemplateBackButton.dark({
     @required this.onClick,
     this.fullScreen = false,
-  }) : color = ThemeColors.black;
+  }) : isLight = false;
 
   @override
   Widget build(BuildContext context) {
-    if (color == ThemeColors.white) {
+    final theme = FlutterTemplateTheme.of(context);
+    if (isLight) {
       return ActionItem(
         key: Keys.backButton,
         svgAsset: getCorrectIcon(context),
-        color: ThemeColors.white,
+        color: theme.colorsTheme.lightIcon,
         onClick: onClick,
       );
     }
     return ActionItem(
       key: Keys.backButton,
       svgAsset: getCorrectIcon(context),
-      color: ThemeColors.black,
+      color: theme.colorsTheme.darkIcon,
       onClick: onClick,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
-import 'package:flutter_template/styles/theme_text_styles.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
@@ -46,10 +46,11 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
   }
 
   void _showError(String error) {
+    final theme = FlutterTemplateTheme.of(context);
     final snackBar = SnackBar(
       content: Text(
         error,
-        style: ThemeTextStyles.lightButtonTextStyle,
+        style: theme.lightTextTheme.labelButtonSmall,
       ),
     );
     getScaffoldState()?.showSnackBar(snackBar);

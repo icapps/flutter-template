@@ -1,7 +1,6 @@
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
@@ -72,7 +71,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
       case 'test_route':
         if (!FlavorConfig.isInTest()) return null;
-        return MaterialPageRoute<void>(builder: (context) => FlavorBanner(child: Container(color: ThemeColors.grey)), settings: settings);
+        return MaterialPageRoute<void>(builder: (context) => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
       default:
         return null;
     }

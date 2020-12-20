@@ -1,8 +1,8 @@
+import 'package:flutter_template/styles/theme_data.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/styles/theme_text_styles.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -27,12 +27,13 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     return ChangeNotifierProvider<LoginViewModel>(
       child: Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.light(
           child: Scaffold(
             key: _scaffoldKey,
-            backgroundColor: ThemeColors.primary,
+            backgroundColor: theme.colorsTheme.backgroundDark,
             body: SafeArea(
               child: Container(
                 width: double.infinity,
@@ -40,15 +41,15 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                 child: Column(
                   children: [
                     Container(height: ThemeDimens.padding16),
-                    const Text(
+                    Text(
                       'Login',
-                      style: ThemeTextStyles.title,
+                      style: theme.lightTextTheme.titleNormal,
                       textAlign: TextAlign.center,
                     ),
                     Container(height: ThemeDimens.padding32),
-                    const Text(
+                    Text(
                       'Just fill in some text. There is no validator for the login',
-                      style: ThemeTextStyles.lightButtonTextStyle,
+                      style: theme.lightTextTheme.labelButtonSmall,
                     ),
                     Container(height: ThemeDimens.padding32),
                     FlutterTemplateInputField(
@@ -66,7 +67,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                     ),
                     Container(height: ThemeDimens.padding16),
                     if (viewModel.isLoading) ...{
-                      const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ThemeColors.white)),
+                      const FlutterTemplateProgressIndicator.light(),
                     } else
                       FlutterTemplateButton(
                         key: Keys.loginButton,

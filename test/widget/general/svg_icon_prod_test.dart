@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -26,7 +25,7 @@ void main() {
     );
     const sut = SvgIcon(
       svgAsset: 'assets/images/icons/android/done.svg',
-      color: ThemeColors.primary,
+      color: Colors.amber,
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);

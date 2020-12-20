@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/util/env/os_config.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/niddler.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
 
   await initNiddler();
 
+  await OsConfig.init();
   const values = FlavorValues(
     baseUrl: 'https://jsonplaceholder.typicode.com/',
     logNetworkInfo: true,

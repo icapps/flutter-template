@@ -11,9 +11,9 @@ class TextActionItem extends StatelessWidget {
 
   const TextActionItem({
     @required this.text,
-    @required this.style,
     @required this.enabled,
     @required this.onClick,
+    this.style,
     Key key,
   }) : super(key: key);
 

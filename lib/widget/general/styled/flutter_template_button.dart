@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
-import 'package:flutter_template/styles/theme_text_styles.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flutter_template/util/extension/context_extensions.dart';
 
@@ -21,12 +20,13 @@ class FlutterTemplateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = FlutterTemplateTheme.of(context);
     final content = Center(
       child: AnimatedDefaultTextStyle(
         child: Text(
           text,
         ),
-        style: isEnabled ? ThemeTextStyles.lightButtonTextStyle : ThemeTextStyles.disabledButtonTextStyle,
+        style: isEnabled ? theme.lightTextTheme.labelButtonSmall : theme.darkTextTheme.labelButtonSmall,
         duration: ThemeDurations.shortAnimationDuration(),
       ),
     );
@@ -35,7 +35,7 @@ class FlutterTemplateButton extends StatelessWidget {
         child: AnimatedContainer(
           height: height,
           child: content,
-          color: isEnabled ? ThemeColors.primary : ThemeColors.disabledGrey,
+          color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
           duration: ThemeDurations.shortAnimationDuration(),
         ),
         onClick: isEnabled ? onClick : null,
@@ -49,7 +49,7 @@ class FlutterTemplateButton extends StatelessWidget {
         ),
         onClick: isEnabled ? onClick : null,
       ),
-      color: isEnabled ? ThemeColors.primary : ThemeColors.disabledGrey,
+      color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
       duration: ThemeDurations.shortAnimationDuration(),
     );
   }

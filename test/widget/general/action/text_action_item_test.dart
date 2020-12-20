@@ -1,4 +1,3 @@
-import 'package:flutter_template/styles/theme_text_styles.dart';
 import 'package:flutter_template/widget/general/action/text_action_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,7 +11,6 @@ void main() {
     final sut = TextActionItem(
       text: 'Text for the text action item',
       onClick: () {},
-      style: ThemeTextStyles.lightButtonTextStyle,
       enabled: true,
     );
 
@@ -24,7 +22,6 @@ void main() {
     final sut = TextActionItem(
       text: 'Text for the text action item',
       onClick: () {},
-      style: ThemeTextStyles.lightButtonTextStyle,
       enabled: false,
     );
 
@@ -36,7 +33,6 @@ void main() {
     final sut = TextActionItem(
       text: 'Text for the text action item',
       onClick: () => clicked = true,
-      style: ThemeTextStyles.lightButtonTextStyle,
       enabled: true,
     );
 
@@ -53,7 +49,6 @@ void main() {
     final sut = TextActionItem(
       text: 'Text for the text action item',
       onClick: () => clicked = true,
-      style: ThemeTextStyles.lightButtonTextStyle,
       enabled: false,
     );
 
