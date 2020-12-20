@@ -306,6 +306,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.idea/')) return false;
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.dart_tool/')) return false;
+    if (element.path.startsWith('./ios/Flutter/')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
