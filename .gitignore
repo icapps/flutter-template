@@ -86,5 +86,8 @@
 **_masterImage.png
 **_testImage.png
 
+#Fastlane
+Gemfile.lock
+
 # Fvm
 .fvm/flutter_sdk
