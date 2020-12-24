@@ -90,10 +90,8 @@ final removeCodeLines = [
   '  @Register.factory(TodoAddViewModel)',
   '      case TodoAddScreen.routeName:',
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
-  '''
-  @override
-  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
-  ''',
+  '''  @override
+  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);''',
   //Test Lines
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   "import '../mocks/repository/todo/mock_todo_repository.dart';",
