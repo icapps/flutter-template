@@ -34,6 +34,7 @@ void main(List<String> args) {
   _replaceDatabaseTests();
   Logger.debug('Removed import references');
   executeCommand('fvm', ['flutter', 'clean']);
+  executeCommand('fvm', ['flutter', 'package', 'get']);
   executeCommand('fvm', ['flutter', 'packages', 'pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
 }
 
