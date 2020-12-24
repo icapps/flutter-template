@@ -74,6 +74,7 @@ final removeCodeLines = [
   "import 'package:flutter_template/database/todo/todo_dao_storage.dart';",
   "import 'package:flutter_template/database/todo/todo_dao_storing.dart';",
   "import 'package:flutter_template/repository/todo/todo_repository.dart';",
+  "import 'package:flutter_template/repository/todo/todo_repo.dart';",
   "import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';",
   "import 'package:flutter_template/webservice/todo/todo_service.dart';",
   "import 'package:flutter_template/webservice/todo/todo_service.dart';",
@@ -85,6 +86,16 @@ final removeCodeLines = [
   '  @Register.singleton(TodoRepo, from: TodoRepository)',
   '  @Register.factory(TodoListViewModel)',
   '  @Register.factory(TodoAddViewModel)',
+  //Test Lines
+  "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
+  "import '../mocks/repository/todo/mock_todo_repository.dart';",
+  "import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';",
+  "import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';",
+  '  @Register.singleton(TodoDaoStoring, from: MockTodoDaoStorage)',
+  '  @Register.singleton(TodoRepo, from: MockTodoRepository)',
+  '  @Register.singleton(TodoService, from: MockTodoService)',
+  '  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)',
+  '  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)',
 ];
 
 final removeDirectories = [
@@ -92,7 +103,7 @@ final removeDirectories = [
   'lib/model/database/todo',
   'lib/model/webservice/todo',
   'lib/repository/todo',
-  'lib/screens/todo',
+  'lib/screen/todo',
   'lib/viewmodel/todo',
   'lib/webservice/todo',
   'lib/widget/todo',
@@ -101,7 +112,7 @@ final removeDirectories = [
   'test/model/database/todo',
   'test/model/webservice/todo',
   'test/repository/todo',
-  'test/screens/todo',
+  'test/screen/todo',
   'test/viewmodel/todo',
   'test/webservice/todo',
   'test/widget/todo',
