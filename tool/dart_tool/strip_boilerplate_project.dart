@@ -52,6 +52,7 @@ void replaceBoilerplateReferencesFromDirectory(Directory dir) {
   }).forEach((element) {
     removeCodeLines.forEach((import) {
       _replaceInFile(element.path, '$import\n', '');
+      _replaceInFile(element.path, '          TodoListScreen(),', '          Container(),');
     });
   });
 }
@@ -75,8 +76,9 @@ final removeCodeLines = [
   "import 'package:flutter_template/repository/todo/todo_repository.dart';",
   "import 'package:flutter_template/repository/todo/todo_repo.dart';",
   "import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_webservice.dart';",
   "import 'package:flutter_template/webservice/todo/todo_service.dart';",
-  "import 'package:flutter_template/webservice/todo/todo_service.dart';",
+  "import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';",
   "import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';",
   '  DbTodoTable,',
   '  @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)',
