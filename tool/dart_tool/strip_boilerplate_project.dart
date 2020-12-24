@@ -31,6 +31,7 @@ void main(List<String> args) {
   replaceBoilerplateReferences(testDir);
   replaceBoilerplateReferences(libDir);
   _replaceHomeScreenLine();
+  _replaceDatabaseTests();
   Logger.debug('Removed import references');
 }
 
@@ -87,6 +88,41 @@ void _replaceHomeScreenLine() {
           Container(),
           const DebugScreen(),
         ],''',
+  );
+}
+
+void _replaceDatabaseTests() {
+  _replaceInFile(
+    'test/database/flutter_template_database_test.dart',
+    '''  test('FlutterTemplateDatabase should delete all tables', () async {
+    //Check if table is empty
+    
+    final resultTodos1 = await sut.select(sut.dbTodoTable).get();
+    expect(resultTodos1.isEmpty, true);
+
+    //Add 3 records
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo1', completed: true));
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo2', completed: true));
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo3', completed: true));
+
+    //Check if the table contains 3 recods
+    final resultTodos2 = await sut.select(sut.dbTodoTable).get();
+    expect(resultTodos2.isEmpty, false);
+    expect(resultTodos2.length, 3);
+
+    await sut.deleteAllData();
+
+    //Check if tabl is empty
+    final resultTodos3 = await sut.select(sut.dbTodoTable).get();
+    expect(resultTodos3.isEmpty, true);
+  });''',
+    '''  test('FlutterTemplateDatabase should delete all tables', () async {
+    //Check if table is empty
+    //Add 3 records
+    //Check if the table contains 3 recods
+    await sut.deleteAllData();
+    //Check if tabl is empty
+  });''',
   );
 }
 
