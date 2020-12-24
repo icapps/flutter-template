@@ -36,7 +36,6 @@ void removeBoilerplateFilesFromDirectory(Directory dir) {
     return true;
   }).forEach((element) {
     removeDirectories.forEach((removeDir) {
-      Logger.debug('${element.path} -  ${removeDir}');
       if (element.path == removeDir) {
         element.deleteSync(recursive: true);
       }
