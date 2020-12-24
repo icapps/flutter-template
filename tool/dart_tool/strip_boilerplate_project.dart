@@ -124,6 +124,25 @@ final removeCodeLines = [
   '  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)',
   '  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)',
   '    verifyTodoListViewModel();',
+  '''
+void seedDebugViewModel() {
+  final debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
+  when(debugViewModel.slowAnimationsEnabled).thenReturn(false);
+}
+
+void seedTodoListViewModel() {
+  final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
+        for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
+      ]));
+  when(todoListViewModel.isLoading).thenReturn(false);
+  when(todoListViewModel.errorKey).thenReturn(null);
+}
+
+void seedTodoAddViewModel() {
+  final todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  when(todoAddViewModel.isSaveEnabled).thenReturn(false);
+}'''
 ];
 
 final removeDirectories = [
