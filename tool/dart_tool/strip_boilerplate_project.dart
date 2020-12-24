@@ -2,7 +2,7 @@ import 'dart:io';
 
 void main(List<String> args) {
   bool keepTestDir;
-  if (args[0] != 'true' && args[0] != 'false') {
+  if (args.isEmpty || (args[0] != 'true' && args[0] != 'false')) {
     do {
       final result = stdin.readLineSync();
       final valid = result == 'yes' || result == 'y' || result == 'no' || result == 'n';
