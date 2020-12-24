@@ -25,6 +25,7 @@ void main(List<String> args) {
   Logger.debug('Removing import references');
   replaceBoilerplateReferencesFromDirectory(testDir);
   replaceBoilerplateReferencesFromDirectory(libDir);
+  _replaceHomeScreenLine();
   Logger.debug('Removed import references');
 }
 
@@ -52,19 +53,22 @@ void replaceBoilerplateReferencesFromDirectory(Directory dir) {
   }).forEach((element) {
     removeCodeLines.forEach((import) {
       _replaceInFile(element.path, '$import\n', '');
-      _replaceInFile(
-        element.path,
-        '''        children: const [
+    });
+  });
+}
+
+void _replaceHomeScreenLine() {
+  _replaceInFile(
+    'lib/screen/home/home_screen.dart',
+    '''        children: const [
           TodoListScreen(),
           DebugScreen(),
         ],''',
-        '''        children: const [
+    '''        children: const [
           Container(),
           DebugScreen(),
         ],''',
-      );
-    });
-  });
+  );
 }
 
 void _replaceInFile(String path, String originalString, String newString) {
