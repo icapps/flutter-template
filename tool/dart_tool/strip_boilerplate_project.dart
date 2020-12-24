@@ -33,6 +33,22 @@ void main(List<String> args) {
   _replaceHomeScreenLine();
   _replaceDatabaseTests();
   Logger.debug('Removed import references');
+  executeCommand('fvm', ['flutter', 'packages', 'pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+}
+
+void executeCommand(String cmd, List<String> params) {
+  final fullCommand = '$cmd ${params.join(' ')}';
+  try {
+    Logger.debug('\nExecuting command:\n$fullCommand');
+    final result = Process.runSync(cmd, params);
+    final dynamic output = result.stdout;
+    if (output.toString().isNotEmpty) {
+      Logger.debug('$output');
+    }
+  } catch (e) {
+    Logger.debug('\nFailed to execute command: $fullCommand\n$e');
+    rethrow;
+  }
 }
 
 void removeBoilerplateDirectories(Directory dir) {
@@ -49,6 +65,7 @@ void removeBoilerplateDirectories(Directory dir) {
     });
   });
 }
+
 void removeBoilerplateFiles(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
