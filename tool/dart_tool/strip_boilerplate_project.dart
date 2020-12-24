@@ -64,7 +64,7 @@ void _replaceHomeScreenLine() {
           TodoListScreen(),
           DebugScreen(),
         ],''',
-    '''        children: const [
+    '''        children: [
           Container(),
           DebugScreen(),
         ],''',
@@ -107,6 +107,9 @@ final removeCodeLines = [
   '  void goToAddTodo();',
   '''  @override
   void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+''',
+  '''  @override
+  void goToAddTodo() => widget.mock.goToAddTodo();
 ''',
   //Test Lines
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
