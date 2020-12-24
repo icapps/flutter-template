@@ -46,6 +46,8 @@ void executeCommand(String cmd, List<String> params) {
     final dynamic output = result.stdout;
     if (output.toString().isNotEmpty) {
       Logger.debug('$output');
+    }else{
+      Logger.error(result.stderr.toString());
     }
   } catch (e) {
     Logger.debug('\nFailed to execute command: $fullCommand\n$e');
