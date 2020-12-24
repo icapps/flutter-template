@@ -78,6 +78,20 @@ final removeDirectories = [
   'lib/viewmodel/todo',
   'lib/webservice/todo',
   'lib/widget/todo',
+
+  'test/database/todo',
+  'test/model/database/todo',
+  'test/model/webservice/todo',
+  'test/repository/todo',
+  'test/screens/todo',
+  'test/viewmodel/todo',
+  'test/webservice/todo',
+  'test/widget/todo',
+
+  'test/mocks/database/todo',
+  'test/mocks/repository/todo',
+  'test/mocks/viewmodel/todo',
+  'test/mocks/webservice/todo',
 ];
 
 class Logger {
