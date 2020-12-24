@@ -67,6 +67,24 @@ void _replaceInFile(String path, String originalString, String newString) {
 final removeCodeLines = [
   "import 'package:flutter_template/model/database/todo/db_todo_table.dart';",
   "import 'package:flutter_template/model/webservice/todo/todo.dart';",
+  '  DbTodoTable,',
+  "import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';",
+  "import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';",
+  "import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';",
+  "import 'package:flutter_template/database/todo/todo_dao_storage.dart';",
+  "import 'package:flutter_template/database/todo/todo_dao_storing.dart';",
+  "import 'package:flutter_template/repository/todo/todo_repository.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_service.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_service.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_webservice.dart';",
+  '  @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)',
+  '  @Register.singleton(TodoService, from: TodoWebService)',
+  '  @Register.singleton(TodoService, from: TodoDummyService)',
+  '  @Register.singleton(TodoService, from: TodoDummyService)',
+  '  @Register.singleton(TodoRepo, from: TodoRepository)',
+  '  @Register.factory(TodoListViewModel)',
+  '  @Register.factory(TodoAddViewModel)',
 ];
 
 final removeDirectories = [
@@ -78,7 +96,7 @@ final removeDirectories = [
   'lib/viewmodel/todo',
   'lib/webservice/todo',
   'lib/widget/todo',
-
+  //Test Directories
   'test/database/todo',
   'test/model/database/todo',
   'test/model/webservice/todo',
@@ -87,7 +105,6 @@ final removeDirectories = [
   'test/viewmodel/todo',
   'test/webservice/todo',
   'test/widget/todo',
-
   'test/mocks/database/todo',
   'test/mocks/repository/todo',
   'test/mocks/viewmodel/todo',
