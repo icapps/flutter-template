@@ -52,7 +52,17 @@ void replaceBoilerplateReferencesFromDirectory(Directory dir) {
   }).forEach((element) {
     removeCodeLines.forEach((import) {
       _replaceInFile(element.path, '$import\n', '');
-      _replaceInFile(element.path, '          TodoListScreen(),', '          Container(),');
+      _replaceInFile(
+        element.path,
+        '''        children: const [
+          TodoListScreen(),
+          DebugScreen(),
+        ],''',
+        '''        children: const [
+          Container(),
+          DebugScreen(),
+        ],''',
+      );
     });
   });
 }
@@ -90,6 +100,7 @@ final removeCodeLines = [
   '  @Register.factory(TodoAddViewModel)',
   '      case TodoAddScreen.routeName:',
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
+  '  void goToAddTodo();',
   '''  @override
   void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
 ''',
