@@ -14,6 +14,7 @@ void main(List<String> args) {
   final testDir = Directory('test');
   if (!keepTestDir && testDir.existsSync()) {
     testDir.deleteSync(recursive: true);
+    Logger.debug('Removed the test directory');
   }
 }
 
