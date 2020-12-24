@@ -67,7 +67,6 @@ void _replaceInFile(String path, String originalString, String newString) {
 final removeCodeLines = [
   "import 'package:flutter_template/model/database/todo/db_todo_table.dart';",
   "import 'package:flutter_template/model/webservice/todo/todo.dart';",
-  '  DbTodoTable,',
   "import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';",
   "import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';",
   "import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';",
@@ -78,7 +77,8 @@ final removeCodeLines = [
   "import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';",
   "import 'package:flutter_template/webservice/todo/todo_service.dart';",
   "import 'package:flutter_template/webservice/todo/todo_service.dart';",
-  "import 'package:flutter_template/webservice/todo/todo_webservice.dart';",
+  "import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';",
+  '  DbTodoTable,',
   '  @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)',
   '  @Register.singleton(TodoService, from: TodoWebService)',
   '  @Register.singleton(TodoService, from: TodoDummyService)',
@@ -86,6 +86,12 @@ final removeCodeLines = [
   '  @Register.singleton(TodoRepo, from: TodoRepository)',
   '  @Register.factory(TodoListViewModel)',
   '  @Register.factory(TodoAddViewModel)',
+  '      case TodoAddScreen.routeName:',
+  '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
+  '''
+  @override
+  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+  ''',
   //Test Lines
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   "import '../mocks/repository/todo/mock_todo_repository.dart';",
