@@ -115,12 +115,15 @@ final removeCodeLines = [
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   "import '../mocks/repository/todo/mock_todo_repository.dart';",
   "import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';",
+  "import '../mocks/webservice/todo/mock_todo_service.dart';",
   "import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';",
+  "import '../todo/todo_list/todo_list_screen_test.dart';",
   '  @Register.singleton(TodoDaoStoring, from: MockTodoDaoStorage)',
   '  @Register.singleton(TodoRepo, from: MockTodoRepository)',
   '  @Register.singleton(TodoService, from: MockTodoService)',
   '  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)',
   '  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)',
+  '    verifyTodoListViewModel();',
 ];
 
 final removeDirectories = [
