@@ -17,19 +17,24 @@ void main(List<String> args) {
     testDir.deleteSync(recursive: true);
     Logger.debug('Removed the test directory');
   }
+  Logger.debug('Removing Directories');
+  removeBoilerplateDirectories(testDir);
+  removeBoilerplateDirectories(libDir);
+  Logger.debug('Removed Directories');
+
   Logger.debug('Removing files');
-  removeBoilerplateFilesFromDirectory(testDir);
-  removeBoilerplateFilesFromDirectory(libDir);
+  removeBoilerplateFiles(testDir);
+  removeBoilerplateFiles(libDir);
   Logger.debug('Removed files');
 
   Logger.debug('Removing import references');
-  replaceBoilerplateReferencesFromDirectory(testDir);
-  replaceBoilerplateReferencesFromDirectory(libDir);
+  replaceBoilerplateReferences(testDir);
+  replaceBoilerplateReferences(libDir);
   _replaceHomeScreenLine();
   Logger.debug('Removed import references');
 }
 
-void removeBoilerplateFilesFromDirectory(Directory dir) {
+void removeBoilerplateDirectories(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -43,8 +48,22 @@ void removeBoilerplateFilesFromDirectory(Directory dir) {
     });
   });
 }
+void removeBoilerplateFiles(Directory dir) {
+  if (!dir.existsSync()) return;
+  dir.listSync(recursive: true).where((element) {
+    if (element.path.endsWith('.png')) return false;
+    if (Directory(element.path).existsSync()) return false;
+    return true;
+  }).forEach((element) {
+    removeFiles.forEach((removeDir) {
+      if (element.path == removeDir) {
+        element.deleteSync(recursive: true);
+      }
+    });
+  });
+}
 
-void replaceBoilerplateReferencesFromDirectory(Directory dir) {
+void replaceBoilerplateReferences(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -163,6 +182,11 @@ final removeDirectories = [
   'test/mocks/repository/todo',
   'test/mocks/viewmodel/todo',
   'test/mocks/webservice/todo',
+];
+
+final removeFiles = [
+  //Test Directories
+  'test/navigator/main_navigator_todo_add_test.dart',
 ];
 
 class Logger {
