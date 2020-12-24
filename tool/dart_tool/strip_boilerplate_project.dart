@@ -51,7 +51,7 @@ void replaceBoilerplateReferencesFromDirectory(Directory dir) {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    removeImports.forEach((import) {
+    removeCodeLines.forEach((import) {
       _replaceInFile(element.path, '$import\n', '');
     });
   });
@@ -65,14 +65,20 @@ void _replaceInFile(String path, String originalString, String newString) {
   file.writeAsStringSync(newContent);
 }
 
-final removeImports = [
+final removeCodeLines = [
   "import 'package:flutter_template/model/database/todo/db_todo_table.dart';",
   "import 'package:flutter_template/model/webservice/todo/todo.dart';",
 ];
 
 final removeDirectories = [
-  'lib/model/webservice/todo',
   'lib/database/todo',
+  'lib/model/database/todo',
+  'lib/model/webservice/todo',
+  'lib/repository/todo',
+  'lib/screens/todo',
+  'lib/viewmodel/todo',
+  'lib/webservice/todo',
+  'lib/widget/todo',
 ];
 
 class Logger {
