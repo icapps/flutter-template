@@ -125,11 +125,6 @@ final removeCodeLines = [
   '  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)',
   '    verifyTodoListViewModel();',
   r'''
-void seedDebugViewModel() {
-  final debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
-  when(debugViewModel.slowAnimationsEnabled).thenReturn(false);
-}
-
 void seedTodoListViewModel() {
   final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
