@@ -66,7 +66,7 @@ void _replaceHomeScreenLine() {
         ],''',
     '''        children: [
           Container(),
-          DebugScreen(),
+          const DebugScreen(),
         ],''',
   );
 }
@@ -137,7 +137,8 @@ void seedTodoListViewModel() {
 void seedTodoAddViewModel() {
   final todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
-}'''
+}''',
+  '    seedTodoListViewModel();',
 ];
 
 final removeDirectories = [
