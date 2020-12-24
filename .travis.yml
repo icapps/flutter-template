@@ -29,6 +29,12 @@ jobs:
     - stage: quality
       name: "Rename Project Test"
       script: ./tool/travis/rename_project.sh
+    - stage: quality
+      name: "Strip Boiler plate project keep Test dir"
+      script: ./tool/travis/strip_boilerplate_project.sh
+    - stage: quality
+      name: "Strip Boiler plate project remove Test dir"
+      script: ./tool/travis/strip_boilerplate_project_remove_tests.sh
 
 stages:
   - quality
