@@ -32,10 +32,11 @@ void removeBoilerplateFilesFromDirectory(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
-    if (Directory(element.path).existsSync()) return false;
+    if (File(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
     removeDirectories.forEach((removeDir) {
+      Logger.debug('${element.path} -  ${removeDir}');
       if (element.path == removeDir) {
         element.deleteSync(recursive: true);
       }
@@ -70,7 +71,7 @@ final removeImports = [
 ];
 
 final removeDirectories = [
-  'lib/webservice/todo',
+  'lib/model/webservice/todo',
   'lib/database/todo',
 ];
 
