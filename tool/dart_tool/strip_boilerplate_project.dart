@@ -52,13 +52,10 @@ void executeCommand(String cmd, List<String> params) {
   try {
     Logger.debug('\nExecuting command:\n$fullCommand');
     final result = Process.runSync(cmd, params);
-    final output = result.stdout.toString();
     if (result.stderr.toString().isNotEmpty) {
       throw Exception(result.stderr.toString());
     }
-    if (output.isNotEmpty) {
-      Logger.debug('$output');
-    }
+    Logger.debug('${result.stdout.toString()}');
   } catch (e) {
     Logger.debug('\nFailed to execute command: $fullCommand\n$e');
     rethrow;

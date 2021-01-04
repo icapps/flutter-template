@@ -16,6 +16,7 @@ before_script:
   - export FLUTTER_SDK=`pwd`/../flutter
   - gem install coveralls-lcov
   - flutter pub global activate dart_style
+  - flutter pub global activate fvm
   - flutter packages get || exit -1;
 
 jobs:
