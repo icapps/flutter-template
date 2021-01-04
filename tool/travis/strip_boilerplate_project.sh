@@ -1,5 +1,6 @@
 #!/bin/bash
 
+./tool/install_fvm.sh
 printf 'yes\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart || exit -1;
 
 fvm flutter analyze
