@@ -1,9 +1,18 @@
 import 'dart:io';
 
+/// Clean up the boilerplate code
+///
+///
+/// FVM install is required to run before this script.
+///
+/// Arguments:
+///  1) Keep test directory
+///       - values: y,n,yes,no
 void main(List<String> args) {
   bool keepTestDir;
   if (args.isEmpty || (args[0] != 'true' && args[0] != 'false')) {
     do {
+      Logger.debug('Keep test directory? (y/n)');
       final result = stdin.readLineSync();
       final valid = result == 'yes' || result == 'y' || result == 'no' || result == 'n';
       if (valid) {
@@ -43,11 +52,12 @@ void executeCommand(String cmd, List<String> params) {
   try {
     Logger.debug('\nExecuting command:\n$fullCommand');
     final result = Process.runSync(cmd, params);
-    final dynamic output = result.stdout;
-    if (output.toString().isNotEmpty) {
+    final output = result.stdout.toString();
+    if (result.stderr.toString().isNotEmpty) {
+      throw Exception(result.stderr.toString());
+    }
+    if (output.isNotEmpty) {
       Logger.debug('$output');
-    }else{
-      Logger.error(result.stderr.toString());
     }
   } catch (e) {
     Logger.debug('\nFailed to execute command: $fullCommand\n$e');
