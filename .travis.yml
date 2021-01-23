@@ -10,6 +10,7 @@ sudo: required
 before_script:
   - git clone https://github.com/flutter/flutter.git -b stable ../flutter
   - export PATH="$PATH":`pwd`/../flutter/bin
+  - export PATH="$PATH":$HOME/.pub-cache/bin
   - export PATH="$PATH":`pwd`/../flutter/bin/cache/dart-sdk/bin
   - flutter config --no-analytics
   - flutter doctor
