@@ -46,7 +46,7 @@ import '../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
 import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
 import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../mocks/webservice/mock_dio.dart';
-import '../mocks/webservice/mock_todo_service.dart';
+import '../mocks/webservice/todo/mock_todo_service.dart';
 
 part 'test_injector.g.dart';
 

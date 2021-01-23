@@ -10,7 +10,7 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/test_kiwi_util.dart';
 import '../../mocks/database/todo/mock_todo_dao_storage.dart';
-import '../../mocks/webservice/mock_todo_service.dart';
+import '../../mocks/webservice/todo/mock_todo_service.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
