@@ -25,6 +25,7 @@ class FlavorValues {
 }
 
 class FlavorConfig {
+  double devicePixelRatio;
   final Flavor flavor;
   final String name;
   final Color color;
