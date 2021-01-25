@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 
-class CacheManager extends CacheControlling {
+class CacheController extends CacheControlling {
   @override
   Future<Uint8List> getFileFromCache(String url) async {
     final fileInfo = await DefaultCacheManager().getFileFromCache(url);

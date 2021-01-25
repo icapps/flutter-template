@@ -72,6 +72,7 @@ class _$Injector extends Injector {
         .registerSingleton<AuthStoring>((c) => AuthStorage(c<SecureStoring>()));
     container.registerSingleton<ConnectivityControlling>(
         (c) => ConnectivityController(c<Connectivity>()));
+    container.registerSingleton<CacheControlling>((c) => CacheController());
   }
 
   @override
