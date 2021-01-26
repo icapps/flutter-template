@@ -152,7 +152,7 @@ end
 
 private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
     end
 end
 
@@ -165,7 +165,7 @@ end
 private_lane :buildAppIOS do |options|
     Dir.chdir ".." do
       podRepoUpdate
-      sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
       convertAppToIpa(flavor: options[:flavor])
     end
 end
