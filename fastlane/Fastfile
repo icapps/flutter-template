@@ -152,7 +152,7 @@ end
 
 private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}", "--obfuscate", "--split-debug-info=./build/debug-info")    # Build the application
+      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info", "--build-number=#{BUILD_NR}")    # Build the application
     end
 end
 
