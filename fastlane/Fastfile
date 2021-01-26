@@ -139,7 +139,7 @@ end
 ########################
 private_lane :installFvmVersion do
     Dir.chdir ".." do
-      sh("dart", "./tool/dart_tool/install_fvm.dart")
+      sh("bash", "./tool/install_fvm.sh")
     end
 end
 
