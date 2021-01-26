@@ -5,34 +5,69 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.000371">
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.000337">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: install_provisioning_profiles" time="0.010057">
+      <testcase classname="fastlane.lanes" name="01: install_provisioning_profiles" time="0.009143">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: is_ci" time="1.217871">
+      <testcase classname="fastlane.lanes" name="02: is_ci" time="0.000225">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: echo No\ build\ nr\ set" time="0.004264">
+      <testcase classname="fastlane.lanes" name="03: echo No\ build\ nr\ set" time="0.003231">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: clean_build_artifacts" time="0.000289">
+      <testcase classname="fastlane.lanes" name="04: clean_build_artifacts" time="0.000304">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: ensure_git_status_clean" time="0.018587">
+      <testcase classname="fastlane.lanes" name="05: ensure_git_status_clean" time="0.017276">
         
-          <failure message="/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:82:in `block in parsing_binding'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:352:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:63:in `load'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:63:in `kernel_load'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:28:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:494:in `exec'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor.rb:392:in `dispatch'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:30:in `dispatch'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/base.rb:485:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:24:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/exe/bundle:49:in `block in &lt;top (required)&gt;'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/friendly_errors.rb:130:in `with_friendly_errors'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/exe/bundle:37:in `&lt;top (required)&gt;'&#10;/usr/bin/bundle:23:in `load'&#10;/usr/bin/bundle:23:in `&lt;main&gt;'&#10;&#10;Git repository is dirty! Please ensure the repo is in a clean state by committing/stashing/discarding all changes first." />
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: Switch to installFvmVersion lane" time="0.000208">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: bash ./tool/install_fvm.sh" time="31.351858">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: Switch to prepareBuild lane" time="0.000213">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: fvm flutter packages get" time="1.900418">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: fvm flutter clean" time="8.054119">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: Switch to buildAppAndroid lane" time="0.000222">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: fvm flutter build apk --release --flavor alpha -tlib/main_alpha.dart --obfuscate --split-debug-info\=./build/debug-info --build-number\=" time="1.827711">
+        
+          <failure message="/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/fast_file.rb:218:in `sh'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/fast_file.rb:212:in `sh'&#10;Fastfile:155:in `block (2 levels) in parsing_binding'&#10;Fastfile:154:in `chdir'&#10;Fastfile:154:in `block in parsing_binding'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:204:in `try_switch_to_lane'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:146:in `trigger_action_by_name'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:86:in `block in parsing_binding'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:352:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.172.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:63:in `load'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:63:in `kernel_load'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli/exec.rb:28:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:494:in `exec'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor.rb:392:in `dispatch'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:30:in `dispatch'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/vendor/thor/lib/thor/base.rb:485:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/cli.rb:24:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/exe/bundle:49:in `block in &lt;top (required)&gt;'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/lib/bundler/friendly_errors.rb:130:in `with_friendly_errors'&#10;/Library/Ruby/Gems/2.6.0/gems/bundler-2.2.6/exe/bundle:37:in `&lt;top (required)&gt;'&#10;/usr/bin/bundle:23:in `load'&#10;/usr/bin/bundle:23:in `&lt;main&gt;'&#10;&#10;Exit status of command 'fvm flutter build apk --release --flavor alpha -tlib/main_alpha.dart --obfuscate --split-debug-info\=./build/debug-info --build-number\=' was 1 instead of 0.&#10;Running &quot;flutter pub get&quot; in flutter-template-icapps...             0.7s&#10;buildNumber:  was not a valid integer value.&#10;For more information see https://developer.android.com/studio/publish/versioning.html .&#10;" />
         
       </testcase>
     
