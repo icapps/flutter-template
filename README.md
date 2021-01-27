@@ -142,6 +142,16 @@ Configure the required languages in xCode
 Update the translations.py file (edit the todos)
 ```
 
+### Obfuscation
+
+Obfuscation is enabled by default when using fastlane for building. The symbol files are stored in
+`./build/debug-info/#{options[:flavor]}`
+
+**Important**: Add the following regex to jenking configuration to also archive the symbol files
+```
+**/*.symbols
+```
+
 ### Common issues
 
 ```
