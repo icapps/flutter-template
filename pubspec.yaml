@@ -53,6 +53,10 @@ flutter:
     - assets/images/icons/
     - assets/images/icons/android/
     - assets/images/icons/ios/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
 
 icapps_translations:
   api_key: 'lIWZxNlOz3d461rVMeh3dw' #TODO Update this to the correct api key
