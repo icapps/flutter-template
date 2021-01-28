@@ -3,9 +3,10 @@ import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 
-class LoginViewModel with ChangeNotifier {
+class LoginViewModel with ChangeNotifier, DisposeMixin {
   final LoginRepo _loginRepo;
   LoginNavigator _navigator;
 
