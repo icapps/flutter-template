@@ -152,6 +152,18 @@ Obfuscation is enabled by default when using fastlane for building. The symbol f
 **/*.symbols
 ```
 
+### Icons
+
+Replace the files in assets_launcher_icons/
+
+You can also change the adaptive_icon_background in the flutter_launcher_icons-{flavor}.yaml (currently "#CB2E63") (only available for Android 8.0 devices and above)
+
+After this, run the following command
+
+```
+flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons-dev.yaml
+```
+
 ### Common issues
 
 ```
