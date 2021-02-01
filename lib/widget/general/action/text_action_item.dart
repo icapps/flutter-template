@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class TextActionItem extends StatelessWidget {
   final String text;
@@ -20,19 +20,20 @@ class TextActionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    return Center(
-      child: TouchFeedBack(
-        borderRadius: BorderRadius.circular(ThemeDimens.padding4),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16, vertical: ThemeDimens.padding8),
-          child: AnimatedDefaultTextStyle(
-            style: style ?? theme.lightTextTheme.labelButtonSmall,
-            child: Text(text),
-            duration: ThemeDurations.shortAnimationDuration(),
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) => Center(
+        child: TouchFeedBack(
+          borderRadius: BorderRadius.circular(ThemeDimens.padding4),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16, vertical: ThemeDimens.padding8),
+            child: AnimatedDefaultTextStyle(
+              style: style ?? theme.lightTextTheme.labelButtonSmall,
+              child: Text(text),
+              duration: ThemeDurations.shortAnimationDuration(),
+            ),
           ),
+          onClick: enabled ? onClick : null,
         ),
-        onClick: enabled ? onClick : null,
       ),
     );
   }
