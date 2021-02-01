@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/util/database/database_inspector.dart';
 import 'package:flutter_template/util/env/os_config.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/app.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initNiddler();
+  await addDatabaseInspector();
 
   await OsConfig.init();
   const values = FlavorValues(
