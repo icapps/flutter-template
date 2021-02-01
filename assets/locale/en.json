@@ -8,6 +8,8 @@
   "debug_locale_title": "Language",
   "debug_native_bridge": "Native bridge",
   "debug_native_bridge_log": "Send native log",
+  "debug_database": "Database",
+  "debug_view_database": "View database",
   "debug_show_translations": "Show translations",
   "debug_slow_animations": "Slow animations",
   "debug_target_platform_subtitle": "Current platfrom: %1$s",

@@ -8,6 +8,8 @@
   "debug_locale_title": "Taal",
   "debug_native_bridge": "Native brug",
   "debug_native_bridge_log": "Stuur native log",
+  "debug_database": "Database",
+  "debug_view_database": "Toon database",
   "debug_show_translations": "Toon vertalingen",
   "debug_slow_animations": "Trage animaties",
   "debug_target_platform_subtitle": "Huidig platfrom: %1$s",

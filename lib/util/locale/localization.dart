@@ -64,6 +64,10 @@ class Localization {
 
   String get debugNativeBridgeLog => _t(LocalizationKeys.debugNativeBridgeLog);
 
+  String get debugDatabase => _t(LocalizationKeys.debugDatabase);
+
+  String get debugViewDatabase => _t(LocalizationKeys.debugViewDatabase);
+
   String get debugShowTranslations => _t(LocalizationKeys.debugShowTranslations);
 
   String get debugSlowAnimations => _t(LocalizationKeys.debugSlowAnimations);
@@ -123,5 +127,4 @@ class Localization {
   String get todoTitle => _t(LocalizationKeys.todoTitle);
 
   String getTranslation(String key, {List<dynamic> args}) => _t(key, args: args ?? List());
-
 }

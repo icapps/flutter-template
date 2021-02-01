@@ -28,6 +28,7 @@ dependencies:
   retrofit: 1.3.4+1
   scroll_when_needed: 1.0.0
   shared_preferences: 0.5.12+2
+  moor_db_viewer: ^2.0.3
 
 dev_dependencies:
   flutter_test:
