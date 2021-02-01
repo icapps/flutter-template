@@ -1,6 +1,5 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
