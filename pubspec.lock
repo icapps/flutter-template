@@ -84,7 +84,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.3"
+    version: "1.11.0"
   build_runner_core:
     dependency: transitive
     description:
@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  dart_service_announcement:
+    dependency: transitive
+    description:
+      name: dart_service_announcement
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   dart_style:
     dependency: transitive
     description:
@@ -301,6 +308,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.6"
   glob:
     dependency: transitive
     description:
@@ -364,6 +378,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.19"
+  injectable:
+    dependency: "direct main"
+    description:
+      name: injectable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
+  injectable_generator:
+    dependency: "direct dev"
+    description:
+      name: injectable_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   intl:
     dependency: transitive
     description:
@@ -399,20 +427,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.5.0"
-  kiwi:
-    dependency: "direct main"
-    description:
-      name: kiwi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
-  kiwi_generator:
-    dependency: "direct dev"
-    description:
-      name: kiwi_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   locale_gen:
     dependency: transitive
     description:
@@ -496,7 +510,7 @@ packages:
       name: niddler_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.2"
+    version: "0.10.4"
   node_interop:
     dependency: transitive
     description:

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
 import '../../util/test_extensions.dart';
 
@@ -13,8 +13,8 @@ void main() {
   MockAuthStorage authStorage;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    authStorage = TestKiwiUtil.resolveAs<AuthStoring, MockAuthStorage>();
+    await initTestInjectable();
+    authStorage = GetIt.I();
     sut = NetworkAuthInterceptor(authStorage);
   });
 

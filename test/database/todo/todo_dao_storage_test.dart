@@ -3,16 +3,17 @@ import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 
 void main() {
   FlutterTemplateDatabase database;
   TodoDaoStoring sut;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    database = TestKiwiUtil.resolve();
+    await initTestInjectable();
+    database = GetIt.I();
     sut = TodoDaoStorage(database);
   });
 

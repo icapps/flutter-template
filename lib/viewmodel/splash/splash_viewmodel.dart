@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class SplashViewModel with ChangeNotifier {
   final LoginRepo _loginRepo;
   final LocalStoring _localStoring;

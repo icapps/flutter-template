@@ -1,12 +1,12 @@
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
@@ -16,8 +16,8 @@ void main() {
   MockTodoListViewModel todoListViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+    await initTestInjectable();
+    todoListViewModel = GetIt.I();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -67,7 +67,6 @@ void main() {
   });
 
   group('With Data', () {
-
     tearDown(() async {
       verifyTodoListViewModel();
       verifyGlobalViewModel();
@@ -114,7 +113,7 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  final todoListViewModel = GetIt.I<MockTodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

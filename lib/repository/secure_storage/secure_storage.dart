@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: SecureStoring)
 class SecureStorage extends SecureStoring {
   final FlutterSecureStorage _storage;
 

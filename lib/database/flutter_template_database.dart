@@ -1,8 +1,10 @@
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
+import 'package:injectable/injectable.dart';
 import 'package:moor/moor.dart';
 
 part 'flutter_template_database.g.dart';
 
+@singleton
 @UseMoor(tables: [
   DbTodoTable,
 ])

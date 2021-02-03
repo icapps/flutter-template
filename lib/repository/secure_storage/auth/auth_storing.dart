@@ -10,5 +10,4 @@ abstract class AuthStoring {
   Future<void> saveUserCredentials({@required String accessToken, @required String refreshToken});
 
   Future<bool> hasLoggedInUser();
-
 }

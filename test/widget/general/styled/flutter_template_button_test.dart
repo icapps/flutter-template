@@ -4,13 +4,11 @@ import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_util.dart';
 
 void main() {
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
   group('Android', () {
     testWidgets('FlutterTemplateButton initial state', (tester) async {
       final sut = Theme(
@@ -46,7 +44,6 @@ void main() {
         child: FlutterTemplateButton(
           text: 'Hallokes',
           key: key,
-
           onClick: () {},
         ),
       );
@@ -129,7 +126,6 @@ void main() {
         child: FlutterTemplateButton(
           text: 'Hallokes',
           key: key,
-
           onClick: () {},
         ),
       );

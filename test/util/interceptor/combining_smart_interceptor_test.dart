@@ -2,13 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 
 void main() {
   CombiningSmartInterceptor sut;
 
   setUp(() async {
-    await TestKiwiUtil.init();
+    await initTestInjectable();
     sut = CombiningSmartInterceptor();
   });
 
@@ -22,7 +22,6 @@ void main() {
     await sut.onRequest(requestOptions);
     expect(interceptor1.onRequestCalled.isBefore(interceptor2.onRequestCalled), true);
     expect(interceptor2.onRequestCalled.isBefore(interceptor3.onRequestCalled), true);
-
   });
 
   test('CombiningSmartInterceptor test sequence onresponse', () async {

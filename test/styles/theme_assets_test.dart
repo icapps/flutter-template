@@ -5,11 +5,11 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../di/test_kiwi_util.dart';
+import '../di/test_injectable.dart';
 import '../util/test_util.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   group('Android Asset icons', () {
     testWidgets('ThemeAsset list', (tester) async {

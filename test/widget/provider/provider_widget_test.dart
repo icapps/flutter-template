@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   testWidgets('ProviderWidget throw exception', (tester) async {
     final sut = ProviderWidget<TestViewModel>(

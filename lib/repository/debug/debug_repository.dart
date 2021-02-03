@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: DebugRepo)
 class DebugRepository extends DebugRepo {
   static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
   static const _KEY_SELECTED_PLATFORM = 'selected_platform';

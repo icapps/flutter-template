@@ -1,11 +1,10 @@
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
 import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
@@ -18,9 +17,9 @@ void main() {
   MockGlobalViewModel globalViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
-    globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+    await initTestInjectable();
+    debugViewModel = GetIt.I();
+    globalViewModel = GetIt.I();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
@@ -184,14 +183,14 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel = TestKiwiUtil.resolveAs<DebugViewModel, MockDebugViewModel>();
+  final debugViewModel = GetIt.I<MockDebugViewModel>();
   verify(debugViewModel.init(any)).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
   verifyNoMoreInteractions(debugViewModel);
 }
 
 void verifyGlobalViewModelForDebugScreen() {
-  final globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+  final globalViewModel = GetIt.I<MockGlobalViewModel>();
   verify(globalViewModel.showsTranslationKeys);
   verify(globalViewModel.getCurrentLanguage());
   verify(globalViewModel.getCurrentPlatform());

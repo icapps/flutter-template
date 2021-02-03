@@ -1,12 +1,12 @@
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
-import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/repository/login/mock_login_repository.dart';
 import '../../util/test_extensions.dart';
 
@@ -16,8 +16,8 @@ void main() {
   LoginNavigator navigator;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    loginRepo = TestKiwiUtil.resolveAs<LoginRepo, MockLoginRepository>();
+    await initTestInjectable();
+    loginRepo = GetIt.I();
     navigator = MockLoginNavigator();
     sut = LoginViewModel(loginRepo);
   });

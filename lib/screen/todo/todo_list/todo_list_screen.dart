@@ -1,5 +1,4 @@
 import 'package:flutter_template/styles/theme_data.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
@@ -15,6 +14,7 @@ import 'package:flutter_template/util/extension/context_extensions.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
+import 'package:get_it/get_it.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({
@@ -100,7 +100,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
           ],
         ),
       ),
-      create: () => KiwiContainer().resolve()..init(this),
+      create: () => GetIt.instance.get()..init(this),
     );
   }
 

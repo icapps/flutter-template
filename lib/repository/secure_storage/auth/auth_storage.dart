@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/util/future/future_helper.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthStoring)
 class AuthStorage extends AuthStoring {
   final SecureStoring _storage;
   static const _ACCESS_TOKEN = 'ACCESS_TOKEN';

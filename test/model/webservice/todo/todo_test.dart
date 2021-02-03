@@ -1,10 +1,10 @@
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   test('TodoTest', () async {
     final todo = Todo(id: 1, title: 'title', completed: true);

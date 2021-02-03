@@ -7,21 +7,21 @@ import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/util/mock_connectivity_controller.dart';
 
 void main() {
   NetworkErrorInterceptor sut;
   MockConnectivityController connectivityController;
   setUp(() async {
-    await TestKiwiUtil.init();
-    connectivityController = TestKiwiUtil.resolveAs<ConnectivityControlling, MockConnectivityController>();
+    await initTestInjectable();
+    connectivityController = GetIt.I();
     sut = NetworkErrorInterceptor(connectivityController);
   });
 
@@ -95,7 +95,7 @@ void main() {
     test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
       final data = <String, dynamic>{};
       data['code'] = '45648';
-      final dioError = DioError(response: Response<Map<String,dynamic>>(statusCode: 403, data: data));
+      final dioError = DioError(response: Response<Map<String, dynamic>>(statusCode: 403, data: data));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);

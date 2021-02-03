@@ -1,8 +1,10 @@
-import 'package:kiwi/kiwi.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 
+@injectable
 class DebugViewModel with ChangeNotifier {
   final DebugRepo _debugRepo;
 
@@ -35,7 +37,7 @@ class DebugViewModel with ChangeNotifier {
   void onLicensesClicked() => _navigator.goToLicenses();
 
   void onLogNativeBridge() {
-    KiwiContainer().resolve<LoggingBridging>().log('TEST From the debug screen.');
+    GetIt.instance.get<LoggingBridging>().log('TEST From the debug screen.');
   }
 }
 

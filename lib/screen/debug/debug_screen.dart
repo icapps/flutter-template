@@ -1,4 +1,3 @@
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
@@ -81,7 +81,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
           ),
         ),
       ),
-      create: () => KiwiContainer().resolve()..init(this),
+      create: () => GetIt.instance.get()..init(this),
     );
   }
 

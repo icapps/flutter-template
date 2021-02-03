@@ -1,10 +1,10 @@
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
@@ -14,8 +14,8 @@ void main() {
   MockLicenseViewModel licenseViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
+    await initTestInjectable();
+    licenseViewModel = GetIt.I();
   });
 
   testWidgets('Test splash screen initial state', (tester) async {
@@ -63,7 +63,7 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = TestKiwiUtil.resolveAs<LicenseViewModel, MockLicenseViewModel>();
+  final licenseViewModel = GetIt.I<MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(licenseViewModel);

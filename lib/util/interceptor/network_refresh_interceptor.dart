@@ -1,4 +1,5 @@
-import 'package:kiwi/kiwi.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 
 import '../app_constants.dart';
 
+@lazySingleton
 class NetworkRefreshInterceptor extends Interceptor {
   final AuthStoring _authStoring;
   final RefreshRepo _refreshRepo;
@@ -16,9 +18,9 @@ class NetworkRefreshInterceptor extends Interceptor {
   ];
 
   NetworkRefreshInterceptor(
-      this._authStoring,
-      this._refreshRepo,
-      );
+    this._authStoring,
+    this._refreshRepo,
+  );
 
   @override
   Future onResponse(Response response) {
@@ -34,7 +36,7 @@ class NetworkRefreshInterceptor extends Interceptor {
     }
 
     FlutterTemplateLogger.logDebug('Refreshing');
-    final _dio = KiwiContainer().resolve<Dio>();
+    final _dio = GetIt.instance.get<Dio>();
 
     if (err is! UnAuthorizedError) {
       return super.onError(err);

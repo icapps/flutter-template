@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
@@ -16,8 +16,8 @@ void main() {
   MockGlobalViewModel globalViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+    await initTestInjectable();
+    globalViewModel = GetIt.I();
   });
 
   testWidgets('Test debug select platform screen navigator test', (tester) async {

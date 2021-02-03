@@ -1,8 +1,9 @@
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/mock_flutter_secure_storage.dart';
 import '../../util/test_extensions.dart';
 
@@ -11,8 +12,8 @@ void main() {
   MockFlutterSecureStorage secureStorage;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    secureStorage = TestKiwiUtil.resolve();
+    await initTestInjectable();
+    secureStorage = GetIt.I();
     sut = SecureStorage(secureStorage);
   });
 

@@ -204,7 +204,7 @@ final removeCodeLines = [
   '    verifyTodoListViewModel();',
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = TestKiwiUtil.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  final todoListViewModel = GetIt.I<MockTodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
@@ -213,7 +213,7 @@ void seedTodoListViewModel() {
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = TestKiwiUtil.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  final todoAddViewModel = GetIt.I<MockTodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
 }''',
   '    seedTodoListViewModel();',

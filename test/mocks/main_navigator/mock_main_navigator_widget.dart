@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 class MockMainNavigator extends StatefulWidget {
@@ -47,4 +48,6 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog<T>(builder: builder);
 }
 
+@test
+@injectable
 class MockMainNavigation extends Mock implements MainNavigation {}

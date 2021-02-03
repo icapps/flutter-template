@@ -3,7 +3,9 @@ import 'dart:typed_data';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: CacheControlling)
 class CacheController extends CacheControlling {
   @override
   Future<Uint8List> getFileFromCache(String url) async {
