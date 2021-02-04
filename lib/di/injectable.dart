@@ -4,7 +4,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
@@ -21,9 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: r'$initGetIt', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
+  initializerName: r'$initGetIt',
 )
 Future<void> configureDependencies(String environment) async {
   // ignore: avoid_print
@@ -31,14 +28,16 @@ Future<void> configureDependencies(String environment) async {
   await $initGetIt(getIt, environment: environment);
 }
 
-@dev
-@alpha
-@beta
-@prod
 @module
 abstract class RegisterModule {
   @preResolve
-  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+  Future<SharedPreferences> get prefs {
+    if (FlavorConfig.isInTest()) {
+      // ignore: invalid_use_of_visible_for_testing_member
+      SharedPreferences.setMockInitialValues(<String, dynamic>{});
+    }
+    return SharedPreferences.getInstance();
+  }
 
   FlutterSecureStorage get storage => const FlutterSecureStorage();
 
