@@ -42,7 +42,7 @@ class ProviderWidget<T extends ChangeNotifier> extends StatelessWidget {
           } else if (childBuilderWithViewModel != null) {
             return childBuilderWithViewModel(context, Provider.of<T>(context), FlutterTemplateTheme.of(context), Localization.of(context));
           }
-          throw ArgumentError('childBuilder, childBuilderWithViewModel or consumer should be passed');
+          throw ArgumentError('child, childBuilder, childBuilderWithViewModel, consumer or consumerWithThemeAndLocalization should be passed');
         },
       ),
       create: (context) => create(),
