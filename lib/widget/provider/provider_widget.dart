@@ -33,7 +33,7 @@ class ProviderWidget<T extends ChangeNotifier> extends StatelessWidget {
           if (consumerWithThemeAndLocalization != null || consumer != null) {
             return Consumer<T>(
               child: consumerChild ?? Container(),
-              builder: consumer,
+              builder: consumer ?? (context, t, widget) => consumerWithThemeAndLocalization(context, t, widget, FlutterTemplateTheme.of(context), Localization.of(context)),
             );
           } else if (child != null) {
             return child;
