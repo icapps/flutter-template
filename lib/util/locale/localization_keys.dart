@@ -2,9 +2,12 @@
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class LocalizationKeys {
+
   static const climbTitle = 'climb_title';
 
   static const debugAnimationsTitle = 'debug_animations_title';
+
+  static const debugDatabase = 'debug_database';
 
   static const debugLicensesGoTo = 'debug_licenses_go_to';
 
@@ -20,10 +23,6 @@ class LocalizationKeys {
 
   static const debugNativeBridgeLog = 'debug_native_bridge_log';
 
-  static const debugDatabase = 'debug_database';
-
-  static const debugViewDatabase = 'debug_view_database';
-
   static const debugShowTranslations = 'debug_show_translations';
 
   static const debugSlowAnimations = 'debug_slow_animations';
@@ -37,6 +36,8 @@ class LocalizationKeys {
   static const debugTitle = 'debug_title';
 
   static const debugTranslationsTitle = 'debug_translations_title';
+
+  static const debugViewDatabase = 'debug_view_database';
 
   static const errorBadRequest = 'error_bad_request';
 
@@ -81,4 +82,5 @@ class LocalizationKeys {
   static const todoEmptyState = 'todo_empty_state';
 
   static const todoTitle = 'todo_title';
+
 }

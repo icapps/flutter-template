@@ -50,6 +50,8 @@ class Localization {
 
   String get debugAnimationsTitle => _t(LocalizationKeys.debugAnimationsTitle);
 
+  String get debugDatabase => _t(LocalizationKeys.debugDatabase);
+
   String get debugLicensesGoTo => _t(LocalizationKeys.debugLicensesGoTo);
 
   String get debugLicensesTitle => _t(LocalizationKeys.debugLicensesTitle);
@@ -64,10 +66,6 @@ class Localization {
 
   String get debugNativeBridgeLog => _t(LocalizationKeys.debugNativeBridgeLog);
 
-  String get debugDatabase => _t(LocalizationKeys.debugDatabase);
-
-  String get debugViewDatabase => _t(LocalizationKeys.debugViewDatabase);
-
   String get debugShowTranslations => _t(LocalizationKeys.debugShowTranslations);
 
   String get debugSlowAnimations => _t(LocalizationKeys.debugSlowAnimations);
@@ -81,6 +79,8 @@ class Localization {
   String get debugTitle => _t(LocalizationKeys.debugTitle);
 
   String get debugTranslationsTitle => _t(LocalizationKeys.debugTranslationsTitle);
+
+  String get debugViewDatabase => _t(LocalizationKeys.debugViewDatabase);
 
   String get errorBadRequest => _t(LocalizationKeys.errorBadRequest);
 
@@ -127,4 +127,5 @@ class Localization {
   String get todoTitle => _t(LocalizationKeys.todoTitle);
 
   String getTranslation(String key, {List<dynamic> args}) => _t(key, args: args ?? List());
+
 }
