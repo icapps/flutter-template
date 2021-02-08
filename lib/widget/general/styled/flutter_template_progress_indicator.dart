@@ -11,9 +11,9 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (FlavorConfig.isInTest()) {
-      return DataProviderWidget(
-        childBuilderTheme: (context, theme) => Container(
+    return DataProviderWidget(childBuilderTheme: (context, theme) {
+      if (FlavorConfig.isInTest()) {
+        return Container(
           color: theme.colorsTheme.accent,
           height: 50,
           width: 50,
@@ -21,13 +21,11 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
             'CircularProgressIndicator',
             style: TextStyle(fontSize: 8),
           ),
-        ),
-      );
-    }
-    return DataProviderWidget(
-      childBuilderTheme: (context, theme) => CircularProgressIndicator(
+        );
+      }
+      return CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation(dark ? theme.colorsTheme.darkProgressIndicator : theme.colorsTheme.lightProgressIndicator),
-      ),
-    );
+      );
+    });
   }
 }
