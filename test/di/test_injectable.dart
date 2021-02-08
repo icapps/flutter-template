@@ -27,8 +27,11 @@ Future<void> initTestInjectable() async {
       color: Colors.black,
       values: values,
     );
+  }
+  if (!getIt.isRegistered<Connectivity>()) {
     TestWidgetsFlutterBinding.ensureInitialized();
     await $initGetIt(getIt, environment: Environment.test);
     $initTestGetIt(getIt, environment: Environment.test);
+    await getIt.allReady();
   }
 }

@@ -59,6 +59,7 @@ import '../webservice/todo/todo_webservice.dart';
 
 /// Environment names
 const _dummy = 'dummy';
+const _test = 'test';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -71,9 +72,14 @@ Future<GetIt> $initGetIt(
   final gh = GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.factory<Connectivity>(() => registerModule.connectivity);
+  final resolvedDatabaseConnection =
+      await registerModule.provideDatabaseConnection();
+  gh.factory<DatabaseConnection>(() => resolvedDatabaseConnection);
   gh.factory<DebugPlatformSelectorViewModel>(
       () => DebugPlatformSelectorViewModel());
   gh.factory<FlutterSecureStorage>(() => registerModule.storage);
+  gh.factory<FlutterTemplateDatabase>(() =>
+      registerModule.provideFlutterTemplateDatabase(get<DatabaseConnection>()));
   gh.factory<LicenseViewModel>(() => LicenseViewModel());
   gh.factory<QueryExecutor>(() => registerModule.executor);
   final resolvedSharedPreferences = await registerModule.prefs;
@@ -110,11 +116,13 @@ Future<GetIt> $initGetIt(
   gh.singleton<SecureStoring>(SecureStorage(get<FlutterSecureStorage>()));
   gh.singleton<SharedPrefsStoring>(
       SharedPrefsStorage(get<SharedPreferences>()));
+  gh.singleton<TodoDaoStoring>(TodoDaoStorage(get<FlutterTemplateDatabase>()));
   gh.singleton<TodoService>(TodoDummyService(), registerFor: {_dummy});
   gh.singleton<AuthStoring>(AuthStorage(get<SecureStoring>()));
   gh.singleton<DebugRepo>(DebugRepository(get<SharedPrefsStoring>()));
   gh.singleton<FlutterTemplateDatabase>(
-      FlutterTemplateDatabase(get<QueryExecutor>()));
+      FlutterTemplateDatabase(get<QueryExecutor>()),
+      registerFor: {_test});
   gh.singleton<LocalStoring>(
       LocalStorage(get<AuthStoring>(), get<SharedPrefsStoring>()));
   gh.singleton<LocaleRepo>(LocaleRepository(get<SharedPrefsStoring>()));
@@ -122,7 +130,6 @@ Future<GetIt> $initGetIt(
   gh.singleton<NetworkAuthInterceptor>(
       NetworkAuthInterceptor(get<AuthStoring>()));
   gh.singleton<RefreshRepo>(RefreshRepository(get<AuthStoring>()));
-  gh.singleton<TodoDaoStoring>(TodoDaoStorage(get<FlutterTemplateDatabase>()));
   gh.singleton<TodoRepo>(
       TodoRepository(get<TodoService>(), get<TodoDaoStoring>()));
   return get;

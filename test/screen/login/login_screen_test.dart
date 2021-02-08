@@ -1,18 +1,18 @@
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/viewmodel/login/mock_login_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockLoginViewModel loginViewModel;
+  LoginViewModel loginViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -105,7 +105,7 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  final loginViewModel = GetIt.I<MockLoginViewModel>();
+  final loginViewModel = GetIt.I<LoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init(any)).calledOnce();

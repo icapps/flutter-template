@@ -26,6 +26,7 @@ import '../mocks/mock_shared_preferences.dart';
 import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
 import '../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
 import '../mocks/database/todo/mock_todo_dao_storage.dart';
+import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
 import '../mocks/repository/todo/mock_todo_repository.dart';
 import '../mocks/webservice/todo/mock_todo_service.dart';
 
@@ -78,6 +79,7 @@ GetIt $initTestGetIt(
       registerFor: {_test});
   gh.factory<MockTodoDaoStorage>(() => MockTodoDaoStorage(),
       registerFor: {_test});
+  gh.factory<MockTodoListViewModel>(() => MockTodoListViewModel());
   gh.factory<MockTodoRepository>(() => MockTodoRepository(),
       registerFor: {_test});
   gh.factory<MockTodoService>(() => MockTodoService(), registerFor: {_test});

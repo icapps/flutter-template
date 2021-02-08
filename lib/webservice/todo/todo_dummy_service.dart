@@ -12,7 +12,6 @@ class TodoDummyService extends TodoService {
 
   @override
   Future<List<Todo>> getTodos() async {
-    print('dummy todos');
     await Future<void>.delayed(ThemeDurations.demoNetworkCallDuration());
     if (todos.isEmpty) {
       final result = await DummyApiUtil.getResponse<List<Map<String, dynamic>>>('todos');

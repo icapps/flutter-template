@@ -4,6 +4,7 @@ import 'package:moor/moor.dart';
 
 part 'flutter_template_database.g.dart';
 
+@test
 @singleton
 @UseMoor(tables: [
   DbTodoTable,
