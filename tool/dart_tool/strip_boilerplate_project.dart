@@ -108,13 +108,13 @@ void replaceBoilerplateReferences(Directory dir) {
 void _replaceHomeScreenLine() {
   _replaceInFile(
     'lib/screen/home/home_screen.dart',
-    '''        children: const [
-          TodoListScreen(),
-          DebugScreen(),
-        ],''',
-    '''        children: [
-          Container(),
-          const DebugScreen(),
+    '''          children: const [
+            TodoListScreen(),
+            DebugScreen(),
+          ],''',
+    '''          children: [
+            Container(),
+            const DebugScreen(),
         ],''',
   );
 }

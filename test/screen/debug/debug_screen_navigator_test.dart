@@ -11,7 +11,6 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-
   setUp(() async {
     await TestKiwiUtil.init();
   });
