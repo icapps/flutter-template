@@ -11,7 +11,6 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-
   setUp(() async {
     await TestKiwiUtil.init();
   });
@@ -38,6 +37,10 @@ void main() {
 
     debugKey.currentState.goToSelectLanguage();
     verify(mockNavigation.showCustomDialog<void>(builder: anyNamed('builder'))).calledOnce();
+    verifyNoMoreInteractions(mockNavigation);
+
+    debugKey.currentState.goToDatabase();
+    verify(mockNavigation.goToDatabase(any)).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });
 }

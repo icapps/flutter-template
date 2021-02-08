@@ -82,10 +82,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
               DebugRowItem(
                 key: Keys.debugDatabase,
                 title: localization.debugViewDatabase,
-                onClick: () {
-                  final db = KiwiContainer().resolve<FlutterTemplateDatabase>();
-                  MainNavigatorWidget.of(context).goToDatabase(db);
-                },
+                onClick: goToDatabase,
               ),
             ],
           ),
@@ -107,4 +104,9 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
           goBack: () => MainNavigatorWidget.of(this.context).closeDialog(),
         ),
       );
+
+  void goToDatabase() {
+    final db = KiwiContainer().resolve<FlutterTemplateDatabase>();
+    MainNavigatorWidget.of(context).goToDatabase(db);
+  }
 }
