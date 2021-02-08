@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moor/moor.dart';
 
 abstract class MainNavigation {
   void goToSplash();
@@ -14,6 +15,8 @@ abstract class MainNavigation {
   void goToLicense();
 
   void closeDialog();
+
+  void goToDatabase(GeneratedDatabase db);
 
   void goBack<T>({T result});
 

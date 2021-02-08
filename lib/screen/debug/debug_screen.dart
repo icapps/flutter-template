@@ -12,7 +12,6 @@ import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:moor_db_viewer/moor_db_viewer.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
@@ -85,7 +84,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
                 title: localization.debugViewDatabase,
                 onClick: () {
                   final db = KiwiContainer().resolve<FlutterTemplateDatabase>();
-                  Navigator.of(context).push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
+                  MainNavigatorWidget.of(context).goToDatabase(db);
                 },
               ),
             ],
