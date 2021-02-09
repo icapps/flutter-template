@@ -20,7 +20,6 @@ Future<void> main() async {
     color: Colors.blue,
     values: values,
   );
-  print('Starting app from main_beta.dart');
   await configureDependencies(Environments.BETA);
   runApp(MyApp());
 }

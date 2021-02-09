@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:provider/provider.dart';
 
 class ProviderWidget<T extends ChangeNotifier> extends StatelessWidget {

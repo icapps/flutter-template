@@ -20,7 +20,7 @@ Future<void> main() async {
     color: Colors.transparent,
     values: values,
   );
-  print('Starting app from main_prod.dart');
+  // ignore: avoid_print
   await configureDependencies(Environments.PROD);
   runApp(MyApp());
 }

@@ -20,6 +20,7 @@ Future<void> main() async {
     color: Colors.purple,
     values: values,
   );
+  // ignore: avoid_print
   print('Starting app from main_dummy.dart');
   await configureDependencies(Environments.DUMMY);
   runApp(MyApp());

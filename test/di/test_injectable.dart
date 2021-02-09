@@ -3,7 +3,6 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
