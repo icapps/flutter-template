@@ -1,10 +1,10 @@
 import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
@@ -25,7 +25,7 @@ void main() {
 }
 
 void verifySplashViewModel() {
-  final splash = GetIt.I<MockSplashViewModel>();
+  final splash = GetIt.I<SplashViewModel>();
   verify(splash.init(any)).calledOnce();
   verifyNoMoreInteractions(splash);
 }

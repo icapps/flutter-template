@@ -1,5 +1,6 @@
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,13 +8,12 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/test_injectable.dart';
-import '../../../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
 void main() {
-  MockTodoAddViewModel todoAddViewModel;
+  TodoAddViewModel todoAddViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -103,7 +103,7 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<MockTodoAddViewModel>();
+  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
   verify(todoAddViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(todoAddViewModel);

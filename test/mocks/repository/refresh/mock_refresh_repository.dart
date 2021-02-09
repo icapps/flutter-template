@@ -3,5 +3,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: RefreshRepo)
 class MockRefreshRepository extends Mock implements RefreshRepo {}

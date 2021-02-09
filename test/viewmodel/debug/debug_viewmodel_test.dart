@@ -1,16 +1,16 @@
+import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/repository/debug/mock_debug_repository.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   DebugViewModel sut;
   DebugNavigator navigator;
-  MockDebugRepository debugRepo;
+  DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();

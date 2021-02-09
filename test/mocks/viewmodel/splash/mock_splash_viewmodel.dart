@@ -4,5 +4,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: SplashViewModel)
 class MockSplashViewModel extends Mock with ChangeNotifier implements SplashViewModel {}

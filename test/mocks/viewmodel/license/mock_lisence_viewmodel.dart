@@ -4,5 +4,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: LicenseViewModel)
 class MockLicenseViewModel extends Mock with ChangeNotifier implements LicenseViewModel {}

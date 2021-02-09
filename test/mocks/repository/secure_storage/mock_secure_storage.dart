@@ -3,5 +3,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: SecureStoring)
 class MockSecureStorage extends Mock implements SecureStoring {}

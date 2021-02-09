@@ -3,5 +3,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: LoginRepo)
 class MockLoginRepository extends Mock implements LoginRepo {}

@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/repository/debug/debug_repo.dart';
+import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,14 +10,12 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/repository/debug/mock_debug_repository.dart';
-import '../../mocks/repository/locale/mock_locale_repository.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   GlobalViewModel sut;
-  MockLocaleRepoitory localeRepo;
-  MockDebugRepository debugRepo;
+  LocaleRepo localeRepo;
+  DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();

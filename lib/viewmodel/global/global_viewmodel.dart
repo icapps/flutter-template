@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:injectable/injectable.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @injectable
 class GlobalViewModel with ChangeNotifier {
   final LocaleRepo _localeRepo;

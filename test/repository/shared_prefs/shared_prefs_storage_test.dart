@@ -3,13 +3,13 @@ import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.da
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/mock_shared_preferences.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  MockSharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences;
   SharedPrefsStoring sut;
 
   setUp(() async {

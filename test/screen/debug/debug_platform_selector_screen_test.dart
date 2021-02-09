@@ -2,20 +2,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/viewmodel/debug/mock_debug_platform_selector_viewmodel.dart';
-import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockGlobalViewModel globalViewModel;
-  MockDebugPlatformSelectorViewModel platformViewmodel;
+  GlobalViewModel globalViewModel;
+  DebugPlatformSelectorViewModel platformViewmodel;
 
   setUp(() async {
     await initTestInjectable();
@@ -130,7 +130,7 @@ void main() {
 }
 
 void verifyDebugPlatformViewModel() {
-  final platformSelectorViewModel = GetIt.I<MockDebugPlatformSelectorViewModel>();
+  final platformSelectorViewModel = GetIt.I<DebugPlatformSelectorViewModel>();
   verify(platformSelectorViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(platformSelectorViewModel);
 }

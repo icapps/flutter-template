@@ -1,8 +1,13 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @Singleton(as: SharedPrefsStoring)
 class SharedPrefsStorage extends SharedPrefsStoring {
   final SharedPreferences _sharedPreferences;

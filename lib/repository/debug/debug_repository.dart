@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:injectable/injectable.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @Singleton(as: DebugRepo)
 class DebugRepository extends DebugRepo {
   static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';

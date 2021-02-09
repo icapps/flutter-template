@@ -3,5 +3,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: TodoDaoStoring)
 class MockTodoDaoStorage extends Mock implements TodoDaoStoring {}

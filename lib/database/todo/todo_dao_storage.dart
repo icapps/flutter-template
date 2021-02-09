@@ -8,6 +8,10 @@ import 'package:moor/moor.dart';
 
 part 'todo_dao_storage.g.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @Singleton(as: TodoDaoStoring)
 @UseDao(tables: [
   DbTodoTable,

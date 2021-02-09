@@ -3,5 +3,5 @@ import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
 @test
-@injectable
+@Singleton(as: ConnectivityControlling)
 class MockConnectivityController extends Mock implements ConnectivityControlling {}

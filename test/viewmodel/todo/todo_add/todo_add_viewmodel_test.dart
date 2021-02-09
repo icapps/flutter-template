@@ -1,15 +1,15 @@
+import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/test_injectable.dart';
-import '../../../mocks/repository/todo/mock_todo_repository.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
   TodoAddViewModel sut;
-  MockTodoRepository todoRepo;
+  TodoRepo todoRepo;
   TodoAddNavigator navigator;
 
   setUp(() async {

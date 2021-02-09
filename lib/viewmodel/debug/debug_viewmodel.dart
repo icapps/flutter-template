@@ -1,9 +1,14 @@
+import 'package:flutter_template/di/environments.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @injectable
 class DebugViewModel with ChangeNotifier {
   final DebugRepo _debugRepo;

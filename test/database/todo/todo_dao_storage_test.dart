@@ -18,7 +18,7 @@ void main() {
   });
 
   tearDown(() async {
-    await database.close();
+    await database.deleteAllData();
   });
 
   group('createTodo && getAllTodos', () {

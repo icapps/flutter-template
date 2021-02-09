@@ -8,7 +8,7 @@ import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 
 import '../app_constants.dart';
 
-@lazySingleton
+@singleton
 class NetworkRefreshInterceptor extends Interceptor {
   final AuthStoring _authStoring;
   final RefreshRepo _refreshRepo;

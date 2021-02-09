@@ -3,5 +3,6 @@ import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.da
 import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 
-@injectable
+@test
+@Singleton(as: TodoListViewModel)
 class MockTodoListViewModel extends Mock with ChangeNotifier implements TodoListViewModel {}

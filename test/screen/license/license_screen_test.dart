@@ -1,17 +1,17 @@
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockLicenseViewModel licenseViewModel;
+  LicenseViewModel licenseViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -63,7 +63,7 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = GetIt.I<MockLicenseViewModel>();
+  final licenseViewModel = GetIt.I<LicenseViewModel>();
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(licenseViewModel);

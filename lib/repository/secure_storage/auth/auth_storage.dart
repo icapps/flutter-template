@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/util/future/future_helper.dart';
 import 'package:injectable/injectable.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @Singleton(as: AuthStoring)
 class AuthStorage extends AuthStoring {
   final SecureStoring _storage;

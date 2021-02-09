@@ -7,6 +7,7 @@ import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
@@ -14,11 +15,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/util/mock_connectivity_controller.dart';
 
 void main() {
   NetworkErrorInterceptor sut;
-  MockConnectivityController connectivityController;
+  ConnectivityControlling connectivityController;
   setUp(() async {
     await initTestInjectable();
     connectivityController = GetIt.I();

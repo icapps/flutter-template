@@ -40,6 +40,11 @@ Future<void> configureDependencies(String environment) async {
 
 @module
 abstract class RegisterModule {
+  @dev
+  @alpha
+  @beta
+  @prod
+  @singleton
   @preResolve
   Future<SharedPreferences> get prefs {
     if (FlavorConfig.isInTest()) {
@@ -49,12 +54,20 @@ abstract class RegisterModule {
     return SharedPreferences.getInstance();
   }
 
+  @dev
+  @alpha
+  @beta
+  @prod
+  @singleton
   FlutterSecureStorage get storage => const FlutterSecureStorage();
 
+  @singleton
   Connectivity get connectivity => Connectivity();
 
+  @singleton
   QueryExecutor get executor => VmDatabase.memory();
 
+  @singleton
   CombiningSmartInterceptor provideCombiningSmartInterceptor(
     NetworkLogInterceptor logInterceptor,
     NetworkAuthInterceptor authInterceptor,
@@ -63,6 +76,11 @@ abstract class RegisterModule {
   ) =>
       CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
 
+  @dev
+  @alpha
+  @beta
+  @prod
+  @singleton
   Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
     final dio = Dio();
     dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
@@ -71,11 +89,20 @@ abstract class RegisterModule {
     return dio;
   }
 
+  @dev
+  @alpha
+  @beta
+  @prod
+  @singleton
   FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
 
+  @singleton
   @preResolve
   Future<DatabaseConnection> provideDatabaseConnection() async {
-    if (FlavorConfig.isInTest()) return null;
+    if (FlavorConfig.isInTest()) {
+      moorRuntimeOptions.dontWarnAboutMultipleDatabases = true; // This method is called every test :-/ TODO: figure out how to stop
+      return DatabaseConnection.fromExecutor(VmDatabase.memory());
+    }
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(join(dbFolder.path, 'db.sqlite'));
     if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {

@@ -49,5 +49,5 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
 }
 
 @test
-@injectable
+@Singleton(as: MainNavigation)
 class MockMainNavigation extends Mock implements MainNavigation {}

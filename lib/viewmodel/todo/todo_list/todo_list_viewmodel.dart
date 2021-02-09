@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
@@ -9,6 +10,10 @@ import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:injectable/injectable.dart';
 
+@dev
+@alpha
+@beta
+@prod
 @injectable
 class TodoListViewModel with ChangeNotifier {
   final TodoRepo _todoRepo;

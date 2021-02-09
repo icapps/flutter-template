@@ -1,15 +1,16 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
+import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
-import '../../mocks/mock_flutter_secure_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SecureStorage sut;
-  MockFlutterSecureStorage secureStorage;
+  SecureStoring sut;
+  FlutterSecureStorage secureStorage;
 
   setUp(() async {
     await initTestInjectable();
