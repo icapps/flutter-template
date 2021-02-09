@@ -74,86 +74,50 @@ Future<GetIt> $initGetIt(
 }) async {
   final gh = GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
-  gh.factory<DebugPlatformSelectorViewModel>(
-      () => DebugPlatformSelectorViewModel(),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<LicenseViewModel>(() => LicenseViewModel(),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<DebugViewModel>(() => DebugViewModel(get<DebugRepo>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<LoginViewModel>(() => LoginViewModel(get<LoginRepo>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<SplashViewModel>(
-      () => SplashViewModel(get<LoginRepo>(), get<LocalStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<GlobalViewModel>(
-      () => GlobalViewModel(get<LocaleRepo>(), get<DebugRepo>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<TodoAddViewModel>(() => TodoAddViewModel(get<TodoRepo>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.factory<TodoListViewModel>(() => TodoListViewModel(get<TodoRepo>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<DebugPlatformSelectorViewModel>(() => DebugPlatformSelectorViewModel(), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<LicenseViewModel>(() => LicenseViewModel(), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<DebugViewModel>(() => DebugViewModel(get<DebugRepo>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<LoginViewModel>(() => LoginViewModel(get<LoginRepo>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<SplashViewModel>(() => SplashViewModel(get<LoginRepo>(), get<LocalStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<GlobalViewModel>(() => GlobalViewModel(get<LocaleRepo>(), get<DebugRepo>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<TodoAddViewModel>(() => TodoAddViewModel(get<TodoRepo>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.factory<TodoListViewModel>(() => TodoListViewModel(get<TodoRepo>()), registerFor: {_dev, _alpha, _beta, _prod});
 
   // Eager singletons must be registered in the right order
   gh.singleton<CacheControlling>(CacheController());
   gh.singleton<Connectivity>(registerModule.connectivity);
-  gh.singleton<ConnectivityControlling>(
-      ConnectivityController(get<Connectivity>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  final resolvedDatabaseConnection =
-      await registerModule.provideDatabaseConnection();
+  gh.singleton<ConnectivityControlling>(ConnectivityController(get<Connectivity>()), registerFor: {_dev, _alpha, _beta, _prod});
+  final resolvedDatabaseConnection = await registerModule.provideDatabaseConnection();
   gh.singleton<DatabaseConnection>(resolvedDatabaseConnection);
-  gh.singleton<FlutterSecureStorage>(registerModule.storage,
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<FlutterTemplateDatabase>(
-      registerModule.provideFlutterTemplateDatabase(get<DatabaseConnection>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<FlutterSecureStorage>(registerModule.storage, registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<FlutterTemplateDatabase>(registerModule.provideFlutterTemplateDatabase(get<DatabaseConnection>()), registerFor: {_dev, _alpha, _beta, _prod});
   gh.singleton<LoggingBridging>(LoggingBridge());
-  gh.singleton<NetworkErrorInterceptor>(
-      NetworkErrorInterceptor(get<ConnectivityControlling>()));
+  gh.singleton<NetworkErrorInterceptor>(NetworkErrorInterceptor(get<ConnectivityControlling>()));
   gh.singleton<NetworkLogInterceptor>(NetworkLogInterceptor());
   gh.singleton<QueryExecutor>(registerModule.executor);
-  gh.singleton<SecureStoring>(SecureStorage(get<FlutterSecureStorage>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<SecureStoring>(SecureStorage(get<FlutterSecureStorage>()), registerFor: {_dev, _alpha, _beta, _prod});
   final resolvedSharedPreferences = await registerModule.prefs;
-  gh.singleton<SharedPreferences>(resolvedSharedPreferences,
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<SharedPrefsStoring>(SharedPrefsStorage(get<SharedPreferences>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<TodoDaoStoring>(TodoDaoStorage(get<FlutterTemplateDatabase>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<SharedPreferences>(resolvedSharedPreferences, registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<SharedPrefsStoring>(SharedPrefsStorage(get<SharedPreferences>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<TodoDaoStoring>(TodoDaoStorage(get<FlutterTemplateDatabase>()), registerFor: {_dev, _alpha, _beta, _prod});
   gh.singleton<TodoService>(TodoDummyService(), registerFor: {_dummy});
-  gh.singleton<AuthStoring>(AuthStorage(get<SecureStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<DebugRepo>(DebugRepository(get<SharedPrefsStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<LocalStoring>(
-      LocalStorage(get<AuthStoring>(), get<SharedPrefsStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<LocaleRepo>(LocaleRepository(get<SharedPrefsStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<LoginRepo>(LoginRepository(get<AuthStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<NetworkAuthInterceptor>(
-      NetworkAuthInterceptor(get<AuthStoring>()));
-  gh.singleton<RefreshRepo>(RefreshRepository(get<AuthStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<TodoRepo>(
-      TodoRepository(get<TodoService>(), get<TodoDaoStoring>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<NetworkRefreshInterceptor>(
-      NetworkRefreshInterceptor(get<AuthStoring>(), get<RefreshRepo>()));
-  gh.singleton<CombiningSmartInterceptor>(
-      registerModule.provideCombiningSmartInterceptor(
+  gh.singleton<AuthStoring>(AuthStorage(get<SecureStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<DebugRepo>(DebugRepository(get<SharedPrefsStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<LocalStoring>(LocalStorage(get<AuthStoring>(), get<SharedPrefsStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<LocaleRepo>(LocaleRepository(get<SharedPrefsStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<LoginRepo>(LoginRepository(get<AuthStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<NetworkAuthInterceptor>(NetworkAuthInterceptor(get<AuthStoring>()));
+  gh.singleton<RefreshRepo>(RefreshRepository(get<AuthStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<NetworkRefreshInterceptor>(NetworkRefreshInterceptor(get<AuthStoring>(), get<RefreshRepo>()));
+  gh.singleton<CombiningSmartInterceptor>(registerModule.provideCombiningSmartInterceptor(
     get<NetworkLogInterceptor>(),
     get<NetworkAuthInterceptor>(),
     get<NetworkErrorInterceptor>(),
     get<NetworkRefreshInterceptor>(),
   ));
-  gh.singleton<Dio>(registerModule.provideDio(get<CombiningSmartInterceptor>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
-  gh.singleton<TodoService>(TodoWebService(get<Dio>()),
-      registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<Dio>(registerModule.provideDio(get<CombiningSmartInterceptor>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<TodoService>(TodoWebService(get<Dio>()), registerFor: {_dev, _alpha, _beta, _prod});
+  gh.singleton<TodoRepo>(TodoRepository(get<TodoService>(), get<TodoDaoStoring>()), registerFor: {_dev, _alpha, _beta, _prod});
   return get;
 }
 
