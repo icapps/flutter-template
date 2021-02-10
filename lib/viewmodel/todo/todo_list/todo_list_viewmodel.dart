@@ -5,10 +5,11 @@ import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 
-class TodoListViewModel with ChangeNotifier {
+class TodoListViewModel with ChangeNotifier, DisposeMixin {
   final TodoRepo _todoRepo;
 
   TodoListViewNavigator _navigator;

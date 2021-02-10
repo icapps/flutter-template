@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/util/license.dart';
+import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 
-class LicenseViewModel with ChangeNotifier {
+class LicenseViewModel with ChangeNotifier, DisposeMixin {
   LicenseNavigator _navigator;
 
   List<License> get licenses => LicenseUtil.getLicenses();

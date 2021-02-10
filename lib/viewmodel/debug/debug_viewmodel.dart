@@ -1,9 +1,10 @@
+import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 
-class DebugViewModel with ChangeNotifier {
+class DebugViewModel with ChangeNotifier, DisposeMixin {
   final DebugRepo _debugRepo;
 
   DebugNavigator _navigator;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
+import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 
-class SplashViewModel with ChangeNotifier {
+class SplashViewModel with ChangeNotifier, DisposeMixin {
   final LoginRepo _loginRepo;
   final LocalStoring _localStoring;
 
