@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_data.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateSwitch extends StatelessWidget {
   final bool value;
@@ -12,11 +12,12 @@ class FlutterTemplateSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    return Switch.adaptive(
-      value: value ?? false,
-      onChanged: onChanged,
-      activeColor: theme.colorsTheme.accent,
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) => Switch.adaptive(
+        value: value ?? false,
+        onChanged: onChanged,
+        activeColor: theme.colorsTheme.accent,
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateProgressIndicator extends StatelessWidget {
   final bool dark;
@@ -11,20 +11,21 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    if (FlavorConfig.isInTest()) {
-      return Container(
-        color: theme.colorsTheme.accent,
-        height: 50,
-        width: 50,
-        child: const Text(
-          'CircularProgressIndicator',
-          style: TextStyle(fontSize: 8),
-        ),
+    return DataProviderWidget(childBuilderTheme: (context, theme) {
+      if (FlavorConfig.isInTest()) {
+        return Container(
+          color: theme.colorsTheme.accent,
+          height: 50,
+          width: 50,
+          child: const Text(
+            'CircularProgressIndicator',
+            style: TextStyle(fontSize: 8),
+          ),
+        );
+      }
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation(dark ? theme.colorsTheme.darkProgressIndicator : theme.colorsTheme.lightProgressIndicator),
       );
-    }
-    return CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation(dark ? theme.colorsTheme.darkProgressIndicator : theme.colorsTheme.lightProgressIndicator),
-    );
+    });
   }
 }
