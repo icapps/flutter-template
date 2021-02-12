@@ -1,3 +1,4 @@
+import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
@@ -75,6 +76,12 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
                 title: localization.debugNativeBridgeLog,
                 onClick: viewModel.onLogNativeBridge,
               ),
+              DebugRowTitle(title: localization.debugDatabase),
+              DebugRowItem(
+                key: Keys.debugDatabase,
+                title: localization.debugViewDatabase,
+                onClick: goToDatabase,
+              ),
             ],
           ),
         ),
@@ -95,4 +102,9 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
           goBack: () => MainNavigatorWidget.of(this.context).closeDialog(),
         ),
       );
+
+  void goToDatabase() {
+    final db = KiwiContainer().resolve<FlutterTemplateDatabase>();
+    MainNavigatorWidget.of(context).goToDatabase(db);
+  }
 }

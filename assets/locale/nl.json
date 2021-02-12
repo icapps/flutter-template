@@ -1,6 +1,7 @@
 {
   "climb_title": "klimb",
   "debug_animations_title": "Animaties",
+  "debug_database": "Database",
   "debug_licenses_go_to": "Bekijk de licenties",
   "debug_licenses_title": "Licenties",
   "debug_locale_current_language": "Huidige taal: %1$s",
@@ -15,6 +16,7 @@
   "debug_theme_title": "Thema",
   "debug_title": "Debuggen",
   "debug_translations_title": "Vertaling sluitels",
+  "debug_view_database": "Toon database",
   "error_bad_request": "Foute request error",
   "error_during_dev": "Je hebt een programmeerfout gemaakt",
   "error_forbidden": "Geen toegang error",

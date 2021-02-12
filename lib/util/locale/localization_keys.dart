@@ -7,6 +7,8 @@ class LocalizationKeys {
 
   static const debugAnimationsTitle = 'debug_animations_title';
 
+  static const debugDatabase = 'debug_database';
+
   static const debugLicensesGoTo = 'debug_licenses_go_to';
 
   static const debugLicensesTitle = 'debug_licenses_title';
@@ -34,6 +36,8 @@ class LocalizationKeys {
   static const debugTitle = 'debug_title';
 
   static const debugTranslationsTitle = 'debug_translations_title';
+
+  static const debugViewDatabase = 'debug_view_database';
 
   static const errorBadRequest = 'error_bad_request';
 

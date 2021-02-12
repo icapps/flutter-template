@@ -10,6 +10,8 @@ import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/route/fade_in_route.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
+import 'package:moor/moor.dart';
+import 'package:moor_db_viewer/moor_db_viewer.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({
@@ -99,6 +101,9 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
 
   @override
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
+
+  @override
+  void goToDatabase(GeneratedDatabase db) => Navigator.of(context).push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
 
   @override
   void goBack<T>({T result}) => navigationKey.currentState.pop(result);

@@ -1,6 +1,7 @@
 {
   "climb_title": "Climb",
   "debug_animations_title": "Animations",
+  "debug_database": "Database",
   "debug_licenses_go_to": "View licenses",
   "debug_licenses_title": "Licenses",
   "debug_locale_current_language": "Current language: %1$s",
@@ -15,6 +16,7 @@
   "debug_theme_title": "Theme",
   "debug_title": "Debug",
   "debug_translations_title": "Translation Keys",
+  "debug_view_database": "View database",
   "error_bad_request": "Bad request error",
   "error_during_dev": "You coded something wrong",
   "error_forbidden": "Forbidden error",

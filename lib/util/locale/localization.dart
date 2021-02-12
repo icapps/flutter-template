@@ -50,6 +50,8 @@ class Localization {
 
   String get debugAnimationsTitle => _t(LocalizationKeys.debugAnimationsTitle);
 
+  String get debugDatabase => _t(LocalizationKeys.debugDatabase);
+
   String get debugLicensesGoTo => _t(LocalizationKeys.debugLicensesGoTo);
 
   String get debugLicensesTitle => _t(LocalizationKeys.debugLicensesTitle);
@@ -77,6 +79,8 @@ class Localization {
   String get debugTitle => _t(LocalizationKeys.debugTitle);
 
   String get debugTranslationsTitle => _t(LocalizationKeys.debugTranslationsTitle);
+
+  String get debugViewDatabase => _t(LocalizationKeys.debugViewDatabase);
 
   String get errorBadRequest => _t(LocalizationKeys.errorBadRequest);
 
