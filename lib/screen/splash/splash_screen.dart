@@ -23,7 +23,7 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
   Widget build(BuildContext context) {
     final theme = FlutterTemplateTheme.of(context);
     return ProviderWidget<SplashViewModel>(
-      create: () => GetIt.instance.get()..init(this),
+      create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel) => Scaffold(
         backgroundColor: theme.colorsTheme.backgroundDark,
         body: const Center(

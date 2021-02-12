@@ -7,8 +7,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
+import 'package:flutter_template/repository/todo/todo_repo.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
@@ -16,6 +19,9 @@ import 'package:flutter_template/util/interceptor/network_error_interceptor.dart
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:flutter_template/webservice/todo/todo_dummy_service.dart';
+import 'package:flutter_template/webservice/todo/todo_service.dart';
+import 'package:flutter_template/webservice/todo/todo_webservice.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moor/isolate.dart';
@@ -40,61 +46,15 @@ Future<void> configureDependencies(String environment) async {
 
 @module
 abstract class RegisterModule {
-  @dev
-  @alpha
-  @beta
-  @prod
   @singleton
   @preResolve
-  Future<SharedPreferences> get prefs {
+  Future<SharedPreferences> prefs() {
     if (FlavorConfig.isInTest()) {
       // ignore: invalid_use_of_visible_for_testing_member
       SharedPreferences.setMockInitialValues(<String, dynamic>{});
     }
     return SharedPreferences.getInstance();
   }
-
-  @dev
-  @alpha
-  @beta
-  @prod
-  @singleton
-  FlutterSecureStorage get storage => const FlutterSecureStorage();
-
-  @singleton
-  Connectivity get connectivity => Connectivity();
-
-  @singleton
-  QueryExecutor get executor => VmDatabase.memory();
-
-  @singleton
-  CombiningSmartInterceptor provideCombiningSmartInterceptor(
-    NetworkLogInterceptor logInterceptor,
-    NetworkAuthInterceptor authInterceptor,
-    NetworkErrorInterceptor errorInterceptor,
-    NetworkRefreshInterceptor refreshInterceptor,
-  ) =>
-      CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
-
-  @dev
-  @alpha
-  @beta
-  @prod
-  @singleton
-  Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
-    final dio = Dio();
-    dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
-    (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson; // ignore: avoid_as
-    dio.interceptors.add(networkInterceptor);
-    return dio;
-  }
-
-  @dev
-  @alpha
-  @beta
-  @prod
-  @singleton
-  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
 
   @singleton
   @preResolve
@@ -120,6 +80,36 @@ abstract class RegisterModule {
     final isolate = await receivePort.first as MoorIsolate;
     return isolate.connect();
   }
+
+  @singleton
+  FlutterSecureStorage storage() => const FlutterSecureStorage();
+
+  @singleton
+  Connectivity connectivity() => Connectivity();
+
+  @singleton
+  QueryExecutor executor() => VmDatabase.memory();
+
+  @singleton
+  CombiningSmartInterceptor provideCombiningSmartInterceptor(
+    NetworkLogInterceptor logInterceptor,
+    NetworkAuthInterceptor authInterceptor,
+    NetworkErrorInterceptor errorInterceptor,
+    NetworkRefreshInterceptor refreshInterceptor,
+  ) =>
+      CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
+
+  @singleton
+  Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
+    final dio = Dio();
+    dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
+    (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson; // ignore: avoid_as
+    dio.interceptors.add(networkInterceptor);
+    return dio;
+  }
+
+  @singleton
+  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
 }
 
 void _startBackground(_IsolateStartRequest request) {

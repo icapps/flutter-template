@@ -33,8 +33,9 @@ Future<void> initTestInjectable() async {
     );
   }
   TestWidgetsFlutterBinding.ensureInitialized();
-  $initTestGetIt(getIt, environment: Environments.TEST);
+  getIt.allowReassignment = true;
   await $initGetIt(getIt, environment: Environments.TEST);
+  $initTestGetIt(getIt, environment: Environments.TEST);
   await TestUtil.loadFonts();
 }
 
