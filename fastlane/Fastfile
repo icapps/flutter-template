@@ -130,7 +130,7 @@ lane :prod_ios do
 
   prepareBuild
   buildAppIOS(flavor: 'prod')
-  buildAndDeployToAppStore(flavor: 'flavor', configuration: 'Release-flavor', identifier: 'identifier.for.you.app', apple_id: 'apple-id-are-numbers') //fill in with correct values.
+  # buildAndDeployToAppStore(flavor: 'flavor', configuration: 'Release-flavor', identifier: 'identifier.for.you.app', apple_id: 'apple-id-are-numbers') //fill in with correct values.
   add_tag                 # Add tag
 end
 
