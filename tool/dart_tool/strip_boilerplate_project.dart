@@ -173,13 +173,6 @@ final removeCodeLines = [
   "import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';",
   "import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';",
   '  DbTodoTable,',
-  '  @Register.singleton(TodoDaoStoring, from: TodoDaoStorage)',
-  '  @Register.singleton(TodoService, from: TodoWebService)',
-  '  @Register.singleton(TodoService, from: TodoDummyService)',
-  '  @Register.singleton(TodoService, from: TodoDummyService)',
-  '  @Register.singleton(TodoRepo, from: TodoRepository)',
-  '  @Register.factory(TodoListViewModel)',
-  '  @Register.factory(TodoAddViewModel)',
   '      case TodoAddScreen.routeName:',
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
   '  void goToAddTodo();',
@@ -196,15 +189,10 @@ final removeCodeLines = [
   "import '../mocks/webservice/todo/mock_todo_service.dart';",
   "import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';",
   "import '../todo/todo_list/todo_list_screen_test.dart';",
-  '  @Register.singleton(TodoDaoStoring, from: MockTodoDaoStorage)',
-  '  @Register.singleton(TodoRepo, from: MockTodoRepository)',
-  '  @Register.singleton(TodoService, from: MockTodoService)',
-  '  @Register.singleton(TodoListViewModel, from: MockTodoListViewModel)',
-  '  @Register.singleton(TodoAddViewModel, from: MockTodoAddViewModel)',
   '    verifyTodoListViewModel();',
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = GetIt.I<MockTodoListViewModel>();
+  final todoListViewModel = GetIt.I<TodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
@@ -213,7 +201,7 @@ void seedTodoListViewModel() {
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<MockTodoAddViewModel>();
+  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
 }''',
   '    seedTodoListViewModel();',
