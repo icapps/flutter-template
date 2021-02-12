@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_data.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateInputField extends StatelessWidget {
   final String hint;
@@ -15,15 +15,16 @@ class FlutterTemplateInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    return TextField(
-      enabled: enabled,
-      decoration: InputDecoration(
-        filled: true,
-        hintText: hint,
-        fillColor: theme.colorsTheme.inputFieldFill,
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) => TextField(
+        enabled: enabled,
+        decoration: InputDecoration(
+          filled: true,
+          hintText: hint,
+          fillColor: theme.colorsTheme.inputFieldFill,
+        ),
+        onChanged: onChanged,
       ),
-      onChanged: onChanged,
     );
   }
 }

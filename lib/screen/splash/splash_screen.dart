@@ -1,4 +1,3 @@
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
@@ -21,10 +20,9 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
     return ProviderWidget<SplashViewModel>(
       create: () => KiwiContainer().resolve()..init(this),
-      childBuilderWithViewModel: (context, viewModel) => Scaffold(
+      childBuilderWithViewModel: (context, viewModel, theme, _) => Scaffold(
         backgroundColor: theme.colorsTheme.backgroundDark,
         body: const Center(
           child: FlutterTemplateProgressIndicator.light(),
