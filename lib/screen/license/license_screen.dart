@@ -1,6 +1,5 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -22,9 +21,8 @@ class LicenseScreen extends StatefulWidget {
 class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin implements LicenseNavigator {
   @override
   Widget build(BuildContext context) {
-    final localization = Localization.of(context);
     return ProviderWidget<LicenseViewModel>(
-      consumer: (context, viewModel, child) => Scaffold(
+      consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),

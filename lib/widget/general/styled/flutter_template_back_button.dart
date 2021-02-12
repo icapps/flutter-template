@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateBackButton extends StatelessWidget {
   final VoidCallback onClick;
@@ -21,12 +21,13 @@ class FlutterTemplateBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    return ActionItem(
-      key: Keys.backButton,
-      svgAsset: getCorrectIcon(context),
-      color: isLight ? theme.colorsTheme.lightIcon : theme.colorsTheme.darkIcon,
-      onClick: onClick,
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) => ActionItem(
+        key: Keys.backButton,
+        svgAsset: getCorrectIcon(context),
+        color: isLight ? theme.colorsTheme.lightIcon : theme.colorsTheme.darkIcon,
+        onClick: onClick,
+      ),
     );
   }
 

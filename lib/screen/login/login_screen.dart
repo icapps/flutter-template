@@ -1,5 +1,5 @@
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
@@ -27,9 +27,9 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    return ChangeNotifierProvider<LoginViewModel>(
-      child: Consumer<LoginViewModel>(
+    return ProviderWidget<LoginViewModel>(
+      create: () => KiwiContainer().resolve()..init(this),
+      childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.light(
           child: Scaffold(
             key: _scaffoldKey,
@@ -82,7 +82,6 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
           ),
         ),
       ),
-      create: (context) => KiwiContainer().resolve()..init(this),
     );
   }
 
