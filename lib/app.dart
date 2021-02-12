@@ -48,7 +48,7 @@ class InternalApp extends StatelessWidget {
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         home: child,
       ),
-      create: () => GetIt.instance.get()..init(),
+      create: () => GetIt.I()..init(),
     );
   }
 }

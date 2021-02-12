@@ -1,11 +1,9 @@
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
@@ -31,10 +29,9 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
 
   @override
   Widget build(BuildContext context) {
-    final theme = FlutterTemplateTheme.of(context);
-    final localization = Localization.of(context);
     return ProviderWidget<TodoListViewModel>(
-      consumer: (context, viewModel, child) => Scaffold(
+      create: () => GetIt.I()..init(this),
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
           centerTitle: context.isIOS,
@@ -100,7 +97,6 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
           ],
         ),
       ),
-      create: () => GetIt.instance.get()..init(this),
     );
   }
 

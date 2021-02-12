@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
+import 'package:moor/src/runtime/api/runtime_api.dart';
 
 class MockMainNavigator extends StatefulWidget {
   final Widget child;
@@ -46,6 +47,9 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
 
   @override
   void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog<T>(builder: builder);
+
+  @override
+  void goToDatabase(GeneratedDatabase db) => widget.mock.goToDatabase(db);
 }
 
 @test

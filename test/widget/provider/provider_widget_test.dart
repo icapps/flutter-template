@@ -28,7 +28,7 @@ void main() {
 
   testWidgets('ProviderWidget should show childbuilder with viewmodel', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      childBuilderWithViewModel: (context, item) => const Material(child: Text('Test')),
+      childBuilderWithViewModel: (context, item, _, __) => const Material(child: Text('Test')),
       create: () => TestViewModel(),
     );
 

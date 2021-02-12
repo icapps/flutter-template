@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -24,9 +23,8 @@ class DebugPlatformSelectorScreen extends StatefulWidget {
 class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen> with BackNavigatorMixin implements DebugPlatformSelectorNavigator {
   @override
   Widget build(BuildContext context) {
-    final localization = Localization.of(context);
     return ProviderWidget<DebugPlatformSelectorViewModel>(
-      childBuilderWithViewModel: (context, value) => Scaffold(
+      childBuilderWithViewModel: (context, value, _, localization) => Scaffold(
         appBar: AppBar(
           leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a platform'),
@@ -53,7 +51,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
           ),
         ),
       ),
-      create: () => GetIt.instance.get()..init(this),
+      create: () => GetIt.I()..init(this),
     );
   }
 }
