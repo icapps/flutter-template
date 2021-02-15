@@ -1,4 +1,3 @@
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class DebugPlatformSelectorScreen extends StatefulWidget {
@@ -51,7 +51,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
           ),
         ),
       ),
-      create: () => KiwiContainer().resolve()..init(this),
+      create: () => GetIt.I()..init(this),
     );
   }
 }

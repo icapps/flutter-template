@@ -3,11 +3,11 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_util.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   testWidgets('TouchFeedBack on Android', (tester) async {
     final sut = Theme(
@@ -53,7 +53,7 @@ void main() {
       );
       await TestUtil.loadWidgetWithText(tester, sut);
       final finder = find.byType(TouchFeedBack);
-      expect(finder,findsOneWidget);
+      expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
       expect(onClickCalled, true);
@@ -74,7 +74,7 @@ void main() {
       );
       await TestUtil.loadWidgetWithText(tester, sut);
       final finder = find.byType(TouchFeedBack);
-      expect(finder,findsOneWidget);
+      expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
       expect(onClickCalled, true);

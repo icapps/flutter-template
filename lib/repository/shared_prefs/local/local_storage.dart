@@ -1,7 +1,9 @@
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: LocalStoring)
 class LocalStorage extends LocalStoring {
   static const _UNINSTALL_CHECK = 'UNINSTALL_CHECK';
 

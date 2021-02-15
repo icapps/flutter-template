@@ -1,22 +1,23 @@
 import 'package:flutter_template/repository/login/login_repo.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/repository/login/mock_login_repository.dart';
+import '../../di/test_injectable.dart';
 import '../../mocks/repository/shared_prefs/local/mock_local_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   SplashViewModel sut;
-  MockLoginRepository loginRepo;
-  MockLocalStorage localStorage;
+  LoginRepo loginRepo;
+  LocalStoring localStorage;
   SplashNavigator navigator;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    loginRepo = TestKiwiUtil.resolveAs<LoginRepo, MockLoginRepository>();
+    await initTestInjectable();
+    loginRepo = GetIt.I();
     navigator = MockSplashNavigator();
     localStorage = MockLocalStorage();
     sut = SplashViewModel(loginRepo, localStorage);

@@ -1,6 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: LoggingBridging)
 class LoggingBridge extends LoggingBridging {
   static const CHANNEL = 'com.icapps.fluttertemplate/logging';
   static const METHOD_CONSOLE_LOG_CHANNEL = 'consoleLog';

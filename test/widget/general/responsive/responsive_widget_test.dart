@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_screen_type.dart';
 import '../../../util/test_util.dart';
 
@@ -10,7 +10,7 @@ void main() {
   const phoneSize = Size(400, 600);
   const tabletSize = Size(900, 1600);
 
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   testWidgets('ResponsiveWidget test builder on mobile', (tester) async {
     final sut = MediaQuery(

@@ -1,13 +1,11 @@
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_util.dart';
 
 void main() {
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
 
   testWidgets('FlutterTemplateProgressIndicator initial state', (tester) async {
     const sut = FlutterTemplateProgressIndicator.light();

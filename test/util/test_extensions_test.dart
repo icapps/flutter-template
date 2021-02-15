@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../di/test_kiwi_util.dart';
+import '../di/test_injectable.dart';
 import 'test_extensions.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   test('calledOnce', () async {
     final mock = MockTesting();

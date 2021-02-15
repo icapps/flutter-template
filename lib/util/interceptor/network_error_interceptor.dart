@@ -8,7 +8,9 @@ import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class NetworkErrorInterceptor extends Interceptor {
   final ConnectivityControlling connectivityControlling;
 

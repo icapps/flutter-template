@@ -3,7 +3,9 @@ import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class TodoAddViewModel with ChangeNotifier, DisposeMixin {
   final TodoRepo todoRepo;
   TodoAddNavigator _navigator;

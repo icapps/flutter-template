@@ -1,6 +1,8 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: ConnectivityControlling)
 class ConnectivityController extends ConnectivityControlling {
   final Connectivity connectivity;
 

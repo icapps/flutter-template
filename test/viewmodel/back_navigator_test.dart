@@ -4,16 +4,14 @@ import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../di/test_kiwi_util.dart';
+import '../di/test_injectable.dart';
 import '../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../screen/seed.dart';
 import '../util/test_extensions.dart';
 import '../util/test_util.dart';
 
 void main() {
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
 
   testWidgets('Test splash screen navigator', (tester) async {
     seedGlobalViewModel();

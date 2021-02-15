@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/util/database/database_inspector.dart';
+import 'package:flutter_template/di/environments.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/env/os_config.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/niddler.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/extension/kiwi_extensions.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +25,8 @@ Future<void> main() async {
     color: Colors.red,
     values: values,
   );
-  await KiwiContainer().init();
+  // ignore: avoid_print
+  print('Starting app from main.dart');
+  await configureDependencies(Environments.DEV);
   runApp(MyApp());
 }

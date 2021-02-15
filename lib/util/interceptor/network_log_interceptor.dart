@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class NetworkLogInterceptor extends Interceptor {
   @override
   onRequest(RequestOptions options) async {

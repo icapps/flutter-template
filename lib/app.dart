@@ -8,7 +8,7 @@ import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:kiwi/kiwi.dart';
+import 'package:get_it/get_it.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -48,7 +48,7 @@ class InternalApp extends StatelessWidget {
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         home: child,
       ),
-      create: () => KiwiContainer().resolve()..init(),
+      create: () => GetIt.I()..init(),
     );
   }
 }

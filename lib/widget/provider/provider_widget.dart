@@ -27,7 +27,7 @@ class ProviderWidget<T extends ChangeNotifier> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
-      lazy: lazy,
+      lazy: false,
       child: LayoutBuilder(
         builder: (context, constraints) {
           if (consumerWithThemeAndLocalization != null || consumer != null) {

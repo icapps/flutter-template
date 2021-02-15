@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
-import 'package:kiwi/kiwi.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pedantic/pedantic.dart';
 
 class FlutterTemplateNetworkImage extends StatelessWidget {
@@ -76,14 +76,12 @@ class _FlutterTemplateBetterNetworkImage extends StatefulWidget {
 }
 
 class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBetterNetworkImage> {
+  final _cacheController = GetIt.instance.get<CacheControlling>();
 
-  final _cacheController = KiwiContainer().resolve<CacheControlling>();
-  
   var _isLoading = false;
   var _hasError = false;
 
   Uint8List _image;
-
 
   Uint8List get image => _image;
 
@@ -104,7 +102,6 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
   }
 
   Future<void> _getImage() async {
-
     final originalUrl = widget.imageUrl;
     final widgetWidth = widget.width;
     final widgetHeight = widget.height;

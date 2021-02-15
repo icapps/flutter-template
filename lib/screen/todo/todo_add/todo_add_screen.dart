@@ -1,5 +1,4 @@
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:get_it/get_it.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 
 class TodoAddScreen extends StatefulWidget {
@@ -26,6 +26,7 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
+      create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -54,7 +55,6 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
           ),
         ),
       ),
-      create: () => KiwiContainer().resolve()..init(this),
     );
   }
 

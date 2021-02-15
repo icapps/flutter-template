@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_util.dart';
 import '../debug/debug_screen_test.dart';
 import '../seed.dart';
 import '../todo/todo_list/todo_list_screen_test.dart';
 
 void main() {
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
 
   testWidgets('Test home screen initial state', (tester) async {
     seedGlobalViewModel();

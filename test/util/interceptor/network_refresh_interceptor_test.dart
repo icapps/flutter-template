@@ -4,24 +4,22 @@ import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/repository/refresh/mock_refresh_repository.dart';
-import '../../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
-import '../../mocks/webservice/mock_dio.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   NetworkRefreshInterceptor sut;
-  MockAuthStorage authStorage;
-  MockRefreshRepository refreshRepo;
-  MockDio dio;
+  AuthStoring authStorage;
+  RefreshRepo refreshRepo;
+  Dio dio;
   setUp(() async {
-    await TestKiwiUtil.init();
-    authStorage = TestKiwiUtil.resolveAs<AuthStoring, MockAuthStorage>();
-    refreshRepo = TestKiwiUtil.resolveAs<RefreshRepo, MockRefreshRepository>();
-    dio = TestKiwiUtil.resolveAs<Dio, MockDio>();
+    await initTestInjectable();
+    authStorage = GetIt.I();
+    refreshRepo = GetIt.I();
+    dio = GetIt.I();
     sut = NetworkRefreshInterceptor(authStorage, refreshRepo);
   });
 

@@ -2,10 +2,12 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:injectable/injectable.dart';
 import 'package:moor/moor.dart';
 
 part 'todo_dao_storage.g.dart';
 
+@Singleton(as: TodoDaoStoring)
 @UseDao(tables: [
   DbTodoTable,
 ])
