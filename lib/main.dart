@@ -11,7 +11,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initNiddler();
-  await addDatabaseInspector();
 
   await OsConfig.init();
   const values = FlavorValues(
@@ -28,5 +27,6 @@ Future<void> main() async {
   // ignore: avoid_print
   print('Starting app from main.dart');
   await configureDependencies(Environments.DEV);
+  await addDatabaseInspector();
   runApp(MyApp());
 }
