@@ -20,7 +20,6 @@ Future<void> main() async {
     color: Colors.transparent,
     values: values,
   );
-  // ignore: avoid_print
   await configureDependencies(Environments.PROD);
   runApp(MyApp());
 }

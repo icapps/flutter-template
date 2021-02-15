@@ -20,6 +20,6 @@ Future<void> main() async {
     color: Colors.blue,
     values: values,
   );
-  await configureDependencies(Environments.BETA);
+  await configureDependencies(Environments.PROD);
   runApp(MyApp());
 }
