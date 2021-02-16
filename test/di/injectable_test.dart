@@ -1,14 +1,14 @@
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 
-import '../di/test_kiwi_util.dart';
+import 'test_injectable.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   test('KiwiContainer', () async {
-    final loginRepo = KiwiContainer().resolve<LoginRepo>();
+    final loginRepo = GetIt.I<LoginRepo>();
     expect(loginRepo is LoginRepo, true);
   });
 }

@@ -1,6 +1,5 @@
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LoginViewModel>(
-      create: () => KiwiContainer().resolve()..init(this),
+      create: () => GetIt.I()..init(this),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.light(
           child: Scaffold(

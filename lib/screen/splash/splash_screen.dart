@@ -1,9 +1,9 @@
-import 'package:kiwi/kiwi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_it/get_it.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = 'splash';
@@ -21,7 +21,7 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
-      create: () => KiwiContainer().resolve()..init(this),
+      create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel, theme, _) => Scaffold(
         backgroundColor: theme.colorsTheme.backgroundDark,
         body: const Center(

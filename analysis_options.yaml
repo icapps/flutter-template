@@ -9,6 +9,7 @@ analyzer:
     implicit-dynamic: false
   exclude:
     - '**.g.dart'
+    - '**.config.dart'
     - 'lib/util/locale/**'
     - 'lib/util/license.dart'
 

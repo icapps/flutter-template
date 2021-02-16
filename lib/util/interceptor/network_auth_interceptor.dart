@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/util/app_constants.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class NetworkAuthInterceptor extends Interceptor {
   final AuthStoring _storage;
   final _excludedPaths = [

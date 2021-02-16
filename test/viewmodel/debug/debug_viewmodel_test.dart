@@ -1,21 +1,21 @@
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/repository/debug/mock_debug_repository.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   DebugViewModel sut;
   DebugNavigator navigator;
-  MockDebugRepository debugRepo;
+  DebugRepo debugRepo;
 
   setUp(() async {
-    await TestKiwiUtil.init();
+    await initTestInjectable();
     navigator = MockDebugNavigator();
-    debugRepo = TestKiwiUtil.resolveAs<DebugRepo, MockDebugRepository>();
+    debugRepo = GetIt.I();
     sut = DebugViewModel(debugRepo);
   });
 

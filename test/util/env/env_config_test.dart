@@ -1,13 +1,10 @@
 import 'package:flutter_template/util/env/env_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 
 void main() {
-
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
 
   test('EnvUtils should have the correct build mode', () {
     expect(EnvUtils.currentBuildMode(), BuildMode.DEBUG);
