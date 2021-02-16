@@ -2,7 +2,7 @@ import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmod
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
@@ -10,7 +10,7 @@ void main() {
   DebugPlatformSelectorNavigator navigator;
 
   setUp(() async {
-    await TestKiwiUtil.init();
+    await initTestInjectable();
     navigator = MockDebugPlatformSelectorNavigator();
     sut = DebugPlatformSelectorViewModel();
   });

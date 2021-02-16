@@ -1,20 +1,20 @@
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../di/test_kiwi_util.dart';
-import '../../../mocks/repository/todo/mock_todo_repository.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
   TodoAddViewModel sut;
-  MockTodoRepository todoRepo;
+  TodoRepo todoRepo;
   TodoAddNavigator navigator;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    todoRepo = TestKiwiUtil.resolveAs<TodoRepo, MockTodoRepository>();
+    await initTestInjectable();
+    todoRepo = GetIt.I();
     navigator = MockTodoAddNavigator();
     sut = TodoAddViewModel(todoRepo);
   });
@@ -41,9 +41,9 @@ void main() {
     });
 
     test('TodoAddViewModel onBackClicked', () async {
-      expect(sut.isSaveEnabled,false);
+      expect(sut.isSaveEnabled, false);
       sut.onTodoChanged('mytodo');
-      expect(sut.isSaveEnabled,true);
+      expect(sut.isSaveEnabled, true);
       verifyZeroInteractions(navigator);
       verifyZeroInteractions(todoRepo);
     });

@@ -1,14 +1,15 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 
-import '../di/test_kiwi_util.dart';
+import '../di/test_injectable.dart';
 
 void main() {
   FlutterTemplateDatabase sut;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    sut = TestKiwiUtil.resolve();
+    await initTestInjectable();
+    sut = GetIt.I();
   });
 
   test('FlutterTemplateDatabase should have the correct version', () {

@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  setUp(() async {
-    await TestKiwiUtil.init();
-  });
+  setUp(() async => initTestInjectable());
 
   testWidgets('StatusBar light', (tester) async {
     final sut = StatusBar.light(

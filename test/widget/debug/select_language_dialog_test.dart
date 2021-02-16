@@ -2,20 +2,20 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/viewmodel/global/mock_global_viewmodel.dart';
+import '../../di/test_injectable.dart';
 import '../../screen/seed.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  MockGlobalViewModel globalViewModel;
+  GlobalViewModel globalViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    globalViewModel = TestKiwiUtil.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+    await initTestInjectable();
+    globalViewModel = GetIt.I();
     seedGlobalViewModel();
   });
 

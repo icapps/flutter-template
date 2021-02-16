@@ -3,13 +3,13 @@ import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 
 void main() {
   NetworkLogInterceptor sut;
 
   setUp(() async {
-    await TestKiwiUtil.init();
+    await initTestInjectable();
     sut = NetworkLogInterceptor();
   });
 

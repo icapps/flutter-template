@@ -3,19 +3,19 @@ import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  MockSharedPrefsStorage shardPrefs;
+  SharedPrefsStoring shardPrefs;
   LocaleRepo sut;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    shardPrefs = TestKiwiUtil.resolveAs<SharedPrefsStoring, MockSharedPrefsStorage>();
+    await initTestInjectable();
+    shardPrefs = GetIt.I();
     sut = LocaleRepository(shardPrefs);
   });
 

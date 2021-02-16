@@ -59,6 +59,16 @@ flutter run --flavor dev -t lib/main.dart
 flutter run --release --flavor dev -t lib/main.dart
 ```
 
+### Dummy
+
+Note: a hot reload is required after launch to use the correct launch file.
+
+```
+flutter run --flavor dev -t lib/main_dummy.dart
+
+flutter run --release --flavor dev -t lib/main_dummy.dart
+```
+
 ### Alpha
 ```
 flutter run --flavor alpha -t lib/main_alpha.dart

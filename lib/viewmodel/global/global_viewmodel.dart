@@ -4,7 +4,9 @@ import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/mixin/dispose_mixin.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class GlobalViewModel with ChangeNotifier, DisposeMixin {
   final LocaleRepo _localeRepo;
   final DebugRepo _debugRepo;

@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: LocaleRepo)
 class LocaleRepository extends LocaleRepo {
   static const _STORE_LOCALE = 'locale';
 

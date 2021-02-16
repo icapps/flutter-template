@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_template/util/extension/list_extensions.dart';
 
-import '../../di/test_kiwi_util.dart';
+import '../../di/test_injectable.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   test('ListExtExtension replace all', () async {
     final list = ['B', 'D', 'C', 'Z', 'A', null];

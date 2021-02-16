@@ -8,7 +8,9 @@ import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/util/mixin/dispose_mixin.dart';
 import 'package:flutter_template/viewmodel/back_navigator.dart';
 import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class TodoListViewModel with ChangeNotifier, DisposeMixin {
   final TodoRepo _todoRepo;
 

@@ -4,11 +4,11 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_kiwi_util.dart';
+import '../../../di/test_injectable.dart';
 import '../../../util/test_util.dart';
 
 void main() {
-  setUp(() async => TestKiwiUtil.init());
+  setUp(() async => initTestInjectable());
 
   testWidgets('ActionItem default state', (tester) async {
     final sut = Theme(

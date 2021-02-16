@@ -3,26 +3,25 @@ import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_kiwi_util.dart';
-import '../../mocks/viewmodel/login/mock_login_viewmodel.dart';
+import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  MockLoginViewModel loginViewModel;
+  LoginViewModel loginViewModel;
 
   setUp(() async {
-    await TestKiwiUtil.init();
-    loginViewModel = TestKiwiUtil.resolveAs<LoginViewModel, MockLoginViewModel>();
+    await initTestInjectable();
+    loginViewModel = GetIt.I();
     seedLoginViewModel();
     seedGlobalViewModel();
   });
 
   testWidgets('Test login screen initial state', (tester) async {
-
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
@@ -42,7 +41,6 @@ void main() {
   });
 
   group('Actions', () {
-
     testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
       const sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -107,7 +105,7 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  final loginViewModel = TestKiwiUtil.resolveAs<LoginViewModel, MockLoginViewModel>();
+  final loginViewModel = GetIt.I<LoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init(any)).calledOnce();
