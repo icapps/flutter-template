@@ -270,7 +270,7 @@ private_lane :deployToAppStore do |options|
     team_name:                         APPSTORE_TEAM_NAME,
     team_id:                           APPSTORE_TEAM_ID,
     app_identifier:                    options[:identifier],
-    apple_id:                          options[:apple_id], //add this
+    apple_id:                          options[:apple_id],
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
