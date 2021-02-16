@@ -10,8 +10,9 @@ class TodoDummyService extends TodoService {
   Future<List<Todo>> getTodos() async {
     await Future<void>.delayed(ThemeDurations.demoNetworkCallDuration());
     if (todos.isEmpty) {
-      final result = await DummyApiUtil.getResponse<List<Map<String, dynamic>>>('todos');
-      final newTodos = result.map((item) => Todo.fromJson(item)).toList();
+      final result = await DummyApiUtil.getResponse<List<dynamic>>('todos');
+      // ignore: avoid_as
+      final newTodos = result.map((dynamic item) => Todo.fromJson(item as Map<String, dynamic>)).toList();
       todos.addAll(newTodos);
     }
     return todos;
