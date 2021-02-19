@@ -130,7 +130,7 @@ lane :prod_ios do
 
   prepareBuild
   buildAppIOS(flavor: 'prod')
-  # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate')
+  # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: 'apple-id-are-numbers') //fill in with correct values.
   add_tag                 # Add tag
 end
 
@@ -268,7 +268,9 @@ private_lane :deployToAppStore do |options|
   pilot(
     username:                          APPSTORE_USERNAME,
     team_name:                         APPSTORE_TEAM_NAME,
+    team_id:                           APPSTORE_TEAM_ID,
     app_identifier:                    options[:identifier],
+    apple_id:                          options[:apple_id],
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
