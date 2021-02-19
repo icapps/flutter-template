@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/util/database/database_inspector.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/env/os_config.dart';
@@ -26,5 +27,6 @@ Future<void> main() async {
   // ignore: avoid_print
   print('Starting app from main.dart');
   await configureDependencies(Environments.DEV);
+  await addDatabaseInspector();
   runApp(MyApp());
 }
