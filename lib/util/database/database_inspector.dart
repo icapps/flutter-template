@@ -8,7 +8,7 @@ Future<void> addDatabaseInspector() async {
   final moorInspectorBuilder = MoorInspectorBuilder()
     ..bundleId = 'com.icapps.flutter_template'
     ..icon = 'flutter'
-    ..addDatabase('example', database);
+    ..addDatabase('flutter_template', database);
 
   final inspector = moorInspectorBuilder.build();
 
