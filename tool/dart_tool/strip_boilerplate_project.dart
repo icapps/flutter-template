@@ -9,7 +9,7 @@ import 'dart:io';
 ///  1) Keep test directory
 ///       - values: y,n,yes,no
 void main(List<String> args) {
-  bool keepTestDir;
+  bool? keepTestDir;
   if (args.isEmpty || (args[0] != 'true' && args[0] != 'false')) {
     do {
       Logger.debug('Keep test directory? (y/n)');
@@ -19,6 +19,11 @@ void main(List<String> args) {
         keepTestDir = result == 'yes' || result == 'y';
       }
     } while (keepTestDir == null);
+  }
+
+  if (keepTestDir == null) {
+    Logger.error('Keep test directory was not set correctly.');
+    return;
   }
   final testDir = Directory('test');
   final libDir = Directory('lib');

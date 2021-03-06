@@ -5,5 +5,5 @@ abstract class RefreshRepo {
 
   void resetFailure();
 
-  VoidCallback logoutCallback;
+  VoidCallback? logoutCallback;
 }

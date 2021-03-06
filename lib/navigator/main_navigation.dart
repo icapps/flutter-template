@@ -18,9 +18,9 @@ abstract class MainNavigation {
 
   void goToDatabase(GeneratedDatabase db);
 
-  void goBack<T>({T result});
+  void goBack<T>({T? result});
 
-  void showCustomDialog<T>({WidgetBuilder builder});
+  void showCustomDialog<T>({required WidgetBuilder builder});
 }
 
 mixin MainNavigationMixin<T extends StatefulWidget> on State<T> implements MainNavigation {}

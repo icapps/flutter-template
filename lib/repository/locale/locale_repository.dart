@@ -12,7 +12,7 @@ class LocaleRepository extends LocaleRepo {
   LocaleRepository(this._sharedPrefs);
 
   @override
-  Future<void> setCustomLocale(Locale locale) async {
+  Future<void> setCustomLocale(Locale? locale) async {
     if (locale == null) {
       await _sharedPrefs.deleteKey(_STORE_LOCALE);
     } else {
@@ -21,7 +21,7 @@ class LocaleRepository extends LocaleRepo {
   }
 
   @override
-  Locale getCustomLocale() {
+  Locale? getCustomLocale() {
     final localeCode = _sharedPrefs.getString(_STORE_LOCALE);
     if (localeCode == null || localeCode.isEmpty) return null;
     return Locale(localeCode);

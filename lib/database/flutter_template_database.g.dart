@@ -11,49 +11,40 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   final int id;
   final String title;
   final bool completed;
-  DbTodo({@required this.id, @required this.title, @required this.completed});
+  DbTodo({required this.id, required this.title, required this.completed});
   factory DbTodo.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String prefix}) {
+      {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
     final boolType = db.typeSystem.forDartType<bool>();
     return DbTodo(
-      id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
+      id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       title:
-          stringType.mapFromDatabaseResponse(data['${effectivePrefix}title']),
-      completed:
-          boolType.mapFromDatabaseResponse(data['${effectivePrefix}completed']),
+          stringType.mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
+      completed: boolType
+          .mapFromDatabaseResponse(data['${effectivePrefix}completed'])!,
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (!nullToAbsent || id != null) {
-      map['id'] = Variable<int>(id);
-    }
-    if (!nullToAbsent || title != null) {
-      map['title'] = Variable<String>(title);
-    }
-    if (!nullToAbsent || completed != null) {
-      map['completed'] = Variable<bool>(completed);
-    }
+    map['id'] = Variable<int>(id);
+    map['title'] = Variable<String>(title);
+    map['completed'] = Variable<bool>(completed);
     return map;
   }
 
   DbTodoTableCompanion toCompanion(bool nullToAbsent) {
     return DbTodoTableCompanion(
-      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
-      title:
-          title == null && nullToAbsent ? const Value.absent() : Value(title),
-      completed: completed == null && nullToAbsent
-          ? const Value.absent()
-          : Value(completed),
+      id: Value(id),
+      title: Value(title),
+      completed: Value(completed),
     );
   }
 
   factory DbTodo.fromJson(Map<String, dynamic> json,
-      {ValueSerializer serializer}) {
+      {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return DbTodo(
       id: serializer.fromJson<int>(json['id']),
@@ -62,7 +53,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
     );
   }
   @override
-  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
@@ -71,7 +62,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
     };
   }
 
-  DbTodo copyWith({int id, String title, bool completed}) => DbTodo(
+  DbTodo copyWith({int? id, String? title, bool? completed}) => DbTodo(
         id: id ?? this.id,
         title: title ?? this.title,
         completed: completed ?? this.completed,
@@ -109,14 +100,14 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
   });
   DbTodoTableCompanion.insert({
     this.id = const Value.absent(),
-    @required String title,
-    @required bool completed,
-  })  : title = Value(title),
+    required String title,
+    required bool completed,
+  })   : title = Value(title),
         completed = Value(completed);
   static Insertable<DbTodo> custom({
-    Expression<int> id,
-    Expression<String> title,
-    Expression<bool> completed,
+    Expression<int>? id,
+    Expression<String>? title,
+    Expression<bool>? completed,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -126,7 +117,7 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
   }
 
   DbTodoTableCompanion copyWith(
-      {Value<int> id, Value<String> title, Value<bool> completed}) {
+      {Value<int>? id, Value<String>? title, Value<bool>? completed}) {
     return DbTodoTableCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -163,21 +154,19 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 class $DbTodoTableTable extends DbTodoTable
     with TableInfo<$DbTodoTableTable, DbTodo> {
   final GeneratedDatabase _db;
-  final String _alias;
+  final String? _alias;
   $DbTodoTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
-  GeneratedIntColumn _id;
   @override
-  GeneratedIntColumn get id => _id ??= _constructId();
+  late final GeneratedIntColumn id = _constructId();
   GeneratedIntColumn _constructId() {
     return GeneratedIntColumn('id', $tableName, false,
         hasAutoIncrement: true, declaredAsPrimaryKey: true);
   }
 
   final VerificationMeta _titleMeta = const VerificationMeta('title');
-  GeneratedTextColumn _title;
   @override
-  GeneratedTextColumn get title => _title ??= _constructTitle();
+  late final GeneratedTextColumn title = _constructTitle();
   GeneratedTextColumn _constructTitle() {
     return GeneratedTextColumn(
       'title',
@@ -187,9 +176,8 @@ class $DbTodoTableTable extends DbTodoTable
   }
 
   final VerificationMeta _completedMeta = const VerificationMeta('completed');
-  GeneratedBoolColumn _completed;
   @override
-  GeneratedBoolColumn get completed => _completed ??= _constructCompleted();
+  late final GeneratedBoolColumn completed = _constructCompleted();
   GeneratedBoolColumn _constructCompleted() {
     return GeneratedBoolColumn(
       'completed',
@@ -212,17 +200,17 @@ class $DbTodoTableTable extends DbTodoTable
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id'], _idMeta));
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('title')) {
       context.handle(
-          _titleMeta, title.isAcceptableOrUnknown(data['title'], _titleMeta));
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
     } else if (isInserting) {
       context.missing(_titleMeta);
     }
     if (data.containsKey('completed')) {
       context.handle(_completedMeta,
-          completed.isAcceptableOrUnknown(data['completed'], _completedMeta));
+          completed.isAcceptableOrUnknown(data['completed']!, _completedMeta));
     } else if (isInserting) {
       context.missing(_completedMeta);
     }
@@ -232,7 +220,7 @@ class $DbTodoTableTable extends DbTodoTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  DbTodo map(Map<String, dynamic> data, {String tablePrefix}) {
+  DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
     return DbTodo.fromData(data, _db, prefix: effectivePrefix);
   }
@@ -247,8 +235,7 @@ abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e)
       : super(SqlTypeSystem.defaultInstance, e);
   _$FlutterTemplateDatabase.connect(DatabaseConnection c) : super.connect(c);
-  $DbTodoTableTable _dbTodoTable;
-  $DbTodoTableTable get dbTodoTable => _dbTodoTable ??= $DbTodoTableTable(this);
+  late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

@@ -9,5 +9,5 @@ class GeneralNetworkError extends NetworkError {
   String getLocalizedKey() => LocalizationKeys.errorGeneral;
 
   @override
-  String get getErrorCode => null;
+  String? get getErrorCode => null;
 }

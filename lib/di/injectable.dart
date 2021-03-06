@@ -17,9 +17,9 @@ import 'package:flutter_template/util/interceptor/network_refresh_interceptor.da
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:moor/ffi.dart';
 import 'package:moor/isolate.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_ffi/moor_ffi.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +44,7 @@ abstract class RegisterModule {
   Future<SharedPreferences> prefs() {
     if (FlavorConfig.isInTest()) {
       // ignore: invalid_use_of_visible_for_testing_member
-      SharedPreferences.setMockInitialValues(<String, dynamic>{});
+      SharedPreferences.setMockInitialValues(<String, Object>{});
     }
     return SharedPreferences.getInstance();
   }

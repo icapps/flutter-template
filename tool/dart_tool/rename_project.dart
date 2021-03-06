@@ -18,12 +18,13 @@ void main() {
   Logger.info('Enter Dart Class Name Prefix:');
   final classNamePrefix = stdin.readLineSync();
 
-  String androidPackageName;
-  String iosBundleIdentifier;
+  String? androidPackageName;
+  String? iosBundleIdentifier;
   do {
     Logger.info('\nEnter Android Package Name / iOS Bundle Identifier');
     Logger.info('No uppercase & no underscores:');
     final result = stdin.readLineSync();
+    if (result == null) continue;
     final validResult = result == result.toLowerCase() && !result.contains('_');
     if (validResult) {
       iosBundleIdentifier = result;
@@ -31,7 +32,7 @@ void main() {
     }
   } while (iosBundleIdentifier == null && androidPackageName == null);
 
-  bool specificAppCenterIds;
+  bool? specificAppCenterIds;
   do {
     Logger.info('\nDo you want to specify the AppCenter ids?\n"no" will use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
     final result = stdin.readLineSync();
@@ -41,7 +42,7 @@ void main() {
     }
   } while (specificAppCenterIds == null);
 
-  bool replaceReadmeContent;
+  bool? replaceReadmeContent;
   do {
     Logger.info('\nDo you want to replace the README.md content? (yes/no)');
     final result = stdin.readLineSync();
@@ -50,6 +51,11 @@ void main() {
       replaceReadmeContent = result == 'y' || result == 'yes';
     }
   } while (replaceReadmeContent == null);
+
+  if (classNamePrefix == null || androidPackageName == null || iosBundleIdentifier == null || appName == null|| dartPackageName == null || description == null) {
+    Logger.info('\nWe found some invalid values. Please try again. Your codebase is not yet altered.');
+    return;
+  }
 
   _renameAppCenterIds(classNamePrefix, specificAppCenterIds);
   _renameAndroidPackageName(androidPackageName);
@@ -248,7 +254,7 @@ void _renameTools(String dartPackageName, String description, String classNamePr
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    if ((force == false || force == null) && element.path == './tool/dart_tool/rename_project.dart') return;
+    if (force == false && element.path == './tool/dart_tool/rename_project.dart') return;
     _replaceInFile(element.path, originalDescription, description);
     _replaceInFile(element.path, originalAppName, appName);
     _replaceInFile(element.path, originalProjectName, dartPackageName);
@@ -372,7 +378,7 @@ void _renameKotlinFile(String path, String newPackageName) {
     ..deleteSync();
 }
 
-void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String value}) {
+void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String? value}) {
   switch (appCenterApp) {
     case AppCenterApp.ANDROID_ALPHA:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Alpha' : value;

@@ -10,7 +10,7 @@ void main() {
   const endOfRecord = 'end_of_record';
   final sections = <LcovSection>[];
   final lines = file.readAsLinesSync();
-  LcovSection currentSection;
+  LcovSection? currentSection;
   lines.forEach((line) {
     if (line.endsWith('.dart')) {
       final filePath = line.replaceAll('SF:', '');
@@ -18,10 +18,13 @@ void main() {
         ..header = line
         ..filePath = filePath;
     } else if (line == endOfRecord) {
-      currentSection.footer = line;
-      sections.add(currentSection);
+      final currentSectionTmp = currentSection;
+      if (currentSectionTmp != null) {
+        currentSectionTmp.footer = line;
+        sections.add(currentSectionTmp);
+      }
     } else {
-      currentSection.body.add(line);
+      currentSection?.body.add(line);
     }
   });
   final filteredSections = getFilteredSections(sections);
@@ -34,13 +37,15 @@ void main() {
 }
 
 class LcovSection {
-  String filePath;
-  String header;
+  String? filePath;
+  String? header;
   final body = <String>[];
-  String footer;
+  String? footer;
 
-  String getBodyString() {
-    final file = File(filePath);
+  String? getBodyString() {
+    final filePathTmp = filePath;
+    if (filePathTmp == null) return null;
+    final file = File(filePathTmp);
     final content = file.readAsLinesSync();
     final sb = StringBuffer();
     getFilteredBody(body, content).forEach((item) => sb..write(item)..write('\n'));
@@ -55,13 +60,15 @@ class LcovSection {
 
 List<LcovSection> getFilteredSections(List<LcovSection> sections) {
   return sections.where((section) {
-    if (section.header.endsWith('.g.dart')) {
+    final header = section.header;
+    if (header == null) return false;
+    if (header.endsWith('.g.dart')) {
       return false;
-    } else if (section.header.endsWith('dummy_service.dart')) {
+    } else if (header.endsWith('dummy_service.dart')) {
       return false;
-    } else if (section.header.startsWith('SF:lib/vendor/')) {
+    } else if (header.startsWith('SF:lib/vendor/')) {
       return false;
-    } else if (section.header.startsWith('SF:lib/util/locale')) {
+    } else if (header.startsWith('SF:lib/util/locale')) {
       return false;
     }
     return true;
@@ -112,7 +119,7 @@ const excludedStartsWithLines = [
   'DateTimeColumn get ',
 ];
 
-void printMessage(String message){
+void printMessage(String message) {
   // ignore: avoid_print
   print(message);
 }

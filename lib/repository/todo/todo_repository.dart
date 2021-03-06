@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
@@ -35,7 +34,7 @@ class TodoRepository extends TodoRepo {
   }
 
   @override
-  Future<void> setTodoState({@required int id, @required bool value}) async {
+  Future<void> setTodoState({required int id, required bool value}) async {
     await _todoDao.updateTodo(id: id, completed: value);
   }
 }

@@ -15,8 +15,8 @@ class DebugRepository extends DebugRepo {
   DebugRepository(this._sharedPrefs);
 
   @override
-  Future<void> saveSlowAnimations({bool enabled}) async {
-    await _sharedPrefs.saveBoolean(key: _KEY_ENABLE_SLOW_ANIMATIONS, value: enabled ?? false);
+  Future<void> saveSlowAnimations({required bool enabled}) async {
+    await _sharedPrefs.saveBoolean(key: _KEY_ENABLE_SLOW_ANIMATIONS, value: enabled);
   }
 
   @override
@@ -31,7 +31,7 @@ class DebugRepository extends DebugRepo {
   }
 
   @override
-  Future<void> saveSelectedPlatform(String selectedPlatform) async {
+  Future<void> saveSelectedPlatform(String? selectedPlatform) async {
     if (selectedPlatform == null) {
       await _sharedPrefs.deleteKey(_KEY_SELECTED_PLATFORM);
     } else {
@@ -40,7 +40,7 @@ class DebugRepository extends DebugRepo {
   }
 
   @override
-  TargetPlatform getTargetPlatform() {
+  TargetPlatform? getTargetPlatform() {
     final selectedPlatform = _sharedPrefs.getString(_KEY_SELECTED_PLATFORM);
     if (selectedPlatform == null) return null;
     if (selectedPlatform == 'ios') return TargetPlatform.iOS;
