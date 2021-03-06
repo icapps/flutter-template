@@ -1,7 +1,7 @@
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
-import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';

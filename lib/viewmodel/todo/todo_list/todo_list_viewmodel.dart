@@ -5,25 +5,24 @@ import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
-import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class TodoListViewModel with ChangeNotifier, DisposeMixin {
   final TodoRepo _todoRepo;
 
-  TodoListViewNavigator _navigator;
+  late TodoListViewNavigator _navigator;
+  late Stream<List<Todo>> _todoStream;
 
   var _isLoading = false;
-  String _errorKey;
-
-  Stream<List<Todo>> _todoStream;
+  String? _errorKey;
 
   bool get isLoading => _isLoading;
 
-  String get errorKey => _errorKey;
+  String? get errorKey => _errorKey;
 
   Stream<List<Todo>> get dataStream => _todoStream;
 
@@ -55,7 +54,7 @@ class TodoListViewModel with ChangeNotifier, DisposeMixin {
 
   void onAddClicked() => _navigator.goToAddTodo();
 
-  Future<void> onTodoChanged({@required int id, @required bool value}) async {
+  Future<void> onTodoChanged({required int id, required bool value}) async {
     await _todoRepo.setTodoState(id: id, value: value);
   }
 }

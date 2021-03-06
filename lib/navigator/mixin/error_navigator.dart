@@ -8,14 +8,14 @@ import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 abstract class ErrorNavigator {
-  String showError(dynamic error);
+  String? showError(dynamic error);
 
   void showErrorWithLocaleKey(String errorGeneral);
 }
 
 mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements ErrorNavigator {
   @override
-  String showError(dynamic error) {
+  String? showError(dynamic error) {
     String key;
     if (error is String) {
       _showError(error);

@@ -3,7 +3,7 @@ import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -21,7 +21,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
 
   ThemeMode get themeMode => _themeMode;
 
-  Locale get locale => _localeDelegate.newLocale;
+  Locale? get locale => _localeDelegate.newLocale;
 
   TargetPlatform? get targetPlatform => _targetPlatform;
 
@@ -99,7 +99,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
     return 'English';
   }
 
-  bool isLanguageSelected(String languageCode) {
+  bool isLanguageSelected(String? languageCode) {
     if (localeDelegate.activeLocale == null && languageCode == null) return true;
     return localeDelegate.activeLocale?.languageCode == languageCode;
   }

@@ -1,5 +1,5 @@
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
