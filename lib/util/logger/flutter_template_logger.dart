@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 
@@ -31,13 +30,15 @@ class FlutterTemplateLogger {
     final dioError = error;
     final message = StringBuffer();
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
-    if (dioError.response == null) {
-      message..writeln('request | ${dioError.request.toString()}')..writeln('message | ${dioError.message}');
+    final response = dioError.response;
+    final request = dioError.request;
+    if (response == null) {
+      message..writeln('request | ${request.toString()}')..writeln('message | ${dioError.message}');
     } else {
-      message..writeln('response.data | ${dioError.response.data}')..writeln('response.headers | ${dioError.response.headers}');
+      message..writeln('response.data | ${response.data}')..writeln('response.headers | ${response.headers}');
     }
-    if (dioError.request != null) {
-      message.writeln('<--------------- ${dioError.request.method} - url: ${dioError.request.uri.toString()} - statucode: ${dioError.response?.statusCode ?? 'N/A'}');
+    if (request != null) {
+      message.writeln('<--------------- ${request.method} - url: ${request.uri.toString()} - statucode: ${response?.statusCode ?? 'N/A'}');
     }
     logError(message: '${message.toString()}', error: Error());
   }
@@ -54,7 +55,7 @@ class FlutterTemplateLogger {
     }
   }
 
-  static void logError({@required String message, @required dynamic error}) {
+  static void logError({required String message, required dynamic error}) {
     if (FlavorConfig.isDev() | FlavorConfig.isDummy()) {
       final sb = StringBuffer()..writeln('---⛔ ERROR ⛔---')..writeln(message);
       if (error is Error && error.stackTrace != null) {

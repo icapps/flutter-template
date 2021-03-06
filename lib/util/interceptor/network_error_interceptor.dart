@@ -29,7 +29,7 @@ class NetworkErrorInterceptor extends Interceptor {
       if (err == null) return CodeError();
       if (err.error is NoNetworkError) return NoInternetError(err);
       if (err.response == null) return CodeError();
-      final statusCode = err.response.statusCode;
+      final statusCode = err.response?.statusCode;
       switch (statusCode) {
         case UnAuthorizedError.statusCode:
           return UnAuthorizedError(err);

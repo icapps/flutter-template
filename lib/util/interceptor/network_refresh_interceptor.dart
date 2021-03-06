@@ -30,7 +30,12 @@ class NetworkRefreshInterceptor extends Interceptor {
 
   @override
   Future onError(DioError err) async {
-    if (_excludedPaths.contains(err.request.path)) {
+    final request = err.request;
+    final response = err.response;
+    if (request == null) {
+      return super.onError(err);
+    }
+    if (_excludedPaths.contains(request.path)) {
       FlutterTemplateLogger.logDebug('Network refresh interceptor should not intercept');
       return super.onError(err);
     }
@@ -43,10 +48,26 @@ class NetworkRefreshInterceptor extends Interceptor {
     }
 
     await _refreshRepo.refresh(err);
-    final options = err.response.request;
-    final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
-    options.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
 
-    return _dio.request<dynamic>(options.path, options: options);
+    final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
+    request.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
+
+    final options = Options(
+      method: request.method,
+      sendTimeout: request.sendTimeout,
+      receiveTimeout: request.receiveTimeout,
+      extra: request.extra,
+      headers: request.headers,
+      responseType: request.responseType,
+      contentType: request.contentType,
+      validateStatus: request.validateStatus,
+      receiveDataWhenStatusError: request.receiveDataWhenStatusError,
+      followRedirects: request.followRedirects,
+      maxRedirects: request.maxRedirects,
+      requestEncoder: request.requestEncoder,
+      responseDecoder: request.responseDecoder,
+      listFormat: request.listFormat,
+    );
+    return _dio.request<dynamic>(request.path, options: options);
   }
 }
