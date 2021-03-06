@@ -12,7 +12,7 @@ class DebugPlatformSelectorScreen extends StatefulWidget {
   static const String routeName = 'debug_platform_selector';
 
   const DebugPlatformSelectorScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -9,7 +9,7 @@ class SplashScreen extends StatefulWidget {
   static const String routeName = 'splash';
 
   const SplashScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

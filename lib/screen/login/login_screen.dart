@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
 
-  const LoginScreen({Key key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -86,7 +86,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
   }
 
   @override
-  ScaffoldState getScaffoldState() => _scaffoldKey.currentState;
+  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 
   @override
   void goToHome() => MainNavigatorWidget.of(context).goToHome();

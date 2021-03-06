@@ -16,7 +16,7 @@ import 'package:get_it/get_it.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -61,8 +61,9 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
                 child: StreamBuilder<List<Todo>>(
                   stream: viewModel.dataStream,
                   builder: (context, snapshot) {
-                    if (!snapshot.hasData) return Container();
-                    if (snapshot.data.isEmpty) {
+                    final data = snapshot.data;
+                    if (data == null) return Container();
+                    if (data.isEmpty) {
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.all(ThemeDimens.padding32),
@@ -74,9 +75,9 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
                       );
                     }
                     return ListView.separated(
-                      itemCount: snapshot.data.length,
+                      itemCount: data.length,
                       itemBuilder: (context, index) {
-                        final item = snapshot.data[index];
+                        final item = data[index];
                         return TodoRowItem(
                           title: item.title,
                           value: item.completed,
@@ -104,5 +105,5 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
   void goToAddTodo() => MainNavigatorWidget.of(context).goToAddTodo();
 
   @override
-  ScaffoldState getScaffoldState() => _scaffoldKey.currentState;
+  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 }

@@ -13,7 +13,7 @@ import 'package:scroll_when_needed/scroll_when_needed.dart';
 class TodoAddScreen extends StatefulWidget {
   static const String routeName = 'todo_add';
 
-  const TodoAddScreen({Key key}) : super(key: key);
+  const TodoAddScreen({Key? key}) : super(key: key);
 
   @override
   TodoAddScreenState createState() => TodoAddScreenState();
@@ -59,5 +59,5 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
   }
 
   @override
-  ScaffoldState getScaffoldState() => _scaffoldKey.currentState;
+  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 }

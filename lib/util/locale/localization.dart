@@ -10,7 +10,7 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 class Localization {
   Map<String, dynamic> _localisedValues = Map();
 
-  static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization);
+  static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization)!;
 
   static Future<Localization> load(Locale locale, {bool showLocalizationKeys = false}) async {
     final localizations = Localization();
@@ -23,7 +23,7 @@ class Localization {
     return localizations;
   }
 
-  String _t(String key, {List<dynamic> args}) {
+  String _t(String key, {List<dynamic>? args}) {
     try {
       // ignore: avoid_as
       var value = _localisedValues[key] as String;
@@ -126,6 +126,6 @@ class Localization {
 
   String get todoTitle => _t(LocalizationKeys.todoTitle);
 
-  String getTranslation(String key, {List<dynamic> args}) => _t(key, args: args ?? List());
+  String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? []);
 
 }

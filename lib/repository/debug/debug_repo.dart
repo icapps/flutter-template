@@ -5,7 +5,7 @@ abstract class DebugRepo {
 
   bool isSlowAnimationsEnabled();
 
-  Future<void> saveSelectedPlatform(String selectedPlatform);
+  Future<void> saveSelectedPlatform(String? selectedPlatform);
 
   TargetPlatform? getTargetPlatform();
 }

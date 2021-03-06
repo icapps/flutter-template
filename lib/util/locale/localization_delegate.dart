@@ -18,15 +18,14 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
     Locale('en'),
   ];
 
-  Locale newLocale;
-  Locale activeLocale;
+  Locale? newLocale;
+  Locale? activeLocale;
   bool showLocalizationKeys;
 
   LocalizationDelegate({this.newLocale, this.showLocalizationKeys = false}) {
     if (newLocale != null) {
       activeLocale = newLocale;
     }
-    showLocalizationKeys ??= false;
   }
 
   @override
@@ -34,8 +33,9 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   Future<Localization> load(Locale locale) async {
-    activeLocale = newLocale ?? locale;
-    return Localization.load(activeLocale, showLocalizationKeys: showLocalizationKeys);
+    final newActiveLocale = newLocale ?? locale;
+    activeLocale = newActiveLocale;
+    return Localization.load(newActiveLocale, showLocalizationKeys: showLocalizationKeys);
   }
 
   @override

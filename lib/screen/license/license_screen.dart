@@ -10,7 +10,7 @@ class LicenseScreen extends StatefulWidget {
   static const String routeName = 'license';
 
   const LicenseScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -60,5 +60,5 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
   @override
   void showErrorWithLocaleKey(String errorKey) => _showError(Localization.of(context).getTranslation(errorKey));
 
-  ScaffoldState getScaffoldState();
+  ScaffoldState? getScaffoldState();
 }

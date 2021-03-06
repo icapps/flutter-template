@@ -15,7 +15,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
 
   final _themeMode = ThemeMode.system;
 
-  TargetPlatform _targetPlatform;
+  TargetPlatform? _targetPlatform;
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
@@ -23,7 +23,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
 
   Locale get locale => _localeDelegate.newLocale;
 
-  TargetPlatform get targetPlatform => _targetPlatform;
+  TargetPlatform? get targetPlatform => _targetPlatform;
 
   LocalizationDelegate get localeDelegate => _localeDelegate;
 
@@ -59,7 +59,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
     await _onUpdateLocaleClicked(null);
   }
 
-  Future<void> _onUpdateLocaleClicked(Locale locale) async {
+  Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
     _localeDelegate = LocalizationDelegate(newLocale: locale);
     notifyListeners();
