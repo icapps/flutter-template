@@ -17,8 +17,9 @@ import 'package:get_it/get_it.dart';
 import '../../di/test_injectable.dart';
 
 void main() {
-  NetworkErrorInterceptor sut;
-  ConnectivityControlling connectivityController;
+  late NetworkErrorInterceptor sut;
+  late ConnectivityControlling connectivityController;
+
   setUp(() async {
     await initTestInjectable();
     connectivityController = GetIt.I();
@@ -27,7 +28,8 @@ void main() {
 
   group('GeneralError', () {
     test('NetworkErrorInterceptorTest parse general error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 4686845));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 4686845, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -44,7 +46,8 @@ void main() {
 
   group('UnAuthorizedError', () {
     test('NetworkErrorInterceptorTest parse 401 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 401));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 401, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -61,7 +64,8 @@ void main() {
 
   group('InternalServerError', () {
     test('NetworkErrorInterceptorTest parse 500 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 500));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 500, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -78,7 +82,8 @@ void main() {
 
   group('Forbidden Error', () {
     test('NetworkErrorInterceptorTest parse 403 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 403));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 403, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -95,7 +100,8 @@ void main() {
     test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
       final data = <String, dynamic>{};
       data['code'] = '45648';
-      final dioError = DioError(response: Response<Map<String, dynamic>>(statusCode: 403, data: data));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 403, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -111,7 +117,8 @@ void main() {
   });
   group('BadRequestError', () {
     test('NetworkErrorInterceptorTest parse 400 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 400));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 400, request: requestOptions));
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);

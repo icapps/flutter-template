@@ -11,10 +11,11 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  NetworkRefreshInterceptor sut;
-  AuthStoring authStorage;
-  RefreshRepo refreshRepo;
-  Dio dio;
+  late NetworkRefreshInterceptor sut;
+  late AuthStoring authStorage;
+  late RefreshRepo refreshRepo;
+  late Dio dio;
+
   setUp(() async {
     await initTestInjectable();
     authStorage = GetIt.I();
@@ -26,11 +27,12 @@ void main() {
   test('NetworkRefreshInterceptor should intercept 401', () async {
     when(refreshRepo.refresh(any)).thenAnswer((_) => Future<void>.value());
 
-    final dioError = DioError(response: Response<void>(statusCode: 401));
+    final requestOptions = RequestOptions(path: '/todo');
+    final dioError = DioError(response: Response<void>(statusCode: 401, request: requestOptions));
     final requestHeaders = <String, dynamic>{};
     final requestOption = RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
     dioError.request = requestOption;
-    dioError.response.request = requestOption;
+    dioError.response?.request = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);
 
     verifyZeroInteractions(refreshRepo);
@@ -43,7 +45,8 @@ void main() {
   });
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
-    final dioError = DioError(response: Response<void>(statusCode: 499));
+    final requestOptions = RequestOptions(path: '/todo');
+    final dioError = DioError(response: Response<void>(statusCode: 499, request: requestOptions));
     final requestOption = RequestOptions(path: 'https://somthing.com');
     dioError.request = requestOption;
 
@@ -56,13 +59,16 @@ void main() {
 
   test('NetworkREfreshInterceptor should reset refresh repo on rsponse', () {
     verifyZeroInteractions(refreshRepo);
-    final response = Response(data: 'Test');
+    final requestOptions = RequestOptions(path: '/todo');
+    final response = Response(data: 'Test', request: requestOptions);
     sut.onResponse(response);
     verify(refreshRepo.resetFailure()).calledOnce();
   });
 
   test('NetworkRefreshInterceptor should do nothing when authorization call', () async {
-    final dioError = DioError(response: Response<void>(statusCode: 401));
+
+    final requestOptions = RequestOptions(path: '/todo');
+    final dioError = DioError(response: Response<void>(statusCode: 401, request: requestOptions));
     final requestOption = RequestOptions(path: 'login');
     dioError.request = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../di/test_injectable.dart';
 
 void main() {
-  NetworkLogInterceptor sut;
+  late NetworkLogInterceptor sut;
 
   setUp(() async {
     await initTestInjectable();

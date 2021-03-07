@@ -37,7 +37,7 @@ void main() {
 
     group('OnChanged', () {
       testWidgets('FlutterTemplateCheckBox onChanged from value true', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
           child: FlutterTemplateCheckBox(
@@ -56,7 +56,7 @@ void main() {
         expect(newValue, false);
       });
       testWidgets('FlutterTemplateCheckBox onChanged from value false', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
           child: FlutterTemplateCheckBox(
@@ -106,7 +106,7 @@ void main() {
 
     group('OnChanged', () {
       testWidgets('FlutterTemplateCheckBox onChanged from value true', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),
           child: FlutterTemplateCheckBox(
@@ -125,7 +125,7 @@ void main() {
         expect(newValue, false);
       });
       testWidgets('FlutterTemplateCheckBox onChanged from value false', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),
           child: FlutterTemplateCheckBox(

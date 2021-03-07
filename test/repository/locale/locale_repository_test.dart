@@ -10,8 +10,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SharedPrefsStoring shardPrefs;
-  LocaleRepo sut;
+  late SharedPrefsStoring shardPrefs;
+  late LocaleRepo sut;
 
   setUp(() async {
     await initTestInjectable();
@@ -58,7 +58,7 @@ void main() {
     test('getCustomLocale when enabled was set to en', () async {
       when(shardPrefs.getString('locale')).thenAnswer((_) => 'en');
       final result = sut.getCustomLocale();
-      expect(result.languageCode, 'en');
+      expect(result?.languageCode, 'en');
       verify(shardPrefs.getString('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
@@ -66,7 +66,7 @@ void main() {
     test('getCustomLocale when enabled was set to nl', () async {
       when(shardPrefs.getString('locale')).thenAnswer((_) => 'nl');
       final result = sut.getCustomLocale();
-      expect(result.languageCode, 'nl');
+      expect(result?.languageCode, 'nl');
       verify(shardPrefs.getString('locale')).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });

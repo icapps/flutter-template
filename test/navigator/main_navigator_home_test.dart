@@ -18,11 +18,11 @@ void main() {
     final sut = MainNavigatorWidget(key: key);
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_home_screen_0_initial_screen');
-    key.currentState.goToHome();
+    key.currentState!.goToHome();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_home_screen_1');
 //    The app should go to the previous screen. For some reason the screenshot has been taken successfully but the
-//    key.currentState.goBack();
+//    key.currentState!.goBack();
 //    await tester.pumpAndSettle();
 //    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_login_screen_2_go_back');
   });

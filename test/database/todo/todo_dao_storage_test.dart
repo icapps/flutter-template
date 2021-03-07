@@ -8,8 +8,8 @@ import 'package:get_it/get_it.dart';
 import '../../di/test_injectable.dart';
 
 void main() {
-  FlutterTemplateDatabase database;
-  TodoDaoStoring sut;
+  late FlutterTemplateDatabase database;
+  late TodoDaoStoring sut;
 
   setUp(() async {
     await initTestInjectable();

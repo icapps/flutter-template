@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../di/test_injectable.dart';
 
 void main() {
-  CombiningSmartInterceptor sut;
+  late CombiningSmartInterceptor sut;
 
   setUp(() async {
     await initTestInjectable();
@@ -18,10 +18,10 @@ void main() {
     final interceptor3 = TestInterceptor();
     sut..addInterceptor(interceptor1)..addInterceptor(interceptor2)..addInterceptor(interceptor3);
 
-    final requestOptions = RequestOptions();
+    final requestOptions = RequestOptions(path: '/todo');
     await sut.onRequest(requestOptions);
-    expect(interceptor1.onRequestCalled.isBefore(interceptor2.onRequestCalled), true);
-    expect(interceptor2.onRequestCalled.isBefore(interceptor3.onRequestCalled), true);
+    expect(interceptor1.onRequestCalled!.isBefore(interceptor2.onRequestCalled!), true);
+    expect(interceptor2.onRequestCalled!.isBefore(interceptor3.onRequestCalled!), true);
   });
 
   test('CombiningSmartInterceptor test sequence onresponse', () async {
@@ -30,10 +30,11 @@ void main() {
     final interceptor3 = TestInterceptor();
     sut..addInterceptor(interceptor1)..addInterceptor(interceptor2)..addInterceptor(interceptor3);
 
-    final response = Response<void>();
+    final requestOptions = RequestOptions(path: '/todo');
+    final response = Response<void>(request: requestOptions);
     await sut.onResponse(response);
-    expect(interceptor1.onResponseCalled.isAfter(interceptor2.onResponseCalled), true);
-    expect(interceptor2.onResponseCalled.isAfter(interceptor3.onResponseCalled), true);
+    expect(interceptor1.onResponseCalled!.isAfter(interceptor2.onResponseCalled!), true);
+    expect(interceptor2.onResponseCalled!.isAfter(interceptor3.onResponseCalled!), true);
   });
 
   test('CombiningSmartInterceptor test sequence onError', () async {
@@ -44,15 +45,15 @@ void main() {
 
     final error = DioError();
     await sut.onError(error);
-    expect(interceptor1.onErrorCalled.isAfter(interceptor2.onErrorCalled), true);
-    expect(interceptor2.onErrorCalled.isAfter(interceptor3.onErrorCalled), true);
+    expect(interceptor1.onErrorCalled!.isAfter(interceptor2.onErrorCalled!), true);
+    expect(interceptor2.onErrorCalled!.isAfter(interceptor3.onErrorCalled!), true);
   });
 }
 
 class TestInterceptor extends Interceptor {
-  DateTime onRequestCalled;
-  DateTime onResponseCalled;
-  DateTime onErrorCalled;
+  DateTime? onRequestCalled;
+  DateTime? onResponseCalled;
+  DateTime? onErrorCalled;
 
   @override
   Future onRequest(RequestOptions options) {

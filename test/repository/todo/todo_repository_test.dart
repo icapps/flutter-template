@@ -13,9 +13,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  TodoService todoService;
-  TodoDaoStoring todoDao;
-  TodoRepo sut;
+  late TodoService todoService;
+  late TodoDaoStoring todoDao;
+  late TodoRepo sut;
 
   setUp(() async {
     await initTestInjectable();

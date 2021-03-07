@@ -16,10 +16,10 @@ void main() {
     final sut = MainNavigatorWidget(key: key);
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_0_initial_screen');
-    key.currentState.goToDebugPlatformSelector();
+    key.currentState!.goToDebugPlatformSelector();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_1');
-    key.currentState.goBack<void>();
+    key.currentState!.goBack<void>();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_2_go_back');
   });

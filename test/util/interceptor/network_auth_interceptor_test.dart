@@ -9,8 +9,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  NetworkAuthInterceptor sut;
-  AuthStoring authStorage;
+  late NetworkAuthInterceptor sut;
+  late AuthStoring authStorage;
 
   setUp(() async {
     await initTestInjectable();

@@ -54,4 +54,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
 
 @test
 @Singleton(as: MainNavigation)
-class MockMainNavigation extends Mock implements MainNavigation {}
+class MockMainNavigation extends Mock implements MainNavigation {
+  @override
+  void showCustomDialog<T>({required WidgetBuilder? builder}) {}
+}

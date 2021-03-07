@@ -31,12 +31,6 @@ void main() {
       verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false)).calledOnce();
       verifyNoMoreInteractions(shardPrefs);
     });
-
-    test('saveSlowAnimations enabled set to null', () async {
-      await sut.saveSlowAnimations(enabled: null);
-      verify(shardPrefs.saveBoolean(key: 'enable_slow_animations', value: false)).calledOnce();
-      verifyNoMoreInteractions(shardPrefs);
-    });
   });
 
   group('isSlowAnimationsEnabled', () {

@@ -19,7 +19,7 @@ class MockHttpClientResponse extends Mock implements HttpClientResponse {}
 class MockHttpHeaders extends Mock implements HttpHeaders {}
 
 // Returns a mock HTTP client that responds with an image to all requests.
-MockHttpClient _createMockImageHttpClient(SecurityContext _, List<int> imageBytes) {
+MockHttpClient _createMockImageHttpClient(SecurityContext? _, List<int> imageBytes) {
   final client = MockHttpClient();
   final request = MockHttpClientRequest();
   final response = MockHttpClientResponse();
@@ -114,4 +114,3 @@ class TransparantImageUtil {
     0xAE,
   ];
 }
-

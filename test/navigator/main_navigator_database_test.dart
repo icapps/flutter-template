@@ -20,7 +20,7 @@ void main() {
     final sut = MainNavigatorWidget(key: key);
     final db = GetIt.I<FlutterTemplateDatabase>();
     await TestUtil.loadScreen(tester, sut);
-    key.currentState.goToDatabase(db);
+    key.currentState!.goToDatabase(db);
     await tester.pumpAndSettle();
     expect(find.byType(MoorDbViewer), findsOneWidget);
   });

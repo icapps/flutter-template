@@ -55,7 +55,7 @@ void main() {
 
   group('OnChanged', () {
     testWidgets('DebugRowSwitchItem selected state', (tester) async {
-      bool newValue;
+      bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',
         value: true,
@@ -73,7 +73,7 @@ void main() {
     });
 
     testWidgets('DebugRowSwitchItem selected state with subtitle', (tester) async {
-      bool newValue;
+      bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',
         subTitle: 'SubTitle',
@@ -92,7 +92,7 @@ void main() {
     });
 
     testWidgets('DebugRowSwitchItem unselected state', (tester) async {
-      bool newValue;
+      bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',
         value: false,
@@ -110,7 +110,7 @@ void main() {
     });
 
     testWidgets('DebugRowSwitchItem unselected state with subtitle', (tester) async {
-      bool newValue;
+      bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',
         subTitle: 'SubTitle',

@@ -9,8 +9,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SharedPreferences sharedPreferences;
-  SharedPrefsStoring sut;
+  late SharedPreferences sharedPreferences;
+  late SharedPrefsStoring sut;
 
   setUp(() async {
     await initTestInjectable();
