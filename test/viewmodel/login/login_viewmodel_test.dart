@@ -11,9 +11,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  LoginViewModel sut;
-  LoginRepo loginRepo;
-  LoginNavigator navigator;
+  late LoginViewModel sut;
+  late LoginRepo loginRepo;
+  late LoginNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();

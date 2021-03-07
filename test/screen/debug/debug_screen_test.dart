@@ -13,8 +13,8 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  DebugViewModel debugViewModel;
-  GlobalViewModel globalViewModel;
+  late DebugViewModel debugViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();

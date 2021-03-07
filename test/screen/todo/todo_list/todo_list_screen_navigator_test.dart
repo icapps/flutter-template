@@ -25,20 +25,16 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goBack<void>();
+    debugKey.currentState!.goBack<void>();
     verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goBack(result: 'testing');
+    debugKey.currentState!.goBack(result: 'testing');
     verify(mockNavigation.goBack(result: 'testing')).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goToAddTodo();
+    debugKey.currentState!.goToAddTodo();
     verify(mockNavigation.goToAddTodo()).calledOnce();
-    verifyNoMoreInteractions(mockNavigation);
-
-    final key = debugKey.currentState.getScaffoldState();
-    expect(key, isNotNull);
     verifyNoMoreInteractions(mockNavigation);
   });
 }

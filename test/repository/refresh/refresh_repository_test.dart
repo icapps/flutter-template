@@ -13,8 +13,8 @@ import '../../mocks/mocked_answer.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  AuthStoring authStorage;
-  RefreshRepo sut;
+  late AuthStoring authStorage;
+  late RefreshRepo sut;
 
   setUp(() async {
     await initTestInjectable();

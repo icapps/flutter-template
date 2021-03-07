@@ -14,7 +14,7 @@ class License {
    required this.version,
    required this.licenseUrl,
    required this.license,
-    this.url,
+   required this.url,
   });
 }
 
@@ -791,7 +791,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'icapps_license',
-        version: '^1.1.0',
+        version: '^1.1.1',
         url: 'https://github.com/icapps/flutter-icapps-license',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
         license: '''MIT License

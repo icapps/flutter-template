@@ -12,9 +12,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  GlobalViewModel sut;
-  LocaleRepo localeRepo;
-  DebugRepo debugRepo;
+  late GlobalViewModel sut;
+  late LocaleRepo localeRepo;
+  late DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();
@@ -42,9 +42,9 @@ void main() {
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNotNull);
     expect(sut.localeDelegate.newLocale, isNotNull);
-    expect(sut.localeDelegate.newLocale.languageCode, 'nl');
+    expect(sut.localeDelegate.newLocale?.languageCode, 'nl');
     expect(sut.locale, isNotNull);
-    expect(sut.locale.languageCode, 'nl');
+    expect(sut.locale?.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verifyNoMoreInteractions(localeRepo);

@@ -93,11 +93,12 @@ abstract class RegisterModule {
       CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
 
   @singleton
-  Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
-    final dio = Dio();
-    dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
+  Dio provideDio(CombiningSmartInterceptor interceptor) {
+    final dio = Dio(
+      BaseOptions(baseUrl: FlavorConfig.instance.values.baseUrl),
+    );
     (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson; // ignore: avoid_as
-    dio.interceptors.add(networkInterceptor);
+    dio.interceptors.add(interceptor);
     return dio;
   }
 

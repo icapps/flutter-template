@@ -13,7 +13,7 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -33,11 +33,11 @@ void main() {
     await TestUtil.loadScreen(tester, sut);
     reset(globalViewModel);
 
-    key.currentState.goBack<void>();
+    key.currentState!.goBack<void>();
     verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    key.currentState.goBack(result: 'test');
+    key.currentState!.goBack(result: 'test');
     verify(mockNavigation.goBack(result: 'test')).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });

@@ -14,8 +14,8 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
-  DebugPlatformSelectorViewModel platformViewmodel;
+  late GlobalViewModel globalViewModel;
+  late DebugPlatformSelectorViewModel platformViewmodel;
 
   setUp(() async {
     await initTestInjectable();

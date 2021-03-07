@@ -10,8 +10,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SharedPrefsStoring shardPrefs;
-  DebugRepo sut;
+  late SharedPrefsStoring shardPrefs;
+  late DebugRepo sut;
 
   setUp(() async {
     await initTestInjectable();

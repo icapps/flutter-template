@@ -9,8 +9,8 @@ class MockMainNavigator extends StatefulWidget {
   final MockMainNavigation mock;
 
   const MockMainNavigator({
-    @required this.child,
-    @required this.mock,
+    required this.child,
+    required this.mock,
   });
 
   @override
@@ -46,7 +46,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void goToSplash() => widget.mock.goToSplash();
 
   @override
-  void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog<T>(builder: builder);
+  void showCustomDialog<T>({required WidgetBuilder builder}) => widget.mock.showCustomDialog<T>(builder: builder);
 
   @override
   void goToDatabase(GeneratedDatabase db) => widget.mock.goToDatabase(db);

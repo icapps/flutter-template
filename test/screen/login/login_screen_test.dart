@@ -12,7 +12,7 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  LoginViewModel loginViewModel;
+  late LoginViewModel loginViewModel;
 
   setUp(() async {
     await initTestInjectable();

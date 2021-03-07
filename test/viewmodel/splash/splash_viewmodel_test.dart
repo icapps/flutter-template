@@ -10,10 +10,10 @@ import '../../mocks/repository/shared_prefs/local/mock_local_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SplashViewModel sut;
-  LoginRepo loginRepo;
-  LocalStoring localStorage;
-  SplashNavigator navigator;
+  late SplashViewModel sut;
+  late LoginRepo loginRepo;
+  late LocalStoring localStorage;
+  late SplashNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();

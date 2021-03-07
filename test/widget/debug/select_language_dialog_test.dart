@@ -11,7 +11,7 @@ import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();

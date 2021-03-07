@@ -246,7 +246,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logError', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };

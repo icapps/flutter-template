@@ -8,9 +8,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  DebugViewModel sut;
-  DebugNavigator navigator;
-  DebugRepo debugRepo;
+  late DebugViewModel sut;
+  late DebugNavigator navigator;
+  late DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();

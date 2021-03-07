@@ -18,12 +18,12 @@ class FlutterTemplateLogger {
 
   static void logNetworkRequest(RequestOptions options) {
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
-    logDebug('---------------> ${options.method} - url: ${options.uri.toString()}');
+    // logDebug('---------------> ${options.method} - url: ${options.path}');
   }
 
   static void logNetworkResponse(Response response) {
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
-    logDebug('<--------------- ${response.request.method} - url: ${response.request.uri.toString()} - statucode: ${response.statusCode ?? 'N/A'}');
+    // logDebug('<--------------- ${response.request.method} - url: ${response.request.path} - statucode: ${response.statusCode ?? 'N/A'}');
   }
 
   static void logNetworkError(NetworkError error) {
@@ -38,7 +38,7 @@ class FlutterTemplateLogger {
       message..writeln('response.data | ${response.data}')..writeln('response.headers | ${response.headers}');
     }
     if (request != null) {
-      message.writeln('<--------------- ${request.method} - url: ${request.uri.toString()} - statucode: ${response?.statusCode ?? 'N/A'}');
+      // message.writeln('<--------------- ${request.method} - url: ${request.path} - statucode: ${response?.statusCode ?? 'N/A'}');
     }
     logError(message: '${message.toString()}', error: Error());
   }

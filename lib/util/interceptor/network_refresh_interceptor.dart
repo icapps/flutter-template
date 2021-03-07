@@ -39,13 +39,11 @@ class NetworkRefreshInterceptor extends Interceptor {
       return super.onError(err);
     }
 
-    FlutterTemplateLogger.logDebug('Refreshing');
-    final _dio = GetIt.instance.get<Dio>();
-
     if (err is! UnAuthorizedError) {
       return super.onError(err);
     }
 
+    FlutterTemplateLogger.logDebug('Refreshing');
     await _refreshRepo.refresh(err);
 
     final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
@@ -67,6 +65,7 @@ class NetworkRefreshInterceptor extends Interceptor {
       responseDecoder: request.responseDecoder,
       listFormat: request.listFormat,
     );
+    final _dio = GetIt.instance.get<Dio>();
     return _dio.request<dynamic>(request.path, options: options);
   }
 }

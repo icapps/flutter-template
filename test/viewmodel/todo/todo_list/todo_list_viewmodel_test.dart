@@ -11,9 +11,9 @@ import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
-  TodoListViewModel sut;
-  TodoRepo todoRepo;
-  TodoListViewNavigator navigator;
+  late TodoListViewModel sut;
+  late TodoRepo todoRepo;
+  late TodoListViewNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();

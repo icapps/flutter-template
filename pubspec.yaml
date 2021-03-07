@@ -8,7 +8,7 @@ environment:
 dependencies:
   connectivity: ^3.0.2
   device_info: ^2.0.0
-  dio: 4.0.0-beta5
+  dio: 4.0.0-beta6
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.0.0-nullsafety.1
@@ -36,7 +36,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
-  icapps_license: ^1.1.0
+  icapps_license: ^1.1.1
   icapps_translations: ^4.0.0
   injectable_generator: ^1.2.0
   model_generator: ^4.0.0
