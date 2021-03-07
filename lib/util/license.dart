@@ -10,10 +10,10 @@ class License {
   final String license;
 
   License({
-    this.name,
-    this.version,
-    this.licenseUrl,
-    this.license,
+   required this.name,
+   required this.version,
+   required this.licenseUrl,
+   required this.license,
     this.url,
   });
 }
@@ -791,7 +791,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'icapps_license',
-        version: '^1.0.1',
+        version: '^1.1.0',
         url: 'https://github.com/icapps/flutter-icapps-license',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
         license: '''MIT License
