@@ -13,7 +13,7 @@ import '../../../util/test_util.dart';
 import '../../seed.dart';
 
 void main() {
-  TodoListViewModel todoListViewModel;
+  late TodoListViewModel todoListViewModel;
 
   setUp(() async {
     await initTestInjectable();
