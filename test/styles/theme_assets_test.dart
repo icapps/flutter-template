@@ -117,7 +117,7 @@ void main() {
 class IconAssetTesterAndroid extends StatelessWidget {
   final String Function(BuildContext context) getAsset;
 
-  const IconAssetTesterAndroid({@required this.getAsset});
+  const IconAssetTesterAndroid({required this.getAsset});
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class IconAssetTesterAndroid extends StatelessWidget {
 class IconAssetTesterIOS extends StatelessWidget {
   final String Function(BuildContext context) getAsset;
 
-  const IconAssetTesterIOS({@required this.getAsset});
+  const IconAssetTesterIOS({required this.getAsset});
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  LicenseViewModel licenseViewModel;
+  late LicenseViewModel licenseViewModel;
 
   setUp(() async {
     await initTestInjectable();

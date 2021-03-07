@@ -24,11 +24,11 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goToHome();
+    debugKey.currentState!.goToHome();
     verify(mockNavigation.goToHome()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goToLogin();
+    debugKey.currentState!.goToLogin();
     verify(mockNavigation.goToLogin()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });
