@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('FlutterTemplateLogger test debug', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -67,7 +67,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logVerbose', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -126,7 +126,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logInfo', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -186,7 +186,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logWarning', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };

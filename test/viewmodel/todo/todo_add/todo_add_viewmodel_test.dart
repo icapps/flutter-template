@@ -8,9 +8,9 @@ import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
-  TodoAddViewModel sut;
-  TodoRepo todoRepo;
-  TodoAddNavigator navigator;
+  late TodoAddViewModel sut;
+  late TodoRepo todoRepo;
+  late TodoAddNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();

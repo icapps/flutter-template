@@ -54,7 +54,8 @@ class TodoListViewModel with ChangeNotifier, DisposeMixin {
 
   void onAddClicked() => _navigator.goToAddTodo();
 
-  Future<void> onTodoChanged({required int id, required bool value}) async {
+  Future<void> onTodoChanged({required int? id, required bool value}) async {
+    if (id == null) return;
     await _todoRepo.setTodoState(id: id, value: value);
   }
 }

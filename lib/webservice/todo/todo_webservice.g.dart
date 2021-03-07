@@ -24,7 +24,7 @@ class _TodoWebService implements TodoWebService {
         method: 'GET',
         headers: <String, dynamic>{},
         extra: _extra,
-        baseUrl: baseUrl ?? _dio.options.baseUrl,
+        baseUrl: baseUrl,
         queryParameters: queryParameters,
         path: '/todos',
         data: _data));

@@ -74,7 +74,7 @@ void main() {
     group('Locale', () {
       test('GlobalViewModel onSwitchToDutch', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -82,11 +82,11 @@ void main() {
 
       test('GlobalViewModel onSwitchToEnglish', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToEnglish();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'en');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'en');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -94,7 +94,7 @@ void main() {
 
       test('GlobalViewModel onSwitchToSystemLanguage', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToSystemLanguage();

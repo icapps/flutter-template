@@ -4,17 +4,17 @@ part 'todo.g.dart';
 
 @JsonSerializable()
 class Todo {
-  @JsonKey(name: 'id', required: true)
-  final int id;
   @JsonKey(name: 'title', required: true)
   final String title;
   @JsonKey(name: 'completed', required: true)
   final bool completed;
+  @JsonKey(name: 'id')
+  final int? id;
 
   Todo({
-    required this.id,
     required this.title,
     required this.completed,
+    this.id,
   });
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);

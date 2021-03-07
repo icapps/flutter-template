@@ -5,7 +5,6 @@ Todo:
   path: webservice/todo/
   properties:
     id:
-      required: true
       type: int
     title:
       required: true

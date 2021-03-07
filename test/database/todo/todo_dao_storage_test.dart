@@ -87,7 +87,7 @@ void main() {
     });
 
     group('Add data', () {
-      Stream<List<DbTodo>> stream;
+      late Stream<List<DbTodo>> stream;
 
       setUp(() async {
         stream = sut.getAllTodosStream();
