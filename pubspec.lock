@@ -349,7 +349,7 @@ packages:
       name: icapps_license
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   icapps_translations:
     dependency: "direct dev"
     description:

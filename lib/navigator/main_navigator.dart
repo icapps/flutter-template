@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';

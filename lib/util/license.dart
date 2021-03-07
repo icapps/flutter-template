@@ -6,14 +6,15 @@ class License {
   final String name;
   final String version;
   final String url;
-  final String licenseUrl;  final String license;
+  final String licenseUrl;
+  final String license;
 
   License({
     this.name,
     this.version,
-    this.url,
     this.licenseUrl,
     this.license,
+    this.url,
   });
 }
 
@@ -21,183 +22,12 @@ class LicenseUtil {
   LicenseUtil._();
 
   static List<License> getLicenses() {
-    return List<License>()
+    return <License>[]
       ..add(License(
-        name: 'kiwi',
-        version: '2.1.1',
-        url: 'https://github.com/vanlooverenkoen/kiwi/tree/master/kiwi',
-        licenseUrl: 'https://raw.githubusercontent.com/vanlooverenkoen/kiwi/master/kiwi/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2018 Romain Rastel
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-''',
-      ))
-      ..add(License(
-        name: 'dio',
-        version: '3.0.10',
-        url: 'https://github.com/flutterchina/dio',
-        licenseUrl: 'https://raw.githubusercontent.com/flutterchina/dio/master/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2018 wendux
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.''',
-      ))
-      ..add(License(
-        name: 'retrofit',
-        version: '1.3.4+1',
-        url: 'https://mings.in/retrofit.dart/',
-        licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2019 Trevor Wang
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-''',
-      ))
-      ..add(License(
-        name: 'provider',
-        version: '4.3.2+2',
-        url: 'https://github.com/rrousselGit/provider',
-        licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2019 Remi Rousselet
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.''',
-      ))
-      ..add(License(
-        name: 'json_serializable',
-        version: '3.5.0',
-        url: 'https://github.com/google/json_serializable.dart',
-        licenseUrl: 'https://raw.githubusercontent.com/google/json_serializable.dart/master/LICENSE',
-        license: '''Copyright 2017, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-''',
-      ))
-      ..add(License(
-        name: 'niddler_dart',
-        version: '0.10.2',
-        url: 'https://github.com/Chimerapps/niddler_dart',
-        licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/niddler_dart/master/LICENSE',
-        license: '''MIT License
-
-Copyright (c) 2019 Chimerapps
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-''',
-      ))
-      ..add(License(
-        name: 'shared_preferences',
-        version: '0.5.12+2',
-        url: 'https://github.com/flutter/plugins/tree/master/packages/shared_preferences/shared_preferences',
-        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/shared_preferences/shared_preferences/LICENSE',
+        name: 'connectivity',
+        version: '^3.0.2',
+        url: 'https://github.com/flutter/plugins/tree/master/packages/connectivity/connectivity',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/connectivity/connectivity/LICENSE',
         license: '''Copyright 2017 The Chromium Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -226,8 +56,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''',
       ))
       ..add(License(
+        name: 'dio',
+        version: '4.0.0-beta5',
+        url: 'https://github.com/flutterchina/dio',
+        licenseUrl: 'https://raw.githubusercontent.com/flutterchina/dio/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2018 wendux
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+      ))
+      ..add(License(
         name: 'flutter_secure_storage',
-        version: '3.3.5',
+        version: '^4.0.0',
         url: 'https://github.com/mogol/flutter_secure_storage',
         licenseUrl: 'https://raw.githubusercontent.com/mogol/flutter_secure_storage/master/LICENSE',
         license: '''// Copyright 2017 Your Company. All rights reserved.
@@ -260,8 +117,120 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''',
       ))
       ..add(License(
+        name: 'flutter_svg',
+        version: '^0.21.0-nullsafety.0',
+        url: 'https://github.com/dnfield/flutter_svg',
+        licenseUrl: 'https://raw.githubusercontent.com/dnfield/flutter_svg/master/LICENSE',
+        license: '''Copyright (c) 2018 Dan Field
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+      ))
+      ..add(License(
+        name: 'get_it',
+        version: '^6.0.0',
+        url: 'https://github.com/fluttercommunity/get_it',
+        licenseUrl: 'https://raw.githubusercontent.com/fluttercommunity/get_it/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2018 Thomas Burkhart
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+      ))
+      ..add(License(
+        name: 'injectable',
+        version: '^1.2.0',
+        url: 'https://github.com/Milad-Akarie/injectable',
+        licenseUrl: 'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2020 Milad Akarie
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+      ))
+      ..add(License(
+        name: 'json_serializable',
+        version: '^4.0.2',
+        url: 'null',
+        licenseUrl: 'https://raw.githubusercontent.com/google/json_serializable.dart/master/json_serializable/LICENSE',
+        license: '''Copyright 2017, the Dart project authors. All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+''',
+      ))
+      ..add(License(
         name: 'mockito',
-        version: '4.1.3',
+        version: '^5.0.0',
         url: 'https://github.com/dart-lang/mockito',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/mockito/master/LICENSE',
         license: '''
@@ -470,7 +439,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ))
       ..add(License(
         name: 'moor',
-        version: '3.4.0',
+        version: '^4.1.0',
         url: 'https://moor.simonbinder.eu/',
         licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
@@ -497,105 +466,13 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'moor_ffi',
-        version: '0.8.0',
-        url: 'https://github.com/simolus3/moor/tree/develop/moor_ffi',
-        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/develop/moor_ffi/LICENSE',
+        name: 'moor_db_viewer',
+        version: '^3.0.0',
+        url: 'https://github.com/vanlooverenkoen/moor_db_viewer',
+        licenseUrl: 'https://raw.githubusercontent.com/vanlooverenkoen/moor_db_viewer/master/LICENSE',
         license: '''MIT License
 
-Copyright (c) 2019 Simon Binder
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-This project also bundles sqlite, which is in the Public Domain.
-See https://www.sqlite.org/copyright.html''',
-      ))
-      ..add(License(
-        name: 'connectivity',
-        version: '2.0.0',
-        url: 'https://github.com/flutter/plugins/tree/master/packages/connectivity/connectivity',
-        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/connectivity/connectivity/LICENSE',
-        license: '''Copyright 2017 The Chromium Authors. All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-''',
-      ))
-      ..add(License(
-        name: 'path_provider',
-        version: '1.6.22',
-        url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
-        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
-        license: '''Copyright 2017, the Flutter project authors. All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-''',
-      ))
-      ..add(License(
-        name: 'flutter_svg',
-        version: '0.19.1',
-        url: 'https://github.com/dnfield/flutter_svg',
-        licenseUrl: 'https://raw.githubusercontent.com/dnfield/flutter_svg/master/LICENSE',
-        license: '''Copyright (c) 2018 Dan Field
+Copyright (c) 2019 Van Looveren Koen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -616,8 +493,64 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
       ))
       ..add(License(
+        name: 'moor_inspector',
+        version: '^0.2.0',
+        url: 'https://github.com/Chimerapps/moor_inspector',
+        licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/moor_inspector/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2020 Chimerapps
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+''',
+      ))
+      ..add(License(
+        name: 'niddler_dart',
+        version: '^1.0.0',
+        url: 'https://github.com/Chimerapps/niddler_dart',
+        licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/niddler_dart/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2019 Chimerapps
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+''',
+      ))
+      ..add(License(
         name: 'path',
-        version: '1.8.0-nullsafety.1',
+        version: '^1.8.0',
         url: 'https://github.com/dart-lang/path',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
         license: '''Copyright 2014, the Dart project authors. All rights reserved.
@@ -649,8 +582,95 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''',
       ))
       ..add(License(
+        name: 'path_provider',
+        version: '^2.0.1',
+        url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
+        license: '''Copyright 2017, the Flutter project authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+''',
+      ))
+      ..add(License(
+        name: 'provider',
+        version: '^5.0.0',
+        url: 'null',
+        licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2019 Remi Rousselet
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+      ))
+      ..add(License(
+        name: 'retrofit',
+        version: '^1.3.4+1',
+        url: 'https://mings.in/retrofit.dart/',
+        licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
+        license: '''MIT License
+
+Copyright (c) 2019 Trevor Wang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+''',
+      ))
+      ..add(License(
         name: 'scroll_when_needed',
-        version: '1.0.0',
+        version: '^2.0.0',
         url: 'https://github.com/vanlooverenkoen/flutter_scroll_when_needed',
         licenseUrl: 'https://raw.githubusercontent.com/vanlooverenkoen/flutter_scroll_when_needed/master/LICENSE',
         license: '''MIT License
@@ -677,37 +697,41 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'moor_generator',
-        version: '3.4.0',
-        url: 'https://moor.simonbinder.eu/',
-        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
-        license: '''MIT License
+        name: 'shared_preferences',
+        version: '^2.0.3',
+        url: 'https://github.com/flutter/plugins/tree/master/packages/shared_preferences/shared_preferences',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/shared_preferences/shared_preferences/LICENSE',
+        license: '''Copyright 2017 The Chromium Authors. All rights reserved.
 
-Copyright (c) 2019 Simon Binder
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''',
       ))
       ..add(License(
         name: 'build_runner',
-        version: '1.10.3',
-        url: 'https://github.com/dart-lang/build/tree/master/build_runner',
+        version: '^1.11.5',
+        url: 'null',
         licenseUrl: 'https://raw.githubusercontent.com/dart-lang/build/master/build_runner/LICENSE',
         license: '''Copyright 2016, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
@@ -738,13 +762,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ''',
       ))
       ..add(License(
-        name: 'retrofit_generator',
-        version: '1.4.0',
-        url: 'https://mings.in/retrofit.dart/',
-        licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
+        name: 'flutter_launcher_icons',
+        version: '^0.9.0',
+        url: 'https://github.com/fluttercommunity/flutter_launcher_icons',
+        licenseUrl: 'https://raw.githubusercontent.com/fluttercommunity/flutter_launcher_icons/master/LICENSE',
         license: '''MIT License
 
-Copyright (c) 2019 Trevor Wang
+Copyright (c) 2019 Mark O'Sullivan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -766,13 +790,13 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'kiwi_generator',
-        version: '2.1.1',
-        url: 'https://github.com/vanlooverenkoen/kiwi/tree/master/kiwi_generator',
-        licenseUrl: 'https://raw.githubusercontent.com/vanlooverenkoen/kiwi/master/kiwi_generator/LICENSE',
+        name: 'icapps_license',
+        version: '^1.0.1',
+        url: 'https://github.com/icapps/flutter-icapps-license',
+        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
         license: '''MIT License
 
-Copyright (c) 2018 Romain Rastel
+Copyright (c) 2019 icapps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -795,7 +819,7 @@ SOFTWARE.
       ))
       ..add(License(
         name: 'icapps_translations',
-        version: '3.0.5',
+        version: '^4.0.0',
         url: 'https://github.com/icapps/flutter-icapps-translations',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-translations/master/LICENSE',
         license: '''MIT License
@@ -822,13 +846,13 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'icapps_generator',
-        version: '0.3.0',
-        url: 'https://github.com/icapps/flutter-icapps-generator',
-        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-generator/master/LICENSE',
+        name: 'injectable_generator',
+        version: '^1.2.0',
+        url: 'https://github.com/Milad-Akarie/injectable',
+        licenseUrl: 'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
         license: '''MIT License
 
-Copyright (c) 2019 icapps
+Copyright (c) 2020 Milad Akarie
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -846,12 +870,11 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-''',
+SOFTWARE.''',
       ))
       ..add(License(
         name: 'model_generator',
-        version: '3.3.0',
+        version: '^4.0.0',
         url: 'https://github.com/icapps/flutter-model-generator',
         licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-model-generator/master/LICENSE',
         license: '''MIT License
@@ -878,13 +901,13 @@ SOFTWARE.
 ''',
       ))
       ..add(License(
-        name: 'icapps_license',
-        version: '0.0.6',
-        url: 'https://github.com/icapps/flutter-icapps-license',
-        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
+        name: 'moor_generator',
+        version: '^4.1.0',
+        url: 'https://moor.simonbinder.eu/',
+        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
 
-Copyright (c) 2019 icapps
+Copyright (c) 2019 Simon Binder
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
