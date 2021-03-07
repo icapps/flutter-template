@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 enum Flavor {
   TEST,
@@ -43,6 +42,8 @@ class FlavorConfig {
   FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
 
   static FlavorConfig get instance => _instance!;
+
+  static bool get hasInstance => _instance != null;
 
   static bool isProd() => _instance!.flavor == Flavor.PROD;
 

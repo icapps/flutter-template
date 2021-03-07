@@ -86,7 +86,7 @@ class TestUtil {
   }
 
   static Future<void> pumpAndSettleWithDuration(WidgetTester tester) async {
-    return tester.pumpAndSettle(const Duration(seconds: 2));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
   }
 
   static Future<void> loadFonts() async {
@@ -115,7 +115,7 @@ class TestUtil {
 class TestWrapper extends StatelessWidget {
   final Widget child;
 
-  const TestWrapper({@required this.child});
+  const TestWrapper({required this.child});
 
   @override
   Widget build(BuildContext context) {

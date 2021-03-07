@@ -48,12 +48,9 @@ class ErrorScreen extends StatefulWidget {
 }
 
 class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
-  final _key = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _key,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +80,4 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
       ),
     );
   }
-
-  @override
-  ScaffoldState getScaffoldState() => _key.currentState;
 }

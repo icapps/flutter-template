@@ -25,8 +25,6 @@ class TodoListScreen extends StatefulWidget {
 
 @visibleForTesting
 class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoListViewNavigator {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoListScaffoldKey');
-
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoListViewModel>(
@@ -34,7 +32,6 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
         final errorKey = viewModel.errorKey;
         return Scaffold(
-          key: _scaffoldKey,
           appBar: AppBar(
             centerTitle: context.isIOS,
             title: Text(localization.todoTitle),
@@ -106,7 +103,4 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
 
   @override
   void goToAddTodo() => MainNavigatorWidget.of(context).goToAddTodo();
-
-  @override
-  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 }

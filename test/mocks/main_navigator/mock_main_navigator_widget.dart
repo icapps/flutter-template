@@ -25,7 +25,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void closeDialog() => widget.mock.closeDialog();
 
   @override
-  void goBack<T>({T result}) => widget.mock.goBack(result: result);
+  void goBack<T>({T? result}) => widget.mock.goBack(result: result);
 
   @override
   void goToAddTodo() => widget.mock.goToAddTodo();

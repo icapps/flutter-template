@@ -9,14 +9,14 @@ class FlutterTemplateButton extends StatelessWidget {
   final String text;
   final double height;
   final bool isEnabled;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
 
   const FlutterTemplateButton({
-    @required this.text,
-    @required this.onClick,
+    required this.text,
+    required this.onClick,
     this.height = 48,
     this.isEnabled = true,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

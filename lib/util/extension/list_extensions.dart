@@ -4,23 +4,29 @@ extension ListExtensions<T> on List<T> {
     addAll(newData);
   }
 
-  void sortBy<R>(Comparable<R> by(T item)) {
+  void sortBy<R>(Comparable<R>? by(T item)) {
     sort((a, b) {
-      if (by(a) == null) return -1;
-      if (by(b) == null) return 1;
-      return _compareValues(by(a), by(b));
+      final byA = by(a);
+      final byB = by(b);
+      if (byA == null) return -1;
+      if (byB == null) return 1;
+      return _compareValues(byA, byB);
     });
   }
 
-  void sortBy2Field<R>(Comparable<R> by(T item), Comparable<R> by2(T item)) {
+  void sortBy2Field<R>(Comparable<R>? by(T item), Comparable<R>? by2(T item)) {
     sort((a, b) {
-      if (by(a) == null) return -1;
-      if (by(b) == null) return 1;
-      final result = _compareValues(by(a), by(b));
+      final byA = by(a);
+      final byB = by(b);
+      if (byA == null) return -1;
+      if (byB == null) return 1;
+      final result = _compareValues(byA, byB);
       if (result != 0) return result;
-      if (by2(a) == null) return -1;
-      if (by2(b) == null) return 1;
-      return _compareValues(by2(a), by2(b));
+      final by2A = by2(a);
+      final by2B = by2(b);
+      if (by2A == null) return -1;
+      if (by2B == null) return 1;
+      return _compareValues(by2A, by2B);
     });
   }
 

@@ -11,9 +11,9 @@ class SelectorItem extends StatelessWidget {
   final bool selected;
 
   const SelectorItem({
-    @required this.onClick,
-    @required this.title,
-    @required this.selected,
+    required this.onClick,
+    required this.title,
+    required this.selected,
   });
 
   @override

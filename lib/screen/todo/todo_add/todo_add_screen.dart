@@ -21,14 +21,12 @@ class TodoAddScreen extends StatefulWidget {
 
 @visibleForTesting
 class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoAddScaffoldKey');
 
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
-        key: _scaffoldKey,
         appBar: AppBar(
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.todoAddTitle),
@@ -57,7 +55,4 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
       ),
     );
   }
-
-  @override
-  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 }

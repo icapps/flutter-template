@@ -5,16 +5,16 @@ import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.da
 
 class DebugRowSwitchItem extends StatelessWidget {
   final String title;
-  final String subTitle;
+  final String? subTitle;
   final bool value;
   final ValueChanged<bool> onChanged;
 
   const DebugRowSwitchItem({
-    @required this.title,
-    @required this.value,
-    @required this.onChanged,
+    required this.title,
+    required this.value,
+    required this.onChanged,
     this.subTitle,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class DebugRowSwitchItem extends StatelessWidget {
                   ),
                   if (subTitle != null)
                     Text(
-                      subTitle,
+                      subTitle!,
                       style: textTheme.subtitle2,
                     ),
                 ],

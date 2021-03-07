@@ -6,7 +6,7 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moor_ffi/moor_ffi.dart';
+import 'package:moor/ffi.dart';
 
 import '../util/test_util.dart';
 import 'test_injectable.config.dart';
@@ -19,7 +19,7 @@ final getIt = GetIt.instance;
 )
 Future<void> initTestInjectable() async {
   await getIt.reset();
-  if (FlavorConfig.instance == null) {
+  if (FlavorConfig.hasInstance) {
     const values = FlavorValues(
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: false,

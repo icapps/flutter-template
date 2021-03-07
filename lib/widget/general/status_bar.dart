@@ -6,15 +6,18 @@ class StatusBar extends StatelessWidget {
   final bool isDarkStyle;
 
   /// StatusBar.dark will show a black status bar
-  const StatusBar.dark({@required this.child}) : isDarkStyle = true;
+  const StatusBar.dark({required this.child}) : isDarkStyle = true;
 
   /// StatusBar.light will show a white status bar
-  const StatusBar.light({@required this.child}) : isDarkStyle = false;
+  const StatusBar.light({required this.child}) : isDarkStyle = false;
 
   /// StatusBar.animated will show:
   /// isDarkstyle == true => black status bar
   /// isDarkstyle == false => white status bar
-  const StatusBar.animated({@required this.child, this.isDarkStyle});
+  const StatusBar.animated({
+    required this.child,
+    required this.isDarkStyle,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class TouchFeedBackIOS extends StatefulWidget {
   final Widget child;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final Color color;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   const TouchFeedBackIOS({
-    @required this.child,
-    @required this.onClick,
+    required this.child,
+    required this.onClick,
     this.borderRadius,
     this.color = Colors.transparent,
   });

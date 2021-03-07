@@ -40,7 +40,6 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
       FlutterTemplateLogger.logDebug('Caught an error that is not handled by the FlutterTemplateError $error');
       key = LocalizationKeys.errorGeneral;
     }
-    key ??= LocalizationKeys.errorGeneral;
     showErrorWithLocaleKey(key);
     return key;
   }
@@ -54,11 +53,9 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
         ),
       ),
     );
-    getScaffoldState()?.showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
   void showErrorWithLocaleKey(String errorKey) => _showError(Localization.of(context).getTranslation(errorKey));
-
-  ScaffoldState? getScaffoldState();
 }

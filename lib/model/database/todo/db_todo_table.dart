@@ -21,7 +21,7 @@ extension DbTodoExtension on DbTodo {
 
 extension TodoExtension on Todo {
   DbTodoTableCompanion getDbModel() => DbTodoTableCompanion.insert(
-        id: Value(id) ?? const Value.absent(),
+        id: Value(id),
         title: title,
         completed: completed,
       );

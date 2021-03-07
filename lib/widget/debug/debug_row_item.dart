@@ -4,14 +4,14 @@ import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.da
 
 class DebugRowItem extends StatelessWidget {
   final String title;
-  final String subTitle;
+  final String? subTitle;
   final VoidCallback onClick;
 
   const DebugRowItem({
-    @required this.title,
-    @required this.onClick,
+    required this.title,
+    required this.onClick,
     this.subTitle,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class DebugRowItem extends StatelessWidget {
                   if (subTitle != null) ...[
                     Container(height: ThemeDimens.padding4),
                     Text(
-                      subTitle,
+                      subTitle!,
                       style: textTheme.subtitle2,
                     ),
                   ],

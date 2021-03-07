@@ -23,8 +23,6 @@ class LoginScreen extends StatefulWidget {
 
 @visibleForTesting
 class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'LoginScaffoldKey');
-
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LoginViewModel>(
@@ -32,7 +30,6 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.light(
           child: Scaffold(
-            key: _scaffoldKey,
             backgroundColor: theme.colorsTheme.backgroundDark,
             body: SafeArea(
               child: Container(
@@ -84,9 +81,6 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
       ),
     );
   }
-
-  @override
-  ScaffoldState? getScaffoldState() => _scaffoldKey.currentState;
 
   @override
   void goToHome() => MainNavigatorWidget.of(context).goToHome();

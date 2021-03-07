@@ -24,7 +24,7 @@ class NetworkErrorInterceptor extends Interceptor {
   }
 
   @override
-  Future onError(DioError err) async {
+  Future onError(DioError? err) async {
     try {
       if (err == null) return CodeError();
       if (err.error is NoNetworkError) return NoInternetError(err);

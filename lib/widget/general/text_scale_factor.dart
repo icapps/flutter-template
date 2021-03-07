@@ -5,7 +5,7 @@ class TextScaleFactor extends StatelessWidget {
   final Widget child;
 
   const TextScaleFactor({
-    @required this.child,
+    required this.child,
   });
 
   @override

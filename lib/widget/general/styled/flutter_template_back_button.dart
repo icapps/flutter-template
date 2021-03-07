@@ -5,17 +5,17 @@ import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateBackButton extends StatelessWidget {
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final bool fullScreen;
   final bool isLight;
 
   const FlutterTemplateBackButton.light({
-    @required this.onClick,
+    required this.onClick,
     this.fullScreen = false,
   }) : isLight = true;
 
   const FlutterTemplateBackButton.dark({
-    @required this.onClick,
+    required this.onClick,
     this.fullScreen = false,
   }) : isLight = false;
 

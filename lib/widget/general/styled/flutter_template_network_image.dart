@@ -8,15 +8,15 @@ import 'package:get_it/get_it.dart';
 import 'package:pedantic/pedantic.dart';
 
 class FlutterTemplateNetworkImage extends StatelessWidget {
-  final String url;
-  final String fallbackUrl;
+  final String? url;
+  final String? fallbackUrl;
   final BoxFit fit;
-  final double height;
-  final double width;
-  final Duration duration;
+  final double? height;
+  final double? width;
+  final Duration? duration;
 
   const FlutterTemplateNetworkImage({
-    @required this.url,
+    required this.url,
     this.fallbackUrl,
     this.fit = BoxFit.cover,
     this.height,
@@ -26,6 +26,7 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final url = this.url;
     final correctUrl = url == null || url.isEmpty ? fallbackUrl : url;
     if (correctUrl == null || correctUrl.isEmpty) {
       return Container(
@@ -56,19 +57,19 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
 }
 
 class _FlutterTemplateBetterNetworkImage extends StatefulWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final BoxFit fit;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final Widget placeholder;
 
   const _FlutterTemplateBetterNetworkImage({
-    @required this.imageUrl,
-    @required this.fit,
-    @required this.width,
-    @required this.height,
-    @required this.placeholder,
-    Key key,
+    required this.imageUrl,
+    required this.fit,
+    required this.width,
+    required this.height,
+    required this.placeholder,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -81,9 +82,9 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
   var _isLoading = false;
   var _hasError = false;
 
-  Uint8List _image;
+  Uint8List? _image;
 
-  Uint8List get image => _image;
+  Uint8List? get image => _image;
 
   bool get showPlaceholder => _hasError || _isLoading || _image == null;
 
@@ -105,7 +106,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
     final originalUrl = widget.imageUrl;
     final widgetWidth = widget.width;
     final widgetHeight = widget.height;
-    if (originalUrl == null || originalUrl.endsWith('unknown.jpg')) {
+    if (originalUrl == null) {
       setState(() => _hasError = true);
       return;
     }
@@ -119,8 +120,8 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
         _isLoading = true;
         _hasError = false;
       });
-      final width = (widgetWidth * (FlavorConfig.instance.devicePixelRatio ?? 1)).toInt();
-      final height = (widgetHeight * (FlavorConfig.instance.devicePixelRatio ?? 1)).toInt();
+      final width = (widgetWidth * (FlavorConfig.instance.devicePixelRatio)).toInt();
+      final height = (widgetHeight * (FlavorConfig.instance.devicePixelRatio)).toInt();
       final url = '$originalUrl?w=$width&h=$height';
       final cachedBytes = await _cacheController.getFileFromCache(url);
       if (!mounted) return;
@@ -134,7 +135,6 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       }
       if (!mounted) return;
       final bytes = await _cacheController.downloadFileByBytes(originalUrl);
-      // ignore: invariant_booleans
 
       final codec = await instantiateImageCodec(
         bytes,
@@ -143,7 +143,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       );
       final frame = await codec.getNextFrame();
       final data = await frame.image.toByteData(format: ImageByteFormat.png);
-      _image = data.buffer.asUint8List();
+      _image = data?.buffer.asUint8List();
       unawaited(_cacheImage(url));
     } catch (e) {
       FlutterTemplateLogger.logError(message: 'Failed to parse image: $originalUrl', error: e);
@@ -158,8 +158,10 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
   }
 
   Future<void> _cacheImage(String url) async {
+    final img = _image;
+    if (img == null) return;
     try {
-      await _cacheController.putFile(url, _image, fileExtension: 'png');
+      await _cacheController.putFile(url, img, fileExtension: 'png');
     } catch (e) {
       FlutterTemplateLogger.logError(message: 'Failed to cache image: $url', error: e);
     }
@@ -168,8 +170,10 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
   @override
   Widget build(BuildContext context) {
     if (showPlaceholder) return widget.placeholder;
+    final img = image;
+    if (img == null) return widget.placeholder;
     return Image.memory(
-      image,
+      img,
       width: widget.width,
       height: widget.height,
       fit: widget.fit,

@@ -5,7 +5,9 @@ import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 class DebugRowTitle extends StatelessWidget {
   final String title;
 
-  const DebugRowTitle({@required this.title});
+  const DebugRowTitle({
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {

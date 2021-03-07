@@ -4,18 +4,18 @@ import 'package:flutter_template/util/extension/context_extensions.dart';
 
 class TouchFeedBack extends StatelessWidget {
   final Widget child;
-  final VoidCallback onClick;
-  final Color androidSplashColor;
+  final VoidCallback? onClick;
+  final Color? androidSplashColor;
   final Color color;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   const TouchFeedBack({
-    @required this.child,
-    @required this.onClick,
+    required this.child,
+    required this.onClick,
     this.borderRadius,
     this.androidSplashColor,
     this.color = Colors.transparent,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

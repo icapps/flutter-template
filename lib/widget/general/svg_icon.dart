@@ -6,10 +6,10 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 class SvgIcon extends StatelessWidget {
   final String svgAsset;
   final Color color;
-  final double size;
+  final double? size;
 
   const SvgIcon({
-    @required this.svgAsset,
+    required this.svgAsset,
     this.color = Colors.black,
     this.size,
   });
@@ -20,9 +20,10 @@ class SvgIcon extends StatelessWidget {
       return FutureBuilder<String>(
         future: _getSvgString(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          final data = snapshot.data;
+          if (data != null) {
             return SvgPicture.string(
-              snapshot.data,
+              data,
               height: size,
               width: size,
               color: color,

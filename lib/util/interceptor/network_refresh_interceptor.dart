@@ -31,7 +31,6 @@ class NetworkRefreshInterceptor extends Interceptor {
   @override
   Future onError(DioError err) async {
     final request = err.request;
-    final response = err.response;
     if (request == null) {
       return super.onError(err);
     }
