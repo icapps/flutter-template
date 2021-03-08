@@ -6,8 +6,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  DebugPlatformSelectorViewModel sut;
-  DebugPlatformSelectorNavigator navigator;
+  late DebugPlatformSelectorViewModel sut;
+  late DebugPlatformSelectorNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
