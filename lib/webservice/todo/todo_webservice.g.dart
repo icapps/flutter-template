@@ -7,9 +7,7 @@ part of 'todo_webservice.dart';
 // **************************************************************************
 
 class _TodoWebService implements TodoWebService {
-  _TodoWebService(this._dio, {this.baseUrl}) {
-    ArgumentError.checkNotNull(_dio, '_dio');
-  }
+  _TodoWebService(this._dio, {this.baseUrl});
 
   final Dio _dio;
 
@@ -20,17 +18,27 @@ class _TodoWebService implements TodoWebService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<List<dynamic>>(RequestOptions(
-        method: 'GET',
-        headers: <String, dynamic>{},
-        extra: _extra,
-        baseUrl: baseUrl,
-        queryParameters: queryParameters,
-        path: '/todos',
-        data: _data));
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Todo>>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/todos', _data,
+                queryParameters: queryParameters)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => Todo.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
+  }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
   }
 }
