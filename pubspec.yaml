@@ -18,7 +18,7 @@ dependencies:
   flutter_svg: ^0.21.0-nullsafety.0
   get_it: ^6.0.0
   injectable: ^1.2.0
-  json_serializable: ^4.0.2
+  json_annotation: ^4.0.0
   mockito: ^5.0.0
   moor: ^4.1.0
   moor_db_viewer: ^3.0.0
@@ -39,6 +39,7 @@ dev_dependencies:
   icapps_license: ^1.1.1
   icapps_translations: ^4.0.0
   injectable_generator: ^1.2.0
+  json_serializable: ^4.0.2
   model_generator: ^4.0.0
   moor_generator: ^4.1.0
   retrofit_generator:
