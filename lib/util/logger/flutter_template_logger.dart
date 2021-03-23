@@ -31,14 +31,11 @@ class FlutterTemplateLogger {
     final message = StringBuffer();
     if (!FlavorConfig.instance.values.logNetworkInfo) return;
     final response = dioError.response;
-    final request = dioError.request;
+    final request = dioError.requestOptions;
     if (response == null) {
       message..writeln('request | ${request.toString()}')..writeln('message | ${dioError.message}');
     } else {
       message..writeln('response.data | ${response.data}')..writeln('response.headers | ${response.headers}');
-    }
-    if (request != null) {
-      // message.writeln('<--------------- ${request.method} - url: ${request.path} - statucode: ${response?.statusCode ?? 'N/A'}');
     }
     logError(message: '${message.toString()}', error: Error());
   }

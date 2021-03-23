@@ -20,8 +20,8 @@ class _TodoWebService implements TodoWebService {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<Todo>>(
         Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/todos', _data,
-                queryParameters: queryParameters)
+            .compose(_dio.options, '/todos',
+                queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => Todo.fromJson(i as Map<String, dynamic>))

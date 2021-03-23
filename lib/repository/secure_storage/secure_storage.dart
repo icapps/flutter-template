@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 class SecureStorage extends SecureStoring {
   final FlutterSecureStorage _storage;
 
-  final iOSOptions = IOSOptions(accessibility: IOSAccessibility.unlocked);
+  final iOSOptions = const IOSOptions(accessibility: IOSAccessibility.unlocked);
 
   SecureStorage(this._storage);
 

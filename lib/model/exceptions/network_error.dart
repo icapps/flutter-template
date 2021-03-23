@@ -6,7 +6,7 @@ abstract class NetworkError extends DioError with FlutterTemplateError {
 
   NetworkError(DioError dioError, {this.statusCodeValue})
       : super(
-    request: dioError.request,
+    requestOptions: dioError.requestOptions,
     response: dioError.response,
     error: dioError.error,
     type: dioError.type,

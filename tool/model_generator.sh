@@ -7,5 +7,4 @@ then
   cd ..
 fi
 
-echo "fvm flutter packages get"
-fvm flutter packages get
+fvm flutter packages run model_generator

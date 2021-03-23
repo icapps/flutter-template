@@ -2,30 +2,39 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/network_error.dart';
 
-class CombiningSmartInterceptor implements Interceptor {
-  final _interceptors = <Interceptor>[];
+abstract class SimpleInterceptor {
+  Future<Object?> onRequest(RequestOptions options) => Future.value(options);
 
-  void addInterceptor(Interceptor interceptor) {
+  Future<Object?> onResponse(Response response) => Future.value(response);
+
+  Future<Object?> onError(DioError err) => Future.value(err);
+}
+
+class CombiningSmartInterceptor implements Interceptor {
+  final _interceptors = <SimpleInterceptor>[];
+
+  void addInterceptor(SimpleInterceptor interceptor) {
     _interceptors.add(interceptor);
   }
 
   @override
-  Future onError(DioError err) async {
-    dynamic finalResult;
+  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+    NetworkError? finalResult;
     for (final interceptor in _interceptors.reversed) {
-      final dynamic res = await interceptor.onError(finalResult is DioError ? finalResult : err);
+      final dynamic res = await interceptor.onError(finalResult is DioError ? finalResult! : err);
       if (res is Response) {
-        return res;
+        handler.resolve(res);
+        return;
       }
       if (res is NetworkError) {
         finalResult = res;
       }
     }
-    return finalResult ?? err;
+    handler.next(finalResult ?? err);
   }
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     var intermediate = options;
     for (final interceptor in _interceptors) {
       final dynamic res = await interceptor.onRequest(intermediate);
@@ -35,11 +44,11 @@ class CombiningSmartInterceptor implements Interceptor {
       }
       return res;
     }
-    return intermediate;
+    handler.next(intermediate);
   }
 
   @override
-  Future onResponse(Response response) async {
+  Future<void> onResponse(Response response, ResponseInterceptorHandler handler) async {
     var intermediate = response;
     for (final interceptor in _interceptors.reversed) {
       final dynamic res = await interceptor.onResponse(intermediate);
@@ -49,6 +58,6 @@ class CombiningSmartInterceptor implements Interceptor {
       }
       return res;
     }
-    return intermediate;
+    handler.next(intermediate);
   }
 }
