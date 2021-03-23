@@ -11,7 +11,7 @@ dependencies:
   dio: ^4.0.0-prev3
   flutter:
     sdk: flutter
-  flutter_cache_manager: ^3.0.0-nullsafety.1
+  flutter_cache_manager: ^3.0.0-nullsafety.2
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^4.1.0
