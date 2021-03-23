@@ -68,3 +68,8 @@ icapps_translations:
   api_key: 'lIWZxNlOz3d461rVMeh3dw' #TODO Update this to the correct api key
   default_language: 'nl'
   languages: ['nl','en']
+
+icapps_license:
+  licenses:
+    device_info: 'https://github.com/flutter/plugins/blob/master/packages/device_info/device_info/LICENSE'
+    flutter_cache_manager: 'https://github.com/Baseflow/flutter_cache_manager/blob/develop/flutter_cache_manager/LICENSE'
