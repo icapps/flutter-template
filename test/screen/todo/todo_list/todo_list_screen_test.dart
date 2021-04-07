@@ -52,7 +52,6 @@ void main() {
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.errorKey);
     verify(todoListViewModel.init(any)).calledOnce();
-    verifyNoMoreInteractions(todoListViewModel);
     verifyGlobalViewModel();
   });
 
@@ -64,7 +63,6 @@ void main() {
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_loading_state');
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.init(any)).calledOnce();
-    verifyNoMoreInteractions(todoListViewModel);
     verifyGlobalViewModel();
   });
 
@@ -121,5 +119,4 @@ void verifyTodoListViewModel() {
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);
   verify(todoListViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(todoListViewModel);
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
@@ -124,7 +125,7 @@ void main() {
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
@@ -185,7 +186,7 @@ void main() {
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();

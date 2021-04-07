@@ -40,7 +40,6 @@ class TodoListViewModel with ChangeNotifier, DisposeMixin {
       notifyListeners();
       await _todoRepo.fetchTodos();
     } catch (e) {
-      print(e);
       FlutterTemplateLogger.logError(message: 'failed to get todos', error: e);
       if (e is FlutterTemplateError) {
         _errorKey = e.getLocalizedKey();

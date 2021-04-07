@@ -29,5 +29,4 @@ void verifySplashViewModel() {
   // ignore: avoid_as
   final splash = GetIt.I<SplashViewModel>() as MockSplashViewModel;
   verify(splash.init(any)).calledOnce();
-  verifyNoMoreInteractions(splash);
 }

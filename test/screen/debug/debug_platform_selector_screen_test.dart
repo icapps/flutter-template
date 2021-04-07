@@ -59,18 +59,21 @@ void main() {
     testWidgets('Test debug screen select platform click on system', (tester) async {
       seedGlobalViewModel();
       when(globalViewModel.targetPlatform).thenReturn(null);
+      // ignore: void_checks
+      when(platformViewmodel.dispose()).thenReturn(1);
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
       reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewmodel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final target = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToDefault()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
 
@@ -81,14 +84,15 @@ void main() {
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
       reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewmodel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelIos);
+      final target = TextFinder(LocalizationKeys.generalLabelIos, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToIOS()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
 
@@ -98,15 +102,15 @@ void main() {
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewmodel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelAndroid);
+      final target = TextFinder(LocalizationKeys.generalLabelAndroid, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToAndroid()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
   });
@@ -118,7 +122,10 @@ void main() {
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewmodel.dispose()).thenReturn(1);
+      // ignore: void_checks
+      when(platformViewmodel.onBackClicked()).thenReturn(1);
 
       final target = find.byKey(Keys.backButton);
       expect(target, findsOneWidget);
@@ -126,7 +133,6 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(platformViewmodel.onBackClicked()).calledOnce();
-      verifyNoMoreInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
   });
@@ -136,5 +142,4 @@ void verifyDebugPlatformViewModel() {
   // ignore: avoid_as
   final platformSelectorViewModel = GetIt.I<DebugPlatformSelectorViewModel>() as MockDebugPlatformSelectorViewModel;
   verify(platformSelectorViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(platformSelectorViewModel);
 }

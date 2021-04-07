@@ -151,6 +151,8 @@ abstract class RegisterModule {
   static T _initVM<T extends ChangeNotifier>(T viewModel) {
     // ignore: void_checks
     when(viewModel.dispose()).thenReturn(1);
+    // ignore: void_checks
+    when(viewModel.notifyListeners()).thenReturn(1);
     return viewModel;
   }
 }

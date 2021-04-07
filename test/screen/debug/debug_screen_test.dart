@@ -188,7 +188,6 @@ void verifyDebugViewModel() {
   final debugViewModel = GetIt.I<DebugViewModel>() as MockDebugViewModel;
   verify(debugViewModel.init(any)).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
-  verifyNoMoreInteractions(debugViewModel);
 }
 
 void verifyGlobalViewModelForDebugScreen() {

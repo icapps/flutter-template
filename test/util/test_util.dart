@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../mocks/mocked_network_images.dart';
 import 'test_screen_type.dart';
@@ -28,7 +28,7 @@ class TestUtil {
       MaterialApp(
         theme: ThemeData(fontFamily: ThemeFonts.OpenSans),
         localizationsDelegates: [
-          LocalizationDelegate(),
+          LocalizationDelegate(useCaching: false, showLocalizationKeys: true),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
@@ -115,7 +115,7 @@ class TestUtil {
     await fontLoader.load();
   }
 
-  static String getVariableString(){
+  static String getVariableString() {
     return 'Title';
   }
 }
@@ -136,3 +136,27 @@ class TestWrapper extends StatelessWidget {
   }
 }
 
+class TextFinder extends MatchFinder {
+  TextFinder(this.text, {this.substring = false, bool skipOffstage = true }) : super(skipOffstage: skipOffstage);
+
+  final String text;
+  final bool substring;
+
+  @override
+  String get description => 'text "$text"';
+
+  @override
+  bool matches(Element candidate) {
+    final widget = candidate.widget;
+    if (widget is Text) {
+      if (widget.data != null) {
+        return substring ? widget.data!.contains(text) : widget.data == text;
+      }
+      assert(widget.textSpan != null);
+      return substring ? widget.textSpan!.toPlainText().contains(text) : widget.textSpan!.toPlainText() == text;
+    } else if (widget is EditableText) {
+      return substring ? widget.controller.text.contains(text) : widget.controller.text == text;
+    }
+    return false;
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
@@ -68,5 +69,4 @@ void verifyLicenseViewModel() {
   final licenseViewModel = GetIt.I<LicenseViewModel>() as MockLicenseViewModel;
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(licenseViewModel);
 }

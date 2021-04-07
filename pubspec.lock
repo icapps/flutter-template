@@ -335,7 +335,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.0"
+    version: "0.13.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -363,7 +363,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.3.0"
   image:
     dependency: transitive
     description:
@@ -426,7 +426,7 @@ packages:
       name: locale_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.3.0"
   logging:
     dependency: transitive
     description:

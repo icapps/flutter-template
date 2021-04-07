@@ -30,6 +30,8 @@ void main() {
 
   test('NetworkRefreshInterceptor should intercept 401', () async {
     when(refreshRepo.refresh(any)).thenAnswer((_) => Future<void>.value());
+    when(authStorage.getAccessToken()).thenAnswer((_) => Future.value(null));
+    when(dio.fetch<dynamic>(any)).thenAnswer((_) => Future.value(Response<void>(requestOptions: RequestOptions(path: '/'))));
 
     final requestOptions = RequestOptions(path: '/todo');
     final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
@@ -44,7 +46,7 @@ void main() {
     await sut.onError(unAuthorizedError);
 
     verify(refreshRepo.refresh(unAuthorizedError)).calledOnce();
-    verify(dio.request<void>('https://somthing.com', options: anyNamed('options')));
+    verify(dio.fetch<dynamic>(any)).calledOnce();
   });
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
@@ -62,6 +64,8 @@ void main() {
 
   test('NetworkREfreshInterceptor should reset refresh repo on rsponse', () {
     verifyZeroInteractions(refreshRepo);
+    // ignore: void_checks
+    when(refreshRepo.resetFailure()).thenReturn(1);
     final requestOptions = RequestOptions(path: '/todo');
     final response = Response(data: 'Test', requestOptions: requestOptions);
     sut.onResponse(response);

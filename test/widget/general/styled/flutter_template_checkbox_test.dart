@@ -121,6 +121,7 @@ void main() {
         final finder = find.byType(FlutterTemplateCheckBox);
         expect(finder, findsOneWidget);
         await tester.tap(finder);
+        await tester.pumpAndSettle();
         expect(newValue, false);
       });
       testWidgets('FlutterTemplateCheckBox onChanged from value false', (tester) async {

@@ -111,5 +111,4 @@ void verifyLoginViewModel() {
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(loginViewModel);
 }
