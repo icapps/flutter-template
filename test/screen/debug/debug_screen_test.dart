@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
@@ -183,10 +184,9 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel = GetIt.I<DebugViewModel>();
+  final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
   verify(debugViewModel.init(any)).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
-  verifyNoMoreInteractions(debugViewModel);
 }
 
 void verifyGlobalViewModelForDebugScreen() {

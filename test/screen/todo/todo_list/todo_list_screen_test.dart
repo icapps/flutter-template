@@ -7,17 +7,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
 void main() {
-  late TodoListViewModel todoListViewModel;
+  late MockTodoListViewModel todoListViewModel;
 
   setUp(() async {
     await initTestInjectable();
-    todoListViewModel = GetIt.I();
+    todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -50,7 +51,6 @@ void main() {
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.errorKey);
     verify(todoListViewModel.init(any)).calledOnce();
-    verifyNoMoreInteractions(todoListViewModel);
     verifyGlobalViewModel();
   });
 
@@ -62,7 +62,6 @@ void main() {
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_loading_state');
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.init(any)).calledOnce();
-    verifyNoMoreInteractions(todoListViewModel);
     verifyGlobalViewModel();
   });
 
@@ -113,10 +112,9 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = GetIt.I<TodoListViewModel>();
+  final todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);
   verify(todoListViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(todoListViewModel);
 }

@@ -10,7 +10,15 @@ R provideMockedNetworkImages<R>(R body(), {List<int> imageBytes = TransparantIma
   );
 }
 
-class MockHttpClient extends Mock implements HttpClient {}
+class MockHttpClient extends Mock implements HttpClient {
+
+  @override
+  Future<HttpClientRequest> getUrl(Uri? url) async {
+    // ignore: avoid_as
+    return super.noSuchMethod(Invocation.method(#getUrl, [url]), returnValue: MockHttpClientRequest()) as HttpClientRequest;
+  }
+
+}
 
 class MockHttpClientRequest extends Mock implements HttpClientRequest {}
 

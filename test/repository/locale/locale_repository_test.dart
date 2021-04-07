@@ -41,6 +41,7 @@ void main() {
 
   group('getCustomLocale', () {
     test('getCustomLocale when enabled was not set', () async {
+      when(shardPrefs.getString('locale')).thenReturn(null);
       final result = sut.getCustomLocale();
       expect(result, null);
       verify(shardPrefs.getString('locale')).calledOnce();

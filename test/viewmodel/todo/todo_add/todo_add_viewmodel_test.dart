@@ -4,17 +4,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
   late TodoAddViewModel sut;
-  late TodoRepo todoRepo;
+  late MockTodoRepo todoRepo;
   late TodoAddNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    todoRepo = GetIt.I();
+    todoRepo = GetIt.I.resolveAs<TodoRepo, MockTodoRepo>();
     navigator = MockTodoAddNavigator();
     sut = TodoAddViewModel(todoRepo);
   });
@@ -51,8 +52,7 @@ void main() {
     group('onSaveClicked', () {
       test('TodoAddViewModel onSaveClicked with no update', () async {
         await sut.onSaveClicked();
-        verify(todoRepo.saveTodo(null)).calledOnce();
-        verify(navigator.goBack(result: true)).calledOnce();
+        verify(navigator.showError(any)).calledOnce();
         verifyNoMoreInteractions(todoRepo);
         verifyNoMoreInteractions(navigator);
       });

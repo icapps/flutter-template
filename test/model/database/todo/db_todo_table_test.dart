@@ -24,7 +24,7 @@ void main() {
         completed: true,
       );
       final todo = sut.getDbModel();
-      expect(todo.id.value, null);
+      expect(todo.id.present, false);
       expect(todo.title.value, sut.title);
       expect(todo.completed.value, sut.completed);
     });
@@ -39,18 +39,6 @@ void main() {
       );
       final todo = sut.getModel();
       expect(todo.id, 1);
-      expect(todo.title, sut.title);
-      expect(todo.completed, sut.completed);
-    });
-
-    test('Todo getModel without id', () {
-      final sut = DbTodo(
-        id: null,
-        title: 'testing',
-        completed: true,
-      );
-      final todo = sut.getModel();
-      expect(todo.id, null);
       expect(todo.title, sut.title);
       expect(todo.completed, sut.completed);
     });
