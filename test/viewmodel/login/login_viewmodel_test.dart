@@ -18,8 +18,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    loginRepo = GetIt.I<LoginRepo>() as MockLoginRepo;
+    loginRepo = GetIt.I.resolveAs<LoginRepo, MockLoginRepo>();
     navigator = MockLoginNavigator();
     sut = LoginViewModel(loginRepo);
   });

@@ -15,8 +15,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    secureStorage = GetIt.I<FlutterSecureStorage>() as MockFlutterSecureStorage;
+    secureStorage = GetIt.I.resolveAs<FlutterSecureStorage, MockFlutterSecureStorage>();
     sut = SecureStorage(secureStorage);
 
     when(secureStorage.read(key: anyNamed('key'))).thenAnswer((_) => Future.value(null));

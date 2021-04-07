@@ -104,8 +104,7 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  // ignore: avoid_as
-  final todoAddViewModel = GetIt.I<TodoAddViewModel>() as MockTodoAddViewModel;
+  final todoAddViewModel = GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
   verify(todoAddViewModel.init(any)).calledOnce();
 }

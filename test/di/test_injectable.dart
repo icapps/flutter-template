@@ -179,3 +179,10 @@ class MockTodoDaoStoring extends Mock implements TodoDaoStoring {
     noSuchMethod(Invocation.method(#updateTodo, [id, completed]));
   }
 }
+
+extension GetItExtension on GetIt {
+  MockT resolveAs<T extends Object, MockT extends T>() {
+    // ignore: avoid_as
+    return get<T>() as MockT;
+  }
+}

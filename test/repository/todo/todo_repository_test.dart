@@ -20,10 +20,8 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    todoService = GetIt.I<TodoService>() as MockTodoService;
-    // ignore: avoid_as
-    todoDao = GetIt.I<TodoDaoStoring>() as MockTodoDaoStoring;
+    todoService = GetIt.I.resolveAs<TodoService, MockTodoService>();
+    todoDao = GetIt.I.resolveAs<TodoDaoStoring, MockTodoDaoStoring>();
     sut = TodoRepository(todoService, todoDao);
   });
 

@@ -184,8 +184,7 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  // ignore: avoid_as
-  final debugViewModel = GetIt.I<DebugViewModel>() as MockDebugViewModel;
+  final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
   verify(debugViewModel.init(any)).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }

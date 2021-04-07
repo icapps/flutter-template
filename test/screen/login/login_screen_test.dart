@@ -106,8 +106,7 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  // ignore: avoid_as
-  final loginViewModel = GetIt.I<LoginViewModel>() as MockLoginViewModel;
+  final loginViewModel = GetIt.I.resolveAs<LoginViewModel, MockLoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init(any)).calledOnce();

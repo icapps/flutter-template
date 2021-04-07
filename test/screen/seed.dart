@@ -88,5 +88,4 @@ void verifyGlobalViewModel() {
   verify(globalViewModel.locale);
   verify(globalViewModel.themeMode);
   verify(globalViewModel.init()).calledOnce();
-  // verifyNoMoreInteractions(globalViewModel);
 }

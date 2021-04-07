@@ -65,8 +65,7 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  // ignore: avoid_as
-  final licenseViewModel = GetIt.I<LicenseViewModel>() as MockLicenseViewModel;
+  final licenseViewModel = GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
 }

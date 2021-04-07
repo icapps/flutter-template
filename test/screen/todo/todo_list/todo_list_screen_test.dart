@@ -18,8 +18,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    todoListViewModel = GetIt.I<TodoListViewModel>() as MockTodoListViewModel;
+    todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -113,8 +112,7 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  // ignore: avoid_as
-  final todoListViewModel = GetIt.I<TodoListViewModel>() as MockTodoListViewModel;
+  final todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

@@ -19,12 +19,9 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    authStorage = GetIt.I<AuthStoring>() as MockAuthStoring;
-    // ignore: avoid_as
-    refreshRepo = GetIt.I<RefreshRepo>() as MockRefreshRepo;
-    // ignore: avoid_as
-    dio = GetIt.I<Dio>() as MockDio;
+    authStorage = GetIt.I.resolveAs<AuthStoring, MockAuthStoring>();
+    refreshRepo = GetIt.I.resolveAs<RefreshRepo, MockRefreshRepo>();
+    dio = GetIt.I.resolveAs<Dio, MockDio>();
     sut = NetworkRefreshInterceptor(authStorage, refreshRepo);
   });
 

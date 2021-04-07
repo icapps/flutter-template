@@ -16,8 +16,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    shardPrefs = GetIt.I<SharedPrefsStoring>() as MockSharedPrefsStoring;
+    shardPrefs = GetIt.I.resolveAs<SharedPrefsStoring, MockSharedPrefsStoring>();
     sut = DebugRepository(shardPrefs);
 
     when(shardPrefs.getBoolean(any)).thenReturn(false);

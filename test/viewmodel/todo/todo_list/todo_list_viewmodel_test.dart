@@ -18,8 +18,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    todoRepo = GetIt.I<TodoRepo>() as MockTodoRepo;
+    todoRepo = GetIt.I.resolveAs<TodoRepo, MockTodoRepo>();
     navigator = MockTodoListNavigator();
     sut = TodoListViewModel(todoRepo);
   });

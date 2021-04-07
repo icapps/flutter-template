@@ -27,6 +27,6 @@ void main() {
 
 void verifySplashViewModel() {
   // ignore: avoid_as
-  final splash = GetIt.I<SplashViewModel>() as MockSplashViewModel;
+  final splash = GetIt.I.resolveAs<SplashViewModel, MockSplashViewModel>();
   verify(splash.init(any)).calledOnce();
 }

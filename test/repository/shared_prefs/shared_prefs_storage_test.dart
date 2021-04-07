@@ -15,8 +15,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    // ignore: avoid_as
-    sharedPreferences = GetIt.I<SharedPreferences>() as MockSharedPreferences;
+    sharedPreferences = GetIt.I.resolveAs<SharedPreferences, MockSharedPreferences>();
     sut = SharedPrefsStorage(sharedPreferences);
 
     when(sharedPreferences.setString(any, any)).thenAnswer((_) => Future.value(true));
