@@ -42,17 +42,5 @@ void main() {
       expect(todo.title, sut.title);
       expect(todo.completed, sut.completed);
     });
-
-    test('Todo getModel without id', () {
-      final sut = DbTodo(
-        id: null,
-        title: 'testing',
-        completed: true,
-      );
-      final todo = sut.getModel();
-      expect(todo.id, null);
-      expect(todo.title, sut.title);
-      expect(todo.completed, sut.completed);
-    });
   });
 }

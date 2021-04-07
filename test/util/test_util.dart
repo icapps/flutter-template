@@ -3,9 +3,12 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 
 import '../mocks/mocked_network_images.dart';
 import 'test_screen_type.dart';
@@ -24,6 +27,12 @@ class TestUtil {
       tester,
       MaterialApp(
         theme: ThemeData(fontFamily: ThemeFonts.OpenSans),
+        localizationsDelegates: [
+          LocalizationDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          FallbackCupertinoLocalisationsDelegate.delegate,
+        ],
         home: Center(
           child: Material(
             child: widget,
@@ -54,7 +63,6 @@ class TestUtil {
 
   static Future<Widget> _internalLoadWidget(WidgetTester tester, Widget widget) async {
     final testWidget = TestWrapper(child: widget);
-    tester.allWidgets.toList().clear();
     await provideMockedNetworkImages(() async {
       await tester.pumpWidget(testWidget);
     });

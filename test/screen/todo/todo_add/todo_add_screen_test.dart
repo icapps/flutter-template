@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
@@ -103,7 +104,8 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
+  // ignore: avoid_as
+  final todoAddViewModel = GetIt.I<TodoAddViewModel>() as MockTodoAddViewModel;
   verify(todoAddViewModel.isSaveEnabled);
   verify(todoAddViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(todoAddViewModel);

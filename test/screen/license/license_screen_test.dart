@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
@@ -63,7 +64,8 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = GetIt.I<LicenseViewModel>();
+  // ignore: avoid_as
+  final licenseViewModel = GetIt.I<LicenseViewModel>() as MockLicenseViewModel;
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(licenseViewModel);

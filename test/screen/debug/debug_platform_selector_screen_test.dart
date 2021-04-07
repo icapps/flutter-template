@@ -8,19 +8,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  late GlobalViewModel globalViewModel;
-  late DebugPlatformSelectorViewModel platformViewmodel;
+  late MockGlobalViewModel globalViewModel;
+  late MockDebugPlatformSelectorViewModel platformViewmodel;
 
   setUp(() async {
     await initTestInjectable();
-    platformViewmodel = GetIt.I();
-    globalViewModel = GetIt.I();
+    // ignore: avoid_as
+    platformViewmodel = GetIt.I<DebugPlatformSelectorViewModel>() as MockDebugPlatformSelectorViewModel;
+    // ignore: avoid_as
+    globalViewModel = GetIt.I<GlobalViewModel>() as MockGlobalViewModel;
   });
 
   testWidgets('Test debug select platform screen initial state', (tester) async {
@@ -130,7 +133,8 @@ void main() {
 }
 
 void verifyDebugPlatformViewModel() {
-  final platformSelectorViewModel = GetIt.I<DebugPlatformSelectorViewModel>();
+  // ignore: avoid_as
+  final platformSelectorViewModel = GetIt.I<DebugPlatformSelectorViewModel>() as MockDebugPlatformSelectorViewModel;
   verify(platformSelectorViewModel.init(any)).calledOnce();
   verifyNoMoreInteractions(platformSelectorViewModel);
 }

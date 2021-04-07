@@ -39,6 +39,11 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool shouldReload(LocalizationsDelegate<Localization> old) => true;
+  bool shouldReload(LocalizationsDelegate<Localization> old) {
+    if (old is LocalizationDelegate){
+      return old.activeLocale != activeLocale || old.showLocalizationKeys != showLocalizationKeys;
+    }
+    return true;
+  }
 
 }

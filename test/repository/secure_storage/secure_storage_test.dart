@@ -5,17 +5,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late SecureStoring sut;
-  late FlutterSecureStorage secureStorage;
+  late MockFlutterSecureStorage secureStorage;
 
   setUp(() async {
     await initTestInjectable();
-    secureStorage = GetIt.I();
+    // ignore: avoid_as
+    secureStorage = GetIt.I<FlutterSecureStorage>() as MockFlutterSecureStorage;
     sut = SecureStorage(secureStorage);
+
+    when(secureStorage.read(key: anyNamed('key'))).thenAnswer((_) => Future.value(null));
+    when(secureStorage.containsKey(key: anyNamed('key'))).thenAnswer((_) => Future.value(false));
   });
 
   test('SecureStorage should write', () {

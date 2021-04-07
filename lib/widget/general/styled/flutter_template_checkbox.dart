@@ -16,6 +16,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Building bro');
     if (context.isIOS) {
       return DataProviderWidget(
         childBuilderTheme: (context, theme) => GestureDetector(

@@ -6,17 +6,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  late SharedPrefsStoring shardPrefs;
+  late MockSharedPrefsStoring shardPrefs;
   late DebugRepo sut;
 
   setUp(() async {
     await initTestInjectable();
-    shardPrefs = GetIt.I();
+    // ignore: avoid_as
+    shardPrefs = GetIt.I<SharedPrefsStoring>() as MockSharedPrefsStoring;
     sut = DebugRepository(shardPrefs);
+
+    when(shardPrefs.getBoolean(any)).thenReturn(false);
+    when(shardPrefs.getString(any)).thenReturn(null);
   });
 
   group('saveSlowAnimations', () {

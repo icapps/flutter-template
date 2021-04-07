@@ -5,21 +5,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
-import '../../mocks/repository/shared_prefs/local/mock_local_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late SplashViewModel sut;
-  late LoginRepo loginRepo;
+  late MockLoginRepo loginRepo;
   late LocalStoring localStorage;
   late SplashNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I();
+    // ignore: avoid_as
+    loginRepo = GetIt.I<LoginRepo>() as MockLoginRepo;
     navigator = MockSplashNavigator();
-    localStorage = MockLocalStorage();
+    localStorage = MockLocalStoring();
     sut = SplashViewModel(loginRepo, localStorage);
   });
 

@@ -7,17 +7,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
 void main() {
-  late TodoListViewModel todoListViewModel;
+  late MockTodoListViewModel todoListViewModel;
 
   setUp(() async {
     await initTestInjectable();
-    todoListViewModel = GetIt.I();
+    // ignore: avoid_as
+    todoListViewModel = GetIt.I<TodoListViewModel>() as MockTodoListViewModel;
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -113,7 +115,8 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = GetIt.I<TodoListViewModel>();
+  // ignore: avoid_as
+  final todoListViewModel = GetIt.I<TodoListViewModel>() as MockTodoListViewModel;
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

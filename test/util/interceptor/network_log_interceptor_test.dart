@@ -25,7 +25,7 @@ void main() {
 
   test('NetworkLogInterceptor test log response', () async {
     final response = Response<void>(
-      request: RequestOptions(
+      requestOptions: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
         method: 'GET',
@@ -37,7 +37,7 @@ void main() {
 
   test('NetworkLogInterceptor test log error', () async {
     final error = DioError(
-      request: RequestOptions(
+      requestOptions: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
         method: 'GET',
@@ -50,7 +50,7 @@ void main() {
   test('NetworkLogInterceptor test log error with network error', () async {
     final error = InternalServerError(
       DioError(
-        request: RequestOptions(
+        requestOptions: RequestOptions(
           baseUrl: 'https://test.com/',
           path: 'testing',
           method: 'GET',

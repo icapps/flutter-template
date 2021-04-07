@@ -15,12 +15,22 @@ class DataProviderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Also building!');
     return LayoutBuilder(builder: (context, constraints) {
       if (childBuilderTheme != null) {
-        return childBuilderTheme!(context, FlutterTemplateTheme.of(context));
+        print('Building child with theme!');
+        try {
+          final c = childBuilderTheme!(context, FlutterTemplateTheme.of(context));
+          print('Build complete!');
+          return c;
+        }catch(e){
+          print(e);
+        }
       } else if (childBuilderLocalization != null) {
+        print('Building child with locale!');
         return childBuilderLocalization!(context, Localization.of(context));
       } else if (childBuilder != null) {
+        print('Building child!');
         return childBuilder!(context, FlutterTemplateTheme.of(context), Localization.of(context));
       }
       throw ArgumentError('childBuilderTheme, childBuilderLocalization or childBuilder should be passed');

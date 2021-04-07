@@ -7,17 +7,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
   late TodoListViewModel sut;
-  late TodoRepo todoRepo;
+  late MockTodoRepo todoRepo;
   late TodoListViewNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    todoRepo = GetIt.I();
+    // ignore: avoid_as
+    todoRepo = GetIt.I<TodoRepo>() as MockTodoRepo;
     navigator = MockTodoListNavigator();
     sut = TodoListViewModel(todoRepo);
   });
@@ -73,6 +75,11 @@ void main() {
     });
     group('onDownloadClicked', () {
       test('TodoListViewModel onDownloadClicked', () async {
+        when(todoRepo.fetchTodos()).thenAnswer((_) => Future.value([
+          Todo(id: 1, title: 'title1', completed: false),
+          Todo(id: 2, title: 'title2', completed: true),
+        ]));
+
         expect(sut.isLoading, false);
         expect(sut.errorKey, isNull);
         await sut.onDownloadClicked();

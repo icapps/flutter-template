@@ -21,24 +21,6 @@ void main() {
     await TestUtil.takeScreenshotForScreenType(tester, testWidget, 'responsive_widget_builder', screen: ScreenType.IPHONE11);
   });
 
-  testWidgets('ResponsiveWidget test builder on mobile', (tester) async {
-    const sut = MediaQuery(
-      data: MediaQueryData(size: phoneSize),
-      child: ResponsiveWidget(),
-    );
-    await TestUtil.loadWidgetWithText(tester, sut);
-    expect(tester.takeException(), isInstanceOf<Exception>());
-  });
-
-  testWidgets('ResponsiveWidget test builder on tablet', (tester) async {
-    const sut = MediaQuery(
-      data: MediaQueryData(size: tabletSize),
-      child: ResponsiveWidget(),
-    );
-    await TestUtil.loadWidgetWithText(tester, sut);
-    expect(tester.takeException(), isInstanceOf<Exception>());
-  });
-
   testWidgets('ResponsiveWidget test builder on tablet', (tester) async {
     final sut = MediaQuery(
       data: const MediaQueryData(size: tabletSize),
