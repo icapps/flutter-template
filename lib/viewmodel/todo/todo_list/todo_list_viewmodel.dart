@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
@@ -7,11 +5,11 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
-import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class TodoListViewModel with ChangeNotifier, DisposeMixin {
+class TodoListViewModel with ChangeNotifierEx {
   final TodoRepo _todoRepo;
 
   late TodoListViewNavigator _navigator;
