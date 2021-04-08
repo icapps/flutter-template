@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class TestDisposeMixin with ChangeNotifier, DisposeMixin {

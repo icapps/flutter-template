@@ -9,7 +9,7 @@ import 'dart:io';
 ///  1) Keep test directory
 ///       - values: y,n,yes,no
 void main(List<String> args) {
-  bool keepTestDir;
+  bool? keepTestDir;
   if (args.isEmpty || (args[0] != 'true' && args[0] != 'false')) {
     do {
       Logger.debug('Keep test directory? (y/n)');
@@ -19,6 +19,11 @@ void main(List<String> args) {
         keepTestDir = result == 'yes' || result == 'y';
       }
     } while (keepTestDir == null);
+  }
+
+  if (keepTestDir == null) {
+    Logger.error('Keep test directory was not set correctly.');
+    return;
   }
   final testDir = Directory('test');
   final libDir = Directory('lib');
@@ -177,17 +182,32 @@ final removeCodeLines = [
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
   '  void goToAddTodo();',
   '''  @override
-  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
 ''',
   '''  @override
   void goToAddTodo() => widget.mock.goToAddTodo();
 ''',
   //Test Lines
-  "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
-  "import '../mocks/repository/todo/mock_todo_repository.dart';",
-  "import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';",
-  "import '../mocks/webservice/todo/mock_todo_service.dart';",
-  "import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';",
+  '  TodoRepo,',
+  '  TodoService,',
+  '  TodoAddViewModel,',
+  '  TodoListViewModel,',
+  r'''  @singleton
+  TodoDaoStoring get getTodoDaoStoring => MockTodoDaoStoring();
+''',
+  r'''  @singleton
+  TodoRepo get getTodoRepo => MockTodoRepo();
+''',
+  r'''  @singleton
+  TodoService get getTodoService => MockTodoService();
+''',
+  r'''  @singleton
+  TodoAddViewModel get getTodoAddViewModel => _initVM(MockTodoAddViewModel());
+''',
+  r'''  @singleton
+  TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
+''',
+  "import '../mocks/database/todo/mock_todo_dao_storing.dart';",
   "import '../todo/todo_list/todo_list_screen_test.dart';",
   '    verifyTodoListViewModel();',
   r'''
@@ -198,11 +218,15 @@ void seedTodoListViewModel() {
       ]));
   when(todoListViewModel.isLoading).thenReturn(false);
   when(todoListViewModel.errorKey).thenReturn(null);
+  // ignore: void_checks
+  when(todoListViewModel.onAddClicked()).thenReturn(1);
 }
 
 void seedTodoAddViewModel() {
   final todoAddViewModel = GetIt.I<TodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
+  // ignore: void_checks
+  when(todoAddViewModel.onBackClicked()).thenReturn(1);
 }''',
   '    seedTodoListViewModel();',
 ];
@@ -226,9 +250,6 @@ final removeDirectories = [
   'test/webservice/todo',
   'test/widget/todo',
   'test/mocks/database/todo',
-  'test/mocks/repository/todo',
-  'test/mocks/viewmodel/todo',
-  'test/mocks/webservice/todo',
 ];
 
 final removeFiles = [

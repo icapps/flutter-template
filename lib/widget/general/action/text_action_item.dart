@@ -6,16 +6,16 @@ import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class TextActionItem extends StatelessWidget {
   final String text;
-  final TextStyle style;
+  final TextStyle? style;
   final bool enabled;
   final VoidCallback onClick;
 
   const TextActionItem({
-    @required this.text,
-    @required this.enabled,
-    @required this.onClick,
+    required this.text,
+    required this.enabled,
+    required this.onClick,
     this.style,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

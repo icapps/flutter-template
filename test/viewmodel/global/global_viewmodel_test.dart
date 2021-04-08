@@ -12,9 +12,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  GlobalViewModel sut;
-  LocaleRepo localeRepo;
-  DebugRepo debugRepo;
+  late GlobalViewModel sut;
+  late LocaleRepo localeRepo;
+  late DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();
@@ -25,6 +25,7 @@ void main() {
 
   test('GlobalViewModel init', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
+    when(debugRepo.getTargetPlatform()).thenReturn(null);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNull);
@@ -38,13 +39,14 @@ void main() {
 
   test('GlobalViewModel init with saved locale', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => const Locale('nl'));
+    when(debugRepo.getTargetPlatform()).thenReturn(null);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNotNull);
     expect(sut.localeDelegate.newLocale, isNotNull);
-    expect(sut.localeDelegate.newLocale.languageCode, 'nl');
+    expect(sut.localeDelegate.newLocale?.languageCode, 'nl');
     expect(sut.locale, isNotNull);
-    expect(sut.locale.languageCode, 'nl');
+    expect(sut.locale?.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
@@ -58,6 +60,7 @@ void main() {
   group('After init', () {
     setUp(() async {
       when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
+      when(debugRepo.getTargetPlatform()).thenReturn(null);
       await sut.init();
       reset(localeRepo);
       reset(debugRepo);
@@ -74,7 +77,7 @@ void main() {
     group('Locale', () {
       test('GlobalViewModel onSwitchToDutch', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -82,11 +85,11 @@ void main() {
 
       test('GlobalViewModel onSwitchToEnglish', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToEnglish();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'en');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'en');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -94,7 +97,7 @@ void main() {
 
       test('GlobalViewModel onSwitchToSystemLanguage', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale.languageCode, 'nl');
+        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToSystemLanguage();
@@ -146,6 +149,7 @@ void main() {
 
     group('Selected Platform', () {
       test('GlobalViewModel setSelectedPlatformToAndroid', () async {
+        when(debugRepo.getTargetPlatform()).thenReturn(null);
         await sut.setSelectedPlatformToAndroid();
         verify(debugRepo.saveSelectedPlatform('android')).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();
@@ -154,6 +158,7 @@ void main() {
       });
 
       test('GlobalViewModel setSelectedPlatformToIOS', () async {
+        when(debugRepo.getTargetPlatform()).thenReturn(null);
         await sut.setSelectedPlatformToIOS();
         verify(debugRepo.saveSelectedPlatform('ios')).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();
@@ -162,6 +167,7 @@ void main() {
       });
 
       test('GlobalViewModel setSelectedPlatformToDefault', () async {
+        when(debugRepo.getTargetPlatform()).thenReturn(null);
         await sut.setSelectedPlatformToDefault();
         verify(debugRepo.saveSelectedPlatform(null)).calledOnce();
         verify(debugRepo.getTargetPlatform()).calledOnce();

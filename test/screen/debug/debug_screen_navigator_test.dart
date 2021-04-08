@@ -4,6 +4,7 @@ import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
@@ -25,19 +26,19 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goToTargetPlatformSelector();
+    debugKey.currentState!.goToTargetPlatformSelector();
     verify(mockNavigation.goToDebugPlatformSelector()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goToLicenses();
+    debugKey.currentState!.goToLicenses();
     verify(mockNavigation.goToLicense()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goToSelectLanguage();
+    debugKey.currentState!.goToSelectLanguage();
     verify(mockNavigation.showCustomDialog<void>(builder: anyNamed('builder'))).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goToDatabase();
+    debugKey.currentState!.goToDatabase();
     verify(mockNavigation.goToDatabase(any)).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });

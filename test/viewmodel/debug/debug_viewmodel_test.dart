@@ -8,9 +8,9 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  DebugViewModel sut;
-  DebugNavigator navigator;
-  DebugRepo debugRepo;
+  late DebugViewModel sut;
+  late DebugNavigator navigator;
+  late DebugRepo debugRepo;
 
   setUp(() async {
     await initTestInjectable();
@@ -20,6 +20,7 @@ void main() {
   });
 
   test('DebugViewModel init', () async {
+    when(debugRepo.isSlowAnimationsEnabled()).thenReturn(true);
     await sut.init(navigator);
     verify(debugRepo.isSlowAnimationsEnabled()).calledOnce();
     verifyNoMoreInteractions(debugRepo);
@@ -28,6 +29,7 @@ void main() {
 
   group('After init', () {
     setUp(() async {
+      when(debugRepo.isSlowAnimationsEnabled()).thenReturn(true);
       await sut.init(navigator);
       reset(navigator);
       reset(debugRepo);

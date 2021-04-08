@@ -12,9 +12,11 @@ class FlutterTemplateThemeData {
     fontFamily: ThemeFonts.OpenSans,
     primaryColor: ThemeColors.primary,
     accentColor: ThemeColors.accent,
-    cursorColor: ThemeColors.accent,
-    textSelectionHandleColor: ThemeColors.accent,
-    textSelectionColor: ThemeColors.accent.withOpacity(0.4),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: ThemeColors.accent,
+      selectionHandleColor: ThemeColors.accent,
+      selectionColor: ThemeColors.accent.withOpacity(0.4),
+    ),
     pageTransitionsTheme: PageTransitionsTheme(builders: {
       TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(),
       TargetPlatform.android: getCorrectPageTransitionBuilder(),
@@ -23,11 +25,11 @@ class FlutterTemplateThemeData {
 
   static final _lightThemeData = _darkThemeData.copyWith();
 
-  static ThemeData darkTheme(TargetPlatform targetPlatform) {
+  static ThemeData darkTheme(TargetPlatform? targetPlatform) {
     return _darkThemeData.copyWith(platform: targetPlatform);
   }
 
-  static ThemeData lightTheme(TargetPlatform targetPlatform) {
+  static ThemeData lightTheme(TargetPlatform? targetPlatform) {
     return _lightThemeData.copyWith(platform: targetPlatform);
   }
 
@@ -60,18 +62,18 @@ class FlutterTemplateTextTheme {
   final TextStyle bodyBig;
 
   const FlutterTemplateTextTheme({
-    @required this.titleHuge,
-    @required this.titleBig,
-    @required this.titleNormal,
-    @required this.titleSmall,
-    @required this.titleListItem,
-    @required this.labelButtonBig,
-    @required this.labelButtonSmall,
-    @required this.bodyNormal,
-    @required this.bodySmall,
-    @required this.bodyUltraSmall,
-    @required this.infoBodySubheader,
-    @required this.bodyBig,
+    required this.titleHuge,
+    required this.titleBig,
+    required this.titleNormal,
+    required this.titleSmall,
+    required this.titleListItem,
+    required this.labelButtonBig,
+    required this.labelButtonSmall,
+    required this.bodyNormal,
+    required this.bodySmall,
+    required this.bodyUltraSmall,
+    required this.infoBodySubheader,
+    required this.bodyBig,
   });
 }
 
@@ -93,17 +95,17 @@ class FlutterTemplateColorsTheme {
   final Color darkProgressIndicator;
 
   const FlutterTemplateColorsTheme({
-    @required this.primary,
-    @required this.secondary,
-    @required this.accent,
-    @required this.background,
-    @required this.backgroundDark,
-    @required this.inputFieldFill,
-    @required this.disabled,
-    @required this.lightIcon,
-    @required this.darkIcon,
-    @required this.lightProgressIndicator,
-    @required this.darkProgressIndicator,
+    required this.primary,
+    required this.secondary,
+    required this.accent,
+    required this.background,
+    required this.backgroundDark,
+    required this.inputFieldFill,
+    required this.disabled,
+    required this.lightIcon,
+    required this.darkIcon,
+    required this.lightProgressIndicator,
+    required this.darkProgressIndicator,
   });
 }
 
@@ -174,11 +176,11 @@ class FlutterTemplateTheme {
   );
 
   const FlutterTemplateTheme._({
-    @required this.darkTextTheme,
-    @required this.lightTextTheme,
-    @required this.accentTextTheme,
-    @required this.exceptionsTextTheme,
-    @required this.colorsTheme,
+    required this.darkTextTheme,
+    required this.lightTextTheme,
+    required this.accentTextTheme,
+    required this.exceptionsTextTheme,
+    required this.colorsTheme,
   });
 
   static FlutterTemplateTheme of(BuildContext context) => _instanceDark;

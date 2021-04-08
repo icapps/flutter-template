@@ -11,7 +11,7 @@ import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -78,7 +78,7 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => true);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
@@ -98,7 +98,7 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => true);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
@@ -118,13 +118,13 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => true);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
@@ -139,7 +139,7 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
@@ -159,7 +159,7 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
@@ -179,13 +179,13 @@ void main() {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
-      bool clicked;
+      bool? clicked;
       final widget = SelectLanguageDialog(goBack: () {
         clicked = true;
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();

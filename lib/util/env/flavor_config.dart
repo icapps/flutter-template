@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 enum Flavor {
   TEST,
@@ -18,41 +17,43 @@ class FlavorValues {
   final bool showFullErrorMessages;
 
   const FlavorValues({
-    @required this.baseUrl,
-    @required this.logNetworkInfo,
-    @required this.showFullErrorMessages,
+    required this.baseUrl,
+    required this.logNetworkInfo,
+    required this.showFullErrorMessages,
   });
 }
 
 class FlavorConfig {
-  double devicePixelRatio;
+  double devicePixelRatio = 1;
   final Flavor flavor;
   final String name;
   final Color color;
   final FlavorValues values;
-  static FlavorConfig _instance;
+  static FlavorConfig? _instance;
 
   factory FlavorConfig({
-    @required Flavor flavor,
-    @required String name,
-    @required Color color,
-    @required FlavorValues values,
+    required Flavor flavor,
+    required String name,
+    required Color color,
+    required FlavorValues values,
   }) =>
       _instance = FlavorConfig._internal(flavor, name, color, values);
 
   FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
 
-  static FlavorConfig get instance => _instance;
+  static FlavorConfig get instance => _instance!;
 
-  static bool isProd() => _instance.flavor == Flavor.PROD;
+  static bool get hasInstance => _instance != null;
 
-  static bool isDev() => _instance.flavor == Flavor.DEV;
+  static bool isProd() => _instance!.flavor == Flavor.PROD;
 
-  static bool isAlpha() => _instance.flavor == Flavor.ALPHA;
+  static bool isDev() => _instance!.flavor == Flavor.DEV;
 
-  static bool isBeta() => _instance.flavor == Flavor.BETA;
+  static bool isAlpha() => _instance!.flavor == Flavor.ALPHA;
 
-  static bool isInTest() => _instance.flavor == Flavor.TEST;
+  static bool isBeta() => _instance!.flavor == Flavor.BETA;
 
-  static bool isDummy() => _instance.flavor == Flavor.DUMMY;
+  static bool isInTest() => _instance!.flavor == Flavor.TEST;
+
+  static bool isDummy() => _instance!.flavor == Flavor.DUMMY;
 }

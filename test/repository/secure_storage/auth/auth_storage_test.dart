@@ -9,8 +9,8 @@ import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 
 void main() {
-  SecureStoring secureStorage;
-  AuthStoring sut;
+  late SecureStoring secureStorage;
+  late AuthStoring sut;
 
   setUp(() async {
     await initTestInjectable();

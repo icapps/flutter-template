@@ -10,7 +10,7 @@ analyzer:
   exclude:
     - '**.g.dart'
     - '**.config.dart'
-    - 'lib/util/locale/**'
+    - '**.mocks.dart'
     - 'lib/util/license.dart'
 
 linter:

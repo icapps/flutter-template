@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
@@ -12,7 +12,7 @@ class DebugPlatformSelectorScreen extends StatefulWidget {
   static const String routeName = 'debug_platform_selector';
 
   const DebugPlatformSelectorScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

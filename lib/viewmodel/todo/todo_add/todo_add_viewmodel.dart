@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
-import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class TodoAddViewModel with ChangeNotifier, DisposeMixin {
   final TodoRepo todoRepo;
-  TodoAddNavigator _navigator;
-  String _todo;
-
-  var _saveEnabled = false;
+  late TodoAddNavigator _navigator;
+  String? _todo;
 
   TodoAddViewModel(this.todoRepo);
 
-  bool get isSaveEnabled => _saveEnabled;
+  bool get isSaveEnabled => _todo?.isNotEmpty == true;
 
   Future<void> init(TodoAddNavigator navigator) async {
     _navigator = navigator;
@@ -23,14 +21,18 @@ class TodoAddViewModel with ChangeNotifier, DisposeMixin {
 
   void onTodoChanged(String todo) {
     _todo = todo.trim();
-    _saveEnabled = _todo.isNotEmpty;
     notifyListeners();
   }
 
   void onBackClicked() => _navigator.goBack<void>();
 
   Future<void> onSaveClicked() async {
-    await todoRepo.saveTodo(_todo);
+    final todo = _todo;
+    if (todo == null) {
+      _navigator.showError('Todo should not be empty');
+      return;
+    }
+    await todoRepo.saveTodo(todo);
     _navigator.goBack(result: true);
   }
 }

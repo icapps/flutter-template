@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:injectable/injectable.dart';
-import 'package:mockito/mockito.dart';
 import 'package:moor/src/runtime/api/runtime_api.dart';
+
+import '../../di/injectable_test.mocks.dart';
 
 class MockMainNavigator extends StatefulWidget {
   final Widget child;
   final MockMainNavigation mock;
 
   const MockMainNavigator({
-    @required this.child,
-    @required this.mock,
+    required this.child,
+    required this.mock,
   });
 
   @override
@@ -25,7 +25,7 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void closeDialog() => widget.mock.closeDialog();
 
   @override
-  void goBack<T>({T result}) => widget.mock.goBack(result: result);
+  void goBack<T>({T? result}) => widget.mock.goBack(result: result);
 
   @override
   void goToAddTodo() => widget.mock.goToAddTodo();
@@ -46,12 +46,8 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void goToSplash() => widget.mock.goToSplash();
 
   @override
-  void showCustomDialog<T>({builder}) => widget.mock.showCustomDialog<T>(builder: builder);
+  void showCustomDialog<T>({required WidgetBuilder builder}) => widget.mock.showCustomDialog<T>(builder: builder);
 
   @override
   void goToDatabase(GeneratedDatabase db) => widget.mock.goToDatabase(db);
 }
-
-@test
-@Singleton(as: MainNavigation)
-class MockMainNavigation extends Mock implements MainNavigation {}

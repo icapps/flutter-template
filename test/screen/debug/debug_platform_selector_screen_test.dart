@@ -8,19 +8,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
-  DebugPlatformSelectorViewModel platformViewmodel;
+  late MockGlobalViewModel globalViewModel;
+  late MockDebugPlatformSelectorViewModel platformViewModel;
 
   setUp(() async {
     await initTestInjectable();
-    platformViewmodel = GetIt.I();
-    globalViewModel = GetIt.I();
+    platformViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel,MockDebugPlatformSelectorViewModel>();
+    globalViewModel = GetIt.I.resolveAs<GlobalViewModel, MockGlobalViewModel>();
   });
 
   testWidgets('Test debug select platform screen initial state', (tester) async {
@@ -56,18 +57,21 @@ void main() {
     testWidgets('Test debug screen select platform click on system', (tester) async {
       seedGlobalViewModel();
       when(globalViewModel.targetPlatform).thenReturn(null);
+      // ignore: void_checks
+      when(platformViewModel.dispose()).thenReturn(1);
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      reset(platformViewModel);
+      // ignore: void_checks
+      when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelSystemDefault);
+      final target = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToDefault()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
 
@@ -77,15 +81,16 @@ void main() {
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      reset(platformViewModel);
+      // ignore: void_checks
+      when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelIos);
+      final target = TextFinder(LocalizationKeys.generalLabelIos, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToIOS()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
 
@@ -95,15 +100,15 @@ void main() {
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = find.text(LocalizationKeys.generalLabelAndroid);
+      final target = TextFinder(LocalizationKeys.generalLabelAndroid, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
       verify(globalViewModel.setSelectedPlatformToAndroid()).calledOnce();
-      verifyZeroInteractions(platformViewmodel);
       verifyGlobalViewModel();
     });
   });
@@ -115,22 +120,24 @@ void main() {
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
-      reset(platformViewmodel);
+      // ignore: void_checks
+      when(platformViewModel.dispose()).thenReturn(1);
+      // ignore: void_checks
+      when(platformViewModel.onBackClicked()).thenReturn(1);
 
       final target = find.byKey(Keys.backButton);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
 
-      verify(platformViewmodel.onBackClicked()).calledOnce();
-      verifyNoMoreInteractions(platformViewmodel);
+      verify(platformViewModel.onBackClicked()).calledOnce();
       verifyGlobalViewModel();
     });
   });
 }
 
 void verifyDebugPlatformViewModel() {
-  final platformSelectorViewModel = GetIt.I<DebugPlatformSelectorViewModel>();
+  // ignore: avoid_as
+  final platformSelectorViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
   verify(platformSelectorViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(platformSelectorViewModel);
 }

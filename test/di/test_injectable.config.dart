@@ -4,109 +4,87 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
-import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/repository/debug/debug_repo.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
-import 'package:flutter_template/repository/locale/locale_repo.dart';
-import 'package:flutter_template/repository/login/login_repo.dart';
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:flutter_template/repository/refresh/refresh_repo.dart';
-import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
-import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
-import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
-import 'package:flutter_template/repository/todo/todo_repo.dart';
-import 'package:flutter_template/webservice/todo/todo_service.dart';
+import 'package:dio/dio.dart' as _i8;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i9;
+import 'package:flutter_template/database/flutter_template_database.dart'
+    as _i10;
+import 'package:flutter_template/database/todo/todo_dao_storing.dart' as _i24;
+import 'package:flutter_template/navigator/main_navigation.dart' as _i17;
+import 'package:flutter_template/repository/debug/debug_repo.dart' as _i6;
+import 'package:flutter_template/repository/locale/locale_repo.dart' as _i14;
+import 'package:flutter_template/repository/login/login_repo.dart' as _i15;
+import 'package:flutter_template/repository/refresh/refresh_repo.dart' as _i18;
+import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart'
+    as _i3;
+import 'package:flutter_template/repository/secure_storage/secure_storing.dart'
+    as _i19;
+import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart'
+    as _i13;
+import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart'
+    as _i21;
+import 'package:flutter_template/repository/todo/todo_repo.dart' as _i26;
+import 'package:flutter_template/util/connectivity/connectivity_controlling.dart'
+    as _i4;
+import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
+    as _i5;
+import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i7;
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart'
+    as _i11;
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart'
+    as _i12;
+import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i16;
+import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart'
+    as _i22;
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart'
+    as _i23;
+import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart'
+    as _i25;
+import 'package:flutter_template/webservice/todo/todo_service.dart' as _i27;
+import 'package:get_it/get_it.dart' as _i1;
+import 'package:injectable/injectable.dart' as _i2;
+import 'package:shared_preferences/shared_preferences.dart' as _i20;
 
-import '../mocks/repository/secure_storage/auth/mock_auth_storage.dart';
-import '../mocks/util/mock_connectivity_controller.dart';
-import '../mocks/viewmodel/debug/mock_debug_platform_selector_viewmodel.dart';
-import '../mocks/repository/debug/mock_debug_repository.dart';
-import '../mocks/viewmodel/debug/mock_debug_viewmodel.dart';
-import '../mocks/webservice/mock_dio.dart';
-import '../mocks/mock_flutter_secure_storage.dart';
-import '../mocks/viewmodel/global/mock_global_viewmodel.dart';
-import '../mocks/viewmodel/license/mock_lisence_viewmodel.dart';
-import '../mocks/repository/shared_prefs/local/mock_local_storage.dart';
-import '../mocks/repository/locale/mock_locale_repository.dart';
-import '../mocks/repository/login/mock_login_repository.dart';
-import '../mocks/viewmodel/login/mock_login_viewmodel.dart';
-import '../mocks/main_navigator/mock_main_navigator_widget.dart';
-import '../mocks/repository/refresh/mock_refresh_repository.dart';
-import '../mocks/repository/secure_storage/mock_secure_storage.dart';
-import '../mocks/mock_shared_preferences.dart';
-import '../mocks/repository/shared_prefs/mock_shared_prefs_storage.dart';
-import '../mocks/viewmodel/splash/mock_splash_viewmodel.dart';
-import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';
-import '../mocks/database/todo/mock_todo_dao_storage.dart';
-import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';
-import '../mocks/repository/todo/mock_todo_repository.dart';
-import '../mocks/webservice/todo/mock_todo_service.dart';
-import 'test_injectable.dart';
+import 'test_injectable.dart' as _i28;
 
-/// Environment names
-const _test = 'test';
-
-/// adds generated dependencies
-/// to the provided [GetIt] instance
-
-GetIt $initTestGetIt(
-  GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
-}) {
-  final gh = GetItHelper(get, environment, environmentFilter);
+const String _test = 'test';
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
+/// initializes the registration of provided dependencies inside of [GetIt]
+_i1.GetIt $initTestGetIt(_i1.GetIt get,
+    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
+  final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
-
-  // Eager singletons must be registered in the right order
-  gh.singleton<AuthStoring>(MockAuthStorage(), registerFor: {_test});
-  gh.singleton<ConnectivityControlling>(MockConnectivityController(),
+  gh.singleton<_i3.AuthStoring>(registerModule.getAuthStoring);
+  gh.singleton<_i4.ConnectivityControlling>(
+      registerModule.getConnectivityControlling);
+  gh.singleton<_i5.DebugPlatformSelectorViewModel>(
+      registerModule.getDebugPlatformSelectorViewModel);
+  gh.singleton<_i6.DebugRepo>(registerModule.getDebugRepo);
+  gh.singleton<_i7.DebugViewModel>(registerModule.getDebugViewModel);
+  gh.singleton<_i8.Dio>(registerModule.getDio);
+  gh.singleton<_i9.FlutterSecureStorage>(
+      registerModule.getFlutterSecureStorage);
+  gh.singleton<_i10.FlutterTemplateDatabase>(
+      registerModule.flutterTemplateDatabase,
       registerFor: {_test});
-  gh.singleton<DebugPlatformSelectorViewModel>(
-      MockDebugPlatformSelectorViewModel(),
-      registerFor: {_test});
-  gh.singleton<DebugRepo>(MockDebugRepository(), registerFor: {_test});
-  gh.singleton<DebugViewModel>(MockDebugViewModel(), registerFor: {_test});
-  gh.singleton<Dio>(MockDio(), registerFor: {_test});
-  gh.singleton<FlutterSecureStorage>(MockFlutterSecureStorage(),
-      registerFor: {_test});
-  gh.singleton<FlutterTemplateDatabase>(registerModule.flutterTemplateDatabase,
-      registerFor: {_test});
-  gh.singleton<GlobalViewModel>(MockGlobalViewModel(), registerFor: {_test});
-  gh.singleton<LicenseViewModel>(MockLicenseViewModel(), registerFor: {_test});
-  gh.singleton<LocalStoring>(MockLocalStorage(), registerFor: {_test});
-  gh.singleton<LocaleRepo>(MockLocaleRepoitory(), registerFor: {_test});
-  gh.singleton<LoginRepo>(MockLoginRepository(), registerFor: {_test});
-  gh.singleton<LoginViewModel>(MockLoginViewModel(), registerFor: {_test});
-  gh.singleton<MainNavigation>(MockMainNavigation(), registerFor: {_test});
-  gh.singleton<RefreshRepo>(MockRefreshRepository(), registerFor: {_test});
-  gh.singleton<SecureStoring>(MockSecureStorage(), registerFor: {_test});
-  gh.singleton<SharedPreferences>(MockSharedPreferences(),
-      registerFor: {_test});
-  gh.singleton<SharedPrefsStoring>(MockSharedPrefsStorage(),
-      registerFor: {_test});
-  gh.singleton<SplashViewModel>(MockSplashViewModel(), registerFor: {_test});
-  gh.singleton<TodoAddViewModel>(MockTodoAddViewModel(), registerFor: {_test});
-  gh.singleton<TodoDaoStoring>(MockTodoDaoStorage(), registerFor: {_test});
-  gh.singleton<TodoListViewModel>(MockTodoListViewModel(),
-      registerFor: {_test});
-  gh.singleton<TodoRepo>(MockTodoRepository(), registerFor: {_test});
-  gh.singleton<TodoService>(MockTodoService(), registerFor: {_test});
+  gh.singleton<_i11.GlobalViewModel>(registerModule.getGlobalViewModel);
+  gh.singleton<_i12.LicenseViewModel>(registerModule.getLicenseViewModel);
+  gh.singleton<_i13.LocalStoring>(registerModule.getLocalStoring);
+  gh.singleton<_i14.LocaleRepo>(registerModule.getLocaleRepo);
+  gh.singleton<_i15.LoginRepo>(registerModule.getLoginRepo);
+  gh.singleton<_i16.LoginViewModel>(registerModule.getLoginViewModel);
+  gh.singleton<_i17.MainNavigation>(registerModule.getMainNavigation);
+  gh.singleton<_i18.RefreshRepo>(registerModule.getRefreshRepo);
+  gh.singleton<_i19.SecureStoring>(registerModule.getSecureStoring);
+  gh.singleton<_i20.SharedPreferences>(registerModule.getSharedPreferences);
+  gh.singleton<_i21.SharedPrefsStoring>(registerModule.getSharedPrefsStoring);
+  gh.singleton<_i22.SplashViewModel>(registerModule.getSplashViewModel);
+  gh.singleton<_i23.TodoAddViewModel>(registerModule.getTodoAddViewModel);
+  gh.singleton<_i24.TodoDaoStoring>(registerModule.getTodoDaoStoring);
+  gh.singleton<_i25.TodoListViewModel>(registerModule.getTodoListViewModel);
+  gh.singleton<_i26.TodoRepo>(registerModule.getTodoRepo);
+  gh.singleton<_i27.TodoService>(registerModule.getTodoService);
   return get;
 }
 
-class _$RegisterModule extends RegisterModule {}
+class _$RegisterModule extends _i28.RegisterModule {}

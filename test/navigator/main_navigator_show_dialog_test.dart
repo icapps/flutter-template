@@ -11,7 +11,7 @@ import '../screen/seed.dart';
 import '../util/test_util.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -28,14 +28,14 @@ void main() {
     final sut = MainNavigatorWidget(key: key);
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_0_initial_screen');
-    key.currentState.showCustomDialog<void>(
+    key.currentState!.showCustomDialog<void>(
       builder: (context) => SelectLanguageDialog(
         goBack: () {},
       ),
     );
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_1');
-    key.currentState.closeDialog();
+    key.currentState!.closeDialog();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_2_go_back');
   });

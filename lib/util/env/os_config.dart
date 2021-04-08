@@ -5,7 +5,7 @@ import 'package:device_info/device_info.dart';
 class OsConfig {
   final int androidSdk;
   final double iosVersion;
-  static OsConfig _instance;
+  static OsConfig? _instance;
 
   static Future<void> init() async {
     final deviceInfo = DeviceInfoPlugin();
@@ -28,7 +28,7 @@ class OsConfig {
 
   OsConfig._internal(this.androidSdk, this.iosVersion);
 
-  static OsConfig get instance => _instance;
+  static OsConfig get instance => _instance!;
 
   //Android
   static bool get isAtLeastAndroid10 {

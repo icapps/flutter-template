@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
@@ -25,7 +26,7 @@ void main() {
 }
 
 void verifySplashViewModel() {
-  final splash = GetIt.I<SplashViewModel>();
+  // ignore: avoid_as
+  final splash = GetIt.I.resolveAs<SplashViewModel, MockSplashViewModel>();
   verify(splash.init(any)).calledOnce();
-  verifyNoMoreInteractions(splash);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

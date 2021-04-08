@@ -55,7 +55,7 @@ void main() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Hello'),
-            child,
+            if (child != null) child,
           ],
         ),
       ),

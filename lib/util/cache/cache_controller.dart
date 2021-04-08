@@ -8,9 +8,9 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: CacheControlling)
 class CacheController extends CacheControlling {
   @override
-  Future<Uint8List> getFileFromCache(String url) async {
+  Future<Uint8List?> getFileFromCache(String url) async {
     final fileInfo = await DefaultCacheManager().getFileFromCache(url);
-    return fileInfo?.file?.readAsBytes();
+    return fileInfo?.file.readAsBytes();
   }
 
   @override
@@ -26,7 +26,7 @@ class CacheController extends CacheControlling {
   }
 
   @override
-  Future<void> putFile(String url, Uint8List fileBytes, {String fileExtension}) async {
+  Future<void> putFile(String url, Uint8List fileBytes, {required String fileExtension}) async {
     await DefaultCacheManager().putFile(url, fileBytes, fileExtension: fileExtension);
   }
 }

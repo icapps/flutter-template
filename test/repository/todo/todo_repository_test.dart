@@ -9,24 +9,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
+import '../../mocks/database/todo/mock_todo_dao_storing.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  TodoService todoService;
-  TodoDaoStoring todoDao;
-  TodoRepo sut;
+  late MockTodoService todoService;
+  late MockTodoDaoStoring todoDao;
+  late TodoRepo sut;
 
   setUp(() async {
     await initTestInjectable();
-    todoService = GetIt.I();
-    todoDao = GetIt.I();
+    todoService = GetIt.I.resolveAs<TodoService, MockTodoService>();
+    todoDao = GetIt.I.resolveAs<TodoDaoStoring, MockTodoDaoStoring>();
     sut = TodoRepository(todoService, todoDao);
   });
 
   group('getTodos stream', () {
     test('getTodos stream is empty by default', () async {
-      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value([]));
+      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[]));
       final stream = sut.getTodos();
       final result = await stream.first;
       expect(result.isEmpty, true);
@@ -35,7 +37,7 @@ void main() {
       verifyNoMoreInteractions(todoDao);
     });
     test('getTodos stream with some data', () async {
-      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value([
+      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[
             DbTodo(id: 1, title: 'todo1', completed: true),
             DbTodo(id: 2, title: 'todo2', completed: false),
           ]));

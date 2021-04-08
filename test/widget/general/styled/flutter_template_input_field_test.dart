@@ -30,7 +30,7 @@ void main() {
 
   group('OnChanged', () {
     testWidgets('FlutterTemplateInputField with false value', (tester) async {
-      String newText;
+      String? newText;
       final sut = FlutterTemplateInputField(
         onChanged: (value) {
           newText = value;

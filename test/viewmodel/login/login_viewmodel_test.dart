@@ -7,17 +7,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  LoginViewModel sut;
-  LoginRepo loginRepo;
-  LoginNavigator navigator;
+  late LoginViewModel sut;
+  late MockLoginRepo loginRepo;
+  late MockLoginNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I();
+    loginRepo = GetIt.I.resolveAs<LoginRepo, MockLoginRepo>();
     navigator = MockLoginNavigator();
     sut = LoginViewModel(loginRepo);
   });

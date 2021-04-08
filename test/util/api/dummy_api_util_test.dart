@@ -16,7 +16,7 @@ void main() {
       color: Colors.amber,
       name: 'DUMMY',
       flavor: Flavor.DUMMY,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     final result = await DummyApiUtil.getResponse<List<dynamic>>('todos');
     expect(result, isNotNull);
@@ -29,7 +29,7 @@ void main() {
       color: Colors.amber,
       name: 'DUMMY',
       flavor: Flavor.DUMMY,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     dynamic error;
     try {
@@ -47,7 +47,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isInTest(), true);
     expect(() async {
@@ -62,7 +62,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     expect(() async {
@@ -77,7 +77,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isAlpha(), true);
     expect(() async {
@@ -91,7 +91,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isBeta(), true);
     expect(() async {

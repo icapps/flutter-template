@@ -7,8 +7,8 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  LicenseViewModel sut;
-  LicenseNavigator navigator;
+  late LicenseViewModel sut;
+  late LicenseNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();

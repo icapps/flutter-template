@@ -17,9 +17,9 @@ import 'package:flutter_template/util/interceptor/network_refresh_interceptor.da
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:moor/ffi.dart';
 import 'package:moor/isolate.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_ffi/moor_ffi.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +44,7 @@ abstract class RegisterModule {
   Future<SharedPreferences> prefs() {
     if (FlavorConfig.isInTest()) {
       // ignore: invalid_use_of_visible_for_testing_member
-      SharedPreferences.setMockInitialValues(<String, dynamic>{});
+      SharedPreferences.setMockInitialValues(<String, Object>{});
     }
     return SharedPreferences.getInstance();
   }
@@ -93,11 +93,12 @@ abstract class RegisterModule {
       CombiningSmartInterceptor()..addInterceptor(authInterceptor)..addInterceptor(refreshInterceptor)..addInterceptor(errorInterceptor)..addInterceptor(logInterceptor);
 
   @singleton
-  Dio provideDio(CombiningSmartInterceptor networkInterceptor) {
-    final dio = Dio();
-    dio.options.baseUrl = FlavorConfig.instance.values.baseUrl;
+  Dio provideDio(CombiningSmartInterceptor interceptor) {
+    final dio = Dio(
+      BaseOptions(baseUrl: FlavorConfig.instance.values.baseUrl),
+    );
     (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson; // ignore: avoid_as
-    dio.interceptors.add(networkInterceptor);
+    dio.interceptors.add(interceptor);
     return dio;
   }
 

@@ -7,13 +7,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
 void main() {
-  TodoAddViewModel todoAddViewModel;
+  late TodoAddViewModel todoAddViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -103,8 +104,7 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
+  final todoAddViewModel = GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
   verify(todoAddViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(todoAddViewModel);
 }

@@ -29,7 +29,7 @@ void main() {
 
   group('OnChanged', () {
     testWidgets('TodoRowItem selected state on changed', (tester) async {
-      bool newValue;
+      bool? newValue;
       final sut = TodoRowItem(
         title: 'Title',
         value: true,
@@ -45,7 +45,7 @@ void main() {
       expect(newValue, false);
     });
     testWidgets('TodoRowItem unselected state on changed', (tester) async {
-      bool newValue;
+      bool? newValue;
 
       final sut = TodoRowItem(
         title: 'Title',

@@ -1,7 +1,7 @@
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
-import 'package:flutter_template/viewmodel/error_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -13,7 +13,7 @@ import 'package:scroll_when_needed/scroll_when_needed.dart';
 class TodoAddScreen extends StatefulWidget {
   static const String routeName = 'todo_add';
 
-  const TodoAddScreen({Key key}) : super(key: key);
+  const TodoAddScreen({Key? key}) : super(key: key);
 
   @override
   TodoAddScreenState createState() => TodoAddScreenState();
@@ -21,14 +21,12 @@ class TodoAddScreen extends StatefulWidget {
 
 @visibleForTesting
 class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'TodoAddScaffoldKey');
 
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
-        key: _scaffoldKey,
         appBar: AppBar(
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.todoAddTitle),
@@ -57,7 +55,4 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
       ),
     );
   }
-
-  @override
-  ScaffoldState getScaffoldState() => _scaffoldKey.currentState;
 }

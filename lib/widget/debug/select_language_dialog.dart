@@ -7,7 +7,9 @@ import 'package:provider/provider.dart';
 class SelectLanguageDialog extends StatelessWidget {
   final VoidCallback goBack;
 
-  const SelectLanguageDialog({@required this.goBack});
+  const SelectLanguageDialog({
+    required this.goBack,
+  });
 
   @override
   Widget build(BuildContext context) {

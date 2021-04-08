@@ -2,6 +2,7 @@ import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,23 +16,23 @@ import 'package:moor_db_viewer/moor_db_viewer.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   const MainNavigatorWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
 
-  static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false, bool nullOk = false}) {
+  static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false}) {
     final navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
     assert(() {
-      if (navigator == null && !nullOk) {
+      if (navigator == null) {
         throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
             'The context used to push or pop routes from the MainNavigation must be that of a '
             'widget that is a descendant of a MainNavigatorWidget widget.');
       }
       return true;
     }());
-    return navigator;
+    return navigator!;
   }
 }
 
@@ -55,9 +56,9 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
     );
   }
 
-  RectTween _createRectTween(Rect begin, Rect end) => MaterialRectArcTween(begin: begin, end: end);
+  RectTween _createRectTween(Rect? begin, Rect? end) => MaterialRectArcTween(begin: begin, end: end);
 
-  Route _onGenerateRoute(RouteSettings settings) {
+  Route? _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case SplashScreen.routeName:
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
@@ -79,25 +80,32 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
     }
   }
 
-  Future<bool> _willPop() async => !await navigationKey.currentState.maybePop();
+  Future<bool> _willPop() async {
+    final navigationState = navigationKey.currentState;
+    if (navigationState == null) {
+      FlutterTemplateLogger.logWarning('WillPod has no navigation state');
+      return false;
+    }
+    return !await navigationState.maybePop();
+  }
 
   @override
-  void goToSplash() => navigationKey.currentState.pushReplacementNamed(SplashScreen.routeName);
+  void goToSplash() => navigationKey.currentState?.pushReplacementNamed(SplashScreen.routeName);
 
   @override
-  void goToLogin() => navigationKey.currentState.pushReplacementNamed(LoginScreen.routeName);
+  void goToLogin() => navigationKey.currentState?.pushReplacementNamed(LoginScreen.routeName);
 
   @override
-  void goToHome() => navigationKey.currentState.pushReplacementNamed(HomeScreen.routeName);
+  void goToHome() => navigationKey.currentState?.pushReplacementNamed(HomeScreen.routeName);
 
   @override
-  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
 
   @override
-  void goToDebugPlatformSelector() => navigationKey.currentState.pushNamed(DebugPlatformSelectorScreen.routeName);
+  void goToDebugPlatformSelector() => navigationKey.currentState?.pushNamed(DebugPlatformSelectorScreen.routeName);
 
   @override
-  void goToLicense() => navigationKey.currentState.pushNamed(LicenseScreen.routeName);
+  void goToLicense() => navigationKey.currentState?.pushNamed(LicenseScreen.routeName);
 
   @override
   void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
@@ -106,8 +114,15 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void goToDatabase(GeneratedDatabase db) => Navigator.of(context).push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
 
   @override
-  void goBack<T>({T result}) => navigationKey.currentState.pop(result);
+  void goBack<T>({T? result}) => navigationKey.currentState?.pop(result);
 
   @override
-  void showCustomDialog<T>({WidgetBuilder builder}) => showDialog<T>(context: navigationKey.currentContext, builder: builder);
+  void showCustomDialog<T>({required WidgetBuilder builder}) {
+    final currentContext = navigationKey.currentContext;
+    if (currentContext == null) {
+      FlutterTemplateLogger.logWarning('WillPod has no navigation state');
+      return;
+    }
+    showDialog<T>(context: currentContext, builder: builder);
+  }
 }

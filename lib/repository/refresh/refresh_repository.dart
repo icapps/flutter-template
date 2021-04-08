@@ -38,9 +38,10 @@ class RefreshRepository extends RefreshRepo {
         throw UnimplementedError('No implementatino for the refresh in the refresh repository');
       } catch (e) {
         _failure = true;
-        if (logoutCallback != null) {
+        final logoutCb = logoutCallback;
+        if (logoutCb != null) {
           await _authStoring.clear();
-          logoutCallback();
+          logoutCb.call();
         }
         rethrow;
       }

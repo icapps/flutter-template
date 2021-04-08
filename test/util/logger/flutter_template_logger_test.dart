@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('FlutterTemplateLogger test debug', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -15,7 +15,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logDebug('isDev');
@@ -25,7 +25,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isAlpha(), true);
@@ -36,7 +36,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isBeta(), true);
@@ -47,7 +47,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isInTest(), true);
@@ -58,7 +58,7 @@ void main() {
       color: Colors.amber,
       name: 'PRODUCTION',
       flavor: Flavor.PROD,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isProd(), true);
@@ -67,7 +67,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logVerbose', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -75,7 +75,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logVerbose('isDev');
@@ -84,7 +84,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isAlpha(), true);
@@ -95,7 +95,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isBeta(), true);
@@ -106,7 +106,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isInTest(), true);
@@ -117,7 +117,7 @@ void main() {
       color: Colors.amber,
       name: 'PRODUCTION',
       flavor: Flavor.PROD,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isProd(), true);
@@ -126,7 +126,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logInfo', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -134,7 +134,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logInfo('isDev');
@@ -144,7 +144,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isAlpha(), true);
@@ -155,7 +155,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isBeta(), true);
@@ -166,7 +166,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isInTest(), true);
@@ -177,7 +177,7 @@ void main() {
       color: Colors.amber,
       name: 'PRODUCTION',
       flavor: Flavor.PROD,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isProd(), true);
@@ -186,7 +186,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logWarning', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -194,7 +194,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logWarning('isDev');
@@ -204,7 +204,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isAlpha(), true);
@@ -215,7 +215,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isBeta(), true);
@@ -226,7 +226,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isInTest(), true);
@@ -237,7 +237,7 @@ void main() {
       color: Colors.amber,
       name: 'PRODUCTION',
       flavor: Flavor.PROD,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isProd(), true);
@@ -246,7 +246,7 @@ void main() {
   });
 
   test('FlutterTemplateLogger test logError', () async {
-    Object output;
+    Object? output;
     FlutterTemplateLogger.printToConsole = (e) {
       output = e;
     };
@@ -254,7 +254,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logError(message: 'isDev', error: null);
@@ -268,7 +268,7 @@ void main() {
       color: Colors.amber,
       name: 'DEV',
       flavor: Flavor.DEV,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isDev(), true);
@@ -284,7 +284,7 @@ void main() {
       color: Colors.amber,
       name: 'ALPHA',
       flavor: Flavor.ALPHA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isAlpha(), true);
@@ -297,7 +297,7 @@ void main() {
       color: Colors.amber,
       name: 'BETA',
       flavor: Flavor.BETA,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isBeta(), true);
@@ -310,7 +310,7 @@ void main() {
       color: Colors.amber,
       name: 'TEST',
       flavor: Flavor.TEST,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isInTest(), true);
@@ -323,7 +323,7 @@ void main() {
       color: Colors.amber,
       name: 'PRODUCTION',
       flavor: Flavor.PROD,
-      values: null,
+      values: const FlavorValues(baseUrl: 'http://www.example.com', logNetworkInfo: false, showFullErrorMessages: false),
     );
     output = null;
     expect(FlavorConfig.isProd(), true);
@@ -346,7 +346,7 @@ void main() {
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(
-      request: RequestOptions(
+      requestOptions: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
         method: 'GET',
@@ -364,7 +364,7 @@ void main() {
       ),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError()));
+    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(requestOptions: RequestOptions(path: '/'))));
 
     FlavorConfig(
       color: Colors.amber,
@@ -377,7 +377,7 @@ void main() {
       ),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError()));
+    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(requestOptions: RequestOptions(path: '/'))));
 
     FlavorConfig(
       color: Colors.amber,
@@ -390,7 +390,8 @@ void main() {
       ),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkError(InternalServerError(DioError(response: Response<void>())));
+    FlutterTemplateLogger.logNetworkError(
+        InternalServerError(DioError(response: Response<void>(requestOptions: RequestOptions(path: '/')), requestOptions: RequestOptions(path: '/'))));
   });
 
   test('FlutterTemplateLogger test logNetworkRequest', () async {
@@ -424,7 +425,7 @@ void main() {
       ),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkRequest(RequestOptions());
+    FlutterTemplateLogger.logNetworkRequest(RequestOptions(path: '/'));
   });
 
   test('FlutterTemplateLogger test logNetworkResponse', () async {
@@ -440,7 +441,7 @@ void main() {
     );
     expect(FlavorConfig.isDev(), true);
     FlutterTemplateLogger.logNetworkResponse(Response<dynamic>(
-      request: RequestOptions(
+      requestOptions: RequestOptions(
         baseUrl: 'https://test.com/',
         path: 'testing',
         method: 'GET',
@@ -458,6 +459,6 @@ void main() {
       ),
     );
     expect(FlavorConfig.isDev(), true);
-    FlutterTemplateLogger.logNetworkResponse(Response<dynamic>());
+    FlutterTemplateLogger.logNetworkResponse(Response<dynamic>(requestOptions: RequestOptions(path: '/')));
   });
 }

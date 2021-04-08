@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/viewmodel/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../di/injectable_test.mocks.dart';
 import '../di/test_injectable.dart';
 import '../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../screen/seed.dart';
@@ -24,18 +25,18 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goBack<void>();
+    debugKey.currentState!.goBack<void>();
     verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    debugKey.currentState.goBack(result: 'testing');
+    debugKey.currentState!.goBack(result: 'testing');
     verify(mockNavigation.goBack(result: 'testing')).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });
 }
 
 class BackScreen extends StatefulWidget {
-  const BackScreen({Key key}) : super(key: key);
+  const BackScreen({Key? key}) : super(key: key);
 
   @override
   BackScreenState createState() => BackScreenState();

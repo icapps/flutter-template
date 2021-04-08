@@ -10,7 +10,15 @@ R provideMockedNetworkImages<R>(R body(), {List<int> imageBytes = TransparantIma
   );
 }
 
-class MockHttpClient extends Mock implements HttpClient {}
+class MockHttpClient extends Mock implements HttpClient {
+
+  @override
+  Future<HttpClientRequest> getUrl(Uri? url) async {
+    // ignore: avoid_as
+    return super.noSuchMethod(Invocation.method(#getUrl, [url]), returnValue: MockHttpClientRequest()) as HttpClientRequest;
+  }
+
+}
 
 class MockHttpClientRequest extends Mock implements HttpClientRequest {}
 
@@ -19,7 +27,7 @@ class MockHttpClientResponse extends Mock implements HttpClientResponse {}
 class MockHttpHeaders extends Mock implements HttpHeaders {}
 
 // Returns a mock HTTP client that responds with an image to all requests.
-MockHttpClient _createMockImageHttpClient(SecurityContext _, List<int> imageBytes) {
+MockHttpClient _createMockImageHttpClient(SecurityContext? _, List<int> imageBytes) {
   final client = MockHttpClient();
   final request = MockHttpClientRequest();
   final response = MockHttpClientResponse();
@@ -114,4 +122,3 @@ class TransparantImageUtil {
     0xAE,
   ];
 }
-

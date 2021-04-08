@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ResponsiveWidget extends StatelessWidget {
-  final WidgetBuilder tabletBuilder;
-  final WidgetBuilder landscapeBuilder;
-  final WidgetBuilder tabletLandscapeBuilder;
-  final Widget Function(BuildContext context, SizeInformation sizeInformation) builder;
+  final WidgetBuilder? tabletBuilder;
+  final WidgetBuilder? landscapeBuilder;
+  final WidgetBuilder? tabletLandscapeBuilder;
+  final Widget Function(BuildContext context, SizeInformation sizeInformation)? builder;
 
   const ResponsiveWidget({
     this.tabletBuilder,
     this.landscapeBuilder,
     this.tabletLandscapeBuilder,
     this.builder,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -24,14 +24,18 @@ class ResponsiveWidget extends StatelessWidget {
         screenSize: mediaQuery.size,
         localWidgetSize: Size(boxSizing.maxWidth, boxSizing.maxHeight),
       );
-      if (info.orientation == Orientation.landscape && info.deviceType == DeviceScreenType.Tablet && tabletLandscapeBuilder != null) {
-        return tabletLandscapeBuilder(context);
-      } else if (info.deviceType == DeviceScreenType.Tablet && tabletBuilder != null) {
-        return tabletBuilder(context);
-      } else if (info.orientation == Orientation.landscape && landscapeBuilder != null) {
-        return landscapeBuilder(context);
-      } else if (builder != null) {
-        return builder(context, info);
+      final tabletLandscapeB = tabletLandscapeBuilder;
+      final tabletB = tabletBuilder;
+      final landscapeB = landscapeBuilder;
+      final portraitBuilder = builder;
+      if (info.orientation == Orientation.landscape && info.deviceType == DeviceScreenType.Tablet && tabletLandscapeB != null) {
+        return tabletLandscapeB(context);
+      } else if (info.deviceType == DeviceScreenType.Tablet && tabletB != null) {
+        return tabletB(context);
+      } else if (info.orientation == Orientation.landscape && landscapeB != null) {
+        return landscapeB(context);
+      } else if (portraitBuilder != null) {
+        return portraitBuilder(context, info);
       }
       throw Exception('Failed to build Responsive Widget');
     });
@@ -64,9 +68,9 @@ class SizeInformation {
   final Size localWidgetSize;
 
   SizeInformation({
-    this.orientation,
-    this.deviceType,
-    this.screenSize,
-    this.localWidgetSize,
+    required this.orientation,
+    required this.deviceType,
+    required this.screenSize,
+    required this.localWidgetSize,
   });
 }

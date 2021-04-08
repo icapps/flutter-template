@@ -17,8 +17,9 @@ import 'package:get_it/get_it.dart';
 import '../../di/test_injectable.dart';
 
 void main() {
-  NetworkErrorInterceptor sut;
-  ConnectivityControlling connectivityController;
+  late NetworkErrorInterceptor sut;
+  late ConnectivityControlling connectivityController;
+
   setUp(() async {
     await initTestInjectable();
     connectivityController = GetIt.I();
@@ -27,7 +28,8 @@ void main() {
 
   group('GeneralError', () {
     test('NetworkErrorInterceptorTest parse general error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 4686845));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 4686845, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -37,14 +39,15 @@ void main() {
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorGeneral);
     });
   });
 
   group('UnAuthorizedError', () {
     test('NetworkErrorInterceptorTest parse 401 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 401));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -54,14 +57,15 @@ void main() {
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorUnauthorized);
     });
   });
 
   group('InternalServerError', () {
     test('NetworkErrorInterceptorTest parse 500 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 500));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 500, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -71,14 +75,15 @@ void main() {
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorInternalServer);
     });
   });
 
   group('Forbidden Error', () {
     test('NetworkErrorInterceptorTest parse 403 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 403));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -88,14 +93,15 @@ void main() {
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
     });
 
     test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
       final data = <String, dynamic>{};
       data['code'] = '45648';
-      final dioError = DioError(response: Response<Map<String, dynamic>>(statusCode: 403, data: data));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -103,7 +109,7 @@ void main() {
       // ignore: avoid_as
       final authorizedError = newError as ForbiddenError;
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
@@ -111,7 +117,8 @@ void main() {
   });
   group('BadRequestError', () {
     test('NetworkErrorInterceptorTest parse 400 error', () async {
-      final dioError = DioError(response: Response<void>(statusCode: 400));
+      final requestOptions = RequestOptions(path: '/todo');
+      final dioError = DioError(response: Response<void>(statusCode: 400, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is FlutterTemplateError, true);
       expect(newError is DioError, true);
@@ -119,7 +126,7 @@ void main() {
       // ignore: avoid_as
       final authorizedError = newError as BadRequestError;
       expect(authorizedError.response, equals(dioError.response));
-      expect(authorizedError.request, equals(dioError.request));
+      expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorBadRequest);

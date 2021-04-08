@@ -6,14 +6,14 @@ import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class ActionItem extends StatelessWidget {
   final String svgAsset;
-  final VoidCallback onClick;
-  final Color color;
+  final VoidCallback? onClick;
+  final Color? color;
 
   const ActionItem({
-    @required this.svgAsset,
-    @required this.onClick,
+    required this.svgAsset,
+    required this.onClick,
     this.color,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

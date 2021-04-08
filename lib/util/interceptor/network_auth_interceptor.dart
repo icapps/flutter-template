@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/util/app_constants.dart';
+import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
-class NetworkAuthInterceptor extends Interceptor {
+class NetworkAuthInterceptor extends SimpleInterceptor {
   final AuthStoring _storage;
   final _excludedPaths = [
     'login',
@@ -13,7 +14,7 @@ class NetworkAuthInterceptor extends Interceptor {
   NetworkAuthInterceptor(this._storage);
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future<Object?> onRequest(RequestOptions options) async {
     if (_excludedPaths.contains(options.path)) {
       return super.onRequest(options);
     }

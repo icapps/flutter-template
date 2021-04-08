@@ -9,7 +9,7 @@ class NoInternetError extends NetworkError {
   String getLocalizedKey() => LocalizationKeys.errorNoNetwork;
 
   @override
-  String get getErrorCode => null;
+  String? get getErrorCode => null;
 }
 
 class NoNetworkError extends Error {}

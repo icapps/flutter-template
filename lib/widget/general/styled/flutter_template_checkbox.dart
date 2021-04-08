@@ -10,8 +10,8 @@ class FlutterTemplateCheckBox extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const FlutterTemplateCheckBox({
-    @required this.value,
-    @required this.onChanged,
+    required this.value,
+    required this.onChanged,
   });
 
   @override
@@ -40,7 +40,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => Checkbox(
         value: value,
-        onChanged: onChanged,
+        onChanged: (value) => onChanged(value ?? false),
         activeColor: theme.colorsTheme.accent,
       ),
     );

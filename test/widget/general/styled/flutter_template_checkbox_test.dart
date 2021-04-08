@@ -9,7 +9,7 @@ import '../../../util/test_util.dart';
 void main() {
   setUp(() async => initTestInjectable());
   group('Android', () {
-    testWidgets('FlutterTemplateCheckBox with false value', (tester) async {
+    testWidgets('Android FlutterTemplateCheckBox with false value', (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.android),
         child: FlutterTemplateCheckBox(
@@ -22,7 +22,7 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'flutter_template_checkbox_false_android');
     });
 
-    testWidgets('FlutterTemplateCheckBox with true value', (tester) async {
+    testWidgets('Android FlutterTemplateCheckBox with true value', (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.android),
         child: FlutterTemplateCheckBox(
@@ -36,8 +36,8 @@ void main() {
     });
 
     group('OnChanged', () {
-      testWidgets('FlutterTemplateCheckBox onChanged from value true', (tester) async {
-        bool newValue;
+      testWidgets('Android FlutterTemplateCheckBox onChanged from value true', (tester) async {
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
           child: FlutterTemplateCheckBox(
@@ -55,8 +55,8 @@ void main() {
         await tester.pumpAndSettle();
         expect(newValue, false);
       });
-      testWidgets('FlutterTemplateCheckBox onChanged from value false', (tester) async {
-        bool newValue;
+      testWidgets('FlutterTemplateCheckBox onChanged from value false - android', (tester) async {
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
           child: FlutterTemplateCheckBox(
@@ -106,7 +106,7 @@ void main() {
 
     group('OnChanged', () {
       testWidgets('FlutterTemplateCheckBox onChanged from value true', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),
           child: FlutterTemplateCheckBox(
@@ -125,7 +125,7 @@ void main() {
         expect(newValue, false);
       });
       testWidgets('FlutterTemplateCheckBox onChanged from value false', (tester) async {
-        bool newValue;
+        bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),
           child: FlutterTemplateCheckBox(

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 class InternalApp extends StatelessWidget {
   final Widget home;
 
-  const InternalApp({@required this.home});
+  const InternalApp({required this.home});
 
   @override
   Widget build(BuildContext context) {

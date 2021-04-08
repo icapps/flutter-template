@@ -6,15 +6,15 @@ class FlutterTemplateSwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const FlutterTemplateSwitch({
-    @required this.value,
-    @required this.onChanged,
+    required this.value,
+    required this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => Switch.adaptive(
-        value: value ?? false,
+        value: value,
         onChanged: onChanged,
         activeColor: theme.colorsTheme.accent,
       ),

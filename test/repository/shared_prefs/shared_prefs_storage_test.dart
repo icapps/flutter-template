@@ -5,17 +5,31 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  SharedPreferences sharedPreferences;
-  SharedPrefsStoring sut;
+  late MockSharedPreferences sharedPreferences;
+  late SharedPrefsStoring sut;
 
   setUp(() async {
     await initTestInjectable();
-    sharedPreferences = GetIt.I();
+    sharedPreferences = GetIt.I.resolveAs<SharedPreferences, MockSharedPreferences>();
     sut = SharedPrefsStorage(sharedPreferences);
+
+    when(sharedPreferences.setString(any, any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.setDouble(any, any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.setBool(any, any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.setStringList(any, any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.setInt(any, any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.getString(any)).thenReturn(null);
+    when(sharedPreferences.getDouble(any)).thenReturn(null);
+    when(sharedPreferences.getBool(any)).thenReturn(null);
+    when(sharedPreferences.getStringList(any)).thenReturn(null);
+    when(sharedPreferences.getInt(any)).thenReturn(null);
+    when(sharedPreferences.remove(any)).thenAnswer((_) => Future.value(true));
+    when(sharedPreferences.containsKey(any)).thenReturn(false);
   });
 
   group('String', () {

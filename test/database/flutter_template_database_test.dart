@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../di/test_injectable.dart';
 
 void main() {
-  FlutterTemplateDatabase sut;
+  late FlutterTemplateDatabase sut;
 
   setUp(() async {
     await initTestInjectable();

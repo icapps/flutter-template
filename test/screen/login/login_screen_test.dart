@@ -6,13 +6,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  LoginViewModel loginViewModel;
+  late LoginViewModel loginViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -105,9 +106,8 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  final loginViewModel = GetIt.I<LoginViewModel>();
+  final loginViewModel = GetIt.I.resolveAs<LoginViewModel, MockLoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(loginViewModel);
 }

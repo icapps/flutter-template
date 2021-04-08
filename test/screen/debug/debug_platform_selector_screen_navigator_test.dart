@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
@@ -13,7 +14,7 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  GlobalViewModel globalViewModel;
+  late GlobalViewModel globalViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -32,12 +33,14 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
     reset(globalViewModel);
+    // ignore: void_checks
+    when(globalViewModel.dispose()).thenReturn(1);
 
-    key.currentState.goBack<void>();
+    key.currentState!.goBack<void>();
     verify(mockNavigation.goBack<void>()).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
 
-    key.currentState.goBack(result: 'test');
+    key.currentState!.goBack(result: 'test');
     verify(mockNavigation.goBack(result: 'test')).calledOnce();
     verifyNoMoreInteractions(mockNavigation);
   });

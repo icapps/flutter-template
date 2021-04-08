@@ -3,7 +3,7 @@ import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/mixin/dispose_mixin.dart';
+import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -15,15 +15,15 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
 
   final _themeMode = ThemeMode.system;
 
-  TargetPlatform _targetPlatform;
+  TargetPlatform? _targetPlatform;
 
   GlobalViewModel(this._localeRepo, this._debugRepo);
 
   ThemeMode get themeMode => _themeMode;
 
-  Locale get locale => _localeDelegate.newLocale;
+  Locale? get locale => _localeDelegate.newLocale;
 
-  TargetPlatform get targetPlatform => _targetPlatform;
+  TargetPlatform? get targetPlatform => _targetPlatform;
 
   LocalizationDelegate get localeDelegate => _localeDelegate;
 
@@ -59,7 +59,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
     await _onUpdateLocaleClicked(null);
   }
 
-  Future<void> _onUpdateLocaleClicked(Locale locale) async {
+  Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
     _localeDelegate = LocalizationDelegate(newLocale: locale);
     notifyListeners();
@@ -99,7 +99,7 @@ class GlobalViewModel with ChangeNotifier, DisposeMixin {
     return 'English';
   }
 
-  bool isLanguageSelected(String languageCode) {
+  bool isLanguageSelected(String? languageCode) {
     if (localeDelegate.activeLocale == null && languageCode == null) return true;
     return localeDelegate.activeLocale?.languageCode == languageCode;
   }

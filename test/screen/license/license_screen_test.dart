@@ -5,13 +5,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  LicenseViewModel licenseViewModel;
+  late LicenseViewModel licenseViewModel;
 
   setUp(() async {
     await initTestInjectable();
@@ -63,8 +64,7 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = GetIt.I<LicenseViewModel>();
+  final licenseViewModel = GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init(any)).calledOnce();
-  verifyNoMoreInteractions(licenseViewModel);
 }

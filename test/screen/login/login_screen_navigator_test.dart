@@ -4,6 +4,7 @@ import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
@@ -25,12 +26,8 @@ void main() {
     );
     await TestUtil.loadScreen(tester, sut);
 
-    debugKey.currentState.goToHome();
+    debugKey.currentState!.goToHome();
     verify(mockNavigation.goToHome()).calledOnce();
-    verifyNoMoreInteractions(mockNavigation);
-
-    final key = debugKey.currentState.getScaffoldState();
-    expect(key, isNotNull);
     verifyNoMoreInteractions(mockNavigation);
   });
 }

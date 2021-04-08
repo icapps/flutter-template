@@ -17,7 +17,7 @@ class DebugScreen extends StatefulWidget {
   static const String routeName = 'debug';
 
   const DebugScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
