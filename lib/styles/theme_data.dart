@@ -1,9 +1,8 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/env/os_config.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateThemeData {
   FlutterTemplateThemeData._();
@@ -17,10 +16,12 @@ class FlutterTemplateThemeData {
       selectionHandleColor: ThemeColors.accent,
       selectionColor: ThemeColors.accent.withOpacity(0.4),
     ),
-    pageTransitionsTheme: PageTransitionsTheme(builders: {
-      TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(),
-      TargetPlatform.android: getCorrectPageTransitionBuilder(),
-    }),
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(),
+        TargetPlatform.android: isInTest ? const FadeUpwardsPageTransitionsBuilder() : BaseThemeData.getCorrectPageTransitionBuilder(OsInfo.instance),
+      },
+    ),
   );
 
   static final _lightThemeData = _darkThemeData.copyWith();
@@ -31,16 +32,6 @@ class FlutterTemplateThemeData {
 
   static ThemeData lightTheme(TargetPlatform? targetPlatform) {
     return _lightThemeData.copyWith(platform: targetPlatform);
-  }
-
-  static PageTransitionsBuilder getCorrectPageTransitionBuilder() {
-    if (!Platform.isAndroid) return const ZoomPageTransitionsBuilder();
-    if (OsConfig.isAtLeastAndroid10) {
-      return const ZoomPageTransitionsBuilder();
-    } else if (OsConfig.isAtLeastPie) {
-      return const OpenUpwardsPageTransitionsBuilder();
-    }
-    return const FadeUpwardsPageTransitionsBuilder();
   }
 }
 

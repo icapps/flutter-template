@@ -1,6 +1,6 @@
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: LoginRepo)
@@ -14,6 +14,6 @@ class LoginRepository extends LoginRepo {
 
   @override
   Future<void> login({required String email, required String password}) async {
-    FlutterTemplateLogger.logDebug('Login should be implemented');
+    logger.debug('Login should be implemented');
   }
 }

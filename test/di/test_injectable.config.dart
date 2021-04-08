@@ -23,8 +23,6 @@ import 'package:flutter_template/repository/shared_prefs/local/local_storing.dar
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart'
     as _i21;
 import 'package:flutter_template/repository/todo/todo_repo.dart' as _i26;
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart'
-    as _i4;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
     as _i5;
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i7;
@@ -41,6 +39,7 @@ import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.da
     as _i25;
 import 'package:flutter_template/webservice/todo/todo_service.dart' as _i27;
 import 'package:get_it/get_it.dart' as _i1;
+import 'package:icapps_architecture/icapps_architecture.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i20;
 
@@ -55,7 +54,7 @@ _i1.GetIt $initTestGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.singleton<_i3.AuthStoring>(registerModule.getAuthStoring);
-  gh.singleton<_i4.ConnectivityControlling>(
+  gh.singleton<_i4.ConnectivityHelper>(
       registerModule.getConnectivityControlling);
   gh.singleton<_i5.DebugPlatformSelectorViewModel>(
       registerModule.getDebugPlatformSelectorViewModel);

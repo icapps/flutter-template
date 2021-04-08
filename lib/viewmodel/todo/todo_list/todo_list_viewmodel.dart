@@ -1,17 +1,13 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
-import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class TodoListViewModel with ChangeNotifier, DisposeMixin {
+class TodoListViewModel with ChangeNotifierEx {
   final TodoRepo _todoRepo;
 
   late TodoListViewNavigator _navigator;
@@ -39,9 +35,9 @@ class TodoListViewModel with ChangeNotifier, DisposeMixin {
       _errorKey = null;
       notifyListeners();
       await _todoRepo.fetchTodos();
-    } catch (e) {
-      FlutterTemplateLogger.logError(message: 'failed to get todos', error: e);
-      if (e is FlutterTemplateError) {
+    } catch (e, stack) {
+      logger.error('failed to get todos', error: e, trace: stack);
+      if (e is LocalizedError) {
         _errorKey = e.getLocalizedKey();
       } else {
         _errorKey = LocalizationKeys.errorGeneral;

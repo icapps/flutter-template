@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
-import 'package:flutter_template/util/extension/context_extensions.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
@@ -33,7 +33,8 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
         final errorKey = viewModel.errorKey;
         return Scaffold(
           appBar: AppBar(
-            centerTitle: context.isIOS,
+            brightness: Brightness.dark,
+            centerTitle: context.isIOSTheme,
             title: Text(localization.todoTitle),
             actions: [
               ActionItem(

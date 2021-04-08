@@ -206,10 +206,10 @@ void _renameAppName(String appName) {
 }
 
 void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier, String appName) {
-  Logger.info('Replace text in lib/niddler.dart ...');
-  _replaceInFile('lib/niddler.dart', originalAndroidPackageName, androidPackageName);
-  _replaceInFile('lib/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
-  _replaceInFile('lib/niddler.dart', originalAppName, appName);
+  Logger.info('Replace text in lib/util/niddler/niddler.dart...');
+  _replaceInFile('lib/util/niddler/niddler.dart', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('lib/util/niddler/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile('lib/util/niddler/niddler.dart', originalAppName, appName);
 }
 
 void _renamePackage(String packageName, String description, String classNamePrefix) {

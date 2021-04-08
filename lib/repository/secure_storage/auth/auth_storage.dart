@@ -1,6 +1,6 @@
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
-import 'package:flutter_template/util/future/future_helper.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: AuthStoring)

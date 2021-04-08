@@ -1,14 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
-import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class LoginViewModel with ChangeNotifier, DisposeMixin {
+class LoginViewModel with ChangeNotifierEx {
   final LoginRepo _loginRepo;
   late LoginNavigator _navigator;
 
@@ -41,9 +38,9 @@ class LoginViewModel with ChangeNotifier, DisposeMixin {
       _isLoading = true;
       await _loginRepo.login(email: _email, password: _password);
       _navigator.goToHome();
-    } catch (e) {
-      FlutterTemplateLogger.logError(message: 'Failed to login', error: e);
-      if (e is FlutterTemplateError) {
+    } catch (e, stack) {
+      logger.error('Failed to login', error: e, trace: stack);
+      if (e is LocalizedError) {
         _navigator.showErrorWithLocaleKey(e.getLocalizedKey());
       } else {
         _navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral);

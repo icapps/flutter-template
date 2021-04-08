@@ -3,11 +3,11 @@ import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GlobalViewModel with ChangeNotifier, DisposeMixin {
+class GlobalViewModel with ChangeNotifierEx {
   final LocaleRepo _localeRepo;
   final DebugRepo _debugRepo;
   var _localeDelegate = LocalizationDelegate();

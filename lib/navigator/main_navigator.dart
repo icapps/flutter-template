@@ -2,15 +2,14 @@ import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
-import 'package:flutter_template/util/route/fade_in_route.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_db_viewer/moor_db_viewer.dart';
 
@@ -83,7 +82,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   Future<bool> _willPop() async {
     final navigationState = navigationKey.currentState;
     if (navigationState == null) {
-      FlutterTemplateLogger.logWarning('WillPod has no navigation state');
+      logger.warning('WillPop has no navigation state');
       return false;
     }
     return !await navigationState.maybePop();
@@ -120,7 +119,7 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void showCustomDialog<T>({required WidgetBuilder builder}) {
     final currentContext = navigationKey.currentContext;
     if (currentContext == null) {
-      FlutterTemplateLogger.logWarning('WillPod has no navigation state');
+      logger.warning('WillPop has no navigation state');
       return;
     }
     showDialog<T>(context: currentContext, builder: builder);

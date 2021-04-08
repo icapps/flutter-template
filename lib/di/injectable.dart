@@ -2,20 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/isolate.dart';
@@ -50,6 +48,9 @@ abstract class RegisterModule {
   }
 
   @singleton
+  ConnectivityHelper connectivityHelper() => ConnectivityHelper();
+
+  @singleton
   @preResolve
   Future<DatabaseConnection> provideDatabaseConnection() async {
     if (FlavorConfig.isInTest()) {
@@ -60,7 +61,7 @@ abstract class RegisterModule {
     final file = File(join(dbFolder.path, 'db.sqlite'));
     if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {
       file.deleteSync();
-      FlutterTemplateLogger.logVerbose('Databasefile `db.sqlite` is deleted');
+      logger.debug('Databasefile `db.sqlite` is deleted');
     }
     final receivePort = ReceivePort();
 
@@ -76,9 +77,6 @@ abstract class RegisterModule {
 
   @singleton
   FlutterSecureStorage storage() => const FlutterSecureStorage();
-
-  @singleton
-  Connectivity connectivity() => Connectivity();
 
   @singleton
   QueryExecutor executor() => VmDatabase.memory();

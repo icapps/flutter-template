@@ -1,12 +1,11 @@
-import 'package:flutter_template/viewmodel/mixin/dispose_mixin.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 
 @injectable
-class DebugViewModel with ChangeNotifier, DisposeMixin {
+class DebugViewModel with ChangeNotifierEx {
   final DebugRepo _debugRepo;
 
   late DebugNavigator _navigator;

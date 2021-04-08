@@ -24,6 +24,7 @@ class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin im
     return ProviderWidget<LicenseViewModel>(
       consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
+          brightness: Brightness.dark,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),
         ),
