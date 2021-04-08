@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/exceptions/bad_request_error.dart';
 import 'package:flutter_template/model/exceptions/code_error.dart';
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';

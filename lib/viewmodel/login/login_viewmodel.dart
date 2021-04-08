@@ -1,4 +1,3 @@
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
@@ -41,7 +40,7 @@ class LoginViewModel with ChangeNotifierEx {
       _navigator.goToHome();
     } catch (e, stack) {
       logger.error('Failed to login', error: e, trace: stack);
-      if (e is FlutterTemplateError) {
+      if (e is LocalizedError) {
         _navigator.showErrorWithLocaleKey(e.getLocalizedKey());
       } else {
         _navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral);

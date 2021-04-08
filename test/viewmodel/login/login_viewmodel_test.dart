@@ -1,10 +1,10 @@
-import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/repository/login/login_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -77,7 +77,7 @@ void main() {
       });
 
       test('LoginViewModel onLoginClicked with FlutterTemplateError', () async {
-        expect(GeneralError() is FlutterTemplateError, true);
+        expect(GeneralError() is LocalizedError, true);
         when(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).thenThrow(GeneralError());
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, false);
