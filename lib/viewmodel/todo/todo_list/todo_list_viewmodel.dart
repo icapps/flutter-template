@@ -2,7 +2,6 @@ import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -37,8 +36,8 @@ class TodoListViewModel with ChangeNotifierEx {
       _errorKey = null;
       notifyListeners();
       await _todoRepo.fetchTodos();
-    } catch (e) {
-      FlutterTemplateLogger.logError(message: 'failed to get todos', error: e);
+    } catch (e, stack) {
+      logger.error('failed to get todos', error: e, trace: stack);
       if (e is FlutterTemplateError) {
         _errorKey = e.getLocalizedKey();
       } else {

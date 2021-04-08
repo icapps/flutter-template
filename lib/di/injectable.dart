@@ -12,7 +12,6 @@ import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart'
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -62,7 +61,7 @@ abstract class RegisterModule {
     final file = File(join(dbFolder.path, 'db.sqlite'));
     if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {
       file.deleteSync();
-      FlutterTemplateLogger.logVerbose('Databasefile `db.sqlite` is deleted');
+      logger.debug('Databasefile `db.sqlite` is deleted');
     }
     final receivePort = ReceivePort();
 

@@ -6,7 +6,6 @@ import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -42,8 +41,8 @@ class NetworkErrorInterceptor extends SimpleInterceptor {
         default:
           return GeneralNetworkError(error);
       }
-    } catch (e) {
-      FlutterTemplateLogger.logError(message: 'Failed to get correct error', error: e);
+    } catch (e, stack) {
+      logger.error('Failed to get correct error', error: e, trace: stack);
       return CodeError();
     }
   }

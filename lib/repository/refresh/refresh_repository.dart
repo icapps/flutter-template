@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:synchronized/synchronized.dart' as synchronized;
 
@@ -25,7 +25,7 @@ class RefreshRepository extends RefreshRepo {
     await _lock.synchronized(() async {
       final newAccessToken = await _authStoring.getAccessToken();
       if (accessToken != newAccessToken) {
-        FlutterTemplateLogger.logDebug('ACCESS TOKEN was already renewed');
+        logger.debug('ACCESS TOKEN was already renewed');
         return;
       }
       if (_failure) {

@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
-import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 
 import '../app_constants.dart';
 
@@ -33,7 +32,7 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
   Future<Object?> onError(DioError error) async {
     final request = error.requestOptions;
     if (_excludedPaths.contains(request.path)) {
-      FlutterTemplateLogger.logDebug('Network refresh interceptor should not intercept');
+      logger.debug('Network refresh interceptor should not intercept');
       return super.onError(error);
     }
 
@@ -41,7 +40,7 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
       return super.onError(error);
     }
 
-    FlutterTemplateLogger.logDebug('Refreshing');
+    logger.debug('Refreshing');
     await _refreshRepo.refresh(error);
 
     final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
