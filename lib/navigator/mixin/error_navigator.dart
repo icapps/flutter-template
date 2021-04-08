@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/exceptions/flutter_template_error.dart';
-import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 abstract class ErrorNavigator {
   String? showError(dynamic error);
@@ -22,7 +22,8 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
       return null;
     } else if (error is NetworkError) {
       if (error.showInProduction) {
-        key = error.getLocalizedKey();
+        // key = error.getLocalizedKey();
+        key = 'TODO FIX THIS';
       } else if (FlavorConfig.instance.values.showFullErrorMessages) {
         final code = error.getErrorCode;
         if (code == null) {

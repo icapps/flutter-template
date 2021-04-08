@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
-import 'package:flutter_template/model/exceptions/network_error.dart';
-import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -20,12 +19,12 @@ class NetworkLogInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError err) async {
-    if (err is NetworkError) {
-      FlutterTemplateLogger.logNetworkError(err);
+  Future<Object?> onError(DioError error) async {
+    if (error is NetworkError) {
+      FlutterTemplateLogger.logNetworkError(error);
     } else {
-      FlutterTemplateLogger.logNetworkError(GeneralNetworkError(err));
+      FlutterTemplateLogger.logNetworkError(GeneralNetworkError(error));
     }
-    return super.onError(err);
+    return super.onError(error);
   }
 }

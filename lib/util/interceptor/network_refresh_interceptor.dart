@@ -1,5 +1,5 @@
-import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
@@ -30,19 +30,19 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError err) async {
-    final request = err.requestOptions;
+  Future<Object?> onError(DioError error) async {
+    final request = error.requestOptions;
     if (_excludedPaths.contains(request.path)) {
       FlutterTemplateLogger.logDebug('Network refresh interceptor should not intercept');
-      return super.onError(err);
+      return super.onError(error);
     }
 
-    if (err is! UnAuthorizedError) {
-      return super.onError(err);
+    if (error is! UnAuthorizedError) {
+      return super.onError(error);
     }
 
     FlutterTemplateLogger.logDebug('Refreshing');
-    await _refreshRepo.refresh(err);
+    await _refreshRepo.refresh(error);
 
     final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
     request.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
