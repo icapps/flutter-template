@@ -36,6 +36,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
+import 'mock/mock_todo_dao_storing.dart';
 import 'test_injectable.config.dart';
 
 final getIt = GetIt.instance;
@@ -157,28 +158,6 @@ abstract class RegisterModule {
   }
 }
 
-class MockTodoDaoStoring extends Mock implements TodoDaoStoring {
-  @override
-  Future<void> createTodoWithValue(Todo? todo) async {
-    noSuchMethod(Invocation.method(#createTodoWithValue, [todo]));
-  }
-
-  @override
-  Stream<List<DbTodo>> getAllTodosStream() {
-    // ignore: avoid_as
-    return noSuchMethod(Invocation.method(#getAllTodosStream, []), returnValue: Stream.value(<DbTodo>[])) as Stream<List<DbTodo>>;
-  }
-
-  @override
-  Future<void> createTodo(String todo) async {
-    noSuchMethod(Invocation.method(#createTodo, [todo]));
-  }
-
-  @override
-  Future<void> updateTodo({required int id, required bool completed}) async {
-    noSuchMethod(Invocation.method(#updateTodo, [id, completed]));
-  }
-}
 
 extension GetItExtension on GetIt {
   MockT resolveAs<T extends Object, MockT extends T>() {

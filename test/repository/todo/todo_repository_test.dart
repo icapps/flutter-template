@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
+import '../../di/mock/mock_todo_dao_storing.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
