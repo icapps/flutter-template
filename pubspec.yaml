@@ -8,19 +8,19 @@ environment:
 dependencies:
   connectivity: ^3.0.3
   device_info: ^2.0.0
-  dio: ^4.0.0-prev3
+  dio: ^4.0.0
   flutter:
     sdk: flutter
-  flutter_cache_manager: ^3.0.0-nullsafety.2
+  flutter_cache_manager: ^3.0.1
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^4.1.0
-  flutter_svg: ^0.21.0-nullsafety.0
+  flutter_svg: ^0.21.0+1
   get_it: ^6.0.0
   injectable: ^1.2.2
   json_annotation: ^4.0.1
-  mockito: ^5.0.2
-  moor: ^4.2.0
+  mockito: ^5.0.3
+  moor: ^4.2.1
   moor_db_viewer: ^3.0.0
   moor_inspector: ^0.2.0
   niddler_dart: ^1.0.0
@@ -37,16 +37,13 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
-  icapps_license: ^1.1.1
+  icapps_license: ^2.0.0
   icapps_translations: ^4.3.0
   injectable_generator: ^1.2.2
   json_serializable: ^4.1.0
   model_generator: ^4.1.0
-  moor_generator: ^4.2.0
-  retrofit_generator: ^2.0.0-beta2
-
-dependency_overrides:
-  source_gen: ^1.0.0
+  moor_generator: ^4.2.1
+  retrofit_generator: ^2.0.0-beta3
 
 flutter:
   uses-material-design: true
