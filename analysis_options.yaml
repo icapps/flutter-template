@@ -11,7 +11,6 @@ analyzer:
     - '**.g.dart'
     - '**.config.dart'
     - '**.mocks.dart'
-    - 'lib/util/locale/**'
     - 'lib/util/license.dart'
 
 linter:

@@ -10,8 +10,8 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
-import '../../mocks/database/todo/mock_todo_dao_storing.dart';
 import '../../di/test_injectable.dart';
+import '../../mocks/database/todo/mock_todo_dao_storing.dart';
 import '../../util/test_extensions.dart';
 
 void main() {

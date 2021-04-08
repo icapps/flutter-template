@@ -5,7 +5,6 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
-import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repo.dart';
@@ -34,9 +33,9 @@ import 'package:mockito/mockito.dart';
 import 'package:moor/ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../mocks/database/todo/mock_todo_dao_storing.dart';
 import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
-import '../mocks/database/todo/mock_todo_dao_storing.dart';
 import 'test_injectable.config.dart';
 
 final getIt = GetIt.instance;
