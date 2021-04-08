@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/util/extension/context_extensions.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class ThemeAssets {
   ThemeAssets._();
 
   static String _getIcon(BuildContext context, String name) {
-    if (context.isIOS) {
+    if (context.isIOSTheme) {
       return 'assets/images/icons/ios/$name.svg';
     }
     return 'assets/images/icons/android/$name.svg';

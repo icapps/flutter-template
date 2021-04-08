@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
-import 'package:flutter_template/widget/general/touch_feedback/touch_feedback.dart';
-import 'package:flutter_template/util/extension/context_extensions.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:flutter_template/util/extension/text_style_extensions.dart';
 
 class FlutterTemplateButton extends StatelessWidget {
@@ -31,7 +30,7 @@ class FlutterTemplateButton extends StatelessWidget {
         duration: ThemeDurations.shortAnimationDuration(),
       ),
     );
-    if (context.isIOS) {
+    if (context.isIOSTheme) {
       return TouchFeedBack(
         child: AnimatedContainer(
           height: height,
