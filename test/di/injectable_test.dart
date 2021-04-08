@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -37,7 +37,7 @@ import 'test_injectable.dart';
   SharedPrefsStoring,
   LocalStoring,
   TodoRepo,
-  ConnectivityControlling,
+  Connectivity,
   FlutterSecureStorage,
   SharedPreferences,
   Dio,

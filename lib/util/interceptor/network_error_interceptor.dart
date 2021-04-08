@@ -6,20 +6,19 @@ import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
 class NetworkErrorInterceptor extends SimpleInterceptor {
-  final ConnectivityControlling connectivityControlling;
+  final ConnectivityHelper connectivityHelper;
 
-  NetworkErrorInterceptor(this.connectivityControlling);
+  NetworkErrorInterceptor(this.connectivityHelper);
 
   @override
   Future<Object?> onRequest(RequestOptions options) async {
-    final hasConnection = await connectivityControlling.hasConnection();
+    final hasConnection = await connectivityHelper.hasConnection();
     if (!hasConnection) throw NoNetworkError();
     return super.onRequest(options);
   }
