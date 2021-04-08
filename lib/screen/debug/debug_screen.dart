@@ -8,9 +8,9 @@ import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
-import 'package:flutter_template/widget/general/responsive/responsive_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
