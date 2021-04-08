@@ -182,7 +182,7 @@ final removeCodeLines = [
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
   '  void goToAddTodo();',
   '''  @override
-  void goToAddTodo() => navigationKey.currentState.pushNamed(TodoAddScreen.routeName);
+  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
 ''',
   '''  @override
   void goToAddTodo() => widget.mock.goToAddTodo();
@@ -222,11 +222,15 @@ void seedTodoListViewModel() {
       ]));
   when(todoListViewModel.isLoading).thenReturn(false);
   when(todoListViewModel.errorKey).thenReturn(null);
+  // ignore: void_checks
+  when(todoListViewModel.onAddClicked()).thenReturn(1);
 }
 
 void seedTodoAddViewModel() {
   final todoAddViewModel = GetIt.I<TodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
+  // ignore: void_checks
+  when(todoAddViewModel.onBackClicked()).thenReturn(1);
 }''',
   '    seedTodoListViewModel();',
 ];
