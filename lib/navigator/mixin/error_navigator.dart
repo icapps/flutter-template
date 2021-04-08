@@ -22,8 +22,7 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
       return null;
     } else if (error is NetworkError) {
       if (error.showInProduction) {
-        // key = error.getLocalizedKey();
-        key = 'TODO FIX THIS';
+        key = error.getLocalizedKey();
       } else if (FlavorConfig.instance.values.showFullErrorMessages) {
         final code = error.getErrorCode;
         if (code == null) {
