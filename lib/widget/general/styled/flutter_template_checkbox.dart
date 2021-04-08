@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/util/extension/context_extensions.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -16,7 +16,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.isIOS) {
+    if (context.isIOSTheme) {
       return DataProviderWidget(
         childBuilderTheme: (context, theme) => GestureDetector(
           onTap: () => onChanged(!value),
