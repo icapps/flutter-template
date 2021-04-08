@@ -207,11 +207,7 @@ final removeCodeLines = [
   r'''  @singleton
   TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
 ''',
-  "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
-  "import '../mocks/repository/todo/mock_todo_repository.dart';",
-  "import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';",
-  "import '../mocks/webservice/todo/mock_todo_service.dart';",
-  "import '../mocks/viewmodel/todo/todo_list/mock_todo_list_viewmodel.dart';",
+  "import '../mocks/database/todo/mock_todo_dao_storing.dart';",
   "import '../todo/todo_list/todo_list_screen_test.dart';",
   '    verifyTodoListViewModel();',
   r'''
