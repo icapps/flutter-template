@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 import 'package:flutter_template/util/app_constants.dart';
-import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateLogger {
   static Function(Object obj) printToConsole = _wrappedPrint;

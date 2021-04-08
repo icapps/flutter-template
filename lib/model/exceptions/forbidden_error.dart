@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_template/model/exceptions/network_error.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class ForbiddenError extends NetworkError {
   static const statusCode = HttpStatus.forbidden;

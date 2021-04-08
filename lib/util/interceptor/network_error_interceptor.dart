@@ -7,8 +7,8 @@ import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
-import 'package:flutter_template/util/interceptor/combining_smart_interceptor.dart';
 import 'package:flutter_template/util/logger/flutter_template_logger.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -25,23 +25,23 @@ class NetworkErrorInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError? err) async {
+  Future<Object?> onError(DioError? error) async {
     try {
-      if (err == null) return CodeError();
-      if (err.error is NoNetworkError) return NoInternetError(err);
-      if (err.response == null) return CodeError();
-      final statusCode = err.response?.statusCode;
+      if (error == null) return CodeError();
+      if (error.error is NoNetworkError) return NoInternetError(error);
+      if (error.response == null) return CodeError();
+      final statusCode = error.response?.statusCode;
       switch (statusCode) {
         case UnAuthorizedError.statusCode:
-          return UnAuthorizedError(err);
+          return UnAuthorizedError(error);
         case BadRequestError.statusCode:
-          return BadRequestError.parseError(err);
+          return BadRequestError.parseError(error);
         case ForbiddenError.statusCode:
-          return ForbiddenError.parseError(err);
+          return ForbiddenError.parseError(error);
         case InternalServerError.statusCode:
-          return InternalServerError(err);
+          return InternalServerError(error);
         default:
-          return GeneralNetworkError(err);
+          return GeneralNetworkError(error);
       }
     } catch (e) {
       FlutterTemplateLogger.logError(message: 'Failed to get correct error', error: e);
