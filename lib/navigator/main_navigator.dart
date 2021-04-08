@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
-import 'package:flutter_template/util/route/fade_in_route.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_db_viewer/moor_db_viewer.dart';
 
