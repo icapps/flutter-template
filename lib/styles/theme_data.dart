@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
@@ -18,8 +19,7 @@ class FlutterTemplateThemeData {
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
         TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(),
-        TargetPlatform.android:
-        BaseThemeData.getCorrectPageTransitionBuilder(OsInfo.instance),
+        TargetPlatform.android: isInTest ? const FadeUpwardsPageTransitionsBuilder() : BaseThemeData.getCorrectPageTransitionBuilder(OsInfo.instance),
       },
     ),
   );

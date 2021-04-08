@@ -1,3 +1,0 @@
-mixin FlutterTemplateError {
-  String getLocalizedKey();
-}
