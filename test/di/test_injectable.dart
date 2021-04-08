@@ -36,7 +36,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
-import 'mock/mock_todo_dao_storing.dart';
+import '../mocks/database/todo/mock_todo_dao_storing.dart';
 import 'test_injectable.config.dart';
 
 final getIt = GetIt.instance;

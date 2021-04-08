@@ -231,9 +231,6 @@ final removeDirectories = [
   'test/webservice/todo',
   'test/widget/todo',
   'test/mocks/database/todo',
-  'test/mocks/repository/todo',
-  'test/mocks/viewmodel/todo',
-  'test/mocks/webservice/todo',
 ];
 
 final removeFiles = [
