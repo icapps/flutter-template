@@ -188,6 +188,25 @@ final removeCodeLines = [
   void goToAddTodo() => widget.mock.goToAddTodo();
 ''',
   //Test Lines
+  '  TodoRepo,',
+  '  TodoService,',
+  '  TodoAddViewModel,',
+  '  TodoListViewModel,',
+  r'''  @singleton
+  TodoDaoStoring get getTodoDaoStoring => MockTodoDaoStoring();
+''',
+  r'''  @singleton
+  TodoRepo get getTodoRepo => MockTodoRepo();
+''',
+  r'''  @singleton
+  TodoService get getTodoService => MockTodoService();
+''',
+  r'''  @singleton
+  TodoAddViewModel get getTodoAddViewModel => _initVM(MockTodoAddViewModel());
+''',
+  r'''  @singleton
+  TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
+''',
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   "import '../mocks/repository/todo/mock_todo_repository.dart';",
   "import '../mocks/viewmodel/todo/todo_add/mock_todo_add_viewmodel.dart';",
