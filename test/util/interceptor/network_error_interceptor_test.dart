@@ -7,18 +7,18 @@ import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 import '../../di/test_injectable.dart';
 
 void main() {
   late NetworkErrorInterceptor sut;
-  late ConnectivityControlling connectivityController;
+  late ConnectivityHelper connectivityController;
 
   setUp(() async {
     await initTestInjectable();

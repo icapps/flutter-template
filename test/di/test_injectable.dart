@@ -15,7 +15,6 @@ import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
 import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_template/repository/todo/todo_repo.dart';
-import 'package:flutter_template/util/connectivity/connectivity_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
@@ -28,6 +27,7 @@ import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.da
 import 'package:flutter_template/webservice/todo/todo_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 import 'package:moor/ffi.dart';
@@ -103,7 +103,7 @@ abstract class RegisterModule {
   TodoRepo get getTodoRepo => MockTodoRepo();
 
   @singleton
-  ConnectivityControlling get getConnectivityControlling => MockConnectivityControlling();
+  ConnectivityHelper get getConnectivityControlling => ConnectivityHelper(connectivityProvider: () => MockConnectivity());
 
   @singleton
   FlutterSecureStorage get getFlutterSecureStorage => MockFlutterSecureStorage();
@@ -156,7 +156,6 @@ abstract class RegisterModule {
     return viewModel;
   }
 }
-
 
 extension GetItExtension on GetIt {
   MockT resolveAs<T extends Object, MockT extends T>() {

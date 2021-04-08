@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -50,6 +49,9 @@ abstract class RegisterModule {
   }
 
   @singleton
+  ConnectivityHelper connectivityHelper() => ConnectivityHelper();
+
+  @singleton
   @preResolve
   Future<DatabaseConnection> provideDatabaseConnection() async {
     if (FlavorConfig.isInTest()) {
@@ -76,9 +78,6 @@ abstract class RegisterModule {
 
   @singleton
   FlutterSecureStorage storage() => const FlutterSecureStorage();
-
-  @singleton
-  Connectivity connectivity() => Connectivity();
 
   @singleton
   QueryExecutor executor() => VmDatabase.memory();
