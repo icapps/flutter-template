@@ -419,7 +419,7 @@ packages:
       name: icapps_architecture
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   icapps_license:
     dependency: "direct dev"
     description:
@@ -559,7 +559,7 @@ packages:
       name: moor_db_viewer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   moor_generator:
     dependency: "direct dev"
     description:

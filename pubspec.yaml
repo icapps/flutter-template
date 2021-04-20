@@ -17,12 +17,12 @@ dependencies:
   flutter_secure_storage: ^4.1.0
   flutter_svg: ^0.21.0+1
   get_it: ^6.0.0
-  icapps_architecture: ^0.2.0
+  icapps_architecture: ^0.2.1
   injectable: ^1.2.2
   json_annotation: ^4.0.1
   mockito: ^5.0.3
   moor: ^4.2.1
-  moor_db_viewer: ^3.0.0
+  moor_db_viewer: ^3.0.1
   moor_inspector: ^0.2.0
   niddler_dart: ^1.0.0
   path: ^1.8.0
