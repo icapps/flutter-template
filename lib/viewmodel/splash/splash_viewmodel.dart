@@ -11,15 +11,11 @@ class SplashViewModel with ChangeNotifierEx {
   SplashViewModel(this._loginRepo, this._localStorage);
 
   Future<void> init(SplashNavigator navigator) async {
-    print('Checking for new installation');
     await _localStorage.checkForNewInstallation();
-    print('Checking if logged in');
     final result = await _loginRepo.isLoggedIn();
     if (result) {
-      print('Going to home');
       navigator.goToHome();
     } else {
-      print('Going to login');
       navigator.goToLogin();
     }
   }
