@@ -17,7 +17,6 @@ class DummyApiUtil {
 
       final jsonString = await rootBundle.loadString(path);
       staticLogger.debug('<--------------- GET - url: file://$path - statucode: 200');
-      // ignore: avoid_as
       return json.decode(jsonString) as T;
     } catch (e, stack) {
       staticLogger.error(

@@ -18,7 +18,7 @@ dependencies:
   flutter_secure_storage: ^4.1.0
   flutter_svg: ^0.22.0
   get_it: ^7.2.0
-  icapps_architecture: ^0.4.0
+  icapps_architecture: ^0.4.2
   injectable: ^1.4.1
   json_annotation: ^4.1.0
   moor: ^4.2.1

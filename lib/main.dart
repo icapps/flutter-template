@@ -25,6 +25,7 @@ Future<void> main() async {
     print('Starting app from main.dart');
     await configureDependencies(Environments.DEV);
     await addDatabaseInspector();
+
     runApp(MyApp());
   }, enableCrashLogging: false);
 }

@@ -1,8 +1,9 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-abstract class SecureStorage {
+abstract class SecureStorage implements SimpleKeyValueStorage {
   @factoryMethod
   factory SecureStorage(FlutterSecureStorage storage) = _SecureStorage;
 
@@ -38,4 +39,16 @@ class _SecureStorage implements SecureStorage {
 
   @override
   Future<bool> containsKey({required String key}) => _storage.containsKey(key: key, iOptions: iOSOptions);
+
+  @override
+  Future<String?> getValue({required String key}) => read(key: key);
+
+  @override
+  Future<bool> hasValue({required String key}) => containsKey(key: key);
+
+  @override
+  Future<void> removeValue({required String key}) => delete(key: key);
+
+  @override
+  Future<void> setValue({required String key, required String value}) => write(key: key, value: value);
 }
