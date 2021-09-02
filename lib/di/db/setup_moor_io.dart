@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 
 Future<DatabaseConnection> createMoorDatabaseConnection(String name) async {
   if (FlavorConfig.isInTest()) {
-    moorRuntimeOptions.dontWarnAboutMultipleDatabases = true; // This method is called every test :-/ TODO: figure out how to stop
     return DatabaseConnection.fromExecutor(VmDatabase.memory());
   }
   final dbFolder = await getApplicationDocumentsDirectory();

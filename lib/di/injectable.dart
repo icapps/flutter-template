@@ -46,9 +46,7 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) {
-    return SharedPreferenceStorage(preferences);
-  }
+  SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);
 
   @singleton
   ConnectivityHelper connectivityHelper() => ConnectivityHelper();

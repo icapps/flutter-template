@@ -32,6 +32,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
 import 'package:moor/ffi.dart';
+import 'package:moor/moor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../mocks/database/todo/mock_todo_dao_storage.dart';
@@ -50,6 +51,8 @@ final getIt = GetIt.instance;
   generateForDir: ['test'],
 )
 Future<void> initTestInjectable() async {
+  moorRuntimeOptions.dontWarnAboutMultipleDatabases = true;
+
   localizationLookup = getLocale;
   themeLookup = getTheme;
   await getIt.reset();
