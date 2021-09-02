@@ -8,6 +8,8 @@ environment:
 dependencies:
   device_info: ^2.0.0
   dio: ^4.0.0
+  firebase_core: ^1.6.0
+  firebase_crashlytics: ^2.2.1
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.0.1
@@ -25,6 +27,7 @@ dependencies:
   niddler_dart: ^1.0.0
   path: ^1.8.0
   path_provider: ^2.0.1
+  pedantic: ^1.11.1
   provider: ^6.0.0
   retrofit: ^2.0.0-beta1
   scroll_when_needed: ^2.0.0
