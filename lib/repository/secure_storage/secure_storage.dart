@@ -1,14 +1,28 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: SecureStoring)
-class SecureStorage extends SecureStoring {
+@lazySingleton
+abstract class SecureStorage {
+  @factoryMethod
+  factory SecureStorage(FlutterSecureStorage storage) = _SecureStorage;
+
+  Future<void> deleteAll();
+
+  Future<void> write({required String key, required String value});
+
+  Future<String?> read({required String key});
+
+  Future<void> delete({required String key});
+
+  Future<bool> containsKey({required String key});
+}
+
+class _SecureStorage implements SecureStorage {
   final FlutterSecureStorage _storage;
 
   final iOSOptions = const IOSOptions(accessibility: IOSAccessibility.unlocked);
 
-  SecureStorage(this._storage);
+  _SecureStorage(this._storage);
 
   @override
   Future<void> deleteAll() => _storage.deleteAll(iOptions: iOSOptions);

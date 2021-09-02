@@ -1,6 +1,5 @@
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
+import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
-import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/webservice/todo/todo_service.dart';
@@ -11,18 +10,18 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
-import '../../mocks/database/todo/mock_todo_dao_storing.dart';
+import '../../mocks/database/todo/mock_todo_dao_storage.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late MockTodoService todoService;
-  late MockTodoDaoStoring todoDao;
-  late TodoRepo sut;
+  late MockTodoDaoStorage todoDao;
+  late TodoRepository sut;
 
   setUp(() async {
     await initTestInjectable();
     todoService = GetIt.I.resolveAs<TodoService, MockTodoService>();
-    todoDao = GetIt.I.resolveAs<TodoDaoStoring, MockTodoDaoStoring>();
+    todoDao = GetIt.I.resolveAs<TodoDaoStorage, MockTodoDaoStorage>();
     sut = TodoRepository(todoService, todoDao);
   });
 

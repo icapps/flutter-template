@@ -17,7 +17,7 @@ class FlutterTemplateDatabase extends _$FlutterTemplateDatabase {
   Future<void> deleteAllData() {
     return transaction(() async {
       for (final table in allTables) {
-        await delete(table).go();
+        await delete<Table,dynamic>(table).go();
       }
     });
   }

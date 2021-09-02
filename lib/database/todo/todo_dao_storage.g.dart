@@ -6,6 +6,6 @@ part of 'todo_dao_storage.dart';
 // DaoGenerator
 // **************************************************************************
 
-mixin _$TodoDaoStorageMixin on DatabaseAccessor<FlutterTemplateDatabase> {
+mixin _$_TodoDaoStorageMixin on DatabaseAccessor<FlutterTemplateDatabase> {
   $DbTodoTableTable get dbTodoTable => attachedDatabase.dbTodoTable;
 }

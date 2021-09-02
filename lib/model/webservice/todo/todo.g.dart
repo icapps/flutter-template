@@ -7,7 +7,10 @@ part of 'todo.dart';
 // **************************************************************************
 
 Todo _$TodoFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, requiredKeys: const ['title', 'completed']);
+  $checkKeys(
+    json,
+    requiredKeys: const ['title', 'completed'],
+  );
   return Todo(
     title: json['title'] as String,
     completed: json['completed'] as bool,

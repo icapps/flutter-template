@@ -1,6 +1,5 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -9,7 +8,7 @@ import '../../di/test_injectable.dart';
 
 void main() {
   late FlutterTemplateDatabase database;
-  late TodoDaoStoring sut;
+  late TodoDaoStorage sut;
 
   setUp(() async {
     await initTestInjectable();

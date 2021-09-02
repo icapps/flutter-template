@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_template/repository/locale/locale_repo.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  late SharedPrefsStoring shardPrefs;
-  late LocaleRepo sut;
+  late SharedPreferenceStorage shardPrefs;
+  late LocaleRepository sut;
 
   setUp(() async {
     await initTestInjectable();

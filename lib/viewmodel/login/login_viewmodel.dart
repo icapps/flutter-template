@@ -1,12 +1,12 @@
-import 'package:flutter_template/repository/login/login_repo.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/repository/login/login_repository.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class LoginViewModel with ChangeNotifierEx {
-  final LoginRepo _loginRepo;
+  final LoginRepository _loginRepo;
   late LoginNavigator _navigator;
 
   var _isLoading = false;

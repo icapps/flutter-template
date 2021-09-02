@@ -1,5 +1,5 @@
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
-import 'package:flutter_template/repository/login/login_repo.dart';
+import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,12 +13,12 @@ import '../../util/test_extensions.dart';
 
 void main() {
   late LoginViewModel sut;
-  late MockLoginRepo loginRepo;
+  late MockLoginRepository loginRepo;
   late MockLoginNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I.resolveAs<LoginRepo, MockLoginRepo>();
+    loginRepo = GetIt.I.resolveAs<LoginRepository, MockLoginRepository>();
     navigator = MockLoginNavigator();
     sut = LoginViewModel(loginRepo);
   });

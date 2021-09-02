@@ -1,18 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_template/repository/debug/debug_repo.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: DebugRepo)
-class DebugRepository extends DebugRepo {
+@lazySingleton
+abstract class DebugRepository {
+  @factoryMethod
+  factory DebugRepository(SharedPreferenceStorage sharedPrefs) = _DebugRepository;
+
+  Future<void> saveSlowAnimations({required bool enabled});
+
+  bool isSlowAnimationsEnabled();
+
+  Future<void> saveSelectedPlatform(String? selectedPlatform);
+
+  TargetPlatform? getTargetPlatform();
+}
+
+class _DebugRepository implements DebugRepository {
   static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
   static const _KEY_SELECTED_PLATFORM = 'selected_platform';
 
-  final SharedPrefsStoring _sharedPrefs;
+  final SharedPreferenceStorage _sharedPrefs;
 
-  DebugRepository(this._sharedPrefs);
+  _DebugRepository(this._sharedPrefs);
 
   @override
   Future<void> saveSlowAnimations({required bool enabled}) async {

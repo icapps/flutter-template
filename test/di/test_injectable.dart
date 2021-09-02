@@ -2,19 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
+import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:flutter_template/repository/debug/debug_repo.dart';
-import 'package:flutter_template/repository/locale/locale_repo.dart';
-import 'package:flutter_template/repository/login/login_repo.dart';
-import 'package:flutter_template/repository/refresh/refresh_repo.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
-import 'package:flutter_template/repository/secure_storage/secure_storing.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
-import 'package:flutter_template/repository/todo/todo_repo.dart';
+import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/locale/locale_repository.dart';
+import 'package:flutter_template/repository/login/login_repository.dart';
+import 'package:flutter_template/repository/refresh/refresh_repository.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
+import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
@@ -35,7 +34,7 @@ import 'package:mockito/mockito.dart';
 import 'package:moor/ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../mocks/database/todo/mock_todo_dao_storing.dart';
+import '../mocks/database/todo/mock_todo_dao_storage.dart';
 import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
 import 'test_injectable.config.dart';
@@ -81,34 +80,34 @@ abstract class RegisterModule {
   FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(VmDatabase.memory());
 
   @singleton
-  TodoDaoStoring get getTodoDaoStoring => MockTodoDaoStoring();
+  TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();
 
   @singleton
-  DebugRepo get getDebugRepo => MockDebugRepo();
+  DebugRepository get getDebugRepo => MockDebugRepository();
 
   @singleton
-  LocaleRepo get getLocaleRepo => MockLocaleRepo();
+  LocaleRepository get getLocaleRepo => MockLocaleRepository();
 
   @singleton
-  LoginRepo get getLoginRepo => MockLoginRepo();
+  LoginRepository get getLoginRepo => MockLoginRepository();
 
   @singleton
-  RefreshRepo get getRefreshRepo => MockRefreshRepo();
+  RefreshRepository get getRefreshRepo => MockRefreshRepository();
 
   @singleton
-  SecureStoring get getSecureStoring => MockSecureStoring();
+  SecureStorage get getSecureStoring => MockSecureStorage();
 
   @singleton
-  AuthStoring get getAuthStoring => MockAuthStoring();
+  AuthStorage get getAuthStoring => MockAuthStorage();
 
   @singleton
-  SharedPrefsStoring get getSharedPrefsStoring => MockSharedPrefsStoring();
+  SharedPreferenceStorage get getSharedPrefsStoring => MockSharedPreferenceStorage();
 
   @singleton
-  LocalStoring get getLocalStoring => MockLocalStoring();
+  LocalStorage get getLocalStoring => MockLocalStorage();
 
   @singleton
-  TodoRepo get getTodoRepo => MockTodoRepo();
+  TodoRepository get getTodoRepo => MockTodoRepository();
 
   @singleton
   ConnectivityHelper get getConnectivityControlling => ConnectivityHelper(connectivityProvider: () => MockConnectivity());

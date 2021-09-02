@@ -1,18 +1,31 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/repository/refresh/refresh_repo.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:synchronized/synchronized.dart' as synchronized;
 
-@Singleton(as: RefreshRepo)
-class RefreshRepository extends RefreshRepo {
-  final AuthStoring _authStoring;
+@lazySingleton
+abstract class RefreshRepository {
+  @factoryMethod
+  factory RefreshRepository(AuthStorage storage) = _RefreshRepository;
+
+  Future<void> refresh(DioError err);
+
+  void resetFailure();
+
+  VoidCallback? logoutCallback;
+}
+
+class _RefreshRepository implements RefreshRepository {
+  final AuthStorage _authStorage;
   final _lock = synchronized.Lock();
   bool _failure = false;
 
-  RefreshRepository(this._authStoring);
+  @override
+  VoidCallback? logoutCallback;
+
+  _RefreshRepository(this._authStorage);
 
   @override
   void resetFailure() {
@@ -20,10 +33,10 @@ class RefreshRepository extends RefreshRepo {
   }
 
   @override
-  Future refresh(DioError err) async {
-    final accessToken = await _authStoring.getAccessToken();
+  Future<void> refresh(DioError err) async {
+    final accessToken = await _authStorage.getAccessToken();
     await _lock.synchronized(() async {
-      final newAccessToken = await _authStoring.getAccessToken();
+      final newAccessToken = await _authStorage.getAccessToken();
       if (accessToken != newAccessToken) {
         logger.debug('ACCESS TOKEN was already renewed');
         return;
@@ -32,7 +45,7 @@ class RefreshRepository extends RefreshRepo {
         throw UnAuthorizedError(err);
       }
       try {
-        await _authStoring.getRefreshToken();
+        await _authStorage.getRefreshToken();
         // TODO implement refresh call
         // await _authStoring.saveRefreshToken(refreshToken: result.refreshToken, accessToken: result.accessToken);
         throw UnimplementedError('No implementatino for the refresh in the refresh repository');
@@ -40,7 +53,7 @@ class RefreshRepository extends RefreshRepo {
         _failure = true;
         final logoutCb = logoutCallback;
         if (logoutCb != null) {
-          await _authStoring.clear();
+          await _authStorage.clear();
           logoutCb.call();
         }
         rethrow;

@@ -1,4 +1,4 @@
-import 'package:flutter_template/repository/debug/debug_repo.dart';
+import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -10,7 +10,7 @@ import '../../util/test_extensions.dart';
 void main() {
   late DebugViewModel sut;
   late DebugNavigator navigator;
-  late DebugRepo debugRepo;
+  late DebugRepository debugRepo;
 
   setUp(() async {
     await initTestInjectable();

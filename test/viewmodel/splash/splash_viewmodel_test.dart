@@ -1,5 +1,5 @@
-import 'package:flutter_template/repository/login/login_repo.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storing.dart';
+import 'package:flutter_template/repository/login/login_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -11,15 +11,15 @@ import '../../util/test_extensions.dart';
 
 void main() {
   late SplashViewModel sut;
-  late MockLoginRepo loginRepo;
-  late LocalStoring localStorage;
+  late MockLoginRepository loginRepo;
+  late LocalStorage localStorage;
   late SplashNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I.resolveAs<LoginRepo, MockLoginRepo>();
+    loginRepo = GetIt.I.resolveAs<LoginRepository, MockLoginRepository>();
     navigator = MockSplashNavigator();
-    localStorage = MockLocalStoring();
+    localStorage = MockLocalStorage();
     sut = SplashViewModel(loginRepo, localStorage);
   });
 

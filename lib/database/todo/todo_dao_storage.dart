@@ -1,5 +1,4 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:injectable/injectable.dart';
@@ -7,12 +6,29 @@ import 'package:moor/moor.dart';
 
 part 'todo_dao_storage.g.dart';
 
-@Singleton(as: TodoDaoStoring)
+@lazySingleton
+abstract class TodoDaoStorage {
+
+  @factoryMethod
+  factory TodoDaoStorage(FlutterTemplateDatabase db) = _TodoDaoStorage;
+
+  Stream<List<DbTodo>> getAllTodosStream();
+
+  Future<List<DbTodo>> getAllTodos();
+
+  Future<void> createTodo(String todo);
+
+  Future<void> createTodoWithValue(Todo todo);
+
+  Future<void> updateTodo({required int id, required bool completed});
+}
+
 @UseDao(tables: [
   DbTodoTable,
 ])
-class TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$TodoDaoStorageMixin implements TodoDaoStoring {
-  TodoDaoStorage(FlutterTemplateDatabase db) : super(db);
+class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_TodoDaoStorageMixin implements TodoDaoStorage {
+
+  _TodoDaoStorage(FlutterTemplateDatabase db) : super(db);
 
   @override
   Future<List<DbTodo>> getAllTodos() => select(db.dbTodoTable).get();

@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_template/repository/debug/debug_repo.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -11,12 +10,12 @@ import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
-  late MockSharedPrefsStoring shardPrefs;
-  late DebugRepo sut;
+  late MockSharedPreferenceStorage shardPrefs;
+  late DebugRepository sut;
 
   setUp(() async {
     await initTestInjectable();
-    shardPrefs = GetIt.I.resolveAs<SharedPrefsStoring, MockSharedPrefsStoring>();
+    shardPrefs = GetIt.I.resolveAs<SharedPreferenceStorage, MockSharedPreferenceStorage>();
     sut = DebugRepository(shardPrefs);
 
     when(shardPrefs.getBoolean(any)).thenReturn(false);

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/repository/refresh/refresh_repo.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
+import 'package:flutter_template/repository/refresh/refresh_repository.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -13,14 +13,14 @@ import '../../util/test_extensions.dart';
 
 void main() {
   late NetworkRefreshInterceptor sut;
-  late MockAuthStoring authStorage;
-  late MockRefreshRepo refreshRepo;
+  late MockAuthStorage authStorage;
+  late MockRefreshRepository refreshRepo;
   late MockDio dio;
 
   setUp(() async {
     await initTestInjectable();
-    authStorage = GetIt.I.resolveAs<AuthStoring, MockAuthStoring>();
-    refreshRepo = GetIt.I.resolveAs<RefreshRepo, MockRefreshRepo>();
+    authStorage = GetIt.I.resolveAs<AuthStorage, MockAuthStorage>();
+    refreshRepo = GetIt.I.resolveAs<RefreshRepository, MockRefreshRepository>();
     dio = GetIt.I.resolveAs<Dio, MockDio>();
     sut = NetworkRefreshInterceptor(authStorage, refreshRepo);
   });
