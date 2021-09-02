@@ -1,8 +1,6 @@
 import 'package:flutter_template/repository/debug/debug_repository.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter_template/bridge/logging/logging_bridging.dart';
 
 @injectable
 class DebugViewModel with ChangeNotifierEx {
@@ -35,10 +33,6 @@ class DebugViewModel with ChangeNotifierEx {
   void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
 
   void onLicensesClicked() => _navigator.goToLicenses();
-
-  void onLogNativeBridge() {
-    GetIt.instance.get<LoggingBridging>().log('TEST From the debug screen.');
-  }
 }
 
 abstract class DebugNavigator {

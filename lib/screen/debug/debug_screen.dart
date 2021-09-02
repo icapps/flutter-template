@@ -70,13 +70,6 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
                 title: localization.debugLicensesGoTo,
                 onClick: viewModel.onLicensesClicked,
               ),
-              DebugRowTitle(
-                title: localization.debugNativeBridge,
-              ),
-              DebugRowItem(
-                title: localization.debugNativeBridgeLog,
-                onClick: viewModel.onLogNativeBridge,
-              ),
               DebugRowTitle(title: localization.debugDatabase),
               DebugRowItem(
                 key: Keys.debugDatabase,
