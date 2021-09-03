@@ -1,8 +1,9 @@
 #!/bin/bash
 
-regex='"flutterSdkVersion": "(.*)"'
+regex='"flutterSdkVersion": "(.*)",'
 version=""
 
+flutter pub global activate fvm
 fvmFlutterConfig=`cat .fvm/fvm_config.json`
 
 if [[ $fvmFlutterConfig =~ $regex ]]; then
@@ -18,8 +19,8 @@ fi
 echo "Removing the old flutter sdk reference"
 rm .fvm/flutter_sdk
 
-echo "fvm version"
-fvm version
+echo "fvm --version"
+fvm --version
 
 echo "fvm install $version"
 fvm install $version
@@ -31,5 +32,5 @@ fi
 echo "fvm use $version"
 fvm use $version
 
-echo "fvm flutter doctor -v"
-fvm flutter doctor -v
+echo "fvm flutter pub get"
+fvm flutter pub get
