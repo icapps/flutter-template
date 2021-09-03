@@ -140,7 +140,6 @@ void _renameAndroidPackageName(String androidPackageName) {
 }
 
 void _deleteOldKotlinFiles(String androidPackageName) {
-  Directory('android/app/src/main/kotlin/$originalAndroidFolderPath/bridge').deleteSync();
   if (androidPackageName.startsWith('com.icapps')) {
     Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
@@ -370,10 +369,6 @@ void _renameKotlinFile(String path, String newPackageName) {
   final newFolder = Directory('android/app/src/main/kotlin/$newPathFolder');
   if (!newFolder.existsSync()) {
     newFolder.createSync(recursive: true);
-  }
-  final bridgeFolder = Directory('android/app/src/main/kotlin/$newPathFolder/bridge');
-  if (!bridgeFolder.existsSync()) {
-    bridgeFolder.createSync(recursive: true);
   }
   File(path)
     ..copySync(newPath)
