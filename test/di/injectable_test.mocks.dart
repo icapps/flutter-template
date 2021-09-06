@@ -196,6 +196,25 @@ class MockSecureStorage extends _i1.Mock implements _i11.SecureStorage {
           returnValue: Future<bool>.value(false)) as _i6.Future<bool>);
   @override
   String toString() => super.toString();
+  @override
+  _i6.Future<String?> getValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#getValue, [], {#key: key}),
+          returnValue: Future<String?>.value()) as _i6.Future<String?>);
+  @override
+  _i6.Future<void> setValue({String? key, String? value}) =>
+      (super.noSuchMethod(
+          Invocation.method(#setValue, [], {#key: key, #value: value}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  @override
+  _i6.Future<bool> hasValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#hasValue, [], {#key: key}),
+          returnValue: Future<bool>.value(false)) as _i6.Future<bool>);
+  @override
+  _i6.Future<void> removeValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#removeValue, [], {#key: key}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
 }
 
 /// A class which mocks [AuthStorage].
@@ -289,6 +308,25 @@ class MockSharedPreferenceStorage extends _i1.Mock
           returnValue: false) as bool);
   @override
   String toString() => super.toString();
+  @override
+  _i6.Future<String?> getValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#getValue, [], {#key: key}),
+          returnValue: Future<String?>.value()) as _i6.Future<String?>);
+  @override
+  _i6.Future<void> setValue({String? key, String? value}) =>
+      (super.noSuchMethod(
+          Invocation.method(#setValue, [], {#key: key, #value: value}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  @override
+  _i6.Future<bool> hasValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#hasValue, [], {#key: key}),
+          returnValue: Future<bool>.value(false)) as _i6.Future<bool>);
+  @override
+  _i6.Future<void> removeValue({String? key}) =>
+      (super.noSuchMethod(Invocation.method(#removeValue, [], {#key: key}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
 }
 
 /// A class which mocks [LocalStorage].
@@ -998,10 +1036,6 @@ class MockDebugViewModel extends _i1.Mock implements _i22.DebugViewModel {
   @override
   void onLicensesClicked() =>
       super.noSuchMethod(Invocation.method(#onLicensesClicked, []),
-          returnValueForMissingStub: null);
-  @override
-  void onLogNativeBridge() =>
-      super.noSuchMethod(Invocation.method(#onLogNativeBridge, []),
           returnValueForMissingStub: null);
   @override
   String toString() => super.toString();

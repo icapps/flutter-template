@@ -1,7 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:moor_inspector/moor_inspector.dart';
-import 'package:flutter/foundation.dart';
 
 Future<void> addDatabaseInspector() async {
   if (!kDebugMode) return;
@@ -18,5 +18,5 @@ Future<void> addDatabaseInspector() async {
   await inspector.start();
 
   // ignore: avoid_print
-  print('Starting moor inspector');
+  print('Started moor inspector');
 }

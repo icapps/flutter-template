@@ -4,13 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/architecture.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:pedantic/pedantic.dart';
 
 Future<void> _setupCrashLogging({required bool enabled}) async {
-  await Firebase.initializeApp();
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(enabled);
-  unawaited(FirebaseCrashlytics.instance.sendUnsentReports());
+  if (enabled) {
+    await Firebase.initializeApp();
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(enabled);
+    unawaited(FirebaseCrashlytics.instance.sendUnsentReports());
+  }
 
   final originalOnError = FlutterError.onError;
   FlutterError.onError = (errorDetails) async {

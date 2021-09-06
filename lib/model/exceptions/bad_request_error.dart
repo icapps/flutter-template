@@ -21,7 +21,7 @@ class BadRequestError extends NetworkError {
   static NetworkError parseError(DioError err) {
     final dynamic data = err.response?.data;
     if (data == null || data == '') return BadRequestError(err);
-    final code = data['code'] as String; // ignore: avoid_as
+    final code = data['code'] as String;
     switch (code) {
       default:
         return BadRequestError(err);

@@ -9,13 +9,13 @@ const originalAppName = 'Flutter Template';
 const originalDescription = 'A Flutter Template to get started quickly';
 
 void main() {
-  Logger.info('Enter name Application:');
+  Logger.info('Enter application name (eg: My Cool App):');
   final appName = stdin.readLineSync();
   Logger.info('Enter description for the pubspec.yaml:');
   final description = stdin.readLineSync();
-  Logger.info('Enter Dart Package Name:');
+  Logger.info('Enter Dart Package Name (eg: my_cool_app):');
   final dartPackageName = stdin.readLineSync();
-  Logger.info('Enter Dart Class Name Prefix:');
+  Logger.info('Enter Dart Class Name Prefix (eg: MCA):');
   final classNamePrefix = stdin.readLineSync();
 
   String? androidPackageName;
@@ -140,7 +140,6 @@ void _renameAndroidPackageName(String androidPackageName) {
 }
 
 void _deleteOldKotlinFiles(String androidPackageName) {
-  Directory('android/app/src/main/kotlin/$originalAndroidFolderPath/bridge').deleteSync();
   if (androidPackageName.startsWith('com.icapps')) {
     Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
@@ -293,6 +292,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.dart_tool/')) return false;
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
+    if (element.path.startsWith('./.DS_STORE')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
@@ -314,6 +314,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.idea/')) return false;
     if (element.path.startsWith('./.dart_tool/')) return false;
     if (element.path.startsWith('./.fvm/')) return false;
+    if (element.path.startsWith('./.DS_STORE')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('lcov.info')) return false;
@@ -368,10 +369,6 @@ void _renameKotlinFile(String path, String newPackageName) {
   final newFolder = Directory('android/app/src/main/kotlin/$newPathFolder');
   if (!newFolder.existsSync()) {
     newFolder.createSync(recursive: true);
-  }
-  final bridgeFolder = Directory('android/app/src/main/kotlin/$newPathFolder/bridge');
-  if (!bridgeFolder.existsSync()) {
-    bridgeFolder.createSync(recursive: true);
   }
   File(path)
     ..copySync(newPath)
