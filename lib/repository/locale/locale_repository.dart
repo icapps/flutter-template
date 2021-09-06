@@ -1,15 +1,23 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_template/repository/locale/locale_repo.dart';
-import 'package:flutter_template/repository/shared_prefs/shared_prefs_storing.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: LocaleRepo)
-class LocaleRepository extends LocaleRepo {
+@lazySingleton
+abstract class LocaleRepository {
+  @factoryMethod
+  factory LocaleRepository(SharedPreferenceStorage preferences) = _LocaleRepository;
+
+  Future<void> setCustomLocale(Locale? locale);
+
+  Locale? getCustomLocale();
+}
+
+class _LocaleRepository implements LocaleRepository {
   static const _STORE_LOCALE = 'locale';
 
-  final SharedPrefsStoring _sharedPrefs;
+  final SharedPreferenceStorage _sharedPrefs;
 
-  LocaleRepository(this._sharedPrefs);
+  _LocaleRepository(this._sharedPrefs);
 
   @override
   Future<void> setCustomLocale(Locale? locale) async {

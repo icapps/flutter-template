@@ -1,12 +1,12 @@
-import 'package:flutter_template/repository/todo/todo_repo.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class TodoAddViewModel with ChangeNotifierEx {
-  final TodoRepo todoRepo;
+  final TodoRepository todoRepo;
   late TodoAddNavigator _navigator;
   String? _todo;
 

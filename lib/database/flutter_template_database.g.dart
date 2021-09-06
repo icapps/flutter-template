@@ -15,14 +15,12 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   factory DbTodo.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    final intType = db.typeSystem.forDartType<int>();
-    final stringType = db.typeSystem.forDartType<String>();
-    final boolType = db.typeSystem.forDartType<bool>();
     return DbTodo(
-      id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      title:
-          stringType.mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
-      completed: boolType
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      title: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
+      completed: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}completed'])!,
     );
   }
@@ -81,7 +79,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   int get hashCode =>
       $mrjf($mrjc(id.hashCode, $mrjc(title.hashCode, completed.hashCode)));
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is DbTodo &&
           other.id == this.id &&
@@ -102,7 +100,7 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
     this.id = const Value.absent(),
     required String title,
     required bool completed,
-  })   : title = Value(title),
+  })  : title = Value(title),
         completed = Value(completed);
   static Insertable<DbTodo> custom({
     Expression<int>? id,
@@ -157,43 +155,27 @@ class $DbTodoTableTable extends DbTodoTable
   final String? _alias;
   $DbTodoTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedIntColumn id = _constructId();
-  GeneratedIntColumn _constructId() {
-    return GeneratedIntColumn('id', $tableName, false,
-        hasAutoIncrement: true, declaredAsPrimaryKey: true);
-  }
-
+  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+      'id', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: false,
+      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
   final VerificationMeta _titleMeta = const VerificationMeta('title');
-  @override
-  late final GeneratedTextColumn title = _constructTitle();
-  GeneratedTextColumn _constructTitle() {
-    return GeneratedTextColumn(
-      'title',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
+      'title', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _completedMeta = const VerificationMeta('completed');
-  @override
-  late final GeneratedBoolColumn completed = _constructCompleted();
-  GeneratedBoolColumn _constructCompleted() {
-    return GeneratedBoolColumn(
-      'completed',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<bool?> completed = GeneratedColumn<bool?>(
+      'completed', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: true,
+      defaultConstraints: 'CHECK (completed IN (0, 1))');
   @override
   List<GeneratedColumn> get $columns => [id, title, completed];
   @override
-  $DbTodoTableTable get asDslTable => this;
+  String get aliasedName => _alias ?? 'db_todo_table';
   @override
-  String get $tableName => _alias ?? 'db_todo_table';
-  @override
-  final String actualTableName = 'db_todo_table';
+  String get actualTableName => 'db_todo_table';
   @override
   VerificationContext validateIntegrity(Insertable<DbTodo> instance,
       {bool isInserting = false}) {
@@ -221,8 +203,8 @@ class $DbTodoTableTable extends DbTodoTable
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return DbTodo.fromData(data, _db, prefix: effectivePrefix);
+    return DbTodo.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override

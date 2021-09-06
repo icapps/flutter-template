@@ -1,9 +1,9 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/database/todo/todo_dao_storing.dart';
+import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:mockito/mockito.dart';
 
-class MockTodoDaoStoring extends Mock implements TodoDaoStoring {
+class MockTodoDaoStorage extends Mock implements TodoDaoStorage {
   @override
   Future<void> createTodoWithValue(Todo? todo) async {
     noSuchMethod(Invocation.method(#createTodoWithValue, [todo]));

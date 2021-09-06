@@ -1,6 +1,6 @@
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
-import 'package:flutter_template/repository/todo/todo_repo.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,12 +13,12 @@ import '../../../util/test_extensions.dart';
 
 void main() {
   late TodoListViewModel sut;
-  late MockTodoRepo todoRepo;
+  late MockTodoRepository todoRepo;
   late TodoListViewNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    todoRepo = GetIt.I.resolveAs<TodoRepo, MockTodoRepo>();
+    todoRepo = GetIt.I.resolveAs<TodoRepository, MockTodoRepository>();
     navigator = MockTodoListNavigator();
     sut = TodoListViewModel(todoRepo);
   });
@@ -75,9 +75,9 @@ void main() {
     group('onDownloadClicked', () {
       test('TodoListViewModel onDownloadClicked', () async {
         when(todoRepo.fetchTodos()).thenAnswer((_) => Future.value([
-          Todo(id: 1, title: 'title1', completed: false),
-          Todo(id: 2, title: 'title2', completed: true),
-        ]));
+              Todo(id: 1, title: 'title1', completed: false),
+              Todo(id: 2, title: 'title2', completed: true),
+            ]));
 
         expect(sut.isLoading, false);
         expect(sut.errorKey, isNull);

@@ -1,16 +1,24 @@
-import 'package:flutter_template/repository/login/login_repo.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: LoginRepo)
-class LoginRepository extends LoginRepo {
-  final AuthStoring _authStoring;
+@lazySingleton
+abstract class LoginRepository {
+  @factoryMethod
+  factory LoginRepository(AuthStorage storage) = _LoginRepository;
 
-  LoginRepository(this._authStoring);
+  Future<bool> isLoggedIn();
+
+  Future<void> login({required String email, required String password});
+}
+
+class _LoginRepository implements LoginRepository {
+  final AuthStorage _authStorage;
+
+  _LoginRepository(this._authStorage);
 
   @override
-  Future<bool> isLoggedIn() async => _authStoring.hasLoggedInUser();
+  Future<bool> isLoggedIn() async => _authStorage.hasLoggedInUser();
 
   @override
   Future<void> login({required String email, required String password}) async {

@@ -1,24 +1,24 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
+import 'package:flutter_template/repository/refresh/refresh_repository.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/repository/refresh/refresh_repo.dart';
-import 'package:flutter_template/repository/secure_storage/auth/auth_storing.dart';
 
 import '../app_constants.dart';
 
 @singleton
 class NetworkRefreshInterceptor extends SimpleInterceptor {
-  final AuthStoring _authStoring;
-  final RefreshRepo _refreshRepo;
+  final AuthStorage _authStorage;
+  final RefreshRepository _refreshRepo;
 
   final _excludedPaths = [
     'login',
   ];
 
   NetworkRefreshInterceptor(
-    this._authStoring,
+    this._authStorage,
     this._refreshRepo,
   );
 
@@ -43,7 +43,7 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
     logger.debug('Refreshing');
     await _refreshRepo.refresh(error);
 
-    final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStoring.getAccessToken()}';
+    final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStorage.getAccessToken()}';
     request.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
 
     return GetIt.instance.get<Dio>().fetch<dynamic>(request);

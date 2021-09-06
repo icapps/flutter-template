@@ -13,14 +13,13 @@ class DummyApiUtil {
     }
     final path = '$_API_ASSET_PATH/$url.json';
     try {
-      logger.debug('---------------> GET - url: file://$path');
+      staticLogger.debug('---------------> GET - url: file://$path');
 
       final jsonString = await rootBundle.loadString(path);
-      logger.debug('<--------------- GET - url: file://$path - statucode: 200');
-      // ignore: avoid_as
+      staticLogger.debug('<--------------- GET - url: file://$path - statucode: 200');
       return json.decode(jsonString) as T;
     } catch (e, stack) {
-      logger.error(
+      staticLogger.error(
         '<--------------- GET - url: $path - statucode: 404',
         error: e,
         trace: stack,
