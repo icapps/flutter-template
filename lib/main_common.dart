@@ -24,6 +24,7 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
 
 FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode, {required bool enableCrashLogging}) {
   return runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
     await _setupCrashLogging(enabled: false);
     await initArchitecture();
 
