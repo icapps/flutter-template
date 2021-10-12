@@ -1,5 +1,5 @@
-import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/util/license.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

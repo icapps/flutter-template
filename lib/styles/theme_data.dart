@@ -10,7 +10,6 @@ class FlutterTemplateThemeData {
   static final _darkThemeData = ThemeData(
     fontFamily: ThemeFonts.OpenSans,
     primaryColor: ThemeColors.primary,
-    accentColor: ThemeColors.accent,
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: ThemeColors.accent,
       selectionHandleColor: ThemeColors.accent,
@@ -49,7 +48,7 @@ class FlutterTemplateTextTheme {
   final TextStyle bodyNormal;
   final TextStyle bodySmall;
   final TextStyle bodyUltraSmall;
-  final TextStyle infoBodySubheader;
+  final TextStyle infoBodySubHeader;
   final TextStyle bodyBig;
 
   const FlutterTemplateTextTheme({
@@ -63,7 +62,7 @@ class FlutterTemplateTextTheme {
     required this.bodyNormal,
     required this.bodySmall,
     required this.bodyUltraSmall,
-    required this.infoBodySubheader,
+    required this.infoBodySubHeader,
     required this.bodyBig,
   });
 }
@@ -120,7 +119,7 @@ class FlutterTemplateTheme {
       bodyNormal: TextStyle(fontSize: 16, color: ThemeColors.black, fontFamily: ThemeFonts.OpenSans),
       bodySmall: TextStyle(fontSize: 14, color: ThemeColors.black, fontFamily: ThemeFonts.OpenSans),
       bodyUltraSmall: TextStyle(fontSize: 12, color: ThemeColors.black, fontFamily: ThemeFonts.OpenSans),
-      infoBodySubheader: TextStyle(fontSize: 14, color: ThemeColors.black, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
+      infoBodySubHeader: TextStyle(fontSize: 14, color: ThemeColors.black, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
     ),
     lightTextTheme: FlutterTemplateTextTheme(
       titleHuge: TextStyle(fontSize: 40, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans, height: 1.2),
@@ -134,7 +133,7 @@ class FlutterTemplateTheme {
       bodyNormal: TextStyle(fontSize: 16, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans),
       bodySmall: TextStyle(fontSize: 14, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans),
       bodyUltraSmall: TextStyle(fontSize: 12, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans),
-      infoBodySubheader: TextStyle(fontSize: 14, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
+      infoBodySubHeader: TextStyle(fontSize: 14, color: ThemeColors.white, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
     ),
     accentTextTheme: FlutterTemplateTextTheme(
       titleHuge: TextStyle(fontSize: 40, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans, height: 1.2),
@@ -148,7 +147,7 @@ class FlutterTemplateTheme {
       bodyNormal: TextStyle(fontSize: 16, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans),
       bodySmall: TextStyle(fontSize: 14, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans),
       bodyUltraSmall: TextStyle(fontSize: 12, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans),
-      infoBodySubheader: TextStyle(fontSize: 14, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
+      infoBodySubHeader: TextStyle(fontSize: 14, color: ThemeColors.accent, fontFamily: ThemeFonts.OpenSans, fontWeight: FontWeight.w600),
     ),
     exceptionsTextTheme: FlutterTemplateTextThemeExceptions(),
     colorsTheme: FlutterTemplateColorsTheme(

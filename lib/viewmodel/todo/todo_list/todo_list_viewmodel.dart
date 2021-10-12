@@ -1,8 +1,8 @@
 import 'package:flutter_template/model/webservice/todo/todo.dart';
-import 'package:flutter_template/repository/todo/todo_repository.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/repository/todo/todo_repository.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

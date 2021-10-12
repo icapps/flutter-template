@@ -3,7 +3,7 @@ description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
   device_info: ^2.0.0
@@ -27,7 +27,6 @@ dependencies:
   niddler_dart: ^1.0.0
   path: ^1.8.0
   path_provider: ^2.0.1
-  pedantic: ^1.11.1
   provider: ^6.0.0
   retrofit: ^2.0.0-beta1
   scroll_when_needed: ^2.0.0

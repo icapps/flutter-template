@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:pedantic/pedantic.dart';
 
 class FlutterTemplateNetworkImage extends StatelessWidget {
   final String? url;

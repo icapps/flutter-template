@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
+import 'package:flutter_template/util/extension/text_style_extensions.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:flutter_template/util/extension/text_style_extensions.dart';
 
 class FlutterTemplateButton extends StatelessWidget {
   final String text;
