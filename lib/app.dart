@@ -17,6 +17,10 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+    ));
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return const InternalApp(
       home: MainNavigatorWidget(),
     );
