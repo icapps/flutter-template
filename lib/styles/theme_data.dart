@@ -10,6 +10,21 @@ class FlutterTemplateThemeData {
   static final _darkThemeData = ThemeData(
     fontFamily: ThemeFonts.OpenSans,
     primaryColor: ThemeColors.primary,
+    colorScheme: const ColorScheme(
+      primary: ThemeColors.primary,
+      primaryVariant: ThemeColors.primaryDark,
+      onPrimary: ThemeColors.white,
+      secondary: ThemeColors.accent,
+      secondaryVariant: ThemeColors.accent,
+      onSecondary: ThemeColors.white,
+      surface: ThemeColors.backgroundGrey,
+      onBackground: ThemeColors.primary,
+      onSurface: ThemeColors.primary,
+      background: ThemeColors.backgroundGrey,
+      onError: ThemeColors.primaryDark,
+      brightness: Brightness.light,
+      error: ThemeColors.error,
+    ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: ThemeColors.accent,
       selectionHandleColor: ThemeColors.accent,

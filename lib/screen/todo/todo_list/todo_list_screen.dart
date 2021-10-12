@@ -34,7 +34,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
         final errorKey = viewModel.errorKey;
         return Scaffold(
           appBar: AppBar(
-            systemOverlayStyle: SystemUiOverlayStyle.dark,
+            systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
             title: Text(localization.todoTitle),
             actions: [

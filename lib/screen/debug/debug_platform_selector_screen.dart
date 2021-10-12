@@ -27,7 +27,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
     return ProviderWidget<DebugPlatformSelectorViewModel>(
       childBuilderWithViewModel: (context, value, _, localization) => Scaffold(
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a platform'),
         ),

@@ -32,7 +32,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
     return ProviderWidget<DebugViewModel>(
       consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(localization.settingsTitle),
         ),
         body: ResponsiveWidget(
