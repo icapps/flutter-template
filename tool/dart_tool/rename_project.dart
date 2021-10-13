@@ -263,6 +263,7 @@ void _renameTools(String dartPackageName, String description, String classNamePr
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+    _replaceInFile(element.path, originalAndroidFolderPath, androidPackageName.replaceAll('.', '/'));
   });
 }
 
