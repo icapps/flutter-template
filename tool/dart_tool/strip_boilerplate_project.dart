@@ -41,6 +41,12 @@ void main(List<String> args) {
   removeBoilerplateFiles(libDir);
   Logger.debug('Removed files');
 
+  Logger.debug('Clearing the model_generator');
+  File('model_generator/config.yaml')
+    ..deleteSync()
+    ..createSync();
+  Logger.debug('Cleared the model_generator');
+  
   Logger.debug('Removing import references');
   replaceBoilerplateReferences(testDir);
   replaceBoilerplateReferences(libDir);
