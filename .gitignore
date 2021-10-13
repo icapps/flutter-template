@@ -52,6 +52,7 @@
 **/ios/**/DerivedData/
 **/ios/**/Icon?
 **/ios/**/Pods/
+**/ios/**/Pods.build/
 **/ios/**/.symlinks/
 **/ios/**/profile
 **/ios/**/xcuserdata

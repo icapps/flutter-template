@@ -1,9 +1,10 @@
-import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class LicenseScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin im
     return ProviderWidget<LicenseViewModel>(
       consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
-          brightness: Brightness.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),
         ),

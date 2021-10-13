@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({
@@ -33,7 +34,7 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
         final errorKey = viewModel.errorKey;
         return Scaffold(
           appBar: AppBar(
-            brightness: Brightness.dark,
+            systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
             title: Text(localization.todoTitle),
             actions: [

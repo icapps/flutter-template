@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -26,7 +27,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
     return ProviderWidget<DebugPlatformSelectorViewModel>(
       childBuilderWithViewModel: (context, value, _, localization) => Scaffold(
         appBar: AppBar(
-          brightness: Brightness.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a platform'),
         ),

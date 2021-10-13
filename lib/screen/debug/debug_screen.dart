@@ -1,5 +1,6 @@
-import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
@@ -31,7 +32,7 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
     return ProviderWidget<DebugViewModel>(
       consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
-          brightness: Brightness.dark,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(localization.settingsTitle),
         ),
         body: ResponsiveWidget(

@@ -1,6 +1,6 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
+import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
