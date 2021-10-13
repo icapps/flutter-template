@@ -8,7 +8,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 abstract class ErrorNavigator {
   String? showError(dynamic error);
 
-  void showErrorWithLocaleKey(String errorGeneral);
+  void showErrorWithLocaleKey(String errorGeneral, {List<dynamic>? args});
 }
 
 mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements ErrorNavigator {
@@ -55,5 +55,5 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
   }
 
   @override
-  void showErrorWithLocaleKey(String errorKey) => _showError(Localization.of(context).getTranslation(errorKey));
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(Localization.of(context).getTranslation(errorKey, args: args));
 }
