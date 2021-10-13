@@ -157,12 +157,14 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   Directory('ios/Runner').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
+    if (element.path.contains('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
