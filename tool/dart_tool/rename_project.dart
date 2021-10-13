@@ -191,7 +191,7 @@ void _renameAppName(String appName) {
   _replaceInFile('fastlane/Fastfile', originalAppName, appName);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
-    if (element.path.contains('.DS_STORE')) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAppName, appName);

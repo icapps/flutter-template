@@ -78,6 +78,7 @@ void removeBoilerplateDirectories(Directory dir) {
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.contains('.DS_STORE')) return false;
+    if (element.path.contains('.DS_Store')) return false;
     if (File(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
