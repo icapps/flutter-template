@@ -21,6 +21,7 @@ appcenter_app_name = ''
 # AppStore Configuration
 APPSTORE_USERNAME = ''
 APPSTORE_TEAM_NAME = ''
+APPSTORE_TEAM_ID = ''
 
 # AppCenter Configuration
 WORKSPACE = 'ios/Runner.xcworkspace'
