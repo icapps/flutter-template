@@ -198,19 +198,32 @@ end
 
 private_lane :uploadToAppcenterAndroid do |options|
   getAppNameAndroid(flavor: options[:flavor])
+  zip(
+    path: "build/debug-info/#{options[:flavor]}/",
+    include: ["**/app.android.*"],
+    output_path: "AndroidSymbols.zip"
+  )
+  sh("mv", "../AndroidSymbols.zip", "../AndroidSymbols.txt")
   appcenter_upload(
     app_name: appcenter_app_name,
     apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
     notify_testers: true,
+    mapping: "./AndroidSymbols.txt",
     destinations: "*"
   )
 end
 
 private_lane :uploadToAppcenterIos do |options|
   getAppNameIOS(flavor: options[:flavor])
+  zip(
+    path: "build",
+    include: ["debug-info/#{options[:flavor]}/app.ios*", "ios/Release-#{options[:flavor]}-phoneos/Runner.app.dSYM/*"],
+    output_path: "iOSSymbols.zip"
+  )
   appcenter_upload(
     app_name: appcenter_app_name,
     notify_testers: true,
+    dsym: "./iOSSymbols.zip",
     destinations: "*"
   )
 end
