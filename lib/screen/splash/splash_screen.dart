@@ -23,7 +23,7 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
     return ProviderWidget<SplashViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilderWithViewModel: (context, viewModel, theme, _) => Scaffold(
-        backgroundColor: theme.colorsTheme.backgroundDark,
+        backgroundColor: theme.colorsTheme.primary,
         body: const Center(
           child: FlutterTemplateProgressIndicator.light(),
         ),
