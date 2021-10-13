@@ -20,7 +20,8 @@ class ForbiddenError extends NetworkError {
 
   static NetworkError parseError(DioError err) {
     final dynamic data = err.response?.data;
-    if (data == null || data == '') return ForbiddenError(err);
+    if (data is! Map) return ForbiddenError(err);
+    if (!data.containsKey('code')) return ForbiddenError(err);
     final code = data['code'] as String;
     switch (code) {
       default:
