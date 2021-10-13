@@ -47,9 +47,6 @@ dev_dependencies:
   moor_generator: ^4.5.1
   retrofit_generator: ^2.0.1+1
 
-dependency_overrides:
-  meta: ^1.4.0
-
 flutter:
   uses-material-design: true
   assets:
