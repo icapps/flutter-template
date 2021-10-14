@@ -21,23 +21,23 @@ class MyApp extends StatelessWidget {
       systemNavigationBarColor: Colors.transparent,
     ));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    return const InternalApp(
-      home: MainNavigatorWidget(),
-    );
+    return const InternalApp();
   }
 }
 
 class InternalApp extends StatelessWidget {
-  final Widget home;
+  final Widget? home;
 
-  const InternalApp({required this.home});
+  const InternalApp() : home = null;
+
+  @visibleForTesting
+  const InternalApp.test({required this.home});
 
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<GlobalViewModel>(
-      consumerChild: home,
       lazy: FlavorConfig.isInTest(),
-      consumer: (context, viewModel, child) => MaterialApp(
+      consumer: (context, viewModel, homeChild) => MaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
         localizationsDelegates: [
           viewModel.localeDelegate,
@@ -50,7 +50,11 @@ class InternalApp extends StatelessWidget {
         themeMode: viewModel.themeMode,
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
-        home: child,
+        navigatorKey: MainNavigatorWidgetState.navigationKey,
+        initialRoute: MainNavigatorWidgetState.initialRoute,
+        onGenerateRoute: MainNavigatorWidgetState.onGenerateRoute,
+        navigatorObservers: MainNavigatorWidgetState.navigatorObservers,
+        builder: (context, child) => home ?? MainNavigatorWidget(child: child),
       ),
       create: () => GetIt.I()..init(),
     );
