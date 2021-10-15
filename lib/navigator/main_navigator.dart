@@ -14,7 +14,10 @@ import 'package:moor/moor.dart';
 import 'package:moor_db_viewer/moor_db_viewer.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
+  final Widget? child;
+
   const MainNavigatorWidget({
+    this.child,
     Key? key,
   }) : super(key: key);
 
@@ -36,29 +39,28 @@ class MainNavigatorWidget extends StatefulWidget {
 }
 
 class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
-  final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
+  static final List<NavigatorObserver> _navigatorObservers = [];
+
+  static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
+
+  static GlobalKey<NavigatorState> get navigationKey => _navigationKey;
+
+  static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
+
+  NavigatorState get _navigator => _navigationKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
     return TextScaleFactor(
-      child: WillPopScope(
-        onWillPop: _willPop,
-        child: Navigator(
-          key: navigationKey,
-          initialRoute: FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName,
-          onGenerateRoute: _onGenerateRoute,
-          observers: [
-            HeroController(createRectTween: _createRectTween),
-          ],
-        ),
-      ),
+      child: widget.child ?? const SizedBox.shrink(),
     );
   }
 
-  RectTween _createRectTween(Rect? begin, Rect? end) => MaterialRectArcTween(begin: begin, end: end);
-
-  Route? _onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
+  static Route? onGenerateRoute(RouteSettings settings) {
+    final strippedPath = settings.name?.replaceFirst('/', '');
+    switch (strippedPath) {
+      case '':
       case SplashScreen.routeName:
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
       case LoginScreen.routeName:
@@ -79,49 +81,33 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
     }
   }
 
-  Future<bool> _willPop() async {
-    final navigationState = navigationKey.currentState;
-    if (navigationState == null) {
-      logger.warning('WillPop has no navigation state');
-      return false;
-    }
-    return !await navigationState.maybePop();
-  }
+  @override
+  void goToSplash() => _navigator.pushReplacementNamed(SplashScreen.routeName);
 
   @override
-  void goToSplash() => navigationKey.currentState?.pushReplacementNamed(SplashScreen.routeName);
+  void goToLogin() => _navigator.pushReplacementNamed(LoginScreen.routeName);
 
   @override
-  void goToLogin() => navigationKey.currentState?.pushReplacementNamed(LoginScreen.routeName);
+  void goToHome() => _navigator.pushReplacementNamed(HomeScreen.routeName);
 
   @override
-  void goToHome() => navigationKey.currentState?.pushReplacementNamed(HomeScreen.routeName);
+  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);
 
   @override
-  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
+  void goToDebugPlatformSelector() => _navigator.pushNamed(DebugPlatformSelectorScreen.routeName);
 
   @override
-  void goToDebugPlatformSelector() => navigationKey.currentState?.pushNamed(DebugPlatformSelectorScreen.routeName);
+  void goToLicense() => _navigator.pushNamed(LicenseScreen.routeName);
 
   @override
-  void goToLicense() => navigationKey.currentState?.pushNamed(LicenseScreen.routeName);
+  void closeDialog() => _navigator.pop();
 
   @override
-  void closeDialog() => Navigator.of(context, rootNavigator: true).pop();
+  void goToDatabase(GeneratedDatabase db) => _navigator.push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
 
   @override
-  void goToDatabase(GeneratedDatabase db) => Navigator.of(context).push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
+  void goBack<T>({T? result}) => _navigator.pop(result);
 
   @override
-  void goBack<T>({T? result}) => navigationKey.currentState?.pop(result);
-
-  @override
-  void showCustomDialog<T>({required WidgetBuilder builder}) {
-    final currentContext = navigationKey.currentContext;
-    if (currentContext == null) {
-      logger.warning('WillPop has no navigation state');
-      return;
-    }
-    showDialog<T>(context: currentContext, builder: builder);
-  }
+  void showCustomDialog<T>({required WidgetBuilder builder}) => showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
 }

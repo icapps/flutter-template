@@ -49,7 +49,7 @@ class TestUtil {
   static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
     return _internalLoadWidget(
       tester,
-      InternalApp(
+      InternalApp.test(
         home: widget,
       ),
     );

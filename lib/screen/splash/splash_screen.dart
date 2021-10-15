@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
+import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
@@ -22,10 +23,12 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
       create: () => GetIt.I()..init(this),
-      childBuilderWithViewModel: (context, viewModel, theme, _) => Scaffold(
-        backgroundColor: theme.colorsTheme.primary,
-        body: const Center(
-          child: FlutterTemplateProgressIndicator.light(),
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.light(
+        child: Scaffold(
+          backgroundColor: theme.colorsTheme.primary,
+          body: const Center(
+            child: FlutterTemplateProgressIndicator.light(),
+          ),
         ),
       ),
     );
