@@ -26,12 +26,15 @@ class MainNavigatorWidget extends StatefulWidget {
 
   static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false}) {
     final navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
-    if (navigator == null) {
-      throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
-          'The context used to push or pop routes from the MainNavigation must be that of a '
-          'widget that is a descendant of a MainNavigatorWidget widget.');
-    }
-    return navigator;
+    assert(() {
+      if (navigator == null) {
+        throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
+            'The context used to push or pop routes from the MainNavigation must be that of a '
+            'widget that is a descendant of a MainNavigatorWidget widget.');
+      }
+      return true;
+    }());
+    return navigator!;
   }
 }
 
