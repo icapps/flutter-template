@@ -52,7 +52,7 @@ void main() {
     }
   } while (replaceReadmeContent == null);
 
-  if (classNamePrefix == null || androidPackageName == null || iosBundleIdentifier == null || appName == null|| dartPackageName == null || description == null) {
+  if (classNamePrefix == null || androidPackageName == null || iosBundleIdentifier == null || appName == null || dartPackageName == null || description == null) {
     Logger.info('\nWe found some invalid values. Please try again. Your codebase is not yet altered.');
     return;
   }
@@ -110,12 +110,14 @@ void _renameAndroidPackageName(String androidPackageName) {
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
   Directory('android/app/src/main/kotlin').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _renameKotlinFile(element.path, androidPackageName);
@@ -123,6 +125,7 @@ void _renameAndroidPackageName(String androidPackageName) {
   _deleteOldKotlinFiles(androidPackageName);
   Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
@@ -132,6 +135,7 @@ void _renameAndroidPackageName(String androidPackageName) {
     testDir.listSync(recursive: true).where((element) {
       if (element.path.endsWith('.png')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
@@ -172,6 +176,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   });
   Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
@@ -181,6 +186,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     testDir.listSync(recursive: true).where((element) {
       if (element.path.endsWith('.png')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
@@ -201,6 +207,7 @@ void _renameAppName(String appName) {
   Directory('android/app/src').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAppName, appName);
@@ -222,7 +229,11 @@ void _renamePackage(String packageName, String description, String classNamePref
   _replaceInFile('coverage/lcov.info', originalProjectName, packageName);
 
   Logger.info('Replace the package names & class names in lib ...');
-  Directory('lib').listSync(recursive: true).where((element) => !Directory(element.path).existsSync()).forEach((element) {
+  Directory('lib').listSync(recursive: true).where((element) {
+    if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
+    return true;
+  }).forEach((element) {
     _replaceInFile(element.path, originalProjectName, packageName);
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
     _renameDartFile(element.path, packageName);
@@ -234,6 +245,7 @@ void _renamePackage(String packageName, String description, String classNamePref
     testDir.listSync(recursive: true).where((element) {
       if (element.path.endsWith('.png')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalProjectName, packageName);
@@ -254,6 +266,7 @@ void _renameTools(String dartPackageName, String description, String classNamePr
   Logger.info('Replace the package names in the tools folder ...');
   Directory('tool').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     if (force == false && element.path == './tool/dart_tool/rename_project.dart') return;
@@ -325,6 +338,7 @@ void _performFinalCheck() {
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
     if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     if (element.path == './tool/dart_tool/rename_project.dart' || element.path == './tool/travis/rename_project.dart') {
