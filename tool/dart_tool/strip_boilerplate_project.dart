@@ -46,7 +46,7 @@ void main(List<String> args) {
     ..deleteSync()
     ..createSync();
   Logger.debug('Cleared the model_generator');
-  
+
   Logger.debug('Removing import references');
   replaceBoilerplateReferences(testDir);
   replaceBoilerplateReferences(libDir);
@@ -186,10 +186,27 @@ final removeCodeLines = [
   "import 'package:test_project/webservice/todo/todo_service.dart';",
   "import 'package:test_project/screen/todo/todo_list/todo_list_screen.dart';",
   "import 'package:test_project/screen/todo/todo_add/todo_add_screen.dart';",
+  "import 'package:flutter_template/database/todo/todo_dao_storage.dart';",
+  "import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';",
+  "import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';",
+  "import 'package:flutter_template/webservice/todo/todo_service.dart';",
+  "import 'package:flutter_template/repository/todo/todo_repository.dart';",
+  "import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';",
+  "import 'package:flutter_template/model/database/todo/db_todo_table.dart';",
+  "import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';",
+  "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   '  DbTodoTable,',
   '      case TodoAddScreen.routeName:',
   '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
   '  void goToAddTodo();',
+  '''  @singleton
+  TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();
+''',
+  '''  @singleton
+  TodoRepository get getTodoRepo => MockTodoRepository();
+''',
+  '''  @override
+  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);''',
   '''  @override
   void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
 ''',
