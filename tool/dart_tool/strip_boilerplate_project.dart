@@ -135,7 +135,7 @@ void _replaceHomeScreenLine() {
 
 void _replaceDatabaseTests() {
   _replaceInFile(
-    'test/database/flutter_template_project_database_test.dart',
+    'test/database/flutter_template_database_test.dart',
     '''  test('FlutterTemplateDatabase should delete all tables', () async {
     final resultTodos1 = await sut.select(sut.dbTodoTable).get();
     expect(resultTodos1.isEmpty, true);
@@ -194,6 +194,7 @@ final removeCodeLines = [
   "import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';",
   "import 'package:flutter_template/model/database/todo/db_todo_table.dart';",
   "import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';",
+  "import 'package:flutter_template/model/webservice/todo/todo.dart';",
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   '  DbTodoTable,',
   '      case TodoAddScreen.routeName:',
