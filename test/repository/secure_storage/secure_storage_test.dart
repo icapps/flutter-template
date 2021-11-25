@@ -17,37 +17,37 @@ void main() {
     secureStorage = GetIt.I.resolveAs<FlutterSecureStorage, MockFlutterSecureStorage>();
     sut = SecureStorage(secureStorage);
 
-    when(secureStorage.read(key: anyNamed('key'))).thenAnswer((_) => Future.value(null));
-    when(secureStorage.containsKey(key: anyNamed('key'))).thenAnswer((_) => Future.value(false));
+    when(secureStorage.read(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).thenAnswer((_) => Future.value(null));
+    when(secureStorage.containsKey(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).thenAnswer((_) => Future.value(false));
   });
 
   test('SecureStorage should write', () {
     sut.write(key: 'Key', value: 'Value');
-    verify(secureStorage.write(key: anyNamed('key'), value: anyNamed('value'))).calledOnce();
+    verify(secureStorage.write(key: anyNamed('key'), value: anyNamed('value'), iOptions: anyNamed('iOptions'))).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage should read', () {
     sut.read(key: 'key');
-    verify(secureStorage.read(key: anyNamed('key'))).calledOnce();
+    verify(secureStorage.read(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage should delete', () {
     sut.delete(key: 'ke');
-    verify(secureStorage.delete(key: anyNamed('key'))).calledOnce();
+    verify(secureStorage.delete(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage should delete all', () {
     sut.deleteAll();
-    verify(secureStorage.deleteAll()).calledOnce();
+    verify(secureStorage.deleteAll(iOptions: anyNamed('iOptions'))).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 
   test('SecureStorage containsKey', () {
     sut.containsKey(key: 'KEY');
-    verify(secureStorage.containsKey(key: 'KEY')).calledOnce();
+    verify(secureStorage.containsKey(key: 'KEY', iOptions: anyNamed('iOptions'))).calledOnce();
     verifyNoMoreInteractions(secureStorage);
   });
 }

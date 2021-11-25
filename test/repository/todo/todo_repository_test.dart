@@ -60,8 +60,8 @@ void main() {
     });
     test('fetchTodos', () async {
       when(todoService.getTodos()).thenAnswer((_) async => [
-            Todo(id: 1, title: '2', completed: true),
-            Todo(id: 3, title: '3', completed: false),
+            const Todo(id: 1, title: '2', completed: true),
+            const Todo(id: 3, title: '3', completed: false),
           ]);
       final data = await sut.fetchTodos();
       expect(data.isNotEmpty, true);
