@@ -19,8 +19,5 @@ void main() {
     key.currentState!.goToSplash();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_1');
-    key.currentState!.goBack<void>();
-    await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_2_go_back');
   });
 }
