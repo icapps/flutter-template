@@ -5,9 +5,9 @@ import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/di/db/setup_moor_none.dart'
-    if (dart.library.io) 'package:flutter_template/di/db/setup_moor_io.dart'
-    if (dart.library.js) 'package:flutter_template/di/db/setup_moor_web.dart';
+import 'package:flutter_template/di/db/setup_drift_none.dart'
+    if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
+    if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
@@ -54,7 +54,7 @@ abstract class RegisterModule {
   @singleton
   @preResolve
   Future<DatabaseConnection> provideDatabaseConnection() {
-    return createMoorDatabaseConnection('db');
+    return createDriftDatabaseConnection('db');
   }
 
   @lazySingleton

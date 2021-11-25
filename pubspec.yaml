@@ -69,6 +69,7 @@ icapps_translations:
   languages: ['nl','en']
 
 icapps_license:
+  nullsafety: true
   licenses:
-    device_info: 'https://github.com/flutter/plugins/blob/master/packages/device_info/device_info/LICENSE'
-    flutter_cache_manager: 'https://github.com/Baseflow/flutter_cache_manager/blob/develop/flutter_cache_manager/LICENSE'
+    device_info: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/device_info/device_info/LICENSE'
+    flutter_cache_manager: 'https://raw.githubusercontent.com/Baseflow/flutter_cache_manager/develop/flutter_cache_manager/LICENSE'

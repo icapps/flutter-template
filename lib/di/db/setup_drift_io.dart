@@ -9,7 +9,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<DatabaseConnection> createMoorDatabaseConnection(String name) async {
+Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
   if (FlavorConfig.isInTest()) {
     return DatabaseConnection.fromExecutor(NativeDatabase.memory());
   }
@@ -32,15 +32,15 @@ Future<DatabaseConnection> createMoorDatabaseConnection(String name) async {
 
 void _startBackground(_IsolateStartRequest request) {
   final executor = NativeDatabase(File(request.targetPath));
-  final moorIsolate = DriftIsolate.inCurrent(
+  final driftIsolate = DriftIsolate.inCurrent(
     () => DatabaseConnection.fromExecutor(executor),
   );
-  request.sendMoorIsolate.send(moorIsolate);
+  request.sendDriftIsolate.send(driftIsolate);
 }
 
 class _IsolateStartRequest {
-  final SendPort sendMoorIsolate;
+  final SendPort sendDriftIsolate;
   final String targetPath;
 
-  _IsolateStartRequest(this.sendMoorIsolate, this.targetPath);
+  _IsolateStartRequest(this.sendDriftIsolate, this.targetPath);
 }

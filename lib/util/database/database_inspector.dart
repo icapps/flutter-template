@@ -18,5 +18,5 @@ Future<void> addDatabaseInspector() async {
   await inspector.start();
 
   // ignore: avoid_print
-  print('Started moor inspector');
+  print('Started drift inspector');
 }
