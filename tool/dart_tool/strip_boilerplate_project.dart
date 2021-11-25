@@ -201,7 +201,7 @@ final removeCodeLines = [
   '  TodoService,',
   '  TodoAddViewModel,',
   '  TodoListViewModel,',
-  '  TodoRepository,'
+  '  TodoRepository,',
   r'''  @singleton
   TodoDaoStoring get getTodoDaoStoring => MockTodoDaoStoring();
 ''',
