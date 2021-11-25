@@ -135,8 +135,8 @@ void _replaceHomeScreenLine() {
 
 void _replaceDatabaseTests() {
   _replaceInFile(
-    'test/database/test_project_database_test.dart',
-    '''  test('TestProjectDatabase should delete all tables', () async {
+    'test/database/flutter_template_project_database_test.dart',
+    '''  test('FlutterTemplateDatabase should delete all tables', () async {
     final resultTodos1 = await sut.select(sut.dbTodoTable).get();
     expect(resultTodos1.isEmpty, true);
 
@@ -153,7 +153,7 @@ void _replaceDatabaseTests() {
     final resultTodos3 = await sut.select(sut.dbTodoTable).get();
     expect(resultTodos3.isEmpty, true);
   });''',
-    '''  test('TestProjectDatabase should delete all tables', () async {
+    '''  test('FlutterTemplateDatabase should delete all tables', () async {
     //Check if table is empty
     //Add 3 records
     //Check if the table contains 3 recods
