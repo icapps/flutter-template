@@ -77,7 +77,6 @@ void removeBoilerplateDirectories(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
-    if (element.path.contains('.DS_STORE')) return false;
     if (element.path.contains('.DS_Store')) return false;
     if (File(element.path).existsSync()) return false;
     return true;
@@ -94,7 +93,7 @@ void removeBoilerplateFiles(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
-    if (element.path.contains('.DS_STORE')) return false;
+    if (element.path.contains('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
@@ -110,7 +109,7 @@ void replaceBoilerplateReferences(Directory dir) {
   if (!dir.existsSync()) return;
   dir.listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
-    if (element.path.contains('.DS_STORE')) return false;
+    if (element.path.contains('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
