@@ -6,6 +6,8 @@ import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
 
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
