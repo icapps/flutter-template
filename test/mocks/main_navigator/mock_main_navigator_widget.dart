@@ -1,6 +1,6 @@
+import 'package:drift/src/runtime/api/runtime_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:moor/src/runtime/api/runtime_api.dart';
 
 import '../../di/injectable_test.mocks.dart';
 

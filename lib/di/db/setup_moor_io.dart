@@ -1,17 +1,17 @@
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:drift/drift.dart';
+import 'package:drift/isolate.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:moor/ffi.dart';
-import 'package:moor/isolate.dart';
-import 'package:moor/moor.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<DatabaseConnection> createMoorDatabaseConnection(String name) async {
   if (FlavorConfig.isInTest()) {
-    return DatabaseConnection.fromExecutor(VmDatabase.memory());
+    return DatabaseConnection.fromExecutor(NativeDatabase.memory());
   }
   final dbFolder = await getApplicationDocumentsDirectory();
   final file = File(join(dbFolder.path, '$name.sqlite'));
@@ -26,13 +26,13 @@ Future<DatabaseConnection> createMoorDatabaseConnection(String name) async {
     _IsolateStartRequest(receivePort.sendPort, file.path),
   );
 
-  final isolate = await receivePort.first as MoorIsolate;
+  final isolate = await receivePort.first as DriftIsolate;
   return isolate.connect();
 }
 
 void _startBackground(_IsolateStartRequest request) {
-  final executor = VmDatabase(File(request.targetPath));
-  final moorIsolate = MoorIsolate.inCurrent(
+  final executor = NativeDatabase(File(request.targetPath));
+  final moorIsolate = DriftIsolate.inCurrent(
     () => DatabaseConnection.fromExecutor(executor),
   );
   request.sendMoorIsolate.send(moorIsolate);

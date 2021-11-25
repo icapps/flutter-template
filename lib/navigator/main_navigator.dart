@@ -1,3 +1,5 @@
+import 'package:drift/drift.dart';
+import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
@@ -10,8 +12,6 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:moor/moor.dart';
-import 'package:moor_db_viewer/moor_db_viewer.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
   final Widget? child;
@@ -103,11 +103,12 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void closeDialog() => _navigator.pop();
 
   @override
-  void goToDatabase(GeneratedDatabase db) => _navigator.push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => MoorDbViewer(db)));
+  void goToDatabase(GeneratedDatabase db) => _navigator.push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => DriftDbViewer(db)));
 
   @override
   void goBack<T>({T? result}) => _navigator.pop(result);
 
   @override
-  void showCustomDialog<T>({required WidgetBuilder builder}) => showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
+  void showCustomDialog<T>({required WidgetBuilder builder}) =>
+      showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
 }

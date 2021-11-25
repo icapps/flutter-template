@@ -6,8 +6,11 @@ environment:
   sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
-  device_info: ^2.0.0
+  device_info: ^2.0.3
   dio: ^4.0.0
+  drift: ^1.0.0
+  drift_db_viewer: ^1.0.0
+  drift_inspector: ^1.0.0
   firebase_core: ^1.6.0
   firebase_crashlytics: ^2.2.1
   flutter:
@@ -15,37 +18,34 @@ dependencies:
   flutter_cache_manager: ^3.0.1
   flutter_localizations:
     sdk: flutter
-  flutter_secure_storage: ^4.1.0
-  flutter_svg: ^0.22.0
+  flutter_secure_storage: ^5.0.2
+  flutter_svg: ^0.23.0+1
   get_it: ^7.2.0
-  icapps_architecture: ^0.4.2
+  icapps_architecture: ^0.5.0
   injectable: ^1.4.1
-  json_annotation: ^4.1.0
-  moor: ^4.2.1
-  moor_db_viewer: ^4.4.0
-  moor_inspector: ^0.3.1
+  json_annotation: ^4.3.0
   niddler_dart: ^1.2.0
   path: ^1.8.0
   path_provider: ^2.0.1
   provider: ^6.0.0
-  retrofit: ^2.0.0-beta1
+  retrofit: ^3.0.0
   scroll_when_needed: ^2.0.0
   shared_preferences: ^2.0.5
   sqlite3_flutter_libs: ^0.5.0
 
 dev_dependencies:
   build_runner: ^2.1.1
+  drift_dev: ^1.0.0
   flutter_launcher_icons: ^0.9.2
   flutter_test:
     sdk: flutter
   icapps_license: ^2.0.0
-  icapps_translations: ^4.4.1
+  icapps_translations: ^5.0.0
   injectable_generator: ^1.5.0
-  json_serializable: ^5.0.0
+  json_serializable: ^6.0.0
   mockito: ^5.0.15
-  model_generator: ^5.1.1
-  moor_generator: ^4.5.1
-  retrofit_generator: ^2.0.1+1
+  model_generator: ^5.8.0
+  retrofit_generator: 3.0.0+2
 
 flutter:
   uses-material-design: true

@@ -2,16 +2,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'todo.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Todo {
-  @JsonKey(name: 'title', required: true)
+  @JsonKey(name: 'title', required: true, includeIfNull: false)
   final String title;
-  @JsonKey(name: 'completed', required: true)
+  @JsonKey(name: 'completed', required: true, includeIfNull: false)
   final bool completed;
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: false)
   final int? id;
 
-  Todo({
+  const Todo({
     required this.title,
     required this.completed,
     this.id,
