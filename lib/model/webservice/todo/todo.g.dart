@@ -18,8 +18,18 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$TodoToJson(Todo instance) => <String, dynamic>{
-      'title': instance.title,
-      'completed': instance.completed,
-      'id': instance.id,
-    };
+Map<String, dynamic> _$TodoToJson(Todo instance) {
+  final val = <String, dynamic>{
+    'title': instance.title,
+    'completed': instance.completed,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  return val;
+}

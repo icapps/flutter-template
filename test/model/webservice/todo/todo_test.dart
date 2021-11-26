@@ -7,7 +7,7 @@ void main() {
   setUp(() async => initTestInjectable());
 
   test('TodoTest', () async {
-    final todo = Todo(id: 1, title: 'title', completed: true);
+    const todo = Todo(id: 1, title: 'title', completed: true);
 
     //PARSE TO JSON
     final json = todo.toJson();

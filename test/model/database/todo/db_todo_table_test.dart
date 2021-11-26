@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('getDbModel', () {
     test('Todo getDbModel', () {
-      final sut = Todo(
+      const sut = Todo(
         id: 1,
         title: 'testing',
         completed: true,
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('Todo getDbModel without id', () {
-      final sut = Todo(
+      const sut = Todo(
         id: null,
         title: 'testing',
         completed: true,

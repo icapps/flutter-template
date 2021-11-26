@@ -12,8 +12,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   final String title;
   final bool completed;
   DbTodo({required this.id, required this.title, required this.completed});
-  factory DbTodo.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory DbTodo.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return DbTodo(
       id: const IntType()
@@ -43,7 +42,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
 
   factory DbTodo.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return DbTodo(
       id: serializer.fromJson<int>(json['id']),
       title: serializer.fromJson<String>(json['title']),
@@ -52,7 +51,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'title': serializer.toJson<String>(title),
@@ -76,8 +75,7 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   }
 
   @override
-  int get hashCode =>
-      $mrjf($mrjc(id.hashCode, $mrjc(title.hashCode, completed.hashCode)));
+  int get hashCode => Object.hash(id, title, completed);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -203,7 +201,7 @@ class $DbTodoTableTable extends DbTodoTable
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return DbTodo.fromData(data, _db,
+    return DbTodo.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
