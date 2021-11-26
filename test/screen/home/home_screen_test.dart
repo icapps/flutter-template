@@ -16,7 +16,7 @@ void main() {
     seedTodoListViewModel();
     seedDebugViewModel();
 
-    final sut = HomeScreen();
+    const sut = HomeScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state');

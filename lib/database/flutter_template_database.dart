@@ -1,9 +1,9 @@
+import 'package:drift/drift.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
-import 'package:moor/moor.dart';
 
 part 'flutter_template_database.g.dart';
 
-@UseMoor(tables: [
+@DriftDatabase(tables: [
   DbTodoTable,
 ])
 class FlutterTemplateDatabase extends _$FlutterTemplateDatabase {
@@ -17,7 +17,7 @@ class FlutterTemplateDatabase extends _$FlutterTemplateDatabase {
   Future<void> deleteAllData() {
     return transaction(() async {
       for (final table in allTables) {
-        await delete<Table,dynamic>(table).go();
+        await delete<Table, dynamic>(table).go();
       }
     });
   }

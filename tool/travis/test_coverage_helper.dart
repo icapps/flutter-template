@@ -10,6 +10,7 @@ void main() {
   final imports = Directory('lib').listSync(recursive: true).where((element) {
     if (Directory(element.path).existsSync()) return false;
     if (element.path.endsWith('.g.dart')) return false;
+    if (element.path.endsWith('_web.dart')) return false;
     return true;
   }).map((element) {
     final importPath = element.path.replaceFirst('lib', packageName);

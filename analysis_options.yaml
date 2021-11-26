@@ -12,6 +12,7 @@ analyzer:
     - '**.config.dart'
     - '**.mocks.dart'
     - 'lib/util/license.dart'
+    - 'test/coverage_helper_test.dart'
 
 linter:
   rules:

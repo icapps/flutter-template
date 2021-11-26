@@ -25,8 +25,8 @@ void main() {
 
   test('TodoListViewModel init', () async {
     when(todoRepo.getTodos()).thenAnswer((_) => Stream.value([
-          Todo(id: 1, title: 'title1', completed: false),
-          Todo(id: 2, title: 'title2', completed: true),
+          const Todo(id: 1, title: 'title1', completed: false),
+          const Todo(id: 2, title: 'title2', completed: true),
         ]));
     await sut.init(navigator);
     expect(sut.dataStream, isNotNull);
@@ -52,8 +52,8 @@ void main() {
   group('After init', () {
     setUp(() async {
       when(todoRepo.getTodos()).thenAnswer((_) => Stream.value([
-            Todo(id: 1, title: 'title1', completed: false),
-            Todo(id: 2, title: 'title2', completed: true),
+            const Todo(id: 1, title: 'title1', completed: false),
+            const Todo(id: 2, title: 'title2', completed: true),
           ]));
       await sut.init(navigator);
       reset(todoRepo);
@@ -75,8 +75,8 @@ void main() {
     group('onDownloadClicked', () {
       test('TodoListViewModel onDownloadClicked', () async {
         when(todoRepo.fetchTodos()).thenAnswer((_) => Future.value([
-              Todo(id: 1, title: 'title1', completed: false),
-              Todo(id: 2, title: 'title2', completed: true),
+              const Todo(id: 1, title: 'title1', completed: false),
+              const Todo(id: 2, title: 'title2', completed: true),
             ]));
 
         expect(sut.isLoading, false);

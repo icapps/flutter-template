@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
@@ -31,8 +33,6 @@ import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mockito/mockito.dart';
-import 'package:moor/ffi.dart';
-import 'package:moor/moor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../mocks/database/todo/mock_todo_dao_storage.dart';
@@ -51,7 +51,7 @@ final getIt = GetIt.instance;
   generateForDir: ['test'],
 )
 Future<void> initTestInjectable() async {
-  moorRuntimeOptions.dontWarnAboutMultipleDatabases = true;
+  driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
 
   localizationLookup = getLocale;
   themeLookup = getTheme;
@@ -80,7 +80,7 @@ Future<void> initTestInjectable() async {
 abstract class RegisterModule {
   @Environment(Environments.TEST)
   @singleton
-  FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(VmDatabase.memory());
+  FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(NativeDatabase.memory());
 
   @singleton
   TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();

@@ -37,7 +37,7 @@ class InternalApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderWidget<GlobalViewModel>(
       lazy: FlavorConfig.isInTest(),
-      consumer: (context, viewModel, homeChild) => MaterialApp(
+      consumer: (context, viewModel, consumerChild) => MaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
         localizationsDelegates: [
           viewModel.localeDelegate,
@@ -51,10 +51,11 @@ class InternalApp extends StatelessWidget {
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         navigatorKey: MainNavigatorWidgetState.navigationKey,
-        initialRoute: MainNavigatorWidgetState.initialRoute,
+        initialRoute: home == null ? MainNavigatorWidgetState.initialRoute : null,
         onGenerateRoute: MainNavigatorWidgetState.onGenerateRoute,
         navigatorObservers: MainNavigatorWidgetState.navigatorObservers,
-        builder: (context, child) => home ?? MainNavigatorWidget(child: child),
+        builder: home == null ? (context, child) => MainNavigatorWidget(child: child) : null,
+        home: home,
       ),
       create: () => GetIt.I()..init(),
     );

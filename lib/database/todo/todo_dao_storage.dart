@@ -1,14 +1,13 @@
+import 'package:drift/drift.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/model/database/todo/db_todo_table.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moor/moor.dart';
 
 part 'todo_dao_storage.g.dart';
 
 @lazySingleton
 abstract class TodoDaoStorage {
-
   @factoryMethod
   factory TodoDaoStorage(FlutterTemplateDatabase db) = _TodoDaoStorage;
 
@@ -23,11 +22,10 @@ abstract class TodoDaoStorage {
   Future<void> updateTodo({required int id, required bool completed});
 }
 
-@UseDao(tables: [
+@DriftAccessor(tables: [
   DbTodoTable,
 ])
 class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_TodoDaoStorageMixin implements TodoDaoStorage {
-
   _TodoDaoStorage(FlutterTemplateDatabase db) : super(db);
 
   @override
