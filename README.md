@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/icapps/flutter-template/badge.svg)](https://coveralls.io/github/icapps/flutter-template)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-- dependency injection (injectable)
+- dependency injection (injectable/get it)
 - network layer (dio)
 - network logging (niddler, dio)
 - viewmodels (provider)
