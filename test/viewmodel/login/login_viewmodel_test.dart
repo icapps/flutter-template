@@ -77,7 +77,7 @@ void main() {
       });
 
       test('LoginViewModel onLoginClicked with FlutterTemplateError', () async {
-        expect(GeneralError() is LocalizedError, true);
+        expect(GeneralError(), isA<LocalizedError>());
         when(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).thenThrow(GeneralError());
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, false);

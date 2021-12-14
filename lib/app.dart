@@ -11,6 +11,8 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -28,10 +30,12 @@ class MyApp extends StatelessWidget {
 class InternalApp extends StatelessWidget {
   final Widget? home;
 
-  const InternalApp() : home = null;
+  const InternalApp({Key? key})
+      : home = null,
+        super(key: key);
 
   @visibleForTesting
-  const InternalApp.test({required this.home});
+  const InternalApp.test({required this.home, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

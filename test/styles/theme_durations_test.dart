@@ -7,7 +7,7 @@ void main() {
   group('IsInTest', () {
     setUp(() {
       FlavorConfig(
-        flavor: Flavor.TEST,
+        flavor: Flavor.test,
         color: Colors.purple,
         name: 'Test',
         values: const FlavorValues(
@@ -42,7 +42,7 @@ void main() {
   group('IsNotInTest', () {
     setUp(() {
       FlavorConfig(
-        flavor: Flavor.DUMMY,
+        flavor: Flavor.dummy,
         color: Colors.purple,
         name: 'Test',
         values: const FlavorValues(

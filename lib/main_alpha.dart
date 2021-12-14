@@ -13,12 +13,12 @@ Future<void> main() async {
       showFullErrorMessages: true,
     );
     FlavorConfig(
-      flavor: Flavor.ALPHA,
+      flavor: Flavor.alpha,
       name: 'ALPHA',
       color: Colors.amber,
       values: values,
     );
-    await configureDependencies(Environments.PROD);
-    runApp(MyApp());
+    await configureDependencies(Environments.prod);
+    runApp(const MyApp());
   }, enableCrashLogging: true);
 }

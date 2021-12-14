@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';

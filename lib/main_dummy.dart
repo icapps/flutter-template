@@ -13,14 +13,14 @@ Future<void> main() async {
       showFullErrorMessages: true,
     );
     FlavorConfig(
-      flavor: Flavor.DUMMY,
+      flavor: Flavor.dummy,
       name: 'DUMMY',
       color: Colors.purple,
       values: values,
     );
     // ignore: avoid_print
     print('Starting app from main_dummy.dart');
-    await configureDependencies(Environments.DUMMY);
-    runApp(MyApp());
+    await configureDependencies(Environments.dummy);
+    runApp(const MyApp());
   }, enableCrashLogging: true);
 }

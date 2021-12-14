@@ -22,7 +22,6 @@ class TodoAddScreen extends StatefulWidget {
 
 @visibleForTesting
 class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
-
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(

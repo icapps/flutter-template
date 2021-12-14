@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:mockito/mockito.dart';
 
-R provideMockedNetworkImages<R>(R body(), {List<int> imageBytes = TransparantImageUtil.transparentImage}) {
+R provideMockedNetworkImages<R>(R Function() body, {List<int> imageBytes = TransparantImageUtil.transparentImage}) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createMockImageHttpClient(_, imageBytes),

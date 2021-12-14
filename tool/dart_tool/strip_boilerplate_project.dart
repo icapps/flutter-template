@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'dart:io';
 
 /// Clean up the boilerplate code
@@ -66,7 +68,7 @@ void executeCommand(String cmd, List<String> params) {
     if (result.stderr.toString().isNotEmpty) {
       throw Exception(result.stderr.toString());
     }
-    Logger.debug('${result.stdout.toString()}');
+    Logger.debug(result.stdout.toString());
   } catch (e) {
     Logger.debug('\nFailed to execute command: $fullCommand\n$e');
     rethrow;

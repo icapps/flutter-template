@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
 import 'package:flutter_test/flutter_test.dart';

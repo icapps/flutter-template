@@ -12,7 +12,8 @@ class SvgIcon extends StatelessWidget {
     required this.svgAsset,
     this.color = Colors.black,
     this.size,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class SvgIcon extends StatelessWidget {
               color: color,
             );
           }
-          return Container(
+          return SizedBox(
             height: size,
             width: size,
           );

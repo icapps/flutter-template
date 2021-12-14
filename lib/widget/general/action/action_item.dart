@@ -19,11 +19,11 @@ class ActionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) => Container(
+      childBuilderTheme: (context, theme) => SizedBox(
         height: ThemeDimens.padding56,
         width: ThemeDimens.padding56,
         child: Center(
-          child: Container(
+          child: SizedBox(
             height: ThemeDimens.padding48,
             width: ThemeDimens.padding48,
             child: TouchFeedBack(

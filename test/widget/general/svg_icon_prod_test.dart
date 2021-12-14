@@ -16,7 +16,7 @@ void main() {
       showFullErrorMessages: false,
     );
     FlavorConfig(
-      flavor: Flavor.PROD,
+      flavor: Flavor.prod,
       color: Colors.purple,
       name: 'Test',
       values: values,

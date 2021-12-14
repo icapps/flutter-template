@@ -19,23 +19,23 @@ abstract class AuthStorage {
 
 class _AuthStorage implements AuthStorage {
   final SimpleKeyValueStorage _storage;
-  static const _ACCESS_TOKEN = 'ACCESS_TOKEN';
-  static const _REFRESH_TOKEN = 'ACCESS_REFRESH_TOKEN';
+  static const _accessTokenKey = 'ACCESS_TOKEN';
+  static const _refreshTokenKey = 'ACCESS_REFRESH_TOKEN';
 
   _AuthStorage(this._storage);
 
   @override
-  Future<String?> getAccessToken() => _storage.getValue(key: _ACCESS_TOKEN);
+  Future<String?> getAccessToken() => _storage.getValue(key: _accessTokenKey);
 
   @override
-  Future<String?> getRefreshToken() => _storage.getValue(key: _REFRESH_TOKEN);
+  Future<String?> getRefreshToken() => _storage.getValue(key: _refreshTokenKey);
 
   @override
   Future<void> saveUserCredentials({required String accessToken, required String refreshToken}) {
     return Future.wait(
       [
-        _storage.setValue(key: _ACCESS_TOKEN, value: accessToken),
-        _storage.setValue(key: _REFRESH_TOKEN, value: refreshToken),
+        _storage.setValue(key: _accessTokenKey, value: accessToken),
+        _storage.setValue(key: _refreshTokenKey, value: refreshToken),
       ],
     );
   }
@@ -49,8 +49,8 @@ class _AuthStorage implements AuthStorage {
   @override
   Future<void> clear() async {
     await Future.wait([
-      _storage.removeValue(key: _ACCESS_TOKEN),
-      _storage.removeValue(key: _REFRESH_TOKEN),
+      _storage.removeValue(key: _accessTokenKey),
+      _storage.removeValue(key: _refreshTokenKey),
     ]);
   }
 }
