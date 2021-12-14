@@ -28,7 +28,7 @@ class _TodoRepository implements TodoRepository {
   Stream<List<Todo>> getTodos() => _todoDao.getAllTodosStream().map((list) => list.map((item) => item.getModel()).toList());
 
   ///Get Users will be requested from
-  /// https://jsonplaceholder.typicode.com/todos
+  ///https://jsonplaceholder.typicode.com/todos
   @override
   Future<List<Todo>> fetchTodos() async {
     final results = await _todoService.getTodos();
