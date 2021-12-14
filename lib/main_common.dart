@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 Future<void> _setupCrashLogging({required bool enabled}) async {
   if (enabled) {
@@ -31,7 +32,19 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode, {required bool enableCr
 
     return await appCode();
   }, (object, trace) {
-    WidgetsFlutterBinding.ensureInitialized();
+    try {
+      WidgetsFlutterBinding.ensureInitialized();
+    } catch (_) {}
+    
+    try {
+      staticLogger.e('Zone error', error: object, trace: trace);
+    } catch (_) {
+      // ignore: avoid_print
+      print(object);
+      // ignore: avoid_print
+      print(trace);
+    }
+
     if (enableCrashLogging) {
       FirebaseCrashlytics.instance.recordError(object, trace);
     }
