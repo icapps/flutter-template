@@ -56,8 +56,8 @@ import 'test_injectable.dart';
 void main() {
   setUp(() async => initTestInjectable());
 
-  test('KiwiContainer', () async {
+  test('Injectable', () async {
     final loginRepo = GetIt.I<LoginRepository>();
-    expect(loginRepo is LoginRepository, true);
+    expect(loginRepo, isA<LoginRepository>());
   });
 }

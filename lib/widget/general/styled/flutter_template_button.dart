@@ -44,7 +44,7 @@ class FlutterTemplateButton extends StatelessWidget {
         }
         return AnimatedContainer(
           child: TouchFeedBack(
-            child: Container(
+            child: SizedBox(
               height: height,
               child: content,
             ),

@@ -5,13 +5,13 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class DummyApiUtil {
-  static const _API_ASSET_PATH = 'assets/api';
+  static const _apiAssetPath = 'assets/api';
 
   static Future<T> getResponse<T>(String url) async {
     if (!FlavorConfig.isDummy()) {
       throw ArgumentError('Failed to get dummy response while configuration is not dummy');
     }
-    final path = '$_API_ASSET_PATH/$url.json';
+    final path = '$_apiAssetPath/$url.json';
     try {
       staticLogger.debug('---------------> GET - url: file://$path');
 

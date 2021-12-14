@@ -14,7 +14,7 @@ void main() {
   });
 
   testWidgets('Test errormixin showError', (tester) async {
-    final sut = ErrorScreen();
+    const sut = ErrorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'error_mixin_show_error_before_show');
@@ -28,7 +28,7 @@ void main() {
   });
 
   testWidgets('Test errormixin showErrorWithLocaleKey', (tester) async {
-    final sut = ErrorScreen();
+    const sut = ErrorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'error_mixin_show_error_with_locale_key_before_show');
@@ -43,6 +43,8 @@ void main() {
 }
 
 class ErrorScreen extends StatefulWidget {
+  const ErrorScreen({Key? key}) : super(key: key);
+
   @override
   _ErrorScreenState createState() => _ErrorScreenState();
 }

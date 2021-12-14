@@ -11,7 +11,7 @@ void main() {
   final sections = <LcovSection>[];
   final lines = file.readAsLinesSync();
   LcovSection? currentSection;
-  lines.forEach((line) {
+  for (final line in lines) {
     if (line.endsWith('.dart')) {
       final filePath = line.replaceAll('SF:', '');
       currentSection = LcovSection()
@@ -26,12 +26,12 @@ void main() {
     } else {
       currentSection?.body.add(line);
     }
-  });
+  }
   final filteredSections = getFilteredSections(sections);
   final sb = StringBuffer();
-  filteredSections.forEach((section) {
+  for (final section in filteredSections) {
     sb.write(section.toString());
-  });
+  }
   file.writeAsStringSync(sb.toString());
   printMessage('Filtered the lcov.info file');
 }

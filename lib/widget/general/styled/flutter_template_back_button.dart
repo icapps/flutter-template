@@ -12,12 +12,16 @@ class FlutterTemplateBackButton extends StatelessWidget {
   const FlutterTemplateBackButton.light({
     required this.onClick,
     this.fullScreen = false,
-  }) : isLight = true;
+    Key? key,
+  })  : isLight = true,
+        super(key: key);
 
   const FlutterTemplateBackButton.dark({
     required this.onClick,
     this.fullScreen = false,
-  }) : isLight = false;
+    Key? key,
+  })  : isLight = false,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

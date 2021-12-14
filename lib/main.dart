@@ -16,16 +16,16 @@ Future<void> main() async {
       showFullErrorMessages: true,
     );
     FlavorConfig(
-      flavor: Flavor.DEV,
+      flavor: Flavor.dev,
       name: 'DEV',
       color: Colors.red,
       values: values,
     );
     // ignore: avoid_print
     print('Starting app from main.dart');
-    await configureDependencies(Environments.DEV);
+    await configureDependencies(Environments.dev);
     await addDatabaseInspector();
 
-    runApp(MyApp());
+    runApp(const MyApp());
   }, enableCrashLogging: false);
 }

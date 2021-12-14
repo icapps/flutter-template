@@ -9,7 +9,8 @@ class SelectLanguageDialog extends StatelessWidget {
 
   const SelectLanguageDialog({
     required this.goBack,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class SelectLanguageDialog extends StatelessWidget {
     return DataProviderWidget(
       childBuilderLocalization: (context, localization) => AlertDialog(
         title: Text(localization.debugLocaleSelector),
-        content: Container(
+        content: SizedBox(
           height: 150,
           width: MediaQuery.of(context).size.width / 1.2,
           child: ListView(

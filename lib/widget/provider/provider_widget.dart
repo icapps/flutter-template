@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/locale/localization.dart';

@@ -13,24 +13,24 @@ abstract class LocaleRepository {
 }
 
 class _LocaleRepository implements LocaleRepository {
-  static const _STORE_LOCALE = 'locale';
+  static const _localeKey = 'locale';
 
-  final SharedPreferenceStorage _sharedPrefs;
+  final SharedPreferenceStorage _sharedPreferences;
 
-  _LocaleRepository(this._sharedPrefs);
+  _LocaleRepository(this._sharedPreferences);
 
   @override
   Future<void> setCustomLocale(Locale? locale) async {
     if (locale == null) {
-      await _sharedPrefs.deleteKey(_STORE_LOCALE);
+      await _sharedPreferences.deleteKey(_localeKey);
     } else {
-      await _sharedPrefs.saveString(key: _STORE_LOCALE, value: locale.languageCode);
+      await _sharedPreferences.saveString(key: _localeKey, value: locale.languageCode);
     }
   }
 
   @override
   Locale? getCustomLocale() {
-    final localeCode = _sharedPrefs.getString(_STORE_LOCALE);
+    final localeCode = _sharedPreferences.getString(_localeKey);
     if (localeCode == null || localeCode.isEmpty) return null;
     return Locale(localeCode);
   }

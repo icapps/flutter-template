@@ -8,7 +8,8 @@ class FlutterTemplateSwitch extends StatelessWidget {
   const FlutterTemplateSwitch({
     required this.value,
     required this.onChanged,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

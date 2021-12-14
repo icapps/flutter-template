@@ -10,6 +10,7 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
     as _i18;
 import 'package:dio/dio.dart' as _i3;
 import 'package:drift/drift.dart' as _i32;
+import 'package:flutter/cupertino.dart' as _i33;
 import 'package:flutter/material.dart' as _i24;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
 import 'package:flutter_template/model/webservice/todo/todo.dart' as _i16;
@@ -1601,7 +1602,7 @@ class MockMainNavigation extends _i1.Mock implements _i31.MainNavigation {
       super.noSuchMethod(Invocation.method(#goBack, [], {#result: result}),
           returnValueForMissingStub: null);
   @override
-  void showCustomDialog<T>({_i24.WidgetBuilder? builder}) => super.noSuchMethod(
+  void showCustomDialog<T>({_i33.WidgetBuilder? builder}) => super.noSuchMethod(
       Invocation.method(#showCustomDialog, [], {#builder: builder}),
       returnValueForMissingStub: null);
   @override

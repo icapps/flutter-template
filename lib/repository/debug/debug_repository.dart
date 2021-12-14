@@ -19,21 +19,21 @@ abstract class DebugRepository {
 }
 
 class _DebugRepository implements DebugRepository {
-  static const _KEY_ENABLE_SLOW_ANIMATIONS = 'enable_slow_animations';
-  static const _KEY_SELECTED_PLATFORM = 'selected_platform';
+  static const _enableSlowAnimationsKey = 'enable_slow_animations';
+  static const _selectedPlatformKey = 'selected_platform';
 
-  final SharedPreferenceStorage _sharedPrefs;
+  final SharedPreferenceStorage _sharedPreferences;
 
-  _DebugRepository(this._sharedPrefs);
+  _DebugRepository(this._sharedPreferences);
 
   @override
   Future<void> saveSlowAnimations({required bool enabled}) async {
-    await _sharedPrefs.saveBoolean(key: _KEY_ENABLE_SLOW_ANIMATIONS, value: enabled);
+    await _sharedPreferences.saveBoolean(key: _enableSlowAnimationsKey, value: enabled);
   }
 
   @override
   bool isSlowAnimationsEnabled() {
-    final slowAnimations = _sharedPrefs.getBoolean(_KEY_ENABLE_SLOW_ANIMATIONS) ?? false;
+    final slowAnimations = _sharedPreferences.getBoolean(_enableSlowAnimationsKey) ?? false;
     if (slowAnimations) {
       timeDilation = 4.0;
     } else {
@@ -45,15 +45,15 @@ class _DebugRepository implements DebugRepository {
   @override
   Future<void> saveSelectedPlatform(String? selectedPlatform) async {
     if (selectedPlatform == null) {
-      await _sharedPrefs.deleteKey(_KEY_SELECTED_PLATFORM);
+      await _sharedPreferences.deleteKey(_selectedPlatformKey);
     } else {
-      await _sharedPrefs.saveString(key: _KEY_SELECTED_PLATFORM, value: selectedPlatform);
+      await _sharedPreferences.saveString(key: _selectedPlatformKey, value: selectedPlatform);
     }
   }
 
   @override
   TargetPlatform? getTargetPlatform() {
-    final selectedPlatform = _sharedPrefs.getString(_KEY_SELECTED_PLATFORM);
+    final selectedPlatform = _sharedPreferences.getString(_selectedPlatformKey);
     if (selectedPlatform == null) return null;
     if (selectedPlatform == 'ios') return TargetPlatform.iOS;
     return TargetPlatform.android;

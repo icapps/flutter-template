@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 enum Flavor {
-  TEST,
-  DUMMY,
-  DEV, //We use DEV instead of DEBUG because android already has a release type Debug.
-  ALPHA,
-  BETA,
-  PROD,
+  test,
+  dummy,
+  dev, //We use DEV instead of DEBUG because android already has a release type Debug.
+  alpha,
+  beta,
+  prod,
 }
 
 class FlavorValues {
@@ -45,15 +45,15 @@ class FlavorConfig {
 
   static bool get hasInstance => _instance != null;
 
-  static bool isProd() => _instance!.flavor == Flavor.PROD;
+  static bool isProd() => _instance!.flavor == Flavor.prod;
 
-  static bool isDev() => _instance!.flavor == Flavor.DEV;
+  static bool isDev() => _instance!.flavor == Flavor.dev;
 
-  static bool isAlpha() => _instance!.flavor == Flavor.ALPHA;
+  static bool isAlpha() => _instance!.flavor == Flavor.alpha;
 
-  static bool isBeta() => _instance!.flavor == Flavor.BETA;
+  static bool isBeta() => _instance!.flavor == Flavor.beta;
 
-  static bool isInTest() => _instance!.flavor == Flavor.TEST;
+  static bool isInTest() => _instance!.flavor == Flavor.test;
 
-  static bool isDummy() => _instance!.flavor == Flavor.DUMMY;
+  static bool isDummy() => _instance!.flavor == Flavor.dummy;
 }

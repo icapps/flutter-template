@@ -6,7 +6,8 @@ class FlavorBanner extends StatelessWidget {
 
   const FlavorBanner({
     required this.child,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class FlavorBanner extends StatelessWidget {
   }
 
   Widget _buildBanner(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 50,
       height: 50,
       child: CustomPaint(
