@@ -42,7 +42,9 @@ class MainNavigatorWidget extends StatefulWidget {
 
 class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
   static final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
-  static final List<NavigatorObserver> _navigatorObservers = [GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver];
+  static final List<NavigatorObserver> _navigatorObservers = [
+    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,
+  ];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
 

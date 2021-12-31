@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/repository/analytics/analytics.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -12,7 +13,7 @@ abstract class FireBaseAnalyticsRepository implements Analytics {
   RouteObserver get routeObserver;
 }
 
-class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBaseAnalyticsRepository {
+class _FireBaseAnalyticsRepository with WidgetsBindingObserver, ChangeNotifierEx implements FireBaseAnalyticsRepository {
   final FirebaseAnalytics _analytics;
 
   @override
@@ -39,6 +40,12 @@ class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBa
     } else if (state == AppLifecycleState.paused) {
       _analytics.logEvent(name: Analytics.eventAppBackground);
     }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
   }
 
   @override
