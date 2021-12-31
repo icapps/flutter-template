@@ -112,14 +112,3 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void showCustomDialog<T>({required WidgetBuilder builder}) =>
       showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
 }
-
-class RouteNames {
-  RouteNames._();
-  static const debugScreen = 'debug';
-  static const debugPlatformSelectorScreen = 'debug_platform_selector';
-  static const homeScreen = 'home';
-  static const licenseScreen = 'license';
-  static const loginScreen = 'login';
-  static const splashScreen = 'splash';
-  static const todoAddScreen = 'todo_add';
-}

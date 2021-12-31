@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';

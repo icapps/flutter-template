@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';

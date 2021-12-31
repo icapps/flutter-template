@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
