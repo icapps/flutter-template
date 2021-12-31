@@ -3,6 +3,8 @@ abstract class Analytics {
 
   void init();
 
+  void dispose();
+
   void onLoggedIn();
 
   void onSignedUp();
