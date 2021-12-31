@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
@@ -12,7 +13,7 @@ import 'package:get_it/get_it.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 
 class TodoAddScreen extends StatefulWidget {
-  static const String routeName = 'todo_add';
+  static const String routeName = RouteNames.todoAddScreen;
 
   const TodoAddScreen({Key? key}) : super(key: key);
 

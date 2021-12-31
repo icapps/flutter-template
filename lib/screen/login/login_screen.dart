@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routeName = 'login';
+  static const String routeName = RouteNames.loginScreen;
 
   const LoginScreen({Key? key}) : super(key: key);
 

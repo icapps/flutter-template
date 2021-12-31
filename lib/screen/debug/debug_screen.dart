@@ -15,7 +15,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
-  static const String routeName = 'debug';
+  static const String routeName = RouteNames.debugScreen;
 
   const DebugScreen({
     Key? key,
