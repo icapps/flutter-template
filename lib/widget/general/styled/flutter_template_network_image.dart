@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
@@ -22,14 +23,15 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
     this.height,
     this.width,
     this.duration,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final url = this.url;
     final correctUrl = url == null || url.isEmpty ? fallbackUrl : url;
     if (correctUrl == null || correctUrl.isEmpty) {
-      return Container(
+      return SizedBox(
         height: height,
         width: width,
       );

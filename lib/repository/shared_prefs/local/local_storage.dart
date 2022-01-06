@@ -11,18 +11,18 @@ abstract class LocalStorage {
 }
 
 class _LocalStorage implements LocalStorage {
-  static const _UNINSTALL_CHECK = 'UNINSTALL_CHECK';
+  static const _uninstallCheckKey = 'UNINSTALL_CHECK';
 
   final AuthStorage _authStorage;
-  final SharedPreferenceStorage _sharedPrefs;
+  final SharedPreferenceStorage _sharedPreferences;
 
-  _LocalStorage(this._authStorage, this._sharedPrefs);
+  _LocalStorage(this._authStorage, this._sharedPreferences);
 
   @override
   Future<void> checkForNewInstallation() async {
-    final result = _sharedPrefs.getBoolean(_UNINSTALL_CHECK);
+    final result = _sharedPreferences.getBoolean(_uninstallCheckKey);
     if (result == null) {
-      await _sharedPrefs.saveBoolean(key: _UNINSTALL_CHECK, value: true);
+      await _sharedPreferences.saveBoolean(key: _uninstallCheckKey, value: true);
       await _authStorage.clear();
     }
   }

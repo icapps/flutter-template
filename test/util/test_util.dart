@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +25,7 @@ class TestUtil {
     return _internalLoadWidget(
       tester,
       MaterialApp(
-        theme: ThemeData(fontFamily: ThemeFonts.OpenSans),
+        theme: ThemeData(fontFamily: ThemeFonts.openSans),
         localizationsDelegates: [
           LocalizationDelegate(useCaching: false, showLocalizationKeys: true),
           GlobalMaterialLocalizations.delegate,
@@ -58,7 +57,7 @@ class TestUtil {
   // This method should be used when taking screenshot tests of the full app
   // Full integration tests
   static Future<Widget> loadFlutterTemplateApp(WidgetTester tester) async {
-    return _internalLoadWidget(tester, MyApp());
+    return _internalLoadWidget(tester, const MyApp());
   }
 
   static Future<Widget> _internalLoadWidget(WidgetTester tester, Widget widget) async {
@@ -76,7 +75,7 @@ class TestUtil {
     }
   }
 
-  static Future<void> takeScreenshotForScreenType(WidgetTester tester, Widget widget, String snapshotName, {ScreenType screen = ScreenType.IPHONE11}) async {
+  static Future<void> takeScreenshotForScreenType(WidgetTester tester, Widget widget, String snapshotName, {ScreenType screen = ScreenType.iPhone11}) async {
     tester.binding.window.physicalSizeTestValue = screen.size;
     expect(widget.runtimeType, equals(TestWrapper));
     await tester.pumpWidget(widget);
@@ -98,7 +97,7 @@ class TestUtil {
   }
 
   static Future<void> loadFonts() async {
-    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.OpenSans);
+    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.openSans);
   }
 
   static Future<void> _loadFont(String fontPath, String fontName) async {
@@ -123,7 +122,7 @@ class TestUtil {
 class TestWrapper extends StatelessWidget {
   final Widget child;
 
-  const TestWrapper({required this.child});
+  const TestWrapper({required this.child, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +136,7 @@ class TestWrapper extends StatelessWidget {
 }
 
 class TextFinder extends MatchFinder {
-  TextFinder(this.text, {this.substring = false, bool skipOffstage = true }) : super(skipOffstage: skipOffstage);
+  TextFinder(this.text, {this.substring = false, bool skipOffstage = true}) : super(skipOffstage: skipOffstage);
 
   final String text;
   final bool substring;

@@ -3,29 +3,46 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/util/locale/localization_overrides.dart';
 
 //============================================================//
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class Localization {
-  Map<String, dynamic> _localisedValues = <String, dynamic>{};
+  var _localisedValues = <String, dynamic>{};
+  var _localisedOverrideValues = <String, dynamic>{};
 
   static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization)!;
 
-  static Future<Localization> load(Locale locale, {bool showLocalizationKeys = false, bool useCaching = true}) async {
-    final localizations = Localization();
+  /// The locale is used to get the correct json locale.
+  /// It can later be used to check what the locale is that was used to load this Localization instance.
+  final Locale locale;
+
+  Localization({required this.locale});
+
+  static Future<Localization> load(
+    Locale locale, {
+    LocalizationOverrides? localizationOverrides,
+    bool showLocalizationKeys = false,
+    bool useCaching = true,
+  }) async {
+    final localizations = Localization(locale: locale);
     if (showLocalizationKeys) {
       return localizations;
     }
+    if (localizationOverrides != null) {
+      final overrideLocalizations = await localizationOverrides.getOverriddenLocalizations(locale);
+      localizations._localisedOverrideValues = overrideLocalizations;
+    }
     final jsonContent = await rootBundle.loadString('assets/locale/${locale.languageCode}.json', cache: useCaching);
-    localizations._localisedValues = json.decode(jsonContent) as Map<String, dynamic>;
+    localizations._localisedValues = json.decode(jsonContent) as Map<String, dynamic>; // ignore: avoid_as
     return localizations;
   }
 
   String _t(String key, {List<dynamic>? args}) {
     try {
-      final value = _localisedValues[key] as String?;
-      if (value == null) return '$key';
+      final value = (_localisedOverrideValues[key] ?? _localisedValues[key]) as String?;
+      if (value == null) return key;
       if (args == null || args.isEmpty) return value;
       var newValue = value;
       // ignore: avoid_annotating_with_dynamic
@@ -83,9 +100,9 @@ class Localization {
 
   /// Translations:
   ///
-  /// nl:  **'Huidige taal: %1$s'**
+  /// nl:  **'Huidige taal: [arg1 string]'**
   ///
-  /// en:  **'Current language: %1$s'**
+  /// en:  **'Current language: [arg1 string]'**
   String debugLocaleCurrentLanguage(String arg1) => _t(LocalizationKeys.debugLocaleCurrentLanguage, args: <dynamic>[arg1]);
 
   /// Translations:
@@ -132,9 +149,9 @@ class Localization {
 
   /// Translations:
   ///
-  /// nl:  **'Huidig platfrom: %1$s'**
+  /// nl:  **'Huidig platfrom: [arg1 string]'**
   ///
-  /// en:  **'Current platfrom: %1$s'**
+  /// en:  **'Current platfrom: [arg1 string]'**
   String debugTargetPlatformSubtitle(String arg1) => _t(LocalizationKeys.debugTargetPlatformSubtitle, args: <dynamic>[arg1]);
 
   /// Translations:
@@ -202,9 +219,9 @@ class Localization {
 
   /// Translations:
   ///
-  /// nl:  **'Er liep iets mis (code: %1$s)'**
+  /// nl:  **'Er liep iets mis (code: [arg1 string])'**
   ///
-  /// en:  **'Something went wrong (code: %1$s)'**
+  /// en:  **'Something went wrong (code: [arg1 string])'**
   String errorGeneralWithCode(String arg1) => _t(LocalizationKeys.errorGeneralWithCode, args: <dynamic>[arg1]);
 
   /// Translations:

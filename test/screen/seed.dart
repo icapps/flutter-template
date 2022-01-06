@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';

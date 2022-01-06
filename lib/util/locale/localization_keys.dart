@@ -2,7 +2,6 @@
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class LocalizationKeys {
-
   /// Translations:
   ///
   /// nl:  **'klimb'**
@@ -40,9 +39,9 @@ class LocalizationKeys {
 
   /// Translations:
   ///
-  /// nl:  **'Huidige taal: %1$s'**
+  /// nl:  **'Huidige taal: [arg1 string]'**
   ///
-  /// en:  **'Current language: %1$s'**
+  /// en:  **'Current language: [arg1 string]'**
   static const debugLocaleCurrentLanguage = 'debug_locale_current_language';
 
   /// Translations:
@@ -89,9 +88,9 @@ class LocalizationKeys {
 
   /// Translations:
   ///
-  /// nl:  **'Huidig platfrom: %1$s'**
+  /// nl:  **'Huidig platfrom: [arg1 string]'**
   ///
-  /// en:  **'Current platfrom: %1$s'**
+  /// en:  **'Current platfrom: [arg1 string]'**
   static const debugTargetPlatformSubtitle = 'debug_target_platform_subtitle';
 
   /// Translations:
@@ -159,9 +158,9 @@ class LocalizationKeys {
 
   /// Translations:
   ///
-  /// nl:  **'Er liep iets mis (code: %1$s)'**
+  /// nl:  **'Er liep iets mis (code: [arg1 string])'**
   ///
-  /// en:  **'Something went wrong (code: %1$s)'**
+  /// en:  **'Something went wrong (code: [arg1 string])'**
   static const errorGeneralWithCode = 'error_general_with_code';
 
   /// Translations:
@@ -282,5 +281,4 @@ class LocalizationKeys {
   ///
   /// en:  **'Todo'**
   static const todoTitle = 'todo_title';
-
 }

@@ -1,6 +1,5 @@
 class ThemeFonts {
   ThemeFonts._();
 
-  static const OpenSans = 'OpenSans';
-  
+  static const openSans = 'OpenSans';
 }

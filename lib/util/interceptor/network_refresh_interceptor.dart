@@ -43,8 +43,8 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
     logger.debug('Refreshing');
     await _refreshRepo.refresh(error);
 
-    final authorizationHeader = '${AppConstants.HEADER_PROTECTED_AUTHENTICATION_PREFIX} ${await _authStorage.getAccessToken()}';
-    request.headers[AppConstants.HEADER_AUTHORIZATION] = authorizationHeader;
+    final authorizationHeader = '${AppConstants.protectedAuthenticationHeaderPrefix} ${await _authStorage.getAccessToken()}';
+    request.headers[AppConstants.authorizationHeader] = authorizationHeader;
 
     return GetIt.instance.get<Dio>().fetch<dynamic>(request);
   }

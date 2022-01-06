@@ -11,7 +11,8 @@ class MockMainNavigator extends StatefulWidget {
   const MockMainNavigator({
     required this.child,
     required this.mock,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _MockMainNavigatorState createState() => _MockMainNavigatorState();

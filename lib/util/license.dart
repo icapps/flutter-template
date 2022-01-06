@@ -10,11 +10,11 @@ class License {
   final String? licenseUrl;
 
   License({
-   required this.name,
-   required this.license,
-   this.version,
-   this.licenseUrl,
-   this.url,
+    required this.name,
+    required this.license,
+    this.version,
+    this.licenseUrl,
+    this.url,
   });
 }
 
@@ -1114,6 +1114,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ''',
-      ))
-;  }
+      ));
+  }
 }

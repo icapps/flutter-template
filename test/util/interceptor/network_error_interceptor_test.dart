@@ -150,7 +150,7 @@ void main() {
         showFullErrorMessages: false,
       );
       FlavorConfig(
-        flavor: Flavor.DEV,
+        flavor: Flavor.dev,
         color: Colors.purple,
         name: 'Test',
         values: values,

@@ -63,7 +63,7 @@ Future<void> initTestInjectable() async {
       showFullErrorMessages: false,
     );
     FlavorConfig(
-      flavor: Flavor.TEST,
+      flavor: Flavor.test,
       color: Colors.purple,
       name: 'Test',
       values: values,
@@ -71,14 +71,14 @@ Future<void> initTestInjectable() async {
   }
   TestWidgetsFlutterBinding.ensureInitialized();
   getIt.allowReassignment = true;
-  await $initGetIt(getIt, environment: Environments.TEST);
-  $initTestGetIt(getIt, environment: Environments.TEST);
+  await $initGetIt(getIt, environment: Environments.test);
+  $initTestGetIt(getIt, environment: Environments.test);
   await TestUtil.loadFonts();
 }
 
 @module
 abstract class RegisterModule {
-  @Environment(Environments.TEST)
+  @Environment(Environments.test)
   @singleton
   FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(NativeDatabase.memory());
 

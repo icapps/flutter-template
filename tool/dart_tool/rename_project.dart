@@ -76,31 +76,31 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
   if (specificAppCenterIds) {
     Logger.info('Enter iOS AppCenter Alpha id: (Default is $classNamePrefix-iOS-Alpha)');
     final appCenterIosAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, classNamePrefix, value: appCenterIosAlphaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosAlpha, classNamePrefix, value: appCenterIosAlphaId);
     Logger.info('Enter iOS AppCenter Beta id: (Default is $classNamePrefix-iOS-Beta)');
     final appCenterIosBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, classNamePrefix, value: appCenterIosBetaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosBeta, classNamePrefix, value: appCenterIosBetaId);
     Logger.info('Enter iOS AppCenter Prod id: (Default is $classNamePrefix-iOS)');
     final appCenterIosProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, classNamePrefix, value: appCenterIosProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosProd, classNamePrefix, value: appCenterIosProdId);
 
     Logger.info('Enter Android AppCenter Alpha id: (Default is $classNamePrefix-Android-Alpha)');
     final appCenterAndroidAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, classNamePrefix, value: appCenterAndroidAlphaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidAlpha, classNamePrefix, value: appCenterAndroidAlphaId);
     Logger.info('Enter Android AppCenter Beta id: (Default is $classNamePrefix-Android-Beta)');
     final appCenterAndroidBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, classNamePrefix, value: appCenterAndroidBetaId);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidBeta, classNamePrefix, value: appCenterAndroidBetaId);
     Logger.info('Enter Android AppCenter Prod id: (Default is $classNamePrefix-Android)');
     final appCenterAndroidProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, classNamePrefix, value: appCenterAndroidProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidProd, classNamePrefix, value: appCenterAndroidProdId);
   } else {
     Logger.info('Replace the AppCenter ids with default values...');
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_ALPHA, classNamePrefix);
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_BETA, classNamePrefix);
-    _renameFastlaneAppCenterIds(AppCenterApp.IOS_PROD, classNamePrefix);
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_ALPHA, classNamePrefix);
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_BETA, classNamePrefix);
-    _renameFastlaneAppCenterIds(AppCenterApp.ANDROID_PROD, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosAlpha, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosBeta, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosProd, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidAlpha, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidBeta, classNamePrefix);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidProd, classNamePrefix);
   }
 }
 
@@ -410,27 +410,27 @@ void _renameKotlinFile(String path, String newPackageName) {
 
 void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String? value}) {
   switch (appCenterApp) {
-    case AppCenterApp.ANDROID_ALPHA:
+    case AppCenterApp.androidAlpha:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Alpha' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
-    case AppCenterApp.ANDROID_BETA:
+    case AppCenterApp.androidBeta:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Beta' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Beta"', 'appcenter_app_name = "$newValue"');
       break;
-    case AppCenterApp.ANDROID_PROD:
+    case AppCenterApp.androidProd:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android"', 'appcenter_app_name = "$newValue"');
       break;
-    case AppCenterApp.IOS_ALPHA:
+    case AppCenterApp.iosAlpha:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Alpha' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
-    case AppCenterApp.IOS_BETA:
+    case AppCenterApp.iosBeta:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Beta' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Beta"', 'appcenter_app_name = "$newValue"');
       break;
-    case AppCenterApp.IOS_PROD:
+    case AppCenterApp.iosProd:
       final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS' : value;
       _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS"', 'appcenter_app_name = "$newValue"');
       break;
@@ -440,7 +440,7 @@ void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePref
 void _executeCommand(String cmd, List<String> params) {
   final fullCommand = '$cmd ${params.join(' ')}';
   try {
-    Logger.info('$fullCommand');
+    Logger.info(fullCommand);
     final result = Process.runSync(cmd, params);
     final dynamic output = result.stdout;
     if (output.toString().isNotEmpty) {
@@ -453,12 +453,12 @@ void _executeCommand(String cmd, List<String> params) {
 }
 
 enum AppCenterApp {
-  ANDROID_ALPHA,
-  ANDROID_BETA,
-  ANDROID_PROD,
-  IOS_ALPHA,
-  IOS_BETA,
-  IOS_PROD,
+  androidAlpha,
+  androidBeta,
+  androidProd,
+  iosAlpha,
+  iosBeta,
+  iosProd,
 }
 
 class Logger {
