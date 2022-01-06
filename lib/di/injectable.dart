@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
@@ -56,6 +57,9 @@ abstract class RegisterModule {
   Future<DatabaseConnection> provideDatabaseConnection() {
     return createDriftDatabaseConnection('db');
   }
+
+  @singleton
+  FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;
 
   @lazySingleton
   FlutterSecureStorage storage() => const FlutterSecureStorage();

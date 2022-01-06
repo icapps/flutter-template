@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
+import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class MainNavigatorWidget extends StatefulWidget {
@@ -40,7 +42,9 @@ class MainNavigatorWidget extends StatefulWidget {
 
 class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
   static final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
-  static final List<NavigatorObserver> _navigatorObservers = [];
+  static final List<NavigatorObserver> _navigatorObservers = [
+    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,
+  ];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
 
@@ -109,6 +113,5 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
   void goBack<T>({T? result}) => _navigator.pop(result);
 
   @override
-  void showCustomDialog<T>({required WidgetBuilder builder}) =>
-      showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
+  void showCustomDialog<T>({required WidgetBuilder builder}) => showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
 }
