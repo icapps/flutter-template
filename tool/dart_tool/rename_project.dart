@@ -111,6 +111,7 @@ void _renameAndroidPackageName(String androidPackageName) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
@@ -119,6 +120,7 @@ void _renameAndroidPackageName(String androidPackageName) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _renameKotlinFile(element.path, androidPackageName);
@@ -128,6 +130,7 @@ void _renameAndroidPackageName(String androidPackageName) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
@@ -138,6 +141,7 @@ void _renameAndroidPackageName(String androidPackageName) {
       if (element.path.endsWith('.png')) return false;
       if (element.path.endsWith('.DS_Store')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
@@ -180,6 +184,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
@@ -190,6 +195,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
       if (element.path.endsWith('.png')) return false;
       if (element.path.endsWith('.DS_Store')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
@@ -212,6 +218,7 @@ void _renameAppName(String appName) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.contains('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     _replaceInFile(element.path, originalAppName, appName);
@@ -251,6 +258,7 @@ void _renamePackage(String packageName, String description, String classNamePref
       if (element.path.endsWith('.png')) return false;
       if (element.path.contains('.DS_Store')) return false;
       if (Directory(element.path).existsSync()) return false;
+      if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
       _replaceInFile(element.path, originalProjectName, packageName);
@@ -273,6 +281,7 @@ void _renameTools(String dartPackageName, String description, String classNamePr
     if (element.path.endsWith('.png')) return false;
     if (element.path.contains('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     if (force == false && element.path == './tool/dart_tool/rename_project.dart') return;
@@ -344,6 +353,7 @@ void _performFinalCheck() {
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
     if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
     if (Directory(element.path).existsSync()) return false;
+    if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
     if (element.path == './tool/dart_tool/rename_project.dart' || element.path == './tool/travis/rename_project.dart') {
