@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -13,7 +14,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routeName = 'login';
+  static const String routeName = RouteNames.loginScreen;
 
   const LoginScreen({Key? key}) : super(key: key);
 

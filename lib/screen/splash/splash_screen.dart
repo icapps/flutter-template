@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String routeName = 'splash';
+  static const String routeName = RouteNames.splashScreen;
 
   const SplashScreen({
     Key? key,
