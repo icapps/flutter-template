@@ -1,6 +1,6 @@
 # Flutter Template
 
-[![Build Status](https://travis-ci.com/icapps/flutter-template.svg?branch=master)](https://app.travis-ci.com/github/icapps/flutter-template)
+[![Build Status](https://app.travis-ci.com/icapps/flutter-template.svg?branch=master)](https://app.travis-ci.com/icapps/flutter-template)
 [![Coverage Status](https://coveralls.io/repos/github/icapps/flutter-template/badge.svg)](https://coveralls.io/github/icapps/flutter-template)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
