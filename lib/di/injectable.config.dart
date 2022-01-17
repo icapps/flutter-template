@@ -60,8 +60,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       preResolve: true);
   gh.factory<_i7.DebugPlatformSelectorViewModel>(
       () => _i7.DebugPlatformSelectorViewModel());
-  gh.singleton<_i8.FirebaseAnalytics>(
-      registerModule.provideFirebaseAnalytics());
+  gh.lazySingleton<_i8.FirebaseAnalytics>(
+      () => registerModule.provideFirebaseAnalytics());
   gh.lazySingleton<_i9.FlutterSecureStorage>(() => registerModule.storage());
   gh.lazySingleton<_i10.FlutterTemplateDatabase>(() => registerModule
       .provideFlutterTemplateDatabase(get<_i6.DatabaseConnection>()));

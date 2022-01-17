@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
@@ -81,6 +82,10 @@ abstract class RegisterModule {
   @Environment(Environments.test)
   @singleton
   FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(NativeDatabase.memory());
+
+  @Environment(Environments.test)
+  @singleton
+  FirebaseAnalytics get getFirebaseAnalytics => MockFirebaseAnalytics();
 
   @singleton
   TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();

@@ -58,7 +58,7 @@ abstract class RegisterModule {
     return createDriftDatabaseConnection('db');
   }
 
-  @singleton
+  @lazySingleton
   FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;
 
   @lazySingleton
