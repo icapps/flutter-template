@@ -35,6 +35,9 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   Future<void> goToDebugPlatformSelector() async => widget.mock.goToDebugPlatformSelector();
 
   @override
+  void goToDebug() => widget.mock.goToDebug();
+
+  @override
   void goToHome() => widget.mock.goToHome();
 
   @override

@@ -12,6 +12,8 @@ abstract class MainNavigation {
 
   void goToDebugPlatformSelector();
 
+  void goToDebug();
+
   void goToLicense();
 
   void closeDialog();
