@@ -1,5 +1,4 @@
 {
-  "climb_title": "Climb",
   "debug_animations_title": "Animations",
   "debug_database": "Database",
   "debug_licenses_go_to": "View licenses",
@@ -38,5 +37,10 @@
   "todo_add_input_hint": "Enter your todo",
   "todo_add_title": "Add todo",
   "todo_empty_state": "No data added to your database. Fetch some todos with an api call (download icon) or add one yourself by clicking the add icon.",
-  "todo_title": "Todo"
+  "todo_title": "Todo",
+  "debug_theme_mode_title": "Theme",
+  "debug_theme_mode_subtitle": "Show the app in dark mode or light",
+  "theme_mode_label_light": "Light",
+  "theme_mode_label_dark": "Dark",
+  "theme_mode_label_System": "System default"
 }

@@ -580,7 +580,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.1"
+    version: "5.2.1"
   image:
     dependency: transitive
     description:
@@ -650,7 +650,7 @@ packages:
       name: locale_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   logger:
     dependency: transitive
     description:
