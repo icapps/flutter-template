@@ -26,10 +26,13 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+
     return ProviderWidget<LoginViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
-        builder: (context, viewModel, child) => StatusBar.light(
+        builder: (context, viewModel, child) => StatusBar.animated(
+          isDarkStyle: (brightness != Brightness.dark),
           child: Scaffold(
             backgroundColor: theme.colorsTheme.background,
             body: SafeArea(
