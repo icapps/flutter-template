@@ -41,13 +41,13 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                     Container(height: ThemeDimens.padding16),
                     Text(
                       'Login',
-                      style: theme.inverseCoreTextTheme.titleNormal,
+                      style: theme.coreTextTheme.titleNormal,
                       textAlign: TextAlign.center,
                     ),
                     Container(height: ThemeDimens.padding32),
                     Text(
                       'Just fill in some text. There is no validator for the login',
-                      style: theme.inverseCoreTextTheme.labelButtonSmall,
+                      style: theme.coreTextTheme.labelButtonSmall,
                     ),
                     Container(height: ThemeDimens.padding32),
                     FlutterTemplateInputField(
