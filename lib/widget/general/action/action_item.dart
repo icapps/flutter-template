@@ -32,7 +32,7 @@ class ActionItem extends StatelessWidget {
                 child: SvgIcon(
                   svgAsset: svgAsset,
                   size: ThemeDimens.padding24,
-                  color: color ?? theme.colorsTheme.lightIcon,
+                  color: color ?? theme.colorsTheme.icon,
                 ),
               ),
               onClick: onClick,

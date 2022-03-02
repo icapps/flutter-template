@@ -31,7 +31,7 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.light(
           child: Scaffold(
-            backgroundColor: theme.colorsTheme.backgroundDark,
+            backgroundColor: theme.colorsTheme.background,
             body: SafeArea(
               child: Container(
                 width: double.infinity,
@@ -41,13 +41,13 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                     Container(height: ThemeDimens.padding16),
                     Text(
                       'Login',
-                      style: theme.lightTextTheme.titleNormal,
+                      style: theme.inverseCoreTextTheme.titleNormal,
                       textAlign: TextAlign.center,
                     ),
                     Container(height: ThemeDimens.padding32),
                     Text(
                       'Just fill in some text. There is no validator for the login',
-                      style: theme.lightTextTheme.labelButtonSmall,
+                      style: theme.inverseCoreTextTheme.labelButtonSmall,
                     ),
                     Container(height: ThemeDimens.padding32),
                     FlutterTemplateInputField(

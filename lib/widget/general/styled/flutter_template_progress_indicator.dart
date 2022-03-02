@@ -29,7 +29,7 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
           );
         }
         return CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(dark ? theme.colorsTheme.darkProgressIndicator : theme.colorsTheme.lightProgressIndicator),
+          valueColor: AlwaysStoppedAnimation(dark ? theme.colorsTheme.progressIndicator : theme.colorsTheme.inverseProgressIndicator),
         );
       },
     );

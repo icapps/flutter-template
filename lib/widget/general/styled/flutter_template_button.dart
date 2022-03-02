@@ -27,7 +27,7 @@ class FlutterTemplateButton extends StatelessWidget {
             child: Text(
               text,
             ),
-            style: isEnabled ? theme.lightTextTheme.labelButtonSmall : theme.darkTextTheme.labelButtonSmall.withOpacity20(),
+            style: isEnabled ? theme.inverseCoreTextTheme.labelButtonSmall : theme.coreTextTheme.labelButtonSmall.withOpacity20(),
             duration: ThemeDurations.shortAnimationDuration(),
           ),
         );
