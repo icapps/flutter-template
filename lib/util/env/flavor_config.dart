@@ -29,6 +29,7 @@ class FlavorConfig {
   final String name;
   final Color color;
   final FlavorValues values;
+  ThemeMode themeMode;
   static FlavorConfig? _instance;
 
   factory FlavorConfig({
@@ -36,10 +37,11 @@ class FlavorConfig {
     required String name,
     required Color color,
     required FlavorValues values,
+    ThemeMode themeMode = ThemeMode.system,
   }) =>
-      _instance = FlavorConfig._internal(flavor, name, color, values);
+      _instance = FlavorConfig._internal(flavor, name, color, values, themeMode);
 
-  FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
+  FlavorConfig._internal(this.flavor, this.name, this.color, this.values, this.themeMode);
 
   static FlavorConfig get instance => _instance!;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
+import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateThemeData {
@@ -233,7 +234,7 @@ class FlutterTemplateTheme {
     if (forceDark) return _instanceDark;
     if (forceLight) return _instanceLight;
 
-    const theme = ThemeMode.system;
+    final theme = FlavorConfig.instance.themeMode;
     if (theme == ThemeMode.dark) {
       return _instanceDark;
     } else if (theme == ThemeMode.light) {
