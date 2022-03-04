@@ -26,6 +26,8 @@ class TestUtil {
       tester,
       MaterialApp(
         theme: ThemeData(fontFamily: ThemeFonts.openSans),
+        locale: const Locale('en'),
+        supportedLocales: const [Locale('en')],
         localizationsDelegates: [
           LocalizationDelegate(useCaching: false, showLocalizationKeys: true),
           GlobalMaterialLocalizations.delegate,
