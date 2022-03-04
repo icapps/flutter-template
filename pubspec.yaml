@@ -43,7 +43,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   icapps_license: ^2.0.0
-  icapps_translations: ^5.0.0
+  icapps_translations: ^5.2.1
   injectable_generator: ^1.5.0
   json_serializable: ^6.1.1
   mockito: ^5.0.15
@@ -67,7 +67,8 @@ flutter:
         - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
 
 icapps_translations:
-  api_key: 'lIWZxNlOz3d461rVMeh3dw' #TODO Update this to the correct api key
+  api_key: '16daba4a2cb331e92eeb0aa2fd219608ff7c8f0488ab4aa887411040a951392f9a8cce488463a1f38eeebf96cb06658aa02d43e53cfc7a7be2d652e8' #TODO Update this to the correct api key
+  project_id: '43121bf0-0604-4709-aa72-bcc1d19820bf' #TODO Update this to the correct project id
   default_language: 'nl'
   languages: ['nl','en']
 

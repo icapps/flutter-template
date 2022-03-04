@@ -28,7 +28,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   static List<Locale> get supportedLocales {
     if (localeFilter == null) return _supportedLocales;
-    return _supportedLocales.where((element) => localeFilter?.call(element.languageCode) ?? true).toList();
+    return _supportedLocales.where((element) => localeFilter?.call(element.toLanguageTag()) ?? true).toList();
   }
 
   LocalizationOverrides? localizationOverrides;
@@ -49,7 +49,7 @@ class LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool isSupported(Locale locale) => supportedLanguages.contains(locale.languageCode);
+  bool isSupported(Locale locale) => supportedLanguages.contains(locale.toLanguageTag());
 
   @override
   Future<Localization> load(Locale locale) async {

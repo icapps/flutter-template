@@ -20,12 +20,11 @@ class Localization {
 
   Localization({required this.locale});
 
-  static Future<Localization> load(
-    Locale locale, {
+  static Future<Localization> load(Locale locale, {
     LocalizationOverrides? localizationOverrides,
     bool showLocalizationKeys = false,
     bool useCaching = true,
-  }) async {
+    }) async {
     final localizations = Localization(locale: locale);
     if (showLocalizationKeys) {
       return localizations;
@@ -34,7 +33,7 @@ class Localization {
       final overrideLocalizations = await localizationOverrides.getOverriddenLocalizations(locale);
       localizations._localisedOverrideValues = overrideLocalizations;
     }
-    final jsonContent = await rootBundle.loadString('assets/locale/${locale.languageCode}.json', cache: useCaching);
+    final jsonContent = await rootBundle.loadString('assets/locale/${locale.toLanguageTag()}.json', cache: useCaching);
     localizations._localisedValues = json.decode(jsonContent) as Map<String, dynamic>; // ignore: avoid_as
     return localizations;
   }
@@ -62,13 +61,6 @@ class Localization {
     }
     return value;
   }
-
-  /// Translations:
-  ///
-  /// nl:  **'klimb'**
-  ///
-  /// en:  **'Climb'**
-  String get climbTitle => _t(LocalizationKeys.climbTitle);
 
   /// Translations:
   ///
@@ -343,5 +335,41 @@ class Localization {
   /// en:  **'Todo'**
   String get todoTitle => _t(LocalizationKeys.todoTitle);
 
+  /// Translations:
+  ///
+  /// nl:  **'Thema'**
+  ///
+  /// en:  **'Theme'**
+  String get debugThemeModeTitle => _t(LocalizationKeys.debugThemeModeTitle);
+
+  /// Translations:
+  ///
+  /// nl:  **'Toon de app in dark mode of light'**
+  ///
+  /// en:  **'Show the app in dark mode or light'**
+  String get debugThemeModeSubtitle => _t(LocalizationKeys.debugThemeModeSubtitle);
+
+  /// Translations:
+  ///
+  /// nl:  **'Light'**
+  ///
+  /// en:  **'Light'**
+  String get themeModeLabelLight => _t(LocalizationKeys.themeModeLabelLight);
+
+  /// Translations:
+  ///
+  /// nl:  **'Dark'**
+  ///
+  /// en:  **'Dark'**
+  String get themeModeLabelDark => _t(LocalizationKeys.themeModeLabelDark);
+
+  /// Translations:
+  ///
+  /// nl:  **'Systeem standaard'**
+  ///
+  /// en:  **'System default'**
+  String get themeModeLabelSystem => _t(LocalizationKeys.themeModeLabelSystem);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
+
 }
