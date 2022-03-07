@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,17 +15,20 @@ void main() {
   late GlobalViewModel sut;
   late LocaleRepository localeRepo;
   late DebugRepository debugRepo;
+  late LocalStorage localStorage;
 
   setUp(() async {
     await initTestInjectable();
     localeRepo = GetIt.I();
     debugRepo = GetIt.I();
-    sut = GlobalViewModel(localeRepo, debugRepo);
+    localStorage = GetIt.I();
+    sut = GlobalViewModel(localeRepo, debugRepo, localStorage);
   });
 
   test('GlobalViewModel init', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
     when(debugRepo.getTargetPlatform()).thenReturn(null);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNull);
@@ -39,6 +43,7 @@ void main() {
   test('GlobalViewModel init with saved locale', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => const Locale('nl'));
     when(debugRepo.getTargetPlatform()).thenReturn(null);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNotNull);
@@ -53,16 +58,18 @@ void main() {
   });
 
   test('GlobalViewModel check thememode', () async {
-    expect(sut.themeMode, ThemeMode.system);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
   });
 
   group('After init', () {
     setUp(() async {
       when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
       when(debugRepo.getTargetPlatform()).thenReturn(null);
+      when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
       await sut.init();
       reset(localeRepo);
       reset(debugRepo);
+      reset(localStorage);
     });
 
     test('GlobalViewModel onSwitchToDutch', () async {
