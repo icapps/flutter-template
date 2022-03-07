@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
+import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -26,9 +28,18 @@ void main() {
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_initial_state');
     verifyLoginViewModel();
     verifyGlobalViewModel();
+  });
+
+  testWidgets('Test login screen layout in dark mode', (tester) async {
+    FlavorConfig.instance.themeMode = ThemeMode.dark;
+    const sut = LoginScreen();
+    final testWidget = await TestUtil.loadScreen(tester, sut);
+
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_initial_state_dark_mode');
+    FlavorConfig.instance.themeMode = ThemeMode.system;
   });
 
   testWidgets('Test login screen disabled button state', (tester) async {
