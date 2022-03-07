@@ -11,10 +11,10 @@ class FlutterTemplateThemeData {
     primaryColor: ThemeColors.primary,
     colorScheme: const ColorScheme(
       primary: ThemeColors.primary,
-      primaryVariant: ThemeColors.primaryDark,
+      primaryContainer: ThemeColors.primaryDark,
       onPrimary: ThemeColors.white,
       secondary: ThemeColors.accent,
-      secondaryVariant: ThemeColors.accent,
+      secondaryContainer: ThemeColors.accent,
       onSecondary: ThemeColors.white,
       surface: ThemeColors.backgroundGrey,
       onBackground: ThemeColors.primary,
