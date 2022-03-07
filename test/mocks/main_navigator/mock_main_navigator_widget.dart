@@ -38,6 +38,9 @@ class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigati
   void goToDebug() => widget.mock.goToDebug();
 
   @override
+  void goToThemeModeSelector() => widget.mock.goToThemeModeSelector();
+
+  @override
   void goToHome() => widget.mock.goToHome();
 
   @override
