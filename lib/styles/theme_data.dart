@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+// TODO: Update to v2.10 and remove this ignore https://github.com/icapps/flutter-template/issues/238
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
@@ -11,10 +13,10 @@ class FlutterTemplateThemeData {
     primaryColor: ThemeColors.primary,
     colorScheme: const ColorScheme(
       primary: ThemeColors.primary,
-      primaryContainer: ThemeColors.primaryDark,
+      primaryVariant: ThemeColors.primaryDark,
       onPrimary: ThemeColors.white,
       secondary: ThemeColors.accent,
-      secondaryContainer: ThemeColors.accent,
+      secondaryVariant: ThemeColors.accent,
       onSecondary: ThemeColors.white,
       surface: ThemeColors.backgroundGrey,
       onBackground: ThemeColors.primary,
