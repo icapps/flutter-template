@@ -83,8 +83,11 @@ void main() {
     const sut = DebugScreen();
     await TestUtil.loadScreen(tester, sut);
 
-    final target = find.byKey(Keys.debugLicense);
+    final target = find.byKey(Keys.debugLicense, skipOffstage: false);
+    await tester.scrollUntilVisible(target, 200);
     expect(target, findsOneWidget);
+    await tester.ensureVisible(target);
+    await tester.pumpAndSettle();
     await tester.tap(target);
     await tester.pumpAndSettle();
 
