@@ -1,5 +1,4 @@
 {
-  "climb_title": "klimb",
   "debug_animations_title": "Animaties",
   "debug_database": "Database",
   "debug_licenses_go_to": "Bekijk de licenties",
@@ -38,5 +37,10 @@
   "todo_add_input_hint": "Vul hier uw todo in",
   "todo_add_title": "Todo toevoegen",
   "todo_empty_state": "Er is nog geen data toegevoegd in uw database. Je kan een paar todo's ophalen van een api calll (download icoon) of je kan er zelf toevoegen door op het plus icoon te drukken.",
-  "todo_title": "Todo"
+  "todo_title": "Todo",
+  "debug_theme_mode_title": "Thema",
+  "debug_theme_mode_subtitle": "Toon de app in dark mode of light",
+  "theme_mode_label_light": "Light",
+  "theme_mode_label_dark": "Dark",
+  "theme_mode_label_System": "Systeem standaard"
 }

@@ -2,6 +2,7 @@ os: osx
 osx_image: xcode12.2
 
 before_install:
+  - chmod +x ./tool/install_fvm.sh
   - chmod +x ./tool/travis/test.sh
   - chmod +x ./tool/travis/analyze.sh
 

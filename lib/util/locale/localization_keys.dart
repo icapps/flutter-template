@@ -2,12 +2,6 @@
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class LocalizationKeys {
-  /// Translations:
-  ///
-  /// nl:  **'klimb'**
-  ///
-  /// en:  **'Climb'**
-  static const climbTitle = 'climb_title';
 
   /// Translations:
   ///
@@ -281,4 +275,40 @@ class LocalizationKeys {
   ///
   /// en:  **'Todo'**
   static const todoTitle = 'todo_title';
+
+  /// Translations:
+  ///
+  /// nl:  **'Thema'**
+  ///
+  /// en:  **'Theme'**
+  static const debugThemeModeTitle = 'debug_theme_mode_title';
+
+  /// Translations:
+  ///
+  /// nl:  **'Toon de app in dark mode of light'**
+  ///
+  /// en:  **'Show the app in dark mode or light'**
+  static const debugThemeModeSubtitle = 'debug_theme_mode_subtitle';
+
+  /// Translations:
+  ///
+  /// nl:  **'Light'**
+  ///
+  /// en:  **'Light'**
+  static const themeModeLabelLight = 'theme_mode_label_light';
+
+  /// Translations:
+  ///
+  /// nl:  **'Dark'**
+  ///
+  /// en:  **'Dark'**
+  static const themeModeLabelDark = 'theme_mode_label_dark';
+
+  /// Translations:
+  ///
+  /// nl:  **'Systeem standaard'**
+  ///
+  /// en:  **'System default'**
+  static const themeModeLabelSystem = 'theme_mode_label_System';
+
 }
