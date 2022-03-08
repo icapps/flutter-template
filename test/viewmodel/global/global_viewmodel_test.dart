@@ -36,8 +36,10 @@ void main() {
     expect(sut.locale, isNull);
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
+    verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
     verifyNoMoreInteractions(debugRepo);
+    verifyNoMoreInteractions(localStorage);
   });
 
   test('GlobalViewModel init with saved locale', () async {
@@ -53,8 +55,10 @@ void main() {
     expect(sut.locale?.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
+    verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
     verifyNoMoreInteractions(debugRepo);
+    verifyNoMoreInteractions(localStorage);
   });
 
   test('GlobalViewModel check thememode', () async {
