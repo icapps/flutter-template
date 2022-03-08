@@ -17,8 +17,6 @@ class GlobalViewModel with ChangeNotifierEx {
   var _localeDelegate = LocalizationDelegate();
   var _showsTranslationKeys = false;
 
-  final _themeMode = ThemeMode.system;
-
   TargetPlatform? _targetPlatform;
 
   GlobalViewModel(
