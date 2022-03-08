@@ -1093,6 +1093,10 @@ class MockDebugViewModel extends _i1.Mock implements _i24.DebugViewModel {
       super.noSuchMethod(Invocation.method(#onTargetPlatformClicked, []),
           returnValueForMissingStub: null);
   @override
+  void onThemeModeClicked() =>
+      super.noSuchMethod(Invocation.method(#onThemeModeClicked, []),
+          returnValueForMissingStub: null);
+  @override
   void onSelectLanguageClicked() =>
       super.noSuchMethod(Invocation.method(#onSelectLanguageClicked, []),
           returnValueForMissingStub: null);
@@ -2216,6 +2220,10 @@ class MockMainNavigation extends _i1.Mock implements _i35.MainNavigation {
   @override
   void goToDebugPlatformSelector() =>
       super.noSuchMethod(Invocation.method(#goToDebugPlatformSelector, []),
+          returnValueForMissingStub: null);
+  @override
+  void goToThemeModeSelector() =>
+      super.noSuchMethod(Invocation.method(#goToThemeModeSelector, []),
           returnValueForMissingStub: null);
   @override
   void goToDebug() => super.noSuchMethod(Invocation.method(#goToDebug, []),

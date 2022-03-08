@@ -58,6 +58,24 @@ void main() {
     verifyGlobalViewModel();
   });
 
+  testWidgets('Test debug screen on select theme mode clicked', (tester) async {
+    seedDebugViewModel();
+    seedGlobalViewModel();
+
+    const sut = DebugScreen();
+    await TestUtil.loadScreen(tester, sut);
+
+    final target = find.byKey(Keys.debugThemeMode);
+    expect(target, findsOneWidget);
+    await tester.tap(target);
+    await tester.pumpAndSettle();
+
+    verify(debugViewModel.onThemeModeClicked()).calledOnce();
+    verifyDebugViewModel();
+    verifyGlobalViewModelForDebugScreen();
+    verifyGlobalViewModel();
+  });
+
   testWidgets('Test debugscreen on select language clicked', (tester) async {
     seedDebugViewModel();
     seedGlobalViewModel();
