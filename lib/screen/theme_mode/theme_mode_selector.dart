@@ -38,7 +38,7 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> with B
               SelectorItem(
                 title: localization.generalLabelSystemDefault,
                 onClick: () => viewModel.updateThemeMode(ThemeMode.system),
-                selected: viewModel.themeMode == null || viewModel.themeMode == ThemeMode.system,
+                selected: viewModel.themeMode == ThemeMode.system,
               ),
               SelectorItem(
                 title: localization.themeModeLabelLight,

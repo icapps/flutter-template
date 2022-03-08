@@ -221,7 +221,7 @@ class FlutterTemplateTheme {
           bodyUltraSmall: TextStyle(fontSize: 12, color: colorTheme.accent, fontFamily: ThemeFonts.body),
           infoBodySubHeader: TextStyle(fontSize: 14, color: colorTheme.accent, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
         ),
-        exceptionsTextTheme: FlutterTemplateTextThemeExceptions(),
+        exceptionsTextTheme: const FlutterTemplateTextThemeExceptions(),
       );
 
   const FlutterTemplateTheme._({
