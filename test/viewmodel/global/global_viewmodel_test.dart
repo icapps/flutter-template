@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,17 +15,20 @@ void main() {
   late GlobalViewModel sut;
   late LocaleRepository localeRepo;
   late DebugRepository debugRepo;
+  late LocalStorage localStorage;
 
   setUp(() async {
     await initTestInjectable();
     localeRepo = GetIt.I();
     debugRepo = GetIt.I();
-    sut = GlobalViewModel(localeRepo, debugRepo);
+    localStorage = GetIt.I();
+    sut = GlobalViewModel(localeRepo, debugRepo, localStorage);
   });
 
   test('GlobalViewModel init', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
     when(debugRepo.getTargetPlatform()).thenReturn(null);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNull);
@@ -32,13 +36,16 @@ void main() {
     expect(sut.locale, isNull);
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
+    verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
     verifyNoMoreInteractions(debugRepo);
+    verifyNoMoreInteractions(localStorage);
   });
 
   test('GlobalViewModel init with saved locale', () async {
     when(localeRepo.getCustomLocale()).thenAnswer((_) => const Locale('nl'));
     when(debugRepo.getTargetPlatform()).thenReturn(null);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
     expect(sut.localeDelegate, isNotNull);
     expect(sut.localeDelegate.activeLocale, isNotNull);
@@ -48,21 +55,25 @@ void main() {
     expect(sut.locale?.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
+    verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
     verifyNoMoreInteractions(debugRepo);
+    verifyNoMoreInteractions(localStorage);
   });
 
   test('GlobalViewModel check thememode', () async {
-    expect(sut.themeMode, ThemeMode.system);
+    when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
   });
 
   group('After init', () {
     setUp(() async {
       when(localeRepo.getCustomLocale()).thenAnswer((_) => null);
       when(debugRepo.getTargetPlatform()).thenReturn(null);
+      when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
       await sut.init();
       reset(localeRepo);
       reset(debugRepo);
+      reset(localStorage);
     });
 
     test('GlobalViewModel onSwitchToDutch', () async {
@@ -204,6 +215,38 @@ void main() {
           verifyZeroInteractions(localeRepo);
           verifyZeroInteractions(debugRepo);
         });
+      });
+    });
+
+    group('ThemeMode',(){
+      test('GlobalViewModel updateThemeMode light', () async {
+        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
+        await sut.updateThemeMode(ThemeMode.light);
+        reset(localeRepo);
+        reset(debugRepo);
+        expect(sut.themeMode, ThemeMode.light);
+        verifyZeroInteractions(localeRepo);
+        verifyZeroInteractions(debugRepo);
+      });
+
+      test('GlobalViewModel updateThemeMode dark', () async {
+        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
+        await sut.updateThemeMode(ThemeMode.dark);
+        reset(localeRepo);
+        reset(debugRepo);
+        expect(sut.themeMode, ThemeMode.dark);
+        verifyZeroInteractions(localeRepo);
+        verifyZeroInteractions(debugRepo);
+      });
+
+      test('GlobalViewModel updateThemeMode system', () async {
+        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.dark);
+        await sut.updateThemeMode(ThemeMode.system);
+        reset(localeRepo);
+        reset(debugRepo);
+        expect(sut.themeMode, ThemeMode.system);
+        verifyZeroInteractions(localeRepo);
+        verifyZeroInteractions(debugRepo);
       });
     });
   });

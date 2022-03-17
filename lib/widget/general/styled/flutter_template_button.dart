@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
-import 'package:flutter_template/util/extension/text_style_extensions.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
@@ -27,7 +26,7 @@ class FlutterTemplateButton extends StatelessWidget {
             child: Text(
               text,
             ),
-            style: isEnabled ? theme.lightTextTheme.labelButtonSmall : theme.darkTextTheme.labelButtonSmall.withOpacity20(),
+            style: isEnabled ? theme.inverseCoreTextTheme.labelButtonSmall : theme.coreTextTheme.labelButtonSmallDisabled,
             duration: ThemeDurations.shortAnimationDuration(),
           ),
         );

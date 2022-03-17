@@ -29,7 +29,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
       childBuilderTheme: (context, theme) => ActionItem(
         key: Keys.backButton,
         svgAsset: getCorrectIcon(context),
-        color: isLight ? theme.colorsTheme.lightIcon : theme.colorsTheme.darkIcon,
+        color: isLight ? theme.colorsTheme.icon : theme.colorsTheme.inverseIcon,
         onClick: onClick,
       ),
     );

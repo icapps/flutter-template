@@ -5,6 +5,7 @@ import 'package:flutter_template/navigator/main_navigation.dart';
 import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
+import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
@@ -76,6 +77,8 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
       case DebugPlatformSelectorScreen.routeName:
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+      case ThemeModeSelectorScreen.routeName:
+        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings);
       case DebugScreen.routeName:
         return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugScreen()), settings: settings);
       case LicenseScreen.routeName:
@@ -102,6 +105,9 @@ class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavig
 
   @override
   void goToDebugPlatformSelector() => _navigator.pushNamed(DebugPlatformSelectorScreen.routeName);
+
+  @override
+  void goToThemeModeSelector() => _navigator.pushNamed(ThemeModeSelectorScreen.routeName);
 
   @override
   void goToDebug() => _navigator.pushNamed(DebugScreen.routeName);

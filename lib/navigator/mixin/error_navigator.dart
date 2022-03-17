@@ -47,7 +47,7 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
       content: DataProviderWidget(
         childBuilderTheme: (context, theme) => Text(
           error,
-          style: theme.lightTextTheme.labelButtonSmall,
+          style: theme.inverseCoreTextTheme.labelButtonSmall,
         ),
       ),
     );

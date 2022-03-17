@@ -26,12 +26,15 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+
     return ProviderWidget<LoginViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
-        builder: (context, viewModel, child) => StatusBar.light(
+        builder: (context, viewModel, child) => StatusBar.animated(
+          isDarkStyle: (brightness != Brightness.dark),
           child: Scaffold(
-            backgroundColor: theme.colorsTheme.backgroundDark,
+            backgroundColor: theme.colorsTheme.background,
             body: SafeArea(
               child: Container(
                 width: double.infinity,
@@ -41,13 +44,13 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
                     Container(height: ThemeDimens.padding16),
                     Text(
                       'Login',
-                      style: theme.lightTextTheme.titleNormal,
+                      style: theme.coreTextTheme.titleNormal,
                       textAlign: TextAlign.center,
                     ),
                     Container(height: ThemeDimens.padding32),
                     Text(
                       'Just fill in some text. There is no validator for the login',
-                      style: theme.lightTextTheme.labelButtonSmall,
+                      style: theme.coreTextTheme.labelButtonSmall,
                     ),
                     Container(height: ThemeDimens.padding32),
                     FlutterTemplateInputField(

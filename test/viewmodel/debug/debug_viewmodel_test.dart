@@ -56,6 +56,13 @@ void main() {
       verifyZeroInteractions(debugRepo);
     });
 
+    test('DebugViewModel onThemeModeClicked', () async {
+      sut.onThemeModeClicked();
+      verify(navigator.goToThemeModeSelector()).calledOnce();
+      verifyNoMoreInteractions(navigator);
+      verifyZeroInteractions(debugRepo);
+    });
+
     group('onSlowAnimationsChanged', () {
       test('DebugViewModel onSlowAnimationsChanged with false', () async {
         when(debugRepo.isSlowAnimationsEnabled()).thenAnswer((_) => false);

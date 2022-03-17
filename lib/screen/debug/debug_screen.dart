@@ -53,6 +53,12 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
                 subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
                 onClick: viewModel.onTargetPlatformClicked,
               ),
+              DebugRowItem(
+                key: Keys.debugThemeMode,
+                title: localization.debugThemeModeTitle,
+                subTitle: localization.debugThemeModeSubtitle,
+                onClick: viewModel.onThemeModeClicked,
+              ),
               DebugRowTitle(title: localization.debugLocaleTitle),
               DebugRowItem(
                 key: Keys.debugSelectLanguage,
@@ -88,6 +94,9 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
 
   @override
   void goToTargetPlatformSelector() => MainNavigatorWidget.of(context).goToDebugPlatformSelector();
+
+  @override
+  void goToThemeModeSelector() => MainNavigatorWidget.of(context).goToThemeModeSelector();
 
   @override
   void goToLicenses() => MainNavigatorWidget.of(context).goToLicense();

@@ -30,6 +30,8 @@ class DebugViewModel with ChangeNotifierEx {
 
   void onTargetPlatformClicked() => _navigator.goToTargetPlatformSelector();
 
+  void onThemeModeClicked() => _navigator.goToThemeModeSelector();
+
   void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
 
   void onLicensesClicked() => _navigator.goToLicenses();
@@ -37,6 +39,8 @@ class DebugViewModel with ChangeNotifierEx {
 
 abstract class DebugNavigator {
   void goToTargetPlatformSelector();
+
+  void goToThemeModeSelector();
 
   void goToSelectLanguage();
 

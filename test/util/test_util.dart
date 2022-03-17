@@ -25,7 +25,7 @@ class TestUtil {
     return _internalLoadWidget(
       tester,
       MaterialApp(
-        theme: ThemeData(fontFamily: ThemeFonts.openSans),
+        theme: ThemeData(fontFamily: ThemeFonts.body),
         locale: const Locale('en'),
         supportedLocales: const [Locale('en')],
         localizationsDelegates: [
@@ -99,7 +99,7 @@ class TestUtil {
   }
 
   static Future<void> loadFonts() async {
-    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.openSans);
+    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.body);
   }
 
   static Future<void> _loadFont(String fontPath, String fontName) async {

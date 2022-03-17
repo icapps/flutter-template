@@ -12,6 +12,8 @@ abstract class MainNavigation {
 
   void goToDebugPlatformSelector();
 
+  void goToThemeModeSelector();
+
   void goToDebug();
 
   void goToLicense();

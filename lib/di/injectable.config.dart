@@ -111,7 +111,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i32.TodoListViewModel>(
       () => _i32.TodoListViewModel(get<_i20.TodoRepository>()));
   gh.factory<_i33.GlobalViewModel>(() => _i33.GlobalViewModel(
-      get<_i25.LocaleRepository>(), get<_i22.DebugRepository>()));
+      get<_i25.LocaleRepository>(),
+      get<_i22.DebugRepository>(),
+      get<_i24.LocalStorage>()));
   gh.singleton<_i34.NetworkRefreshInterceptor>(_i34.NetworkRefreshInterceptor(
       get<_i21.AuthStorage>(), get<_i29.RefreshRepository>()));
   gh.lazySingleton<_i5.CombiningSmartInterceptor>(() =>

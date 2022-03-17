@@ -9,6 +9,7 @@ class Keys {
   //Debug
   static const debugSlowAnimations = ValueKey('debug_slow_animations');
   static const debugTargetPlatform = ValueKey('debug_target_platform');
+  static const debugThemeMode = ValueKey('debug_theme_mode');
   static const debugSelectLanguage = ValueKey('debug_select_language');
   static const debugShowTranslations = ValueKey('debug_show_language');
   static const debugLicense = ValueKey('debug_license');
