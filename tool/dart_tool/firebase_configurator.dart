@@ -15,6 +15,10 @@ void main() {
     exit(0);
   }
   // Remove lines in files
+  _removeLineInFileStartWith('android/build.gradle', "        classpath 'com.google.gms:google-services:4.3.8'");
+  _removeLineInFileStartWith('android/build.gradle', "        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'");
+  _removeLineInFileStartWith('android/app/build.gradle', "apply plugin: 'com.google.gms.google-services'");
+  _removeLineInFileStartWith('android/app/build.gradle', "apply plugin: 'com.google.firebase.crashlytics'");
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_analytics');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_core');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_crashlytics');
