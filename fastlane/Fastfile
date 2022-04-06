@@ -44,6 +44,8 @@ lane :pr do
   installFvmVersion
 
   Dir.chdir ".." do
+    ## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
+    ## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
     sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
     sh("cp", "fastlane/analysis_options_all_files.yaml", "analysis_options.yaml")
     sh("fvm", "flutter", "analyze")
