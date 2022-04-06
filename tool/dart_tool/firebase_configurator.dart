@@ -141,6 +141,12 @@ class _CustomAnalyticsRepository with WidgetsBindingObserver implements CustomAn
   @singleton
   FirebaseAnalytics get getFirebaseAnalytics => MockFirebaseAnalytics();''',
       "");
+
+  // Build project
+  executeCommand('fvm', ['flutter', 'clean']);
+  executeCommand('fvm', ['flutter', 'packages', 'get']);
+  executeCommand('fvm', ['flutter', 'packages', 'pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+  executeCommand('cd', ['ios', '&&', 'pod', 'install', 'cd', '..']);
 }
 
 void replaceInFile(String path, String originalString, String newString) {
@@ -161,6 +167,21 @@ void _removeLineInFileStartWith(String path, String startWithString) {
     newContent.add(line);
   }
   file.writeAsStringSync(newContent.join('\n'));
+}
+
+void executeCommand(String cmd, List<String> params) {
+  final fullCommand = '$cmd ${params.join(' ')}';
+  try {
+    Logger.debug('\nExecuting command:\n$fullCommand');
+    final result = Process.runSync(cmd, params);
+    if (result.stderr.toString().isNotEmpty) {
+      throw Exception(result.stderr.toString());
+    }
+    Logger.debug(result.stdout.toString());
+  } catch (e) {
+    Logger.debug('\nFailed to execute command: $fullCommand\n$e');
+    rethrow;
+  }
 }
 
 class Logger {
