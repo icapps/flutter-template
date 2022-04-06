@@ -14,12 +14,17 @@ void main() {
     Logger.debug('You can not enable firebase again with this plugin. only remove firebase');
     exit(0);
   }
+  // Remove lines in files
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_analytics');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_core');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_crashlytics');
   _removeLineInFileStartWith('lib/main_common.dart', "import 'package:firebase_core/firebase_core.dart';");
+  _removeLineInFileStartWith('lib/di/injectable.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
+  _removeLineInFileStartWith('lib/di/injectable.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
   _removeLineInFileStartWith('lib/main_common.dart', "import 'package:firebase_crashlytics/firebase_crashlytics.dart';");
   _removeLineInFileStartWith('lib/main_common.dart', "    await _setupCrashLogging");
+
+  // Replace content in files
   replaceInFile(
       'lib/main_common.dart',
       '''
@@ -48,6 +53,83 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
     }
 ''',
       '');
+  replaceInFile(
+      'lib/di/injectable.dart',
+      '''  @lazySingleton
+  FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;
+''',
+      '');
+  replaceInFile(
+      'lib/navigator/main_navigator.dart', '    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,', '    GetIt.I.get<CustomAnalyticsRepository>().routeObserver,');
+  replaceInFile('lib/navigator/main_navigator.dart', "import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';",
+      "import 'package:flutter_template/repository/analytics/custom_analytics_repository.dart';");
+
+  // Overwrite files
+  File('lib/repo/analytics/firebase_analytics_repo.dart').deleteSync();
+  File('lib/repo/analytics/custom_analytics_repo.dart').writeAsStringSync('''import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_template/repository/analytics/analytics.dart';
+import 'package:injectable/injectable.dart';
+
+@lazySingleton
+abstract class CustomAnalyticsRepository implements Analytics {
+  @factoryMethod
+  factory CustomAnalyticsRepository() = _CustomAnalyticsRepository;
+
+  RouteObserver get routeObserver;
+}
+
+class _CustomAnalyticsRepository with WidgetsBindingObserver implements CustomAnalyticsRepository {
+  
+  @override
+  RouteObserver<Route> get routeObserver => RouteObserver();
+
+  @override
+  void init() {
+    logAppOpen();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void trackEvent(String name, {Map<String, Object?>? arguments}) {}
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      logAppOpen();
+    } else if (state == AppLifecycleState.paused) {
+      trackEvent(Analytics.eventAppBackground);
+    }
+  }
+
+  @override
+  void dispose() {}
+
+  @override
+  void onLoggedIn() {}
+
+  void logAppOpen() {}
+  
+  @override
+  void onSignedUp() {}
+}
+''');
+
+  // In Tests
+  if (!Directory('test').existsSync()) return;
+  // Remove lines in files
+  _removeLineInFileStartWith('test/di/injectable_test.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
+  _removeLineInFileStartWith('test/di/test_injectable.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
+  _removeLineInFileStartWith('test/di/tes_injectable_test.dart', "  FirebaseAnalytics,");
+  // Replace content in files
+
+  // Overwrite files
+  replaceInFile(
+      'test/di/test_injectable.dart',
+      '''  @Environment(Environments.test)
+  @singleton
+  FirebaseAnalytics get getFirebaseAnalytics => MockFirebaseAnalytics();''',
+      "");
 }
 
 void replaceInFile(String path, String originalString, String newString) {
