@@ -31,6 +31,15 @@ void main() {
   _removeLineInFileStartWith('lib/di/injectable.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
   _removeLineInFileStartWith('lib/main_common.dart', "import 'package:firebase_crashlytics/firebase_crashlytics.dart';");
   _removeLineInFileStartWith('lib/main_common.dart', "    await _setupCrashLogging");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "		3629EB6826E758C500F774E2 /* GoogleService-Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3629EB6726E758C500F774E2 /* GoogleService-Info-dev.plist */; };");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "		3629EB6A26E758D200F774E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3629EB6926E758D200F774E2 /* GoogleService-Info.plist */; };");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', '		3629EB6726E758C500F774E2 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };');
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', '		3629EB6926E758D200F774E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };');
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "				3629EB6926E758D200F774E2 /* GoogleService-Info.plist */,");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "				3629EB6626E758A300F774E2 /* GoogleService */,");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "				3629EB6926E758D200F774E2 /* GoogleService-Info.plist */,");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "				3629EB6826E758C500F774E2 /* GoogleService-Info-dev.plist in Resources */,");
+  _removeLineInFileStartWith('ios/Runner.xcodeproj/project.pbxproj', "				3629EB6A26E758D200F774E2 /* GoogleService-Info.plist in Resources */,");
 
   // Replace content in files
   replaceInFile(
@@ -75,6 +84,18 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
       'ios/Runner.xcodeproj/project.pbxproj',
       r'			shellScript = "#! /bin/sh\n\n\necho \"💾 Prepare firebase plist\"\nconfig=${CONFIGURATION}\nconfig=${config//Release-/}\nconfig=${config//Debug-/}\ncp \"${PROJECT_DIR}/Configuration/GoogleService/GoogleService-Info-${config}.plist\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\necho \"Run {PODS_ROOT}/FirebaseCrashlytics/run\"\n${PODS_ROOT}/FirebaseCrashlytics/run\n";',
       r'			shellScript = "#! /bin/sh\n\nconfig=${CONFIGURATION}\nconfig=${config//Release-/}\nconfig=${config//Debug-/}\necho \"Configuration mapping should be done here\"\n";');
+  replaceInFile(
+      'ios/Runner.xcodeproj/project.pbxproj',
+      '''		3629EB6626E758A300F774E2 /* GoogleService */ = {
+			isa = PBXGroup;
+			children = (
+				3629EB6726E758C500F774E2 /* GoogleService-Info-dev.plist */,
+			);
+			path = GoogleService;
+			sourceTree = "<group>";
+		};
+''',
+      r'');
 
   // Overwrite files
   File('lib/repository/analytics/custom_analytics_repository.dart').writeAsStringSync('''import 'package:flutter/material.dart';
