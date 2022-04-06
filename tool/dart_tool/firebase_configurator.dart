@@ -14,6 +14,10 @@ void main() {
     Logger.debug('You can not enable firebase again with this plugin. only remove firebase');
     exit(0);
   }
+  // Remove Files
+  File('lib/repository/analytics/firebase_analytics_repository.dart').deleteSync();
+  Directory('ios/Configuration/GoogleService').deleteSync(recursive: true);
+
   // Remove lines in files
   _removeLineInFileStartWith('android/build.gradle', "        classpath 'com.google.gms:google-services:4.3.8'");
   _removeLineInFileStartWith('android/build.gradle', "        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'");
@@ -67,9 +71,12 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
       'lib/navigator/main_navigator.dart', '    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,', '    GetIt.I.get<CustomAnalyticsRepository>().routeObserver,');
   replaceInFile('lib/navigator/main_navigator.dart', "import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';",
       "import 'package:flutter_template/repository/analytics/custom_analytics_repository.dart';");
+  replaceInFile(
+      'ios/Runner.xcodeproj/project.pbxproj',
+      r'			shellScript = "#! /bin/sh\n\n\necho \"💾 Prepare firebase plist\"\nconfig=${CONFIGURATION}\nconfig=${config//Release-/}\nconfig=${config//Debug-/}\ncp \"${PROJECT_DIR}/Configuration/GoogleService/GoogleService-Info-${config}.plist\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\necho \"Run {PODS_ROOT}/FirebaseCrashlytics/run\"\n${PODS_ROOT}/FirebaseCrashlytics/run\n";',
+      r'			shellScript = "#! /bin/sh\n\nconfig=${CONFIGURATION}\nconfig=${config//Release-/}\nconfig=${config//Debug-/}\necho \"Configuration mapping should be done here\"\n";');
 
   // Overwrite files
-  File('lib/repository/analytics/firebase_analytics_repository.dart').deleteSync();
   File('lib/repository/analytics/custom_analytics_repository.dart').writeAsStringSync('''import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/repository/analytics/analytics.dart';
