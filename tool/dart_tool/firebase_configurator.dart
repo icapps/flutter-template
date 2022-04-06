@@ -120,7 +120,7 @@ class _CustomAnalyticsRepository with WidgetsBindingObserver implements CustomAn
   // Remove lines in files
   _removeLineInFileStartWith('test/di/injectable_test.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
   _removeLineInFileStartWith('test/di/test_injectable.dart', "import 'package:firebase_analytics/firebase_analytics.dart';");
-  _removeLineInFileStartWith('test/di/tes_injectable_test.dart', "  FirebaseAnalytics,");
+  _removeLineInFileStartWith('test/di/injectable_test.dart', "  FirebaseAnalytics,");
   // Replace content in files
 
   // Overwrite files
