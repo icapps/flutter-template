@@ -143,6 +143,7 @@ class _CustomAnalyticsRepository with WidgetsBindingObserver implements CustomAn
       "");
 
   // Build project
+  executeCommand('fvm', ['flutter', 'packages', 'get']);
   executeCommand('fvm', ['flutter', 'clean']);
   executeCommand('fvm', ['flutter', 'packages', 'get']);
   executeCommand('fvm', ['flutter', 'packages', 'pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
