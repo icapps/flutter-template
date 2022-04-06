@@ -44,10 +44,6 @@ lane :pr do
   installFvmVersion
 
   Dir.chdir ".." do
-    sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
-    sh("cp", "fastlane/analysis_options_all_files.yaml", "analysis_options.yaml")
-    sh("fvm", "flutter", "analyze")
-    sh("mv", "fastlane/analysis_options_original.yaml", "analysis_options.yaml")
     sh("fvm", "flutter", "analyze")
     sh("fvm", "flutter", "test")
     #sh("fvm", "flutter", "test", "--coverage")
