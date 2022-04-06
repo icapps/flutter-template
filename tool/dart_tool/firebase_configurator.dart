@@ -65,8 +65,8 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
       "import 'package:flutter_template/repository/analytics/custom_analytics_repository.dart';");
 
   // Overwrite files
-  File('lib/repo/analytics/firebase_analytics_repo.dart').deleteSync();
-  File('lib/repo/analytics/custom_analytics_repo.dart').writeAsStringSync('''import 'package:flutter/material.dart';
+  File('lib/repository/analytics/firebase_analytics_repo.dart').deleteSync();
+  File('lib/repository/analytics/custom_analytics_repo.dart').writeAsStringSync('''import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/repository/analytics/analytics.dart';
 import 'package:injectable/injectable.dart';
