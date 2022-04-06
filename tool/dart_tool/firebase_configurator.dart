@@ -17,6 +17,9 @@ void main() {
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_analytics');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_core');
   _removeLineInFileStartWith('pubspec.yaml', '  firebase_crashlytics');
+  _removeLineInFileStartWith('lib/main_common.dart', "import 'package:firebase_core/firebase_core.dart';");
+  _removeLineInFileStartWith('lib/main_common.dart', "import 'package:firebase_crashlytics/firebase_crashlytics.dart';");
+  _removeLineInFileStartWith('lib/main_common.dart', "    await _setupCrashLogging");
   replaceInFile(
       'lib/main_common.dart',
       '''
@@ -37,7 +40,14 @@ Future<void> _setupCrashLogging({required bool enabled}) async {
 }
 
 ''',
-      '\n');
+      '');
+  replaceInFile(
+      'lib/main_common.dart',
+      '''    if (enableCrashLogging) {
+      FirebaseCrashlytics.instance.recordError(object, trace);
+    }
+''',
+      '');
 }
 
 void replaceInFile(String path, String originalString, String newString) {
