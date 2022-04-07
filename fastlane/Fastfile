@@ -56,30 +56,34 @@ lane :pr do
     #sh("dart", "coverage/filter_test_coverage.dart")
     #sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
   end
+  git_reset
 end
 
 lane :ci_alpha do
     ensure_git_status_clean
     pr
-    sh("git", "reset", "--hard")
+    git_reset
     alpha_android
     alpha_ios_build
+    git_reset
 end
 
 lane :ci_beta do
     ensure_git_status_clean
     pr
-    sh("git", "reset", "--hard")
+    git_reset
     beta_android
     beta_ios_build
+    git_reset
 end
 
 lane :ci_prod do
     ensure_git_status_clean
     pr
-    sh("git", "reset", "--hard")
+    git_reset
     prod_android
     prod_ios_build
+    git_reset
 end
 
 lane :alpha_android do
@@ -89,6 +93,7 @@ lane :alpha_android do
   prepareBuild
   buildAppAndroid(flavor: 'alpha')
   uploadToAppcenterAndroid(flavor: 'alpha') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :beta_android do
@@ -98,6 +103,7 @@ lane :beta_android do
   prepareBuild
   buildAppAndroid(flavor: 'beta')
   uploadToAppcenterAndroid(flavor: 'beta') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :prod_android do
@@ -109,6 +115,7 @@ lane :prod_android do
   sh("echo","Uploading to Google Play is disabled.")
   #deployToPlayStore(flavor: 'prod', package_name: 'com.icapps.fluttertemplate')
   add_tag                 # Add tag
+  git_reset
 end
 
 lane :alpha_ios do
@@ -117,11 +124,7 @@ lane :alpha_ios do
 
   prepareBuild
   alpha_ios_build
-end
-
-private_lane :alpha_ios_build do
-  buildAppIOSOnly(flavor: 'alpha')
-  uploadToAppcenterIos(flavor: 'alpha') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :beta_ios do
@@ -130,11 +133,7 @@ lane :beta_ios do
 
   prepareBuild
   beta_ios_build
-end
-
-private_lane :beta_ios_build do
-  buildAppIOSOnly(flavor: 'beta')
-  uploadToAppcenterIos(flavor: 'beta') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :prod_ios do
@@ -144,6 +143,21 @@ lane :prod_ios do
   prepareBuild
   prod_ios_build
   add_tag                 # Add tag
+  git_reset
+end
+
+########################
+###   PRIVATE LANES  ###
+########################
+
+private_lane :alpha_ios_build do
+  buildAppIOSOnly(flavor: 'alpha')
+  uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
+end
+
+private_lane :beta_ios_build do
+  buildAppIOSOnly(flavor: 'beta')
+  uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
 end
 
 private_lane :prod_ios_build do
@@ -151,10 +165,6 @@ private_lane :prod_ios_build do
   sh("echo","Enter `apple_id` in the prod_ios_build lane")
   #buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: '')
 end
-
-########################
-###   PRIVATE LANES  ###
-########################
 
 ## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
 ## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
@@ -231,6 +241,10 @@ end
 
 private_lane :add_tag do
   add_git_tag(build_number: BUILD_NR)
+end
+
+private_lane :git_reset do
+  sh("git", "reset", "--hard")
 end
 
 private_lane :buildAndDeployToAppStore do |options|
