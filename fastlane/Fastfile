@@ -42,9 +42,8 @@ end
 ####################
 lane :pr do
   installFvmVersion
-
+  checkCompilationAndAnalyzer
   Dir.chdir ".." do
-    sh("fvm", "flutter", "analyze")
     sh("fvm", "flutter", "test")
     #sh("fvm", "flutter", "test", "--coverage")
     #sh("dart", "--version")
@@ -138,6 +137,18 @@ end
 ########################
 ###   PRIVATE LANES  ###
 ########################
+
+## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
+## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
+private_lane :checkCompilationAndAnalyzer do
+    Dir.chdir ".." do
+      sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
+      sh("cp", "fastlane/analysis_options_check_compilation.yaml", "analysis_options.yaml")
+      sh("fvm", "flutter", "analyze")
+      sh("mv", "fastlane/analysis_options_original.yaml", "analysis_options.yaml")
+      sh("fvm", "flutter", "analyze")
+    end
+end
 private_lane :installFvmVersion do
     Dir.chdir ".." do
       sh("bash", "./tool/install_fvm.sh")

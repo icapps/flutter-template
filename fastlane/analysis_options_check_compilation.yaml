@@ -1,0 +1,8 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    unnecessary_brace_in_string_interps: false
+    avoid_returning_null_for_void: false
+    prefer_inlined_adds: false
+    prefer_const_declarations: false
