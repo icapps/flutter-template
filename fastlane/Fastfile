@@ -1,11 +1,13 @@
 fastlane_version “2.195.0”
-xcode_path = "/Applications/Xcode.app"
 
 # Don't generate README files.
 skip_docs
 
 # Select specific xcode
-#xcode_select(xcode_path)
+xcode_path = ""
+if is_ci
+  #xcode_select(xcode_path)
+end
 
 # Install provisioning pro
 install_provisioning_profiles
@@ -25,7 +27,6 @@ unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_c
 APP_STORE_USERNAME = ''
 APP_STORE_TEAM_NAME = ''
 APP_STORE_TEAM_ID = ''
-ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'] = ''
 
 # iOS Configuration
 WORKSPACE = 'ios/Runner.xcworkspace'
@@ -110,7 +111,8 @@ lane :prod_android do
 
   prepareBuild
   buildAppBundleAndroid(flavor: 'prod')
-  deployToPlayStore(flavor: 'prod', package_name: 'com.icapps.fluttertemplate')
+  sh("echo","Uploading to Google Play is disabled.")
+  #deployToPlayStore(flavor: 'prod', package_name: 'com.icapps.fluttertemplate')
   add_tag                 # Add tag
 end
 
