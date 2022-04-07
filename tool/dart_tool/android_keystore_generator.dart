@@ -1,13 +1,5 @@
 import 'dart:io';
 
-const originalProjectName = 'flutter_template';
-const originalClassNamePrefix = 'FlutterTemplate';
-const originalIOSBundleIdentifier = 'com.icapps.fluttertemplate';
-const originalAndroidPackageName = 'com.icapps.fluttertemplate';
-const originalAndroidFolderPath = 'com/icapps/fluttertemplate';
-const originalAppName = 'Flutter Template';
-const originalDescription = 'A Flutter Template to get started quickly';
-
 void main(List<String> args) {
   final type = args[0];
   final alias = args[1];
