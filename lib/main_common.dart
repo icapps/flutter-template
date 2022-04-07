@@ -7,27 +7,23 @@ import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
-Future<void> _setupCrashLogging({required bool enabled}) async {
-  if (enabled) {
-    await Firebase.initializeApp();
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(enabled);
-    unawaited(FirebaseCrashlytics.instance.sendUnsentReports());
-  }
-
+Future<void> _setupCrashLogging() async {
+  await Firebase.initializeApp();
+  if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) unawaited(FirebaseCrashlytics.instance.sendUnsentReports());
   final originalOnError = FlutterError.onError;
   FlutterError.onError = (errorDetails) async {
-    if (enabled) {
+    if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
       await FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
     }
     originalOnError?.call(errorDetails);
   };
 }
 
-FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode, {required bool enableCrashLogging}) {
+FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) {
   return runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     configureWebApp();
-    await _setupCrashLogging(enabled: enableCrashLogging);
+    await _setupCrashLogging();
     await initArchitecture();
 
     return await appCode();
@@ -35,7 +31,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode, {required bool enableCr
     try {
       WidgetsFlutterBinding.ensureInitialized();
     } catch (_) {}
-    
+
     try {
       staticLogger.e('Zone error', error: object, trace: trace);
     } catch (_) {
@@ -45,7 +41,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode, {required bool enableCr
       print(trace);
     }
 
-    if (enableCrashLogging) {
+    if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
       FirebaseCrashlytics.instance.recordError(object, trace);
     }
   });
