@@ -29,5 +29,5 @@ Future<void> main() async {
     await initAllStorageInspectors();
 
     runApp(const MyApp());
-  }, enableCrashLogging: false);
+  });
 }

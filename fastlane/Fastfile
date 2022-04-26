@@ -1,7 +1,13 @@
-fastlane_version “2.93.1”
+fastlane_version “2.195.0”
 
 # Don't generate README files.
 skip_docs
+
+# Select specific xcode
+xcode_path = ""
+if is_ci
+  #xcode_select(xcode_path)
+end
 
 # Install provisioning pro
 install_provisioning_profiles
@@ -13,17 +19,16 @@ end
 
 keychain_password = ENV[‘JENKINS_KEYCHAIN_PASSWORD’]
 unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_ci? && keychain_password
-appcenter_app_name = ''
 
 #####################
 ### CONFIGURATION ###
 #####################
 # AppStore Configuration
-APPSTORE_USERNAME = ''
-APPSTORE_TEAM_NAME = ''
-APPSTORE_TEAM_ID = ''
+APP_STORE_USERNAME = ''
+APP_STORE_TEAM_NAME = ''
+APP_STORE_TEAM_ID = ''
 
-# AppCenter Configuration
+# iOS Configuration
 WORKSPACE = 'ios/Runner.xcworkspace'
 
 #Build Configuration
@@ -31,7 +36,8 @@ BUMP_BUILD_NR = 10
 BUILD_NR = ENV["BUILD_NUMBER"] || ''
 
 if BUILD_NR == ''
-  sh("echo","No build nr set")
+  BUILD_NR = 1
+  sh("echo","No build nr set, USING DEFAULT (1)")
 else
   BUILD_NR = Integer(BUILD_NR) + BUMP_BUILD_NR
   sh("echo","New build nr: #{BUILD_NR}")
@@ -42,41 +48,42 @@ end
 ####################
 lane :pr do
   installFvmVersion
-
+  checkCompilationAndAnalyzer
   Dir.chdir ".." do
-    sh("fvm", "flutter", "analyze")
     sh("fvm", "flutter", "test")
     #sh("fvm", "flutter", "test", "--coverage")
     #sh("dart", "--version")
     #sh("dart", "coverage/filter_test_coverage.dart")
     #sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
   end
+  git_reset
 end
 
 lane :ci_alpha do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion
-
-  prepareBuild
-
-  buildAppAndroid(flavor: 'alpha')
-  uploadToAppcenterAndroid(flavor: 'alpha') # Deploy the apk to AppCenter.
-
-  buildAppIOS(flavor: 'alpha')
-  uploadToAppcenterIos(flavor: 'alpha') # Deploy the apk to AppCenter.
+    ensure_git_status_clean
+    pr
+    git_reset
+    alpha_android
+    alpha_ios_build
+    git_reset
 end
 
 lane :ci_beta do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
-  installFvmVersion
+    ensure_git_status_clean
+    pr
+    git_reset
+    beta_android
+    beta_ios_build
+    git_reset
+end
 
-  prepareBuild
-
-  buildAppAndroid(flavor: 'beta')
-  uploadToAppcenterAndroid(flavor: 'beta') # Deploy the apk to AppCenter.
-
-  buildAppIOS(flavor: 'beta')
-  uploadToAppcenterIos(flavor: 'beta') # Deploy the apk to AppCenter.
+lane :ci_prod do
+    ensure_git_status_clean
+    pr
+    git_reset
+    prod_android
+    prod_ios_build
+    git_reset
 end
 
 lane :alpha_android do
@@ -86,6 +93,7 @@ lane :alpha_android do
   prepareBuild
   buildAppAndroid(flavor: 'alpha')
   uploadToAppcenterAndroid(flavor: 'alpha') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :beta_android do
@@ -95,6 +103,7 @@ lane :beta_android do
   prepareBuild
   buildAppAndroid(flavor: 'beta')
   uploadToAppcenterAndroid(flavor: 'beta') # Deploy the apk to AppCenter.
+  git_reset
 end
 
 lane :prod_android do
@@ -103,8 +112,10 @@ lane :prod_android do
 
   prepareBuild
   buildAppBundleAndroid(flavor: 'prod')
-  # uploadToPlaystore()
+  sh("echo","Uploading to Google Play is disabled.")
+  #deployToPlayStore(flavor: 'prod', package_name: 'com.icapps.fluttertemplate')
   add_tag                 # Add tag
+  git_reset
 end
 
 lane :alpha_ios do
@@ -112,8 +123,8 @@ lane :alpha_ios do
   installFvmVersion
 
   prepareBuild
-  buildAppIOS(flavor: 'alpha')
-  uploadToAppcenterIos(flavor: 'alpha') # Deploy the apk to AppCenter.
+  alpha_ios_build
+  git_reset
 end
 
 lane :beta_ios do
@@ -121,8 +132,8 @@ lane :beta_ios do
   installFvmVersion
 
   prepareBuild
-  buildAppIOS(flavor: 'beta')
-  uploadToAppcenterIos(flavor: 'beta') # Deploy the apk to AppCenter.
+  beta_ios_build
+  git_reset
 end
 
 lane :prod_ios do
@@ -130,14 +141,42 @@ lane :prod_ios do
   installFvmVersion
 
   prepareBuild
-  buildAppIOS(flavor: 'prod')
-  # buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: 'apple-id-are-numbers') //fill in with correct values.
+  prod_ios_build
   add_tag                 # Add tag
+  git_reset
 end
 
 ########################
 ###   PRIVATE LANES  ###
 ########################
+
+private_lane :alpha_ios_build do
+  buildAppIOSOnly(flavor: 'alpha')
+  uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
+end
+
+private_lane :beta_ios_build do
+  buildAppIOSOnly(flavor: 'beta')
+  uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
+end
+
+private_lane :prod_ios_build do
+  buildAppIOSOnly(flavor: 'prod')
+  sh("echo","Enter `apple_id` in the prod_ios_build lane")
+  #buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: '')
+end
+
+## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
+## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
+private_lane :checkCompilationAndAnalyzer do
+    Dir.chdir ".." do
+      sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
+      sh("cp", "fastlane/analysis_options_check_compilation.yaml", "analysis_options.yaml")
+      sh("fvm", "flutter", "analyze")
+      sh("mv", "fastlane/analysis_options_original.yaml", "analysis_options.yaml")
+      sh("fvm", "flutter", "analyze")
+    end
+end
 private_lane :installFvmVersion do
     Dir.chdir ".." do
       sh("bash", "./tool/install_fvm.sh")
@@ -153,22 +192,45 @@ end
 
 private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (APK)
     end
+    Dir.chdir "../build/debug-info/#{options[:flavor]}" do
+      zip(
+        path: "./",
+        include: ["**/app.android-*"],
+        output_path: "AndroidSymbols.zip"
+      )
+    end
+    upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :buildAppBundleAndroid do |options|
     Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (AAB)
     end
+    Dir.chdir "../build/debug-info/#{options[:flavor]}" do
+      zip(
+        path: "./",
+        include: ["**/app.android-*"],
+        output_path: "AndroidSymbols.zip"
+      )
+    end
+    upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
-private_lane :buildAppIOS do |options|
+private_lane :buildAppIOSOnly do |options|
     Dir.chdir ".." do
       podRepoUpdate
       sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
-      convertAppToIpa(flavor: options[:flavor])
     end
+    Dir.chdir "../build" do
+      zip(
+        path: "./",
+        include: ["**/debug-info/#{options[:flavor]}/app.ios-*", "**/ios/Release-#{options[:flavor]}-iphoneos/Runner.app.dSYM/*"],
+        output_path: "iOSSymbols.zip"
+      )
+    end
+    upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :podRepoUpdate do |options|
@@ -177,82 +239,12 @@ private_lane :podRepoUpdate do |options|
       end
 end
 
-private_lane :convertAppToIpa do |options|
-     Dir.chdir "ios" do
-        gym(
-            workspace: WORKSPACE,
-            scheme: options[:flavor],
-            configuration: "Release-#{options[:flavor]}",
-            export_options: {
-                method: "enterprise",
-                provisioningProfiles: {
-                    "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
-                    "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
-                    "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
-                    "com.icapps.fluttertemplate" => "Flutter Template Production"
-                }
-            }
-        )
-    end
-end
-
-private_lane :uploadToAppcenterAndroid do |options|
-  getAppNameAndroid(flavor: options[:flavor])
-  zip(
-    path: "build/debug-info/#{options[:flavor]}/",
-    include: ["**/app.android.*"],
-    output_path: "AndroidSymbols.zip"
-  )
-  sh("mv", "../AndroidSymbols.zip", "../AndroidSymbols.txt")
-  appcenter_upload(
-    app_name: appcenter_app_name,
-    apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
-    notify_testers: true,
-    mapping: "./AndroidSymbols.txt",
-    destinations: "*"
-  )
-end
-
-private_lane :uploadToAppcenterIos do |options|
-  getAppNameIOS(flavor: options[:flavor])
-  zip(
-    path: "build",
-    include: ["debug-info/#{options[:flavor]}/app.ios*", "ios/Release-#{options[:flavor]}-phoneos/Runner.app.dSYM/*"],
-    output_path: "iOSSymbols.zip"
-  )
-  appcenter_upload(
-    app_name: appcenter_app_name,
-    notify_testers: true,
-    dsym: "./iOSSymbols.zip",
-    destinations: "*"
-  )
-end
-
 private_lane :add_tag do
   add_git_tag(build_number: BUILD_NR)
 end
 
-private_lane :getAppNameAndroid do |options|
-    flavor = options[:flavor]
-    if flavor == "alpha" &&
-        appcenter_app_name = "FlutterTemplate-Android-Alpha"
-    elsif flavor == "beta"
-        appcenter_app_name = "FlutterTemplate-Android-Beta"
-    elsif flavor == "prod"
-        appcenter_app_name = "FlutterTemplate-Android"
-    end
-end
-
-
-private_lane :getAppNameIOS do |options|
-    flavor = options[:flavor]
-    if flavor == "alpha" &&
-        appcenter_app_name = "FlutterTemplate-iOS-Alpha"
-    elsif flavor == "beta"
-        appcenter_app_name = "FlutterTemplate-iOS-Beta"
-    elsif flavor == "prod"
-        appcenter_app_name = "FlutterTemplate-iOS"
-    end
+private_lane :git_reset do
+  sh("git", "reset", "--hard")
 end
 
 private_lane :buildAndDeployToAppStore do |options|
@@ -280,12 +272,36 @@ end
 
 private_lane :deployToAppStore do |options|
   pilot(
-    username:                          APPSTORE_USERNAME,
-    team_name:                         APPSTORE_TEAM_NAME,
-    team_id:                           APPSTORE_TEAM_ID,
+    username:                          APP_STORE_USERNAME,
+    team_name:                         APP_STORE_TEAM_NAME,
+    team_id:                           APP_STORE_TEAM_ID,
     app_identifier:                    options[:identifier],
     apple_id:                          options[:apple_id],
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
+  uploadSymbols()
+end
+
+private_lane :deployToPlayStore do |options|
+  upload_to_play_store(
+    package_name: options[:package_name],
+    track: 'internal',
+    release_status: 'draft', #completed
+    aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
+    json_key: 'google_playstore_api.json'
+  )
+end
+
+private_lane :uploadSymbols do
+  Dir.chdir ".." do
+       sh("ios/Pods/FirebaseCrashlytics/upload-symbols", "-gsp" ,"ios/Runner/GoogleService-Info.plist", "-p", "ios", "Runner.app.dSYM.zip")    # Upload dSYM files to crashlytics
+  end
+end
+
+private_lane :upload_artifacts_to_s3 do |options|
+    Dir.chdir "../tool/s3/dart_s3_executor/" do
+        sh("./tool/packages_get.sh")
+    end
+    sh("fvm", "dart", "run", "../tool/s3/dart_s3_executor/bin/main.dart", "#{BUILD_NR}", options[:flavor], "../tool/s3/s3.sh", "be-informed")
 end

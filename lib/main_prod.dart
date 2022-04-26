@@ -22,5 +22,5 @@ Future<void> main() async {
     );
     await configureDependencies(Environments.prod);
     runApp(const MyApp());
-  }, enableCrashLogging: true);
+  });
 }

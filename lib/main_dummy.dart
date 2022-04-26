@@ -22,5 +22,5 @@ Future<void> main() async {
     print('Starting app from main_dummy.dart');
     await configureDependencies(Environments.dummy);
     runApp(const MyApp());
-  }, enableCrashLogging: true);
+  });
 }
