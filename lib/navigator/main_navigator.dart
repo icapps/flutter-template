@@ -23,8 +23,6 @@ class MainNavigator {
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
-  static GetPage<void> get unKownRoute => GetPage(name: '/UnKnown', page: () => const Center(child: Text('Unknown Route')));
-
   static final pages = [
     GetPage(
       name: '/',
