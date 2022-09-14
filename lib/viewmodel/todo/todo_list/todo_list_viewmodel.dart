@@ -50,7 +50,7 @@ class TodoListViewModel with ChangeNotifierEx {
     await _todoRepo.setTodoState(id: id, value: value);
   }
 
-  void goToDetail() => MainNavigatorWidget.goToDetail(id: '502');
+  void goToDetail() => MainNavigator.goToDetail(id: '502');
 
-  void onAddClicked() => MainNavigatorWidget.goToAddTodo();
+  void onAddClicked() => MainNavigator.goToAddTodo();
 }

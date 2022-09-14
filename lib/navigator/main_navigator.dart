@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/detail/detail_screen.dart';
@@ -14,7 +15,7 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:get/route_manager.dart';
 
-class MainNavigatorWidget {
+class MainNavigator {
   static final List<NavigatorObserver> _navigatorObservers = [];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
@@ -28,25 +29,25 @@ class MainNavigatorWidget {
       case LoginScreen.routeName:
         return GetPageRoute<void>(page: () => const FlavorBanner(child: LoginScreen()), settings: settings);
       case HomeScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: HomeScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: HomeScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case TodoAddScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: TodoAddScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: TodoAddScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case DebugPlatformSelectorScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case ThemeModeSelectorScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case DebugScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case LicenseScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: LicenseScreen()), settings: settings);
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: LicenseScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
       case DetailScreen.routeName:
         final argument = settings.arguments as String;
-        return GetPageRoute<void>(page: () => FlavorBanner(child: DetailScreen(id: argument)), settings: settings);
+        return GetPageRoute<void>(page: () => FlavorBanner(child: DetailScreen(id: argument)), settings: settings, middlewares: [AuthenticationGuard()]);
       case 'test_route':
         if (!FlavorConfig.isInTest()) return null;
         return GetPageRoute<void>(page: () => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
       default:
-        return null;
+        return GetPageRoute<void>(page: () => const Center(child: Text('unKown Route')));
     }
   }
 

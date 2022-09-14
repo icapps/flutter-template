@@ -12,7 +12,7 @@ class SplashViewModel with ChangeNotifierEx {
 
   Future<void> init(SplashNavigator navigator) async {
     await _localStorage.checkForNewInstallation();
-    final result = await _loginRepo.isLoggedIn();
+    final result = _loginRepo.isLoggedIn;
     if (result) {
       navigator.goToHome();
     } else {

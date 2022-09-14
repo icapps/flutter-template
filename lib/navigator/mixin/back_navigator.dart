@@ -8,5 +8,5 @@ abstract class BackNavigator {
 
 mixin BackNavigatorMixin<T extends StatefulWidget> on State<T> implements BackNavigator {
   @override
-  void goBack<E>({E? result}) => MainNavigatorWidget.goBack<E>(result: result);
+  void goBack<E>({E? result}) => MainNavigator.goBack<E>(result: result);
 }

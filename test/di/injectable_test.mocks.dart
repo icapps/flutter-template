@@ -142,9 +142,9 @@ class MockLoginRepository extends _i1.Mock implements _i11.LoginRepository {
   }
 
   @override
-  _i8.Future<bool> isLoggedIn() =>
-      (super.noSuchMethod(Invocation.method(#isLoggedIn, []),
-          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
+  bool get isLoggedIn =>
+      (super.noSuchMethod(Invocation.getter(#isLoggedIn), returnValue: false)
+          as bool);
   @override
   _i8.Future<void> login({String? email, String? password}) =>
       (super.noSuchMethod(

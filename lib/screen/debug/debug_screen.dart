@@ -93,23 +93,23 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
   }
 
   @override
-  void goToTargetPlatformSelector() => MainNavigatorWidget.goToDebugPlatformSelector();
+  void goToTargetPlatformSelector() => MainNavigator.goToDebugPlatformSelector();
 
   @override
-  void goToThemeModeSelector() => MainNavigatorWidget.goToThemeModeSelector();
+  void goToThemeModeSelector() => MainNavigator.goToThemeModeSelector();
 
   @override
-  void goToLicenses() => MainNavigatorWidget.goToLicense();
+  void goToLicenses() => MainNavigator.goToLicense();
 
   @override
-  void goToSelectLanguage() => MainNavigatorWidget.showCustomDialog<void>(
+  void goToSelectLanguage() => MainNavigator.showCustomDialog<void>(
         widget: SelectLanguageDialog(
-          goBack: () => MainNavigatorWidget.closeDialog(),
+          goBack: () => MainNavigator.closeDialog(),
         ),
       );
 
   void goToDatabase() {
     final db = GetIt.I<FlutterTemplateDatabase>();
-    MainNavigatorWidget.goToDatabase(db);
+    MainNavigator.goToDatabase(db);
   }
 }

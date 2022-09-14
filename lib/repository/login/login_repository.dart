@@ -1,27 +1,27 @@
-import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 abstract class LoginRepository {
   @factoryMethod
-  factory LoginRepository(AuthStorage storage) = _LoginRepository;
+  factory LoginRepository() = _LoginRepository;
 
-  Future<bool> isLoggedIn();
+  bool get isLoggedIn;
 
   Future<void> login({required String email, required String password});
 }
 
 class _LoginRepository implements LoginRepository {
-  final AuthStorage _authStorage;
+  _LoginRepository();
 
-  _LoginRepository(this._authStorage);
+  var _isLoggedIn = false;
 
   @override
-  Future<bool> isLoggedIn() async => _authStorage.hasLoggedInUser();
+  bool get isLoggedIn => _isLoggedIn;
 
   @override
   Future<void> login({required String email, required String password}) async {
+    _isLoggedIn = true;
     logger.debug('Login should be implemented');
   }
 }
