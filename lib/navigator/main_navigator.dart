@@ -12,7 +12,6 @@ import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:get/route_manager.dart';
 
 class MainNavigator {
@@ -22,34 +21,53 @@ class MainNavigator {
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
-  static Route? onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case SplashScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: SplashScreen()), settings: settings);
-      case LoginScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: LoginScreen()), settings: settings);
-      case HomeScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: HomeScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case TodoAddScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: TodoAddScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case DebugPlatformSelectorScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case ThemeModeSelectorScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case DebugScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case LicenseScreen.routeName:
-        return GetPageRoute<void>(page: () => const FlavorBanner(child: LicenseScreen()), settings: settings, middlewares: [AuthenticationGuard()]);
-      case DetailScreen.routeName:
-        final argument = settings.arguments as String;
-        return GetPageRoute<void>(page: () => FlavorBanner(child: DetailScreen(id: argument)), settings: settings, middlewares: [AuthenticationGuard()]);
-      case 'test_route':
-        if (!FlavorConfig.isInTest()) return null;
-        return GetPageRoute<void>(page: () => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
-      default:
-        return GetPageRoute<void>(page: () => const Center(child: Text('unKown Route')));
-    }
-  }
+  static GetPage<void> get unKownRoute => GetPage(name: '/UnKnown', page: () => const Center(child: Text('Unknown Route')));
+
+  static final pages = [
+    GetPage(
+      name: '/',
+      page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: LoginScreen.routeName,
+      page: () => const LoginScreen(),
+    ),
+    GetPage(
+      name: HomeScreen.routeName,
+      page: () => const HomeScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage(
+      name: TodoAddScreen.routeName,
+      page: () => const TodoAddScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage(
+      name: DebugPlatformSelectorScreen.routeName,
+      page: () => const DebugPlatformSelectorScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage(
+      name: ThemeModeSelectorScreen.routeName,
+      page: () => const ThemeModeSelectorScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage(
+      name: DebugScreen.routeName,
+      page: () => const DebugScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage<void>(
+      name: LicenseScreen.routeName,
+      page: () => const LicenseScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+    GetPage<void>(
+      name: DetailScreen.routeName,
+      page: () => const DetailScreen(),
+      middlewares: [AuthenticationGuard()],
+    ),
+  ];
 
   static void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
 
@@ -75,5 +93,5 @@ class MainNavigator {
 
   static void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
 
-  static void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeName, arguments: id);
+  static void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeNameBase + id);
 }

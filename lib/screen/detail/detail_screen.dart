@@ -6,14 +6,12 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
 
 class DetailScreen extends StatefulWidget {
-  static const String routeName = RouteNames.detailScreen;
+  static const String routeNameBase = RouteNames.detailScreen;
+  static const String routeParameters = RouteNames.idParameter;
 
-  final String id;
+  static const String routeName = routeNameBase + routeParameters;
 
-  const DetailScreen({
-    required this.id,
-    Key? key,
-  }) : super(key: key);
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
   DetailScreenState createState() => DetailScreenState();
@@ -23,7 +21,7 @@ class DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DetailViewModel>(
-      create: () => GetIt.I()..init(widget.id),
+      create: () => GetIt.I()..init(),
       consumer: (context, viewModel, _) {
         return Scaffold(
           appBar: AppBar(),

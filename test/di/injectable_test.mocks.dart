@@ -14,6 +14,7 @@ import 'package:firebase_analytics/firebase_analytics.dart' as _i33;
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart'
     as _i34;
 import 'package:firebase_core/firebase_core.dart' as _i6;
+import 'package:flutter/cupertino.dart' as _i37;
 import 'package:flutter/material.dart' as _i17;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
 import 'package:flutter_template/model/webservice/todo/todo.dart' as _i18;
@@ -2248,7 +2249,7 @@ class MockMainNavigation extends _i1.Mock implements _i35.MainNavigation {
   void goToDetail() => super.noSuchMethod(Invocation.method(#goToDetail, []),
       returnValueForMissingStub: null);
   @override
-  void showCustomDialog<T>({_i17.Widget? widget}) => super.noSuchMethod(
+  void showCustomDialog<T>({_i37.Widget? widget}) => super.noSuchMethod(
       Invocation.method(#showCustomDialog, [], {#widget: widget}),
       returnValueForMissingStub: null);
 }

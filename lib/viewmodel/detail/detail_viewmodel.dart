@@ -1,4 +1,5 @@
 import 'package:flutter_template/util/snackbar/snackbar_util.dart';
+import 'package:get/route_manager.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,8 +11,8 @@ class DetailViewModel with ChangeNotifierEx {
 
   DetailViewModel();
 
-  Future<void> init(String id) async {
-    _id = id;
+  Future<void> init() async {
+    _id = Get.parameters['id'] as String;
   }
 
   void showSnackBar() => showCustomSnackBar(

@@ -12,8 +12,10 @@ Future<void> initAllStorageInspectors() async {
   await _initLocalStorageInspector((driver) async {
     driver.addKeyValueServer(SecureStorageKeyValueServer(GetIt.I.get<FlutterSecureStorage>(), 'Secure Storage', icon: secureStorageIcon));
     driver.addKeyValueServer(PreferencesKeyValueServer(GetIt.I.get<SharedPreferences>(), 'Shared preferences'));
-    driver.addFileServer(DefaultFileServer((await getApplicationDocumentsDirectory()).path, 'App documents'));
-    driver.addFileServer(DefaultFileServer((await getTemporaryDirectory()).path, 'Cache files'));
+    if (!kIsWeb) {
+      driver.addFileServer(DefaultFileServer((await getApplicationDocumentsDirectory()).path, 'App documents'));
+      driver.addFileServer(DefaultFileServer((await getTemporaryDirectory()).path, 'Cache files'));
+    }
   });
 }
 
