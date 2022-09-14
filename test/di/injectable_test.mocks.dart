@@ -1507,24 +1507,26 @@ class MockTodoListViewModel extends _i1.Mock implements _i32.TodoListViewModel {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  _i8.Future<void> init(_i32.TodoListViewNavigator? navigator) =>
-      (super.noSuchMethod(Invocation.method(#init, [navigator]),
-          returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
+  _i8.Future<void> init() => (super.noSuchMethod(Invocation.method(#init, []),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
   @override
   _i8.Future<void> onDownloadClicked() =>
       (super.noSuchMethod(Invocation.method(#onDownloadClicked, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
   @override
-  void onAddClicked() =>
-      super.noSuchMethod(Invocation.method(#onAddClicked, []),
-          returnValueForMissingStub: null);
-  @override
   _i8.Future<void> onTodoChanged({int? id, bool? value}) => (super.noSuchMethod(
       Invocation.method(#onTodoChanged, [], {#id: id, #value: value}),
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
+  @override
+  void goToDetail() => super.noSuchMethod(Invocation.method(#goToDetail, []),
+      returnValueForMissingStub: null);
+  @override
+  void onAddClicked() =>
+      super.noSuchMethod(Invocation.method(#onAddClicked, []),
+          returnValueForMissingStub: null);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
@@ -2243,7 +2245,10 @@ class MockMainNavigation extends _i1.Mock implements _i35.MainNavigation {
       super.noSuchMethod(Invocation.method(#goBack, [], {#result: result}),
           returnValueForMissingStub: null);
   @override
-  void showCustomDialog<T>({_i17.WidgetBuilder? builder}) => super.noSuchMethod(
-      Invocation.method(#showCustomDialog, [], {#builder: builder}),
+  void goToDetail() => super.noSuchMethod(Invocation.method(#goToDetail, []),
+      returnValueForMissingStub: null);
+  @override
+  void showCustomDialog<T>({_i17.Widget? widget}) => super.noSuchMethod(
+      Invocation.method(#showCustomDialog, [], {#widget: widget}),
       returnValueForMissingStub: null);
 }

@@ -24,5 +24,7 @@ abstract class MainNavigation {
 
   void goBack<T>({T? result});
 
+  void goToDetail();
+
   void showCustomDialog<T>({required Widget widget});
 }

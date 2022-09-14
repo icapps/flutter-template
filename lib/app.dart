@@ -56,7 +56,7 @@ class InternalApp extends StatelessWidget {
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         initialRoute: home == null ? MainNavigatorWidget.initialRoute : null,
-        getPages: MainNavigatorWidget.pages,
+        onGenerateRoute: MainNavigatorWidget.onGenerateRoute,
         home: home,
       ),
       create: () => GetIt.I()..init(),

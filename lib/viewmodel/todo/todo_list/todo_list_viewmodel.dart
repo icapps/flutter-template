@@ -1,6 +1,5 @@
 import 'package:flutter_template/model/webservice/todo/todo.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -10,7 +9,6 @@ import 'package:injectable/injectable.dart';
 class TodoListViewModel with ChangeNotifierEx {
   final TodoRepository _todoRepo;
 
-  late TodoListViewNavigator _navigator;
   late Stream<List<Todo>> _todoStream;
 
   var _isLoading = false;
@@ -24,8 +22,7 @@ class TodoListViewModel with ChangeNotifierEx {
 
   TodoListViewModel(this._todoRepo);
 
-  Future<void> init(TodoListViewNavigator navigator) async {
-    _navigator = navigator;
+  Future<void> init() async {
     _todoStream = _todoRepo.getTodos();
   }
 
@@ -48,15 +45,12 @@ class TodoListViewModel with ChangeNotifierEx {
     }
   }
 
-  void onAddClicked() => _navigator.goToAddTodo();
-
   Future<void> onTodoChanged({required int? id, required bool value}) async {
     if (id == null) return;
     await _todoRepo.setTodoState(id: id, value: value);
   }
-}
 
-// ignore: one_member_abstracts
-abstract class TodoListViewNavigator implements BackNavigator, ErrorNavigator {
-  void goToAddTodo();
+  void goToDetail() => MainNavigatorWidget.goToDetail(id: '502');
+
+  void onAddClicked() => MainNavigatorWidget.goToAddTodo();
 }
