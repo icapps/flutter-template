@@ -24,7 +24,5 @@ abstract class MainNavigation {
 
   void goBack<T>({T? result});
 
-  void showCustomDialog<T>({required WidgetBuilder builder});
+  void showCustomDialog<T>({required Widget widget});
 }
-
-mixin MainNavigationMixin<T extends StatefulWidget> on State<T> implements MainNavigation {}

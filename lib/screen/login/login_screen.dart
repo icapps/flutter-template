@@ -87,5 +87,5 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
   }
 
   @override
-  void goToHome() => MainNavigatorWidget.of(context).goToHome();
+  void goToHome() => MainNavigatorWidget.goToHome();
 }

@@ -8,6 +8,7 @@ import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 class MyApp extends StatelessWidget {
@@ -41,7 +42,7 @@ class InternalApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderWidget<GlobalViewModel>(
       lazy: FlavorConfig.isInTest(),
-      consumer: (context, viewModel, consumerChild) => MaterialApp(
+      consumer: (context, viewModel, consumerChild) => GetMaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
         localizationsDelegates: [
           viewModel.localeDelegate,
@@ -54,11 +55,8 @@ class InternalApp extends StatelessWidget {
         themeMode: viewModel.themeMode,
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
-        navigatorKey: MainNavigatorWidgetState.navigationKey,
-        initialRoute: home == null ? MainNavigatorWidgetState.initialRoute : null,
-        onGenerateRoute: MainNavigatorWidgetState.onGenerateRoute,
-        navigatorObservers: MainNavigatorWidgetState.navigatorObservers,
-        builder: home == null ? (context, child) => MainNavigatorWidget(child: child) : null,
+        initialRoute: home == null ? MainNavigatorWidget.initialRoute : null,
+        getPages: MainNavigatorWidget.pages,
         home: home,
       ),
       create: () => GetIt.I()..init(),

@@ -1,8 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
@@ -12,118 +10,73 @@ import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/widget/general/flavor_banner.dart';
-import 'package:flutter_template/widget/general/text_scale_factor.dart';
-import 'package:get_it/get_it.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:get/route_manager.dart';
 
-class MainNavigatorWidget extends StatefulWidget {
-  final Widget? child;
-
-  const MainNavigatorWidget({
-    this.child,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
-
-  static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false}) {
-    final navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
-    assert(() {
-      if (navigator == null) {
-        throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
-            'The context used to push or pop routes from the MainNavigation must be that of a '
-            'widget that is a descendant of a MainNavigatorWidget widget.');
-      }
-      return true;
-    }());
-    return navigator!;
-  }
-}
-
-class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
-  static final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
-  static final List<NavigatorObserver> _navigatorObservers = [
-    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,
-  ];
+class MainNavigatorWidget {
+  static final List<NavigatorObserver> _navigatorObservers = [];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
 
-  static GlobalKey<NavigatorState> get navigationKey => _navigationKey;
-
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
-  NavigatorState get _navigator => _navigationKey.currentState!;
+  final route = GetPageRoute<void>();
 
-  @override
-  Widget build(BuildContext context) {
-    return TextScaleFactor(
-      child: widget.child ?? const SizedBox.shrink(),
-    );
-  }
+  static final pages = [
+    GetPage(
+      name: '/',
+      page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: LoginScreen.routeName,
+      page: () => const LoginScreen(),
+    ),
+    GetPage(
+      name: HomeScreen.routeName,
+      page: () => const HomeScreen(),
+    ),
+    GetPage(
+      name: TodoAddScreen.routeName,
+      page: () => const TodoAddScreen(),
+    ),
+    GetPage(
+      name: DebugPlatformSelectorScreen.routeName,
+      page: () => const DebugPlatformSelectorScreen(),
+    ),
+    GetPage(
+      name: ThemeModeSelectorScreen.routeName,
+      page: () => const ThemeModeSelectorScreen(),
+    ),
+    GetPage(
+      name: DebugScreen.routeName,
+      page: () => const DebugScreen(),
+    ),
+    GetPage<void>(
+      name: LicenseScreen.routeName,
+      page: () => const LicenseScreen(),
+    ),
+  ];
 
-  static Route? onGenerateRoute(RouteSettings settings) {
-    final strippedPath = settings.name?.replaceFirst('/', '');
-    switch (strippedPath) {
-      case '':
-      case SplashScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
-      case LoginScreen.routeName:
-        return FadeInRoute<void>(child: const FlavorBanner(child: LoginScreen()), settings: settings);
-      case HomeScreen.routeName:
-        return FadeInRoute<void>(child: const FlavorBanner(child: HomeScreen()), settings: settings);
-      case TodoAddScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
-      case DebugPlatformSelectorScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
-      case ThemeModeSelectorScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings);
-      case DebugScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugScreen()), settings: settings);
-      case LicenseScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
-      case 'test_route':
-        if (!FlavorConfig.isInTest()) return null;
-        return MaterialPageRoute<void>(builder: (context) => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
-      default:
-        return null;
-    }
-  }
+  static void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
 
-  @override
-  void goToSplash() => _navigator.pushReplacementNamed(SplashScreen.routeName);
+  static void goToLogin() => Get.offNamed<void>(LoginScreen.routeName);
 
-  @override
-  void goToLogin() => _navigator.pushReplacementNamed(LoginScreen.routeName);
+  static void goToHome() => Get.offNamed<void>(HomeScreen.routeName);
 
-  @override
-  void goToHome() => _navigator.pushReplacementNamed(HomeScreen.routeName);
+  static void goToAddTodo() => Get.toNamed<void>(TodoAddScreen.routeName);
 
-  @override
-  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);
+  static void goToDebugPlatformSelector() => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
-  @override
-  void goToDebugPlatformSelector() => _navigator.pushNamed(DebugPlatformSelectorScreen.routeName);
+  static void goToThemeModeSelector() => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
 
-  @override
-  void goToThemeModeSelector() => _navigator.pushNamed(ThemeModeSelectorScreen.routeName);
+  static void goToDebug() => Get.toNamed<void>(DebugScreen.routeName);
 
-  @override
-  void goToDebug() => _navigator.pushNamed(DebugScreen.routeName);
+  static void goToLicense() => Get.toNamed<void>(LicenseScreen.routeName);
 
-  @override
-  void goToLicense() => _navigator.pushNamed(LicenseScreen.routeName);
+  static void closeDialog() => Get.back<void>();
 
-  @override
-  void closeDialog() => _navigator.pop();
+  static void goToDatabase(GeneratedDatabase db) => Get.to<void>(DriftDbViewer(db));
 
-  @override
-  void goToDatabase(GeneratedDatabase db) => _navigator.push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => DriftDbViewer(db)));
+  static void goBack<T>({T? result}) => Get.back<T>(result: result);
 
-  @override
-  void goBack<T>({T? result}) => _navigator.pop(result);
-
-  @override
-  void showCustomDialog<T>({required WidgetBuilder builder}) => showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
+  static void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
 }

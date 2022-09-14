@@ -104,5 +104,5 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
   }
 
   @override
-  void goToAddTodo() => MainNavigatorWidget.of(context).goToAddTodo();
+  void goToAddTodo() => MainNavigatorWidget.goToAddTodo();
 }

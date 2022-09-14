@@ -21,6 +21,7 @@ dependencies:
     sdk: flutter
   flutter_secure_storage: ^5.0.2
   flutter_svg: ^1.0.0
+  get: ^4.6.5
   get_it: ^7.2.0
   icapps_architecture: ^0.6.0
   injectable: ^1.4.1
