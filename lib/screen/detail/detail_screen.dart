@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/detail/detail_viewmodel.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_it/get_it.dart';
 
@@ -27,7 +28,27 @@ class DetailScreenState extends State<DetailScreen> {
         return Scaffold(
           appBar: AppBar(),
           body: Center(
-            child: Text(viewModel.id.toString()),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(viewModel.id.toString()),
+                const SizedBox(height: 8),
+                FlutterTemplateButton(
+                  text: 'open snackbar neutral',
+                  onClick: viewModel.showSnackBar,
+                ),
+                const SizedBox(height: 8),
+                FlutterTemplateButton(
+                  text: 'open snackbar error',
+                  onClick: viewModel.showSnackBarError,
+                ),
+                const SizedBox(height: 8),
+                FlutterTemplateButton(
+                  text: 'open snackbar success',
+                  onClick: viewModel.showSnackBarSuccess,
+                ),
+              ],
+            ),
           ),
         );
       },

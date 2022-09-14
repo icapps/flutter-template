@@ -3,6 +3,7 @@ import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
+import 'package:flutter_template/screen/detail/detail_screen.dart';
 import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:get/route_manager.dart';
 
 class MainNavigatorWidget {
@@ -19,42 +21,34 @@ class MainNavigatorWidget {
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
-  final route = GetPageRoute<void>();
-
-  static final pages = [
-    GetPage(
-      name: '/',
-      page: () => const SplashScreen(),
-    ),
-    GetPage(
-      name: LoginScreen.routeName,
-      page: () => const LoginScreen(),
-    ),
-    GetPage(
-      name: HomeScreen.routeName,
-      page: () => const HomeScreen(),
-    ),
-    GetPage(
-      name: TodoAddScreen.routeName,
-      page: () => const TodoAddScreen(),
-    ),
-    GetPage(
-      name: DebugPlatformSelectorScreen.routeName,
-      page: () => const DebugPlatformSelectorScreen(),
-    ),
-    GetPage(
-      name: ThemeModeSelectorScreen.routeName,
-      page: () => const ThemeModeSelectorScreen(),
-    ),
-    GetPage(
-      name: DebugScreen.routeName,
-      page: () => const DebugScreen(),
-    ),
-    GetPage<void>(
-      name: LicenseScreen.routeName,
-      page: () => const LicenseScreen(),
-    ),
-  ];
+  static Route? onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case SplashScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: SplashScreen()), settings: settings);
+      case LoginScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: LoginScreen()), settings: settings);
+      case HomeScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: HomeScreen()), settings: settings);
+      case TodoAddScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: TodoAddScreen()), settings: settings);
+      case DebugPlatformSelectorScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
+      case ThemeModeSelectorScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings);
+      case DebugScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: DebugScreen()), settings: settings);
+      case LicenseScreen.routeName:
+        return GetPageRoute<void>(page: () => const FlavorBanner(child: LicenseScreen()), settings: settings);
+      case DetailScreen.routeName:
+        final argument = settings.arguments as String;
+        return GetPageRoute<void>(page: () => FlavorBanner(child: DetailScreen(id: argument)), settings: settings);
+      case 'test_route':
+        if (!FlavorConfig.isInTest()) return null;
+        return GetPageRoute<void>(page: () => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
+      default:
+        return null;
+    }
+  }
 
   static void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
 
@@ -79,4 +73,6 @@ class MainNavigatorWidget {
   static void goBack<T>({T? result}) => Get.back<T>(result: result);
 
   static void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
+
+  static void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeName, arguments: id);
 }
