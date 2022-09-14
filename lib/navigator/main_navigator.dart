@@ -15,6 +15,8 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:get/route_manager.dart';
 
 class MainNavigator {
+  MainNavigator._();
+
   static final List<NavigatorObserver> _navigatorObservers = [];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;

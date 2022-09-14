@@ -1,3 +1,5 @@
+import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/util/extension/get_extension.dart';
 import 'package:flutter_template/util/snackbar/snackbar_util.dart';
 import 'package:get/route_manager.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -12,7 +14,7 @@ class DetailViewModel with ChangeNotifierEx {
   DetailViewModel();
 
   Future<void> init() async {
-    _id = Get.parameters['id'] as String;
+    _id = Get.parameterFromurl<String>(RouteNames.idParameter);
   }
 
   void showSnackBar() => showCustomSnackBar(
