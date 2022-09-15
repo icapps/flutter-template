@@ -6,13 +6,13 @@ class SnackBarUtil {
   SnackBarUtil._();
 
   static void showSnackbar({
-    required String title,
     required String message,
+    String? title,
     SnackBarStyle style = SnackBarStyle.neutral,
   }) {
     final snackBarStyle = _getSnackBarStyle(style);
     Get.snackbar(
-      title,
+      title ?? '',
       message,
       colorText: snackBarStyle.textColor,
       snackPosition: SnackPosition.BOTTOM,
@@ -42,8 +42,8 @@ class SnackBarUtil {
 }
 
 void showCustomSnackBar({
-  required String title,
   required String message,
+  String? title,
   SnackBarStyle style = SnackBarStyle.neutral,
 }) =>
     SnackBarUtil.showSnackbar(

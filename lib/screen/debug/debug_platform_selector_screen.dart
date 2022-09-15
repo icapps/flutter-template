@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -22,7 +21,7 @@ class DebugPlatformSelectorScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen> with BackNavigatorMixin implements DebugPlatformSelectorNavigator {
+class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
@@ -54,7 +53,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
           ),
         ),
       ),
-      create: () => GetIt.I()..init(this),
+      create: () => GetIt.I()..init(),
     );
   }
 }

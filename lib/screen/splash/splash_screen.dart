@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
@@ -19,11 +18,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
+class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
-      create: () => GetIt.I()..init(this),
+      create: () => GetIt.I()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.light(
         child: Scaffold(
           backgroundColor: theme.colorsTheme.primary,
@@ -34,10 +33,4 @@ class SplashScreenState extends State<SplashScreen> implements SplashNavigator {
       ),
     );
   }
-
-  @override
-  void goToHome() => MainNavigator.goToHome();
-
-  @override
-  void goToLogin() => MainNavigator.goToLogin();
 }

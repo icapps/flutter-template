@@ -1,4 +1,5 @@
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -6,8 +7,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class TodoListViewModel with ChangeNotifierEx {
-  late final TodoListNavigator _navigator;
-
+  final MainNavigator _navigator;
   final TodoRepository _todoRepo;
 
   late Stream<List<Todo>> _todoStream;
@@ -21,10 +21,12 @@ class TodoListViewModel with ChangeNotifierEx {
 
   Stream<List<Todo>> get dataStream => _todoStream;
 
-  TodoListViewModel(this._todoRepo);
+  TodoListViewModel(
+    this._todoRepo,
+    this._navigator,
+  );
 
-  Future<void> init(TodoListNavigator navigator) async {
-    _navigator = navigator;
+  Future<void> init() async {
     _todoStream = _todoRepo.getTodos();
   }
 
@@ -55,9 +57,4 @@ class TodoListViewModel with ChangeNotifierEx {
   void goToDetail() => _navigator.goToDetail(id: '502');
 
   void onAddClicked() => _navigator.goToAddTodo();
-}
-
-abstract class TodoListNavigator {
-  void goToDetail({required String id});
-  void goToAddTodo();
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
@@ -20,7 +19,7 @@ class LicenseScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin implements LicenseNavigator {
+class LicenseScreenState extends State<LicenseScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
@@ -57,7 +56,7 @@ class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin im
           },
         ),
       ),
-      create: () => GetIt.I()..init(this),
+      create: () => GetIt.I()..init(),
     );
   }
 }

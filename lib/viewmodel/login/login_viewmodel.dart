@@ -1,4 +1,4 @@
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -7,21 +7,22 @@ import 'package:injectable/injectable.dart';
 @injectable
 class LoginViewModel with ChangeNotifierEx {
   final LoginRepository _loginRepo;
-  late LoginNavigator _navigator;
+  final MainNavigator _navigator;
 
   var _isLoading = false;
   var _password = '';
   var _email = '';
 
-  LoginViewModel(this._loginRepo);
+  LoginViewModel(
+    this._loginRepo,
+    this._navigator,
+  );
 
   bool get isLoginEnabled => _password.isNotEmpty && _email.isNotEmpty;
 
   bool get isLoading => _isLoading;
 
-  Future<void> init(LoginNavigator navigator) async {
-    _navigator = navigator;
-  }
+  Future<void> init() async {}
 
   void onEmailUpdated(String email) {
     _email = email;
@@ -50,9 +51,4 @@ class LoginViewModel with ChangeNotifierEx {
       notifyListeners();
     }
   }
-}
-
-// ignore: one_member_abstracts
-abstract class LoginNavigator implements ErrorNavigator {
-  void goToHome();
 }

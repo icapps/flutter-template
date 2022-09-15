@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 

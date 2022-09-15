@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
@@ -22,11 +20,11 @@ class TodoAddScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, ErrorNavigatorMixin implements TodoAddNavigator {
+class TodoAddScreenState extends State<TodoAddScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
-      create: () => GetIt.I()..init(this),
+      create: () => GetIt.I()..init(),
       childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,

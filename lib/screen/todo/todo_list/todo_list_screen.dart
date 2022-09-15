@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
@@ -22,11 +19,11 @@ class TodoListScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin, ErrorNavigatorMixin {
+class TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoListViewModel>(
-      create: () => GetIt.I()..init(TodoListNavigatorImpl()),
+      create: () => GetIt.I()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
         return Scaffold(
           appBar: AppBar(
@@ -56,12 +53,4 @@ class TodoListScreenState extends State<TodoListScreen> with BackNavigatorMixin,
       },
     );
   }
-}
-
-class TodoListNavigatorImpl extends TodoListNavigator {
-  @override
-  void goToAddTodo() => MainNavigator.goToAddTodo();
-
-  @override
-  void goToDetail({required String id}) => MainNavigator.goToDetail(id: id);
 }

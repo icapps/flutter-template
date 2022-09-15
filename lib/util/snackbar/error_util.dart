@@ -1,18 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:flutter_template/util/snackbar/snackbar_util.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class ErrorNavigator {
-  String? showError(dynamic error);
-
-  void showErrorWithLocaleKey(String errorGeneral, {List<dynamic>? args});
-}
-
-mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements ErrorNavigator {
-  @override
+@lazySingleton
+class ErrorUtil {
   String? showError(dynamic error) {
     String key;
     if (error is String) {
@@ -42,18 +36,7 @@ mixin ErrorNavigatorMixin<T extends StatefulWidget> on State<T> implements Error
     return key;
   }
 
-  void _showError(String error) {
-    final snackBar = SnackBar(
-      content: DataProviderWidget(
-        childBuilderTheme: (context, theme) => Text(
-          error,
-          style: theme.inverseCoreTextTheme.labelButtonSmall,
-        ),
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  void _showError(String error) => showCustomSnackBar(message: error);
 
-  @override
   void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(Localization.of(context).getTranslation(errorKey, args: args));
 }

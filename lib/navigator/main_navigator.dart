@@ -12,10 +12,15 @@ import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:get/route_manager.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class MainNavigator {
-  MainNavigator._();
+  final ErrorUtil _errorUtil;
+
+  MainNavigator(this._errorUtil);
 
   static final List<NavigatorObserver> _navigatorObservers = [];
 
@@ -70,29 +75,33 @@ class MainNavigator {
     ),
   ];
 
-  static void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
+  void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
 
-  static void goToLogin() => Get.offNamed<void>(LoginScreen.routeName);
+  void goToLogin() => Get.offNamed<void>(LoginScreen.routeName);
 
-  static void goToHome() => Get.offNamed<void>(HomeScreen.routeName);
+  void goToHome() => Get.offNamed<void>(HomeScreen.routeName);
 
-  static void goToAddTodo() => Get.toNamed<void>(TodoAddScreen.routeName);
+  void goToAddTodo() => Get.toNamed<void>(TodoAddScreen.routeName);
 
-  static void goToDebugPlatformSelector() => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
+  void goToDebugPlatformSelector() => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
-  static void goToThemeModeSelector() => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
+  void goToThemeModeSelector() => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
 
-  static void goToDebug() => Get.toNamed<void>(DebugScreen.routeName);
+  void goToDebug() => Get.toNamed<void>(DebugScreen.routeName);
 
-  static void goToLicense() => Get.toNamed<void>(LicenseScreen.routeName);
+  void goToLicense() => Get.toNamed<void>(LicenseScreen.routeName);
 
-  static void closeDialog() => Get.back<void>();
+  void closeDialog() => Get.back<void>();
 
-  static void goToDatabase(GeneratedDatabase db) => Get.to<void>(DriftDbViewer(db));
+  void goToDatabase(GeneratedDatabase db) => Get.to<void>(DriftDbViewer(db));
 
-  static void goBack<T>({T? result}) => Get.back<T>(result: result);
+  void goBack<T>({T? result}) => Get.back<T>(result: result);
 
-  static void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
+  void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
 
-  static void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeNameBase + id);
+  void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeNameBase + id);
+
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+
+  void showError(dynamic error) => _errorUtil.showError(error);
 }
