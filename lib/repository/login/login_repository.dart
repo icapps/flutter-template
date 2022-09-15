@@ -14,7 +14,7 @@ abstract class LoginRepository {
 class _LoginRepository implements LoginRepository {
   _LoginRepository();
 
-  var _isLoggedIn = false;
+  var _isLoggedIn = true;
 
   @override
   bool get isLoggedIn => _isLoggedIn;

@@ -25,7 +25,7 @@ class MainNavigator {
 
   static final pages = [
     GetPage(
-      name: '/',
+      name: SplashScreen.routeName,
       page: () => const SplashScreen(),
     ),
     GetPage(
@@ -66,6 +66,7 @@ class MainNavigator {
       name: DetailScreen.routeName,
       page: () => const DetailScreen(),
       middlewares: [AuthenticationGuard()],
+      fullscreenDialog: true,
     ),
   ];
 
