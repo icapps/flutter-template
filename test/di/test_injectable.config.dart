@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i8;
 import 'package:firebase_analytics/firebase_analytics.dart' as _i9;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i10;
@@ -51,9 +52,16 @@ const String _test = 'test';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-_i1.GetIt $initTestGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
-  final gh = _i2.GetItHelper(get, environment, environmentFilter);
+_i1.GetIt $initTestGetIt(
+  _i1.GetIt get, {
+  String? environment,
+  _i2.EnvironmentFilter? environmentFilter,
+}) {
+  final gh = _i2.GetItHelper(
+    get,
+    environment,
+    environmentFilter,
+  );
   final registerModule = _$RegisterModule();
   gh.singleton<_i3.AuthStorage>(registerModule.getAuthStoring);
   gh.singleton<_i4.ConnectivityHelper>(
@@ -63,13 +71,16 @@ _i1.GetIt $initTestGetIt(_i1.GetIt get,
   gh.singleton<_i6.DebugRepository>(registerModule.getDebugRepo);
   gh.singleton<_i7.DebugViewModel>(registerModule.getDebugViewModel);
   gh.singleton<_i8.Dio>(registerModule.getDio);
-  gh.singleton<_i9.FirebaseAnalytics>(registerModule.getFirebaseAnalytics,
-      registerFor: {_test});
+  gh.singleton<_i9.FirebaseAnalytics>(
+    registerModule.getFirebaseAnalytics,
+    registerFor: {_test},
+  );
   gh.singleton<_i10.FlutterSecureStorage>(
       registerModule.getFlutterSecureStorage);
   gh.singleton<_i11.FlutterTemplateDatabase>(
-      registerModule.flutterTemplateDatabase,
-      registerFor: {_test});
+    registerModule.flutterTemplateDatabase,
+    registerFor: {_test},
+  );
   gh.singleton<_i12.GlobalViewModel>(registerModule.getGlobalViewModel);
   gh.singleton<_i13.LicenseViewModel>(registerModule.getLicenseViewModel);
   gh.singleton<_i14.LocalStorage>(registerModule.getLocalStoring);
