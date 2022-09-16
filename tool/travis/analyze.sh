@@ -1,3 +1,3 @@
 #!/bin/bash
 
-fvm flutter analyze || exit -1;
+flutter analyze || exit -1;
