@@ -312,7 +312,7 @@ void _renameReadMe(bool replaceAll, String dartPackageName, String description, 
 }
 
 void _packagesGet() {
-  _executeCommand('flutter', ['packages', 'get']);
+  _executeCommand('fvm', ['flutter', 'packages', 'get']);
 }
 
 void _performFinalCheck() {
