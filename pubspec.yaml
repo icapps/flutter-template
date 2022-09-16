@@ -6,14 +6,19 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
+  connectivity_plus: ^2.3.7
+  connectivity_plus_web: ^1.2.3
   device_info: ^2.0.3
+  device_info_plus_web: ^3.0.0
   dio: ^4.0.6
   drift: ^2.1.0
   drift_db_viewer: ^2.0.0
   drift_local_storage_inspector: ^0.3.0
   file_local_storage_inspector: ^0.2.3
   firebase_analytics: ^9.3.5
+  firebase_analytics_web: ^0.4.2
   firebase_core: ^1.22.0
+  firebase_core_web: ^1.7.2
   firebase_crashlytics: ^2.8.10
   flutter:
     sdk: flutter
@@ -21,7 +26,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^6.0.0
+  flutter_secure_storage_web: ^1.0.2
   flutter_svg: ^1.1.5
+  flutter_web_plugins:
+    sdk: flutter
   get_it: ^7.2.0
   icapps_architecture: ^0.7.3
   injectable: ^1.5.3
@@ -35,8 +43,10 @@ dependencies:
   scroll_when_needed: ^2.0.0
   secure_storage_local_storage_inspector: ^0.3.0
   shared_preferences: ^2.0.15
+  shared_preferences_web: ^2.0.4
   sqlite3_flutter_libs: ^0.5.10
   storage_inspector: ^0.2.3
+  synchronized: ^3.0.0
 
 dev_dependencies:
   build_runner: ^2.2.1
@@ -73,7 +83,7 @@ icapps_translations:
   api_key: '16daba4a2cb331e92eeb0aa2fd219608ff7c8f0488ab4aa887411040a951392f9a8cce488463a1f38eeebf96cb06658aa02d43e53cfc7a7be2d652e8' #TODO Update this to the correct api key
   project_id: '43121bf0-0604-4709-aa72-bcc1d19820bf' #TODO Update this to the correct project id
   default_language: 'nl'
-  languages: ['nl','en']
+  languages: [ 'nl','en' ]
 
 icapps_license:
   nullsafety: true

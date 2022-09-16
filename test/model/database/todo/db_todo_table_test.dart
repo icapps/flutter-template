@@ -32,7 +32,7 @@ void main() {
 
   group('getModel', () {
     test('Todo getModel', () {
-      final sut = DbTodo(
+      const sut = DbTodo(
         id: 1,
         title: 'testing',
         completed: true,

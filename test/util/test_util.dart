@@ -36,8 +36,8 @@ class TestUtil {
         ],
         home: Center(
           child: Material(
-            child: widget,
             color: Colors.transparent,
+            child: widget,
           ),
         ),
         debugShowCheckedModeBanner: false,

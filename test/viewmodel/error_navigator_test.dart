@@ -46,10 +46,10 @@ class ErrorScreen extends StatefulWidget {
   const ErrorScreen({Key? key}) : super(key: key);
 
   @override
-  _ErrorScreenState createState() => _ErrorScreenState();
+  ErrorScreenState createState() => ErrorScreenState();
 }
 
-class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
+class ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,23 +59,23 @@ class _ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {
           children: [
             MaterialButton(
               key: const ValueKey('showErrorWithLocaleKey'),
-              child: const Text(
-                'Show Error with locale key',
-              ),
               color: Colors.amber,
               onPressed: () {
                 showErrorWithLocaleKey(LocalizationKeys.errorUnauthorized);
               },
+              child: const Text(
+                'Show Error with locale key',
+              ),
             ),
             MaterialButton(
               key: const ValueKey('showError'),
-              child: const Text(
-                'Show Error',
-              ),
               color: Colors.amber,
               onPressed: () {
                 showError('SOMETHING something');
               },
+              child: const Text(
+                'Show Error',
+              ),
             ),
           ],
         ),

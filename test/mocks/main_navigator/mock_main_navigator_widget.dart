@@ -15,10 +15,10 @@ class MockMainNavigator extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MockMainNavigatorState createState() => _MockMainNavigatorState();
+  MockMainNavigatorState createState() => MockMainNavigatorState();
 }
 
-class _MockMainNavigatorState extends State<MockMainNavigator> with MainNavigationMixin {
+class MockMainNavigatorState extends State<MockMainNavigator> with MainNavigationMixin {
   @override
   Widget build(BuildContext context) => widget.child;
 

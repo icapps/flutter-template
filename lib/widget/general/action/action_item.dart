@@ -28,6 +28,7 @@ class ActionItem extends StatelessWidget {
             width: ThemeDimens.padding48,
             child: TouchFeedBack(
               borderRadius: BorderRadius.circular(ThemeDimens.padding48),
+              onClick: onClick,
               child: Center(
                 child: SvgIcon(
                   svgAsset: svgAsset,
@@ -35,7 +36,6 @@ class ActionItem extends StatelessWidget {
                   color: color ?? theme.colorsTheme.icon,
                 ),
               ),
-              onClick: onClick,
             ),
           ),
         ),
