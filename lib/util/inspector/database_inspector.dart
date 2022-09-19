@@ -9,8 +9,10 @@ Future<void> addDatabaseInspector() async {
 
   final database = GetIt.I<FlutterTemplateDatabase>();
 
-  final driver = StorageServerDriver(bundleId: 'com.icapps.flutter_template', icon: 'flutter' // Optional icon to visually identify the server. Base64 png or plain svg string
-      );
+  final driver = StorageServerDriver(
+    bundleId: 'com.icapps.flutter_template',
+    icon: 'flutter',
+  );
 
   final sqlServer = DriftSQLDatabaseServer(
     id: "1", // A 'random' id for the server, just ensure you don't use the same one in the same project
