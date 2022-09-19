@@ -3,7 +3,7 @@ description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   device_info: ^2.0.3

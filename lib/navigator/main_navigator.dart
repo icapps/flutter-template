@@ -13,6 +13,7 @@ import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
+import 'package:flutter_template/widget/general/navigator_page/base_page.dart';
 import 'package:get/route_manager.dart';
 import 'package:injectable/injectable.dart';
 
@@ -29,45 +30,45 @@ class MainNavigator {
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
   static final pages = [
-    GetPage(
+    BasePage(
       name: SplashScreen.routeName,
       page: () => const SplashScreen(),
     ),
-    GetPage(
+    BasePage(
       name: LoginScreen.routeName,
       page: () => const LoginScreen(),
     ),
-    GetPage(
+    BasePage(
       name: HomeScreen.routeName,
       page: () => const HomeScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage(
+    BasePage(
       name: TodoAddScreen.routeName,
       page: () => const TodoAddScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage(
+    BasePage(
       name: DebugPlatformSelectorScreen.routeName,
       page: () => const DebugPlatformSelectorScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage(
+    BasePage(
       name: ThemeModeSelectorScreen.routeName,
       page: () => const ThemeModeSelectorScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage(
+    BasePage(
       name: DebugScreen.routeName,
       page: () => const DebugScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage<void>(
+    BasePage<void>(
       name: LicenseScreen.routeName,
       page: () => const LicenseScreen(),
       middlewares: [AuthenticationGuard()],
     ),
-    GetPage<void>(
+    BasePage<void>(
       name: DetailScreen.routeName,
       page: () => const DetailScreen(),
       middlewares: [AuthenticationGuard()],
