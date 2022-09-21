@@ -8,7 +8,7 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
@@ -85,6 +85,9 @@ abstract class RegisterModule {
 
   @Environment(Environments.test)
   @singleton
+  MainNavigator get getMainNavigator => MockMainNavigator();
+
+  @singleton
   FirebaseAnalytics get getFirebaseAnalytics => MockFirebaseAnalytics();
 
   @singleton
@@ -155,13 +158,6 @@ abstract class RegisterModule {
 
   @singleton
   TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
-
-  @singleton
-  MainNavigation get getMainNavigation {
-    final navigation = MockMainNavigation();
-    when(navigation.showCustomDialog<void>(builder: anyNamed('builder'))).thenAnswer((realInvocation) => 1);
-    return navigation;
-  }
 
   static T _initVM<T extends ChangeNotifier>(T viewModel) {
     // ignore: void_checks

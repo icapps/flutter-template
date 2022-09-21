@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
@@ -28,6 +29,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'test_injectable.dart';
 
 @GenerateMocks([
+  MainNavigator,
   DebugRepository,
   LocaleRepository,
   LoginRepository,
@@ -51,8 +53,6 @@ import 'test_injectable.dart';
   TodoAddViewModel,
   TodoListViewModel,
   FirebaseAnalytics,
-], customMocks: [
-  MockSpec<MainNavigation>(returnNullOnMissingStub: true),
 ])
 void main() {
   setUp(() async => initTestInjectable());
