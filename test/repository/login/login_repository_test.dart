@@ -20,13 +20,13 @@ void main() {
   group('isLoggedIn', () {
     test('isLoggedIn when not loggedin', () async {
       when(authStorage.hasLoggedInUser()).thenAnswer((_) async => false);
-      await sut.isLoggedIn();
+      await sut.isLoggedIn;
       verify(authStorage.hasLoggedInUser()).calledOnce();
       verifyNoMoreInteractions(authStorage);
     });
     test('isLoggedIn when user is loggedin', () async {
       when(authStorage.hasLoggedInUser()).thenAnswer((_) async => false);
-      await sut.isLoggedIn();
+      await sut.isLoggedIn;
       verify(authStorage.hasLoggedInUser()).calledOnce();
       verifyNoMoreInteractions(authStorage);
     });

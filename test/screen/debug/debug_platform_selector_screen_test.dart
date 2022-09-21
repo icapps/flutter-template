@@ -139,5 +139,5 @@ void main() {
 void verifyDebugPlatformViewModel() {
   // ignore: avoid_as
   final platformSelectorViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
-  verify(platformSelectorViewModel.init(any)).calledOnce();
+  verify(platformSelectorViewModel.init()).calledOnce();
 }

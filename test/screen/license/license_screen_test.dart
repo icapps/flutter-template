@@ -66,5 +66,5 @@ void main() {
 void verifyLicenseViewModel() {
   final licenseViewModel = GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
-  verify(licenseViewModel.init(any)).calledOnce();
+  verify(licenseViewModel.init()).calledOnce();
 }
