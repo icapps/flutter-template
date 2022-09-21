@@ -1,28 +1,30 @@
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
+import '../../di/injectable_test.mocks.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late DebugPlatformSelectorViewModel sut;
-  late DebugPlatformSelectorNavigator navigator;
+  late MainNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    navigator = MockDebugPlatformSelectorNavigator();
-    sut = DebugPlatformSelectorViewModel();
+    navigator = MockMainNavigator();
+    sut = DebugPlatformSelectorViewModel(navigator);
   });
 
   test('DebugPlatformSelectorViewModel init', () async {
-    await sut.init(navigator);
+    await sut.init();
     verifyZeroInteractions(navigator);
   });
 
   group('After init', () {
     setUp(() async {
-      await sut.init(navigator);
+      await sut.init();
       reset(navigator);
     });
 
@@ -33,5 +35,3 @@ void main() {
     });
   });
 }
-
-class MockDebugPlatformSelectorNavigator extends Mock implements DebugPlatformSelectorNavigator {}

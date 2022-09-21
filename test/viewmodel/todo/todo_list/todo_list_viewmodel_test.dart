@@ -1,5 +1,6 @@
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
@@ -14,13 +15,13 @@ import '../../../util/test_extensions.dart';
 void main() {
   late TodoListViewModel sut;
   late MockTodoRepository todoRepo;
-  late TodoListViewNavigator navigator;
+  late MainNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
     todoRepo = GetIt.I.resolveAs<TodoRepository, MockTodoRepository>();
-    navigator = MockTodoListNavigator();
-    sut = TodoListViewModel(todoRepo);
+    navigator = MockMainNavigator();
+    sut = TodoListViewModel(todoRepo, navigator);
   });
 
   test('TodoListViewModel init', () async {
@@ -28,7 +29,7 @@ void main() {
           const Todo(id: 1, title: 'title1', completed: false),
           const Todo(id: 2, title: 'title2', completed: true),
         ]));
-    await sut.init(navigator);
+    await sut.init();
     expect(sut.dataStream, isNotNull);
     final data = await sut.dataStream.first;
     expect(sut.isLoading, false);
@@ -55,7 +56,7 @@ void main() {
             const Todo(id: 1, title: 'title1', completed: false),
             const Todo(id: 2, title: 'title2', completed: true),
           ]));
-      await sut.init(navigator);
+      await sut.init();
       reset(todoRepo);
       reset(navigator);
     });
@@ -113,5 +114,3 @@ void main() {
     });
   });
 }
-
-class MockTodoListNavigator extends Mock implements TodoListViewNavigator {}

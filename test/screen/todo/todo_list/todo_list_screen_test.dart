@@ -50,7 +50,7 @@ void main() {
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_error_state');
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.errorKey);
-    verify(todoListViewModel.init(any)).calledOnce();
+    verify(todoListViewModel.init()).calledOnce();
     verifyGlobalViewModel();
   });
 
@@ -61,7 +61,7 @@ void main() {
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_loading_state');
     verify(todoListViewModel.isLoading);
-    verify(todoListViewModel.init(any)).calledOnce();
+    verify(todoListViewModel.init()).calledOnce();
     verifyGlobalViewModel();
   });
 
@@ -116,5 +116,5 @@ void verifyTodoListViewModel() {
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);
-  verify(todoListViewModel.init(any)).calledOnce();
+  verify(todoListViewModel.init()).calledOnce();
 }

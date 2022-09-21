@@ -17,6 +17,8 @@ import 'package:firebase_analytics_platform_interface/firebase_analytics_platfor
 import 'package:firebase_core/firebase_core.dart' as _i5;
 import 'package:flutter/material.dart' as _i8;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
+import 'package:flutter_template/database/flutter_template_database.dart'
+    as _i37;
 import 'package:flutter_template/model/webservice/todo/todo.dart' as _i20;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i6;
 import 'package:flutter_template/repository/debug/debug_repository.dart' as _i9;
@@ -3940,6 +3942,31 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i35.FirebaseAnalytics {
         Invocation.method(
           #setSessionTimeoutDuration,
           [timeout],
+        ),
+        returnValue: _i10.Future<void>.value(),
+        returnValueForMissingStub: _i10.Future<void>.value(),
+      ) as _i10.Future<void>);
+}
+
+/// A class which mocks [FlutterTemplateDatabase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFlutterTemplateDatabase extends _i1.Mock
+    implements _i37.FlutterTemplateDatabase {
+  MockFlutterTemplateDatabase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int get schemaVersion => (super.noSuchMethod(
+        Invocation.getter(#schemaVersion),
+        returnValue: 0,
+      ) as int);
+  @override
+  _i10.Future<void> deleteAllData() => (super.noSuchMethod(
+        Invocation.method(
+          #deleteAllData,
+          [],
         ),
         returnValue: _i10.Future<void>.value(),
         returnValueForMissingStub: _i10.Future<void>.value(),

@@ -1,7 +1,6 @@
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 
