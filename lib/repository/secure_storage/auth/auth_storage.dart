@@ -31,16 +31,16 @@ class _AuthStorage implements AuthStorage {
 
   @override
   Future<String?> getAccessToken() async {
-    final result = await await2(getRefreshToken(), getAccessToken());
+    final result = await await2(_storage.getValue(key: _refreshTokenKey), _storage.getValue(key: _accessTokenKey));
     isLoggedIn = result.item1 != null && result.item2 != null;
     return result.item2;
   }
 
   @override
   Future<String?> getRefreshToken() async {
-    final result = await await2(getRefreshToken(), getAccessToken());
+    final result = await await2(_storage.getValue(key: _refreshTokenKey), _storage.getValue(key: _accessTokenKey));
     isLoggedIn = result.item1 != null && result.item2 != null;
-    return result.item2;
+    return result.item1;
   }
 
   @override
@@ -57,8 +57,6 @@ class _AuthStorage implements AuthStorage {
   @override
   Future<bool> hasLoggedInUser() async {
     final result = await await2(getRefreshToken(), getAccessToken());
-    final hasLoggedInUser = result.item1 != null && result.item2 != null;
-    isLoggedIn = hasLoggedInUser;
     return result.item1 != null && result.item2 != null;
   }
 
