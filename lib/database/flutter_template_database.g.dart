@@ -6,7 +6,7 @@ part of 'flutter_template_database.dart';
 // MoorGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+// ignore_for_file: type=lint
 class DbTodo extends DataClass implements Insertable<DbTodo> {
   final int id;
   final String title;
@@ -149,9 +149,10 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 
 class $DbTodoTableTable extends DbTodoTable
     with TableInfo<$DbTodoTableTable, DbTodo> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $DbTodoTableTable(this._db, [this._alias]);
+  $DbTodoTableTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
@@ -210,7 +211,7 @@ class $DbTodoTableTable extends DbTodoTable
 
   @override
   $DbTodoTableTable createAlias(String alias) {
-    return $DbTodoTableTable(_db, alias);
+    return $DbTodoTableTable(attachedDatabase, alias);
   }
 }
 

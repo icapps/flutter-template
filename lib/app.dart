@@ -7,6 +7,7 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/widget/general/text_scale_factor.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -58,6 +59,7 @@ class InternalApp extends StatelessWidget {
         initialRoute: home == null ? MainNavigator.initialRoute : null,
         getPages: MainNavigator.pages,
         home: home,
+        builder: home == null ? (context, child) => TextScaleFactor(child: child ?? const SizedBox.shrink()) : null,
       ),
       create: () => GetIt.I()..init(),
     );
