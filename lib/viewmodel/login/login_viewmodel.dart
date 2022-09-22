@@ -38,13 +38,13 @@ class LoginViewModel with ChangeNotifierEx {
     try {
       _isLoading = true;
       await _loginRepo.login(email: _email, password: _password);
-      _navigator.goToHome();
+      return _navigator.goToHome();
     } catch (e, stack) {
       logger.error('Failed to login', error: e, trace: stack);
       if (e is LocalizedError) {
-        _navigator.showErrorWithLocaleKey(e.getLocalizedKey());
+        return _navigator.showErrorWithLocaleKey(e.getLocalizedKey());
       } else {
-        _navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral);
+        return _navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral);
       }
     } finally {
       _isLoading = false;

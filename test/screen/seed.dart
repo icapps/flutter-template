@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
@@ -87,4 +88,11 @@ void verifyGlobalViewModel() {
   verify(globalViewModel.locale);
   verify(globalViewModel.themeMode);
   verify(globalViewModel.init()).calledOnce();
+}
+
+void seedAuthStorage() {
+  final authStorage = GetIt.I<AuthStorage>();
+  when(authStorage.getAccessToken()).thenAnswer((_) => Future.value('accessToken'));
+  when(authStorage.getRefreshToken()).thenAnswer((_) => Future.value('refreshToken'));
+  when(authStorage.isLoggedIn).thenReturn(true);
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -20,22 +22,22 @@ void main() {
 
   testWidgets('Test main navigator widget show dialog', (tester) async {
     seedGlobalViewModel();
+    seedAuthStorage();
     when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => true);
     when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
     when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
 
-    final key = GlobalKey<MainNavigatorWidgetState>();
-    final sut = MainNavigatorWidget(key: key);
-    final testWidget = await TestUtil.loadScreen(tester, sut);
+    final mainNavigator = MainNavigator(GetIt.I.get());
+    final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_0_initial_screen');
-    key.currentState!.showCustomDialog<void>(
-      builder: (context) => SelectLanguageDialog(
+    unawaited(mainNavigator.showCustomDialog<void>(
+      widget: SelectLanguageDialog(
         goBack: () {},
       ),
-    );
+    ));
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_1');
-    key.currentState!.closeDialog();
+    unawaited(mainNavigator.closeDialog());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_2_go_back');
   });

@@ -76,33 +76,33 @@ class MainNavigator {
     ),
   ];
 
-  void goToSplash() => Get.offNamed<void>(SplashScreen.routeName);
+  Future<void> goToSplash() async => Get.offNamed<void>(SplashScreen.routeName);
 
-  void goToLogin() => Get.offNamed<void>(LoginScreen.routeName);
+  Future<void> goToLogin() async => Get.offNamed<void>(LoginScreen.routeName);
 
-  void goToHome() => Get.offNamed<void>(HomeScreen.routeName);
+  Future<void> goToHome() async => Get.offNamed<void>(HomeScreen.routeName);
 
-  void goToAddTodo() => Get.toNamed<void>(TodoAddScreen.routeName);
+  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);
 
-  void goToDebugPlatformSelector() => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
+  Future<void> goToDebugPlatformSelector() async => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
-  void goToThemeModeSelector() => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
+  Future<void> goToThemeModeSelector() async => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
 
-  void goToDebug() => Get.toNamed<void>(DebugScreen.routeName);
+  Future<void> goToDebug() async => Get.toNamed<void>(DebugScreen.routeName);
 
-  void goToLicense() => Get.toNamed<void>(LicenseScreen.routeName);
+  Future<void> goToLicense() async => Get.toNamed<void>(LicenseScreen.routeName);
 
-  void closeDialog() => Get.back<void>();
+  Future<void> closeDialog() async => Get.back<void>();
 
-  void goToDatabase(GeneratedDatabase db) => Get.to<void>(DriftDbViewer(db));
+  Future<void> goToDatabase(GeneratedDatabase db) async => Get.to<void>(DriftDbViewer(db));
 
-  void goBack<T>({T? result}) => Get.back<T>(result: result);
+  Future<void> goBack<T>({T? result}) async => Get.back<T>(result: result);
 
-  void showCustomDialog<T>({required Widget widget}) => Get.dialog<T>(widget);
+  Future<void> showCustomDialog<T>({required Widget widget}) async => Get.dialog<T>(widget);
 
-  void goToDetail({required String id}) => Get.toNamed<void>(DetailScreen.routeNameBase + id);
+  Future<void> goToDetail({required String id}) async => Get.toNamed<void>(DetailScreen.routeNameBase + id);
 
-  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+  Future<void> showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) async => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
 
-  void showError(dynamic error) => _errorUtil.showError(error);
+  Future<void> showError(dynamic error) async => _errorUtil.showError(error);
 }

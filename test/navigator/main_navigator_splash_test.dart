@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 
 import '../di/test_injectable.dart';
 import '../screen/seed.dart';
@@ -11,12 +14,12 @@ void main() {
 
   testWidgets('Test main navigator widget splash', (tester) async {
     seedGlobalViewModel();
+    seedAuthStorage();
 
-    final key = GlobalKey<MainNavigatorWidgetState>();
-    final sut = MainNavigatorWidget(key: key);
-    final testWidget = await TestUtil.loadScreen(tester, sut);
+    final mainNavigator = MainNavigator(GetIt.I.get());
+    final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_0_initial_screen');
-    key.currentState!.goToSplash();
+    unawaited(mainNavigator.goToSplash());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_1');
   });

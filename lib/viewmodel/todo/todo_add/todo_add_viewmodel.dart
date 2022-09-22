@@ -28,10 +28,9 @@ class TodoAddViewModel with ChangeNotifierEx {
   Future<void> onSaveClicked() async {
     final todo = _todo;
     if (todo == null) {
-      _navigator.showError('Todo should not be empty');
-      return;
+      return _navigator.showError('Todo should not be empty');
     }
     await _todoRepo.saveTodo(todo);
-    _navigator.goBack(result: true);
+    return _navigator.goBack(result: true);
   }
 }
