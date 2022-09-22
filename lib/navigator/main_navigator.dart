@@ -30,35 +30,35 @@ class MainNavigator {
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
   static final pages = [
-    BasePage(
+    BasePage<void>(
       name: SplashScreen.routeName,
       page: () => const FlavorBanner(child: SplashScreen()),
     ),
-    BasePage(
+    BasePage<void>(
       name: LoginScreen.routeName,
       page: () => const FlavorBanner(child: LoginScreen()),
     ),
-    BasePage(
+    BasePage<void>(
       name: HomeScreen.routeName,
       page: () => const FlavorBanner(child: HomeScreen()),
       middlewares: [AuthenticationGuard()],
     ),
-    BasePage(
+    BasePage<void>(
       name: TodoAddScreen.routeName,
       page: () => const FlavorBanner(child: TodoAddScreen()),
       middlewares: [AuthenticationGuard()],
     ),
-    BasePage(
+    BasePage<void>(
       name: DebugPlatformSelectorScreen.routeName,
       page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
       middlewares: [AuthenticationGuard()],
     ),
-    BasePage(
+    BasePage<void>(
       name: ThemeModeSelectorScreen.routeName,
       page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
       middlewares: [AuthenticationGuard()],
     ),
-    BasePage(
+    BasePage<void>(
       name: DebugScreen.routeName,
       page: () => const FlavorBanner(child: DebugScreen()),
       middlewares: [AuthenticationGuard()],
