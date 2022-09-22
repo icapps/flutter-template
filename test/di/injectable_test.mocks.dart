@@ -322,16 +322,6 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> goToDetail({required String? id}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToDetail,
-          [],
-          {#id: id},
-        ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
-  @override
   _i7.Future<void> showErrorWithLocaleKey(
     String? errorKey, {
     List<dynamic>? args,
@@ -2908,14 +2898,6 @@ class MockTodoListViewModel extends _i1.Mock implements _i34.TodoListViewModel {
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
-  @override
-  void goToDetail() => super.noSuchMethod(
-        Invocation.method(
-          #goToDetail,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
   @override
   void onAddClicked() => super.noSuchMethod(
         Invocation.method(
