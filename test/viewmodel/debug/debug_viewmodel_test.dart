@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
@@ -20,7 +19,7 @@ void main() {
   setUp(() async {
     await initTestInjectable();
     navigator = MockMainNavigator();
-    database = MockFlutterTemplateDatabase();
+    database = GetIt.I<FlutterTemplateDatabase>();
     debugRepo = GetIt.I();
     sut = DebugViewModel(debugRepo, navigator, database);
   });
@@ -43,7 +42,7 @@ void main() {
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onSelectLanguageClicked();
-      verify(navigator.showCustomDialog<void>(widget: const SizedBox.shrink())).calledOnce();
+      verify(navigator.showCustomDialog<void>(widget: anyNamed('widget'))).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });

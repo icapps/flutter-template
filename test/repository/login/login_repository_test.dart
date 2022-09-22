@@ -35,7 +35,8 @@ void main() {
   group('login', () {
     test('login', () async {
       await sut.login(email: 'email', password: 'password');
-      verifyZeroInteractions(authStorage);
+      verify(authStorage.saveUserCredentials(accessToken: 'test_access_token', refreshToken: 'test_refresh_token'));
+      verifyNoMoreInteractions(authStorage);
     });
   });
 }

@@ -78,8 +78,6 @@ _i1.GetIt $initTestGetIt(
     registerModule.flutterTemplateDatabase,
     registerFor: {_test},
   );
-  gh.singleton<_i11.FlutterTemplateDatabase>(
-      registerModule.getFlutterTemplateDatabase);
   gh.singleton<_i12.GlobalViewModel>(registerModule.getGlobalViewModel);
   gh.singleton<_i13.LicenseViewModel>(registerModule.getLicenseViewModel);
   gh.singleton<_i14.LocalStorage>(registerModule.getLocalStoring);

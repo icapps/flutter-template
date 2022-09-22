@@ -13,6 +13,7 @@ import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
+import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/navigator_page/base_page.dart';
 import 'package:get/route_manager.dart';
 import 'package:injectable/injectable.dart';
@@ -32,45 +33,45 @@ class MainNavigator {
   static final pages = [
     BasePage(
       name: SplashScreen.routeName,
-      page: () => const SplashScreen(),
+      page: () => const FlavorBanner(child: SplashScreen()),
     ),
     BasePage(
       name: LoginScreen.routeName,
-      page: () => const LoginScreen(),
+      page: () => const FlavorBanner(child: LoginScreen()),
     ),
     BasePage(
       name: HomeScreen.routeName,
-      page: () => const HomeScreen(),
+      page: () => const FlavorBanner(child: HomeScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage(
       name: TodoAddScreen.routeName,
-      page: () => const TodoAddScreen(),
+      page: () => const FlavorBanner(child: TodoAddScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage(
       name: DebugPlatformSelectorScreen.routeName,
-      page: () => const DebugPlatformSelectorScreen(),
+      page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage(
       name: ThemeModeSelectorScreen.routeName,
-      page: () => const ThemeModeSelectorScreen(),
+      page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage(
       name: DebugScreen.routeName,
-      page: () => const DebugScreen(),
+      page: () => const FlavorBanner(child: DebugScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage<void>(
       name: LicenseScreen.routeName,
-      page: () => const LicenseScreen(),
+      page: () => const FlavorBanner(child: LicenseScreen()),
       middlewares: [AuthenticationGuard()],
     ),
     BasePage<void>(
       name: DetailScreen.routeName,
-      page: () => const DetailScreen(),
+      page: () => const FlavorBanner(child: DetailScreen()),
       middlewares: [AuthenticationGuard()],
       fullscreenDialog: true,
     ),
@@ -98,7 +99,7 @@ class MainNavigator {
 
   Future<void> goBack<T>({T? result}) async => Get.back<T>(result: result);
 
-  Future<void> showCustomDialog<T>({required Widget widget}) async => Get.dialog<T>(widget);
+  Future<void> showCustomDialog<T>({Widget? widget}) async => Get.dialog<T>(widget ?? const SizedBox.shrink());
 
   Future<void> goToDetail({required String id}) async => Get.toNamed<void>(DetailScreen.routeNameBase + id);
 

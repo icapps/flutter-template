@@ -115,9 +115,6 @@ abstract class RegisterModule {
   SharedPreferenceStorage get getSharedPrefsStoring => MockSharedPreferenceStorage();
 
   @singleton
-  FlutterTemplateDatabase get getFlutterTemplateDatabase => MockFlutterTemplateDatabase();
-
-  @singleton
   LocalStorage get getLocalStoring => MockLocalStorage();
 
   @singleton

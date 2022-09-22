@@ -16,31 +16,34 @@ abstract class AuthStorage {
 
   Future<bool> hasLoggedInUser();
 
-  bool? isLoggedIn;
+  bool? get isLoggedIn;
 }
 
 class _AuthStorage implements AuthStorage {
   final SimpleKeyValueStorage _storage;
   static const _accessTokenKey = 'ACCESS_TOKEN';
-  static const _refreshTokenKey = 'ACCESS_REFRESH_TOKEN';
+  static const _refreshTokenKey = 'REFRESH_TOKEN';
 
   @override
-  bool? isLoggedIn;
+  bool? get isLoggedIn => _hasAccessToken && _hasRefreshToken;
+
+  bool _hasAccessToken = false;
+  bool _hasRefreshToken = false;
 
   _AuthStorage(this._storage);
 
   @override
   Future<String?> getAccessToken() async {
-    final result = await await2(_storage.getValue(key: _refreshTokenKey), _storage.getValue(key: _accessTokenKey));
-    isLoggedIn = result.item1 != null && result.item2 != null;
-    return result.item2;
+    final result = await _storage.getValue(key: _accessTokenKey);
+    _hasAccessToken = result != null;
+    return result;
   }
 
   @override
   Future<String?> getRefreshToken() async {
-    final result = await await2(_storage.getValue(key: _refreshTokenKey), _storage.getValue(key: _accessTokenKey));
-    isLoggedIn = result.item1 != null && result.item2 != null;
-    return result.item1;
+    final result = await _storage.getValue(key: _refreshTokenKey);
+    _hasRefreshToken = result != null;
+    return result;
   }
 
   @override
@@ -51,7 +54,8 @@ class _AuthStorage implements AuthStorage {
         _storage.setValue(key: _refreshTokenKey, value: refreshToken),
       ],
     );
-    isLoggedIn = true;
+    _hasAccessToken = true;
+    _hasRefreshToken = true;
   }
 
   @override
@@ -66,6 +70,7 @@ class _AuthStorage implements AuthStorage {
       _storage.removeValue(key: _accessTokenKey),
       _storage.removeValue(key: _refreshTokenKey),
     ]);
-    isLoggedIn = false;
+    _hasAccessToken = false;
+    _hasRefreshToken = false;
   }
 }
