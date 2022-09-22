@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/screen/detail/detail_screen.dart';
 import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
@@ -69,12 +68,6 @@ class MainNavigator {
       page: () => const FlavorBanner(child: LicenseScreen()),
       middlewares: [AuthenticationGuard()],
     ),
-    BasePage<void>(
-      name: DetailScreen.routeName,
-      page: () => const FlavorBanner(child: DetailScreen()),
-      middlewares: [AuthenticationGuard()],
-      fullscreenDialog: true,
-    ),
   ];
 
   Future<void> goToSplash() async => Get.offNamed<void>(SplashScreen.routeName);
@@ -100,8 +93,6 @@ class MainNavigator {
   Future<void> goBack<T>({T? result}) async => Get.back<T>(result: result);
 
   Future<void> showCustomDialog<T>({Widget? widget}) async => Get.dialog<T>(widget ?? const SizedBox.shrink());
-
-  Future<void> goToDetail({required String id}) async => Get.toNamed<void>(DetailScreen.routeNameBase + id);
 
   Future<void> showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) async => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
 
