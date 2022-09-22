@@ -26,7 +26,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
   buildToolsVersion "30.0.0"
-  compileSdkVersion 30
+  compileSdkVersion 33
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
@@ -34,13 +34,14 @@ android {
 
   lintOptions {
     disable 'InvalidPackage'
-    checkReleaseBuilds false                                                                   │
+    checkReleaseBuilds false
   }
 
   defaultConfig {
     applicationId "com.icapps.fluttertemplate"
     minSdkVersion 19
     targetSdkVersion 30
+    multiDexEnabled true
     versionCode flutterVersionCode.toInteger()
     versionName flutterVersionName
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

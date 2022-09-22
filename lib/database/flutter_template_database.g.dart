@@ -3,7 +3,7 @@
 part of 'flutter_template_database.dart';
 
 // **************************************************************************
-// MoorGenerator
+// DriftDatabaseGenerator
 // **************************************************************************
 
 // ignore_for_file: type=lint
@@ -11,18 +11,8 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
   final int id;
   final String title;
   final bool completed;
-  DbTodo({required this.id, required this.title, required this.completed});
-  factory DbTodo.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return DbTodo(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      title: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
-      completed: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}completed'])!,
-    );
-  }
+  const DbTodo(
+      {required this.id, required this.title, required this.completed});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -155,21 +145,21 @@ class $DbTodoTableTable extends DbTodoTable
   $DbTodoTableTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      type: const IntType(),
+      type: DriftSqlType.int,
       requiredDuringInsert: false,
       defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
   final VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
-  late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
       'title', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
+      type: DriftSqlType.string, requiredDuringInsert: true);
   final VerificationMeta _completedMeta = const VerificationMeta('completed');
   @override
-  late final GeneratedColumn<bool?> completed = GeneratedColumn<bool?>(
+  late final GeneratedColumn<bool> completed = GeneratedColumn<bool>(
       'completed', aliasedName, false,
-      type: const BoolType(),
+      type: DriftSqlType.bool,
       requiredDuringInsert: true,
       defaultConstraints: 'CHECK (completed IN (0, 1))');
   @override
@@ -205,8 +195,15 @@ class $DbTodoTableTable extends DbTodoTable
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return DbTodo.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DbTodo(
+      id: attachedDatabase.options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      title: attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      completed: attachedDatabase.options.types
+          .read(DriftSqlType.bool, data['${effectivePrefix}completed'])!,
+    );
   }
 
   @override
@@ -216,12 +213,12 @@ class $DbTodoTableTable extends DbTodoTable
 }
 
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
-  _$FlutterTemplateDatabase(QueryExecutor e)
-      : super(SqlTypeSystem.defaultInstance, e);
+  _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
   _$FlutterTemplateDatabase.connect(DatabaseConnection c) : super.connect(c);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
-  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  Iterable<TableInfo<Table, dynamic>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [dbTodoTable];
 }

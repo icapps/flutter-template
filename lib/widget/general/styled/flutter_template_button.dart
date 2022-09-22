@@ -23,34 +23,34 @@ class FlutterTemplateButton extends StatelessWidget {
       childBuilderTheme: (context, theme) {
         final content = Center(
           child: AnimatedDefaultTextStyle(
+            style: isEnabled ? theme.inverseCoreTextTheme.labelButtonSmall : theme.coreTextTheme.labelButtonSmallDisabled,
+            duration: ThemeDurations.shortAnimationDuration(),
             child: Text(
               text,
             ),
-            style: isEnabled ? theme.inverseCoreTextTheme.labelButtonSmall : theme.coreTextTheme.labelButtonSmallDisabled,
-            duration: ThemeDurations.shortAnimationDuration(),
           ),
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
+            onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
               height: height,
-              child: content,
               color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
               duration: ThemeDurations.shortAnimationDuration(),
+              child: content,
             ),
-            onClick: isEnabled ? onClick : null,
           );
         }
         return AnimatedContainer(
+          color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
+          duration: ThemeDurations.shortAnimationDuration(),
           child: TouchFeedBack(
+            onClick: isEnabled ? onClick : null,
             child: SizedBox(
               height: height,
               child: content,
             ),
-            onClick: isEnabled ? onClick : null,
           ),
-          color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
-          duration: ThemeDurations.shortAnimationDuration(),
         );
       },
     );

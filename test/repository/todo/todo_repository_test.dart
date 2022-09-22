@@ -36,8 +36,8 @@ void main() {
     });
     test('getTodos stream with some data', () async {
       when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[
-            DbTodo(id: 1, title: 'todo1', completed: true),
-            DbTodo(id: 2, title: 'todo2', completed: false),
+            const DbTodo(id: 1, title: 'todo1', completed: true),
+            const DbTodo(id: 2, title: 'todo2', completed: false),
           ]));
       final stream = sut.getTodos();
       final result = await stream.first;
