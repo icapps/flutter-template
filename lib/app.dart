@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
@@ -45,14 +45,13 @@ class InternalApp extends StatelessWidget {
       lazy: FlavorConfig.isInTest(),
       consumer: (context, viewModel, consumerChild) => GetMaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
-        localizationsDelegates: [
-          viewModel.localeDelegate,
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],
         locale: viewModel.locale,
-        supportedLocales: LocalizationDelegate.supportedLocales,
+        supportedLocales: Localization.supportedLocales,
         themeMode: viewModel.themeMode,
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),

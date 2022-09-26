@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -30,10 +31,8 @@ void main() {
     when(debugRepo.getTargetPlatform()).thenReturn(null);
     when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
-    expect(sut.localeDelegate, isNotNull);
-    expect(sut.localeDelegate.activeLocale, isNull);
-    expect(sut.localeDelegate.newLocale, isNull);
-    expect(sut.locale, isNull);
+    expect(Localization.locale, const Locale('nl'));
+    expect(sut.locale, const Locale('nl'));
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verify(localStorage.getThemeMode()).calledOnce();
@@ -47,10 +46,8 @@ void main() {
     when(debugRepo.getTargetPlatform()).thenReturn(null);
     when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
-    expect(sut.localeDelegate, isNotNull);
-    expect(sut.localeDelegate.activeLocale, isNotNull);
-    expect(sut.localeDelegate.newLocale, isNotNull);
-    expect(sut.localeDelegate.newLocale?.languageCode, 'nl');
+    expect(Localization.locale, const Locale('nl'));
+    expect(Localization.locale?.languageCode, 'nl');
     expect(sut.locale, isNotNull);
     expect(sut.locale?.languageCode, 'nl');
     verify(localeRepo.getCustomLocale()).calledOnce();
@@ -78,7 +75,7 @@ void main() {
 
     test('GlobalViewModel onSwitchToDutch', () async {
       expect(sut.showsTranslationKeys, false);
-      sut.toggleTranslationKeys();
+      await sut.toggleTranslationKeys();
       expect(sut.showsTranslationKeys, true);
       verifyZeroInteractions(localeRepo);
       verifyZeroInteractions(debugRepo);
@@ -87,7 +84,7 @@ void main() {
     group('Locale', () {
       test('GlobalViewModel onSwitchToDutch', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
+        expect(Localization.locale?.languageCode, 'nl');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -95,11 +92,11 @@ void main() {
 
       test('GlobalViewModel onSwitchToEnglish', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
+        expect(Localization.locale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToEnglish();
-        expect(sut.localeDelegate.activeLocale?.languageCode, 'en');
+        expect(Localization.locale?.languageCode, 'en');
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -107,12 +104,11 @@ void main() {
 
       test('GlobalViewModel onSwitchToSystemLanguage', () async {
         await sut.onSwitchToDutch();
-        expect(sut.localeDelegate.activeLocale?.languageCode, 'nl');
+        expect(Localization.locale?.languageCode, 'nl');
         reset(localeRepo);
         reset(debugRepo);
         await sut.onSwitchToSystemLanguage();
-        expect(sut.localeDelegate.activeLocale, isNull);
-        expect(sut.localeDelegate.newLocale, isNull);
+        expect(Localization.locale, const Locale('nl'));
         verify(localeRepo.setCustomLocale(any)).calledOnce();
         verifyNoMoreInteractions(localeRepo);
         verifyZeroInteractions(debugRepo);
@@ -147,10 +143,10 @@ void main() {
           await sut.onSwitchToSystemLanguage();
           reset(localeRepo);
           reset(debugRepo);
-          expect(sut.isLanguageSelected(null), true);
+          expect(sut.isLanguageSelected(null), false);
           expect(sut.isLanguageSelected('en'), false);
-          expect(sut.isLanguageSelected('nl'), false);
-          expect(sut.getCurrentLanguage(), 'English');
+          expect(sut.isLanguageSelected('nl'), true);
+          expect(sut.getCurrentLanguage(), 'Nederlands');
           verifyZeroInteractions(localeRepo);
           verifyZeroInteractions(debugRepo);
         });

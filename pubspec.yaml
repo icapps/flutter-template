@@ -57,7 +57,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   icapps_license: ^2.0.2
-  icapps_translations: ^6.0.0
+  icapps_translations: ^7.0.0
   injectable_generator: ^1.5.4
   json_serializable: ^6.3.2
   mockito: ^5.3.1

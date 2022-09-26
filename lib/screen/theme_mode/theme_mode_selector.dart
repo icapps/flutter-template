@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
@@ -35,17 +36,17 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> {
           builder: (context, viewModel, child) => ListView(
             children: [
               SelectorItem(
-                title: localization.generalLabelSystemDefault,
+                title: Localization.generalLabelSystemDefault,
                 onClick: () => viewModel.updateThemeMode(ThemeMode.system),
                 selected: viewModel.themeMode == ThemeMode.system,
               ),
               SelectorItem(
-                title: localization.themeModeLabelLight,
+                title: Localization.themeModeLabelLight,
                 onClick: () => viewModel.updateThemeMode(ThemeMode.light),
                 selected: viewModel.themeMode == ThemeMode.light,
               ),
               SelectorItem(
-                title: localization.themeModeLabelDark,
+                title: Localization.themeModeLabelDark,
                 onClick: () => viewModel.updateThemeMode(ThemeMode.dark),
                 selected: viewModel.themeMode == ThemeMode.dark,
               ),

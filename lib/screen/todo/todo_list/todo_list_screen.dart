@@ -4,6 +4,7 @@ import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
@@ -33,7 +34,7 @@ class TodoListScreenState extends State<TodoListScreen> {
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
-            title: Text(localization.todoTitle),
+            title: Text(Localization.todoTitle),
             actions: [
               ActionItem(
                 key: Keys.downloadAction,
@@ -51,7 +52,7 @@ class TodoListScreenState extends State<TodoListScreen> {
             children: [
               if (!viewModel.isLoading && errorKey != null) ...[
                 Center(
-                  child: Text(localization.getTranslation(errorKey)),
+                  child: Text(Localization.getTranslation(errorKey)),
                 ),
               ],
               if (viewModel.isLoading) ...[
@@ -69,7 +70,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(ThemeDimens.padding32),
                             child: Text(
-                              localization.todoEmptyState,
+                              Localization.todoEmptyState,
                               textAlign: TextAlign.center,
                             ),
                           ),

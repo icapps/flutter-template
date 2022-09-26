@@ -19,7 +19,7 @@ import 'package:flutter_template/repository/shared_prefs/local/local_storage.dar
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -41,7 +41,7 @@ import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
 import 'test_injectable.config.dart';
 
-L getLocale<L>(BuildContext context) => Localization.of(context) as L; // ignore: avoid_as
+L getLocale<L>(BuildContext context) => Localization as L; // ignore: avoid_as
 
 T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T; // ignore: avoid_as
 

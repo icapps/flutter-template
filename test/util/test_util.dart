@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -28,8 +27,7 @@ class TestUtil {
         theme: ThemeData(fontFamily: ThemeFonts.body),
         locale: const Locale('en'),
         supportedLocales: const [Locale('en')],
-        localizationsDelegates: [
-          LocalizationDelegate(useCaching: false, showLocalizationKeys: true),
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
