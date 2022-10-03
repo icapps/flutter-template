@@ -594,7 +594,7 @@ packages:
       name: icapps_translations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "9.0.0"
   image:
     dependency: transitive
     description:
@@ -664,7 +664,7 @@ packages:
       name: locale_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "9.0.0"
   logger:
     dependency: transitive
     description:
@@ -1034,6 +1034,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.0"
+  sprintf:
+    dependency: "direct main"
+    description:
+      name: sprintf
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.2"
   sqflite:
     dependency: transitive
     description:

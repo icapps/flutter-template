@@ -8,14 +8,17 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class GlobalViewModel with ChangeNotifierEx {
+  final Localization _localizationInstance = Localization();
   final LocaleRepository _localeRepo;
   final DebugRepository _debugRepo;
   final LocalStorage _localStorage;
   var _showsTranslationKeys = false;
 
   TargetPlatform? _targetPlatform;
+
+  Localization get localizationInstance => _localizationInstance;
 
   GlobalViewModel(
     this._localeRepo,
@@ -25,7 +28,7 @@ class GlobalViewModel with ChangeNotifierEx {
 
   ThemeMode get themeMode => FlavorConfig.instance.themeMode;
 
-  Locale? get locale => Localization.locale;
+  Locale? get locale => _localizationInstance.locale;
 
   TargetPlatform? get targetPlatform => _targetPlatform;
 
@@ -44,7 +47,7 @@ class GlobalViewModel with ChangeNotifierEx {
 
   Future<void> _initLocale() async {
     final locale = _localeRepo.getCustomLocale();
-    await Localization.load(locale: locale);
+    await _localizationInstance.load(locale: locale);
     notifyListeners();
   }
 
@@ -67,7 +70,7 @@ class GlobalViewModel with ChangeNotifierEx {
 
   Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
-    await Localization.load(locale: locale);
+    await _localizationInstance.load(locale: locale);
     notifyListeners();
   }
 
@@ -104,16 +107,16 @@ class GlobalViewModel with ChangeNotifierEx {
   String getAppearanceValue(Localization localization) {
     switch (FlavorConfig.instance.themeMode) {
       case ThemeMode.dark:
-        return Localization.themeModeLabelDark;
+        return _localizationInstance.themeModeLabelDark;
       case ThemeMode.light:
-        return Localization.themeModeLabelLight;
+        return _localizationInstance.themeModeLabelLight;
       default:
-        return Localization.themeModeLabelSystem;
+        return _localizationInstance.themeModeLabelSystem;
     }
   }
 
   String getCurrentLanguage() {
-    switch (Localization.locale?.languageCode) {
+    switch (_localizationInstance.locale?.languageCode) {
       case 'nl':
         return 'Nederlands';
       case 'en':
@@ -123,14 +126,14 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   bool isLanguageSelected(String? languageCode) {
-    if (Localization.locale == null && languageCode == null) return true;
-    return Localization.locale?.languageCode == languageCode;
+    if (_localizationInstance.locale == null && languageCode == null) return true;
+    return _localizationInstance.locale?.languageCode == languageCode;
   }
 
   Future<void> toggleTranslationKeys() async {
     _showsTranslationKeys = !showsTranslationKeys;
-    await Localization.load(
-      locale: Localization.locale,
+    await _localizationInstance.load(
+      locale: _localizationInstance.locale,
       showLocalizationKeys: _showsTranslationKeys,
     );
     notifyListeners();

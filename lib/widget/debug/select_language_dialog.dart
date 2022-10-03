@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -18,7 +17,7 @@ class SelectLanguageDialog extends StatelessWidget {
     final globalViewModel = Provider.of<GlobalViewModel>(context);
     return DataProviderWidget(
       childBuilderLocalization: (context, localization) => AlertDialog(
-        title: Text(Localization.debugLocaleSelector),
+        title: Text(localization.debugLocaleSelector),
         content: SizedBox(
           height: 150,
           width: MediaQuery.of(context).size.width / 1.2,
@@ -26,7 +25,7 @@ class SelectLanguageDialog extends StatelessWidget {
             shrinkWrap: true,
             children: [
               SelectorItem(
-                title: Localization.generalLabelSystemDefault,
+                title: localization.generalLabelSystemDefault,
                 selected: globalViewModel.isLanguageSelected(null),
                 onClick: () {
                   globalViewModel.onSwitchToSystemLanguage();

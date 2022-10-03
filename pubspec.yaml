@@ -45,6 +45,7 @@ dependencies:
   secure_storage_local_storage_inspector: ^0.3.0
   shared_preferences: ^2.0.15
   shared_preferences_web: ^2.0.4
+  sprintf: ^6.0.2
   sqlite3_flutter_libs: ^0.5.10
   storage_inspector: ^0.2.3
   synchronized: ^3.0.0
@@ -57,7 +58,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   icapps_license: ^2.0.2
-  icapps_translations: ^7.0.0
+  icapps_translations: ^9.0.0
   injectable_generator: ^1.5.4
   json_serializable: ^6.3.2
   mockito: ^5.3.1

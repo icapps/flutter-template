@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
-import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,11 +33,11 @@ class HomeScreenState extends State<HomeScreen> {
           items: [
             BottomNavigationBarItem(
               icon: const Icon(Icons.list),
-              label: Localization.todoTitle,
+              label: localization.todoTitle,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.settings),
-              label: Localization.settingsTitle,
+              label: localization.settingsTitle,
             ),
           ],
         ),

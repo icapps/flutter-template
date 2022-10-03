@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/util/locale/Localization.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
@@ -32,54 +31,54 @@ class DebugScreenState extends State<DebugScreen> {
       consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: Text(Localization.settingsTitle),
+          title: Text(localization.settingsTitle),
         ),
         body: ResponsiveWidget(
           builder: (context, info) => ListView(
             children: [
-              DebugRowTitle(title: Localization.debugAnimationsTitle),
+              DebugRowTitle(title: localization.debugAnimationsTitle),
               DebugRowSwitchItem(
                 key: Keys.debugSlowAnimations,
-                title: Localization.debugSlowAnimations,
+                title: localization.debugSlowAnimations,
                 value: viewModel.slowAnimationsEnabled,
                 onChanged: viewModel.onSlowAnimationsChanged,
               ),
-              DebugRowTitle(title: Localization.debugThemeTitle),
+              DebugRowTitle(title: localization.debugThemeTitle),
               DebugRowItem(
                 key: Keys.debugTargetPlatform,
-                title: Localization.debugTargetPlatformTitle,
-                subTitle: Localization.debugTargetPlatformSubtitle(Localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
+                title: localization.debugTargetPlatformTitle,
+                subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
                 onClick: viewModel.onTargetPlatformClicked,
               ),
               DebugRowItem(
                 key: Keys.debugThemeMode,
-                title: Localization.debugThemeModeTitle,
-                subTitle: Localization.debugThemeModeSubtitle,
+                title: localization.debugThemeModeTitle,
+                subTitle: localization.debugThemeModeSubtitle,
                 onClick: viewModel.onThemeModeClicked,
               ),
-              DebugRowTitle(title: Localization.debugLocaleTitle),
+              DebugRowTitle(title: localization.debugLocaleTitle),
               DebugRowItem(
                 key: Keys.debugSelectLanguage,
-                title: Localization.debugLocaleSelector,
-                subTitle: Localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
+                title: localization.debugLocaleSelector,
+                subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
                 onClick: viewModel.onSelectLanguageClicked,
               ),
               DebugRowSwitchItem(
                 key: Keys.debugShowTranslations,
-                title: Localization.debugShowTranslations,
+                title: localization.debugShowTranslations,
                 value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
                 onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
               ),
-              DebugRowTitle(title: Localization.debugLicensesTitle),
+              DebugRowTitle(title: localization.debugLicensesTitle),
               DebugRowItem(
                 key: Keys.debugLicense,
-                title: Localization.debugLicensesGoTo,
+                title: localization.debugLicensesGoTo,
                 onClick: viewModel.onLicensesClicked,
               ),
-              DebugRowTitle(title: Localization.debugDatabase),
+              DebugRowTitle(title: localization.debugDatabase),
               DebugRowItem(
                 key: Keys.debugDatabase,
-                title: Localization.debugViewDatabase,
+                title: localization.debugViewDatabase,
                 onClick: viewModel.goToDatabase,
               ),
             ],
