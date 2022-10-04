@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'test_util.dart';
 
+
 void main() {
   testWidgets('TestUtil should not load font', (tester) async {
     const sut = Text('Text');

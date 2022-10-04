@@ -48,9 +48,7 @@ class LcovSection {
     final file = File(filePathTmp);
     final content = file.readAsLinesSync();
     final sb = StringBuffer();
-    getFilteredBody(body, content).forEach((item) => sb
-      ..write(item)
-      ..write('\n'));
+    getFilteredBody(body, content).forEach((item) => sb..write(item)..write('\n'));
     return sb.toString();
   }
 

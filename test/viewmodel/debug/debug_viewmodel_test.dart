@@ -42,8 +42,7 @@ void main() {
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onSelectLanguageClicked();
-      verify(navigator.showCustomDialog<void>(widget: anyNamed('widget')))
-          .calledOnce();
+      verify(navigator.showCustomDialog<void>(widget: anyNamed('widget'))).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });

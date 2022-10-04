@@ -12,8 +12,7 @@ abstract class AuthStorage {
 
   Future<void> clear();
 
-  Future<void> saveUserCredentials(
-      {required String accessToken, required String refreshToken});
+  Future<void> saveUserCredentials({required String accessToken, required String refreshToken});
 
   Future<bool> hasLoggedInUser();
 
@@ -48,8 +47,7 @@ class _AuthStorage implements AuthStorage {
   }
 
   @override
-  Future<void> saveUserCredentials(
-      {required String accessToken, required String refreshToken}) async {
+  Future<void> saveUserCredentials({required String accessToken, required String refreshToken}) async {
     await Future.wait(
       [
         _storage.setValue(key: _accessTokenKey, value: accessToken),

@@ -37,8 +37,7 @@ void main() {
     test('TodoDaoStorage createTodo & getAllTodos', () async {
       final data = await sut.getAllTodos();
       expect(data.isEmpty, true);
-      await sut.createTodoWithValue(
-          const Todo(id: null, title: 'TODO1', completed: true));
+      await sut.createTodoWithValue(const Todo(id: null, title: 'TODO1', completed: true));
       final data2 = await sut.getAllTodos();
       expect(data2.isNotEmpty, true);
       expect(data2.length, 1);
@@ -49,8 +48,7 @@ void main() {
     test('TodoDaoStorage createTodo & getAllTodos', () async {
       final data = await sut.getAllTodos();
       expect(data.isEmpty, true);
-      await sut.createTodoWithValue(
-          const Todo(id: 12345, title: 'TODO1', completed: true));
+      await sut.createTodoWithValue(const Todo(id: 12345, title: 'TODO1', completed: true));
       final data2 = await sut.getAllTodos();
       expect(data2.isNotEmpty, true);
       expect(data2.length, 1);

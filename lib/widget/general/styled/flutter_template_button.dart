@@ -23,9 +23,7 @@ class FlutterTemplateButton extends StatelessWidget {
       childBuilderTheme: (context, theme) {
         final content = Center(
           child: AnimatedDefaultTextStyle(
-            style: isEnabled
-                ? theme.inverseCoreTextTheme.labelButtonSmall
-                : theme.coreTextTheme.labelButtonSmallDisabled,
+            style: isEnabled ? theme.inverseCoreTextTheme.labelButtonSmall : theme.coreTextTheme.labelButtonSmallDisabled,
             duration: ThemeDurations.shortAnimationDuration(),
             child: Text(
               text,
@@ -37,17 +35,14 @@ class FlutterTemplateButton extends StatelessWidget {
             onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
               height: height,
-              color: isEnabled
-                  ? theme.colorsTheme.accent
-                  : theme.colorsTheme.disabled,
+              color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
               duration: ThemeDurations.shortAnimationDuration(),
               child: content,
             ),
           );
         }
         return AnimatedContainer(
-          color:
-              isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
+          color: isEnabled ? theme.colorsTheme.accent : theme.colorsTheme.disabled,
           duration: ThemeDurations.shortAnimationDuration(),
           child: TouchFeedBack(
             onClick: isEnabled ? onClick : null,

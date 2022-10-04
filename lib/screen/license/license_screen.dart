@@ -27,8 +27,7 @@ class LicenseScreenState extends State<LicenseScreen> {
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading:
-              FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
+          leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),
         ),
         body: ListView.builder(

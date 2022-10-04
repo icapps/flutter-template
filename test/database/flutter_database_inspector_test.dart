@@ -8,6 +8,5 @@ void main() {
     await initTestInjectable();
   });
 
-  test(
-      'Database inspector should not throw an exception', addDatabaseInspector);
+  test('Database inspector should not throw an exception', addDatabaseInspector);
 }

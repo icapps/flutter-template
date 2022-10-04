@@ -28,8 +28,7 @@ void main() {
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'login_screen_initial_state');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_initial_state');
     verifyLoginViewModel();
     verifyGlobalViewModel();
   });
@@ -39,8 +38,7 @@ void main() {
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'login_screen_initial_state_dark_mode');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_initial_state_dark_mode');
     FlavorConfig.instance.themeMode = ThemeMode.system;
   });
 
@@ -50,14 +48,12 @@ void main() {
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'login_screen_login_button_disabled');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_login_button_disabled');
     verifyGlobalViewModel();
   });
 
   group('Actions', () {
-    testWidgets('Test todo add screen button disabled on save clicked',
-        (tester) async {
+    testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
       const sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -71,9 +67,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets(
-        'Test login screen shod have  add screen button disabled on back clicked',
-        (tester) async {
+    testWidgets('Test login screen shod have  add screen button disabled on back clicked', (tester) async {
       when(loginViewModel.isLoginEnabled).thenReturn(false);
 
       const sut = LoginScreen();
@@ -88,8 +82,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test login screen should have an email input field',
-        (tester) async {
+    testWidgets('Test login screen should have an email input field', (tester) async {
       const sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -105,8 +98,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test login screen should have an password input field',
-        (tester) async {
+    testWidgets('Test login screen should have an password input field', (tester) async {
       const sut = LoginScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -125,8 +117,7 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  final loginViewModel =
-      GetIt.I.resolveAs<LoginViewModel, MockLoginViewModel>();
+  final loginViewModel = GetIt.I.resolveAs<LoginViewModel, MockLoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init()).calledOnce();

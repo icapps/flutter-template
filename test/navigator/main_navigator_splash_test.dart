@@ -17,13 +17,10 @@ void main() {
     seedAuthStorage();
 
     final mainNavigator = MainNavigator(GetIt.I.get());
-    final testWidget =
-        await TestUtil.loadScreen(tester, const SizedBox.shrink());
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'main_navigator_splash_screen_0_initial_screen');
+    final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_0_initial_screen');
     unawaited(mainNavigator.goToSplash());
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'main_navigator_splash_screen_1');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_splash_screen_1');
   });
 }

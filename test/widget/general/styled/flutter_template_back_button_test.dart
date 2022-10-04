@@ -12,20 +12,17 @@ void main() {
       final sut = FlutterTemplateBackButton.dark(onClick: () {});
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(
-          tester, 'flutter_template_back_button_dark');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_back_button_dark');
     });
 
-    testWidgets('FlutterTemplateBackButton dark initial state fullscreen',
-        (tester) async {
+    testWidgets('FlutterTemplateBackButton dark initial state fullscreen', (tester) async {
       final sut = FlutterTemplateBackButton.dark(
         onClick: () {},
         fullScreen: true,
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(
-          tester, 'flutter_template_back_button_full_screen_dark');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_back_button_full_screen_dark');
     });
 
     testWidgets('FlutterTemplateBackButton dark click', (tester) async {
@@ -44,25 +41,21 @@ void main() {
   });
 
   group('FlutterTemplateBackButton light', () {
-    testWidgets('FlutterTemplateBackButton light initial state',
-        (tester) async {
+    testWidgets('FlutterTemplateBackButton light initial state', (tester) async {
       final sut = FlutterTemplateBackButton.light(onClick: () {});
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(
-          tester, 'flutter_template_back_button_light');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_back_button_light');
     });
 
-    testWidgets('FlutterTemplateBackButton light initial state fullscreen',
-        (tester) async {
+    testWidgets('FlutterTemplateBackButton light initial state fullscreen', (tester) async {
       final sut = FlutterTemplateBackButton.light(
         onClick: () {},
         fullScreen: true,
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(
-          tester, 'flutter_template_back_button_full_screen_light');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_back_button_full_screen_light');
     });
 
     testWidgets('FlutterTemplateBackButton light click', (tester) async {

@@ -27,8 +27,7 @@ void main() {
     const sut = TodoAddScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'todo_add_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_add_screen_inital_state');
     verifyTodoAddViewModel();
     verifyGlobalViewModel();
   });
@@ -38,15 +37,13 @@ void main() {
     const sut = TodoAddScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'todo_add_screen_enabled');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_add_screen_enabled');
     verifyTodoAddViewModel();
     verifyGlobalViewModel();
   });
 
   group('Actions', () {
-    testWidgets('Test todo add screen button enabled disabled on back clicked',
-        (tester) async {
+    testWidgets('Test todo add screen button enabled disabled on back clicked', (tester) async {
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -60,8 +57,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test todo add screen button disabled on save clicked',
-        (tester) async {
+    testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
       when(todoAddViewModel.isSaveEnabled).thenReturn(true);
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -76,8 +72,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test todo add screen button disabled on back clicked',
-        (tester) async {
+    testWidgets('Test todo add screen button disabled on back clicked', (tester) async {
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -90,8 +85,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test todo add screen should have an input field',
-        (tester) async {
+    testWidgets('Test todo add screen should have an input field', (tester) async {
       const sut = TodoAddScreen();
       await TestUtil.loadScreen(tester, sut);
 
@@ -110,8 +104,7 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel =
-      GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  final todoAddViewModel = GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
   verify(todoAddViewModel.init()).calledOnce();
 }

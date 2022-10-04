@@ -28,24 +28,20 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'data_provider_widget_theme');
   });
 
-  testWidgets('DataProviderWidget should build with localization',
-      (tester) async {
+  testWidgets('DataProviderWidget should build with localization', (tester) async {
     final sut = DataProviderWidget(
-      childBuilderLocalization: (context, _) =>
-          const Material(child: Text('Test')),
+      childBuilderLocalization: (context, _) => const Material(child: Text('Test')),
     );
     await TestUtil.loadWidgetWithText(tester, sut);
     await TestUtil.takeScreenshot(tester, 'data_provider_widget_localization');
   });
 
-  testWidgets('DataProviderWidget should build with theme and localization',
-      (tester) async {
+  testWidgets('DataProviderWidget should build with theme and localization', (tester) async {
     final sut = DataProviderWidget(
       childBuilder: (context, _, __) => const Material(child: Text('Test')),
     );
     await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(
-        tester, 'data_provider_widget_theme_and_localization');
+    await TestUtil.takeScreenshot(tester, 'data_provider_widget_theme_and_localization');
   });
 }
 

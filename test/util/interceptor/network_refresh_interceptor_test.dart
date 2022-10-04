@@ -28,17 +28,12 @@ void main() {
   test('NetworkRefreshInterceptor should intercept 401', () async {
     when(refreshRepo.refresh(any)).thenAnswer((_) => Future<void>.value());
     when(authStorage.getAccessToken()).thenAnswer((_) => Future.value(null));
-    when(dio.fetch<dynamic>(any)).thenAnswer((_) => Future.value(
-        Response<void>(requestOptions: RequestOptions(path: '/'))));
+    when(dio.fetch<dynamic>(any)).thenAnswer((_) => Future.value(Response<void>(requestOptions: RequestOptions(path: '/'))));
 
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(
-        response:
-            Response<void>(statusCode: 401, requestOptions: requestOptions),
-        requestOptions: requestOptions);
+    final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestHeaders = <String, dynamic>{};
-    final requestOption =
-        RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
+    final requestOption = RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
     dioError.response?.requestOptions = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);
 
@@ -53,10 +48,7 @@ void main() {
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(
-        response:
-            Response<void>(statusCode: 499, requestOptions: requestOptions),
-        requestOptions: requestOptions);
+    final dioError = DioError(response: Response<void>(statusCode: 499, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestOption = RequestOptions(path: 'https://somthing.com');
     dioError.requestOptions = requestOption;
 
@@ -77,13 +69,9 @@ void main() {
     verify(refreshRepo.resetFailure()).calledOnce();
   });
 
-  test('NetworkRefreshInterceptor should do nothing when authorization call',
-      () async {
+  test('NetworkRefreshInterceptor should do nothing when authorization call', () async {
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(
-        response:
-            Response<void>(statusCode: 401, requestOptions: requestOptions),
-        requestOptions: requestOptions);
+    final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestOption = RequestOptions(path: 'login');
     dioError.requestOptions = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);

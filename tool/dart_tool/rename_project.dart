@@ -34,11 +34,9 @@ void main() {
 
   bool? specificAppCenterIds;
   do {
-    Logger.info(
-        '\nDo you want to specify the AppCenter ids?\n"no" will use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
+    Logger.info('\nDo you want to specify the AppCenter ids?\n"no" will use the default config: $classNamePrefix-iOS/Android-Alpha/Beta (yes/no)');
     final result = stdin.readLineSync();
-    final validResult =
-        result == 'y' || result == 'n' || result == 'yes' || result == 'no';
+    final validResult = result == 'y' || result == 'n' || result == 'yes' || result == 'no';
     if (validResult) {
       specificAppCenterIds = result == 'y' || result == 'yes';
     }
@@ -48,21 +46,14 @@ void main() {
   do {
     Logger.info('\nDo you want to replace the README.md content? (yes/no)');
     final result = stdin.readLineSync();
-    final validResult =
-        result == 'y' || result == 'n' || result == 'yes' || result == 'no';
+    final validResult = result == 'y' || result == 'n' || result == 'yes' || result == 'no';
     if (validResult) {
       replaceReadmeContent = result == 'y' || result == 'yes';
     }
   } while (replaceReadmeContent == null);
 
-  if (classNamePrefix == null ||
-      androidPackageName == null ||
-      iosBundleIdentifier == null ||
-      appName == null ||
-      dartPackageName == null ||
-      description == null) {
-    Logger.info(
-        '\nWe found some invalid values. Please try again. Your codebase is not yet altered.');
+  if (classNamePrefix == null || androidPackageName == null || iosBundleIdentifier == null || appName == null || dartPackageName == null || description == null) {
+    Logger.info('\nWe found some invalid values. Please try again. Your codebase is not yet altered.');
     return;
   }
 
@@ -72,52 +63,36 @@ void main() {
   _renameNiddlerPackageName(androidPackageName, iosBundleIdentifier, appName);
   _renameAppName(appName);
   _renamePackage(dartPackageName, description, classNamePrefix);
-  _renameTools(dartPackageName, description, classNamePrefix, appName,
-      iosBundleIdentifier, androidPackageName);
-  _renameReadMe(replaceReadmeContent, dartPackageName, description,
-      classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
+  _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
+  _renameReadMe(replaceReadmeContent, dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName);
   _packagesGet();
   _performFinalCheck();
-  _renameTools(dartPackageName, description, classNamePrefix, appName,
-      iosBundleIdentifier, androidPackageName,
-      force: true);
+  _renameTools(dartPackageName, description, classNamePrefix, appName, iosBundleIdentifier, androidPackageName, force: true);
   Logger.debug('');
   Logger.debug('rename_project.dart finished successfully');
 }
 
 void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
   if (specificAppCenterIds) {
-    Logger.info(
-        'Enter iOS AppCenter Alpha id: (Default is $classNamePrefix-iOS-Alpha)');
+    Logger.info('Enter iOS AppCenter Alpha id: (Default is $classNamePrefix-iOS-Alpha)');
     final appCenterIosAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.iosAlpha, classNamePrefix,
-        value: appCenterIosAlphaId);
-    Logger.info(
-        'Enter iOS AppCenter Beta id: (Default is $classNamePrefix-iOS-Beta)');
+    _renameFastlaneAppCenterIds(AppCenterApp.iosAlpha, classNamePrefix, value: appCenterIosAlphaId);
+    Logger.info('Enter iOS AppCenter Beta id: (Default is $classNamePrefix-iOS-Beta)');
     final appCenterIosBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.iosBeta, classNamePrefix,
-        value: appCenterIosBetaId);
-    Logger.info(
-        'Enter iOS AppCenter Prod id: (Default is $classNamePrefix-iOS)');
+    _renameFastlaneAppCenterIds(AppCenterApp.iosBeta, classNamePrefix, value: appCenterIosBetaId);
+    Logger.info('Enter iOS AppCenter Prod id: (Default is $classNamePrefix-iOS)');
     final appCenterIosProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.iosProd, classNamePrefix,
-        value: appCenterIosProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.iosProd, classNamePrefix, value: appCenterIosProdId);
 
-    Logger.info(
-        'Enter Android AppCenter Alpha id: (Default is $classNamePrefix-Android-Alpha)');
+    Logger.info('Enter Android AppCenter Alpha id: (Default is $classNamePrefix-Android-Alpha)');
     final appCenterAndroidAlphaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.androidAlpha, classNamePrefix,
-        value: appCenterAndroidAlphaId);
-    Logger.info(
-        'Enter Android AppCenter Beta id: (Default is $classNamePrefix-Android-Beta)');
+    _renameFastlaneAppCenterIds(AppCenterApp.androidAlpha, classNamePrefix, value: appCenterAndroidAlphaId);
+    Logger.info('Enter Android AppCenter Beta id: (Default is $classNamePrefix-Android-Beta)');
     final appCenterAndroidBetaId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.androidBeta, classNamePrefix,
-        value: appCenterAndroidBetaId);
-    Logger.info(
-        'Enter Android AppCenter Prod id: (Default is $classNamePrefix-Android)');
+    _renameFastlaneAppCenterIds(AppCenterApp.androidBeta, classNamePrefix, value: appCenterAndroidBetaId);
+    Logger.info('Enter Android AppCenter Prod id: (Default is $classNamePrefix-Android)');
     final appCenterAndroidProdId = stdin.readLineSync();
-    _renameFastlaneAppCenterIds(AppCenterApp.androidProd, classNamePrefix,
-        value: appCenterAndroidProdId);
+    _renameFastlaneAppCenterIds(AppCenterApp.androidProd, classNamePrefix, value: appCenterAndroidProdId);
   } else {
     Logger.info('Replace the AppCenter ids with default values...');
     _renameFastlaneAppCenterIds(AppCenterApp.iosAlpha, classNamePrefix);
@@ -131,8 +106,7 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
 
 void _renameAndroidPackageName(String androidPackageName) {
   Logger.info('Replace the android package name ...');
-  _replaceInFile('android/app/build.gradle', originalAndroidPackageName,
-      androidPackageName);
+  _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
@@ -140,12 +114,9 @@ void _renameAndroidPackageName(String androidPackageName) {
     if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
-    _replaceInFile(
-        element.path, originalAndroidPackageName, androidPackageName);
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
-  Directory('android/app/src/main/kotlin')
-      .listSync(recursive: true)
-      .where((element) {
+  Directory('android/app/src/main/kotlin').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
@@ -162,8 +133,7 @@ void _renameAndroidPackageName(String androidPackageName) {
     if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
-    _replaceInFile(
-        element.path, originalAndroidPackageName, androidPackageName);
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
   });
   final testDir = Directory('test');
   if (testDir.existsSync()) {
@@ -174,23 +144,19 @@ void _renameAndroidPackageName(String androidPackageName) {
       if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
-      _replaceInFile(
-          element.path, originalAndroidPackageName, androidPackageName);
+      _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
     });
   }
 }
 
 void _deleteOldKotlinFiles(String androidPackageName) {
   if (androidPackageName.startsWith('com.icapps')) {
-    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath')
-        .deleteSync();
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
   } else if (androidPackageName.startsWith('com')) {
-    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath')
-        .deleteSync();
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
     Directory('android/app/src/main/kotlin/com/icapps').deleteSync();
   } else {
-    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath')
-        .deleteSync();
+    Directory('android/app/src/main/kotlin/$originalAndroidFolderPath').deleteSync();
     Directory('android/app/src/main/kotlin/com/icapps').deleteSync();
     Directory('android/app/src/main/kotlin/com').deleteSync();
   }
@@ -198,15 +164,13 @@ void _deleteOldKotlinFiles(String androidPackageName) {
 
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   Logger.info('Replace the ios bundle identifier ...');
-  _replaceInFile(
-      'fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    _replaceInFile(
-        element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   Directory('ios/Runner').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -214,8 +178,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
-    _replaceInFile(
-        element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   Directory('lib').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -224,8 +187,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
     if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
-    _replaceInFile(
-        element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
   });
   final testDir = Directory('test');
   if (testDir.existsSync()) {
@@ -236,8 +198,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
       if (element.path.contains('.DS_Store')) return false;
       return true;
     }).forEach((element) {
-      _replaceInFile(
-          element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+      _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
     });
   }
 }
@@ -264,25 +225,18 @@ void _renameAppName(String appName) {
   });
 }
 
-void _renameNiddlerPackageName(
-    String androidPackageName, String iosBundleIdentifier, String appName) {
+void _renameNiddlerPackageName(String androidPackageName, String iosBundleIdentifier, String appName) {
   Logger.info('Replace text in lib/util/inspector/niddler.dart...');
-  _replaceInFile('lib/util/inspector/niddler.dart', originalAndroidPackageName,
-      androidPackageName);
-  _replaceInFile('lib/util/inspector/niddler.dart', originalIOSBundleIdentifier,
-      iosBundleIdentifier);
+  _replaceInFile('lib/util/inspector/niddler.dart', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('lib/util/inspector/niddler.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
   _replaceInFile('lib/util/inspector/niddler.dart', originalAppName, appName);
 }
 
-void _renamePackage(
-    String packageName, String description, String classNamePrefix) {
+void _renamePackage(String packageName, String description, String classNamePrefix) {
   Logger.info('Replace the description & name in the pubspec.yaml...');
-  _replaceInFile(
-      'pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
-  _replaceInFile('pubspec.yaml', 'description: $originalDescription',
-      'description: $description');
-  _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix,
-      classNamePrefix);
+  _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
+  _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
+  _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix, classNamePrefix);
   _replaceInFile('coverage/lcov.info', originalProjectName, packageName);
 
   Logger.info('Replace the package names & class names in lib ...');
@@ -321,14 +275,7 @@ void _renamePackage(
   }
 }
 
-void _renameTools(
-    String dartPackageName,
-    String description,
-    String classNamePrefix,
-    String appName,
-    String iosBundleIdentifier,
-    String androidPackageName,
-    {bool force = false}) {
+void _renameTools(String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName, {bool force = false}) {
   Logger.info('Replace the package names in the tools folder ...');
   Directory('tool').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
@@ -337,29 +284,18 @@ void _renameTools(
     if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
-    if (force == false &&
-        element.path == './tool/dart_tool/rename_project.dart') return;
+    if (force == false && element.path == './tool/dart_tool/rename_project.dart') return;
     _replaceInFile(element.path, originalDescription, description);
     _replaceInFile(element.path, originalAppName, appName);
     _replaceInFile(element.path, originalProjectName, dartPackageName);
     _replaceInFile(element.path, originalClassNamePrefix, classNamePrefix);
-    _replaceInFile(
-        element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
-    _replaceInFile(
-        element.path, originalAndroidPackageName, androidPackageName);
-    _replaceInFile(element.path, originalAndroidFolderPath,
-        androidPackageName.replaceAll('.', '/'));
+    _replaceInFile(element.path, originalIOSBundleIdentifier, iosBundleIdentifier);
+    _replaceInFile(element.path, originalAndroidPackageName, androidPackageName);
+    _replaceInFile(element.path, originalAndroidFolderPath, androidPackageName.replaceAll('.', '/'));
   });
 }
 
-void _renameReadMe(
-    bool replaceAll,
-    String dartPackageName,
-    String description,
-    String classNamePrefix,
-    String appName,
-    String iosBundleIdentifier,
-    String androidPackageName) {
+void _renameReadMe(bool replaceAll, String dartPackageName, String description, String classNamePrefix, String appName, String iosBundleIdentifier, String androidPackageName) {
   Logger.info('Renaming the README.md file ...');
   const readmePath = 'README.md';
   if (replaceAll) {
@@ -397,8 +333,7 @@ void _performFinalCheck() {
         element.path.contains(originalAndroidPackageName) ||
         element.path.contains(originalAndroidFolderPath) ||
         element.path.contains(originalAppName)) {
-      Logger.debug(
-          '${element.path} path still contains some template references');
+      Logger.debug('${element.path} path still contains some template references');
       valid = false;
     }
   });
@@ -415,17 +350,13 @@ void _performFinalCheck() {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('lcov.info')) return false;
-    if (element.path.endsWith('tool/dart_tool/rename_project.dart'))
-      return false;
-    if (element.path
-        .endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES'))
-      return false;
+    if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
+    if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
     if (Directory(element.path).existsSync()) return false;
     if (element.path.contains('.DS_Store')) return false;
     return true;
   }).forEach((element) {
-    if (element.path == './tool/dart_tool/rename_project.dart' ||
-        element.path == './tool/travis/rename_project.dart') {
+    if (element.path == './tool/dart_tool/rename_project.dart' || element.path == './tool/travis/rename_project.dart') {
       return;
     }
     try {
@@ -436,8 +367,7 @@ void _performFinalCheck() {
           content.contains(originalAndroidPackageName) ||
           content.contains(originalAndroidFolderPath) ||
           content.contains(originalAppName)) {
-        Logger.debug(
-            '${element.path} content still contains some template references');
+        Logger.debug('${element.path} content still contains some template references');
         valid = false;
       }
     } on FileSystemException catch (_) {}
@@ -471,9 +401,7 @@ void _renameDartFile(String path, String newPackageName) {
 
 void _renameKotlinFile(String path, String newPackageName) {
   final newPathFolder = newPackageName.replaceAll('.', '/');
-  final newPath = path.replaceAll(
-      'android/app/src/main/kotlin/$originalAndroidFolderPath/',
-      'android/app/src/main/kotlin/$newPathFolder/');
+  final newPath = path.replaceAll('android/app/src/main/kotlin/$originalAndroidFolderPath/', 'android/app/src/main/kotlin/$newPathFolder/');
   final newFolder = Directory('android/app/src/main/kotlin/$newPathFolder');
   if (!newFolder.existsSync()) {
     newFolder.createSync(recursive: true);
@@ -483,59 +411,31 @@ void _renameKotlinFile(String path, String newPackageName) {
     ..deleteSync();
 }
 
-void _renameFastlaneAppCenterIds(
-    AppCenterApp appCenterApp, String classNamePrefix,
-    {String? value}) {
+void _renameFastlaneAppCenterIds(AppCenterApp appCenterApp, String classNamePrefix, {String? value}) {
   switch (appCenterApp) {
     case AppCenterApp.androidAlpha:
-      final newValue = value == null || value.isEmpty
-          ? '$classNamePrefix-Android-Alpha'
-          : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-Android-Alpha"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Alpha' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.androidBeta:
-      final newValue = value == null || value.isEmpty
-          ? '$classNamePrefix-Android-Beta'
-          : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-Android-Beta"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android-Beta' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.androidProd:
-      final newValue =
-          value == null || value.isEmpty ? '$classNamePrefix-Android' : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-Android"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-Android' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-Android"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.iosAlpha:
-      final newValue =
-          value == null || value.isEmpty ? '$classNamePrefix-iOS-Alpha' : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-iOS-Alpha"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Alpha' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Alpha"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.iosBeta:
-      final newValue =
-          value == null || value.isEmpty ? '$classNamePrefix-iOS-Beta' : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-iOS-Beta"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS-Beta' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS-Beta"', 'appcenter_app_name = "$newValue"');
       break;
     case AppCenterApp.iosProd:
-      final newValue =
-          value == null || value.isEmpty ? '$classNamePrefix-iOS' : value;
-      _replaceInFile(
-          'fastlane/Fastfile',
-          'appcenter_app_name = "$originalClassNamePrefix-iOS"',
-          'appcenter_app_name = "$newValue"');
+      final newValue = value == null || value.isEmpty ? '$classNamePrefix-iOS' : value;
+      _replaceInFile('fastlane/Fastfile', 'appcenter_app_name = "$originalClassNamePrefix-iOS"', 'appcenter_app_name = "$newValue"');
       break;
   }
 }

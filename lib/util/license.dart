@@ -27,8 +27,7 @@ class LicenseUtil {
         name: 'device_info',
         version: '^2.0.3',
         url: null,
-        licenseUrl:
-            'https://raw.githubusercontent.com/flutter/plugins/master/packages/device_info/device_info/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/device_info/device_info/LICENSE',
         license: '''Copyright 2013 The Flutter Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -60,8 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'dio',
         version: '^4.0.0',
         url: 'https://github.com/flutterchina/dio',
-        licenseUrl:
-            'https://raw.githubusercontent.com/flutterchina/dio/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/flutterchina/dio/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2018 wendux
@@ -88,8 +86,7 @@ SOFTWARE.''',
         name: 'drift',
         version: '^1.0.0',
         url: 'https://drift.simonbinder.eu/',
-        licenseUrl:
-            'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Simon Binder
@@ -117,8 +114,7 @@ SOFTWARE.
         name: 'drift_inspector',
         version: '^1.0.0',
         url: 'https://github.com/Chimerapps/drift_inspector',
-        licenseUrl:
-            'https://raw.githubusercontent.com/Chimerapps/drift_inspector/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/drift_inspector/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2020-2021 Chimerapps
@@ -146,8 +142,7 @@ SOFTWARE.
         name: 'firebase_core',
         version: '^1.6.0',
         url: 'https://firebase.flutter.dev/docs/core/usage',
-        licenseUrl:
-            'https://raw.githubusercontent.com/FirebaseExtended/flutterfire/master/packages/firebase_core/firebase_core/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/FirebaseExtended/flutterfire/master/packages/firebase_core/firebase_core/LICENSE',
         license: '''// Copyright 2017 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -180,8 +175,7 @@ SOFTWARE.
         name: 'firebase_crashlytics',
         version: '^2.2.1',
         url: 'https://firebase.flutter.dev/docs/crashlytics/overview',
-        licenseUrl:
-            'https://raw.githubusercontent.com/FirebaseExtended/flutterfire/master/packages/firebase_crashlytics/firebase_crashlytics/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/FirebaseExtended/flutterfire/master/packages/firebase_crashlytics/firebase_crashlytics/LICENSE',
         license: '''// Copyright 2019 The Chromium Authors. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -214,8 +208,7 @@ SOFTWARE.
         name: 'flutter_cache_manager',
         version: '^3.0.1',
         url: 'https://github.com/Baseflow/flutter_cache_manager',
-        licenseUrl:
-            'https://raw.githubusercontent.com/Baseflow/flutter_cache_manager/develop/flutter_cache_manager/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/Baseflow/flutter_cache_manager/develop/flutter_cache_manager/LICENSE',
         license: '''
 The MIT License (MIT)
 
@@ -244,8 +237,7 @@ SOFTWARE.
         name: 'flutter_secure_storage',
         version: '^5.0.2',
         url: 'https://github.com/mogol/flutter_secure_storage',
-        licenseUrl:
-            'https://raw.githubusercontent.com/mogol/flutter_secure_storage/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/mogol/flutter_secure_storage/master/LICENSE',
         license: '''BSD 3-Clause License
 
 Copyright 2017 German Saprykin
@@ -280,8 +272,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
         name: 'flutter_svg',
         version: '^0.23.0+1',
         url: 'https://github.com/dnfield/flutter_svg',
-        licenseUrl:
-            'https://raw.githubusercontent.com/dnfield/flutter_svg/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/dnfield/flutter_svg/master/LICENSE',
         license: '''Copyright (c) 2018 Dan Field
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -306,8 +297,7 @@ SOFTWARE.''',
         name: 'get_it',
         version: '^7.2.0',
         url: 'https://github.com/fluttercommunity/get_it',
-        licenseUrl:
-            'https://raw.githubusercontent.com/fluttercommunity/get_it/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/fluttercommunity/get_it/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2018 Thomas Burkhart
@@ -334,8 +324,7 @@ SOFTWARE.''',
         name: 'icapps_architecture',
         version: '^0.5.0',
         url: 'https://github.com/icapps/flutter-icapps-architecture',
-        licenseUrl:
-            'https://raw.githubusercontent.com/icapps/flutter-icapps-architecture/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-architecture/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2021 icapps
@@ -363,8 +352,7 @@ SOFTWARE.
         name: 'injectable',
         version: '^1.4.1',
         url: 'https://github.com/Milad-Akarie/injectable',
-        licenseUrl:
-            'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2020 Milad Akarie
@@ -391,10 +379,8 @@ SOFTWARE.''',
         name: 'json_annotation',
         version: '^4.3.0',
         url: null,
-        licenseUrl:
-            'https://raw.githubusercontent.com/google/json_serializable.dart/master/LICENSE',
-        license:
-            '''Copyright 2017, the Dart project authors. All rights reserved.
+        licenseUrl: 'https://raw.githubusercontent.com/google/json_serializable.dart/master/LICENSE',
+        license: '''Copyright 2017, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
@@ -426,8 +412,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'niddler_dart',
         version: '^1.2.0',
         url: 'https://github.com/Chimerapps/niddler_dart',
-        licenseUrl:
-            'https://raw.githubusercontent.com/Chimerapps/niddler_dart/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/Chimerapps/niddler_dart/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Chimerapps
@@ -455,8 +440,7 @@ SOFTWARE.
         name: 'path',
         version: '^1.8.0',
         url: 'https://github.com/dart-lang/path',
-        licenseUrl:
-            'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
         license: '''Copyright 2014, the Dart project authors. 
 
 Redistribution and use in source and binary forms, with or without
@@ -489,10 +473,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ..add(License(
         name: 'path_provider',
         version: '^2.0.1',
-        url:
-            'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
-        licenseUrl:
-            'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
+        url: 'https://github.com/flutter/plugins/tree/master/packages/path_provider/path_provider',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/path_provider/path_provider/LICENSE',
         license: '''Copyright 2013 The Flutter Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -524,8 +506,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'provider',
         version: '^6.0.0',
         url: null,
-        licenseUrl:
-            'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Remi Rousselet
@@ -552,8 +533,7 @@ SOFTWARE.''',
         name: 'retrofit',
         version: '^3.0.0',
         url: 'https://mings.in/retrofit.dart/',
-        licenseUrl:
-            'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Trevor Wang
@@ -581,8 +561,7 @@ SOFTWARE.
         name: 'scroll_when_needed',
         version: '^2.0.0',
         url: 'https://github.com/vanlooverenkoen/flutter_scroll_when_needed',
-        licenseUrl:
-            'https://raw.githubusercontent.com/vanlooverenkoen/flutter_scroll_when_needed/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/vanlooverenkoen/flutter_scroll_when_needed/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Van Looveren Koen
@@ -609,10 +588,8 @@ SOFTWARE.
       ..add(License(
         name: 'shared_preferences',
         version: '^2.0.5',
-        url:
-            'https://github.com/flutter/plugins/tree/master/packages/shared_preferences/shared_preferences',
-        licenseUrl:
-            'https://raw.githubusercontent.com/flutter/plugins/master/packages/shared_preferences/shared_preferences/LICENSE',
+        url: 'https://github.com/flutter/plugins/tree/master/packages/shared_preferences/shared_preferences',
+        licenseUrl: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/shared_preferences/shared_preferences/LICENSE',
         license: '''Copyright 2013 The Flutter Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -643,10 +620,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       ..add(License(
         name: 'sqlite3_flutter_libs',
         version: '^0.5.0',
-        url:
-            'https://github.com/simolus3/sqlite3.dart/tree/master/sqlite3_flutter_libs',
-        licenseUrl:
-            'https://raw.githubusercontent.com/simolus3/sqlite3.dart/master/sqlite3_flutter_libs/LICENSE',
+        url: 'https://github.com/simolus3/sqlite3.dart/tree/master/sqlite3_flutter_libs',
+        licenseUrl: 'https://raw.githubusercontent.com/simolus3/sqlite3.dart/master/sqlite3_flutter_libs/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2020 Simon Binder
@@ -673,8 +648,7 @@ SOFTWARE.''',
         name: 'build_runner',
         version: '^2.1.1',
         url: null,
-        licenseUrl:
-            'https://raw.githubusercontent.com/dart-lang/build/master/build_runner/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/build/master/build_runner/LICENSE',
         license: '''Copyright 2016, the Dart project authors. 
 
 Redistribution and use in source and binary forms, with or without
@@ -708,8 +682,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'drift_dev',
         version: '^1.0.0',
         url: 'https://drift.simonbinder.eu/',
-        licenseUrl:
-            'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/simolus3/moor/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Simon Binder
@@ -737,8 +710,7 @@ SOFTWARE.
         name: 'flutter_launcher_icons',
         version: '^0.9.2',
         url: 'https://github.com/fluttercommunity/flutter_launcher_icons',
-        licenseUrl:
-            'https://raw.githubusercontent.com/fluttercommunity/flutter_launcher_icons/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/fluttercommunity/flutter_launcher_icons/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Mark O'Sullivan
@@ -766,8 +738,7 @@ SOFTWARE.
         name: 'icapps_license',
         version: '^2.0.0',
         url: 'https://github.com/icapps/flutter-icapps-license',
-        licenseUrl:
-            'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 icapps
@@ -795,8 +766,7 @@ SOFTWARE.
         name: 'icapps_translations',
         version: '^5.0.0',
         url: 'https://github.com/icapps/flutter-icapps-translations',
-        licenseUrl:
-            'https://raw.githubusercontent.com/icapps/flutter-icapps-translations/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-translations/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 icapps
@@ -824,8 +794,7 @@ SOFTWARE.
         name: 'injectable_generator',
         version: '^1.5.0',
         url: 'https://github.com/Milad-Akarie/injectable',
-        licenseUrl:
-            'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/Milad-Akarie/injectable/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2020 Milad Akarie
@@ -852,10 +821,8 @@ SOFTWARE.''',
         name: 'json_serializable',
         version: '^6.0.0',
         url: null,
-        licenseUrl:
-            'https://raw.githubusercontent.com/google/json_serializable.dart/master/json_serializable/LICENSE',
-        license:
-            '''Copyright 2017, the Dart project authors. All rights reserved.
+        licenseUrl: 'https://raw.githubusercontent.com/google/json_serializable.dart/master/json_serializable/LICENSE',
+        license: '''Copyright 2017, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
@@ -887,8 +854,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'mockito',
         version: '^5.0.15',
         url: 'https://github.com/dart-lang/mockito',
-        licenseUrl:
-            'https://raw.githubusercontent.com/dart-lang/mockito/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/mockito/master/LICENSE',
         license: '''
                                  Apache License
                            Version 2.0, January 2004
@@ -1097,8 +1063,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'model_generator',
         version: '^5.8.0',
         url: 'https://github.com/icapps/flutter-model-generator',
-        licenseUrl:
-            'https://raw.githubusercontent.com/icapps/flutter-model-generator/master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-model-generator/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2020 Koen Van Looveren
@@ -1126,8 +1091,7 @@ SOFTWARE.
         name: 'retrofit_generator',
         version: '3.0.0+2',
         url: 'https://mings.in/retrofit.dart/',
-        licenseUrl:
-            'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
+        licenseUrl: 'https://raw.githubusercontent.com/trevorwang/retrofit.dart//master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Trevor Wang

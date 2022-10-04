@@ -32,11 +32,9 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'provider_widget_child');
   });
 
-  testWidgets('ProviderWidget should show childbuilder with viewmodel',
-      (tester) async {
+  testWidgets('ProviderWidget should show childbuilder with viewmodel', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      childBuilderWithViewModel: (context, item, _, __) =>
-          const Material(child: Text('Test')),
+      childBuilderWithViewModel: (context, item, _, __) => const Material(child: Text('Test')),
       create: () => TestViewModel(),
     );
 
@@ -44,11 +42,9 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'provider_widget_child_builder');
   });
 
-  testWidgets('ProviderWidget should show childbuilder with consumer',
-      (tester) async {
+  testWidgets('ProviderWidget should show childbuilder with consumer', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      consumer: (context, viewModel, widget) =>
-          const Material(child: Text('Hello')),
+      consumer: (context, viewModel, widget) => const Material(child: Text('Hello')),
       create: () => TestViewModel(),
     );
 
@@ -56,9 +52,7 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'provider_widget_consumer');
   });
 
-  testWidgets(
-      'ProviderWidget should show childbuilder with consumer and consumerChild',
-      (tester) async {
+  testWidgets('ProviderWidget should show childbuilder with consumer and consumerChild', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
       consumerChild: const Text('Hallo 2'),
       consumer: (context, viewModel, child) => Material(
@@ -75,8 +69,7 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(
-        tester, 'provider_widget_consumer_and_consumer_child');
+    await TestUtil.takeScreenshot(tester, 'provider_widget_consumer_and_consumer_child');
   });
 }
 

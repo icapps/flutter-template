@@ -2,6 +2,7 @@
 //THIS FILE IS AUTO GENERATED. DO NOT EDIT//
 //============================================================//
 class LocalizationKeys {
+
   /// Translations:
   ///
   /// nl:  **'Animaties'**
@@ -309,4 +310,5 @@ class LocalizationKeys {
   ///
   /// en:  **'System default'**
   static const themeModeLabelSystem = 'theme_mode_label_System';
+
 }

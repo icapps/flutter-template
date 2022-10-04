@@ -89,8 +89,7 @@ void main() {
         verifyNoMoreInteractions(todoRepo);
         verifyZeroInteractions(navigator);
       });
-      test('TodoListViewModel onDownloadClicked with FlutterTemplateError',
-          () async {
+      test('TodoListViewModel onDownloadClicked with FlutterTemplateError', () async {
         when(todoRepo.fetchTodos()).thenThrow(GeneralError());
         expect(sut.isLoading, false);
         expect(sut.errorKey, isNull);
@@ -101,8 +100,7 @@ void main() {
         verifyNoMoreInteractions(todoRepo);
         verifyZeroInteractions(navigator);
       });
-      test('TodoListViewModel onDownloadClicked with no FlutterTemplateError',
-          () async {
+      test('TodoListViewModel onDownloadClicked with no FlutterTemplateError', () async {
         when(todoRepo.fetchTodos()).thenThrow(ArgumentError());
         expect(sut.isLoading, false);
         expect(sut.errorKey, isNull);

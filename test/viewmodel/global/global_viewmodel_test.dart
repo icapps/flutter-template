@@ -185,20 +185,17 @@ void main() {
 
       group('getCurrentPlatform', () {
         test('GlobalViewModel getCurrentPlatform android', () async {
-          when(debugRepo.getTargetPlatform())
-              .thenAnswer((_) => TargetPlatform.android);
+          when(debugRepo.getTargetPlatform()).thenAnswer((_) => TargetPlatform.android);
           await sut.setSelectedPlatformToAndroid();
           reset(localeRepo);
           reset(debugRepo);
-          expect(
-              sut.getCurrentPlatform(), LocalizationKeys.generalLabelAndroid);
+          expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelAndroid);
           verifyZeroInteractions(localeRepo);
           verifyZeroInteractions(debugRepo);
         });
 
         test('GlobalViewModel getCurrentPlatform ios', () async {
-          when(debugRepo.getTargetPlatform())
-              .thenAnswer((_) => TargetPlatform.iOS);
+          when(debugRepo.getTargetPlatform()).thenAnswer((_) => TargetPlatform.iOS);
           await sut.setSelectedPlatformToIOS();
           reset(localeRepo);
           reset(debugRepo);
@@ -212,15 +209,14 @@ void main() {
           await sut.setSelectedPlatformToDefault();
           reset(localeRepo);
           reset(debugRepo);
-          expect(sut.getCurrentPlatform(),
-              LocalizationKeys.generalLabelSystemDefault);
+          expect(sut.getCurrentPlatform(), LocalizationKeys.generalLabelSystemDefault);
           verifyZeroInteractions(localeRepo);
           verifyZeroInteractions(debugRepo);
         });
       });
     });
 
-    group('ThemeMode', () {
+    group('ThemeMode',(){
       test('GlobalViewModel updateThemeMode light', () async {
         when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
         await sut.updateThemeMode(ThemeMode.light);

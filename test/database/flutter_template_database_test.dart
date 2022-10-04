@@ -20,15 +20,9 @@ void main() {
     final resultTodos1 = await sut.select(sut.dbTodoTable).get();
     expect(resultTodos1.isEmpty, true);
 
-    await sut
-        .into(sut.dbTodoTable)
-        .insert(DbTodoTableCompanion.insert(title: 'todo1', completed: true));
-    await sut
-        .into(sut.dbTodoTable)
-        .insert(DbTodoTableCompanion.insert(title: 'todo2', completed: true));
-    await sut
-        .into(sut.dbTodoTable)
-        .insert(DbTodoTableCompanion.insert(title: 'todo3', completed: true));
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo1', completed: true));
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo2', completed: true));
+    await sut.into(sut.dbTodoTable).insert(DbTodoTableCompanion.insert(title: 'todo3', completed: true));
 
     final resultTodos2 = await sut.select(sut.dbTodoTable).get();
     expect(resultTodos2.isEmpty, false);

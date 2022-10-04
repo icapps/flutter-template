@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 enum Flavor {
@@ -37,11 +38,9 @@ class FlavorConfig {
     required FlavorValues values,
     ThemeMode themeMode = ThemeMode.system,
   }) =>
-      _instance =
-          FlavorConfig._internal(flavor, name, color, values, themeMode);
+      _instance = FlavorConfig._internal(flavor, name, color, values, themeMode);
 
-  FlavorConfig._internal(
-      this.flavor, this.name, this.color, this.values, this.themeMode);
+  FlavorConfig._internal(this.flavor, this.name, this.color, this.values, this.themeMode);
 
   static FlavorConfig get instance => _instance!;
 

@@ -29,8 +29,7 @@ void main() {
     const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'debug_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_inital_state');
     verifyDebugViewModel();
     verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
@@ -120,8 +119,7 @@ void main() {
       const sut = DebugScreen();
       final testWidget = await TestUtil.loadScreen(tester, sut);
 
-      await TestUtil.takeScreenshotForAllSizes(
-          tester, testWidget, 'debug_screen_slow_animations_enabled');
+      await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_slow_animations_enabled');
 
       final target = find.byKey(Keys.debugSlowAnimations);
       expect(target, findsOneWidget);
@@ -142,8 +140,7 @@ void main() {
       const sut = DebugScreen();
       final testWidget = await TestUtil.loadScreen(tester, sut);
 
-      await TestUtil.takeScreenshotForAllSizes(
-          tester, testWidget, 'debug_screen_slow_animations_disabled');
+      await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_slow_animations_disabled');
 
       final target = find.byKey(Keys.debugSlowAnimations);
       expect(target, findsOneWidget);
@@ -158,8 +155,7 @@ void main() {
   });
 
   group('Slow localizations', () {
-    testWidgets('Test debug screen show localiation keys disable',
-        (tester) async {
+    testWidgets('Test debug screen show localiation keys disable', (tester) async {
       seedDebugViewModel();
       seedGlobalViewModel();
       when(globalViewModel.showsTranslationKeys).thenReturn(true);
@@ -167,8 +163,7 @@ void main() {
       const sut = DebugScreen();
       final testWidget = await TestUtil.loadScreen(tester, sut);
 
-      await TestUtil.takeScreenshotForAllSizes(
-          tester, testWidget, 'debug_screen_show_locale_key_enabled');
+      await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_show_locale_key_enabled');
 
       final target = find.byKey(Keys.debugShowTranslations);
       expect(target, findsOneWidget);
@@ -181,8 +176,7 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test debugscreen disable showlocalization keyss',
-        (tester) async {
+    testWidgets('Test debugscreen disable showlocalization keyss', (tester) async {
       seedDebugViewModel();
       seedGlobalViewModel();
       when(globalViewModel.showsTranslationKeys).thenReturn(false);
@@ -190,8 +184,7 @@ void main() {
       const sut = DebugScreen();
       final testWidget = await TestUtil.loadScreen(tester, sut);
 
-      await TestUtil.takeScreenshotForAllSizes(
-          tester, testWidget, 'debug_screen_show_locale_key_disabled');
+      await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_show_locale_key_disabled');
 
       final target = find.byKey(Keys.debugShowTranslations);
       expect(target, findsOneWidget);
@@ -207,8 +200,7 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel =
-      GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
+  final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
   verify(debugViewModel.init()).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }

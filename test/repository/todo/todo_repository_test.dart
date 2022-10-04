@@ -26,8 +26,7 @@ void main() {
 
   group('getTodos stream', () {
     test('getTodos stream is empty by default', () async {
-      when(todoDao.getAllTodosStream())
-          .thenAnswer((_) => Stream.value(<DbTodo>[]));
+      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[]));
       final stream = sut.getTodos();
       final result = await stream.first;
       expect(result.isEmpty, true);
@@ -86,16 +85,14 @@ void main() {
 
   group('setTodoState', () {
     test('setTodoState', () async {
-      when(todoDao.updateTodo(id: 1, completed: true))
-          .thenAnswer((_) => Future.value());
+      when(todoDao.updateTodo(id: 1, completed: true)).thenAnswer((_) => Future.value());
       await sut.setTodoState(id: 1, value: true);
       verify(todoDao.updateTodo(id: 1, completed: true)).calledOnce();
       verifyNoMoreInteractions(todoDao);
       verifyZeroInteractions(todoService);
     });
     test('setTodoState with false', () async {
-      when(todoDao.updateTodo(id: 1, completed: false))
-          .thenAnswer((_) => Future.value());
+      when(todoDao.updateTodo(id: 1, completed: false)).thenAnswer((_) => Future.value());
       await sut.setTodoState(id: 1, value: false);
       verify(todoDao.updateTodo(id: 1, completed: false)).calledOnce();
       verifyNoMoreInteractions(todoDao);

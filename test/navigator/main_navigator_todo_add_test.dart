@@ -19,18 +19,14 @@ void main() {
     seedAuthStorage();
 
     final mainNavigator = MainNavigator(GetIt.I.get());
-    final testWidget =
-        await TestUtil.loadScreen(tester, const SizedBox.shrink());
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'main_navigator_todo_add_screen_0_initial_screen');
+    final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_0_initial_screen');
 
     unawaited(mainNavigator.goToAddTodo());
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'main_navigator_todo_add_screen_1');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_1');
     unawaited(mainNavigator.goBack<void>());
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'main_navigator_todo_add_screen_2_go_back');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_2_go_back');
   });
 }

@@ -23,10 +23,8 @@ void main() {
 
   group('refresh', () {
     test('refresh with success', () async {
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenAnswer((_) => Future.value(null));
       final err = DioError(requestOptions: RequestOptions(path: '/'));
       dynamic error;
@@ -41,8 +39,7 @@ void main() {
       verifyNoMoreInteractions(authStorage);
     });
     test('refresh with success with already refresh token', () async {
-      final mockedAnswer =
-          MockedAnswer<Future<String>>((invocation, amountOfTimesCalled) async {
+      final mockedAnswer = MockedAnswer<Future<String>>((invocation, amountOfTimesCalled) async {
         if (amountOfTimesCalled > 1) {
           return 'access-token-1234';
         }
@@ -56,10 +53,8 @@ void main() {
     });
 
     test('refresh with error', () async {
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       final err = DioError(requestOptions: RequestOptions(path: '/'));
       dynamic error;
@@ -82,10 +77,8 @@ void main() {
       verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       error = null;
       logoutCallbackCalled = false;
       try {
@@ -103,10 +96,8 @@ void main() {
     });
 
     test('refresh with error with logout callback', () async {
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       final err = DioError(requestOptions: RequestOptions(path: '/'));
       dynamic error;
@@ -129,10 +120,8 @@ void main() {
       verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       error = null;
       logoutCallbackCalled = false;
@@ -152,10 +141,8 @@ void main() {
     });
 
     test('refresh with error with logout callback but first reset', () async {
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
       when(authStorage.getRefreshToken()).thenThrow(GeneralError());
       final err = DioError(requestOptions: RequestOptions(path: '/'));
       dynamic error;
@@ -178,12 +165,9 @@ void main() {
       verify(authStorage.clear()).calledOnce();
       verifyNoMoreInteractions(authStorage);
       reset(authStorage);
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getAccessToken())
-          .thenAnswer((_) async => 'access-token-1234');
-      when(authStorage.getRefreshToken())
-          .thenAnswer((_) async => 'refresh-token-1232');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getAccessToken()).thenAnswer((_) async => 'access-token-1234');
+      when(authStorage.getRefreshToken()).thenAnswer((_) async => 'refresh-token-1232');
       error = null;
       logoutCallbackCalled = false;
       try {

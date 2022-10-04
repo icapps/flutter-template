@@ -28,10 +28,7 @@ void main() {
   group('GeneralError', () {
     test('NetworkErrorInterceptorTest parse general error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response: Response<void>(
-              statusCode: 4686845, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 4686845, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -49,10 +46,7 @@ void main() {
   group('UnAuthorizedError', () {
     test('NetworkErrorInterceptorTest parse 401 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response:
-              Response<void>(statusCode: 401, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -63,18 +57,14 @@ void main() {
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
-      expect(authorizedError.getLocalizedKey(),
-          LocalizationKeys.errorUnauthorized);
+      expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorUnauthorized);
     });
   });
 
   group('InternalServerError', () {
     test('NetworkErrorInterceptorTest parse 500 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response:
-              Response<void>(statusCode: 500, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 500, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -85,18 +75,14 @@ void main() {
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
-      expect(authorizedError.getLocalizedKey(),
-          LocalizationKeys.errorInternalServer);
+      expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorInternalServer);
     });
   });
 
   group('Forbidden Error', () {
     test('NetworkErrorInterceptorTest parse 403 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response:
-              Response<void>(statusCode: 403, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -107,19 +93,14 @@ void main() {
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.response, equals(dioError.response));
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
-      expect(
-          authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
+      expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
     });
 
-    test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648',
-        () async {
+    test('NetworkErrorInterceptorTest parse 403 error with unknown code 45648', () async {
       final data = <String, dynamic>{};
       data['code'] = '45648';
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response:
-              Response<void>(statusCode: 403, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -130,17 +111,13 @@ void main() {
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.type, equals(dioError.type));
-      expect(
-          authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
+      expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorForbidden);
     });
   });
   group('BadRequestError', () {
     test('NetworkErrorInterceptorTest parse 400 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(
-          response:
-              Response<void>(statusCode: 400, requestOptions: requestOptions),
-          requestOptions: requestOptions);
+      final dioError = DioError(response: Response<void>(statusCode: 400, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
@@ -151,8 +128,7 @@ void main() {
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
       expect(authorizedError.error, equals(dioError.error));
       expect(authorizedError.type, equals(dioError.type));
-      expect(
-          authorizedError.getLocalizedKey(), LocalizationKeys.errorBadRequest);
+      expect(authorizedError.getLocalizedKey(), LocalizationKeys.errorBadRequest);
     });
   });
 

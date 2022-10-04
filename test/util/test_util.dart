@@ -21,8 +21,7 @@ class TestUtil {
 
   // This method should be used when taking screenshot tests of a widget that should display text
   // Widget snapshot tests
-  static Future<Widget> loadWidgetWithText(
-      WidgetTester tester, Widget widget) async {
+  static Future<Widget> loadWidgetWithText(WidgetTester tester, Widget widget) async {
     return _internalLoadWidget(
       tester,
       MaterialApp(
@@ -63,8 +62,7 @@ class TestUtil {
     return _internalLoadWidget(tester, const MyApp());
   }
 
-  static Future<Widget> _internalLoadWidget(
-      WidgetTester tester, Widget widget) async {
+  static Future<Widget> _internalLoadWidget(WidgetTester tester, Widget widget) async {
     final testWidget = TestWrapper(child: widget);
     await provideMockedNetworkImages(() async {
       await tester.pumpWidget(testWidget);
@@ -73,17 +71,13 @@ class TestUtil {
     return testWidget;
   }
 
-  static Future<void> takeScreenshotForAllSizes(
-      WidgetTester tester, Widget widget, String snapshotName) async {
+  static Future<void> takeScreenshotForAllSizes(WidgetTester tester, Widget widget, String snapshotName) async {
     for (final screen in ScreenType.values) {
-      await takeScreenshotForScreenType(tester, widget, snapshotName,
-          screen: screen);
+      await takeScreenshotForScreenType(tester, widget, snapshotName, screen: screen);
     }
   }
 
-  static Future<void> takeScreenshotForScreenType(
-      WidgetTester tester, Widget widget, String snapshotName,
-      {ScreenType screen = ScreenType.iPhone11}) async {
+  static Future<void> takeScreenshotForScreenType(WidgetTester tester, Widget widget, String snapshotName, {ScreenType screen = ScreenType.iPhone11}) async {
     tester.binding.window.physicalSizeTestValue = screen.size;
     expect(widget.runtimeType, equals(TestWrapper));
     await tester.pumpWidget(widget);
@@ -92,8 +86,7 @@ class TestUtil {
     tester.binding.window.clearPhysicalSizeTestValue();
   }
 
-  static Future<void> takeScreenshot(
-      WidgetTester tester, String snapshotName) async {
+  static Future<void> takeScreenshot(WidgetTester tester, String snapshotName) async {
     expect(find.byType(TestWrapper), findsOneWidget);
     await expectLater(
       find.byType(TestWrapper),
@@ -106,8 +99,7 @@ class TestUtil {
   }
 
   static Future<void> loadFonts() async {
-    await _loadFont(
-        'assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.body);
+    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.body);
   }
 
   static Future<void> _loadFont(String fontPath, String fontName) async {
@@ -146,8 +138,7 @@ class TestWrapper extends StatelessWidget {
 }
 
 class TextFinder extends MatchFinder {
-  TextFinder(this.text, {this.substring = false, bool skipOffstage = true})
-      : super(skipOffstage: skipOffstage);
+  TextFinder(this.text, {this.substring = false, bool skipOffstage = true}) : super(skipOffstage: skipOffstage);
 
   final String text;
   final bool substring;
@@ -163,13 +154,9 @@ class TextFinder extends MatchFinder {
         return substring ? widget.data!.contains(text) : widget.data == text;
       }
       assert(widget.textSpan != null);
-      return substring
-          ? widget.textSpan!.toPlainText().contains(text)
-          : widget.textSpan!.toPlainText() == text;
+      return substring ? widget.textSpan!.toPlainText().contains(text) : widget.textSpan!.toPlainText() == text;
     } else if (widget is EditableText) {
-      return substring
-          ? widget.controller.text.contains(text)
-          : widget.controller.text == text;
+      return substring ? widget.controller.text.contains(text) : widget.controller.text == text;
     }
     return false;
   }

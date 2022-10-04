@@ -26,9 +26,7 @@ class CacheController extends CacheControlling {
   }
 
   @override
-  Future<void> putFile(String url, Uint8List fileBytes,
-      {required String fileExtension}) async {
-    await DefaultCacheManager()
-        .putFile(url, fileBytes, fileExtension: fileExtension);
+  Future<void> putFile(String url, Uint8List fileBytes, {required String fileExtension}) async {
+    await DefaultCacheManager().putFile(url, fileBytes, fileExtension: fileExtension);
   }
 }

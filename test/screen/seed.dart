@@ -29,8 +29,7 @@ void seedDebugViewModel() {
 void seedTodoListViewModel() {
   final todoListViewModel = GetIt.I<TodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
-        for (var i = 0; i < 100; ++i)
-          Todo(id: i, title: 'title $i', completed: false),
+        for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
   when(todoListViewModel.isLoading).thenReturn(false);
   when(todoListViewModel.errorKey).thenReturn(null);
@@ -69,13 +68,11 @@ void seedLoginViewModel() {
 
 void seedGlobalViewModel() {
   final globalViewModel = GetIt.I<GlobalViewModel>();
-  when(globalViewModel.targetPlatform)
-      .thenAnswer((_) => TargetPlatform.android);
+  when(globalViewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
   when(globalViewModel.showsTranslationKeys).thenAnswer((_) => false);
   when(globalViewModel.locale).thenAnswer((_) => const Locale('en'));
   when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
-  when(globalViewModel.getCurrentPlatform())
-      .thenReturn(LocalizationKeys.generalLabelAndroid);
+  when(globalViewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
   when(globalViewModel.getCurrentLanguage()).thenReturn('English');
   when(globalViewModel.localizationInstance).thenReturn(Localization());
   // ignore: void_checks
@@ -92,9 +89,7 @@ void verifyGlobalViewModel() {
 
 void seedAuthStorage() {
   final authStorage = GetIt.I<AuthStorage>();
-  when(authStorage.getAccessToken())
-      .thenAnswer((_) => Future.value('accessToken'));
-  when(authStorage.getRefreshToken())
-      .thenAnswer((_) => Future.value('refreshToken'));
+  when(authStorage.getAccessToken()).thenAnswer((_) => Future.value('accessToken'));
+  when(authStorage.getRefreshToken()).thenAnswer((_) => Future.value('refreshToken'));
   when(authStorage.isLoggedIn).thenReturn(true);
 }

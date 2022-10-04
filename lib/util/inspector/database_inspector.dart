@@ -16,8 +16,7 @@ Future<void> addDatabaseInspector() async {
 
   final sqlServer = DriftSQLDatabaseServer(
     id: "1", // A 'random' id for the server, just ensure you don't use the same one in the same project
-    name:
-        "SQL server", // Identification name for this database, shown in the plugin UI
+    name: "SQL server", // Identification name for this database, shown in the plugin UI
     database: database,
   );
 

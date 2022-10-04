@@ -3,8 +3,7 @@ import 'dart:typed_data';
 
 import 'package:mockito/mockito.dart';
 
-R provideMockedNetworkImages<R>(R Function() body,
-    {List<int> imageBytes = TransparantImageUtil.transparentImage}) {
+R provideMockedNetworkImages<R>(R Function() body, {List<int> imageBytes = TransparantImageUtil.transparentImage}) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createMockImageHttpClient(_, imageBytes),
@@ -12,12 +11,13 @@ R provideMockedNetworkImages<R>(R Function() body,
 }
 
 class MockHttpClient extends Mock implements HttpClient {
+
   @override
   Future<HttpClientRequest> getUrl(Uri? url) async {
     // ignore: avoid_as
-    return super.noSuchMethod(Invocation.method(#getUrl, [url]),
-        returnValue: MockHttpClientRequest()) as HttpClientRequest;
+    return super.noSuchMethod(Invocation.method(#getUrl, [url]), returnValue: MockHttpClientRequest()) as HttpClientRequest;
   }
+
 }
 
 class MockHttpClientRequest extends Mock implements HttpClientRequest {}
@@ -27,20 +27,16 @@ class MockHttpClientResponse extends Mock implements HttpClientResponse {}
 class MockHttpHeaders extends Mock implements HttpHeaders {}
 
 // Returns a mock HTTP client that responds with an image to all requests.
-MockHttpClient _createMockImageHttpClient(
-    SecurityContext? _, List<int> imageBytes) {
+MockHttpClient _createMockImageHttpClient(SecurityContext? _, List<int> imageBytes) {
   final client = MockHttpClient();
   final request = MockHttpClientRequest();
   final response = MockHttpClientResponse();
   final headers = MockHttpHeaders();
 
-  when(client.getUrl(any))
-      .thenAnswer((_) => Future<HttpClientRequest>.value(request));
+  when(client.getUrl(any)).thenAnswer((_) => Future<HttpClientRequest>.value(request));
   when(request.headers).thenReturn(headers);
-  when(request.close())
-      .thenAnswer((_) => Future<HttpClientResponse>.value(response));
-  when(response.contentLength)
-      .thenReturn(TransparantImageUtil.transparentImage.length);
+  when(request.close()).thenAnswer((_) => Future<HttpClientResponse>.value(response));
+  when(response.contentLength).thenReturn(TransparantImageUtil.transparentImage.length);
   when(response.statusCode).thenReturn(HttpStatus.ok);
   // when(response.listen(any)).thenAnswer((invocation) {
   //   final void Function(List<int>) onData = invocation.positionalArguments[0];

@@ -7,8 +7,7 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 abstract class DebugRepository {
   @factoryMethod
-  factory DebugRepository(SharedPreferenceStorage sharedPrefs) =
-      _DebugRepository;
+  factory DebugRepository(SharedPreferenceStorage sharedPrefs) = _DebugRepository;
 
   Future<void> saveSlowAnimations({required bool enabled});
 
@@ -29,14 +28,12 @@ class _DebugRepository implements DebugRepository {
 
   @override
   Future<void> saveSlowAnimations({required bool enabled}) async {
-    await _sharedPreferences.saveBoolean(
-        key: _enableSlowAnimationsKey, value: enabled);
+    await _sharedPreferences.saveBoolean(key: _enableSlowAnimationsKey, value: enabled);
   }
 
   @override
   bool isSlowAnimationsEnabled() {
-    final slowAnimations =
-        _sharedPreferences.getBoolean(_enableSlowAnimationsKey) ?? false;
+    final slowAnimations = _sharedPreferences.getBoolean(_enableSlowAnimationsKey) ?? false;
     if (slowAnimations) {
       timeDilation = 4.0;
     } else {
@@ -50,8 +47,7 @@ class _DebugRepository implements DebugRepository {
     if (selectedPlatform == null) {
       await _sharedPreferences.deleteKey(_selectedPlatformKey);
     } else {
-      await _sharedPreferences.saveString(
-          key: _selectedPlatformKey, value: selectedPlatform);
+      await _sharedPreferences.saveString(key: _selectedPlatformKey, value: selectedPlatform);
     }
   }
 

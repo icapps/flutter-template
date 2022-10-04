@@ -19,8 +19,7 @@ void main() {
 
   group('getAccessToken', () {
     test('getAccessToken with access-token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => 'access-token');
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => 'access-token');
 
       final result = await sut.getAccessToken();
       expect(result, 'access-token');
@@ -28,8 +27,7 @@ void main() {
       verifyNoMoreInteractions(secureStorage);
     });
     test('getAccessToken without access-token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => null);
 
       final result = await sut.getAccessToken();
       expect(result, isNull);
@@ -40,8 +38,7 @@ void main() {
 
   group('getRefreshToken', () {
     test('getRefreshToken with refresh-token', () async {
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => 'refresh-token');
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => 'refresh-token');
 
       final result = await sut.getRefreshToken();
       expect(result, 'refresh-token');
@@ -49,8 +46,7 @@ void main() {
       verifyNoMoreInteractions(secureStorage);
     });
     test('getRefreshToken without refresh-token', () async {
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => null);
 
       final result = await sut.getRefreshToken();
       expect(result, isNull);
@@ -61,10 +57,8 @@ void main() {
 
   group('logout', () {
     test('getRefreshToken with refresh-token', () async {
-      when(secureStorage.removeValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) => Future.value());
-      when(secureStorage.removeValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) => Future.value());
+      when(secureStorage.removeValue(key: 'REFRESH_TOKEN')).thenAnswer((_) => Future.value());
+      when(secureStorage.removeValue(key: 'ACCESS_TOKEN')).thenAnswer((_) => Future.value());
 
       await sut.clear();
       verify(secureStorage.removeValue(key: 'REFRESH_TOKEN')).calledOnce();
@@ -75,28 +69,20 @@ void main() {
 
   group('saveUserCredentials', () {
     test('getRefreshToken with refresh-token', () async {
-      when(secureStorage.setValue(key: 'ACCESS_TOKEN', value: 'access-token'))
-          .thenAnswer((_) => Future.value());
-      when(secureStorage.setValue(key: 'REFRESH_TOKEN', value: 'refresh-token'))
-          .thenAnswer((_) => Future.value());
+      when(secureStorage.setValue(key: 'ACCESS_TOKEN', value: 'access-token')).thenAnswer((_) => Future.value());
+      when(secureStorage.setValue(key: 'REFRESH_TOKEN', value: 'refresh-token')).thenAnswer((_) => Future.value());
 
-      await sut.saveUserCredentials(
-          accessToken: 'access-token', refreshToken: 'refresh-token');
-      verify(secureStorage.setValue(key: 'ACCESS_TOKEN', value: 'access-token'))
-          .calledOnce();
-      verify(secureStorage.setValue(
-              key: 'REFRESH_TOKEN', value: 'refresh-token'))
-          .calledOnce();
+      await sut.saveUserCredentials(accessToken: 'access-token', refreshToken: 'refresh-token');
+      verify(secureStorage.setValue(key: 'ACCESS_TOKEN', value: 'access-token')).calledOnce();
+      verify(secureStorage.setValue(key: 'REFRESH_TOKEN', value: 'refresh-token')).calledOnce();
       verifyNoMoreInteractions(secureStorage);
     });
   });
 
   group('hasLoggedInUser', () {
     test('hasLoggedInUser with access token and refresh token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => 'access-token');
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => 'refresh-token');
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => 'access-token');
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => 'refresh-token');
 
       final result = await sut.hasLoggedInUser();
       expect(result, true);
@@ -105,10 +91,8 @@ void main() {
       verifyNoMoreInteractions(secureStorage);
     });
     test('hasLoggedInUser with refresh token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => null);
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => 'refresh-token');
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => 'refresh-token');
 
       final result = await sut.hasLoggedInUser();
       expect(result, false);
@@ -117,10 +101,8 @@ void main() {
       verifyNoMoreInteractions(secureStorage);
     });
     test('hasLoggedInUser with access token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => 'access-token');
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => 'access-token');
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => null);
 
       final result = await sut.hasLoggedInUser();
       expect(result, false);
@@ -129,10 +111,8 @@ void main() {
       verifyNoMoreInteractions(secureStorage);
     });
     test('hasLoggedInUser without access token and refresh token', () async {
-      when(secureStorage.getValue(key: 'ACCESS_TOKEN'))
-          .thenAnswer((_) async => null);
-      when(secureStorage.getValue(key: 'REFRESH_TOKEN'))
-          .thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'ACCESS_TOKEN')).thenAnswer((_) async => null);
+      when(secureStorage.getValue(key: 'REFRESH_TOKEN')).thenAnswer((_) async => null);
 
       final result = await sut.hasLoggedInUser();
       expect(result, false);

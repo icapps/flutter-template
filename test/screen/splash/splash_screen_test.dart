@@ -19,8 +19,7 @@ void main() {
     const sut = SplashScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(
-        tester, testWidget, 'splash_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'splash_screen_inital_state');
     verifySplashViewModel();
     verifyGlobalViewModel();
   });

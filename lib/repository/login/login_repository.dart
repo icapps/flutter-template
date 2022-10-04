@@ -21,8 +21,7 @@ class _LoginRepository implements LoginRepository {
 
   @override
   Future<void> login({required String email, required String password}) async {
-    await _storage.saveUserCredentials(
-        accessToken: 'test_access_token', refreshToken: 'test_refresh_token');
+    await _storage.saveUserCredentials(accessToken: 'test_access_token', refreshToken: 'test_refresh_token');
     logger.debug('Login should be implemented');
   }
 }

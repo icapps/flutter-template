@@ -48,9 +48,7 @@ class DebugScreenState extends State<DebugScreen> {
               DebugRowItem(
                 key: Keys.debugTargetPlatform,
                 title: localization.debugTargetPlatformTitle,
-                subTitle: localization.debugTargetPlatformSubtitle(localization
-                    .getTranslation(Provider.of<GlobalViewModel>(context)
-                        .getCurrentPlatform())),
+                subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
                 onClick: viewModel.onTargetPlatformClicked,
               ),
               DebugRowItem(
@@ -63,18 +61,14 @@ class DebugScreenState extends State<DebugScreen> {
               DebugRowItem(
                 key: Keys.debugSelectLanguage,
                 title: localization.debugLocaleSelector,
-                subTitle: localization.debugLocaleCurrentLanguage(
-                    Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
+                subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
                 onClick: viewModel.onSelectLanguageClicked,
               ),
               DebugRowSwitchItem(
                 key: Keys.debugShowTranslations,
                 title: localization.debugShowTranslations,
-                value: Provider.of<GlobalViewModel>(context, listen: false)
-                    .showsTranslationKeys,
-                onChanged: (_) =>
-                    Provider.of<GlobalViewModel>(context, listen: false)
-                        .toggleTranslationKeys(),
+                value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
+                onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
               ),
               DebugRowTitle(title: localization.debugLicensesTitle),
               DebugRowItem(

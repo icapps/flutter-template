@@ -43,8 +43,7 @@ import 'test_injectable.config.dart';
 
 L getLocale<L>(BuildContext context) => Localization as L; // ignore: avoid_as
 
-T getTheme<T>(BuildContext context) =>
-    FlutterTemplateTheme.of(context) as T; // ignore: avoid_as
+T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T; // ignore: avoid_as
 
 final getIt = GetIt.instance;
 
@@ -82,8 +81,7 @@ Future<void> initTestInjectable() async {
 abstract class RegisterModule {
   @Environment(Environments.test)
   @singleton
-  FlutterTemplateDatabase get flutterTemplateDatabase =>
-      FlutterTemplateDatabase(NativeDatabase.memory());
+  FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(NativeDatabase.memory());
 
   @Environment(Environments.test)
   @singleton
@@ -114,8 +112,7 @@ abstract class RegisterModule {
   AuthStorage get getAuthStoring => MockAuthStorage();
 
   @singleton
-  SharedPreferenceStorage get getSharedPrefsStoring =>
-      MockSharedPreferenceStorage();
+  SharedPreferenceStorage get getSharedPrefsStoring => MockSharedPreferenceStorage();
 
   @singleton
   LocalStorage get getLocalStoring => MockLocalStorage();
@@ -124,12 +121,10 @@ abstract class RegisterModule {
   TodoRepository get getTodoRepo => MockTodoRepository();
 
   @singleton
-  ConnectivityHelper get getConnectivityControlling =>
-      ConnectivityHelper(connectivityProvider: () => MockConnectivity());
+  ConnectivityHelper get getConnectivityControlling => ConnectivityHelper(connectivityProvider: () => MockConnectivity());
 
   @singleton
-  FlutterSecureStorage get getFlutterSecureStorage =>
-      MockFlutterSecureStorage();
+  FlutterSecureStorage get getFlutterSecureStorage => MockFlutterSecureStorage();
 
   @singleton
   SharedPreferences get getSharedPreferences => MockSharedPreferences();
@@ -141,8 +136,7 @@ abstract class RegisterModule {
   TodoService get getTodoService => MockTodoService();
 
   @singleton
-  DebugPlatformSelectorViewModel get getDebugPlatformSelectorViewModel =>
-      _initVM(MockDebugPlatformSelectorViewModel());
+  DebugPlatformSelectorViewModel get getDebugPlatformSelectorViewModel => _initVM(MockDebugPlatformSelectorViewModel());
 
   @singleton
   DebugViewModel get getDebugViewModel => _initVM(MockDebugViewModel());
@@ -163,8 +157,7 @@ abstract class RegisterModule {
   TodoAddViewModel get getTodoAddViewModel => _initVM(MockTodoAddViewModel());
 
   @singleton
-  TodoListViewModel get getTodoListViewModel =>
-      _initVM(MockTodoListViewModel());
+  TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
 
   @singleton
   Localization get getLocalization => Localization();

@@ -12,8 +12,7 @@ class MockTodoDaoStorage extends Mock implements TodoDaoStorage {
   @override
   Stream<List<DbTodo>> getAllTodosStream() {
     // ignore: avoid_as
-    return noSuchMethod(Invocation.method(#getAllTodosStream, []),
-        returnValue: Stream.value(<DbTodo>[])) as Stream<List<DbTodo>>;
+    return noSuchMethod(Invocation.method(#getAllTodosStream, []), returnValue: Stream.value(<DbTodo>[])) as Stream<List<DbTodo>>;
   }
 
   @override
