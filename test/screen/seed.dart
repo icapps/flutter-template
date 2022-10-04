@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/license.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -73,6 +74,7 @@ void seedGlobalViewModel() {
   when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
   when(globalViewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
   when(globalViewModel.getCurrentLanguage()).thenReturn('English');
+  when(globalViewModel.localizationInstance).thenReturn(Localization());
   // ignore: void_checks
   when(globalViewModel.dispose()).thenReturn(1);
 }

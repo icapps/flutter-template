@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,13 +17,15 @@ void main() {
   late LocaleRepository localeRepo;
   late DebugRepository debugRepo;
   late LocalStorage localStorage;
+  late Localization localization;
 
   setUp(() async {
     await initTestInjectable();
     localeRepo = GetIt.I();
     debugRepo = GetIt.I();
     localStorage = GetIt.I();
-    sut = GlobalViewModel(localeRepo, debugRepo, localStorage);
+    localization = GetIt.I();
+    sut = GlobalViewModel(localeRepo, debugRepo, localStorage, localization);
   });
 
   test('GlobalViewModel init', () async {

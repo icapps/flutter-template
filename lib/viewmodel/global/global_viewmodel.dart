@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class GlobalViewModel with ChangeNotifierEx {
-  final Localization _localizationInstance = Localization();
+  final Localization _localizationInstance;
   final LocaleRepository _localeRepo;
   final DebugRepository _debugRepo;
   final LocalStorage _localStorage;
@@ -24,6 +24,7 @@ class GlobalViewModel with ChangeNotifierEx {
     this._localeRepo,
     this._debugRepo,
     this._localStorage,
+    this._localizationInstance,
   );
 
   ThemeMode get themeMode => FlavorConfig.instance.themeMode;

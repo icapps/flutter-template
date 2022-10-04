@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
+import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,6 +47,7 @@ class TestUtil {
   // This method should be used when taking screenshot tests of a single screen
   // Screen integration tests
   static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
+    await initArchitecture();
     return _internalLoadWidget(
       tester,
       InternalApp.test(

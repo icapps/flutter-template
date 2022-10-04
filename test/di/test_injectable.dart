@@ -159,6 +159,9 @@ abstract class RegisterModule {
   @singleton
   TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
 
+  @singleton
+  Localization get getLocalization => Localization();
+
   static T _initVM<T extends ChangeNotifier>(T viewModel) {
     // ignore: void_checks
     when(viewModel.dispose()).thenReturn(1);
