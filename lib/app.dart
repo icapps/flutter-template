@@ -41,6 +41,7 @@ class InternalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<GlobalViewModel>(
+      create: () => GetIt.I()..init(),
       lazy: FlavorConfig.isInTest(),
       consumer: (context, viewModel, consumerChild) => GetMaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
@@ -59,7 +60,6 @@ class InternalApp extends StatelessWidget {
         home: home,
         builder: home == null ? (context, child) => TextScaleFactor(child: child ?? const SizedBox.shrink()) : null,
       ),
-      create: () => GetIt.I()..init(),
     );
   }
 }

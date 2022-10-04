@@ -24,6 +24,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
+      create: () => GetIt.I()..init(),
       consumer: (context, value, _) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -52,7 +53,6 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
           ),
         ),
       ),
-      create: () => GetIt.I()..init(),
     );
   }
 }

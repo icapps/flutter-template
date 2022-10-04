@@ -22,6 +22,7 @@ class LicenseScreenState extends State<LicenseScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
+      create: () => GetIt.I()..init(),
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -55,7 +56,6 @@ class LicenseScreenState extends State<LicenseScreen> {
           },
         ),
       ),
-      create: () => GetIt.I()..init(),
     );
   }
 }

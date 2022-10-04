@@ -27,6 +27,7 @@ class DebugScreenState extends State<DebugScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugViewModel>(
+      create: () => GetIt.I()..init(),
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -84,7 +85,6 @@ class DebugScreenState extends State<DebugScreen> {
           ),
         ),
       ),
-      create: () => GetIt.I()..init(),
     );
   }
 }
