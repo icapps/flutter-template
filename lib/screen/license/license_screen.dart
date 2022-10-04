@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
@@ -23,7 +24,7 @@ class LicenseScreenState extends State<LicenseScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
-      consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
+      consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),

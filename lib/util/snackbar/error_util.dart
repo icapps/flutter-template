@@ -1,6 +1,6 @@
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -8,10 +8,6 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class ErrorUtil {
-  final Localization _localization;
-
-  ErrorUtil(this._localization);
-
   String? showError(dynamic error) {
     String key;
     if (error is String) {
@@ -25,7 +21,7 @@ class ErrorUtil {
         if (code == null) {
           key = LocalizationKeys.errorGeneral;
         } else {
-          showError(_localization.getTranslation(LocalizationKeys.errorGeneralWithCode, args: <String>[code]));
+          showError(localization.getTranslation(LocalizationKeys.errorGeneralWithCode, args: <String>[code]));
           return null;
         }
       } else {
@@ -43,5 +39,5 @@ class ErrorUtil {
 
   void _showError(String error) => GetIt.I.get<MainNavigator>().showCustomSnackBar(message: error);
 
-  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(_localization.getTranslation(errorKey));
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(localization.getTranslation(errorKey));
 }
