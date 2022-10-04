@@ -29,7 +29,8 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> {
       consumer: (context, value, _) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
+          leading:
+              FlutterTemplateBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a theme mode'),
         ),
         body: Consumer<GlobalViewModel>(

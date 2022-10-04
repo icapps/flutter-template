@@ -32,7 +32,8 @@ void main() {
     final dynamic result = await sut.onRequest(request);
     expect(result, request);
     // ignore: avoid_as
-    expect((result as RequestOptions).headers['Authorization'], 'Bearer $accessToken');
+    expect((result as RequestOptions).headers['Authorization'],
+        'Bearer $accessToken');
     verify(authStorage.getAccessToken()).calledOnce();
     verifyNoMoreInteractions(authStorage);
   });

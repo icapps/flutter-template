@@ -19,10 +19,12 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_default_state_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_default_state_android');
     });
 
-    testWidgets('FlutterTemplateButton initial state with height', (tester) async {
+    testWidgets('FlutterTemplateButton initial state with height',
+        (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.android),
         child: FlutterTemplateButton(
@@ -33,7 +35,8 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_height_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_with_height_android');
     });
 
     testWidgets('FlutterTemplateButton initial state with key', (tester) async {
@@ -48,12 +51,14 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_key_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_with_key_android');
       final finder = find.byKey(key);
       expect(finder, findsOneWidget);
     });
 
-    testWidgets('FlutterTemplateButton initial state is not enabled', (tester) async {
+    testWidgets('FlutterTemplateButton initial state is not enabled',
+        (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.android),
         child: FlutterTemplateButton(
@@ -64,11 +69,13 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_not_enabled_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_not_enabled_android');
     });
 
     group('Clicked', () {
-      testWidgets('FlutterTemplateButton initial state with key', (tester) async {
+      testWidgets('FlutterTemplateButton initial state with key',
+          (tester) async {
         var clicked = false;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
@@ -101,10 +108,12 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_default_state_ios');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_default_state_ios');
     });
 
-    testWidgets('FlutterTemplateButton initial state with height', (tester) async {
+    testWidgets('FlutterTemplateButton initial state with height',
+        (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.iOS),
         child: FlutterTemplateButton(
@@ -115,7 +124,8 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_height_ios');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_with_height_ios');
     });
 
     testWidgets('FlutterTemplateButton initial state with key', (tester) async {
@@ -130,12 +140,14 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_key_ios');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_with_key_ios');
       final finder = find.byKey(key);
       expect(finder, findsOneWidget);
     });
 
-    testWidgets('FlutterTemplateButton initial state is not enabled', (tester) async {
+    testWidgets('FlutterTemplateButton initial state is not enabled',
+        (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.iOS),
         child: FlutterTemplateButton(
@@ -146,11 +158,13 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_not_enabled_ios');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_button_not_enabled_ios');
     });
 
     group('Clicked', () {
-      testWidgets('FlutterTemplateButton initial state with key', (tester) async {
+      testWidgets('FlutterTemplateButton initial state with key',
+          (tester) async {
         var clicked = false;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),

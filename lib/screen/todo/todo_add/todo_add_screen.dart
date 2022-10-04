@@ -25,17 +25,20 @@ class TodoAddScreenState extends State<TodoAddScreen> {
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
       create: () => GetIt.I()..init(),
-      childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
+      childBuilderWithViewModel: (context, viewModel, _, localization) =>
+          Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
+          leading:
+              FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.todoAddTitle),
         ),
         body: ScrollConfiguration(
           behavior: ScrollWhenNeededBehavior(),
           child: Scrollbar(
             child: ListView(
-              physics: ScrollWhenNeededPhysics(targetPlatform: Theme.of(context).platform),
+              physics: ScrollWhenNeededPhysics(
+                  targetPlatform: Theme.of(context).platform),
               padding: const EdgeInsets.all(ThemeDimens.padding16),
               children: [
                 FlutterTemplateInputField(

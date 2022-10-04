@@ -18,7 +18,8 @@ class NetworkAuthInterceptor extends SimpleInterceptor {
     if (_excludedPaths.contains(options.path)) {
       return super.onRequest(options);
     }
-    final authorizationHeader = '${AppConstants.protectedAuthenticationHeaderPrefix} ${await _storage.getAccessToken()}';
+    final authorizationHeader =
+        '${AppConstants.protectedAuthenticationHeaderPrefix} ${await _storage.getAccessToken()}';
     options.headers[AppConstants.authorizationHeader] = authorizationHeader;
     return options;
   }

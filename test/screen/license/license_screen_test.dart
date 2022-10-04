@@ -26,7 +26,8 @@ void main() {
     const sut = LicenseScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'license_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'license_screen_inital_state');
     verifyLicenseViewModel();
     verifyGlobalViewModel();
   });
@@ -38,7 +39,8 @@ void main() {
     const sut = LicenseScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'license_screen_empty_list');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'license_screen_empty_list');
     verifyLicenseViewModel();
     verifyGlobalViewModel();
   });
@@ -64,7 +66,8 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
+  final licenseViewModel =
+      GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
   verify(licenseViewModel.init()).calledOnce();
 }

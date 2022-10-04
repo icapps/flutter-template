@@ -40,8 +40,10 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
       builder: (context, constraints) {
         var imgWidth = width;
         var imgHeight = height;
-        if (imgWidth == null || imgWidth == double.infinity) imgWidth = constraints.maxWidth;
-        if (imgHeight == null || imgHeight == double.infinity) imgHeight = constraints.maxHeight;
+        if (imgWidth == null || imgWidth == double.infinity)
+          imgWidth = constraints.maxWidth;
+        if (imgHeight == null || imgHeight == double.infinity)
+          imgHeight = constraints.maxHeight;
         return SizedBox(
           height: imgHeight,
           width: imgWidth,
@@ -75,10 +77,12 @@ class _FlutterTemplateBetterNetworkImage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FlutterTemplateBetterNetworkImageState createState() => _FlutterTemplateBetterNetworkImageState();
+  _FlutterTemplateBetterNetworkImageState createState() =>
+      _FlutterTemplateBetterNetworkImageState();
 }
 
-class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBetterNetworkImage> {
+class _FlutterTemplateBetterNetworkImageState
+    extends State<_FlutterTemplateBetterNetworkImage> {
   final _cacheController = GetIt.instance.get<CacheControlling>();
 
   var _isLoading = false;
@@ -112,7 +116,10 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       setState(() => _hasError = true);
       return;
     }
-    if (widgetWidth == double.infinity || widgetHeight == double.infinity || widgetWidth == null || widgetHeight == null) {
+    if (widgetWidth == double.infinity ||
+        widgetHeight == double.infinity ||
+        widgetWidth == null ||
+        widgetHeight == null) {
       logger.warning('IMAGE-ERROR: $originalUrl ($widgetWidth/$widgetHeight');
       setState(() => _hasError = true);
       return;
@@ -122,8 +129,10 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
         _isLoading = true;
         _hasError = false;
       });
-      final width = (widgetWidth * (FlavorConfig.instance.devicePixelRatio)).toInt();
-      final height = (widgetHeight * (FlavorConfig.instance.devicePixelRatio)).toInt();
+      final width =
+          (widgetWidth * (FlavorConfig.instance.devicePixelRatio)).toInt();
+      final height =
+          (widgetHeight * (FlavorConfig.instance.devicePixelRatio)).toInt();
       final url = '$originalUrl?w=$width&h=$height';
       final cachedBytes = await _cacheController.getFileFromCache(url);
       if (!mounted) return;
@@ -148,7 +157,8 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       _image = data?.buffer.asUint8List();
       unawaited(_cacheImage(url));
     } catch (e, stack) {
-      logger.error('Failed to parse image: $originalUrl', error: e, trace: stack);
+      logger.error('Failed to parse image: $originalUrl',
+          error: e, trace: stack);
       _hasError = true;
     } finally {
       _isLoading = false;

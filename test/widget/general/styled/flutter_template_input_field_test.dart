@@ -14,7 +14,8 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(tester, 'flutter_template_input_field_with_hint_and_enabled');
+    await TestUtil.takeScreenshot(
+        tester, 'flutter_template_input_field_with_hint_and_enabled');
   });
 
   testWidgets('FlutterTemplateInputField with enabled false', (tester) async {
@@ -25,7 +26,8 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(tester, 'flutter_template_input_field_with_hint_and_disabled');
+    await TestUtil.takeScreenshot(
+        tester, 'flutter_template_input_field_with_hint_and_disabled');
   });
 
   group('OnChanged', () {
@@ -40,13 +42,15 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_input_field_type_text_before');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_input_field_type_text_before');
       final finder = find.byType(FlutterTemplateInputField);
       expect(finder, findsOneWidget);
       await tester.showKeyboard(finder);
       await tester.enterText(finder, 'Testing');
       await tester.pumpAndSettle();
-      await TestUtil.takeScreenshot(tester, 'flutter_template_input_field_type_text_after');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_input_field_type_text_after');
       expect(newText, 'Testing');
     });
   });

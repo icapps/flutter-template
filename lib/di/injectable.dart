@@ -51,7 +51,8 @@ abstract class RegisterModule {
   Localization localization() => Localization();
 
   @lazySingleton
-  SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);
+  SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) =>
+      SharedPreferenceStorage(preferences);
 
   @singleton
   ConnectivityHelper connectivityHelper() => ConnectivityHelper();
@@ -69,7 +70,8 @@ abstract class RegisterModule {
   FlutterSecureStorage storage() => const FlutterSecureStorage();
 
   @lazySingleton
-  SimpleKeyValueStorage keyValueStorage(SharedPreferenceStorage preferences, SecureStorage secure) {
+  SimpleKeyValueStorage keyValueStorage(
+      SharedPreferenceStorage preferences, SecureStorage secure) {
     if (kIsWeb) return preferences;
     return secure;
   }
@@ -98,9 +100,12 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
+  FlutterTemplateDatabase provideFlutterTemplateDatabase(
+          DatabaseConnection databaseConnection) =>
+      FlutterTemplateDatabase.connect(databaseConnection);
 }
 
 dynamic _parseAndDecode(String response) => jsonDecode(response);
 
-dynamic parseJson(String text) => compute<String, dynamic>(_parseAndDecode, text);
+dynamic parseJson(String text) =>
+    compute<String, dynamic>(_parseAndDecode, text);

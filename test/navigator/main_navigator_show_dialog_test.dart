@@ -28,17 +28,21 @@ void main() {
     when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
 
     final mainNavigator = MainNavigator(GetIt.I.get());
-    final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_0_initial_screen');
+    final testWidget =
+        await TestUtil.loadScreen(tester, const SizedBox.shrink());
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'main_navigator_show_dialog_0_initial_screen');
     unawaited(mainNavigator.showCustomDialog<void>(
       widget: SelectLanguageDialog(
         goBack: () {},
       ),
     ));
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_1');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'main_navigator_show_dialog_1');
     unawaited(mainNavigator.closeDialog());
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_2_go_back');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'main_navigator_show_dialog_2_go_back');
   });
 }

@@ -4,7 +4,8 @@ const packageName = 'flutter_template';
 
 void main() {
   Logger.debug('====');
-  Logger.debug('First create a file with all other files imported so flutter test coverage uses all files');
+  Logger.debug(
+      'First create a file with all other files imported so flutter test coverage uses all files');
   Logger.debug('====');
 
   final imports = Directory('lib').listSync(recursive: true).where((element) {

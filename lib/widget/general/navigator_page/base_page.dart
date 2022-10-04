@@ -28,6 +28,7 @@ class BasePage<T> extends GetPage<T> {
     super.preventDuplicates,
   }) : super(
           showCupertinoParallax: showCupertinoParallax ?? PlatformUtil.isIOS,
-          transition: transition ?? (PlatformUtil.isDesktop ? Transition.fade : Transition.native),
+          transition: transition ??
+              (PlatformUtil.isDesktop ? Transition.fade : Transition.native),
         );
 }

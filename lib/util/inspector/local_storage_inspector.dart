@@ -13,11 +13,16 @@ import 'package:storage_inspector/storage_inspector.dart';
 
 Future<void> initAllStorageInspectors() async {
   await _initLocalStorageInspector((driver) async {
-    driver.addKeyValueServer(SecureStorageKeyValueServer(GetIt.I.get<FlutterSecureStorage>(), 'Secure Storage', icon: secureStorageIcon));
-    driver.addKeyValueServer(PreferencesKeyValueServer(GetIt.I.get<SharedPreferences>(), 'Shared preferences'));
+    driver.addKeyValueServer(SecureStorageKeyValueServer(
+        GetIt.I.get<FlutterSecureStorage>(), 'Secure Storage',
+        icon: secureStorageIcon));
+    driver.addKeyValueServer(PreferencesKeyValueServer(
+        GetIt.I.get<SharedPreferences>(), 'Shared preferences'));
     if (!kIsWeb) {
-      driver.addFileServer(DefaultFileServer((await getApplicationDocumentsDirectory()).path, 'App documents'));
-      driver.addFileServer(DefaultFileServer((await getTemporaryDirectory()).path, 'Cache files'));
+      driver.addFileServer(DefaultFileServer(
+          (await getApplicationDocumentsDirectory()).path, 'App documents'));
+      driver.addFileServer(DefaultFileServer(
+          (await getTemporaryDirectory()).path, 'Cache files'));
     }
   });
 }
@@ -36,7 +41,8 @@ Future<void> _initLocalStorageInspector(
   await configureServers(driver);
 
   const paused = bool.fromEnvironment('storage_inspector_wait');
-  staticLogger.d('Starting local storage inspector. Waiting for unpause? $paused');
+  staticLogger
+      .d('Starting local storage inspector. Waiting for unpause? $paused');
 
   await driver.start(paused: paused);
 }

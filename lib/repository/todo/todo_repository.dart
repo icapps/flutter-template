@@ -7,7 +7,8 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 abstract class TodoRepository {
   @factoryMethod
-  factory TodoRepository(TodoService service, TodoDaoStorage storage) = _TodoRepository;
+  factory TodoRepository(TodoService service, TodoDaoStorage storage) =
+      _TodoRepository;
 
   Stream<List<Todo>> getTodos();
 
@@ -25,7 +26,9 @@ class _TodoRepository implements TodoRepository {
   _TodoRepository(this._todoService, this._todoDao);
 
   @override
-  Stream<List<Todo>> getTodos() => _todoDao.getAllTodosStream().map((list) => list.map((item) => item.getModel()).toList());
+  Stream<List<Todo>> getTodos() => _todoDao
+      .getAllTodosStream()
+      .map((list) => list.map((item) => item.getModel()).toList());
 
   ///Get Users will be requested from
   ///https://jsonplaceholder.typicode.com/todos

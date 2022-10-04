@@ -57,7 +57,10 @@ class InternalApp extends StatelessWidget {
         initialRoute: home == null ? MainNavigator.initialRoute : null,
         getPages: MainNavigator.pages,
         home: home,
-        builder: home == null ? (context, child) => TextScaleFactor(child: child ?? const SizedBox.shrink()) : null,
+        builder: home == null
+            ? (context, child) =>
+                TextScaleFactor(child: child ?? const SizedBox.shrink())
+            : null,
       ),
       create: () => GetIt.I()..init(),
     );

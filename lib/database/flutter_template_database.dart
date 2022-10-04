@@ -9,7 +9,8 @@ part 'flutter_template_database.g.dart';
 class FlutterTemplateDatabase extends _$FlutterTemplateDatabase {
   FlutterTemplateDatabase(QueryExecutor db) : super(db);
 
-  FlutterTemplateDatabase.connect(DatabaseConnection connection) : super.connect(connection);
+  FlutterTemplateDatabase.connect(DatabaseConnection connection)
+      : super.connect(connection);
 
   @override
   int get schemaVersion => 1;

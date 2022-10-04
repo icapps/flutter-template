@@ -13,11 +13,13 @@ class ThemeAssets {
 
   static String listIcon(BuildContext context) => _getIcon(context, 'list');
 
-  static String settingsIcon(BuildContext context) => _getIcon(context, 'settings');
+  static String settingsIcon(BuildContext context) =>
+      _getIcon(context, 'settings');
 
   static String addIcon(BuildContext context) => _getIcon(context, 'add');
 
-  static String downloadIcon(BuildContext context) => _getIcon(context, 'download');
+  static String downloadIcon(BuildContext context) =>
+      _getIcon(context, 'download');
 
   static String closeIcon(BuildContext context) => _getIcon(context, 'close');
 

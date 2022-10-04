@@ -8,5 +8,6 @@ abstract class CacheControlling {
 
   Future<File> downloadFile(String url);
 
-  Future<void> putFile(String url, Uint8List fileBytes, {required String fileExtension});
+  Future<void> putFile(String url, Uint8List fileBytes,
+      {required String fileExtension});
 }

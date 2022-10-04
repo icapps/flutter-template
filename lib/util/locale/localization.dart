@@ -22,7 +22,8 @@ class Localization {
   /// It can later be used to check what the locale is that was used to load this Localization instance.
   Locale? locale;
 
-  static const defaultLocale = Locale.fromSubtags(languageCode: 'nl', scriptCode: null, countryCode: null);
+  static const defaultLocale = Locale.fromSubtags(
+      languageCode: 'nl', scriptCode: null, countryCode: null);
 
   static const _supportedLocales = [
     Locale.fromSubtags(languageCode: 'nl', scriptCode: null, countryCode: null),
@@ -30,22 +31,27 @@ class Localization {
   ];
 
   List<String> get supportedLanguages {
-    final supportedLanguageTags = _supportedLocales.map((e) => e.toLanguageTag()).toList(growable: false);
+    final supportedLanguageTags =
+        _supportedLocales.map((e) => e.toLanguageTag()).toList(growable: false);
     if (localeFilter == null) return supportedLanguageTags;
-    return supportedLanguageTags.where((element) => localeFilter?.call(element) ?? true).toList();
+    return supportedLanguageTags
+        .where((element) => localeFilter?.call(element) ?? true)
+        .toList();
   }
 
   List<Locale> get supportedLocales {
     if (localeFilter == null) return _supportedLocales;
-    return _supportedLocales.where((element) => localeFilter?.call(element.toLanguageTag()) ?? true).toList();
+    return _supportedLocales
+        .where((element) => localeFilter?.call(element.toLanguageTag()) ?? true)
+        .toList();
   }
 
   Future<void> load({
-    Locale? locale, 
+    Locale? locale,
     LocalizationOverrides? localizationOverrides,
     bool showLocalizationKeys = false,
     bool useCaching = true,
-    }) async {
+  }) async {
     final currentLocale = locale ?? defaultLocale;
     this.locale = currentLocale;
     if (showLocalizationKeys) {
@@ -54,16 +60,20 @@ class Localization {
       return;
     }
     if (localizationOverrides != null) {
-      final overrideLocalizations = await localizationOverrides.getOverriddenLocalizations(currentLocale);
+      final overrideLocalizations =
+          await localizationOverrides.getOverriddenLocalizations(currentLocale);
       _localisedOverrideValues = overrideLocalizations;
     }
-    final jsonContent = await rootBundle.loadString('assets/locale/${currentLocale.toLanguageTag()}.json', cache: useCaching);
+    final jsonContent = await rootBundle.loadString(
+        'assets/locale/${currentLocale.toLanguageTag()}.json',
+        cache: useCaching);
     _localisedValues = json.decode(jsonContent) as Map<String, dynamic>;
   }
 
   String _t(String key, {List<dynamic>? args}) {
     try {
-      final value = (_localisedOverrideValues[key] ?? _localisedValues[key]) as String?;
+      final value =
+          (_localisedOverrideValues[key] ?? _localisedValues[key]) as String?;
       if (value == null) return key;
       if (args == null || args.isEmpty) return value;
       return sprintf(value, args);
@@ -105,7 +115,8 @@ class Localization {
   /// nl:  **'Huidige taal: [arg1 string]'**
   ///
   /// en:  **'Current language: [arg1 string]'**
-  String debugLocaleCurrentLanguage(String arg1) => _t(LocalizationKeys.debugLocaleCurrentLanguage, args: <dynamic>[arg1]);
+  String debugLocaleCurrentLanguage(String arg1) =>
+      _t(LocalizationKeys.debugLocaleCurrentLanguage, args: <dynamic>[arg1]);
 
   /// Translations:
   ///
@@ -140,7 +151,8 @@ class Localization {
   /// nl:  **'Toon vertalingen'**
   ///
   /// en:  **'Show translations'**
-  String get debugShowTranslations => _t(LocalizationKeys.debugShowTranslations);
+  String get debugShowTranslations =>
+      _t(LocalizationKeys.debugShowTranslations);
 
   /// Translations:
   ///
@@ -154,14 +166,16 @@ class Localization {
   /// nl:  **'Huidig platfrom: [arg1 string]'**
   ///
   /// en:  **'Current platfrom: [arg1 string]'**
-  String debugTargetPlatformSubtitle(String arg1) => _t(LocalizationKeys.debugTargetPlatformSubtitle, args: <dynamic>[arg1]);
+  String debugTargetPlatformSubtitle(String arg1) =>
+      _t(LocalizationKeys.debugTargetPlatformSubtitle, args: <dynamic>[arg1]);
 
   /// Translations:
   ///
   /// nl:  **'Doelplatform'**
   ///
   /// en:  **'Target platfrom'**
-  String get debugTargetPlatformTitle => _t(LocalizationKeys.debugTargetPlatformTitle);
+  String get debugTargetPlatformTitle =>
+      _t(LocalizationKeys.debugTargetPlatformTitle);
 
   /// Translations:
   ///
@@ -182,7 +196,8 @@ class Localization {
   /// nl:  **'Vertaling sluitels'**
   ///
   /// en:  **'Translation Keys'**
-  String get debugTranslationsTitle => _t(LocalizationKeys.debugTranslationsTitle);
+  String get debugTranslationsTitle =>
+      _t(LocalizationKeys.debugTranslationsTitle);
 
   /// Translations:
   ///
@@ -224,7 +239,8 @@ class Localization {
   /// nl:  **'Er liep iets mis (code: [arg1 string])'**
   ///
   /// en:  **'Something went wrong (code: [arg1 string])'**
-  String errorGeneralWithCode(String arg1) => _t(LocalizationKeys.errorGeneralWithCode, args: <dynamic>[arg1]);
+  String errorGeneralWithCode(String arg1) =>
+      _t(LocalizationKeys.errorGeneralWithCode, args: <dynamic>[arg1]);
 
   /// Translations:
   ///
@@ -301,7 +317,8 @@ class Localization {
   /// nl:  **'Systeem standaard'**
   ///
   /// en:  **'System default'**
-  String get generalLabelSystemDefault => _t(LocalizationKeys.generalLabelSystemDefault);
+  String get generalLabelSystemDefault =>
+      _t(LocalizationKeys.generalLabelSystemDefault);
 
   /// Translations:
   ///
@@ -357,7 +374,8 @@ class Localization {
   /// nl:  **'Toon de app in dark mode of light'**
   ///
   /// en:  **'Show the app in dark mode or light'**
-  String get debugThemeModeSubtitle => _t(LocalizationKeys.debugThemeModeSubtitle);
+  String get debugThemeModeSubtitle =>
+      _t(LocalizationKeys.debugThemeModeSubtitle);
 
   /// Translations:
   ///
@@ -380,6 +398,6 @@ class Localization {
   /// en:  **'System default'**
   String get themeModeLabelSystem => _t(LocalizationKeys.themeModeLabelSystem);
 
-  String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
-
+  String getTranslation(String key, {List<dynamic>? args}) =>
+      _t(key, args: args ?? <dynamic>[]);
 }

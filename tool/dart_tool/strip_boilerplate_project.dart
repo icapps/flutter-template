@@ -16,7 +16,8 @@ void main(List<String> args) {
     do {
       Logger.debug('Keep test directory? (y/n)');
       final result = stdin.readLineSync();
-      final valid = result == 'yes' || result == 'y' || result == 'no' || result == 'n';
+      final valid =
+          result == 'yes' || result == 'y' || result == 'no' || result == 'n';
       if (valid) {
         keepTestDir = result == 'yes' || result == 'y';
       }
@@ -57,7 +58,15 @@ void main(List<String> args) {
   Logger.debug('Removed import references');
   executeCommand('fvm', ['flutter', 'clean']);
   executeCommand('fvm', ['flutter', 'packages', 'get']);
-  executeCommand('fvm', ['flutter', 'packages', 'pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+  executeCommand('fvm', [
+    'flutter',
+    'packages',
+    'pub',
+    'run',
+    'build_runner',
+    'build',
+    '--delete-conflicting-outputs'
+  ]);
 }
 
 void executeCommand(String cmd, List<String> params) {

@@ -25,7 +25,9 @@ abstract class TodoDaoStorage {
 @DriftAccessor(tables: [
   DbTodoTable,
 ])
-class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_TodoDaoStorageMixin implements TodoDaoStorage {
+class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase>
+    with _$_TodoDaoStorageMixin
+    implements TodoDaoStorage {
   _TodoDaoStorage(FlutterTemplateDatabase db) : super(db);
 
   @override
@@ -35,12 +37,16 @@ class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_
   Stream<List<DbTodo>> getAllTodosStream() => select(db.dbTodoTable).watch();
 
   @override
-  Future<void> createTodo(String todo) => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo, completed: false));
+  Future<void> createTodo(String todo) => into(db.dbTodoTable)
+      .insert(DbTodoTableCompanion.insert(title: todo, completed: false));
 
   @override
-  Future<void> createTodoWithValue(Todo todo) async => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo.title, completed: todo.completed));
+  Future<void> createTodoWithValue(Todo todo) async =>
+      into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(
+          title: todo.title, completed: todo.completed));
 
   @override
   Future<void> updateTodo({required int id, required bool completed}) =>
-      (update(db.dbTodoTable)..where((todo) => todo.id.equals(id))).write(DbTodoTableCompanion(completed: Value(completed)));
+      (update(db.dbTodoTable)..where((todo) => todo.id.equals(id)))
+          .write(DbTodoTableCompanion(completed: Value(completed)));
 }

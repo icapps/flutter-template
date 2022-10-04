@@ -7,7 +7,8 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class InternalServerError extends NetworkError {
   static const statusCode = HttpStatus.internalServerError;
 
-  InternalServerError(DioError dioError, {String? statusCode}) : super(dioError, statusCodeValue: statusCode);
+  InternalServerError(DioError dioError, {String? statusCode})
+      : super(dioError, statusCodeValue: statusCode);
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorInternalServer;

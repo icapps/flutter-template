@@ -26,7 +26,9 @@ class TextActionItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(ThemeDimens.padding4),
           onClick: enabled ? onClick : null,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16, vertical: ThemeDimens.padding8),
+            padding: const EdgeInsets.symmetric(
+                horizontal: ThemeDimens.padding16,
+                vertical: ThemeDimens.padding8),
             child: AnimatedDefaultTextStyle(
               style: style ?? theme.inverseCoreTextTheme.labelButtonSmall,
               duration: ThemeDurations.shortAnimationDuration(),

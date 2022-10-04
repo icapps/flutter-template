@@ -127,7 +127,8 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   bool isLanguageSelected(String? languageCode) {
-    if (_localizationInstance.locale == null && languageCode == null) return true;
+    if (_localizationInstance.locale == null && languageCode == null)
+      return true;
     return _localizationInstance.locale?.languageCode == languageCode;
   }
 

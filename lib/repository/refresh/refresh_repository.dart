@@ -49,7 +49,8 @@ class _RefreshRepository implements RefreshRepository {
         await _authStorage.getRefreshToken();
         // TODO implement refresh call
         // await _authStoring.saveRefreshToken(refreshToken: result.refreshToken, accessToken: result.accessToken);
-        throw UnimplementedError('No implementatino for the refresh in the refresh repository');
+        throw UnimplementedError(
+            'No implementatino for the refresh in the refresh repository');
       } catch (e) {
         _failure = true;
         final logoutCb = logoutCallback;

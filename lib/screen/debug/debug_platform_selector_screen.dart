@@ -18,18 +18,21 @@ class DebugPlatformSelectorScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  DebugPlatformSelectorScreenState createState() => DebugPlatformSelectorScreenState();
+  DebugPlatformSelectorScreenState createState() =>
+      DebugPlatformSelectorScreenState();
 }
 
 @visibleForTesting
-class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen> {
+class DebugPlatformSelectorScreenState
+    extends State<DebugPlatformSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
       consumer: (context, value, _) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
+          leading:
+              FlutterTemplateBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a platform'),
         ),
         body: Consumer<GlobalViewModel>(

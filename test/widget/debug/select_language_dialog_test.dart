@@ -26,7 +26,8 @@ void main() {
     final widget = SelectLanguageDialog(goBack: () {});
 
     await TestUtil.loadScreen(tester, widget);
-    await TestUtil.takeScreenshot(tester, 'select_language_dialog_initial_state');
+    await TestUtil.takeScreenshot(
+        tester, 'select_language_dialog_initial_state');
 
     verify(globalViewModel.isLanguageSelected(any));
     verifyGlobalViewModel();
@@ -40,7 +41,8 @@ void main() {
       final widget = SelectLanguageDialog(goBack: () {});
 
       await TestUtil.loadScreen(tester, widget);
-      await TestUtil.takeScreenshot(tester, 'select_language_dialog_system_defaults_selected');
+      await TestUtil.takeScreenshot(
+          tester, 'select_language_dialog_system_defaults_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
       verifyGlobalViewModel();
@@ -53,7 +55,8 @@ void main() {
       final widget = SelectLanguageDialog(goBack: () {});
 
       await TestUtil.loadScreen(tester, widget);
-      await TestUtil.takeScreenshot(tester, 'select_language_dialog_en_selected');
+      await TestUtil.takeScreenshot(
+          tester, 'select_language_dialog_en_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
       verifyGlobalViewModel();
@@ -66,7 +69,8 @@ void main() {
       final widget = SelectLanguageDialog(goBack: () {});
 
       await TestUtil.loadScreen(tester, widget);
-      await TestUtil.takeScreenshot(tester, 'select_language_dialog_nl_selected');
+      await TestUtil.takeScreenshot(
+          tester, 'select_language_dialog_nl_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
       verifyGlobalViewModel();
@@ -114,7 +118,8 @@ void main() {
       expect(clicked, true);
       verifyGlobalViewModel();
     });
-    testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
+    testWidgets('SelectLanguageDialog on click system defaults',
+        (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => true);
@@ -124,7 +129,8 @@ void main() {
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault,
+          substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
@@ -175,7 +181,8 @@ void main() {
       expect(clicked, true);
       verifyGlobalViewModel();
     });
-    testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
+    testWidgets('SelectLanguageDialog on click system defaults',
+        (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected('nl')).thenAnswer((_) => false);
       when(globalViewModel.isLanguageSelected(null)).thenAnswer((_) => false);
@@ -185,7 +192,8 @@ void main() {
       });
 
       await TestUtil.loadScreen(tester, widget);
-      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
+      final finder = TextFinder(LocalizationKeys.generalLabelSystemDefault,
+          substring: true);
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();

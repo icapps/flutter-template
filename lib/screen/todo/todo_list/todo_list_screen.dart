@@ -27,7 +27,8 @@ class TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return ProviderWidget<TodoListViewModel>(
       create: () => GetIt.I()..init(),
-      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
+      consumerWithThemeAndLocalization:
+          (context, viewModel, child, theme, localization) {
         final errorKey = viewModel.errorKey;
         return Scaffold(
           appBar: AppBar(
@@ -67,7 +68,8 @@ class TodoListScreenState extends State<TodoListScreen> {
                       if (data.isEmpty) {
                         return Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(ThemeDimens.padding32),
+                            padding:
+                                const EdgeInsets.all(ThemeDimens.padding32),
                             child: Text(
                               localization.todoEmptyState,
                               textAlign: TextAlign.center,
@@ -82,11 +84,13 @@ class TodoListScreenState extends State<TodoListScreen> {
                           return TodoRowItem(
                             title: item.title,
                             value: item.completed,
-                            onChanged: (value) => viewModel.onTodoChanged(id: item.id, value: value),
+                            onChanged: (value) => viewModel.onTodoChanged(
+                                id: item.id, value: value),
                           );
                         },
                         separatorBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: ThemeDimens.padding16),
                           child: Container(
                             height: 1,
                             color: theme.colorsTheme.primary.withOpacity(0.1),

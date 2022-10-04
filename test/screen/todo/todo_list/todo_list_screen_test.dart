@@ -18,7 +18,8 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+    todoListViewModel =
+        GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -27,7 +28,8 @@ void main() {
     const sut = TodoListScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'todo_list_screen_inital_state');
     verifyTodoListViewModel();
     verifyGlobalViewModel();
   });
@@ -37,17 +39,20 @@ void main() {
     const sut = TodoListScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_empty_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'todo_list_screen_empty_state');
     verifyTodoListViewModel();
     verifyGlobalViewModel();
   });
 
   testWidgets('Test splash screen error state', (tester) async {
-    when(todoListViewModel.errorKey).thenReturn(LocalizationKeys.errorUnauthorized);
+    when(todoListViewModel.errorKey)
+        .thenReturn(LocalizationKeys.errorUnauthorized);
     const sut = TodoListScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_error_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'todo_list_screen_error_state');
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.errorKey);
     verify(todoListViewModel.init()).calledOnce();
@@ -59,7 +64,8 @@ void main() {
     const sut = TodoListScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_loading_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'todo_list_screen_loading_state');
     verify(todoListViewModel.isLoading);
     verify(todoListViewModel.init()).calledOnce();
     verifyGlobalViewModel();
@@ -105,14 +111,16 @@ void main() {
         await tester.tap(finder.first);
         await tester.pumpAndSettle();
 
-        verify(todoListViewModel.onTodoChanged(id: 0, value: true)).calledOnce();
+        verify(todoListViewModel.onTodoChanged(id: 0, value: true))
+            .calledOnce();
       });
     });
   });
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  final todoListViewModel =
+      GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

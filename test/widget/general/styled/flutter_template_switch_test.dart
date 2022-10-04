@@ -18,7 +18,8 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_switch_false_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_switch_false_android');
     });
 
     testWidgets('FlutterTemplateSwitch with true value', (tester) async {
@@ -31,11 +32,13 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_switch_true_android');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_switch_true_android');
     });
 
     group('OnChanged', () {
-      testWidgets('FlutterTemplateSwitch onChanged from value true', (tester) async {
+      testWidgets('FlutterTemplateSwitch onChanged from value true',
+          (tester) async {
         bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
@@ -54,7 +57,8 @@ void main() {
         await tester.pumpAndSettle();
         expect(newValue, false);
       });
-      testWidgets('FlutterTemplateSwitch onChanged from value false', (tester) async {
+      testWidgets('FlutterTemplateSwitch onChanged from value false',
+          (tester) async {
         bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.android),
@@ -87,7 +91,8 @@ void main() {
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_switch_false_ios');
+      await TestUtil.takeScreenshot(
+          tester, 'flutter_template_switch_false_ios');
     });
 
     testWidgets('FlutterTemplateSwitch with true value', (tester) async {
@@ -104,7 +109,8 @@ void main() {
     });
 
     group('OnChanged', () {
-      testWidgets('FlutterTemplateSwitch onChanged from value true', (tester) async {
+      testWidgets('FlutterTemplateSwitch onChanged from value true',
+          (tester) async {
         bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),
@@ -123,7 +129,8 @@ void main() {
         await tester.pumpAndSettle();
         expect(newValue, false);
       });
-      testWidgets('FlutterTemplateSwitch onChanged from value false', (tester) async {
+      testWidgets('FlutterTemplateSwitch onChanged from value false',
+          (tester) async {
         bool? newValue;
         final sut = Theme(
           data: ThemeData(platform: TargetPlatform.iOS),

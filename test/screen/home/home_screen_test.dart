@@ -19,7 +19,8 @@ void main() {
     const sut = HomeScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'home_screen_initial_state');
     verifyTodoListViewModel();
     verifyDebugViewModel();
     verifyGlobalViewModelForDebugScreen();
@@ -29,12 +30,14 @@ void main() {
     expect(firstTab, findsOneWidget);
     await tester.tap(firstTab);
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_first_tab');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'home_screen_initial_state_first_tab');
 
     final secondTab = find.byIcon(Icons.settings);
     expect(secondTab, findsOneWidget);
     await tester.tap(firstTab);
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_second_tab');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'home_screen_initial_state_second_tab');
   });
 }

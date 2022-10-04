@@ -20,41 +20,49 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    platformViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel,MockDebugPlatformSelectorViewModel>();
+    platformViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel,
+        MockDebugPlatformSelectorViewModel>();
     globalViewModel = GetIt.I.resolveAs<GlobalViewModel, MockGlobalViewModel>();
   });
 
-  testWidgets('Test debug select platform screen initial state', (tester) async {
+  testWidgets('Test debug select platform screen initial state',
+      (tester) async {
     seedGlobalViewModel();
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_inital_state');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'debug_platform_selector_screen_inital_state');
     verifyDebugPlatformViewModel();
     verifyGlobalViewModel();
   });
 
-  testWidgets('Test debug screen select platform and select correct platform', (tester) async {
+  testWidgets('Test debug screen select platform and select correct platform',
+      (tester) async {
     seedGlobalViewModel();
     when(globalViewModel.targetPlatform).thenReturn(TargetPlatform.android);
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_android');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'debug_platform_selector_screen_selected_android');
 
     when(globalViewModel.targetPlatform).thenReturn(TargetPlatform.iOS);
     globalViewModel.notifyListeners();
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_ios');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'debug_platform_selector_screen_selected_ios');
 
     when(globalViewModel.targetPlatform).thenReturn(null);
     globalViewModel.notifyListeners();
     await tester.pumpAndSettle();
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_system');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'debug_platform_selector_screen_selected_system');
   });
 
   group('setCorrectPlatform', () {
-    testWidgets('Test debug screen select platform click on system', (tester) async {
+    testWidgets('Test debug screen select platform click on system',
+        (tester) async {
       seedGlobalViewModel();
       when(globalViewModel.targetPlatform).thenReturn(null);
       // ignore: void_checks
@@ -66,7 +74,8 @@ void main() {
       // ignore: void_checks
       when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = TextFinder(LocalizationKeys.generalLabelSystemDefault, substring: true);
+      final target = TextFinder(LocalizationKeys.generalLabelSystemDefault,
+          substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
@@ -85,7 +94,8 @@ void main() {
       // ignore: void_checks
       when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = TextFinder(LocalizationKeys.generalLabelIos, substring: true);
+      final target =
+          TextFinder(LocalizationKeys.generalLabelIos, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
@@ -94,7 +104,8 @@ void main() {
       verifyGlobalViewModel();
     });
 
-    testWidgets('Test debug select platform  screen select android', (tester) async {
+    testWidgets('Test debug select platform  screen select android',
+        (tester) async {
       seedGlobalViewModel();
       when(globalViewModel.targetPlatform).thenReturn(null);
 
@@ -103,7 +114,8 @@ void main() {
       // ignore: void_checks
       when(platformViewModel.dispose()).thenReturn(1);
 
-      final target = TextFinder(LocalizationKeys.generalLabelAndroid, substring: true);
+      final target =
+          TextFinder(LocalizationKeys.generalLabelAndroid, substring: true);
       expect(target, findsOneWidget);
       await tester.tap(target);
       await tester.pumpAndSettle();
@@ -114,7 +126,8 @@ void main() {
   });
 
   group('Actions', () {
-    testWidgets('Test debug select platform  screen on back clicked', (tester) async {
+    testWidgets('Test debug select platform  screen on back clicked',
+        (tester) async {
       seedGlobalViewModel();
       when(globalViewModel.targetPlatform).thenReturn(null);
 
@@ -138,6 +151,7 @@ void main() {
 
 void verifyDebugPlatformViewModel() {
   // ignore: avoid_as
-  final platformSelectorViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
+  final platformSelectorViewModel = GetIt.I.resolveAs<
+      DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
   verify(platformSelectorViewModel.init()).calledOnce();
 }

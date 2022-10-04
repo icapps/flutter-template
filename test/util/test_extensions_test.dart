@@ -17,21 +17,30 @@ void main() {
   test('calledTwice', () async {
     final mock = MockTesting();
     verifyZeroInteractions(mock);
-    mock..test()..test();
+    mock
+      ..test()
+      ..test();
     verify(mock.test()).calledTwice();
     verifyNoMoreInteractions(mock);
   });
   test('called3Times', () async {
     final mock = MockTesting();
     verifyZeroInteractions(mock);
-    mock..test()..test()..test();
+    mock
+      ..test()
+      ..test()
+      ..test();
     verify(mock.test()).called3Times();
     verifyNoMoreInteractions(mock);
   });
   test('called4Times', () async {
     final mock = MockTesting();
     verifyZeroInteractions(mock);
-    mock..test()..test()..test()..test();
+    mock
+      ..test()
+      ..test()
+      ..test()
+      ..test();
     verify(mock.test()).called4Times();
     verifyNoMoreInteractions(mock);
   });

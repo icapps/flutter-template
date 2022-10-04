@@ -15,10 +15,12 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, widget);
-    await TestUtil.takeScreenshot(tester, 'debug_switch_row_item_selected_state');
+    await TestUtil.takeScreenshot(
+        tester, 'debug_switch_row_item_selected_state');
   });
 
-  testWidgets('DebugRowSwitchItem selected state with subtitle', (tester) async {
+  testWidgets('DebugRowSwitchItem selected state with subtitle',
+      (tester) async {
     final widget = DebugRowSwitchItem(
       title: 'Title',
       subTitle: 'SubTitle',
@@ -27,7 +29,8 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, widget);
-    await TestUtil.takeScreenshot(tester, 'debug_switch_row_item_selected_state_subtitle');
+    await TestUtil.takeScreenshot(
+        tester, 'debug_switch_row_item_selected_state_subtitle');
   });
 
   testWidgets('DebugRowSwitchItem unselected state', (tester) async {
@@ -38,10 +41,12 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, widget);
-    await TestUtil.takeScreenshot(tester, 'debug_switch_row_item_unselected_state');
+    await TestUtil.takeScreenshot(
+        tester, 'debug_switch_row_item_unselected_state');
   });
 
-  testWidgets('DebugRowSwitchItem unselected state with subtitle', (tester) async {
+  testWidgets('DebugRowSwitchItem unselected state with subtitle',
+      (tester) async {
     final widget = DebugRowSwitchItem(
       title: 'Title',
       subTitle: 'SubTitle',
@@ -50,7 +55,8 @@ void main() {
     );
 
     await TestUtil.loadWidgetWithText(tester, widget);
-    await TestUtil.takeScreenshot(tester, 'debug_switch_row_item_unselected_state_subtitle');
+    await TestUtil.takeScreenshot(
+        tester, 'debug_switch_row_item_unselected_state_subtitle');
   });
 
   group('OnChanged', () {
@@ -72,7 +78,8 @@ void main() {
       expect(newValue, false);
     });
 
-    testWidgets('DebugRowSwitchItem selected state with subtitle', (tester) async {
+    testWidgets('DebugRowSwitchItem selected state with subtitle',
+        (tester) async {
       bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',
@@ -109,7 +116,8 @@ void main() {
       expect(newValue, true);
     });
 
-    testWidgets('DebugRowSwitchItem unselected state with subtitle', (tester) async {
+    testWidgets('DebugRowSwitchItem unselected state with subtitle',
+        (tester) async {
       bool? newValue;
       final widget = DebugRowSwitchItem(
         title: 'Title',

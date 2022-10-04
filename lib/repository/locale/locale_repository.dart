@@ -5,7 +5,8 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 abstract class LocaleRepository {
   @factoryMethod
-  factory LocaleRepository(SharedPreferenceStorage preferences) = _LocaleRepository;
+  factory LocaleRepository(SharedPreferenceStorage preferences) =
+      _LocaleRepository;
 
   Future<void> setCustomLocale(Locale? locale);
 
@@ -24,7 +25,8 @@ class _LocaleRepository implements LocaleRepository {
     if (locale == null) {
       await _sharedPreferences.deleteKey(_localeKey);
     } else {
-      await _sharedPreferences.saveString(key: _localeKey, value: locale.languageCode);
+      await _sharedPreferences.saveString(
+          key: _localeKey, value: locale.languageCode);
     }
   }
 

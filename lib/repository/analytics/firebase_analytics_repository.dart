@@ -7,16 +7,20 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 abstract class FireBaseAnalyticsRepository implements Analytics {
   @factoryMethod
-  factory FireBaseAnalyticsRepository(FirebaseAnalytics analytics) = _FireBaseAnalyticsRepository;
+  factory FireBaseAnalyticsRepository(FirebaseAnalytics analytics) =
+      _FireBaseAnalyticsRepository;
 
   RouteObserver get routeObserver;
 }
 
-class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBaseAnalyticsRepository {
+class _FireBaseAnalyticsRepository
+    with WidgetsBindingObserver
+    implements FireBaseAnalyticsRepository {
   final FirebaseAnalytics _analytics;
 
   @override
-  RouteObserver<Route> get routeObserver => FirebaseAnalyticsObserver(analytics: _analytics);
+  RouteObserver<Route> get routeObserver =>
+      FirebaseAnalyticsObserver(analytics: _analytics);
 
   _FireBaseAnalyticsRepository(this._analytics);
 
@@ -27,7 +31,8 @@ class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBa
   }
 
   @override
-  void trackEvent(String name, {Map<String, Object?>? arguments}) => _analytics.logEvent(
+  void trackEvent(String name, {Map<String, Object?>? arguments}) =>
+      _analytics.logEvent(
         name: name,
         parameters: arguments,
       );

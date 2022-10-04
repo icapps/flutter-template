@@ -28,7 +28,8 @@ class MainNavigator {
 
   static final List<NavigatorObserver> _navigatorObservers = [];
 
-  static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
+  static String get initialRoute =>
+      FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
@@ -83,29 +84,41 @@ class MainNavigator {
 
   Future<void> goToHome() async => Get.offNamed<void>(HomeScreen.routeName);
 
-  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);
+  Future<void> goToAddTodo() async =>
+      Get.toNamed<void>(TodoAddScreen.routeName);
 
-  Future<void> goToDebugPlatformSelector() async => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
+  Future<void> goToDebugPlatformSelector() async =>
+      Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
-  Future<void> goToThemeModeSelector() async => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
+  Future<void> goToThemeModeSelector() async =>
+      Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
 
   Future<void> goToDebug() async => Get.toNamed<void>(DebugScreen.routeName);
 
-  Future<void> goToLicense() async => Get.toNamed<void>(LicenseScreen.routeName);
+  Future<void> goToLicense() async =>
+      Get.toNamed<void>(LicenseScreen.routeName);
 
   Future<void> closeDialog() async => Get.back<void>();
 
-  Future<void> goToDatabase(GeneratedDatabase db) async => Get.to<void>(DriftDbViewer(db));
+  Future<void> goToDatabase(GeneratedDatabase db) async =>
+      Get.to<void>(DriftDbViewer(db));
 
   Future<void> goBack<T>({T? result}) async => Get.back<T>(result: result);
 
-  Future<void> showCustomDialog<T>({Widget? widget}) async => Get.dialog<T>(widget ?? const SizedBox.shrink());
+  Future<void> showCustomDialog<T>({Widget? widget}) async =>
+      Get.dialog<T>(widget ?? const SizedBox.shrink());
 
-  Future<void> showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) async => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+  Future<void> showErrorWithLocaleKey(String errorKey,
+          {List<dynamic>? args}) async =>
+      _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
 
   Future<void> showError(dynamic error) async => _errorUtil.showError(error);
 
-  Future<void> showCustomSnackBar({required String message, String? title, SnackBarStyle style = SnackBarStyle.neutral}) async => SnackBarUtil.showSnackbar(
+  Future<void> showCustomSnackBar(
+          {required String message,
+          String? title,
+          SnackBarStyle style = SnackBarStyle.neutral}) async =>
+      SnackBarUtil.showSnackbar(
         title: title,
         message: message,
         style: style,

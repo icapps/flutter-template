@@ -67,11 +67,15 @@ void main() {
 
     group('onLoginClicked', () {
       test('LoginViewModel onLoginClicked', () async {
-        when(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).thenAnswer((_) => Future.value());
+        when(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .thenAnswer((_) => Future.value());
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
-        verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
+        verify(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .calledOnce();
         verify(navigator.goToHome()).calledOnce();
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
@@ -79,36 +83,46 @@ void main() {
 
       test('LoginViewModel onLoginClicked with FlutterTemplateError', () async {
         expect(GeneralError(), isA<LocalizedError>());
-        when(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).thenThrow(GeneralError());
+        when(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .thenThrow(GeneralError());
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
-        verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
+        verify(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .calledOnce();
         verify(navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral));
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });
 
       test('LoginViewModel onLoginClicked with random error', () async {
-        when(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).thenThrow(ArgumentError());
+        when(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .thenThrow(ArgumentError());
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
-        verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
+        verify(loginRepo.login(
+                email: anyNamed('email'), password: anyNamed('password')))
+            .calledOnce();
         verify(navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral));
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });
 
       test('LoginViewModel onLoginClicked with random error', () async {
-        when(loginRepo.login(email: 'email', password: 'password')).thenAnswer((_) => Future.value());
+        when(loginRepo.login(email: 'email', password: 'password'))
+            .thenAnswer((_) => Future.value());
         sut
           ..onEmailUpdated('email')
           ..onPasswordUpdated('password');
         await sut.onLoginClicked();
         expect(sut.isLoginEnabled, true);
         expect(sut.isLoading, false);
-        verify(loginRepo.login(email: 'email', password: 'password')).calledOnce();
+        verify(loginRepo.login(email: 'email', password: 'password'))
+            .calledOnce();
         verify(navigator.goToHome());
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);

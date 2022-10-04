@@ -15,6 +15,7 @@ void main() {
     seedGlobalViewModel();
 
     final testWidget = await TestUtil.loadFlutterTemplateApp(tester);
-    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_initial_screen');
+    await TestUtil.takeScreenshotForAllSizes(
+        tester, testWidget, 'main_navigator_initial_screen');
   });
 }

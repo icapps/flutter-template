@@ -26,13 +26,18 @@ void main() {
         logNetworkInfo: false,
         showFullErrorMessages: false,
       );
-      FlavorConfig(flavor: Flavor.test, name: 'flavor_config_test', color: Colors.amber, values: values);
+      FlavorConfig(
+          flavor: Flavor.test,
+          name: 'flavor_config_test',
+          color: Colors.amber,
+          values: values);
     });
 
     test('FlavorConfig instance should be correct', () {
       expect(FlavorConfig.instance, isNotNull);
       expect(FlavorConfig.instance.values.logNetworkInfo, false);
-      expect(FlavorConfig.instance.values.baseUrl, 'http://${TestUtil.getVariableString()}');
+      expect(FlavorConfig.instance.values.baseUrl,
+          'http://${TestUtil.getVariableString()}');
       expect(FlavorConfig.instance.flavor, Flavor.test);
       expect(FlavorConfig.instance.name, 'flavor_config_test');
       expect(FlavorConfig.instance.color, Colors.amber);

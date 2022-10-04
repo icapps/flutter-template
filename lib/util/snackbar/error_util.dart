@@ -21,7 +21,9 @@ class ErrorUtil {
         if (code == null) {
           key = LocalizationKeys.errorGeneral;
         } else {
-          showError(localization.getTranslation(LocalizationKeys.errorGeneralWithCode, args: <String>[code]));
+          showError(localization.getTranslation(
+              LocalizationKeys.errorGeneralWithCode,
+              args: <String>[code]));
           return null;
         }
       } else {
@@ -30,14 +32,17 @@ class ErrorUtil {
     } else if (error is LocalizedError) {
       key = error.getLocalizedKey();
     } else {
-      logger.warning('Caught an error that is not handled by the FlutterTemplateError $error');
+      logger.warning(
+          'Caught an error that is not handled by the FlutterTemplateError $error');
       key = LocalizationKeys.errorGeneral;
     }
     showErrorWithLocaleKey(key);
     return key;
   }
 
-  void _showError(String error) => GetIt.I.get<MainNavigator>().showCustomSnackBar(message: error);
+  void _showError(String error) =>
+      GetIt.I.get<MainNavigator>().showCustomSnackBar(message: error);
 
-  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(localization.getTranslation(errorKey));
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) =>
+      _showError(localization.getTranslation(errorKey));
 }
