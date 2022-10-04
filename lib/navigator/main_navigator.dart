@@ -114,10 +114,11 @@ class MainNavigator {
 
   Future<void> showError(dynamic error) async => _errorUtil.showError(error);
 
-  Future<void> showCustomSnackBar(
-          {required String message,
-          String? title,
-          SnackBarStyle style = SnackBarStyle.neutral}) async =>
+  Future<void> showCustomSnackBar({
+    required String message,
+    String? title,
+    SnackBarStyle style = SnackBarStyle.neutral,
+  }) async =>
       SnackBarUtil.showSnackbar(
         title: title,
         message: message,
