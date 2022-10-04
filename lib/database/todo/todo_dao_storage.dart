@@ -26,7 +26,7 @@ abstract class TodoDaoStorage {
   DbTodoTable,
 ])
 class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_TodoDaoStorageMixin implements TodoDaoStorage {
-  _TodoDaoStorage(FlutterTemplateDatabase db) : super(db);
+  _TodoDaoStorage(super.db);
 
   @override
   Future<List<DbTodo>> getAllTodos() => select(db.dbTodoTable).get();

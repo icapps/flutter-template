@@ -11,9 +11,7 @@ import 'package:get_it/get_it.dart';
 class LicenseScreen extends StatefulWidget {
   static const String routeName = RouteNames.licenseScreen;
 
-  const LicenseScreen({
-    Key? key,
-  }) : super(key: key);
+  const LicenseScreen({super.key});
 
   @override
   LicenseScreenState createState() => LicenseScreenState();

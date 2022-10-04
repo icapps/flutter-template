@@ -13,9 +13,7 @@ import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class TodoListScreen extends StatefulWidget {
-  const TodoListScreen({
-    Key? key,
-  }) : super(key: key);
+  const TodoListScreen({super.key});
 
   @override
   TodoListScreenState createState() => TodoListScreenState();

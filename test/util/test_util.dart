@@ -124,7 +124,7 @@ class TestUtil {
 class TestWrapper extends StatelessWidget {
   final Widget child;
 
-  const TestWrapper({required this.child, Key? key}) : super(key: key);
+  const TestWrapper({required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class TestWrapper extends StatelessWidget {
 }
 
 class TextFinder extends MatchFinder {
-  TextFinder(this.text, {this.substring = false, bool skipOffstage = true}) : super(skipOffstage: skipOffstage);
+  TextFinder(this.text, {this.substring = false, super.skipOffstage});
 
   final String text;
   final bool substring;

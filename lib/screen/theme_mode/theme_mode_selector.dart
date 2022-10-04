@@ -13,9 +13,7 @@ import 'package:provider/provider.dart';
 class ThemeModeSelectorScreen extends StatefulWidget {
   static const String routeName = RouteNames.themeModeSelectorScreen;
 
-  const ThemeModeSelectorScreen({
-    Key? key,
-  }) : super(key: key);
+  const ThemeModeSelectorScreen({super.key});
 
   @override
   ThemeModeSelectorScreenState createState() => ThemeModeSelectorScreenState();

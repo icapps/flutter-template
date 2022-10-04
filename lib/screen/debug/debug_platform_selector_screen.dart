@@ -13,9 +13,7 @@ import 'package:provider/provider.dart';
 class DebugPlatformSelectorScreen extends StatefulWidget {
   static const String routeName = RouteNames.debugPlatformSelectorScreen;
 
-  const DebugPlatformSelectorScreen({
-    Key? key,
-  }) : super(key: key);
+  const DebugPlatformSelectorScreen({super.key});
 
   @override
   DebugPlatformSelectorScreenState createState() => DebugPlatformSelectorScreenState();

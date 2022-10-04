@@ -6,8 +6,8 @@ class FlavorBanner extends StatelessWidget {
 
   const FlavorBanner({
     required this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {

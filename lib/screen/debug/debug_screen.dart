@@ -16,9 +16,7 @@ import 'package:provider/provider.dart';
 class DebugScreen extends StatefulWidget {
   static const String routeName = RouteNames.debugScreen;
 
-  const DebugScreen({
-    Key? key,
-  }) : super(key: key);
+  const DebugScreen({super.key});
 
   @override
   DebugScreenState createState() => DebugScreenState();

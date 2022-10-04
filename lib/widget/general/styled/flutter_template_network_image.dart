@@ -23,8 +23,8 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
     this.height,
     this.width,
     this.duration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +71,7 @@ class _FlutterTemplateBetterNetworkImage extends StatefulWidget {
     required this.width,
     required this.height,
     required this.placeholder,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   _FlutterTemplateBetterNetworkImageState createState() => _FlutterTemplateBetterNetworkImageState();

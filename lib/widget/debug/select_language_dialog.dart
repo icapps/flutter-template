@@ -9,8 +9,8 @@ class SelectLanguageDialog extends StatelessWidget {
 
   const SelectLanguageDialog({
     required this.goBack,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

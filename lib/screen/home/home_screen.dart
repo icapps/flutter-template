@@ -7,7 +7,7 @@ import 'package:flutter_template/util/extension/localization_extension.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = RouteNames.homeScreen;
 
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   HomeScreenState createState() => HomeScreenState();

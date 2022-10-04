@@ -7,7 +7,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class ForbiddenError extends NetworkError {
   static const statusCode = HttpStatus.forbidden;
 
-  ForbiddenError(DioError dioError, {String? statusCode}) : super(dioError, statusCodeValue: statusCode);
+  ForbiddenError(super.dioError, {super.statusCodeValue});
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorForbidden;
