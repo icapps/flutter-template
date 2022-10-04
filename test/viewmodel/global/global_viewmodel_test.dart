@@ -34,7 +34,6 @@ void main() {
     when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
     expect(sut.locale, const Locale('nl'));
-    expect(sut.locale, const Locale('nl'));
     verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verify(localStorage.getThemeMode()).calledOnce();
