@@ -16,8 +16,6 @@ class TodoAddViewModel with ChangeNotifierEx {
 
   bool get isSaveEnabled => _todo?.isNotEmpty == true;
 
-  Future<void> init() async {}
-
   void onTodoChanged(String todo) {
     _todo = todo.trim();
     notifyListeners();

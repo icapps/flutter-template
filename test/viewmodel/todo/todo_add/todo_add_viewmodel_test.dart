@@ -22,7 +22,6 @@ void main() {
   });
 
   test('TodoAddViewModel init', () async {
-    await sut.init();
     expect(sut.isSaveEnabled, false);
     verifyZeroInteractions(todoRepo);
     verifyZeroInteractions(navigator);
@@ -30,7 +29,6 @@ void main() {
 
   group('After init', () {
     setUp(() async {
-      await sut.init();
       reset(todoRepo);
       reset(navigator);
     });

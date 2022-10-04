@@ -17,6 +17,7 @@ import 'package:firebase_analytics_platform_interface/firebase_analytics_platfor
 import 'package:firebase_core/firebase_core.dart' as _i5;
 import 'package:flutter/material.dart' as _i9;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
+import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i10;
 import 'package:flutter_template/model/webservice/todo/todo.dart' as _i21;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i6;
 import 'package:flutter_template/repository/debug/debug_repository.dart'
@@ -36,7 +37,6 @@ import 'package:flutter_template/repository/shared_prefs/local/local_storage.dar
 import 'package:flutter_template/repository/todo/todo_repository.dart' as _i20;
 import 'package:flutter_template/util/license.dart' as _i30;
 import 'package:flutter_template/util/locale/localization.dart' as _i4;
-import 'package:flutter_template/util/snackbar/snackbar_util.dart' as _i10;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
     as _i26;
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i27;
@@ -2054,15 +2054,6 @@ class MockDebugPlatformSelectorViewModel extends _i1.Mock
         returnValue: false,
       ) as bool);
   @override
-  _i7.Future<void> init() => (super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
-  @override
   void onBackClicked() => super.noSuchMethod(
         Invocation.method(
           #onBackClicked,
@@ -2488,15 +2479,6 @@ class MockLicenseViewModel extends _i1.Mock implements _i29.LicenseViewModel {
         returnValue: false,
       ) as bool);
   @override
-  _i7.Future<void> init() => (super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
-  @override
   void onBackClicked() => super.noSuchMethod(
         Invocation.method(
           #onBackClicked,
@@ -2769,15 +2751,6 @@ class MockTodoAddViewModel extends _i1.Mock implements _i33.TodoAddViewModel {
         Invocation.getter(#hasListeners),
         returnValue: false,
       ) as bool);
-  @override
-  _i7.Future<void> init() => (super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
   @override
   void onTodoChanged(String? todo) => super.noSuchMethod(
         Invocation.method(

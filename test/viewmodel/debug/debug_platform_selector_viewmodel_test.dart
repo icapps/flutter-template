@@ -17,14 +17,8 @@ void main() {
     sut = DebugPlatformSelectorViewModel(navigator);
   });
 
-  test('DebugPlatformSelectorViewModel init', () async {
-    await sut.init();
-    verifyZeroInteractions(navigator);
-  });
-
   group('After init', () {
     setUp(() async {
-      await sut.init();
       reset(navigator);
     });
 

@@ -24,7 +24,7 @@ class TodoAddScreenState extends State<TodoAddScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
-      create: () => GetIt.I()..init(),
+      create: () => GetIt.I(),
       childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,

@@ -24,7 +24,7 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
-      create: () => GetIt.I()..init(),
+      create: () => GetIt.I(),
       consumer: (context, value, _) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,

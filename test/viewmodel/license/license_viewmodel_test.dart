@@ -18,14 +18,8 @@ void main() {
     sut = LicenseViewModel(navigator);
   });
 
-  test('LicenseViewModel init', () async {
-    await sut.init();
-    verifyZeroInteractions(navigator);
-  });
-
   group('After init', () {
     setUp(() async {
-      await sut.init();
       reset(navigator);
     });
 

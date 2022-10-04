@@ -106,5 +106,4 @@ void main() {
 void verifyTodoAddViewModel() {
   final todoAddViewModel = GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
-  verify(todoAddViewModel.init()).calledOnce();
 }
