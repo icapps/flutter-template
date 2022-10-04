@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/navigator/route_names.dart';
-import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
@@ -25,7 +24,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
       create: () => GetIt.I(),
-      consumer: (context, value, _) => Scaffold(
+      consumerWithThemeAndLocalization: (context, value, _, theme, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
