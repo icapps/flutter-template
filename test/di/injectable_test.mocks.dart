@@ -4,56 +4,57 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
-import 'dart:ui' as _i12;
+import 'dart:ui' as _i13;
 
-import 'package:connectivity_plus/connectivity_plus.dart' as _i21;
+import 'package:connectivity_plus/connectivity_plus.dart' as _i22;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart'
-    as _i22;
+    as _i23;
 import 'package:dio/dio.dart' as _i3;
 import 'package:drift/drift.dart' as _i8;
-import 'package:firebase_analytics/firebase_analytics.dart' as _i34;
+import 'package:firebase_analytics/firebase_analytics.dart' as _i35;
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart'
-    as _i35;
+    as _i36;
 import 'package:firebase_core/firebase_core.dart' as _i5;
 import 'package:flutter/material.dart' as _i9;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i2;
-import 'package:flutter_template/model/webservice/todo/todo.dart' as _i20;
+import 'package:flutter_template/model/webservice/todo/todo.dart' as _i21;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i6;
 import 'package:flutter_template/repository/debug/debug_repository.dart'
-    as _i10;
-import 'package:flutter_template/repository/locale/locale_repository.dart'
     as _i11;
+import 'package:flutter_template/repository/locale/locale_repository.dart'
+    as _i12;
 import 'package:flutter_template/repository/login/login_repository.dart'
-    as _i13;
-import 'package:flutter_template/repository/refresh/refresh_repository.dart'
     as _i14;
-import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart'
-    as _i16;
-import 'package:flutter_template/repository/secure_storage/secure_storage.dart'
+import 'package:flutter_template/repository/refresh/refresh_repository.dart'
     as _i15;
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart'
+    as _i17;
+import 'package:flutter_template/repository/secure_storage/secure_storage.dart'
+    as _i16;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
-    as _i18;
-import 'package:flutter_template/repository/todo/todo_repository.dart' as _i19;
-import 'package:flutter_template/util/license.dart' as _i29;
+    as _i19;
+import 'package:flutter_template/repository/todo/todo_repository.dart' as _i20;
+import 'package:flutter_template/util/license.dart' as _i30;
 import 'package:flutter_template/util/locale/localization.dart' as _i4;
+import 'package:flutter_template/util/snackbar/snackbar_util.dart' as _i10;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
-    as _i25;
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i26;
+    as _i26;
+import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i27;
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart'
-    as _i27;
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart'
     as _i28;
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i30;
+import 'package:flutter_template/viewmodel/license/license_viewmodel.dart'
+    as _i29;
+import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i31;
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart'
-    as _i31;
-import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart'
     as _i32;
-import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart'
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart'
     as _i33;
-import 'package:flutter_template/webservice/todo/todo_service.dart' as _i24;
-import 'package:icapps_architecture/icapps_architecture.dart' as _i17;
+import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart'
+    as _i34;
+import 'package:flutter_template/webservice/todo/todo_service.dart' as _i25;
+import 'package:icapps_architecture/icapps_architecture.dart' as _i18;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shared_preferences/shared_preferences.dart' as _i23;
+import 'package:shared_preferences/shared_preferences.dart' as _i24;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -342,12 +343,31 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
+  @override
+  _i7.Future<void> showCustomSnackBar({
+    required String? message,
+    String? title,
+    _i10.SnackBarStyle? style = _i10.SnackBarStyle.neutral,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showCustomSnackBar,
+          [],
+          {
+            #message: message,
+            #title: title,
+            #style: style,
+          },
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }
 
 /// A class which mocks [DebugRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDebugRepository extends _i1.Mock implements _i10.DebugRepository {
+class MockDebugRepository extends _i1.Mock implements _i11.DebugRepository {
   MockDebugRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -386,13 +406,13 @@ class MockDebugRepository extends _i1.Mock implements _i10.DebugRepository {
 /// A class which mocks [LocaleRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocaleRepository extends _i1.Mock implements _i11.LocaleRepository {
+class MockLocaleRepository extends _i1.Mock implements _i12.LocaleRepository {
   MockLocaleRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<void> setCustomLocale(_i12.Locale? locale) => (super.noSuchMethod(
+  _i7.Future<void> setCustomLocale(_i13.Locale? locale) => (super.noSuchMethod(
         Invocation.method(
           #setCustomLocale,
           [locale],
@@ -405,7 +425,7 @@ class MockLocaleRepository extends _i1.Mock implements _i11.LocaleRepository {
 /// A class which mocks [LoginRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginRepository extends _i1.Mock implements _i13.LoginRepository {
+class MockLoginRepository extends _i1.Mock implements _i14.LoginRepository {
   MockLoginRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -437,13 +457,13 @@ class MockLoginRepository extends _i1.Mock implements _i13.LoginRepository {
 /// A class which mocks [RefreshRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRefreshRepository extends _i1.Mock implements _i14.RefreshRepository {
+class MockRefreshRepository extends _i1.Mock implements _i15.RefreshRepository {
   MockRefreshRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set logoutCallback(_i12.VoidCallback? _logoutCallback) => super.noSuchMethod(
+  set logoutCallback(_i13.VoidCallback? _logoutCallback) => super.noSuchMethod(
         Invocation.setter(
           #logoutCallback,
           _logoutCallback,
@@ -472,7 +492,7 @@ class MockRefreshRepository extends _i1.Mock implements _i14.RefreshRepository {
 /// A class which mocks [SecureStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSecureStorage extends _i1.Mock implements _i15.SecureStorage {
+class MockSecureStorage extends _i1.Mock implements _i16.SecureStorage {
   MockSecureStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -581,7 +601,7 @@ class MockSecureStorage extends _i1.Mock implements _i15.SecureStorage {
 /// A class which mocks [AuthStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthStorage extends _i1.Mock implements _i16.AuthStorage {
+class MockAuthStorage extends _i1.Mock implements _i17.AuthStorage {
   MockAuthStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -642,7 +662,7 @@ class MockAuthStorage extends _i1.Mock implements _i16.AuthStorage {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSharedPreferenceStorage extends _i1.Mock
-    implements _i17.SharedPreferenceStorage {
+    implements _i18.SharedPreferenceStorage {
   MockSharedPreferenceStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -802,7 +822,7 @@ class MockSharedPreferenceStorage extends _i1.Mock
 /// A class which mocks [LocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalStorage extends _i1.Mock implements _i18.LocalStorage {
+class MockLocalStorage extends _i1.Mock implements _i19.LocalStorage {
   MockLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -839,27 +859,27 @@ class MockLocalStorage extends _i1.Mock implements _i18.LocalStorage {
 /// A class which mocks [TodoRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTodoRepository extends _i1.Mock implements _i19.TodoRepository {
+class MockTodoRepository extends _i1.Mock implements _i20.TodoRepository {
   MockTodoRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Stream<List<_i20.Todo>> getTodos() => (super.noSuchMethod(
+  _i7.Stream<List<_i21.Todo>> getTodos() => (super.noSuchMethod(
         Invocation.method(
           #getTodos,
           [],
         ),
-        returnValue: _i7.Stream<List<_i20.Todo>>.empty(),
-      ) as _i7.Stream<List<_i20.Todo>>);
+        returnValue: _i7.Stream<List<_i21.Todo>>.empty(),
+      ) as _i7.Stream<List<_i21.Todo>>);
   @override
-  _i7.Future<List<_i20.Todo>> fetchTodos() => (super.noSuchMethod(
+  _i7.Future<List<_i21.Todo>> fetchTodos() => (super.noSuchMethod(
         Invocation.method(
           #fetchTodos,
           [],
         ),
-        returnValue: _i7.Future<List<_i20.Todo>>.value(<_i20.Todo>[]),
-      ) as _i7.Future<List<_i20.Todo>>);
+        returnValue: _i7.Future<List<_i21.Todo>>.value(<_i21.Todo>[]),
+      ) as _i7.Future<List<_i21.Todo>>);
   @override
   _i7.Future<void> saveTodo(String? todo) => (super.noSuchMethod(
         Invocation.method(
@@ -891,27 +911,27 @@ class MockTodoRepository extends _i1.Mock implements _i19.TodoRepository {
 /// A class which mocks [Connectivity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConnectivity extends _i1.Mock implements _i21.Connectivity {
+class MockConnectivity extends _i1.Mock implements _i22.Connectivity {
   MockConnectivity() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Stream<_i22.ConnectivityResult> get onConnectivityChanged =>
+  _i7.Stream<_i23.ConnectivityResult> get onConnectivityChanged =>
       (super.noSuchMethod(
         Invocation.getter(#onConnectivityChanged),
-        returnValue: _i7.Stream<_i22.ConnectivityResult>.empty(),
-      ) as _i7.Stream<_i22.ConnectivityResult>);
+        returnValue: _i7.Stream<_i23.ConnectivityResult>.empty(),
+      ) as _i7.Stream<_i23.ConnectivityResult>);
   @override
-  _i7.Future<_i22.ConnectivityResult> checkConnectivity() =>
+  _i7.Future<_i23.ConnectivityResult> checkConnectivity() =>
       (super.noSuchMethod(
         Invocation.method(
           #checkConnectivity,
           [],
         ),
-        returnValue: _i7.Future<_i22.ConnectivityResult>.value(
-            _i22.ConnectivityResult.bluetooth),
-      ) as _i7.Future<_i22.ConnectivityResult>);
+        returnValue: _i7.Future<_i23.ConnectivityResult>.value(
+            _i23.ConnectivityResult.bluetooth),
+      ) as _i7.Future<_i23.ConnectivityResult>);
 }
 
 /// A class which mocks [FlutterSecureStorage].
@@ -1133,7 +1153,7 @@ class MockFlutterSecureStorage extends _i1.Mock
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i23.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i24.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -1999,26 +2019,26 @@ class MockDio extends _i1.Mock implements _i3.Dio {
 /// A class which mocks [TodoService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTodoService extends _i1.Mock implements _i24.TodoService {
+class MockTodoService extends _i1.Mock implements _i25.TodoService {
   MockTodoService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<List<_i20.Todo>> getTodos() => (super.noSuchMethod(
+  _i7.Future<List<_i21.Todo>> getTodos() => (super.noSuchMethod(
         Invocation.method(
           #getTodos,
           [],
         ),
-        returnValue: _i7.Future<List<_i20.Todo>>.value(<_i20.Todo>[]),
-      ) as _i7.Future<List<_i20.Todo>>);
+        returnValue: _i7.Future<List<_i21.Todo>>.value(<_i21.Todo>[]),
+      ) as _i7.Future<List<_i21.Todo>>);
 }
 
 /// A class which mocks [DebugPlatformSelectorViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDebugPlatformSelectorViewModel extends _i1.Mock
-    implements _i25.DebugPlatformSelectorViewModel {
+    implements _i26.DebugPlatformSelectorViewModel {
   MockDebugPlatformSelectorViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2059,7 +2079,7 @@ class MockDebugPlatformSelectorViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2067,7 +2087,7 @@ class MockDebugPlatformSelectorViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2075,7 +2095,7 @@ class MockDebugPlatformSelectorViewModel extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2104,7 +2124,7 @@ class MockDebugPlatformSelectorViewModel extends _i1.Mock
 /// A class which mocks [DebugViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDebugViewModel extends _i1.Mock implements _i26.DebugViewModel {
+class MockDebugViewModel extends _i1.Mock implements _i27.DebugViewModel {
   MockDebugViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2200,7 +2220,7 @@ class MockDebugViewModel extends _i1.Mock implements _i26.DebugViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2208,7 +2228,7 @@ class MockDebugViewModel extends _i1.Mock implements _i26.DebugViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2216,7 +2236,7 @@ class MockDebugViewModel extends _i1.Mock implements _i26.DebugViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2245,7 +2265,7 @@ class MockDebugViewModel extends _i1.Mock implements _i26.DebugViewModel {
 /// A class which mocks [GlobalViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGlobalViewModel extends _i1.Mock implements _i27.GlobalViewModel {
+class MockGlobalViewModel extends _i1.Mock implements _i28.GlobalViewModel {
   MockGlobalViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2402,7 +2422,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i27.GlobalViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2410,7 +2430,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i27.GlobalViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2418,7 +2438,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i27.GlobalViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2447,16 +2467,16 @@ class MockGlobalViewModel extends _i1.Mock implements _i27.GlobalViewModel {
 /// A class which mocks [LicenseViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLicenseViewModel extends _i1.Mock implements _i28.LicenseViewModel {
+class MockLicenseViewModel extends _i1.Mock implements _i29.LicenseViewModel {
   MockLicenseViewModel() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i29.License> get licenses => (super.noSuchMethod(
+  List<_i30.License> get licenses => (super.noSuchMethod(
         Invocation.getter(#licenses),
-        returnValue: <_i29.License>[],
-      ) as List<_i29.License>);
+        returnValue: <_i30.License>[],
+      ) as List<_i30.License>);
   @override
   bool get disposed => (super.noSuchMethod(
         Invocation.getter(#disposed),
@@ -2493,7 +2513,7 @@ class MockLicenseViewModel extends _i1.Mock implements _i28.LicenseViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2501,7 +2521,7 @@ class MockLicenseViewModel extends _i1.Mock implements _i28.LicenseViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2509,7 +2529,7 @@ class MockLicenseViewModel extends _i1.Mock implements _i28.LicenseViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2538,7 +2558,7 @@ class MockLicenseViewModel extends _i1.Mock implements _i28.LicenseViewModel {
 /// A class which mocks [LoginViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginViewModel extends _i1.Mock implements _i30.LoginViewModel {
+class MockLoginViewModel extends _i1.Mock implements _i31.LoginViewModel {
   MockLoginViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2606,7 +2626,7 @@ class MockLoginViewModel extends _i1.Mock implements _i30.LoginViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2614,7 +2634,7 @@ class MockLoginViewModel extends _i1.Mock implements _i30.LoginViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2622,7 +2642,7 @@ class MockLoginViewModel extends _i1.Mock implements _i30.LoginViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2651,7 +2671,7 @@ class MockLoginViewModel extends _i1.Mock implements _i30.LoginViewModel {
 /// A class which mocks [SplashViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSplashViewModel extends _i1.Mock implements _i31.SplashViewModel {
+class MockSplashViewModel extends _i1.Mock implements _i32.SplashViewModel {
   MockSplashViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2684,7 +2704,7 @@ class MockSplashViewModel extends _i1.Mock implements _i31.SplashViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2692,7 +2712,7 @@ class MockSplashViewModel extends _i1.Mock implements _i31.SplashViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2700,7 +2720,7 @@ class MockSplashViewModel extends _i1.Mock implements _i31.SplashViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2729,7 +2749,7 @@ class MockSplashViewModel extends _i1.Mock implements _i31.SplashViewModel {
 /// A class which mocks [TodoAddViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTodoAddViewModel extends _i1.Mock implements _i32.TodoAddViewModel {
+class MockTodoAddViewModel extends _i1.Mock implements _i33.TodoAddViewModel {
   MockTodoAddViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2792,7 +2812,7 @@ class MockTodoAddViewModel extends _i1.Mock implements _i32.TodoAddViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2800,7 +2820,7 @@ class MockTodoAddViewModel extends _i1.Mock implements _i32.TodoAddViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2808,7 +2828,7 @@ class MockTodoAddViewModel extends _i1.Mock implements _i32.TodoAddViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2837,7 +2857,7 @@ class MockTodoAddViewModel extends _i1.Mock implements _i32.TodoAddViewModel {
 /// A class which mocks [TodoListViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
+class MockTodoListViewModel extends _i1.Mock implements _i34.TodoListViewModel {
   MockTodoListViewModel() {
     _i1.throwOnMissingStub(this);
   }
@@ -2848,10 +2868,10 @@ class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
         returnValue: false,
       ) as bool);
   @override
-  _i7.Stream<List<_i20.Todo>> get dataStream => (super.noSuchMethod(
+  _i7.Stream<List<_i21.Todo>> get dataStream => (super.noSuchMethod(
         Invocation.getter(#dataStream),
-        returnValue: _i7.Stream<List<_i20.Todo>>.empty(),
-      ) as _i7.Stream<List<_i20.Todo>>);
+        returnValue: _i7.Stream<List<_i21.Todo>>.empty(),
+      ) as _i7.Stream<List<_i21.Todo>>);
   @override
   bool get disposed => (super.noSuchMethod(
         Invocation.getter(#disposed),
@@ -2914,7 +2934,7 @@ class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2922,7 +2942,7 @@ class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i12.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2930,7 +2950,7 @@ class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void registerDispose(_i17.DisposeAware? toDispose) => super.noSuchMethod(
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
         Invocation.method(
           #registerDispose,
           [toDispose],
@@ -2959,7 +2979,7 @@ class MockTodoListViewModel extends _i1.Mock implements _i33.TodoListViewModel {
 /// A class which mocks [FirebaseAnalytics].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
+class MockFirebaseAnalytics extends _i1.Mock implements _i35.FirebaseAnalytics {
   MockFirebaseAnalytics() {
     _i1.throwOnMissingStub(this);
   }
@@ -3002,7 +3022,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logEvent({
     required String? name,
     Map<String, Object?>? parameters,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3058,7 +3078,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   @override
   _i7.Future<void> setUserId({
     String? id,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3076,7 +3096,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> setCurrentScreen({
     required String? screenName,
     String? screenClassOverride = r'Flutter',
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3095,7 +3115,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> setUserProperty({
     required String? name,
     required String? value,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3125,8 +3145,8 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? currency,
     String? paymentType,
     double? value,
-    List<_i35.AnalyticsEventItem>? items,
-    _i35.AnalyticsCallOptions? callOptions,
+    List<_i36.AnalyticsEventItem>? items,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3150,8 +3170,8 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? currency,
     double? value,
     String? shippingTier,
-    List<_i35.AnalyticsEventItem>? items,
-    _i35.AnalyticsCallOptions? callOptions,
+    List<_i36.AnalyticsEventItem>? items,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3171,10 +3191,10 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
       ) as _i7.Future<void>);
   @override
   _i7.Future<void> logAddToCart({
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     double? value,
     String? currency,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3192,10 +3212,10 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
       ) as _i7.Future<void>);
   @override
   _i7.Future<void> logAddToWishlist({
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     double? value,
     String? currency,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3262,7 +3282,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? adUnitName,
     double? value,
     String? currency,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3282,7 +3302,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> logAppOpen({_i35.AnalyticsCallOptions? callOptions}) =>
+  _i7.Future<void> logAppOpen({_i36.AnalyticsCallOptions? callOptions}) =>
       (super.noSuchMethod(
         Invocation.method(
           #logAppOpen,
@@ -3296,9 +3316,9 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logBeginCheckout({
     double? value,
     String? currency,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     String? coupon,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3324,7 +3344,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? content,
     String? aclid,
     String? cp1,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3348,7 +3368,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logEarnVirtualCurrency({
     required String? virtualCurrencyName,
     required num? value,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3415,7 +3435,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logGenerateLead({
     String? currency,
     double? value,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3433,7 +3453,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   @override
   _i7.Future<void> logJoinGroup({
     required String? groupId,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3451,7 +3471,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logLevelUp({
     required int? level,
     String? character,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3469,7 +3489,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   @override
   _i7.Future<void> logLevelStart({
     required String? levelName,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3487,7 +3507,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logLevelEnd({
     required String? levelName,
     int? success,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3522,7 +3542,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   @override
   _i7.Future<void> logLogin({
     String? loginMethod,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3541,7 +3561,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     required int? score,
     int? level,
     String? character,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3562,12 +3582,12 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? currency,
     String? coupon,
     double? value,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     double? tax,
     double? shipping,
     String? transactionId,
     String? affiliation,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3592,8 +3612,8 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logRemoveFromCart({
     String? currency,
     double? value,
-    List<_i35.AnalyticsEventItem>? items,
-    _i35.AnalyticsCallOptions? callOptions,
+    List<_i36.AnalyticsEventItem>? items,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3613,7 +3633,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logScreenView({
     String? screenClass,
     String? screenName,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3632,8 +3652,8 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logSelectItem({
     String? itemListId,
     String? itemListName,
-    List<_i35.AnalyticsEventItem>? items,
-    _i35.AnalyticsCallOptions? callOptions,
+    List<_i36.AnalyticsEventItem>? items,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3653,11 +3673,11 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logSelectPromotion({
     String? creativeName,
     String? creativeSlot,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     String? locationId,
     String? promotionId,
     String? promotionName,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3680,8 +3700,8 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logViewCart({
     String? currency,
     double? value,
-    List<_i35.AnalyticsEventItem>? items,
-    _i35.AnalyticsCallOptions? callOptions,
+    List<_i36.AnalyticsEventItem>? items,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3708,7 +3728,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     String? startDate,
     String? endDate,
     String? travelClass,
-    _i35.AnalyticsCallOptions? callOptions,
+    _i36.AnalyticsCallOptions? callOptions,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3829,7 +3849,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logViewItem({
     String? currency,
     double? value,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -3846,7 +3866,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
       ) as _i7.Future<void>);
   @override
   _i7.Future<void> logViewItemList({
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     String? itemListId,
     String? itemListName,
   }) =>
@@ -3867,7 +3887,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
   _i7.Future<void> logViewPromotion({
     String? creativeName,
     String? creativeSlot,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
     String? locationId,
     String? promotionId,
     String? promotionName,
@@ -3908,7 +3928,7 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i34.FirebaseAnalytics {
     double? shipping,
     String? transactionId,
     String? affiliation,
-    List<_i35.AnalyticsEventItem>? items,
+    List<_i36.AnalyticsEventItem>? items,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
