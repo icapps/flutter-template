@@ -20,10 +20,6 @@ class DebugViewModel with ChangeNotifierEx {
   );
 
   Future<void> init() async {
-    _initValues();
-  }
-
-  void _initValues() {
     slowAnimationsEnabled = _debugRepo.isSlowAnimationsEnabled();
     notifyListeners();
   }
@@ -31,7 +27,7 @@ class DebugViewModel with ChangeNotifierEx {
   // ignore: avoid_positional_boolean_parameters
   Future<void> onSlowAnimationsChanged(bool enabled) async {
     await _debugRepo.saveSlowAnimations(enabled: enabled);
-    _initValues();
+    await init();
   }
 
   void onTargetPlatformClicked() => _navigator.goToDebugPlatformSelector();
