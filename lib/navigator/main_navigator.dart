@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
 import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/navigator/middle_ware/login_guard.dart';
-import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
@@ -34,10 +33,6 @@ class MainNavigator {
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
   static final pages = [
-    BasePage<void>(
-      name: RouteNames.root,
-      page: () => const FlavorBanner(child: SplashScreen()),
-    ),
     BasePage<void>(
       name: SplashScreen.routeName,
       page: () => const FlavorBanner(child: SplashScreen()),
