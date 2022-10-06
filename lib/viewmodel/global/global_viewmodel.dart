@@ -38,19 +38,12 @@ class GlobalViewModel with ChangeNotifierEx {
   bool get showsTranslationKeys => _showsTranslationKeys;
 
   Future<void> init() async {
-    await _initLocale();
     _initTargetPlatform();
     _getThemeMode();
   }
 
   void _initTargetPlatform() {
     _targetPlatform = _debugRepo.getTargetPlatform();
-    notifyListeners();
-  }
-
-  Future<void> _initLocale() async {
-    final locale = _localeRepo.getCustomLocale();
-    await _localizationInstance.load(locale: locale);
     notifyListeners();
   }
 
@@ -74,6 +67,7 @@ class GlobalViewModel with ChangeNotifierEx {
   Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
     await _localizationInstance.load(locale: locale);
+    print(_localizationInstance.debugTitle);
     notifyListeners();
   }
 
