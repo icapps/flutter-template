@@ -23,7 +23,7 @@ void main() {
     unawaited(mainNavigator.goToLicense());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_license_screen_1');
-    unawaited(mainNavigator.goBack<void>());
+    mainNavigator.goBack<void>();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_license_screen_2_go_back');
   });

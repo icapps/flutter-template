@@ -25,7 +25,7 @@ void main() {
     unawaited(mainNavigator.goToAddTodo());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_1');
-    unawaited(mainNavigator.goBack<void>());
+    mainNavigator.goBack<void>();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_2_go_back');
   });

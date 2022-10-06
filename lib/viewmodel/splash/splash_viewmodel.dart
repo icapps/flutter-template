@@ -20,9 +20,9 @@ class SplashViewModel with ChangeNotifierEx {
     await _localStorage.checkForNewInstallation();
     final result = await _loginRepo.isLoggedIn;
     if (result) {
-      return _navigator.goToHome();
+      _navigator.goToHome();
     } else {
-      return _navigator.goToLogin();
+      _navigator.goToLogin();
     }
   }
 }

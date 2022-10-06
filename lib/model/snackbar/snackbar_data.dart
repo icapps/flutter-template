@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum SnackBarStyle { neutral, success, error }
+enum SnackBarStyle {
+  neutral,
+  success,
+  error,
+}
 
 @immutable
 class SnackBarStyleData {

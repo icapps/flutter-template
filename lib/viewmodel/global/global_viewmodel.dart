@@ -20,6 +20,8 @@ class GlobalViewModel with ChangeNotifierEx {
 
   Localization get localizationInstance => _localizationInstance;
 
+  List<Locale> get supportedLocales => _localizationInstance.supportedLocales;
+
   GlobalViewModel(
     this._localeRepo,
     this._debugRepo,

@@ -36,7 +36,10 @@ class InternalApp extends StatelessWidget {
         super(key: key);
 
   @visibleForTesting
-  const InternalApp.test({required this.home, super.key});
+  const InternalApp.test({
+    required this.home,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +54,18 @@ class InternalApp extends StatelessWidget {
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],
         locale: viewModel.locale,
-        supportedLocales: viewModel.localizationInstance.supportedLocales,
+        supportedLocales: viewModel.supportedLocales,
         themeMode: viewModel.themeMode,
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         initialRoute: home == null ? MainNavigator.initialRoute : null,
         getPages: MainNavigator.pages,
         home: home,
-        builder: home == null ? (context, child) => TextScaleFactor(child: child ?? const SizedBox.shrink()) : null,
+        builder: home == null
+            ? (context, child) => TextScaleFactor(
+                  child: child ?? const SizedBox.shrink(),
+                )
+            : null,
       ),
     );
   }

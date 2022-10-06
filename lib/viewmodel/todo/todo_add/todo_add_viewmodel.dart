@@ -29,6 +29,6 @@ class TodoAddViewModel with ChangeNotifierEx {
       return _navigator.showError('Todo should not be empty');
     }
     await _todoRepo.saveTodo(todo);
-    return _navigator.goBack(result: true);
+    _navigator.goBack(result: true);
   }
 }

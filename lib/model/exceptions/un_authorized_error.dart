@@ -6,7 +6,10 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class UnAuthorizedError extends NetworkError {
   static const statusCode = HttpStatus.unauthorized;
 
-  UnAuthorizedError(super.dioError, {super.statusCodeValue});
+  UnAuthorizedError(
+    super.dioError, {
+    super.statusCodeValue,
+  });
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorUnauthorized;

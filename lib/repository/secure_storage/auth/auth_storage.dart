@@ -16,7 +16,7 @@ abstract class AuthStorage {
 
   Future<bool> hasLoggedInUser();
 
-  bool? get isLoggedIn;
+  bool get isLoggedIn;
 }
 
 class _AuthStorage implements AuthStorage {
@@ -25,10 +25,9 @@ class _AuthStorage implements AuthStorage {
   static const _refreshTokenKey = 'REFRESH_TOKEN';
 
   @override
-  bool? get isLoggedIn => _hasAccessToken && _hasRefreshToken;
+  bool get isLoggedIn => _hasAccessToken;
 
   bool _hasAccessToken = false;
-  bool _hasRefreshToken = false;
 
   _AuthStorage(this._storage);
 
@@ -42,7 +41,6 @@ class _AuthStorage implements AuthStorage {
   @override
   Future<String?> getRefreshToken() async {
     final result = await _storage.getValue(key: _refreshTokenKey);
-    _hasRefreshToken = result != null;
     return result;
   }
 
@@ -55,7 +53,6 @@ class _AuthStorage implements AuthStorage {
       ],
     );
     _hasAccessToken = true;
-    _hasRefreshToken = true;
   }
 
   @override
@@ -71,6 +68,5 @@ class _AuthStorage implements AuthStorage {
       _storage.removeValue(key: _refreshTokenKey),
     ]);
     _hasAccessToken = false;
-    _hasRefreshToken = false;
   }
 }

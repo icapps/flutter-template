@@ -37,7 +37,7 @@ void main() {
     ));
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_1');
-    unawaited(mainNavigator.closeDialog());
+    mainNavigator.closeDialog();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_show_dialog_2_go_back');
   });

@@ -22,7 +22,7 @@ void main() {
     unawaited(mainNavigator.goToDebugPlatformSelector());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_1');
-    unawaited(mainNavigator.goBack<void>());
+    mainNavigator.goBack<void>();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_2_go_back');
   });

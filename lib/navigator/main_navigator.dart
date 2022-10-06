@@ -56,32 +56,34 @@ class MainNavigator {
       middlewares: [AuthenticationGuard()],
     ),
     BasePage<void>(
-      name: DebugPlatformSelectorScreen.routeName,
-      page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
-      middlewares: [AuthenticationGuard()],
-    ),
-    BasePage<void>(
-      name: ThemeModeSelectorScreen.routeName,
-      page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
-      middlewares: [AuthenticationGuard()],
-    ),
-    BasePage<void>(
-      name: DebugScreen.routeName,
-      page: () => const FlavorBanner(child: DebugScreen()),
-      middlewares: [AuthenticationGuard()],
-    ),
-    BasePage<void>(
       name: LicenseScreen.routeName,
       page: () => const FlavorBanner(child: LicenseScreen()),
       middlewares: [AuthenticationGuard()],
     ),
+    if (!FlavorConfig.isProd()) ...[
+      BasePage<void>(
+        name: DebugPlatformSelectorScreen.routeName,
+        page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
+        middlewares: [AuthenticationGuard()],
+      ),
+      BasePage<void>(
+        name: ThemeModeSelectorScreen.routeName,
+        page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
+        middlewares: [AuthenticationGuard()],
+      ),
+      BasePage<void>(
+        name: DebugScreen.routeName,
+        page: () => const FlavorBanner(child: DebugScreen()),
+        middlewares: [AuthenticationGuard()],
+      ),
+    ],
   ];
 
-  Future<void> goToSplash() async => Get.offNamed<void>(SplashScreen.routeName);
+  void goToSplash() async => Get.offNamed<void>(SplashScreen.routeName);
 
-  Future<void> goToLogin() async => Get.offNamed<void>(LoginScreen.routeName);
+  void goToLogin() async => Get.offNamed<void>(LoginScreen.routeName);
 
-  Future<void> goToHome() async => Get.offNamed<void>(HomeScreen.routeName);
+  void goToHome() async => Get.offNamed<void>(HomeScreen.routeName);
 
   Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);
 
@@ -93,17 +95,17 @@ class MainNavigator {
 
   Future<void> goToLicense() async => Get.toNamed<void>(LicenseScreen.routeName);
 
-  Future<void> closeDialog() async => Get.back<void>();
+  void closeDialog() async => Get.back<void>();
 
   Future<void> goToDatabase(GeneratedDatabase db) async => Get.to<void>(DriftDbViewer(db));
 
-  Future<void> goBack<T>({T? result}) async => Get.back<T>(result: result);
+  void goBack<T>({T? result}) async => Get.back<T>(result: result);
 
   Future<void> showCustomDialog<T>({Widget? widget}) async => Get.dialog<T>(widget ?? const SizedBox.shrink());
 
-  Future<void> showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) async => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
 
-  Future<void> showError(dynamic error) async => _errorUtil.showError(error);
+  void showError(dynamic error) => _errorUtil.showError(error);
 
   Future<void> showCustomSnackBar({
     required String message,
