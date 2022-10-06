@@ -209,32 +209,29 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
   }
 
   @override
-  _i7.Future<void> goToSplash() => (super.noSuchMethod(
+  void goToSplash() => super.noSuchMethod(
         Invocation.method(
           #goToSplash,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
-  _i7.Future<void> goToLogin() => (super.noSuchMethod(
+  void goToLogin() => super.noSuchMethod(
         Invocation.method(
           #goToLogin,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
-  _i7.Future<void> goToHome() => (super.noSuchMethod(
+  void goToHome() => super.noSuchMethod(
         Invocation.method(
           #goToHome,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
   _i7.Future<void> goToAddTodo() => (super.noSuchMethod(
         Invocation.method(
@@ -281,14 +278,13 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> closeDialog() => (super.noSuchMethod(
+  void closeDialog() => super.noSuchMethod(
         Invocation.method(
           #closeDialog,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
   _i7.Future<void> goToDatabase(_i8.GeneratedDatabase? db) =>
       (super.noSuchMethod(
@@ -300,15 +296,14 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> goBack<T>({T? result}) => (super.noSuchMethod(
+  void goBack<T>({T? result}) => super.noSuchMethod(
         Invocation.method(
           #goBack,
           [],
           {#result: result},
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
   _i7.Future<void> showCustomDialog<T>({_i9.Widget? widget}) =>
       (super.noSuchMethod(
@@ -321,28 +316,26 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i7.Future<void> showErrorWithLocaleKey(
+  void showErrorWithLocaleKey(
     String? errorKey, {
     List<dynamic>? args,
   }) =>
-      (super.noSuchMethod(
+      super.noSuchMethod(
         Invocation.method(
           #showErrorWithLocaleKey,
           [errorKey],
           {#args: args},
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
-  _i7.Future<void> showError(dynamic error) => (super.noSuchMethod(
+  void showError(dynamic error) => super.noSuchMethod(
         Invocation.method(
           #showError,
           [error],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
   _i7.Future<void> showCustomSnackBar({
     required String? message,
@@ -606,6 +599,11 @@ class MockAuthStorage extends _i1.Mock implements _i17.AuthStorage {
     _i1.throwOnMissingStub(this);
   }
 
+  @override
+  bool get isLoggedIn => (super.noSuchMethod(
+        Invocation.getter(#isLoggedIn),
+        returnValue: false,
+      ) as bool);
   @override
   _i7.Future<String?> getRefreshToken() => (super.noSuchMethod(
         Invocation.method(
@@ -2269,6 +2267,11 @@ class MockGlobalViewModel extends _i1.Mock implements _i28.GlobalViewModel {
           Invocation.getter(#localizationInstance),
         ),
       ) as _i4.Localization);
+  @override
+  List<_i13.Locale> get supportedLocales => (super.noSuchMethod(
+        Invocation.getter(#supportedLocales),
+        returnValue: <_i13.Locale>[],
+      ) as List<_i13.Locale>);
   @override
   _i9.ThemeMode get themeMode => (super.noSuchMethod(
         Invocation.getter(#themeMode),

@@ -75,6 +75,7 @@ void seedGlobalViewModel() {
   when(globalViewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
   when(globalViewModel.getCurrentLanguage()).thenReturn('English');
   when(globalViewModel.localizationInstance).thenReturn(Localization());
+  when(globalViewModel.supportedLocales).thenReturn(const [Locale('en'), Locale('nl')]);
   // ignore: void_checks
   when(globalViewModel.dispose()).thenReturn(1);
 }

@@ -9,5 +9,4 @@ class RouteNames {
   static const loginScreen = '/login';
   static const splashScreen = '/splash';
   static const todoAddScreen = '/todo_add';
-  static const detailScreen = '/detail/';
 }
