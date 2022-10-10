@@ -7,7 +7,10 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class BadRequestError extends NetworkError {
   static const statusCode = HttpStatus.badRequest;
 
-  BadRequestError(super.dioError, {super.statusCodeValue});
+  BadRequestError(
+    super.dioError, {
+    super.statusCodeValue,
+  });
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorBadRequest;
