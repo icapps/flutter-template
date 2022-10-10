@@ -46,7 +46,7 @@ class ErrorScreen extends StatefulWidget {
   const ErrorScreen({Key? key}) : super(key: key);
 
   @override
-  ErrorScreenState createState() => ErrorScreenState();
+  State<ErrorScreen> createState() => ErrorScreenState();
 }
 
 class ErrorScreenState extends State<ErrorScreen> with ErrorNavigatorMixin {

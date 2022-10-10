@@ -40,7 +40,7 @@ android {
   defaultConfig {
     applicationId "com.icapps.fluttertemplate"
     minSdkVersion 19
-    targetSdkVersion 30
+    targetSdkVersion 33
     multiDexEnabled true
     versionCode flutterVersionCode.toInteger()
     versionName flutterVersionName
