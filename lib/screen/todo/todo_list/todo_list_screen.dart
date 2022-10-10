@@ -48,12 +48,12 @@ class TodoListScreenState extends State<TodoListScreen> {
           body: Builder(
             builder: (context) {
               if (viewModel.isLoading) return const Center(child: FlutterTemplateProgressIndicator.dark());
-              if (!viewModel.isLoading && errorKey != null) {
+              if (errorKey != null) {
                 return Center(
                   child: Text(localization.getTranslation(errorKey)),
                 );
               }
-              
+
               return Scrollbar(
                 child: StreamBuilder<List<Todo>>(
                   stream: viewModel.dataStream,
