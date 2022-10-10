@@ -45,57 +45,54 @@ class TodoListScreenState extends State<TodoListScreen> {
               ),
             ],
           ),
-          body: Stack(
-            children: [
-              if (!viewModel.isLoading && errorKey != null) ...[
-                Center(
+          body: Builder(
+            builder: (context) {
+              if (viewModel.isLoading) return const Center(child: FlutterTemplateProgressIndicator.dark());
+              if (!viewModel.isLoading && errorKey != null) {
+                return Center(
                   child: Text(localization.getTranslation(errorKey)),
-                ),
-              ],
-              if (viewModel.isLoading) ...[
-                const Center(child: FlutterTemplateProgressIndicator.dark()),
-              ],
-              if (!viewModel.isLoading && errorKey == null) ...[
-                Scrollbar(
-                  child: StreamBuilder<List<Todo>>(
-                    stream: viewModel.dataStream,
-                    builder: (context, snapshot) {
-                      final data = snapshot.data;
-                      if (data == null) return Container();
-                      if (data.isEmpty) {
-                        return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(ThemeDimens.padding32),
-                            child: Text(
-                              localization.todoEmptyState,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        );
-                      }
-                      return ListView.separated(
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          final item = data[index];
-                          return TodoRowItem(
-                            title: item.title,
-                            value: item.completed,
-                            onChanged: (value) => viewModel.onTodoChanged(id: item.id, value: value),
-                          );
-                        },
-                        separatorBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16),
-                          child: Container(
-                            height: 1,
-                            color: theme.colorsTheme.primary.withOpacity(0.1),
+                );
+              }
+              
+              return Scrollbar(
+                child: StreamBuilder<List<Todo>>(
+                  stream: viewModel.dataStream,
+                  builder: (context, snapshot) {
+                    final data = snapshot.data;
+                    if (data == null) return Container();
+                    if (data.isEmpty) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(ThemeDimens.padding32),
+                          child: Text(
+                            localization.todoEmptyState,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       );
-                    },
-                  ),
+                    }
+                    return ListView.separated(
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        final item = data[index];
+                        return TodoRowItem(
+                          title: item.title,
+                          value: item.completed,
+                          onChanged: (value) => viewModel.onTodoChanged(id: item.id, value: value),
+                        );
+                      },
+                      separatorBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16),
+                        child: Container(
+                          height: 1,
+                          color: theme.colorsTheme.primary.withOpacity(0.1),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ],
+              );
+            },
           ),
         );
       },

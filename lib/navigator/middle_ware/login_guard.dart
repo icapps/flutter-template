@@ -12,6 +12,6 @@ class LoginGuard extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     if (FlavorConfig.isInTest()) return null;
     final isLoggedIn = authStorage.isLoggedIn;
-    return isLoggedIn ? const RouteSettings(name: RouteNames.homeScreen) : null;
+    return isLoggedIn ? const RouteSettings(name: RouteNames.firstScreen) : null;
   }
 }

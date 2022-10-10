@@ -67,7 +67,6 @@ class GlobalViewModel with ChangeNotifierEx {
   Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
     await _localizationInstance.load(locale: locale);
-    print(_localizationInstance.debugTitle);
     notifyListeners();
   }
 
