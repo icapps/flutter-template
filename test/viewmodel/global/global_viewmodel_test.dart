@@ -33,8 +33,6 @@ void main() {
     when(debugRepo.getTargetPlatform()).thenReturn(null);
     when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
-    expect(sut.locale, const Locale('nl'));
-    verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
@@ -47,11 +45,6 @@ void main() {
     when(debugRepo.getTargetPlatform()).thenReturn(null);
     when(localStorage.getThemeMode()).thenReturn(ThemeMode.system);
     await sut.init();
-    expect(sut.locale, const Locale('nl'));
-    expect(sut.locale?.languageCode, 'nl');
-    expect(sut.locale, isNotNull);
-    expect(sut.locale?.languageCode, 'nl');
-    verify(localeRepo.getCustomLocale()).calledOnce();
     verify(debugRepo.getTargetPlatform()).calledOnce();
     verify(localStorage.getThemeMode()).calledOnce();
     verifyNoMoreInteractions(localeRepo);
