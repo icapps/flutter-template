@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
   if (FlavorConfig.isInTest()) {
-    return DatabaseConnection.fromExecutor(NativeDatabase.memory());
+    return DatabaseConnection(NativeDatabase.memory());
   }
   final dbFolder = await getApplicationDocumentsDirectory();
   final file = File(join(dbFolder.path, '$name.sqlite'));
@@ -33,7 +33,7 @@ Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
 void _startBackground(_IsolateStartRequest request) {
   final executor = NativeDatabase(File(request.targetPath));
   final driftIsolate = DriftIsolate.inCurrent(
-    () => DatabaseConnection.fromExecutor(executor),
+    () => DatabaseConnection(executor),
   );
   request.sendDriftIsolate.send(driftIsolate);
 }

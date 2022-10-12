@@ -23,7 +23,7 @@ class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBa
   @override
   void init() {
     _analytics.logAppOpen();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -42,7 +42,7 @@ class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBa
   }
 
   @override
-  void dispose() => WidgetsBinding.instance!.removeObserver(this);
+  void dispose() => WidgetsBinding.instance.removeObserver(this);
 
   @override
   void onLoggedIn() => _analytics.logLogin();

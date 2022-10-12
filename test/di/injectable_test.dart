@@ -53,7 +53,7 @@ import 'test_injectable.dart';
   TodoListViewModel,
   FirebaseAnalytics,
 ], customMocks: [
-  MockSpec<MainNavigation>(returnNullOnMissingStub: true),
+  MockSpec<MainNavigation>(onMissingStub: OnMissingStub.returnDefault),
 ])
 void main() {
   setUp(() async => initTestInjectable());

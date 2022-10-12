@@ -10,10 +10,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   var _currentIndex = 0;
 
   @override
@@ -21,11 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return DataProviderWidget(
       childBuilderLocalization: (context, localization) => Scaffold(
         body: IndexedStack(
+          index: _currentIndex,
           children: const [
             TodoListScreen(),
             DebugScreen(),
           ],
-          index: _currentIndex,
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: _onTap,

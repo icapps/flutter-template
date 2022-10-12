@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:file_local_storage_inspector/file_local_storage_inspector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:preferences_local_storage_inspector/preferences_local_storage_inspector.dart';
+import 'package:secure_storage_local_storage_inspector/secure_storage_local_storage_inspector.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storage_inspector/storage_inspector.dart';
 
