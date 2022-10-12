@@ -94,7 +94,6 @@ abstract class RegisterModule {
 
   @lazySingleton
   FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) {
-    if (FlavorConfig.isInTest()) return FlutterTemplateDatabase(NativeDatabase.memory());
     return FlutterTemplateDatabase.connect(databaseConnection);
   }
 }
