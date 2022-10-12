@@ -4,8 +4,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/repository/locale/locale_repository.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
+import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+
+Future<void> initLocale() async {
+  final localization = GetIt.I.get<Localization>();
+  final localeRepo = GetIt.I<LocaleRepository>();
+  await localization.load(locale: localeRepo.getCustomLocale());
+}
 
 Future<void> _setupCrashLogging() async {
   await Firebase.initializeApp();
