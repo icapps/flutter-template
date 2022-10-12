@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -54,9 +55,7 @@ abstract class RegisterModule {
 
   @singleton
   @preResolve
-  Future<DatabaseConnection> provideDatabaseConnection() {
-    return createDriftDatabaseConnection('db');
-  }
+  Future<DatabaseConnection> provideDatabaseConnection() => createDriftDatabaseConnection('db');
 
   @lazySingleton
   FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;
@@ -94,7 +93,10 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
+  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) {
+    if (FlavorConfig.isInTest()) return FlutterTemplateDatabase(NativeDatabase.memory());
+    return FlutterTemplateDatabase.connect(databaseConnection);
+  }
 }
 
 dynamic _parseAndDecode(String response) => jsonDecode(response);
