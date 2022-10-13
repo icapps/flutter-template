@@ -16,7 +16,7 @@ dependencies:
   drift_local_storage_inspector: ^0.3.0
   file_local_storage_inspector: ^0.2.3
   firebase_analytics: ^9.3.5
-  firebase_analytics_web: ^0.4.2
+  firebase_analytics_web: ^0.4.2+4
   firebase_core: ^1.22.0
   firebase_core_web: ^1.7.2
   firebase_crashlytics: ^2.8.10
@@ -46,7 +46,7 @@ dependencies:
   shared_preferences_web: ^2.0.4
   sqlite3_flutter_libs: ^0.5.10
   storage_inspector: ^0.2.3
-  synchronized: ^3.0.0
+  synchronized: ^3.0.0+3
 
 dev_dependencies:
   build_runner: ^2.2.1
@@ -55,10 +55,10 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  icapps_license: ^2.0.2
   icapps_translations: ^6.0.0
   injectable_generator: ^1.5.4
   json_serializable: ^6.3.2
+  license_generator: ^1.0.3
   mockito: ^5.3.1
   model_generator: ^5.8.1
   retrofit_generator: ^4.0.3+2
@@ -85,8 +85,5 @@ icapps_translations:
   default_language: 'nl'
   languages: [ 'nl','en' ]
 
-icapps_license:
-  nullsafety: true
-  licenses:
-    device_info: 'https://raw.githubusercontent.com/flutter/plugins/master/packages/device_info/device_info/LICENSE'
-    flutter_cache_manager: 'https://raw.githubusercontent.com/Baseflow/flutter_cache_manager/develop/flutter_cache_manager/LICENSE'
+license_generator:
+  check_before_generate: true

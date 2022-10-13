@@ -574,13 +574,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.3"
-  icapps_license:
-    dependency: "direct dev"
-    description:
-      name: icapps_license
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   icapps_translations:
     dependency: "direct dev"
     description:
@@ -644,6 +637,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.3.2"
+  license_generator:
+    dependency: "direct dev"
+    description:
+      name: license_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   lints:
     dependency: transitive
     description:
