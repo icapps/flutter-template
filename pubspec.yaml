@@ -86,5 +86,4 @@ icapps_translations:
   languages: [ 'nl','en' ]
 
 license_generator:
-  fail_fast: false
   check_before_generate: true

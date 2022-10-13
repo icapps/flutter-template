@@ -52,9 +52,9 @@ void seedsLicenses() {
       License(
         name: 'name$i',
         version: 'version$i',
-        url: 'url$i',
+        homepage: 'homepage$i',
         license: 'license$i',
-        licenseUrl: 'licenseUrl$i',
+        repository: 'repository$i',
       ),
   ]);
 }
