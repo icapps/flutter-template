@@ -43,7 +43,7 @@ import 'test_injectable.config.dart';
 
 L getLocale<L>(BuildContext context) => Localization.of(context) as L; // ignore: avoid_as
 
-T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T; // ignore: avoid_as
+T getTheme<T>(BuildContext context) => GetIt.I<FlutterTemplateTheme>() as T; // ignore: avoid_as
 
 final getIt = GetIt.instance;
 

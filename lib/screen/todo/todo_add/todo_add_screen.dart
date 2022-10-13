@@ -27,11 +27,12 @@ class TodoAddScreenState extends State<TodoAddScreen> with BackNavigatorMixin, E
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
       create: () => GetIt.I()..init(this),
-      childBuilderWithViewModel: (context, viewModel, _, localization) => Scaffold(
+      childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.todoAddTitle),
+          backgroundColor: theme.colorsTheme.primary,
         ),
         body: ScrollConfiguration(
           behavior: ScrollWhenNeededBehavior(),

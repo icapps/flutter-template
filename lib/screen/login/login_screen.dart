@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/navigator/mixin/error_navigator.dart';
 import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -26,13 +27,11 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
   @override
   Widget build(BuildContext context) {
-    final brightness = MediaQuery.of(context).platformBrightness;
-
     return ProviderWidget<LoginViewModel>(
       create: () => GetIt.I()..init(this),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.animated(
-          isDarkStyle: (brightness != Brightness.dark),
+          isDarkStyle: (theme.flutterTemplateThemeStyle == FlutterTemplateThemeStyle.dark),
           child: Scaffold(
             backgroundColor: theme.colorsTheme.background,
             body: SafeArea(

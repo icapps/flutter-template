@@ -4,13 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/di/db/setup_drift_none.dart'
     if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
     if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
+import 'package:flutter_template/main_common.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
@@ -32,6 +35,7 @@ Future<void> configureDependencies(String environment) async {
   print('Using environment: $environment');
   await $initGetIt(getIt, environment: environment);
   await getIt.allReady();
+  await updateAppTheme();
 }
 
 @module
@@ -69,6 +73,12 @@ abstract class RegisterModule {
     if (kIsWeb) return preferences;
     return secure;
   }
+
+  @lazySingleton
+  FlutterTemplateTheme theme() => FlutterTemplateTheme();
+
+  @lazySingleton
+  Brightness brightness() => MediaQueryData.fromWindow(WidgetsBinding.instance.window).platformBrightness;
 
   @lazySingleton
   CombiningSmartInterceptor provideCombiningSmartInterceptor(

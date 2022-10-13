@@ -31,10 +31,11 @@ class DebugScreenState extends State<DebugScreen> implements DebugNavigator {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugViewModel>(
-      consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(localization.settingsTitle),
+          backgroundColor: theme.colorsTheme.primary,
         ),
         body: ResponsiveWidget(
           builder: (context, info) => ListView(
