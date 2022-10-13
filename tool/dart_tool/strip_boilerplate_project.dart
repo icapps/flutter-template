@@ -124,13 +124,13 @@ void replaceBoilerplateReferences(Directory dir) {
 void _replaceHomeScreenLine() {
   _replaceInFile(
     'lib/screen/home/home_screen.dart',
+    '''        children: const [
+          TodoListScreen(),
+          DebugScreen(),
+        ],''',
     '''          children: const [
-            TodoListScreen(),
+            SizedBox(),
             DebugScreen(),
-          ],''',
-    '''          children: [
-            Container(),
-            const DebugScreen(),
         ],''',
   );
 }
@@ -208,11 +208,12 @@ final removeCodeLines = [
   '''  @singleton
   TodoRepository get getTodoRepo => MockTodoRepository();
 ''',
-  '''  @override
-  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);''',
-  '''  @override
-  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
-''',
+  '''    BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [AuthenticationGuard()],
+    ),''',
+  '  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);',
   '''  @override
   void goToAddTodo() => widget.mock.goToAddTodo();
 ''',
