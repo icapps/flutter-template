@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';

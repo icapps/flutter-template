@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
-import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
