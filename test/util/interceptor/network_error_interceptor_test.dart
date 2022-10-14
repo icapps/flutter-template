@@ -10,7 +10,6 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 import '../../di/test_injectable.dart';
@@ -21,7 +20,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    connectivityController = GetIt.I();
+    connectivityController = getIt();
     sut = NetworkErrorInterceptor(connectivityController);
   });
 

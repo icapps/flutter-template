@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
@@ -14,7 +13,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    shardPrefs = GetIt.I();
+    shardPrefs = getIt();
     sut = LocaleRepository(shardPrefs);
   });
 

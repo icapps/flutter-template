@@ -12,6 +12,7 @@ import 'package:flutter_template/di/db/setup_drift_none.dart'
     if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
 import 'package:flutter_template/main_common.dart';
+import 'package:flutter_template/navigator/middle_ware/init_middle_ware.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart'
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -35,6 +37,8 @@ Future<void> configureDependencies(String environment) async {
   print('Using environment: $environment');
   await $initGetIt(getIt, environment: environment);
   await getIt.allReady();
+  await initMiddleWare();
+  await initLocale();
   await updateAppTheme();
 }
 
@@ -49,6 +53,9 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  Localization localization() => Localization();
 
   @lazySingleton
   SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);

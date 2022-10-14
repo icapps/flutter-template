@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../di/test_injectable.dart';
+import '../../screen/seed.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  setUp(() async => initTestInjectable());
+  setUp(() async {
+    await initTestInjectable();
+    seedGlobalViewModel();
+    await initArchitecture();
+  });
 
   testWidgets('ProviderWidget throw exception', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
@@ -18,8 +24,8 @@ void main() {
 
   testWidgets('ProviderWidget should show child', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      child: const Material(child: Text('test')),
       create: () => TestViewModel(),
+      child: const Material(child: Text('test')),
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
@@ -28,8 +34,8 @@ void main() {
 
   testWidgets('ProviderWidget should show childbuilder with viewmodel', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      childBuilderWithViewModel: (context, item, _, __) => const Material(child: Text('Test')),
       create: () => TestViewModel(),
+      childBuilderWithViewModel: (context, item, _, __) => const Material(child: Text('Test')),
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
@@ -38,8 +44,8 @@ void main() {
 
   testWidgets('ProviderWidget should show childbuilder with consumer', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
-      consumer: (context, viewModel, widget) => const Material(child: Text('Hello')),
       create: () => TestViewModel(),
+      consumer: (context, viewModel, widget) => const Material(child: Text('Hello')),
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);
@@ -48,6 +54,7 @@ void main() {
 
   testWidgets('ProviderWidget should show childbuilder with consumer and consumerChild', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
+      create: () => TestViewModel(),
       consumerChild: const Text('Hallo 2'),
       consumer: (context, viewModel, child) => Material(
         child: Column(
@@ -59,7 +66,6 @@ void main() {
           ],
         ),
       ),
-      create: () => TestViewModel(),
     );
 
     await TestUtil.loadWidgetWithText(tester, sut);

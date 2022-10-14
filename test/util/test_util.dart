@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
+import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -28,8 +28,7 @@ class TestUtil {
         theme: ThemeData(fontFamily: ThemeFonts.body),
         locale: const Locale('en'),
         supportedLocales: const [Locale('en')],
-        localizationsDelegates: [
-          LocalizationDelegate(useCaching: false, showLocalizationKeys: true),
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
@@ -48,6 +47,7 @@ class TestUtil {
   // This method should be used when taking screenshot tests of a single screen
   // Screen integration tests
   static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
+    await initArchitecture();
     return _internalLoadWidget(
       tester,
       InternalApp.test(
@@ -124,7 +124,7 @@ class TestUtil {
 class TestWrapper extends StatelessWidget {
   final Widget child;
 
-  const TestWrapper({required this.child, Key? key}) : super(key: key);
+  const TestWrapper({required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class TestWrapper extends StatelessWidget {
 }
 
 class TextFinder extends MatchFinder {
-  TextFinder(this.text, {this.substring = false, bool skipOffstage = true}) : super(skipOffstage: skipOffstage);
+  TextFinder(this.text, {this.substring = false, super.skipOffstage});
 
   final String text;
   final bool substring;

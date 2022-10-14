@@ -1,19 +1,25 @@
+import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class DebugViewModel with ChangeNotifierEx {
+  final MainNavigator _navigator;
   final DebugRepository _debugRepo;
-
-  late DebugNavigator _navigator;
+  final FlutterTemplateDatabase _db;
 
   var slowAnimationsEnabled = false;
 
-  DebugViewModel(this._debugRepo);
+  DebugViewModel(
+    this._debugRepo,
+    this._navigator,
+    this._db,
+  );
 
-  Future<void> init(DebugNavigator navigator) async {
-    _navigator = navigator;
+  Future<void> init() async {
     _initValues();
   }
 
@@ -28,21 +34,13 @@ class DebugViewModel with ChangeNotifierEx {
     _initValues();
   }
 
-  void onTargetPlatformClicked() => _navigator.goToTargetPlatformSelector();
+  void onTargetPlatformClicked() => _navigator.goToDebugPlatformSelector();
 
   void onThemeModeClicked() => _navigator.goToThemeModeSelector();
 
-  void onSelectLanguageClicked() => _navigator.goToSelectLanguage();
+  void onSelectLanguageClicked() => _navigator.showCustomDialog<void>(widget: SelectLanguageDialog(goBack: _navigator.closeDialog));
 
-  void onLicensesClicked() => _navigator.goToLicenses();
-}
+  void onLicensesClicked() => _navigator.goToLicense();
 
-abstract class DebugNavigator {
-  void goToTargetPlatformSelector();
-
-  void goToThemeModeSelector();
-
-  void goToSelectLanguage();
-
-  void goToLicenses();
+  void goToDatabase() => _navigator.goToDatabase(_db);
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
@@ -16,11 +18,12 @@ void main() {
 
   testWidgets('Test main navigator widget database', (tester) async {
     seedGlobalViewModel();
-    final key = GlobalKey<MainNavigatorWidgetState>();
-    final sut = MainNavigatorWidget(key: key);
+    seedAuthStorage();
+
+    final mainNavigator = MainNavigator(GetIt.I.get());
+    await TestUtil.loadScreen(tester, const SizedBox.shrink());
     final db = GetIt.I<FlutterTemplateDatabase>();
-    await TestUtil.loadScreen(tester, sut);
-    key.currentState!.goToDatabase(db);
+    unawaited(mainNavigator.goToDatabase(db));
     await tester.pumpAndSettle();
     expect(find.byType(DriftDbViewer), findsOneWidget);
   });

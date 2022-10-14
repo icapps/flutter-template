@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_template/widget/general/styled/flutter_template_button.d
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,11 +22,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 @visibleForTesting
-class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin implements LoginNavigator {
+class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LoginViewModel>(
-      create: () => GetIt.I()..init(this),
+      create: () => getIt()..init(),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.animated(
           isDarkStyle: (theme.flutterTemplateThemeStyle == FlutterTemplateThemeStyle.dark),
@@ -84,7 +82,4 @@ class LoginScreenState extends State<LoginScreen> with ErrorNavigatorMixin imple
       ),
     );
   }
-
-  @override
-  void goToHome() => MainNavigatorWidget.of(context).goToHome();
 }

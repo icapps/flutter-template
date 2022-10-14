@@ -30,7 +30,6 @@ void main() {
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_inital_state');
-    verifyDebugPlatformViewModel();
     verifyGlobalViewModel();
   });
 
@@ -131,13 +130,6 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(platformViewModel.onBackClicked()).calledOnce();
-      verifyGlobalViewModel();
     });
   });
-}
-
-void verifyDebugPlatformViewModel() {
-  // ignore: avoid_as
-  final platformSelectorViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
-  verify(platformSelectorViewModel.init(any)).calledOnce();
 }

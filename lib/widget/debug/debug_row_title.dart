@@ -7,8 +7,8 @@ class DebugRowTitle extends StatelessWidget {
 
   const DebugRowTitle({
     required this.title,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

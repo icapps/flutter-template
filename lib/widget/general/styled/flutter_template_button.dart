@@ -14,8 +14,8 @@ class FlutterTemplateButton extends StatelessWidget {
     required this.onClick,
     this.height = 48,
     this.isEnabled = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -119,8 +119,8 @@ class IconAssetTesterAndroid extends StatelessWidget {
 
   const IconAssetTesterAndroid({
     required this.getAsset,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -143,8 +143,8 @@ class IconAssetTesterIOS extends StatelessWidget {
 
   const IconAssetTesterIOS({
     required this.getAsset,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

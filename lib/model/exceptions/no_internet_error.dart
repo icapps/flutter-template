@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class NoInternetError extends NetworkError {
-  NoInternetError(DioError dioError) : super(dioError);
+  NoInternetError(super.dioError);
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorNoNetwork;

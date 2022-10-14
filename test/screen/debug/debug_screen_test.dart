@@ -8,7 +8,6 @@ import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
-import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
@@ -19,19 +18,15 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    debugViewModel = GetIt.I();
-    globalViewModel = GetIt.I();
+    debugViewModel = getIt();
+    globalViewModel = getIt();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
     seedDebugViewModel();
     seedGlobalViewModel();
 
-    final mockNavigation = MockMainNavigation();
-    final sut = MockMainNavigator(
-      mock: mockNavigation,
-      child: const DebugScreen(),
-    );
+    const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_inital_state');
@@ -206,7 +201,7 @@ void main() {
 
 void verifyDebugViewModel() {
   final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
-  verify(debugViewModel.init(any)).calledOnce();
+  verify(debugViewModel.init()).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }
 

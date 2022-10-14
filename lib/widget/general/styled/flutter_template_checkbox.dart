@@ -12,8 +12,8 @@ class FlutterTemplateCheckBox extends StatelessWidget {
   const FlutterTemplateCheckBox({
     required this.value,
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

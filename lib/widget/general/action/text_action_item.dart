@@ -15,8 +15,8 @@ class TextActionItem extends StatelessWidget {
     required this.enabled,
     required this.onClick,
     this.style,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
