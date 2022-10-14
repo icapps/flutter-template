@@ -3,7 +3,7 @@ description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   connectivity_plus: ^2.3.7
@@ -30,12 +30,13 @@ dependencies:
   flutter_svg: ^1.1.5
   flutter_web_plugins:
     sdk: flutter
+  get: ^4.6.5
   get_it: ^7.2.0
   icapps_architecture: ^0.7.3
   injectable: ^1.5.3
   json_annotation: ^4.6.0
   niddler_dart: ^1.5.2
-  path: ^1.8.2
+  path: ^1.8.1
   path_provider: ^2.0.11
   preferences_local_storage_inspector: ^0.2.3
   provider: ^6.0.3
@@ -44,6 +45,7 @@ dependencies:
   secure_storage_local_storage_inspector: ^0.3.0
   shared_preferences: ^2.0.15
   shared_preferences_web: ^2.0.4
+  sprintf: ^6.0.2
   sqlite3_flutter_libs: ^0.5.10
   storage_inspector: ^0.2.3
   synchronized: ^3.0.0+3
@@ -55,7 +57,8 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  icapps_translations: ^6.0.0
+  icapps_license: ^2.0.2
+  icapps_translations: ^9.0.0
   injectable_generator: ^1.5.4
   json_serializable: ^6.3.2
   license_generator: ^1.0.3

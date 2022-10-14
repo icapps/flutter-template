@@ -1,3 +1,5 @@
+import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,23 +7,26 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
+import '../../di/injectable_test.mocks.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late DebugViewModel sut;
-  late DebugNavigator navigator;
+  late MainNavigator navigator;
   late DebugRepository debugRepo;
+  late FlutterTemplateDatabase database;
 
   setUp(() async {
     await initTestInjectable();
-    navigator = MockDebugNavigator();
-    debugRepo = GetIt.I();
-    sut = DebugViewModel(debugRepo);
+    navigator = MockMainNavigator();
+    database = GetIt.I<FlutterTemplateDatabase>();
+    debugRepo = getIt();
+    sut = DebugViewModel(debugRepo, navigator, database);
   });
 
   test('DebugViewModel init', () async {
     when(debugRepo.isSlowAnimationsEnabled()).thenReturn(true);
-    await sut.init(navigator);
+    await sut.init();
     verify(debugRepo.isSlowAnimationsEnabled()).calledOnce();
     verifyNoMoreInteractions(debugRepo);
     verifyZeroInteractions(navigator);
@@ -30,28 +35,28 @@ void main() {
   group('After init', () {
     setUp(() async {
       when(debugRepo.isSlowAnimationsEnabled()).thenReturn(true);
-      await sut.init(navigator);
+      await sut.init();
       reset(navigator);
       reset(debugRepo);
     });
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onSelectLanguageClicked();
-      verify(navigator.goToSelectLanguage()).calledOnce();
+      verify(navigator.showCustomDialog<void>(widget: anyNamed('widget'))).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onLicensesClicked();
-      verify(navigator.goToLicenses()).calledOnce();
+      verify(navigator.goToLicense()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onTargetPlatformClicked();
-      verify(navigator.goToTargetPlatformSelector()).calledOnce();
+      verify(navigator.goToDebugPlatformSelector()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });
@@ -85,5 +90,3 @@ void main() {
     });
   });
 }
-
-class MockDebugNavigator extends Mock implements DebugNavigator {}

@@ -8,7 +8,7 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
@@ -41,9 +41,9 @@ import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
 import 'test_injectable.config.dart';
 
-L getLocale<L>(BuildContext context) => Localization.of(context) as L; // ignore: avoid_as
+L getLocale<L>(BuildContext context) => Localization as L;
 
-T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T; // ignore: avoid_as
+T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T;
 
 final getIt = GetIt.instance;
 
@@ -84,6 +84,9 @@ abstract class RegisterModule {
   FlutterTemplateDatabase get flutterTemplateDatabase => FlutterTemplateDatabase(NativeDatabase.memory());
 
   @Environment(Environments.test)
+  @singleton
+  MainNavigator get getMainNavigator => MockMainNavigator();
+
   @singleton
   FirebaseAnalytics get getFirebaseAnalytics => MockFirebaseAnalytics();
 
@@ -157,11 +160,7 @@ abstract class RegisterModule {
   TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
 
   @singleton
-  MainNavigation get getMainNavigation {
-    final navigation = MockMainNavigation();
-    when(navigation.showCustomDialog<void>(builder: anyNamed('builder'))).thenAnswer((realInvocation) => 1);
-    return navigation;
-  }
+  Localization get getLocalization => Localization();
 
   static T _initVM<T extends ChangeNotifier>(T viewModel) {
     // ignore: void_checks

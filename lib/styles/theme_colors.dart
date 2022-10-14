@@ -16,4 +16,5 @@ class ThemeColors {
   static const disabledGrey = Color(0xFFE6E6E6);
   static const shadow = Color(0x1e000000); //black 12%
   static const error = Color(0xFFE30000);
+  static const success = Color(0xFF3E9103);
 }

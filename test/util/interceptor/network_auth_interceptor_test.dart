@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
@@ -14,7 +13,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    authStorage = GetIt.I();
+    authStorage = getIt();
     sut = NetworkAuthInterceptor(authStorage);
   });
 

@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_it/get_it.dart';
 
 class LicenseScreen extends StatefulWidget {
   static const String routeName = RouteNames.licenseScreen;
 
-  const LicenseScreen({
-    Key? key,
-  }) : super(key: key);
+  const LicenseScreen({super.key});
 
   @override
   LicenseScreenState createState() => LicenseScreenState();
 }
 
 @visibleForTesting
-class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin implements LicenseNavigator {
+class LicenseScreenState extends State<LicenseScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
-      consumerWithThemeAndLocalization: (context, viewModel, child, _, localization) => Scaffold(
+      create: getIt,
+      consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
@@ -57,7 +56,6 @@ class LicenseScreenState extends State<LicenseScreen> with BackNavigatorMixin im
           },
         ),
       ),
-      create: () => GetIt.I()..init(this),
     );
   }
 }

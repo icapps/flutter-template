@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/license.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -69,22 +70,27 @@ void seedGlobalViewModel() {
   final globalViewModel = GetIt.I<GlobalViewModel>();
   when(globalViewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
   when(globalViewModel.showsTranslationKeys).thenAnswer((_) => false);
-  when(globalViewModel.localeDelegate).thenAnswer((_) => LocalizationDelegate(newLocale: const Locale('en'), showLocalizationKeys: true));
   when(globalViewModel.locale).thenAnswer((_) => const Locale('en'));
   when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
   when(globalViewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
   when(globalViewModel.getCurrentLanguage()).thenReturn('English');
+  when(globalViewModel.localizationInstance).thenReturn(Localization());
+  when(globalViewModel.supportedLocales).thenReturn(const [Locale('en'), Locale('nl')]);
   // ignore: void_checks
   when(globalViewModel.dispose()).thenReturn(1);
-  // ignore: void_checks
-  when(globalViewModel.toggleTranslationKeys()).thenReturn(1);
 }
 
 void verifyGlobalViewModel() {
   final globalViewModel = GetIt.I<GlobalViewModel>();
   verify(globalViewModel.targetPlatform);
-  verify(globalViewModel.localeDelegate);
   verify(globalViewModel.locale);
   verify(globalViewModel.themeMode);
   verify(globalViewModel.init()).calledOnce();
+}
+
+void seedAuthStorage() {
+  final authStorage = GetIt.I<AuthStorage>();
+  when(authStorage.getAccessToken()).thenAnswer((_) => Future.value('accessToken'));
+  when(authStorage.getRefreshToken()).thenAnswer((_) => Future.value('refreshToken'));
+  when(authStorage.isLoggedIn).thenReturn(true);
 }

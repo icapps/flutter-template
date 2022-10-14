@@ -19,7 +19,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    loginViewModel = GetIt.I();
+    loginViewModel = getIt();
     seedLoginViewModel();
     seedGlobalViewModel();
   });
@@ -120,5 +120,5 @@ void verifyLoginViewModel() {
   final loginViewModel = GetIt.I.resolveAs<LoginViewModel, MockLoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
-  verify(loginViewModel.init(any)).calledOnce();
+  verify(loginViewModel.init()).calledOnce();
 }

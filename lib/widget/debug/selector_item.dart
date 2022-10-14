@@ -14,8 +14,8 @@ class SelectorItem extends StatelessWidget {
     required this.onClick,
     required this.title,
     required this.selected,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

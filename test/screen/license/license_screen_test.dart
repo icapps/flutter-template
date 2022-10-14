@@ -16,7 +16,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    licenseViewModel = GetIt.I();
+    licenseViewModel = getIt();
   });
 
   testWidgets('Test splash screen initial state', (tester) async {
@@ -66,5 +66,4 @@ void main() {
 void verifyLicenseViewModel() {
   final licenseViewModel = GetIt.I.resolveAs<LicenseViewModel, MockLicenseViewModel>();
   verify(licenseViewModel.licenses);
-  verify(licenseViewModel.init(any)).calledOnce();
 }

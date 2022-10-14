@@ -2,7 +2,6 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
@@ -15,7 +14,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    globalViewModel = GetIt.I();
+    globalViewModel = getIt();
     seedGlobalViewModel();
   });
 
