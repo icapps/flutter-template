@@ -18,8 +18,8 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    debugViewModel = GetIt.I();
-    globalViewModel = GetIt.I();
+    debugViewModel = getIt();
+    globalViewModel = getIt();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {

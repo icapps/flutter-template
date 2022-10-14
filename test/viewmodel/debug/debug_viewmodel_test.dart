@@ -20,7 +20,7 @@ void main() {
     await initTestInjectable();
     navigator = MockMainNavigator();
     database = GetIt.I<FlutterTemplateDatabase>();
-    debugRepo = GetIt.I();
+    debugRepo = getIt();
     sut = DebugViewModel(debugRepo, navigator, database);
   });
 

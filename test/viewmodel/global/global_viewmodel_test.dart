@@ -6,7 +6,6 @@ import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
@@ -21,10 +20,10 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    localeRepo = GetIt.I();
-    debugRepo = GetIt.I();
-    localStorage = GetIt.I();
-    localization = GetIt.I();
+    localeRepo = getIt();
+    debugRepo = getIt();
+    localStorage = getIt();
+    localization = getIt();
     sut = GlobalViewModel(localeRepo, debugRepo, localStorage, localization);
   });
 
@@ -208,7 +207,7 @@ void main() {
       });
     });
 
-    group('ThemeMode',(){
+    group('ThemeMode', () {
       test('GlobalViewModel updateThemeMode light', () async {
         when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
         await sut.updateThemeMode(ThemeMode.light);

@@ -17,7 +17,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    globalViewModel = GetIt.I();
+    globalViewModel = getIt();
   });
 
   testWidgets('Test main navigator widget show dialog', (tester) async {

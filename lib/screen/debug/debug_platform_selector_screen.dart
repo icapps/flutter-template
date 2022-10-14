@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class DebugPlatformSelectorScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
-      create: () => GetIt.I(),
+      create: getIt,
       consumerWithThemeAndLocalization: (context, value, _, theme, localization) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,

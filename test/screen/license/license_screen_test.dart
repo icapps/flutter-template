@@ -16,7 +16,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    licenseViewModel = GetIt.I();
+    licenseViewModel = getIt();
   });
 
   testWidgets('Test splash screen initial state', (tester) async {

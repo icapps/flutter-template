@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_template/widget/general/styled/flutter_template_button.d
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class LoginScreenState extends State<LoginScreen> {
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return ProviderWidget<LoginViewModel>(
-      create: () => GetIt.I()..init(),
+      create: () => getIt()..init(),
       childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
         builder: (context, viewModel, child) => StatusBar.animated(
           isDarkStyle: (brightness != Brightness.dark),

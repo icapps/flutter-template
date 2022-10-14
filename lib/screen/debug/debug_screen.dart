@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class DebugScreen extends StatefulWidget {
@@ -26,7 +26,7 @@ class DebugScreenState extends State<DebugScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugViewModel>(
-      create: () => GetIt.I()..init(),
+      create: () => getIt()..init(),
       consumer: (context, viewModel, child) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,

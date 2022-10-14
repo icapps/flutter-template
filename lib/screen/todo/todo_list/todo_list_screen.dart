@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class TodoListScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoListViewModel>(
-      create: () => GetIt.I()..init(),
+      create: () => getIt()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
         final errorKey = viewModel.errorKey;
         return Scaffold(

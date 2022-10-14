@@ -18,7 +18,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    todoAddViewModel = GetIt.I();
+    todoAddViewModel = getIt();
     seedTodoAddViewModel();
     seedGlobalViewModel();
   });

@@ -19,7 +19,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    loginViewModel = GetIt.I();
+    loginViewModel = getIt();
     seedLoginViewModel();
     seedGlobalViewModel();
   });
