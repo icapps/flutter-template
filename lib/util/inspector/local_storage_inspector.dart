@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:file_local_storage_inspector/file_local_storage_inspector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:preferences_local_storage_inspector/preferences_local_storage_inspector.dart';
@@ -13,8 +13,8 @@ import 'package:storage_inspector/storage_inspector.dart';
 
 Future<void> initAllStorageInspectors() async {
   await _initLocalStorageInspector((driver) async {
-    driver.addKeyValueServer(SecureStorageKeyValueServer(GetIt.I.get<FlutterSecureStorage>(), 'Secure Storage', icon: secureStorageIcon));
-    driver.addKeyValueServer(PreferencesKeyValueServer(GetIt.I.get<SharedPreferences>(), 'Shared preferences'));
+    driver.addKeyValueServer(SecureStorageKeyValueServer(getIt.get<FlutterSecureStorage>(), 'Secure Storage', icon: secureStorageIcon));
+    driver.addKeyValueServer(PreferencesKeyValueServer(getIt.get<SharedPreferences>(), 'Shared preferences'));
     if (!kIsWeb) {
       driver.addFileServer(DefaultFileServer((await getApplicationDocumentsDirectory()).path, 'App documents'));
       driver.addFileServer(DefaultFileServer((await getTemporaryDirectory()).path, 'Cache files'));
