@@ -59,7 +59,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) {
   });
 }
 
-Future<void> updateAppTheme() async {
+bool updateAppTheme() {
   final flutterTemplateTheme = GetIt.I<FlutterTemplateTheme>();
   final localStorage = GetIt.I<LocalStorage>();
 
@@ -71,5 +71,5 @@ Future<void> updateAppTheme() async {
     final brightness = GetIt.I<Brightness>();
     themeMode = (brightness == Brightness.dark) ? ThemeMode.dark : ThemeMode.light;
   }
-  flutterTemplateTheme.configureForThemeStyle(themeMode == ThemeMode.dark ? FlutterTemplateThemeStyle.dark : FlutterTemplateThemeStyle.light);
+  return flutterTemplateTheme.configureForThemeStyle(themeMode == ThemeMode.dark ? FlutterTemplateThemeStyle.dark : FlutterTemplateThemeStyle.light);
 }

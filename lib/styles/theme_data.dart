@@ -241,7 +241,15 @@ class FlutterTemplateTheme {
     _exceptionsTextTheme = _textThemeExceptionsFromColorsTheme(colorTheme: _colorsTheme);
   }
 
-  void configureForThemeStyle(FlutterTemplateThemeStyle themeStyle) {
+  bool get isDarkTheme => (flutterTemplateThemeStyle == FlutterTemplateThemeStyle.dark);
+
+  bool get isLightTheme => (flutterTemplateThemeStyle == FlutterTemplateThemeStyle.light);
+
+  /// returns `true` if the theme was updated to a different value
+  bool configureForThemeStyle(FlutterTemplateThemeStyle themeStyle) {
+    if (themeStyle == flutterTemplateThemeStyle) {
+      return false;
+    }
     flutterTemplateThemeStyle = themeStyle;
     if (flutterTemplateThemeStyle == FlutterTemplateThemeStyle.dark) {
       _colorsTheme = _colorThemeDark;
@@ -253,5 +261,6 @@ class FlutterTemplateTheme {
     _inverseCoreTextTheme = _inverseCoreTextThemeFromColorsTheme(colorTheme: _colorsTheme);
     _accentTextTheme = _accentTextThemeFromColorsTheme(colorTheme: _colorsTheme);
     _exceptionsTextTheme = _textThemeExceptionsFromColorsTheme(colorTheme: _colorsTheme);
+    return true;
   }
 }
