@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i40;
+import 'package:dio/dio.dart' as _i41;
 import 'package:drift/drift.dart' as _i7;
 import 'package:firebase_analytics/firebase_analytics.dart' as _i9;
 import 'package:flutter/foundation.dart' as _i3;
@@ -33,12 +33,13 @@ import '../util/cache/cache_controlling.dart' as _i4;
 import '../util/interceptor/network_auth_interceptor.dart' as _i33;
 import '../util/interceptor/network_error_interceptor.dart' as _i15;
 import '../util/interceptor/network_log_interceptor.dart' as _i16;
-import '../util/interceptor/network_refresh_interceptor.dart' as _i39;
+import '../util/interceptor/network_refresh_interceptor.dart' as _i40;
 import '../util/locale/localization.dart' as _i13;
 import '../util/snackbar/error_util.dart' as _i8;
 import '../viewmodel/debug/debug_platform_selector_viewmodel.dart' as _i22;
+import '../viewmodel/debug/debug_theme_selector_viewmodel.dart' as _i38;
 import '../viewmodel/debug/debug_viewmodel.dart' as _i28;
-import '../viewmodel/global/global_viewmodel.dart' as _i38;
+import '../viewmodel/global/global_viewmodel.dart' as _i39;
 import '../viewmodel/license/license_viewmodel.dart' as _i24;
 import '../viewmodel/login/login_viewmodel.dart' as _i32;
 import '../viewmodel/splash/splash_viewmodel.dart' as _i35;
@@ -46,8 +47,8 @@ import '../viewmodel/todo/todo_add/todo_add_viewmodel.dart' as _i36;
 import '../viewmodel/todo/todo_list/todo_list_viewmodel.dart' as _i37;
 import '../webservice/todo/todo_dummy_service.dart' as _i21;
 import '../webservice/todo/todo_service.dart' as _i20;
-import '../webservice/todo/todo_webservice.dart' as _i41;
-import 'injectable.dart' as _i42;
+import '../webservice/todo/todo_webservice.dart' as _i42;
+import 'injectable.dart' as _i43;
 
 const String _dummy = 'dummy';
 const String _dev = 'dev';
@@ -66,7 +67,7 @@ Future<_i1.GetIt> $initGetIt(
     environmentFilter,
   );
   final registerModule = _$RegisterModule();
-  gh.lazySingleton<_i3.Brightness>(() => registerModule.brightness());
+  gh.factory<_i3.Brightness>(() => registerModule.brightness());
   gh.singleton<_i4.CacheControlling>(_i5.CacheController());
   gh.singleton<_i6.ConnectivityHelper>(registerModule.connectivityHelper());
   await gh.singletonAsync<_i7.DatabaseConnection>(
@@ -153,13 +154,18 @@ Future<_i1.GetIt> $initGetIt(
         get<_i25.TodoRepository>(),
         get<_i14.MainNavigator>(),
       ));
-  gh.lazySingleton<_i38.GlobalViewModel>(() => _i38.GlobalViewModel(
+  gh.factory<_i38.DebugThemeSelectorViewmodel>(
+      () => _i38.DebugThemeSelectorViewmodel(
+            get<_i14.MainNavigator>(),
+            get<_i29.LocalStorage>(),
+          ));
+  gh.lazySingleton<_i39.GlobalViewModel>(() => _i39.GlobalViewModel(
         get<_i30.LocaleRepository>(),
         get<_i27.DebugRepository>(),
         get<_i29.LocalStorage>(),
         get<_i13.Localization>(),
       ));
-  gh.singleton<_i39.NetworkRefreshInterceptor>(_i39.NetworkRefreshInterceptor(
+  gh.singleton<_i40.NetworkRefreshInterceptor>(_i40.NetworkRefreshInterceptor(
     get<_i26.AuthStorage>(),
     get<_i34.RefreshRepository>(),
   ));
@@ -168,12 +174,12 @@ Future<_i1.GetIt> $initGetIt(
             get<_i16.NetworkLogInterceptor>(),
             get<_i33.NetworkAuthInterceptor>(),
             get<_i15.NetworkErrorInterceptor>(),
-            get<_i39.NetworkRefreshInterceptor>(),
+            get<_i40.NetworkRefreshInterceptor>(),
           ));
-  gh.lazySingleton<_i40.Dio>(
+  gh.lazySingleton<_i41.Dio>(
       () => registerModule.provideDio(get<_i6.CombiningSmartInterceptor>()));
   gh.singleton<_i20.TodoService>(
-    _i41.TodoWebService(get<_i40.Dio>()),
+    _i42.TodoWebService(get<_i41.Dio>()),
     registerFor: {
       _dev,
       _prod,
@@ -182,4 +188,4 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$RegisterModule extends _i42.RegisterModule {}
+class _$RegisterModule extends _i43.RegisterModule {}

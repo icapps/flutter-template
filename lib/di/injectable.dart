@@ -39,7 +39,7 @@ Future<void> configureDependencies(String environment) async {
   await getIt.allReady();
   await initMiddleWare();
   await initLocale();
-  await updateAppTheme();
+  updateAppTheme();
 }
 
 @module
@@ -84,7 +84,7 @@ abstract class RegisterModule {
   @lazySingleton
   FlutterTemplateTheme theme() => FlutterTemplateTheme();
 
-  @lazySingleton
+  @injectable
   Brightness brightness() => MediaQueryData.fromWindow(WidgetsBinding.instance.window).platformBrightness;
 
   @lazySingleton
