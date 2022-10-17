@@ -26,7 +26,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final getIt = GetIt.instance;
+final getIt = GetIt.asNewInstance();
 
 @InjectableInit(
   initializerName: r'$initGetIt',

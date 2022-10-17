@@ -3,9 +3,9 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateNetworkImage extends StatelessWidget {
@@ -78,7 +78,7 @@ class _FlutterTemplateBetterNetworkImage extends StatefulWidget {
 }
 
 class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBetterNetworkImage> {
-  final _cacheController = GetIt.instance.get<CacheControlling>();
+  final _cacheController = getIt.get<CacheControlling>();
 
   var _isLoading = false;
   var _hasError = false;
