@@ -5,6 +5,7 @@ import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
+import 'package:flutter_template/widget/general/theme_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 class LicenseScreen extends StatefulWidget {
@@ -22,38 +23,40 @@ class LicenseScreenState extends State<LicenseScreen> {
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
       create: getIt,
-      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
-          title: Text(localization.debugLicensesTitle),
-          backgroundColor: theme.colorsTheme.primary,
-        ),
-        body: ListView.builder(
-          padding: const EdgeInsets.all(ThemeDimens.padding16),
-          itemCount: viewModel.licenses.length,
-          itemBuilder: (context, index) {
-            final item = viewModel.licenses[index];
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.all(ThemeDimens.padding16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.name,
-                      style: const TextStyle(color: Colors.black, fontSize: 22),
-                    ),
-                    Container(height: ThemeDimens.padding8),
-                    Text(
-                      item.license,
-                      style: const TextStyle(color: Colors.black54),
-                    ),
-                  ],
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => ThemeWidget(
+        child: Scaffold(
+          appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+            leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
+            title: Text(localization.debugLicensesTitle),
+            backgroundColor: theme.colorsTheme.primary,
+          ),
+          body: ListView.builder(
+            padding: const EdgeInsets.all(ThemeDimens.padding16),
+            itemCount: viewModel.licenses.length,
+            itemBuilder: (context, index) {
+              final item = viewModel.licenses[index];
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(ThemeDimens.padding16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.name,
+                        style: const TextStyle(color: Colors.black, fontSize: 22),
+                      ),
+                      Container(height: ThemeDimens.padding8),
+                      Text(
+                        item.license,
+                        style: const TextStyle(color: Colors.black54),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
