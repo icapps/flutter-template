@@ -36,7 +36,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) async {
     } catch (_) {}
 
     try {
-      staticLogger.e('Zone error', error: error, trace: trace);
+      staticLogger.e('Uncaught platform error', error: error, trace: trace);
     } catch (_) {
       // ignore: avoid_print
       print(error);
