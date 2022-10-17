@@ -17,6 +17,7 @@ Future<void> main() async {
       name: 'DUMMY',
       color: Colors.purple,
       values: values,
+      supportsTheming: true,
     );
     // ignore: avoid_print
     print('Starting app from main_dummy.dart');

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
-import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -31,7 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
         create: () => getIt()..init(),
         childBuilder: (context, theme, _) => Consumer<LoginViewModel>(
           builder: (context, viewModel, child) => StatusBar.animated(
-            isDarkStyle: (theme.flutterTemplateThemeStyle == FlutterTemplateThemeStyle.dark),
+            isDarkStyle: theme.isDarkTheme,
             child: Scaffold(
               backgroundColor: theme.colorsTheme.background,
               body: SafeArea(

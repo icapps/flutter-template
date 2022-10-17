@@ -68,6 +68,7 @@ Future<void> initTestInjectable() async {
       color: Colors.purple,
       name: 'Test',
       values: values,
+      supportsTheming: true,
     );
   }
   TestWidgetsFlutterBinding.ensureInitialized();

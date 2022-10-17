@@ -152,6 +152,7 @@ void main() {
         flavor: Flavor.dev,
         color: Colors.purple,
         name: 'Test',
+        supportsTheming: true,
         values: values,
       );
       final dynamic newError = await sut.onError(null);

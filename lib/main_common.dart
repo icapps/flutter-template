@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/styles/theme_data.dart';
@@ -60,8 +61,10 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) {
 }
 
 bool updateAppTheme() {
-  final flutterTemplateTheme = GetIt.I<FlutterTemplateTheme>();
-  final localStorage = GetIt.I<LocalStorage>();
+  if (!FlavorConfig.instance.isThemingSupported) return false;
+
+  final flutterTemplateTheme = getIt.get<FlutterTemplateTheme>();
+  final localStorage = getIt.get<LocalStorage>();
 
   var themeMode = FlavorConfig.instance.themeMode;
   if (localStorage.getThemeMode() != null) {

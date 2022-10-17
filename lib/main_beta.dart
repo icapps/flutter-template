@@ -17,6 +17,7 @@ Future<void> main() async {
       name: 'BETA',
       color: Colors.blue,
       values: values,
+      supportsTheming: true,
     );
     await configureDependencies(Environments.prod);
     runApp(const MyApp());

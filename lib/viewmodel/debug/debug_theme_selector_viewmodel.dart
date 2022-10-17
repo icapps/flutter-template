@@ -19,7 +19,7 @@ class DebugThemeSelectorViewmodel with ChangeNotifierEx {
     FlavorConfig.instance.themeMode = themeMode;
     await _localStorage.updateThemeMode(themeMode);
     updateAppTheme();
-    notifyListeners();
+    if (!disposed) notifyListeners();
   }
 
   void onBackClicked() => _navigator.goBack<void>();
