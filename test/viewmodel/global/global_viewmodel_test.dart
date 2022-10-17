@@ -206,37 +206,5 @@ void main() {
         });
       });
     });
-
-    group('ThemeMode', () {
-      test('GlobalViewModel updateThemeMode light', () async {
-        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
-        await sut.updateThemeMode(ThemeMode.light);
-        reset(localeRepo);
-        reset(debugRepo);
-        expect(sut.themeMode, ThemeMode.light);
-        verifyZeroInteractions(localeRepo);
-        verifyZeroInteractions(debugRepo);
-      });
-
-      test('GlobalViewModel updateThemeMode dark', () async {
-        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.system);
-        await sut.updateThemeMode(ThemeMode.dark);
-        reset(localeRepo);
-        reset(debugRepo);
-        expect(sut.themeMode, ThemeMode.dark);
-        verifyZeroInteractions(localeRepo);
-        verifyZeroInteractions(debugRepo);
-      });
-
-      test('GlobalViewModel updateThemeMode system', () async {
-        when(localStorage.getThemeMode()).thenAnswer((_) => ThemeMode.dark);
-        await sut.updateThemeMode(ThemeMode.system);
-        reset(localeRepo);
-        reset(debugRepo);
-        expect(sut.themeMode, ThemeMode.system);
-        verifyZeroInteractions(localeRepo);
-        verifyZeroInteractions(debugRepo);
-      });
-    });
   });
 }

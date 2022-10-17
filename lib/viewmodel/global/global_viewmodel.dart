@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/main_common.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
@@ -84,13 +83,6 @@ class GlobalViewModel with ChangeNotifierEx {
   Future<void> setSelectedPlatformToDefault() async {
     await _debugRepo.saveSelectedPlatform(null);
     _initTargetPlatform();
-  }
-
-  Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
-    await _localStorage.updateThemeMode(themeMode);
-    await updateAppTheme();
-    notifyListeners();
   }
 
   String getCurrentPlatform() {
