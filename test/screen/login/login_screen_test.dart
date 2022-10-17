@@ -23,6 +23,7 @@ void main() {
     loginViewModel = getIt();
     seedLoginViewModel();
     seedGlobalViewModel();
+    seedLocalStorage();
   });
 
   testWidgets('Test login screen initial state', (tester) async {
