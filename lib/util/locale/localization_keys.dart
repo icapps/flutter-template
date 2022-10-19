@@ -311,4 +311,60 @@ class LocalizationKeys {
   /// en:  **'System default'**
   static const themeModeLabelSystem = 'theme_mode_label_System';
 
+  /// Translations:
+  ///
+  /// nl:  **'Help ons verbeteren'**
+  ///
+  /// en:  **'Help us improve'**
+  static const permissionAnalyticsTitle = 'permission_analytics_title';
+
+  /// Translations:
+  ///
+  /// nl:  **'Wij willen graag weten hoe je de app gebruikt. Dit helpt ons je gebruikservaring beter te maken. We sturen hierbij geen persoonsgegevens door. '**
+  ///
+  /// en:  **'We would love to know how you use our app. This helps us to improve your user experience. No personal data is collected. '**
+  static const permissionAnalyticsDescription = 'permission_analytics_description';
+
+  /// Translations:
+  ///
+  /// nl:  **'Toestaan'**
+  ///
+  /// en:  **'Accept'**
+  static const permissionButtonAccept = 'permission_button_accept';
+
+  /// Translations:
+  ///
+  /// nl:  **'Weigeren'**
+  ///
+  /// en:  **'Decline'**
+  static const permissionButtonDecline = 'permission_button_decline';
+
+  /// Translations:
+  ///
+  /// nl:  **'Meer informatie'**
+  ///
+  /// en:  **'More info'**
+  static const permissionButtonMoreInfo = 'permission_button_more_info';
+
+  /// Translations:
+  ///
+  /// nl:  **'Permissies'**
+  ///
+  /// en:  **'Permissions'**
+  static const debugPermissionsTitle = 'debug_permissions_title';
+
+  /// Translations:
+  ///
+  /// nl:  **'Toon analytics permissie scherm '**
+  ///
+  /// en:  **'Show analytics permission screen'**
+  static const debugPermissionsShowAnalyticsPermission = 'debug_permissions_show_analytics_permission';
+
+  /// Translations:
+  ///
+  /// nl:  **'Reset analytics permissie'**
+  ///
+  /// en:  **'Reset analytics permission'**
+  static const debugPermissionResetAnalytics = 'debug_permission_reset_analytics';
+
 }

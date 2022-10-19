@@ -14,6 +14,8 @@ class Keys {
   static const debugShowTranslations = ValueKey('debug_show_language');
   static const debugLicense = ValueKey('debug_license');
   static const debugDatabase = ValueKey('debug_database');
+  static const debugPermissionAnalytics = ValueKey('debug_permission_analytics');
+  static const debugPermissionAnalyticsReset = ValueKey('debug_permission_analytics_reset');
 
   //Login
   static const emailInput = ValueKey('email_input');

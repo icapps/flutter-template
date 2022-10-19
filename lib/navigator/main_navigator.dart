@@ -2,15 +2,17 @@ import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
+import 'package:flutter_template/navigator/middle_ware/analytics_permission_guard.dart';
 import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/navigator/middle_ware/login_guard.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
+import 'package:flutter_template/screen/permission/analytics_permission_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
@@ -45,33 +47,58 @@ class MainNavigator {
     BasePage<void>(
       name: HomeScreen.routeName,
       page: () => const FlavorBanner(child: HomeScreen()),
-      middlewares: [AuthenticationGuard()],
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
     ),
     BasePage<void>(
       name: TodoAddScreen.routeName,
       page: () => const FlavorBanner(child: TodoAddScreen()),
-      middlewares: [AuthenticationGuard()],
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
     ),
     BasePage<void>(
       name: LicenseScreen.routeName,
       page: () => const FlavorBanner(child: LicenseScreen()),
-      middlewares: [AuthenticationGuard()],
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
     ),
     if (!FlavorConfig.isProd()) ...[
       BasePage<void>(
         name: DebugPlatformSelectorScreen.routeName,
         page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
-        middlewares: [AuthenticationGuard()],
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
       ),
       BasePage<void>(
         name: ThemeModeSelectorScreen.routeName,
         page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
-        middlewares: [AuthenticationGuard()],
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
       ),
       BasePage<void>(
         name: DebugScreen.routeName,
         page: () => const FlavorBanner(child: DebugScreen()),
-        middlewares: [AuthenticationGuard()],
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
+      ),
+      BasePage<void>(
+        name: AnalyticsPermissionScreen.routeName,
+        page: () => const FlavorBanner(child: AnalyticsPermissionScreen()),
+        middlewares: [
+          AuthenticationGuard(),
+        ],
       ),
     ],
   ];
@@ -87,6 +114,8 @@ class MainNavigator {
   Future<void> goToDebugPlatformSelector() async => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
   Future<void> goToThemeModeSelector() async => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
+
+  Future<void> goToAnalyticsPermissionScreen() async => Get.toNamed<void>(AnalyticsPermissionScreen.routeName);
 
   Future<void> goToDebug() async => Get.toNamed<void>(DebugScreen.routeName);
 

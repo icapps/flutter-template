@@ -79,6 +79,17 @@ class DebugScreenState extends State<DebugScreen> {
               title: localization.debugViewDatabase,
               onClick: viewModel.goToDatabase,
             ),
+            DebugRowTitle(title: localization.debugPermissionsTitle),
+            DebugRowItem(
+              key: Keys.debugPermissionAnalytics,
+              title: localization.debugPermissionsShowAnalyticsPermission,
+              onClick: viewModel.goToAnalyticsPermissionScreen,
+            ),
+            DebugRowItem(
+              key: Keys.debugPermissionAnalyticsReset,
+              title: localization.debugPermissionResetAnalytics,
+              onClick: viewModel.resetAnalyticsPermission,
+            ),
           ],
         ),
       ),
