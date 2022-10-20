@@ -45,6 +45,8 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart'
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart'
     as _i29;
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i31;
+import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart'
+    as _i37;
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart'
     as _i32;
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart'
@@ -3969,4 +3971,92 @@ class MockFirebaseAnalytics extends _i1.Mock implements _i35.FirebaseAnalytics {
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
+}
+
+/// A class which mocks [AnalyticsPermissionViewModel].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAnalyticsPermissionViewModel extends _i1.Mock
+    implements _i37.AnalyticsPermissionViewModel {
+  MockAnalyticsPermissionViewModel() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get disposed => (super.noSuchMethod(
+        Invocation.getter(#disposed),
+        returnValue: false,
+      ) as bool);
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+      ) as bool);
+  @override
+  _i7.Future<void> onAcceptClicked() => (super.noSuchMethod(
+        Invocation.method(
+          #onAcceptClicked,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+  @override
+  _i7.Future<void> onMoreInfoClicked() => (super.noSuchMethod(
+        Invocation.method(
+          #onMoreInfoClicked,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void registerDispose(_i18.DisposeAware? toDispose) => super.noSuchMethod(
+        Invocation.method(
+          #registerDispose,
+          [toDispose],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void registerDisposeStream<T>(_i7.StreamSubscription<T>? subscription) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #registerDisposeStream,
+          [subscription],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

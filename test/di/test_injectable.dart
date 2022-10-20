@@ -41,7 +41,7 @@ import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
 import 'test_injectable.config.dart';
 
-L getLocale<L>(BuildContext context) => Localization as L;
+L getLocale<L>(BuildContext context) => getIt.get<Localization>() as L;
 
 T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T;
 

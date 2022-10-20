@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_template/architecture.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:flutter/materialder/provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../di/test_injectable.dart';
@@ -11,7 +9,7 @@ void main() {
   setUp(() async {
     await initTestInjectable();
     seedGlobalViewModel();
-    await initArchitecture();
+    // await initArchitecture();
   });
 
   testWidgets('ProviderWidget throw exception', (tester) async {
