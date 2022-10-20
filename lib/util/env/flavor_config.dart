@@ -27,6 +27,7 @@ class FlavorConfig {
   final String name;
   final Color color;
   final FlavorValues values;
+  final bool isThemingSupported;
   ThemeMode themeMode;
   static FlavorConfig? _instance;
 
@@ -35,11 +36,12 @@ class FlavorConfig {
     required String name,
     required Color color,
     required FlavorValues values,
+    required bool supportsTheming,
     ThemeMode themeMode = ThemeMode.system,
   }) =>
-      _instance = FlavorConfig._internal(flavor, name, color, values, themeMode);
+      _instance = FlavorConfig._internal(flavor, name, color, values, supportsTheming, themeMode);
 
-  FlavorConfig._internal(this.flavor, this.name, this.color, this.values, this.themeMode);
+  FlavorConfig._internal(this.flavor, this.name, this.color, this.values, this.isThemingSupported, this.themeMode);
 
   static FlavorConfig get instance => _instance!;
 

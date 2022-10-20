@@ -846,14 +846,6 @@ class MockLocalStorage extends _i1.Mock implements _i19.LocalStorage {
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  _i9.ThemeMode getThemeMode() => (super.noSuchMethod(
-        Invocation.method(
-          #getThemeMode,
-          [],
-        ),
-        returnValue: _i9.ThemeMode.system,
-      ) as _i9.ThemeMode);
-  @override
   _i7.Future<void> updateThemeMode(_i9.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -2388,16 +2380,6 @@ class MockGlobalViewModel extends _i1.Mock implements _i28.GlobalViewModel {
         Invocation.method(
           #setSelectedPlatformToDefault,
           [],
-        ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
-  @override
-  _i7.Future<void> updateThemeMode(_i9.ThemeMode? themeMode) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #updateThemeMode,
-          [themeMode],
         ),
         returnValue: _i7.Future<void>.value(),
         returnValueForMissingStub: _i7.Future<void>.value(),

@@ -10,6 +10,7 @@ void main() {
         flavor: Flavor.test,
         color: Colors.purple,
         name: 'Test',
+        supportsTheming: true,
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,
@@ -45,6 +46,7 @@ void main() {
         flavor: Flavor.dummy,
         color: Colors.purple,
         name: 'Test',
+        supportsTheming: true,
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,

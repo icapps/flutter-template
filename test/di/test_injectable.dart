@@ -43,7 +43,7 @@ import 'test_injectable.config.dart';
 
 L getLocale<L>(BuildContext context) => getIt.get<Localization>() as L;
 
-T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T;
+T getTheme<T>(BuildContext context) => GetIt.I<FlutterTemplateTheme>() as T; // ignore: avoid_as
 
 final getIt = GetIt.instance;
 
@@ -68,6 +68,7 @@ Future<void> initTestInjectable() async {
       color: Colors.purple,
       name: 'Test',
       values: values,
+      supportsTheming: false,
     );
   }
   TestWidgetsFlutterBinding.ensureInitialized();

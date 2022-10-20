@@ -21,7 +21,8 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(
       create: () => getIt()..init(),
-      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.light(
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.animated(
+        isDarkStyle: theme.isDarkTheme,
         child: Scaffold(
           backgroundColor: theme.colorsTheme.primary,
           body: const Center(

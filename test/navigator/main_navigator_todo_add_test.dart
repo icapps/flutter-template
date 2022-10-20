@@ -17,6 +17,7 @@ void main() {
     seedTodoAddViewModel();
     seedGlobalViewModel();
     seedAuthStorage();
+    seedLocalStorage();
 
     final mainNavigator = MainNavigator(GetIt.I.get());
     final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());

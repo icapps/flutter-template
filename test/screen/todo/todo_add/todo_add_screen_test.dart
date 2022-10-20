@@ -21,6 +21,7 @@ void main() {
     todoAddViewModel = getIt();
     seedTodoAddViewModel();
     seedGlobalViewModel();
+    seedLocalStorage();
   });
 
   testWidgets('Test todo add screen initial state', (tester) async {
