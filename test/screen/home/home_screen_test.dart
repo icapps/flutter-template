@@ -15,6 +15,7 @@ void main() {
     seedGlobalViewModel();
     seedTodoListViewModel();
     seedDebugViewModel();
+    seedLocalStorage();
 
     const sut = HomeScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);

@@ -16,6 +16,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
+    seedLocalStorage();
     licenseViewModel = getIt();
   });
 

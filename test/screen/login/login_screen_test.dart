@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -22,6 +23,7 @@ void main() {
     loginViewModel = getIt();
     seedLoginViewModel();
     seedGlobalViewModel();
+    seedLocalStorage();
   });
 
   testWidgets('Test login screen initial state', (tester) async {
@@ -35,6 +37,9 @@ void main() {
 
   testWidgets('Test login screen layout in dark mode', (tester) async {
     FlavorConfig.instance.themeMode = ThemeMode.dark;
+
+    final flutterTemplateTheme = GetIt.I<FlutterTemplateTheme>();
+    flutterTemplateTheme.configureForThemeStyle(FlutterTemplateThemeStyle.dark);
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 

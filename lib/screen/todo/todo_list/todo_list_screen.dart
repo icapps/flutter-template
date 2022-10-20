@@ -32,6 +32,7 @@ class TodoListScreenState extends State<TodoListScreen> {
             systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
             title: Text(localization.todoTitle),
+            backgroundColor: theme.colorsTheme.primary,
             actions: [
               ActionItem(
                 key: Keys.downloadAction,

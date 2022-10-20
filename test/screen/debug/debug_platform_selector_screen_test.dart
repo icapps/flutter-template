@@ -20,8 +20,9 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    platformViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel,MockDebugPlatformSelectorViewModel>();
+    platformViewModel = GetIt.I.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
     globalViewModel = GetIt.I.resolveAs<GlobalViewModel, MockGlobalViewModel>();
+    seedLocalStorage();
   });
 
   testWidgets('Test debug select platform screen initial state', (tester) async {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -48,7 +48,7 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   void _getThemeMode() {
-    FlavorConfig.instance.themeMode = _localStorage.getThemeMode();
+    FlavorConfig.instance.themeMode = _localStorage.getThemeMode() ?? FlavorConfig.instance.themeMode;
     notifyListeners();
   }
 
@@ -83,12 +83,6 @@ class GlobalViewModel with ChangeNotifierEx {
   Future<void> setSelectedPlatformToDefault() async {
     await _debugRepo.saveSelectedPlatform(null);
     _initTargetPlatform();
-  }
-
-  Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
-    notifyListeners();
-    await _localStorage.updateThemeMode(themeMode);
   }
 
   String getCurrentPlatform() {

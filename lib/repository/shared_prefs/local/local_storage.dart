@@ -10,7 +10,7 @@ abstract class LocalStorage {
 
   Future<void> checkForNewInstallation();
 
-  ThemeMode getThemeMode();
+  ThemeMode? getThemeMode();
 
   Future<void> updateThemeMode(ThemeMode themeMode);
 }
@@ -39,9 +39,8 @@ class _LocalStorage implements LocalStorage {
   }
 
   @override
-  ThemeMode getThemeMode() {
+  ThemeMode? getThemeMode() {
     final themeString = _sharedPreferences.getString(_appearanceThemeKey);
-    final theme = ThemeMode.values.find((element) => element.toString() == themeString);
-    return theme ?? ThemeMode.system;
+    return ThemeMode.values.find((element) => element.toString() == themeString);
   }
 }
