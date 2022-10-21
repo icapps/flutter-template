@@ -29,7 +29,5 @@ class ThemeAssets {
 
   static String doneIcon(BuildContext context) => _getIcon(context, 'done');
 
-  static String helpIcon(BuildContext context) => _getIcon(context, 'help');
-
   static String analyticsImage(BuildContext context) => _getImage(context, 'analytics');
 }
