@@ -18,6 +18,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
         value: value,
         onChanged: onChanged,
         activeColor: theme.colorsTheme.accent,
+        inactiveTrackColor: theme.colorsTheme.disabled,
       ),
     );
   }

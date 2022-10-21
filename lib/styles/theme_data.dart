@@ -122,6 +122,8 @@ class FlutterTemplateColorsTheme {
   final Color inputFieldBorderIdle;
   final Color inputFieldCursor;
 
+  final Color debugTitleBackground;
+
   const FlutterTemplateColorsTheme({
     required this.primary,
     required this.secondary,
@@ -152,6 +154,7 @@ class FlutterTemplateColorsTheme {
     required this.inputFieldBorderFocused,
     required this.inputFieldBorderIdle,
     required this.inputFieldCursor,
+    required this.debugTitleBackground,
   });
 }
 
@@ -198,6 +201,7 @@ class FlutterTemplateTheme {
     inputFieldBorderFocused: ThemeColors.white,
     inputFieldBorderIdle: ThemeColors.white50,
     inputFieldCursor: ThemeColors.accent,
+    debugTitleBackground: ThemeColors.white20,
   );
 
   static const _colorThemeLight = FlutterTemplateColorsTheme(
@@ -230,6 +234,7 @@ class FlutterTemplateTheme {
     inputFieldBorderFocused: ThemeColors.primary,
     inputFieldBorderIdle: ThemeColors.mediumGrey,
     inputFieldCursor: ThemeColors.accent,
+    debugTitleBackground: ThemeColors.lightGrey,
   );
 
   static FlutterTemplateTextTheme _coreTextThemeFromColorsTheme({required FlutterTemplateColorsTheme colorTheme}) => FlutterTemplateTextTheme(

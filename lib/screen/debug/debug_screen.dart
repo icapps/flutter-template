@@ -27,6 +27,7 @@ class DebugScreenState extends State<DebugScreen> {
     return ProviderWidget<DebugViewModel>(
       create: () => getIt()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
+        backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(localization.settingsTitle),

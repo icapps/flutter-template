@@ -8,6 +8,7 @@ class ThemeColors {
   static const accent = Color(0xFF009AC7);
   static const accentDark = Color(0xFF0080A8);
   static const white = Color(0xFFFFFFFF);
+  static const white20 = Color(0x33FFFFFF);
   static const white50 = Color(0x80FFFFFF);
   static const black = Color(0xFF000000);
   static const grey = Color(0xB3000000); //black 70%
