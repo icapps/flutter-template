@@ -356,4 +356,28 @@ private_lane :deployToAppStore do |options|
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
+  uploadSymbols()
+end
+
+private_lane :deployToPlayStore do |options|
+  upload_to_play_store(
+    package_name: options[:package_name],
+    track: 'internal',
+    release_status: 'draft', #completed
+    aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
+    json_key: 'google_playstore_api.json'
+  )
+end
+
+private_lane :uploadSymbols do
+  Dir.chdir ".." do
+       sh("ios/Pods/FirebaseCrashlytics/upload-symbols", "-gsp" ,"ios/Runner/GoogleService-Info.plist", "-p", "ios", "Runner.app.dSYM.zip")    # Upload dSYM files to crashlytics
+  end
+end
+
+private_lane :upload_artifacts_to_s3 do |options|
+  Dir.chdir "../tool/s3/dart_s3_executor/" do
+      sh("./tool/packages_get.sh")
+  end
+  sh("fvm", "dart", "run", "../tool/s3/dart_s3_executor/bin/main.dart", "#{BUILD_NR}", options[:flavor], "../tool/s3/s3.sh", "fluttertemplate")
 end
