@@ -3975,6 +3975,15 @@ class MockAnalyticsPermissionViewModel extends _i1.Mock
         returnValue: false,
       ) as bool);
   @override
+  _i7.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+  @override
   _i7.Future<void> onAcceptClicked() => (super.noSuchMethod(
         Invocation.method(
           #onAcceptClicked,

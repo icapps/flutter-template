@@ -1,10 +1,10 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/injectable_test.mocks.dart';
@@ -105,6 +105,6 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  final todoAddViewModel = getIt.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
 }

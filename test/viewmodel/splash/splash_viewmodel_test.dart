@@ -1,9 +1,9 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -18,7 +18,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I.resolveAs<LoginRepository, MockLoginRepository>();
+    loginRepo = getIt.resolveAs<LoginRepository, MockLoginRepository>();
     navigator = MockMainNavigator();
     localStorage = MockLocalStorage();
     sut = SplashViewModel(loginRepo, localStorage, navigator);

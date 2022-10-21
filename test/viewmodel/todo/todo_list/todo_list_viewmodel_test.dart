@@ -1,3 +1,4 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/injectable_test.mocks.dart';
@@ -19,7 +19,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    todoRepo = GetIt.I.resolveAs<TodoRepository, MockTodoRepository>();
+    todoRepo = getIt.resolveAs<TodoRepository, MockTodoRepository>();
     navigator = MockMainNavigator();
     sut = TodoListViewModel(todoRepo, navigator);
   });

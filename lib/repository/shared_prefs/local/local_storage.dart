@@ -14,8 +14,6 @@ abstract class LocalStorage {
 
   bool? get hasAnalyticsPermission;
 
-  ThemeMode getThemeMode();
-
   Future<void> updateThemeMode(ThemeMode themeMode);
 
   Future<void> updateHasAnalyticsPermission(bool? permissionGranted);

@@ -1,10 +1,10 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
@@ -19,7 +19,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I.resolveAs<LoginRepository, MockLoginRepository>();
+    loginRepo = getIt.resolveAs<LoginRepository, MockLoginRepository>();
     navigator = MockMainNavigator();
     sut = LoginViewModel(loginRepo, navigator);
   });

@@ -13,6 +13,8 @@ class AnalyticsPermissionViewModel with ChangeNotifierEx {
 
   AnalyticsPermissionViewModel(this._navigator, this._localStorage);
 
+  Future<void> init() async {}
+
   Future<void> onAcceptClicked() async {
     await _localStorage.updateHasAnalyticsPermission(true);
     if (Get.global(null).currentState?.canPop() == true) {

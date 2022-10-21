@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/bad_request_error.dart';
 import 'package:flutter_template/model/exceptions/code_error.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';

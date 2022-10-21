@@ -1,9 +1,9 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -200,13 +200,13 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
+  final debugViewModel = getIt.resolveAs<DebugViewModel, MockDebugViewModel>();
   verify(debugViewModel.init()).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }
 
 void verifyGlobalViewModelForDebugScreen() {
-  final globalViewModel = GetIt.I<GlobalViewModel>();
+  final globalViewModel = getIt<GlobalViewModel>();
   verify(globalViewModel.showsTranslationKeys);
   verify(globalViewModel.getCurrentLanguage());
   verify(globalViewModel.getCurrentPlatform());

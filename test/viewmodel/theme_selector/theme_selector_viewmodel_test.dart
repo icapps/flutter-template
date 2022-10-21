@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/viewmodel/debug/debug_theme_selector_viewmodel.dart';

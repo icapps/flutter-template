@@ -8,6 +8,7 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.config.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
@@ -25,6 +26,7 @@ import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
+import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
@@ -43,9 +45,7 @@ import 'test_injectable.config.dart';
 
 L getLocale<L>(BuildContext context) => getIt.get<Localization>() as L;
 
-T getTheme<T>(BuildContext context) => GetIt.I<FlutterTemplateTheme>() as T; // ignore: avoid_as
-
-final getIt = GetIt.instance;
+T getTheme<T>(BuildContext context) => getIt.get<FlutterTemplateTheme>() as T; // ignore: avoid_as
 
 @InjectableInit(
   initializerName: r'$initTestGetIt',
@@ -159,6 +159,9 @@ abstract class RegisterModule {
 
   @singleton
   TodoListViewModel get getTodoListViewModel => _initVM(MockTodoListViewModel());
+
+  @singleton
+  AnalyticsPermissionViewModel get getAnalyticsPermissionViewModel => _initVM(MockAnalyticsPermissionViewModel());
 
   @singleton
   Localization get getLocalization => Localization();

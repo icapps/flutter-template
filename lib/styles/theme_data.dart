@@ -97,6 +97,7 @@ class FlutterTemplateColorsTheme {
   final Color secondary;
   final Color accent;
   final Color background;
+  final Color permissionScreenBackground;
   final Color inverseBackground;
   final Color inputFieldFill;
   final Color disabled;
@@ -114,6 +115,7 @@ class FlutterTemplateColorsTheme {
     required this.secondary,
     required this.accent,
     required this.background,
+    required this.permissionScreenBackground,
     required this.inverseBackground,
     required this.text,
     required this.inverseText,
@@ -147,16 +149,17 @@ class FlutterTemplateTheme {
   static const _colorThemeDark = FlutterTemplateColorsTheme(
     text: ThemeColors.white,
     inverseText: ThemeColors.black,
-    primary: ThemeColors.darkModePrimary,
+    primary: ThemeColors.primary,
     accent: ThemeColors.accent,
     secondary: ThemeColors.white,
-    background: ThemeColors.darkModePrimary,
+    background: ThemeColors.black,
+    permissionScreenBackground: ThemeColors.primary,
     inverseBackground: ThemeColors.white,
     inputFieldFill: ThemeColors.white,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.white,
     inverseIcon: ThemeColors.black,
-    progressIndicator: ThemeColors.darkModePrimary,
+    progressIndicator: ThemeColors.primary,
     inverseProgressIndicator: ThemeColors.white,
     buttonText: ThemeColors.primary,
     inverseButtonText: ThemeColors.white,
@@ -172,6 +175,7 @@ class FlutterTemplateTheme {
     accent: ThemeColors.accent,
     secondary: ThemeColors.black,
     background: ThemeColors.white,
+    permissionScreenBackground: ThemeColors.white,
     inverseBackground: ThemeColors.white,
     inputFieldFill: ThemeColors.white,
     disabled: ThemeColors.disabledGrey,

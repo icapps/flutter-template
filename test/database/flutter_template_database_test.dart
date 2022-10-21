@@ -1,4 +1,5 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../di/test_injectable.dart';

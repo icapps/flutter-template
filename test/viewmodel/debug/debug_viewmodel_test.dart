@@ -1,10 +1,10 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -21,7 +21,7 @@ void main() {
   setUp(() async {
     await initTestInjectable();
     navigator = MockMainNavigator();
-    database = GetIt.I<FlutterTemplateDatabase>();
+    database = getIt<FlutterTemplateDatabase>();
     debugRepo = getIt();
     localStorage = getIt();
     sut = DebugViewModel(debugRepo, navigator, database, localStorage);
