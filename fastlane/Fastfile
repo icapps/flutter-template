@@ -19,6 +19,7 @@ end
 
 keychain_password = ENV[‘JENKINS_KEYCHAIN_PASSWORD’]
 unlock_keychain(path: ‘login.keychain’, password: keychain_password) if is_ci? && keychain_password
+appcenter_app_name = ''
 
 #####################
 ### CONFIGURATION ###
@@ -222,6 +223,7 @@ private_lane :buildAppIOSOnly do |options|
     Dir.chdir ".." do
       podRepoUpdate
       sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
+      convertAppToIpa(flavor: options[:flavor])
     end
     Dir.chdir "../build" do
       zip(
@@ -239,12 +241,86 @@ private_lane :podRepoUpdate do |options|
       end
 end
 
+private_lane :convertAppToIpa do |options|
+     Dir.chdir "ios" do
+        gym(
+            workspace: WORKSPACE,
+            scheme: options[:flavor],
+            configuration: "Release-#{options[:flavor]}",
+            export_options: {
+                method: "enterprise",
+                provisioningProfiles: {
+                    "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
+                    "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
+                    "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
+                    "com.icapps.fluttertemplate" => "Flutter Template Production"
+                }
+            }
+        )
+    end
+end
+
+private_lane :uploadToAppcenterAndroid do |options|
+  getAppNameAndroid(flavor: options[:flavor])
+  zip(
+    path: "build/debug-info/#{options[:flavor]}/",
+    include: ["**/app.android.*"],
+    output_path: "AndroidSymbols.zip"
+  )
+  sh("mv", "../AndroidSymbols.zip", "../AndroidSymbols.txt")
+  appcenter_upload(
+    app_name: appcenter_app_name,
+    apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
+    notify_testers: true,
+    mapping: "./AndroidSymbols.txt",
+    destinations: "*"
+  )
+end
+
+private_lane :uploadToAppcenterIos do |options|
+  getAppNameIOS(flavor: options[:flavor])
+  zip(
+    path: "build",
+    include: ["debug-info/#{options[:flavor]}/app.ios*", "ios/Release-#{options[:flavor]}-phoneos/Runner.app.dSYM/*"],
+    output_path: "iOSSymbols.zip"
+  )
+  appcenter_upload(
+    app_name: appcenter_app_name,
+    notify_testers: true,
+    dsym: "./iOSSymbols.zip",
+    destinations: "*"
+  )
+end
+
 private_lane :add_tag do
   add_git_tag(build_number: BUILD_NR)
 end
 
 private_lane :git_reset do
   sh("git", "reset", "--hard")
+end
+
+private_lane :getAppNameAndroid do |options|
+  flavor = options[:flavor]
+  if flavor == "alpha" &&
+      appcenter_app_name = "FlutterTemplate-Android-Alpha"
+  elsif flavor == "beta"
+      appcenter_app_name = "FlutterTemplate-Android-Beta"
+  elsif flavor == "prod"
+      appcenter_app_name = "FlutterTemplate-Android"
+  end
+end
+
+
+private_lane :getAppNameIOS do |options|
+  flavor = options[:flavor]
+  if flavor == "alpha" &&
+      appcenter_app_name = "FlutterTemplate-iOS-Alpha"
+  elsif flavor == "beta"
+      appcenter_app_name = "FlutterTemplate-iOS-Beta"
+  elsif flavor == "prod"
+      appcenter_app_name = "FlutterTemplate-iOS"
+  end
 end
 
 private_lane :buildAndDeployToAppStore do |options|
@@ -280,28 +356,4 @@ private_lane :deployToAppStore do |options|
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
-  uploadSymbols()
-end
-
-private_lane :deployToPlayStore do |options|
-  upload_to_play_store(
-    package_name: options[:package_name],
-    track: 'internal',
-    release_status: 'draft', #completed
-    aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
-    json_key: 'google_playstore_api.json'
-  )
-end
-
-private_lane :uploadSymbols do
-  Dir.chdir ".." do
-       sh("ios/Pods/FirebaseCrashlytics/upload-symbols", "-gsp" ,"ios/Runner/GoogleService-Info.plist", "-p", "ios", "Runner.app.dSYM.zip")    # Upload dSYM files to crashlytics
-  end
-end
-
-private_lane :upload_artifacts_to_s3 do |options|
-    Dir.chdir "../tool/s3/dart_s3_executor/" do
-        sh("./tool/packages_get.sh")
-    end
-    sh("fvm", "dart", "run", "../tool/s3/dart_s3_executor/bin/main.dart", "#{BUILD_NR}", options[:flavor], "../tool/s3/s3.sh", "be-informed")
 end
