@@ -24,35 +24,39 @@ class TodoAddScreen extends StatefulWidget {
 class TodoAddScreenState extends State<TodoAddScreen> {
   @override
   Widget build(BuildContext context) {
-    return ProviderWidget<TodoAddViewModel>(
-      create: getIt,
-      childBuilderWithViewModel: (context, viewModel, theme, localization) => ThemeWidget(
-        child: Scaffold(
-          backgroundColor: theme.colorsTheme.background,
-          appBar: AppBar(
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
-            title: Text(localization.todoAddTitle),
-            backgroundColor: theme.colorsTheme.primary,
-          ),
-          body: ScrollConfiguration(
-            behavior: ScrollWhenNeededBehavior(),
-            child: Scrollbar(
-              child: ListView(
-                physics: ScrollWhenNeededPhysics(targetPlatform: Theme.of(context).platform),
-                padding: const EdgeInsets.all(ThemeDimens.padding16),
-                children: [
-                  FlutterTemplateInputField(
-                    hint: localization.todoAddInputHint,
-                    onChanged: viewModel.onTodoChanged,
-                  ),
-                  Container(height: ThemeDimens.padding16),
-                  FlutterTemplateButton(
-                    text: localization.generalLabelSave,
-                    isEnabled: viewModel.isSaveEnabled,
-                    onClick: viewModel.onSaveClicked,
-                  ),
-                ],
+    return ThemeWidget(
+      child: ProviderWidget<TodoAddViewModel>(
+        create: getIt,
+        childBuilderWithViewModel: (context, viewModel, theme, localization) => ThemeWidget(
+          child: Scaffold(
+            backgroundColor: theme.colorsTheme.background,
+            appBar: AppBar(
+              systemOverlayStyle: SystemUiOverlayStyle.light,
+              leading: FlutterTemplateBackButton.light(
+                onClick: viewModel.onBackClicked,
+              ),
+              title: Text(localization.todoAddTitle),
+              backgroundColor: theme.colorsTheme.primary,
+            ),
+            body: ScrollConfiguration(
+              behavior: ScrollWhenNeededBehavior(),
+              child: Scrollbar(
+                child: ListView(
+                  physics: ScrollWhenNeededPhysics(targetPlatform: Theme.of(context).platform),
+                  padding: const EdgeInsets.all(ThemeDimens.padding16),
+                  children: [
+                    FlutterTemplateInputField(
+                      hint: localization.todoAddInputHint,
+                      onChanged: viewModel.onTodoChanged,
+                    ),
+                    Container(height: ThemeDimens.padding16),
+                    FlutterTemplateButton(
+                      text: localization.generalLabelSave,
+                      isEnabled: viewModel.isSaveEnabled,
+                      onClick: viewModel.onSaveClicked,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

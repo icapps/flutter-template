@@ -30,9 +30,9 @@ class TodoListScreenState extends State<TodoListScreen> {
         return Scaffold(
           backgroundColor: theme.colorsTheme.background,
           appBar: AppBar(
+            title: Text(localization.todoTitle),
             systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
-            title: Text(localization.todoTitle),
             backgroundColor: theme.colorsTheme.primary,
             actions: [
               ActionItem(
