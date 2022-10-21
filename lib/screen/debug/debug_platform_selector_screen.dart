@@ -27,6 +27,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
       create: getIt,
       consumerWithThemeAndLocalization: (context, value, _, theme, localization) => ThemeWidget(
         child: Scaffold(
+          backgroundColor: theme.colorsTheme.background,
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
