@@ -4,6 +4,7 @@ import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/widget/general/theme_widget.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = RouteNames.homeScreen;
@@ -28,19 +29,24 @@ class HomeScreenState extends State<HomeScreen> {
             DebugScreen(),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: _onTap,
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.list),
-              label: localization.todoTitle,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.settings),
-              label: localization.settingsTitle,
-            ),
-          ],
+        bottomNavigationBar: DataProviderWidget(
+          childBuilderTheme: (context, theme) => BottomNavigationBar(
+            onTap: _onTap,
+            currentIndex: _currentIndex,
+            backgroundColor: theme.colorsTheme.bottomNavbarBackground,
+            selectedItemColor: theme.colorsTheme.bottomNavbarItemActive,
+            unselectedItemColor: theme.colorsTheme.bottomNavbarItemInactive,
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.list),
+                label: localization.todoTitle,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.settings),
+                label: localization.settingsTitle,
+              ),
+            ],
+          ),
         ),
       ),
     );

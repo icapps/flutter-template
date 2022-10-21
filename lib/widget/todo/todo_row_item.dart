@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_checkbox.dart';
+import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class TodoRowItem extends StatelessWidget {
   final String title;
@@ -16,24 +17,29 @@ class TodoRowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onChanged(!value),
-      child: Container(
-        color: Colors.transparent,
-        padding: const EdgeInsets.symmetric(
-          horizontal: ThemeDimens.padding16,
-          vertical: ThemeDimens.padding8,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(title),
-            ),
-            FlutterTemplateCheckBox(
-              value: value,
-              onChanged: onChanged,
-            ),
-          ],
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) => GestureDetector(
+        onTap: () => onChanged(!value),
+        child: Container(
+          color: Colors.transparent,
+          padding: const EdgeInsets.symmetric(
+            horizontal: ThemeDimens.padding16,
+            vertical: ThemeDimens.padding8,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  title,
+                  style: theme.coreTextTheme.bodyNormal,
+                ),
+              ),
+              FlutterTemplateCheckBox(
+                value: value,
+                onChanged: onChanged,
+              ),
+            ],
+          ),
         ),
       ),
     );

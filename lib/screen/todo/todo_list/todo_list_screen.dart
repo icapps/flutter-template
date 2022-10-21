@@ -28,6 +28,7 @@ class TodoListScreenState extends State<TodoListScreen> {
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
         final errorKey = viewModel.errorKey;
         return Scaffold(
+          backgroundColor: theme.colorsTheme.background,
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             centerTitle: context.isIOSTheme,
@@ -38,20 +39,25 @@ class TodoListScreenState extends State<TodoListScreen> {
                 key: Keys.downloadAction,
                 svgAsset: ThemeAssets.downloadIcon(context),
                 onClick: viewModel.onDownloadClicked,
+                color: theme.colorsTheme.appBarAction,
               ),
               ActionItem(
                 key: Keys.addAction,
                 svgAsset: ThemeAssets.addIcon(context),
                 onClick: viewModel.onAddClicked,
+                color: theme.colorsTheme.appBarAction,
               ),
             ],
           ),
           body: Builder(
             builder: (context) {
-              if (viewModel.isLoading) return const Center(child: FlutterTemplateProgressIndicator.dark());
+              if (viewModel.isLoading) return Center(child: FlutterTemplateProgressIndicator(dark: theme.isLightTheme));
               if (errorKey != null) {
                 return Center(
-                  child: Text(localization.getTranslation(errorKey)),
+                  child: Text(
+                    localization.getTranslation(errorKey),
+                    style: theme.coreTextTheme.bodyNormal.copyWith(color: theme.colorsTheme.errorText),
+                  ),
                 );
               }
 
@@ -68,6 +74,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                           child: Text(
                             localization.todoEmptyState,
                             textAlign: TextAlign.center,
+                            style: theme.coreTextTheme.bodyNormal,
                           ),
                         ),
                       );
