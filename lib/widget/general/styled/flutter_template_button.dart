@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -64,7 +65,7 @@ class FlutterTemplateButton extends StatelessWidget {
   Color? _disabledButtonColor(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.disabled;
+        return theme.isDarkTheme ? ThemeColors.white50 : theme.colorsTheme.disabled;
       case ButtonType.text:
         return null;
     }

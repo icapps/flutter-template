@@ -28,6 +28,7 @@ class TodoAddScreenState extends State<TodoAddScreen> {
       create: getIt,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => ThemeWidget(
         child: Scaffold(
+          backgroundColor: theme.colorsTheme.background,
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),

@@ -100,7 +100,6 @@ class FlutterTemplateColorsTheme {
   final Color background;
   final Color permissionScreenBackground;
   final Color inverseBackground;
-  final Color inputFieldFill;
   final Color disabled;
   final Color icon;
   final Color appBarAction;
@@ -111,9 +110,17 @@ class FlutterTemplateColorsTheme {
   final Color buttonText;
   final Color inverseButtonText;
   final Color textButtonText;
+
   final Color bottomNavbarBackground;
   final Color bottomNavbarItemActive;
   final Color bottomNavbarItemInactive;
+
+  final Color inputFieldFill;
+  final Color inputFieldHint;
+  final Color inputFieldBorderEnabled;
+  final Color inputFieldBorderFocused;
+  final Color inputFieldBorderIdle;
+  final Color inputFieldCursor;
 
   const FlutterTemplateColorsTheme({
     required this.primary,
@@ -125,7 +132,6 @@ class FlutterTemplateColorsTheme {
     required this.text,
     required this.inverseText,
     required this.errorText,
-    required this.inputFieldFill,
     required this.disabled,
     required this.icon,
     required this.appBarAction,
@@ -140,6 +146,12 @@ class FlutterTemplateColorsTheme {
     required this.bottomNavbarBackground,
     required this.bottomNavbarItemActive,
     required this.bottomNavbarItemInactive,
+    required this.inputFieldFill,
+    required this.inputFieldHint,
+    required this.inputFieldBorderEnabled,
+    required this.inputFieldBorderFocused,
+    required this.inputFieldBorderIdle,
+    required this.inputFieldCursor,
   });
 }
 
@@ -166,7 +178,6 @@ class FlutterTemplateTheme {
     background: ThemeColors.black,
     permissionScreenBackground: ThemeColors.primary,
     inverseBackground: ThemeColors.white,
-    inputFieldFill: ThemeColors.white,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.white,
     appBarAction: ThemeColors.white,
@@ -181,6 +192,12 @@ class FlutterTemplateTheme {
     bottomNavbarBackground: ThemeColors.primary,
     bottomNavbarItemActive: ThemeColors.white,
     bottomNavbarItemInactive: ThemeColors.white50,
+    inputFieldFill: ThemeColors.black,
+    inputFieldHint: ThemeColors.white50,
+    inputFieldBorderEnabled: ThemeColors.white50,
+    inputFieldBorderFocused: ThemeColors.white,
+    inputFieldBorderIdle: ThemeColors.white50,
+    inputFieldCursor: ThemeColors.accent,
   );
 
   static const _colorThemeLight = FlutterTemplateColorsTheme(
@@ -194,6 +211,7 @@ class FlutterTemplateTheme {
     permissionScreenBackground: ThemeColors.white,
     inverseBackground: ThemeColors.white,
     inputFieldFill: ThemeColors.white,
+    inputFieldHint: ThemeColors.mediumGrey,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.primary,
     appBarAction: ThemeColors.white,
@@ -208,6 +226,10 @@ class FlutterTemplateTheme {
     bottomNavbarBackground: ThemeColors.white,
     bottomNavbarItemActive: ThemeColors.primary,
     bottomNavbarItemInactive: ThemeColors.mediumGrey,
+    inputFieldBorderEnabled: ThemeColors.mediumGrey,
+    inputFieldBorderFocused: ThemeColors.primary,
+    inputFieldBorderIdle: ThemeColors.mediumGrey,
+    inputFieldCursor: ThemeColors.accent,
   );
 
   static FlutterTemplateTextTheme _coreTextThemeFromColorsTheme({required FlutterTemplateColorsTheme colorTheme}) => FlutterTemplateTextTheme(
