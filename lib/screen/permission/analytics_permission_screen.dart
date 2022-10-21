@@ -35,6 +35,7 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          const Spacer(),
                           SvgPicture.asset(
                             ThemeAssets.analyticsImage(context),
                             alignment: Alignment.center,
