@@ -92,6 +92,7 @@ class FlutterTemplateTextThemeExceptions {
 class FlutterTemplateColorsTheme {
   final Color text;
   final Color inverseText;
+  final Color errorText;
   final Color buttonTextDisabled;
   final Color primary;
   final Color secondary;
@@ -99,9 +100,9 @@ class FlutterTemplateColorsTheme {
   final Color background;
   final Color permissionScreenBackground;
   final Color inverseBackground;
-  final Color inputFieldFill;
   final Color disabled;
   final Color icon;
+  final Color appBarAction;
   final Color inverseIcon;
   final Color inverseProgressIndicator;
   final Color progressIndicator;
@@ -109,6 +110,19 @@ class FlutterTemplateColorsTheme {
   final Color buttonText;
   final Color inverseButtonText;
   final Color textButtonText;
+
+  final Color bottomNavbarBackground;
+  final Color bottomNavbarItemActive;
+  final Color bottomNavbarItemInactive;
+
+  final Color inputFieldFill;
+  final Color inputFieldHint;
+  final Color inputFieldBorderEnabled;
+  final Color inputFieldBorderFocused;
+  final Color inputFieldBorderIdle;
+  final Color inputFieldCursor;
+
+  final Color debugTitleBackground;
 
   const FlutterTemplateColorsTheme({
     required this.primary,
@@ -119,9 +133,10 @@ class FlutterTemplateColorsTheme {
     required this.inverseBackground,
     required this.text,
     required this.inverseText,
-    required this.inputFieldFill,
+    required this.errorText,
     required this.disabled,
     required this.icon,
+    required this.appBarAction,
     required this.inverseIcon,
     required this.inverseProgressIndicator,
     required this.progressIndicator,
@@ -130,6 +145,16 @@ class FlutterTemplateColorsTheme {
     required this.inverseButtonText,
     required this.buttonTextDisabled,
     required this.textButtonText,
+    required this.bottomNavbarBackground,
+    required this.bottomNavbarItemActive,
+    required this.bottomNavbarItemInactive,
+    required this.inputFieldFill,
+    required this.inputFieldHint,
+    required this.inputFieldBorderEnabled,
+    required this.inputFieldBorderFocused,
+    required this.inputFieldBorderIdle,
+    required this.inputFieldCursor,
+    required this.debugTitleBackground,
   });
 }
 
@@ -149,15 +174,16 @@ class FlutterTemplateTheme {
   static const _colorThemeDark = FlutterTemplateColorsTheme(
     text: ThemeColors.white,
     inverseText: ThemeColors.black,
+    errorText: ThemeColors.error,
     primary: ThemeColors.primary,
     accent: ThemeColors.accent,
     secondary: ThemeColors.white,
     background: ThemeColors.black,
     permissionScreenBackground: ThemeColors.primary,
     inverseBackground: ThemeColors.white,
-    inputFieldFill: ThemeColors.white,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.white,
+    appBarAction: ThemeColors.white,
     inverseIcon: ThemeColors.black,
     progressIndicator: ThemeColors.primary,
     inverseProgressIndicator: ThemeColors.white,
@@ -166,11 +192,22 @@ class FlutterTemplateTheme {
     buttonTextDisabled: ThemeColors.lightGrey,
     buttonColor: ThemeColors.white,
     textButtonText: ThemeColors.white,
+    bottomNavbarBackground: ThemeColors.primary,
+    bottomNavbarItemActive: ThemeColors.white,
+    bottomNavbarItemInactive: ThemeColors.white50,
+    inputFieldFill: ThemeColors.black,
+    inputFieldHint: ThemeColors.white50,
+    inputFieldBorderEnabled: ThemeColors.white50,
+    inputFieldBorderFocused: ThemeColors.white,
+    inputFieldBorderIdle: ThemeColors.white50,
+    inputFieldCursor: ThemeColors.accent,
+    debugTitleBackground: ThemeColors.white20,
   );
 
   static const _colorThemeLight = FlutterTemplateColorsTheme(
     text: ThemeColors.black,
     inverseText: ThemeColors.white,
+    errorText: ThemeColors.error,
     primary: ThemeColors.primary,
     accent: ThemeColors.accent,
     secondary: ThemeColors.black,
@@ -178,8 +215,10 @@ class FlutterTemplateTheme {
     permissionScreenBackground: ThemeColors.white,
     inverseBackground: ThemeColors.white,
     inputFieldFill: ThemeColors.white,
+    inputFieldHint: ThemeColors.mediumGrey,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.primary,
+    appBarAction: ThemeColors.white,
     inverseIcon: ThemeColors.black,
     progressIndicator: ThemeColors.primary,
     inverseProgressIndicator: ThemeColors.white,
@@ -188,6 +227,14 @@ class FlutterTemplateTheme {
     buttonTextDisabled: ThemeColors.lightGrey,
     buttonColor: ThemeColors.primary,
     textButtonText: ThemeColors.primary,
+    bottomNavbarBackground: ThemeColors.white,
+    bottomNavbarItemActive: ThemeColors.primary,
+    bottomNavbarItemInactive: ThemeColors.mediumGrey,
+    inputFieldBorderEnabled: ThemeColors.mediumGrey,
+    inputFieldBorderFocused: ThemeColors.primary,
+    inputFieldBorderIdle: ThemeColors.mediumGrey,
+    inputFieldCursor: ThemeColors.accent,
+    debugTitleBackground: ThemeColors.lightGrey,
   );
 
   static FlutterTemplateTextTheme _coreTextThemeFromColorsTheme({required FlutterTemplateColorsTheme colorTheme}) => FlutterTemplateTextTheme(

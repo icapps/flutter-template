@@ -10,7 +10,6 @@ import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:mockito/mockito.dart';
@@ -66,10 +65,6 @@ void seedLoginViewModel() {
   final loginViewModel = getIt<LoginViewModel>();
   when(loginViewModel.isLoading).thenReturn(false);
   when(loginViewModel.isLoginEnabled).thenReturn(true);
-}
-
-void seedAnalyticsPermissionViewModel() {
-  final analyticsPermissionViewModel = getIt<AnalyticsPermissionViewModel>();
 }
 
 void seedGlobalViewModel() {
