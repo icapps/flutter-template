@@ -380,6 +380,62 @@ class Localization {
   /// en:  **'System default'**
   String get themeModeLabelSystem => _t(LocalizationKeys.themeModeLabelSystem);
 
+  /// Translations:
+  ///
+  /// nl:  **'Help ons verbeteren'**
+  ///
+  /// en:  **'Help us improve'**
+  String get permissionAnalyticsTitle => _t(LocalizationKeys.permissionAnalyticsTitle);
+
+  /// Translations:
+  ///
+  /// nl:  **'Wij willen graag weten hoe je de app gebruikt. Dit helpt ons je gebruikservaring beter te maken. We sturen hierbij geen persoonsgegevens door. '**
+  ///
+  /// en:  **'We would love to know how you use our app. This helps us to improve your user experience. No personal data is collected. '**
+  String get permissionAnalyticsDescription => _t(LocalizationKeys.permissionAnalyticsDescription);
+
+  /// Translations:
+  ///
+  /// nl:  **'Toestaan'**
+  ///
+  /// en:  **'Accept'**
+  String get permissionButtonAccept => _t(LocalizationKeys.permissionButtonAccept);
+
+  /// Translations:
+  ///
+  /// nl:  **'Weigeren'**
+  ///
+  /// en:  **'Decline'**
+  String get permissionButtonDecline => _t(LocalizationKeys.permissionButtonDecline);
+
+  /// Translations:
+  ///
+  /// nl:  **'Meer informatie'**
+  ///
+  /// en:  **'More info'**
+  String get permissionButtonMoreInfo => _t(LocalizationKeys.permissionButtonMoreInfo);
+
+  /// Translations:
+  ///
+  /// nl:  **'Permissies'**
+  ///
+  /// en:  **'Permissions'**
+  String get debugPermissionsTitle => _t(LocalizationKeys.debugPermissionsTitle);
+
+  /// Translations:
+  ///
+  /// nl:  **'Toon analytics permissie scherm '**
+  ///
+  /// en:  **'Show analytics permission screen'**
+  String get debugPermissionsShowAnalyticsPermission => _t(LocalizationKeys.debugPermissionsShowAnalyticsPermission);
+
+  /// Translations:
+  ///
+  /// nl:  **'Reset analytics permissie'**
+  ///
+  /// en:  **'Reset analytics permission'**
+  String get debugPermissionResetAnalytics => _t(LocalizationKeys.debugPermissionResetAnalytics);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

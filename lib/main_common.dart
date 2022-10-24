@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class ThemeColors {
   ThemeColors._();
 
-  static const primary = Color(0xFF39c1a4);
-  static const darkModePrimary = Color(0xFF002548);
+  static const primary = Color(0xFF002548);
   static const primaryDark = Color(0xFF001223);
   static const accent = Color(0xFF009AC7);
   static const accentDark = Color(0xFF0080A8);
   static const white = Color(0xFFFFFFFF);
+  static const white20 = Color(0x33FFFFFF);
+  static const white50 = Color(0x80FFFFFF);
   static const black = Color(0xFF000000);
   static const grey = Color(0xB3000000); //black 70%
   static const mediumGrey = Color(0x80000000); //black 50%

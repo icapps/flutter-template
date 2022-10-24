@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -29,7 +30,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
       childBuilderTheme: (context, theme) => ActionItem(
         key: Keys.backButton,
         svgAsset: getCorrectIcon(context),
-        color: isLight ? theme.colorsTheme.icon : theme.colorsTheme.inverseIcon,
+        color: isLight ? ThemeColors.white : theme.colorsTheme.primary,
         onClick: onClick,
       ),
     );

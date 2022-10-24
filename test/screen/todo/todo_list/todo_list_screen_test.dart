@@ -1,15 +1,16 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
+import '../../../util/test_themes_util.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
@@ -18,7 +19,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+    todoListViewModel = getIt.resolveAs<TodoListViewModel, MockTodoListViewModel>();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -28,6 +29,16 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_inital_state');
+    verifyTodoListViewModel();
+    verifyGlobalViewModel();
+  });
+
+  testWidgets('Test splash screen initial state darkmode', (tester) async {
+    TestThemeUtil.setDarkMode();
+    const sut = TodoListScreen();
+    final testWidget = await TestUtil.loadScreen(tester, sut);
+
+    await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_list_screen_inital_state_dark_mode');
     verifyTodoListViewModel();
     verifyGlobalViewModel();
   });
@@ -112,7 +123,7 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = GetIt.I.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  final todoListViewModel = getIt.resolveAs<TodoListViewModel, MockTodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

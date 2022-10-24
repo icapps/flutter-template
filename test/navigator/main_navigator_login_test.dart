@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 
 import '../di/test_injectable.dart';
 import '../screen/seed.dart';
@@ -16,7 +16,7 @@ void main() {
     seedAuthStorage();
     seedLocalStorage();
 
-    final mainNavigator = MainNavigator(GetIt.I.get());
+    final mainNavigator = MainNavigator(getIt.get());
     final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_login_screen_0_initial_screen');
     mainNavigator.goToLogin();

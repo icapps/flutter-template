@@ -243,7 +243,7 @@ final removeCodeLines = [
   '    verifyTodoListViewModel();',
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = GetIt.I<TodoListViewModel>();
+  final todoListViewModel = getIt<TodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
@@ -254,7 +254,7 @@ void seedTodoListViewModel() {
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
+  final todoAddViewModel = getIt<TodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
   // ignore: void_checks
   when(todoAddViewModel.onBackClicked()).thenReturn(1);

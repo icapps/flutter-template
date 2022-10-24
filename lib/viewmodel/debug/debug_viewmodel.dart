@@ -1,6 +1,7 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -9,6 +10,7 @@ import 'package:injectable/injectable.dart';
 class DebugViewModel with ChangeNotifierEx {
   final MainNavigator _navigator;
   final DebugRepository _debugRepo;
+  final LocalStorage _localStorage;
   final FlutterTemplateDatabase _db;
 
   var slowAnimationsEnabled = false;
@@ -17,6 +19,7 @@ class DebugViewModel with ChangeNotifierEx {
     this._debugRepo,
     this._navigator,
     this._db,
+    this._localStorage,
   );
 
   Future<void> init() async {
@@ -43,4 +46,8 @@ class DebugViewModel with ChangeNotifierEx {
   void onLicensesClicked() => _navigator.goToLicense();
 
   void goToDatabase() => _navigator.goToDatabase(_db);
+
+  void goToAnalyticsPermissionScreen() => _navigator.goToAnalyticsPermissionScreen();
+
+  void resetAnalyticsPermission() => _localStorage.updateHasAnalyticsPermission(null);
 }

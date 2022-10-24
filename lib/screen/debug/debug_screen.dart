@@ -27,6 +27,7 @@ class DebugScreenState extends State<DebugScreen> {
     return ProviderWidget<DebugViewModel>(
       create: () => getIt()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
+        backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           title: Text(localization.settingsTitle),
@@ -78,6 +79,17 @@ class DebugScreenState extends State<DebugScreen> {
               key: Keys.debugDatabase,
               title: localization.debugViewDatabase,
               onClick: viewModel.goToDatabase,
+            ),
+            DebugRowTitle(title: localization.debugPermissionsTitle),
+            DebugRowItem(
+              key: Keys.debugPermissionAnalytics,
+              title: localization.debugPermissionsShowAnalyticsPermission,
+              onClick: viewModel.goToAnalyticsPermissionScreen,
+            ),
+            DebugRowItem(
+              key: Keys.debugPermissionAnalyticsReset,
+              title: localization.debugPermissionResetAnalytics,
+              onClick: viewModel.resetAnalyticsPermission,
             ),
           ],
         ),

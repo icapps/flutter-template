@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -25,6 +26,7 @@ class LicenseScreenState extends State<LicenseScreen> {
       create: getIt,
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => ThemeWidget(
         child: Scaffold(
+          backgroundColor: theme.colorsTheme.background,
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
@@ -37,6 +39,7 @@ class LicenseScreenState extends State<LicenseScreen> {
             itemBuilder: (context, index) {
               final item = viewModel.licenses[index];
               return Card(
+                color: theme.colorsTheme.background,
                 child: Padding(
                   padding: const EdgeInsets.all(ThemeDimens.padding16),
                   child: Column(
@@ -44,12 +47,14 @@ class LicenseScreenState extends State<LicenseScreen> {
                     children: [
                       Text(
                         item.name,
-                        style: const TextStyle(color: Colors.black, fontSize: 22),
+                        style: theme.coreTextTheme.titleNormal,
                       ),
                       Container(height: ThemeDimens.padding8),
                       Text(
                         item.license,
-                        style: const TextStyle(color: Colors.black54),
+                        style: theme.coreTextTheme.bodySmall.copyWith(
+                          color: theme.isDarkTheme ? ThemeColors.white50 : ThemeColors.mediumGrey,
+                        ),
                       ),
                     ],
                   ),

@@ -42,5 +42,13 @@
   "debug_theme_mode_subtitle": "Show the app in dark mode or light",
   "theme_mode_label_light": "Light",
   "theme_mode_label_dark": "Dark",
-  "theme_mode_label_System": "System default"
+  "theme_mode_label_System": "System default",
+  "permission_analytics_title": "Help us improve",
+  "permission_analytics_description": "We would love to know how you use our app. This helps us to improve your user experience. No personal data is collected. ",
+  "permission_button_accept": "Accept",
+  "permission_button_decline": "Decline",
+  "permission_button_more_info": "More info",
+  "debug_permissions_title": "Permissions",
+  "debug_permissions_show_analytics_permission": "Show analytics permission screen",
+  "debug_permission_reset_analytics": "Reset analytics permission"
 }

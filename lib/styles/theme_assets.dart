@@ -11,6 +11,10 @@ class ThemeAssets {
     return 'assets/images/icons/android/$name.svg';
   }
 
+  static String _getImage(BuildContext context, String name) {
+    return 'assets/images/$name.svg';
+  }
+
   static String listIcon(BuildContext context) => _getIcon(context, 'list');
 
   static String settingsIcon(BuildContext context) => _getIcon(context, 'settings');
@@ -24,4 +28,6 @@ class ThemeAssets {
   static String backIcon(BuildContext context) => _getIcon(context, 'back');
 
   static String doneIcon(BuildContext context) => _getIcon(context, 'done');
+
+  static String analyticsImage(BuildContext context) => _getImage(context, 'analytics');
 }
