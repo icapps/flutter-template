@@ -260,6 +260,14 @@ void seedTodoAddViewModel() {
   when(todoAddViewModel.onBackClicked()).thenReturn(1);
 }''',
   '    seedTodoListViewModel();',
+  ''' BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),''',
 ];
 
 final removeDirectories = [
