@@ -14,11 +14,8 @@ import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
-  late AnalyticsPermissionViewModel analyticsPermissionViewModel;
-
   setUp(() async {
     await initTestInjectable();
-    analyticsPermissionViewModel = getIt();
     seedGlobalViewModel();
     seedLocalStorage();
   });

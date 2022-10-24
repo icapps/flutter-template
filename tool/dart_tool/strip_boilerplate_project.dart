@@ -124,10 +124,10 @@ void replaceBoilerplateReferences(Directory dir) {
 void _replaceHomeScreenLine() {
   _replaceInFile(
     'lib/screen/home/home_screen.dart',
-    '''        children: const [
-          TodoListScreen(),
-          DebugScreen(),
-        ],''',
+    '''          children: const [
+            TodoListScreen(),
+            DebugScreen(),
+          ],''',
     '''          children: const [
             SizedBox(),
             DebugScreen(),
@@ -260,6 +260,14 @@ void seedTodoAddViewModel() {
   when(todoAddViewModel.onBackClicked()).thenReturn(1);
 }''',
   '    seedTodoListViewModel();',
+  ''' BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),''',
 ];
 
 final removeDirectories = [
