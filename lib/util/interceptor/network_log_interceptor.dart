@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -19,6 +21,11 @@ class NetworkLogInterceptor extends SimpleInterceptor {
 
   @override
   Future<Object?> onError(DioError error) async {
+    final response = error.response;
+    if (response != null && response.statusCode == HttpStatus.notModified) {
+      logger.logNetworkResponse(response);
+      return super.onError(error);
+    }
     if (error is NetworkError) {
       logger.logNetworkError(error);
     } else {
