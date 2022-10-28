@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repository.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
@@ -17,7 +17,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    authStorage = GetIt.I();
+    authStorage = getIt();
     sut = RefreshRepository(authStorage);
   });
 

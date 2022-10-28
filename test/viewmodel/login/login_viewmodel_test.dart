@@ -1,9 +1,10 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/mockito.dart';
 
@@ -14,17 +15,17 @@ import '../../util/test_extensions.dart';
 void main() {
   late LoginViewModel sut;
   late MockLoginRepository loginRepo;
-  late MockLoginNavigator navigator;
+  late MainNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    loginRepo = GetIt.I.resolveAs<LoginRepository, MockLoginRepository>();
-    navigator = MockLoginNavigator();
-    sut = LoginViewModel(loginRepo);
+    loginRepo = getIt.resolveAs<LoginRepository, MockLoginRepository>();
+    navigator = MockMainNavigator();
+    sut = LoginViewModel(loginRepo, navigator);
   });
 
   test('LoginViewModel init with loggedin user', () async {
-    await sut.init(navigator);
+    await sut.init();
     expect(sut.isLoginEnabled, false);
     expect(sut.isLoading, false);
     verifyZeroInteractions(loginRepo);
@@ -33,7 +34,7 @@ void main() {
 
   group('After init', () {
     setUp(() async {
-      await sut.init(navigator);
+      await sut.init();
       reset(loginRepo);
       reset(navigator);
     });
@@ -115,5 +116,3 @@ void main() {
     });
   });
 }
-
-class MockLoginNavigator extends Mock implements LoginNavigator {}

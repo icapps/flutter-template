@@ -1,8 +1,8 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../di/test_injectable.dart';
 
@@ -12,7 +12,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    database = GetIt.I();
+    database = getIt();
     sut = TodoDaoStorage(database);
   });
 

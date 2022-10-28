@@ -4,24 +4,29 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/di/db/setup_drift_none.dart'
     if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
     if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
+import 'package:flutter_template/main_common.dart';
+import 'package:flutter_template/navigator/middle_ware/init_middle_ware.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
+import 'package:flutter_template/util/locale/localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final getIt = GetIt.instance;
+final getIt = GetIt.asNewInstance();
 
 @InjectableInit(
   initializerName: r'$initGetIt',
@@ -32,6 +37,9 @@ Future<void> configureDependencies(String environment) async {
   print('Using environment: $environment');
   await $initGetIt(getIt, environment: environment);
   await getIt.allReady();
+  await initMiddleWare();
+  await initLocale();
+  updateAppTheme();
 }
 
 @module
@@ -45,6 +53,9 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  Localization localization() => Localization();
 
   @lazySingleton
   SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);
@@ -69,6 +80,12 @@ abstract class RegisterModule {
     if (kIsWeb) return preferences;
     return secure;
   }
+
+  @lazySingleton
+  FlutterTemplateTheme theme() => FlutterTemplateTheme();
+
+  @injectable
+  Brightness brightness() => MediaQueryData.fromWindow(WidgetsBinding.instance.window).platformBrightness;
 
   @lazySingleton
   CombiningSmartInterceptor provideCombiningSmartInterceptor(

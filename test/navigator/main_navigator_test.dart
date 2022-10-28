@@ -5,7 +5,10 @@ import '../screen/seed.dart';
 import '../util/test_util.dart';
 
 void main() {
-  setUp(() async => initTestInjectable());
+  setUp(() async {
+    await initTestInjectable();
+    // await initArchitecture();
+  });
 
   testWidgets('Test main navigator widget initial state', (tester) async {
     seedGlobalViewModel();

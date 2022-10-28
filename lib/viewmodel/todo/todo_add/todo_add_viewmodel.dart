@@ -1,22 +1,20 @@
-import 'package:flutter_template/navigator/mixin/back_navigator.dart';
-import 'package:flutter_template/navigator/mixin/error_navigator.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class TodoAddViewModel with ChangeNotifierEx {
-  final TodoRepository todoRepo;
-  late TodoAddNavigator _navigator;
+  final TodoRepository _todoRepo;
+  final MainNavigator _navigator;
   String? _todo;
 
-  TodoAddViewModel(this.todoRepo);
+  TodoAddViewModel(
+    this._todoRepo,
+    this._navigator,
+  );
 
   bool get isSaveEnabled => _todo?.isNotEmpty == true;
-
-  Future<void> init(TodoAddNavigator navigator) async {
-    _navigator = navigator;
-  }
 
   void onTodoChanged(String todo) {
     _todo = todo.trim();
@@ -28,12 +26,9 @@ class TodoAddViewModel with ChangeNotifierEx {
   Future<void> onSaveClicked() async {
     final todo = _todo;
     if (todo == null) {
-      _navigator.showError('Todo should not be empty');
-      return;
+      return _navigator.showError('Todo should not be empty');
     }
-    await todoRepo.saveTodo(todo);
+    await _todoRepo.saveTodo(todo);
     _navigator.goBack(result: true);
   }
 }
-
-abstract class TodoAddNavigator implements BackNavigator, ErrorNavigator {}

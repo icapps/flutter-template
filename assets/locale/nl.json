@@ -42,5 +42,13 @@
   "debug_theme_mode_subtitle": "Toon de app in dark mode of light",
   "theme_mode_label_light": "Light",
   "theme_mode_label_dark": "Dark",
-  "theme_mode_label_System": "Systeem standaard"
+  "theme_mode_label_System": "Systeem standaard",
+  "permission_analytics_title": "Help ons verbeteren",
+  "permission_analytics_description": "Wij willen graag weten hoe je de app gebruikt. Dit helpt ons je gebruikservaring beter te maken. We sturen hierbij geen persoonsgegevens door. ",
+  "permission_button_accept": "Toestaan",
+  "permission_button_decline": "Weigeren",
+  "permission_button_more_info": "Meer informatie",
+  "debug_permissions_title": "Permissies",
+  "debug_permissions_show_analytics_permission": "Toon analytics permissie scherm ",
+  "debug_permission_reset_analytics": "Reset analytics permissie"
 }

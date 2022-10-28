@@ -5,6 +5,11 @@ import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 class FlutterTemplateProgressIndicator extends StatelessWidget {
   final bool dark;
 
+  const FlutterTemplateProgressIndicator({
+    required this.dark,
+    super.key,
+  });
+
   const FlutterTemplateProgressIndicator.dark({Key? key})
       : dark = true,
         super(key: key);

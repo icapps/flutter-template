@@ -1,7 +1,8 @@
+import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../di/injectable_test.mocks.dart';
@@ -11,17 +12,16 @@ import '../../../util/test_extensions.dart';
 void main() {
   late TodoAddViewModel sut;
   late MockTodoRepository todoRepo;
-  late TodoAddNavigator navigator;
+  late MainNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    todoRepo = GetIt.I.resolveAs<TodoRepository, MockTodoRepository>();
-    navigator = MockTodoAddNavigator();
-    sut = TodoAddViewModel(todoRepo);
+    todoRepo = getIt.resolveAs<TodoRepository, MockTodoRepository>();
+    navigator = MockMainNavigator();
+    sut = TodoAddViewModel(todoRepo, navigator);
   });
 
   test('TodoAddViewModel init', () async {
-    await sut.init(navigator);
     expect(sut.isSaveEnabled, false);
     verifyZeroInteractions(todoRepo);
     verifyZeroInteractions(navigator);
@@ -29,7 +29,6 @@ void main() {
 
   group('After init', () {
     setUp(() async {
-      await sut.init(navigator);
       reset(todoRepo);
       reset(navigator);
     });
@@ -77,5 +76,3 @@ void main() {
     });
   });
 }
-
-class MockTodoAddNavigator extends Mock implements TodoAddNavigator {}

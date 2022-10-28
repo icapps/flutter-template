@@ -13,8 +13,8 @@ class ActionItem extends StatelessWidget {
     required this.svgAsset,
     required this.onClick,
     this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

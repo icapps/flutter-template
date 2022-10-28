@@ -1,14 +1,13 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
-import '../../mocks/main_navigator/mock_main_navigator_widget.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
@@ -19,19 +18,15 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    debugViewModel = GetIt.I();
-    globalViewModel = GetIt.I();
+    debugViewModel = getIt();
+    globalViewModel = getIt();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
     seedDebugViewModel();
     seedGlobalViewModel();
 
-    final mockNavigation = MockMainNavigation();
-    final sut = MockMainNavigator(
-      mock: mockNavigation,
-      child: const DebugScreen(),
-    );
+    const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_screen_inital_state');
@@ -205,13 +200,13 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel = GetIt.I.resolveAs<DebugViewModel, MockDebugViewModel>();
-  verify(debugViewModel.init(any)).calledOnce();
+  final debugViewModel = getIt.resolveAs<DebugViewModel, MockDebugViewModel>();
+  verify(debugViewModel.init()).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }
 
 void verifyGlobalViewModelForDebugScreen() {
-  final globalViewModel = GetIt.I<GlobalViewModel>();
+  final globalViewModel = getIt<GlobalViewModel>();
   verify(globalViewModel.showsTranslationKeys);
   verify(globalViewModel.getCurrentLanguage());
   verify(globalViewModel.getCurrentPlatform());

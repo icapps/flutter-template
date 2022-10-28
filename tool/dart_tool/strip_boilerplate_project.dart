@@ -128,9 +128,9 @@ void _replaceHomeScreenLine() {
             TodoListScreen(),
             DebugScreen(),
           ],''',
-    '''          children: [
-            Container(),
-            const DebugScreen(),
+    '''          children: const [
+            SizedBox(),
+            DebugScreen(),
         ],''',
   );
 }
@@ -208,11 +208,12 @@ final removeCodeLines = [
   '''  @singleton
   TodoRepository get getTodoRepo => MockTodoRepository();
 ''',
-  '''  @override
-  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);''',
-  '''  @override
-  void goToAddTodo() => navigationKey.currentState?.pushNamed(TodoAddScreen.routeName);
-''',
+  '''    BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [AuthenticationGuard()],
+    ),''',
+  '  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);',
   '''  @override
   void goToAddTodo() => widget.mock.goToAddTodo();
 ''',
@@ -242,7 +243,7 @@ final removeCodeLines = [
   '    verifyTodoListViewModel();',
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = GetIt.I<TodoListViewModel>();
+  final todoListViewModel = getIt<TodoListViewModel>();
   when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
@@ -253,12 +254,20 @@ void seedTodoListViewModel() {
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = GetIt.I<TodoAddViewModel>();
+  final todoAddViewModel = getIt<TodoAddViewModel>();
   when(todoAddViewModel.isSaveEnabled).thenReturn(false);
   // ignore: void_checks
   when(todoAddViewModel.onBackClicked()).thenReturn(1);
 }''',
   '    seedTodoListViewModel();',
+  ''' BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),''',
 ];
 
 final removeDirectories = [

@@ -19,6 +19,7 @@ void main() {
       flavor: Flavor.prod,
       color: Colors.purple,
       name: 'Test',
+      supportsTheming: true,
       values: values,
     );
     const sut = SvgIcon(

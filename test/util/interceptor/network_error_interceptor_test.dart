@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/bad_request_error.dart';
 import 'package:flutter_template/model/exceptions/code_error.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 import '../../di/test_injectable.dart';
@@ -21,7 +21,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    connectivityController = GetIt.I();
+    connectivityController = getIt();
     sut = NetworkErrorInterceptor(connectivityController);
   });
 
@@ -153,6 +153,7 @@ void main() {
         flavor: Flavor.dev,
         color: Colors.purple,
         name: 'Test',
+        supportsTheming: true,
         values: values,
       );
       final dynamic newError = await sut.onError(null);

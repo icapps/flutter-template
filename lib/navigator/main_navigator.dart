@@ -1,129 +1,146 @@
 import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
-import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart';
+import 'package:flutter_template/model/snackbar/snackbar_data.dart';
+import 'package:flutter_template/navigator/middle_ware/analytics_permission_guard.dart';
+import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
+import 'package:flutter_template/navigator/middle_ware/login_guard.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
+import 'package:flutter_template/screen/permission/analytics_permission_screen.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/screen/theme_mode/theme_mode_selector.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/snackbar/error_util.dart';
+import 'package:flutter_template/util/snackbar/snackbar_util.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
-import 'package:flutter_template/widget/general/text_scale_factor.dart';
-import 'package:get_it/get_it.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/widget/general/navigator_page/base_page.dart';
+import 'package:get/route_manager.dart';
+import 'package:injectable/injectable.dart';
 
-class MainNavigatorWidget extends StatefulWidget {
-  final Widget? child;
+@lazySingleton
+class MainNavigator {
+  final ErrorUtil _errorUtil;
 
-  const MainNavigatorWidget({
-    this.child,
-    Key? key,
-  }) : super(key: key);
+  MainNavigator(this._errorUtil);
 
-  @override
-  MainNavigatorWidgetState createState() => MainNavigatorWidgetState();
-
-  static MainNavigationMixin of(BuildContext context, {bool rootNavigator = false}) {
-    final navigator = rootNavigator ? context.findRootAncestorStateOfType<MainNavigationMixin>() : context.findAncestorStateOfType<MainNavigationMixin>();
-    assert(() {
-      if (navigator == null) {
-        throw FlutterError('MainNavigation operation requested with a context that does not include a MainNavigation.\n'
-            'The context used to push or pop routes from the MainNavigation must be that of a '
-            'widget that is a descendant of a MainNavigatorWidget widget.');
-      }
-      return true;
-    }());
-    return navigator!;
-  }
-}
-
-class MainNavigatorWidgetState extends State<MainNavigatorWidget> with MainNavigationMixin {
-  static final GlobalKey<NavigatorState> _navigationKey = GlobalKey<NavigatorState>();
-  static final List<NavigatorObserver> _navigatorObservers = [
-    GetIt.I.get<FireBaseAnalyticsRepository>().routeObserver,
-  ];
+  static final List<NavigatorObserver> _navigatorObservers = [];
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
 
-  static GlobalKey<NavigatorState> get navigationKey => _navigationKey;
-
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
-  NavigatorState get _navigator => _navigationKey.currentState!;
+  static final pages = [
+    BasePage<void>(
+      name: SplashScreen.routeName,
+      page: () => const FlavorBanner(child: SplashScreen()),
+    ),
+    BasePage<void>(
+      name: LoginScreen.routeName,
+      page: () => const FlavorBanner(child: LoginScreen()),
+      middlewares: [LoginGuard()],
+    ),
+    BasePage<void>(
+      name: HomeScreen.routeName,
+      page: () => const FlavorBanner(child: HomeScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),
+    BasePage<void>(
+      name: TodoAddScreen.routeName,
+      page: () => const FlavorBanner(child: TodoAddScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),
+    BasePage<void>(
+      name: LicenseScreen.routeName,
+      page: () => const FlavorBanner(child: LicenseScreen()),
+      middlewares: [
+        AuthenticationGuard(),
+        AnalyticsPermissionGuard(),
+      ],
+    ),
+    if (!FlavorConfig.isProd()) ...[
+      BasePage<void>(
+        name: DebugPlatformSelectorScreen.routeName,
+        page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
+      ),
+      BasePage<void>(
+        name: ThemeModeSelectorScreen.routeName,
+        page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
+      ),
+      BasePage<void>(
+        name: DebugScreen.routeName,
+        page: () => const FlavorBanner(child: DebugScreen()),
+        middlewares: [
+          AuthenticationGuard(),
+          AnalyticsPermissionGuard(),
+        ],
+      ),
+      BasePage<void>(
+        name: AnalyticsPermissionScreen.routeName,
+        page: () => const FlavorBanner(child: AnalyticsPermissionScreen()),
+        middlewares: [
+          AuthenticationGuard(),
+        ],
+      ),
+    ],
+  ];
 
-  @override
-  Widget build(BuildContext context) {
-    return TextScaleFactor(
-      child: widget.child ?? const SizedBox.shrink(),
-    );
-  }
+  void goToSplash() async => Get.offNamed<void>(SplashScreen.routeName);
 
-  static Route? onGenerateRoute(RouteSettings settings) {
-    final strippedPath = settings.name?.replaceFirst('/', '');
-    switch (strippedPath) {
-      case '':
-      case SplashScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: SplashScreen()), settings: settings);
-      case LoginScreen.routeName:
-        return FadeInRoute<void>(child: const FlavorBanner(child: LoginScreen()), settings: settings);
-      case HomeScreen.routeName:
-        return FadeInRoute<void>(child: const FlavorBanner(child: HomeScreen()), settings: settings);
-      case TodoAddScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);
-      case DebugPlatformSelectorScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugPlatformSelectorScreen()), settings: settings);
-      case ThemeModeSelectorScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: ThemeModeSelectorScreen()), settings: settings);
-      case DebugScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: DebugScreen()), settings: settings);
-      case LicenseScreen.routeName:
-        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: LicenseScreen()), settings: settings);
-      case 'test_route':
-        if (!FlavorConfig.isInTest()) return null;
-        return MaterialPageRoute<void>(builder: (context) => FlavorBanner(child: Container(color: Colors.grey)), settings: settings);
-      default:
-        return null;
-    }
-  }
+  void goToLogin() async => Get.offNamed<void>(LoginScreen.routeName);
 
-  @override
-  void goToSplash() => _navigator.pushReplacementNamed(SplashScreen.routeName);
+  void goToHome() async => Get.offNamed<void>(HomeScreen.routeName);
 
-  @override
-  void goToLogin() => _navigator.pushReplacementNamed(LoginScreen.routeName);
+  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);
 
-  @override
-  void goToHome() => _navigator.pushReplacementNamed(HomeScreen.routeName);
+  Future<void> goToDebugPlatformSelector() async => Get.toNamed<void>(DebugPlatformSelectorScreen.routeName);
 
-  @override
-  void goToAddTodo() => _navigator.pushNamed(TodoAddScreen.routeName);
+  Future<void> goToThemeModeSelector() async => Get.toNamed<void>(ThemeModeSelectorScreen.routeName);
 
-  @override
-  void goToDebugPlatformSelector() => _navigator.pushNamed(DebugPlatformSelectorScreen.routeName);
+  Future<void> goToAnalyticsPermissionScreen() async => Get.toNamed<void>(AnalyticsPermissionScreen.routeName);
 
-  @override
-  void goToThemeModeSelector() => _navigator.pushNamed(ThemeModeSelectorScreen.routeName);
+  Future<void> goToDebug() async => Get.toNamed<void>(DebugScreen.routeName);
 
-  @override
-  void goToDebug() => _navigator.pushNamed(DebugScreen.routeName);
+  Future<void> goToLicense() async => Get.toNamed<void>(LicenseScreen.routeName);
 
-  @override
-  void goToLicense() => _navigator.pushNamed(LicenseScreen.routeName);
+  void closeDialog() async => Get.back<void>();
 
-  @override
-  void closeDialog() => _navigator.pop();
+  Future<void> goToDatabase(GeneratedDatabase db) async => Get.to<void>(DriftDbViewer(db));
 
-  @override
-  void goToDatabase(GeneratedDatabase db) => _navigator.push<MaterialPageRoute>(MaterialPageRoute(builder: (context) => DriftDbViewer(db)));
+  void goBack<T>({T? result}) async => Get.back<T>(result: result);
 
-  @override
-  void goBack<T>({T? result}) => _navigator.pop(result);
+  Future<void> showCustomDialog<T>({Widget? widget}) async => Get.dialog<T>(widget ?? const SizedBox.shrink());
 
-  @override
-  void showCustomDialog<T>({required WidgetBuilder builder}) => showDialog<T>(context: _navigationKey.currentContext!, builder: builder, useRootNavigator: true);
+  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+
+  void showError(dynamic error) => _errorUtil.showError(error);
+
+  Future<void> showCustomSnackBar({
+    required String message,
+    String? title,
+    SnackBarStyle style = SnackBarStyle.neutral,
+  }) async =>
+      SnackBarUtil.showSnackbar(
+        title: title,
+        message: message,
+        style: style,
+      );
 }

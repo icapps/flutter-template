@@ -1,29 +1,25 @@
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/test_injectable.dart';
+import '../../di/injectable_test.mocks.dart';
 import '../../util/test_extensions.dart';
 
 void main() {
   late LicenseViewModel sut;
-  late LicenseNavigator navigator;
+  late MainNavigator navigator;
 
   setUp(() async {
     await initTestInjectable();
-    navigator = MockLicenseNavigator();
-    sut = LicenseViewModel();
-  });
-
-  test('LicenseViewModel init', () async {
-    await sut.init(navigator);
-    verifyZeroInteractions(navigator);
+    navigator = MockMainNavigator();
+    sut = LicenseViewModel(navigator);
   });
 
   group('After init', () {
     setUp(() async {
-      await sut.init(navigator);
       reset(navigator);
     });
 
@@ -39,5 +35,3 @@ void main() {
     });
   });
 }
-
-class MockLicenseNavigator extends Mock implements LicenseNavigator {}

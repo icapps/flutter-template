@@ -21,6 +21,7 @@ Future<void> main() async {
       name: 'DEV',
       color: Colors.red,
       values: values,
+      supportsTheming: true,
     );
     // ignore: avoid_print
     print('Starting app from main.dart');

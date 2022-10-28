@@ -2,41 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
-import 'package:flutter_template/util/locale/localization.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class GlobalViewModel with ChangeNotifierEx {
+  final Localization _localizationInstance;
   final LocaleRepository _localeRepo;
   final DebugRepository _debugRepo;
   final LocalStorage _localStorage;
-  var _localeDelegate = LocalizationDelegate();
   var _showsTranslationKeys = false;
 
   TargetPlatform? _targetPlatform;
+
+  Localization get localizationInstance => _localizationInstance;
+
+  List<Locale> get supportedLocales => _localizationInstance.supportedLocales;
 
   GlobalViewModel(
     this._localeRepo,
     this._debugRepo,
     this._localStorage,
+    this._localizationInstance,
   );
 
   ThemeMode get themeMode => FlavorConfig.instance.themeMode;
 
-  Locale? get locale => _localeDelegate.newLocale;
+  Locale? get locale => _localizationInstance.locale;
 
   TargetPlatform? get targetPlatform => _targetPlatform;
-
-  LocalizationDelegate get localeDelegate => _localeDelegate;
 
   bool get showsTranslationKeys => _showsTranslationKeys;
 
   Future<void> init() async {
-    _initLocale();
     _initTargetPlatform();
     _getThemeMode();
   }
@@ -46,16 +47,8 @@ class GlobalViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  void _initLocale() {
-    final locale = _localeRepo.getCustomLocale();
-    if (locale != null) {
-      _localeDelegate = LocalizationDelegate(newLocale: locale);
-      notifyListeners();
-    }
-  }
-
   void _getThemeMode() {
-    FlavorConfig.instance.themeMode = _localStorage.getThemeMode();
+    FlavorConfig.instance.themeMode = _localStorage.getThemeMode() ?? FlavorConfig.instance.themeMode;
     notifyListeners();
   }
 
@@ -73,7 +66,7 @@ class GlobalViewModel with ChangeNotifierEx {
 
   Future<void> _onUpdateLocaleClicked(Locale? locale) async {
     await _localeRepo.setCustomLocale(locale);
-    _localeDelegate = LocalizationDelegate(newLocale: locale);
+    await _localizationInstance.load(locale: locale);
     notifyListeners();
   }
 
@@ -92,12 +85,6 @@ class GlobalViewModel with ChangeNotifierEx {
     _initTargetPlatform();
   }
 
-  Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
-    notifyListeners();
-    await _localStorage.updateThemeMode(themeMode);
-  }
-
   String getCurrentPlatform() {
     if (targetPlatform == TargetPlatform.android) {
       return LocalizationKeys.generalLabelAndroid;
@@ -110,16 +97,16 @@ class GlobalViewModel with ChangeNotifierEx {
   String getAppearanceValue(Localization localization) {
     switch (FlavorConfig.instance.themeMode) {
       case ThemeMode.dark:
-        return localization.themeModeLabelDark;
+        return _localizationInstance.themeModeLabelDark;
       case ThemeMode.light:
-        return localization.themeModeLabelLight;
+        return _localizationInstance.themeModeLabelLight;
       default:
-        return localization.themeModeLabelSystem;
+        return _localizationInstance.themeModeLabelSystem;
     }
   }
 
   String getCurrentLanguage() {
-    switch (localeDelegate.activeLocale?.languageCode) {
+    switch (_localizationInstance.locale?.languageCode) {
       case 'nl':
         return 'Nederlands';
       case 'en':
@@ -129,13 +116,16 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   bool isLanguageSelected(String? languageCode) {
-    if (localeDelegate.activeLocale == null && languageCode == null) return true;
-    return localeDelegate.activeLocale?.languageCode == languageCode;
+    if (_localizationInstance.locale == null && languageCode == null) return true;
+    return _localizationInstance.locale?.languageCode == languageCode;
   }
 
-  void toggleTranslationKeys() {
+  Future<void> toggleTranslationKeys() async {
     _showsTranslationKeys = !showsTranslationKeys;
-    _localeDelegate = LocalizationDelegate(newLocale: localeDelegate.activeLocale, showLocalizationKeys: showsTranslationKeys);
+    await _localizationInstance.load(
+      locale: _localizationInstance.locale,
+      showLocalizationKeys: _showsTranslationKeys,
+    );
     notifyListeners();
   }
 }

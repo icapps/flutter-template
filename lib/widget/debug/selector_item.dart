@@ -14,8 +14,8 @@ class SelectorItem extends StatelessWidget {
     required this.onClick,
     required this.title,
     required this.selected,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,10 @@ class SelectorItem extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text(title),
+                child: Text(
+                  title,
+                  style: theme.coreTextTheme.bodyNormal,
+                ),
               ),
               Opacity(
                 opacity: selected ? 1 : 0,

@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -14,7 +14,7 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    secureStorage = GetIt.I.resolveAs<FlutterSecureStorage, MockFlutterSecureStorage>();
+    secureStorage = getIt.resolveAs<FlutterSecureStorage, MockFlutterSecureStorage>();
     sut = SecureStorage(secureStorage);
 
     when(secureStorage.read(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).thenAnswer((_) => Future.value(null));

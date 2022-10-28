@@ -10,14 +10,19 @@ abstract class LocalStorage {
 
   Future<void> checkForNewInstallation();
 
-  ThemeMode getThemeMode();
+  ThemeMode? getThemeMode();
+
+  bool? get hasAnalyticsPermission;
 
   Future<void> updateThemeMode(ThemeMode themeMode);
+
+  Future<void> updateHasAnalyticsPermission(bool? permissionGranted);
 }
 
 class _LocalStorage implements LocalStorage {
   static const _uninstallCheckKey = 'UNINSTALL_CHECK';
   static const _appearanceThemeKey = 'APPEARANCE_THEME';
+  static const _analyticsPermissionKey = 'HAS_ANALYTICS_PERMISSION';
 
   final AuthStorage _authStorage;
   final SharedPreferenceStorage _sharedPreferences;
@@ -39,9 +44,20 @@ class _LocalStorage implements LocalStorage {
   }
 
   @override
-  ThemeMode getThemeMode() {
+  ThemeMode? getThemeMode() {
     final themeString = _sharedPreferences.getString(_appearanceThemeKey);
-    final theme = ThemeMode.values.find((element) => element.toString() == themeString);
-    return theme ?? ThemeMode.system;
+    return ThemeMode.values.find((element) => element.toString() == themeString);
   }
+
+  @override
+  Future<void> updateHasAnalyticsPermission(bool? permissionGranted) async {
+    if (permissionGranted == null) {
+      await _sharedPreferences.deleteKey(_analyticsPermissionKey);
+    } else {
+      await _sharedPreferences.saveBoolean(key: _analyticsPermissionKey, value: permissionGranted);
+    }
+  }
+
+  @override
+  bool? get hasAnalyticsPermission => _sharedPreferences.getBoolean(_analyticsPermissionKey);
 }

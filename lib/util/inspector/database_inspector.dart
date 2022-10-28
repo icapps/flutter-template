@@ -1,13 +1,13 @@
 import 'package:drift_local_storage_inspector/drift_local_storage_inspector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:storage_inspector/storage_inspector.dart';
 
 Future<void> addDatabaseInspector() async {
   if (!kDebugMode) return;
 
-  final database = GetIt.I<FlutterTemplateDatabase>();
+  final database = getIt.get<FlutterTemplateDatabase>();
 
   final driver = StorageServerDriver(
     bundleId: 'com.icapps.flutter_template',

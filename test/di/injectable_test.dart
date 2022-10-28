@@ -2,7 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/navigator/main_navigation.dart';
+import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
@@ -16,12 +17,12 @@ import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
+import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/webservice/todo/todo_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:mockito/annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +30,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'test_injectable.dart';
 
 @GenerateMocks([
+  MainNavigator,
   DebugRepository,
   LocaleRepository,
   LoginRepository,
@@ -52,14 +54,13 @@ import 'test_injectable.dart';
   TodoAddViewModel,
   TodoListViewModel,
   FirebaseAnalytics,
-], customMocks: [
-  MockSpec<MainNavigation>(onMissingStub: OnMissingStub.returnDefault),
+  AnalyticsPermissionViewModel,
 ])
 void main() {
   setUp(() async => initTestInjectable());
 
   test('Injectable', () async {
-    final loginRepo = GetIt.I<LoginRepository>();
+    final loginRepo = getIt<LoginRepository>();
     expect(loginRepo, isA<LoginRepository>());
   });
 }

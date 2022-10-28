@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/util/extension/localization_extension.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -9,14 +10,15 @@ class SelectLanguageDialog extends StatelessWidget {
 
   const SelectLanguageDialog({
     required this.goBack,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final globalViewModel = Provider.of<GlobalViewModel>(context);
-    return DataProviderWidget(
-      childBuilderLocalization: (context, localization) => AlertDialog(
+    return DataProviderWidget(childBuilderTheme: (context, theme) {
+      return AlertDialog(
+        backgroundColor: theme.colorsTheme.background,
         title: Text(localization.debugLocaleSelector),
         content: SizedBox(
           height: 150,
@@ -51,7 +53,7 @@ class SelectLanguageDialog extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repository.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../di/injectable_test.mocks.dart';
@@ -19,9 +19,9 @@ void main() {
 
   setUp(() async {
     await initTestInjectable();
-    authStorage = GetIt.I.resolveAs<AuthStorage, MockAuthStorage>();
-    refreshRepo = GetIt.I.resolveAs<RefreshRepository, MockRefreshRepository>();
-    dio = GetIt.I.resolveAs<Dio, MockDio>();
+    authStorage = getIt.resolveAs<AuthStorage, MockAuthStorage>();
+    refreshRepo = getIt.resolveAs<RefreshRepository, MockRefreshRepository>();
+    dio = getIt.resolveAs<Dio, MockDio>();
     sut = NetworkRefreshInterceptor(authStorage, refreshRepo);
   });
 
