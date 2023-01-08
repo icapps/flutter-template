@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/di/db/setup_drift_none.dart'
@@ -35,7 +34,7 @@ final getIt = GetIt.asNewInstance();
 Future<void> configureDependencies(String environment) async {
   // ignore: avoid_print
   print('Using environment: $environment');
-  await $initGetIt(getIt, environment: environment);
+  await getIt.$initGetIt(environment: environment);
   await getIt.allReady();
   await initMiddleWare();
   await initLocale();
@@ -83,9 +82,6 @@ abstract class RegisterModule {
 
   @lazySingleton
   FlutterTemplateTheme theme() => FlutterTemplateTheme();
-
-  @injectable
-  Brightness brightness() => MediaQueryData.fromWindow(WidgetsBinding.instance.window).platformBrightness;
 
   @lazySingleton
   CombiningSmartInterceptor provideCombiningSmartInterceptor(

@@ -72,7 +72,7 @@ bool updateAppTheme() {
     themeMode = localStorage.getThemeMode()!;
   }
   if (themeMode == ThemeMode.system) {
-    final brightness = getIt.get<Brightness>();
+    final brightness = getIt.get<Brightness>(); // TODO: Brightness can't be injected
     themeMode = (brightness == Brightness.dark) ? ThemeMode.dark : ThemeMode.light;
   }
   return flutterTemplateTheme.configureForThemeStyle(themeMode == ThemeMode.dark ? FlutterTemplateThemeStyle.dark : FlutterTemplateThemeStyle.light);
