@@ -3,7 +3,7 @@ description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: ">=2.18.4 <3.0.0"
 
 dependencies:
   connectivity_plus: ^2.3.9
@@ -31,6 +31,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   get: ^4.6.5
+  get_x_navigation_generator_interface: ^0.0.2
   get_it: ^7.2.0
   icapps_architecture: ^0.7.4
   injectable: ^1.5.3
@@ -58,6 +59,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
+  get_x_navigation_generator: ^0.0.4
   icapps_license: ^2.0.2
   icapps_translations: ^9.0.0
   injectable_generator: ^1.5.4

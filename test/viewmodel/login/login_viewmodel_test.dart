@@ -72,7 +72,7 @@ void main() {
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
-        verify(navigator.goToHome()).calledOnce();
+        verify(navigator.goToHomeScreen()).calledOnce();
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });
@@ -109,7 +109,7 @@ void main() {
         expect(sut.isLoginEnabled, true);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: 'email', password: 'password')).calledOnce();
-        verify(navigator.goToHome());
+        verify(navigator.goToHomeScreen());
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });

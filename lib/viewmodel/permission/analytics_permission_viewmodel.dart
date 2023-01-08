@@ -21,7 +21,7 @@ class AnalyticsPermissionViewModel with ChangeNotifierEx {
       _navigator.goBack<void>();
     } else {
       // No NavigatorState to go back to, so we just go to the home screen
-      _navigator.goToHome();
+      await _navigator.goToHomeScreen();
     }
   }
 

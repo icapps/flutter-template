@@ -23,7 +23,7 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_0_initial_screen');
 
-    unawaited(mainNavigator.goToAddTodo());
+    unawaited(mainNavigator.goToTodoAddScreen());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_todo_add_screen_1');
     mainNavigator.goBack<void>();

@@ -52,21 +52,21 @@ void main() {
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onLicensesClicked();
-      verify(navigator.goToLicense()).calledOnce();
+      verify(navigator.goToLicenseScreen()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });
 
     test('DebugViewModel onLicensesClicked', () async {
       sut.onTargetPlatformClicked();
-      verify(navigator.goToDebugPlatformSelector()).calledOnce();
+      verify(navigator.goToDebugPlatformSelectorScreen()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });
 
     test('DebugViewModel onThemeModeClicked', () async {
       sut.onThemeModeClicked();
-      verify(navigator.goToThemeModeSelector()).calledOnce();
+      verify(navigator.goToThemeModeSelectorScreen()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(debugRepo);
     });

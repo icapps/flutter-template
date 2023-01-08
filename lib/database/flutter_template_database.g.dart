@@ -161,7 +161,7 @@ class $DbTodoTableTable extends DbTodoTable
       'completed', aliasedName, false,
       type: DriftSqlType.bool,
       requiredDuringInsert: true,
-      defaultConstraints: 'CHECK (completed IN (0, 1))');
+      defaultConstraints: 'CHECK ("completed" IN (0, 1))');
   @override
   List<GeneratedColumn> get $columns => [id, title, completed];
   @override

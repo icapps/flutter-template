@@ -20,7 +20,7 @@ void main() {
     final mainNavigator = MainNavigator(getIt.get());
     final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_0_initial_screen');
-    unawaited(mainNavigator.goToDebugPlatformSelector());
+    unawaited(mainNavigator.goToDebugPlatformSelectorScreen());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_debug_select_platform_screen_1');
     mainNavigator.goBack<void>();

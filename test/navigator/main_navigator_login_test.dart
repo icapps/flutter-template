@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
@@ -19,7 +21,7 @@ void main() {
     final mainNavigator = MainNavigator(getIt.get());
     final testWidget = await TestUtil.loadScreen(tester, const SizedBox.shrink());
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_login_screen_0_initial_screen');
-    mainNavigator.goToLogin();
+    unawaited(mainNavigator.goToLoginScreen());
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'main_navigator_login_screen_1');
     mainNavigator.goBack<void>();

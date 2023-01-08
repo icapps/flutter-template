@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/navigator/middle_ware/login_guard.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -10,12 +10,15 @@ import 'package:flutter_template/widget/general/styled/flutter_template_input_fi
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/general/theme_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_x_navigation_generator_interface/get_x_navigation_generator_interface.dart';
 import 'package:provider/provider.dart';
 
+@GetXRoute(
+  navigationType: NavigationType.popAllAndPush,
+  middlewares: [LoginGuard],
+)
 class LoginScreen extends StatefulWidget {
-  static const String routeName = RouteNames.loginScreen;
-
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   LoginScreenState createState() => LoginScreenState();

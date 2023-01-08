@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/route_names.dart';
+import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/theme_widget.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_x_navigation_generator_interface/get_x_navigation_generator_interface.dart';
 
+@GetXRoute(
+  middlewares: [
+    AuthenticationGuard,
+  ],
+)
 class AnalyticsPermissionScreen extends StatelessWidget {
-  static const String routeName = RouteNames.analyticsPermission;
-
-  const AnalyticsPermissionScreen({Key? key}) : super(key: key);
+  const AnalyticsPermissionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
