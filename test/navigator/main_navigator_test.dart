@@ -7,7 +7,6 @@ import '../util/test_util.dart';
 void main() {
   setUp(() async {
     await initTestInjectable();
-    // await initArchitecture();
   });
 
   testWidgets('Test main navigator widget initial state', (tester) async {

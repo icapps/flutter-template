@@ -30,7 +30,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'test_injectable.dart';
 
 @GenerateMocks([
-  MainNavigator,
   DebugRepository,
   LocaleRepository,
   LoginRepository,
@@ -55,6 +54,8 @@ import 'test_injectable.dart';
   TodoListViewModel,
   FirebaseAnalytics,
   AnalyticsPermissionViewModel,
+], customMocks: [
+  MockSpec<MainNavigator>(onMissingStub: OnMissingStub.returnDefault),
 ])
 void main() {
   setUp(() async => initTestInjectable());

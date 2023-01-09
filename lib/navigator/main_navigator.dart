@@ -2,7 +2,6 @@ import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:flutter_template/util/snackbar/snackbar_util.dart';
 import 'package:get/route_manager.dart';
@@ -20,7 +19,7 @@ class MainNavigator extends BaseNavigator {
 
   static final List<NavigatorObserver> _navigatorObservers = [];
 
-  static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : RouteNames.splashScreen;
+  static String get initialRoute => RouteNames.splashScreen;
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 

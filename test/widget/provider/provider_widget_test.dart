@@ -10,7 +10,6 @@ void main() {
   setUp(() async {
     await initTestInjectable();
     seedGlobalViewModel();
-    // await initArchitecture();
   });
 
   testWidgets('ProviderWidget throw exception', (tester) async {

@@ -43,7 +43,7 @@ void main() {
       reset(debugRepo);
     });
 
-    test('DebugViewModel onLicensesClicked', () async {
+    test('DebugViewModel onSelectLanguageClicked', () async {
       sut.onSelectLanguageClicked();
       verify(navigator.showCustomDialog<void>(widget: anyNamed('widget'))).calledOnce();
       verifyNoMoreInteractions(navigator);
@@ -57,7 +57,7 @@ void main() {
       verifyZeroInteractions(debugRepo);
     });
 
-    test('DebugViewModel onLicensesClicked', () async {
+    test('DebugViewModel onTargetPlatformClicked', () async {
       sut.onTargetPlatformClicked();
       verify(navigator.goToDebugPlatformSelectorScreen()).calledOnce();
       verifyNoMoreInteractions(navigator);
