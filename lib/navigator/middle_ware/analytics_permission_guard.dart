@@ -11,7 +11,6 @@ class AnalyticsPermissionGuard extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     if (FlavorConfig.isInTest()) return null;
-    final shouldShowAnalyticsPermissionScreen = (localStorage.hasAnalyticsPermission != true);
-    return shouldShowAnalyticsPermissionScreen ? const RouteSettings(name: RouteNames.analyticsPermissionScreen) : null;
+    return localStorage.hasAnalyticsPermission != true ? const RouteSettings(name: RouteNames.analyticsPermissionScreen) : null;
   }
 }
