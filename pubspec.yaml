@@ -31,7 +31,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   get: ^4.6.5
-  get_x_navigation_generator_interface: ^0.0.3
+  get_x_navigation_generator_interface: ^0.0.4
   get_it: ^7.2.0
   icapps_architecture: ^0.7.4
   injectable: ^1.5.4
@@ -59,7 +59,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  get_x_navigation_generator: ^0.0.5
+  get_x_navigation_generator: ^0.0.6
   icapps_license: ^2.0.2
   icapps_translations: ^9.0.0
   injectable_generator: ^1.5.4
