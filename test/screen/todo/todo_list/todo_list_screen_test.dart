@@ -10,7 +10,6 @@ import 'package:mockito/mockito.dart';
 import '../../../di/injectable_test.mocks.dart';
 import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
-import '../../../util/test_themes_util.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
 
@@ -34,7 +33,6 @@ void main() {
   });
 
   testWidgets('Test splash screen initial state darkmode', (tester) async {
-    TestThemeUtil.setDarkMode();
     const sut = TodoListScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 

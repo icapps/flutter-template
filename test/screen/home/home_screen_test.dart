@@ -3,7 +3,6 @@ import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../di/test_injectable.dart';
-import '../../util/test_themes_util.dart';
 import '../../util/test_util.dart';
 import '../debug/debug_screen_test.dart';
 import '../seed.dart';
@@ -13,8 +12,6 @@ void main() {
   setUp(() async => initTestInjectable());
 
   testWidgets('Test home screen initial state', (tester) async {
-    TestThemeUtil.setLightMode();
-
     seedGlobalViewModel();
     seedTodoListViewModel();
     seedDebugViewModel();
@@ -43,8 +40,6 @@ void main() {
   });
 
   testWidgets('Test home screen initial state dark mode', (tester) async {
-    TestThemeUtil.setDarkMode();
-
     seedGlobalViewModel();
     seedTodoListViewModel();
     seedDebugViewModel();

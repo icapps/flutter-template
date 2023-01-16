@@ -18,47 +18,32 @@ class Localization {
   var _localisedValues = <String, dynamic>{};
   var _localisedOverrideValues = <String, dynamic>{};
 
+  static Localization of(BuildContext context) => Localizations.of<Localization>(context, Localization)!;
+
   /// The locale is used to get the correct json locale.
   /// It can later be used to check what the locale is that was used to load this Localization instance.
-  Locale? locale;
+  final Locale? locale;
 
-  static const defaultLocale = Locale.fromSubtags(languageCode: 'nl', scriptCode: null, countryCode: null);
+  Localization({required this.locale});
 
-  static const _supportedLocales = [
-    Locale.fromSubtags(languageCode: 'nl', scriptCode: null, countryCode: null),
-    Locale.fromSubtags(languageCode: 'en', scriptCode: null, countryCode: null),
-  ];
-
-  List<String> get supportedLanguages {
-    final supportedLanguageTags = _supportedLocales.map((e) => e.toLanguageTag()).toList(growable: false);
-    if (localeFilter == null) return supportedLanguageTags;
-    return supportedLanguageTags.where((element) => localeFilter?.call(element) ?? true).toList();
-  }
-
-  List<Locale> get supportedLocales {
-    if (localeFilter == null) return _supportedLocales;
-    return _supportedLocales.where((element) => localeFilter?.call(element.toLanguageTag()) ?? true).toList();
-  }
-
-  Future<void> load({
-    Locale? locale, 
+  static Future<Localization> load({
+    required Locale locale, 
     LocalizationOverrides? localizationOverrides,
     bool showLocalizationKeys = false,
     bool useCaching = true,
+    AssetBundle? bundle,
     }) async {
-    final currentLocale = locale ?? defaultLocale;
-    this.locale = currentLocale;
+    final localizations = Localization(locale: locale);
     if (showLocalizationKeys) {
-      _localisedValues.clear();
-      _localisedOverrideValues.clear();
-      return;
+      return localizations;
     }
     if (localizationOverrides != null) {
-      final overrideLocalizations = await localizationOverrides.getOverriddenLocalizations(currentLocale);
-      _localisedOverrideValues = overrideLocalizations;
+      final overrideLocalizations = await localizationOverrides.getOverriddenLocalizations(locale);
+      localizations._localisedOverrideValues = overrideLocalizations;
     }
-    final jsonContent = await rootBundle.loadString('assets/locale/${currentLocale.toLanguageTag()}.json', cache: useCaching);
-    _localisedValues = json.decode(jsonContent) as Map<String, dynamic>;
+    final jsonContent = await (bundle ?? rootBundle).loadString('assets/locale/${locale.toLanguageTag()}.json', cache: useCaching);
+    localizations._localisedValues = json.decode(jsonContent) as Map<String, dynamic>;
+    return localizations;
   }
 
   String _t(String key, {List<dynamic>? args}) {

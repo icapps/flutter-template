@@ -2,10 +2,7 @@
 
 part of 'todo_dao_storage.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$_TodoDaoStorageMixin on DatabaseAccessor<FlutterTemplateDatabase> {
   $DbTodoTableTable get dbTodoTable => attachedDatabase.dbTodoTable;
 }

@@ -9,7 +9,6 @@ import 'package:mockito/mockito.dart';
 import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
-import '../../util/test_themes_util.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
@@ -21,8 +20,6 @@ void main() {
   });
 
   testWidgets('Test analyticsPermissionScreen initial state in light mode', (tester) async {
-    TestThemeUtil.setLightMode();
-
     const sut = AnalyticsPermissionScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
@@ -31,8 +28,6 @@ void main() {
   });
 
   testWidgets('Test analyticsPermissionScreen initial state in dark mode', (tester) async {
-    TestThemeUtil.setDarkMode();
-
     const sut = AnalyticsPermissionScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 

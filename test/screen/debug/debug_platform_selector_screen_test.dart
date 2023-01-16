@@ -12,7 +12,6 @@ import 'package:mockito/mockito.dart';
 import '../../di/injectable_test.mocks.dart';
 import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
-import '../../util/test_themes_util.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
@@ -29,7 +28,6 @@ void main() {
 
   testWidgets('Test debug select platform screen initial state light mode', (tester) async {
     seedGlobalViewModel();
-    TestThemeUtil.setLightMode();
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
@@ -39,7 +37,6 @@ void main() {
 
   testWidgets('Test debug select platform screen initial state dark mode', (tester) async {
     seedGlobalViewModel();
-    TestThemeUtil.setDarkMode();
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);

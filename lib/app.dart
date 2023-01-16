@@ -48,8 +48,9 @@ class InternalApp extends StatelessWidget {
       lazy: FlavorConfig.isInTest(),
       consumer: (context, viewModel, consumerChild) => GetMaterialApp(
         debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
+        localizationsDelegates: [
+          if (viewModel.localeDelegate != null) viewModel.localeDelegate!,
+          ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],

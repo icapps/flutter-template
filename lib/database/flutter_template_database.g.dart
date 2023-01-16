@@ -2,11 +2,89 @@
 
 part of 'flutter_template_database.dart';
 
-// **************************************************************************
-// DriftDatabaseGenerator
-// **************************************************************************
-
 // ignore_for_file: type=lint
+class $DbTodoTableTable extends DbTodoTable
+    with TableInfo<$DbTodoTableTable, DbTodo> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DbTodoTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+      'title', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _completedMeta =
+      const VerificationMeta('completed');
+  @override
+  late final GeneratedColumn<bool> completed =
+      GeneratedColumn<bool>('completed', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: true,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("completed" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }));
+  @override
+  List<GeneratedColumn> get $columns => [id, title, completed];
+  @override
+  String get aliasedName => _alias ?? 'db_todo_table';
+  @override
+  String get actualTableName => 'db_todo_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<DbTodo> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('completed')) {
+      context.handle(_completedMeta,
+          completed.isAcceptableOrUnknown(data['completed']!, _completedMeta));
+    } else if (isInserting) {
+      context.missing(_completedMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DbTodo(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      title: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      completed: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}completed'])!,
+    );
+  }
+
+  @override
+  $DbTodoTableTable createAlias(String alias) {
+    return $DbTodoTableTable(attachedDatabase, alias);
+  }
+}
+
 class DbTodo extends DataClass implements Insertable<DbTodo> {
   final int id;
   final String title;
@@ -137,87 +215,12 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
   }
 }
 
-class $DbTodoTableTable extends DbTodoTable
-    with TableInfo<$DbTodoTableTable, DbTodo> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $DbTodoTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
-  final VerificationMeta _titleMeta = const VerificationMeta('title');
-  @override
-  late final GeneratedColumn<String> title = GeneratedColumn<String>(
-      'title', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _completedMeta = const VerificationMeta('completed');
-  @override
-  late final GeneratedColumn<bool> completed = GeneratedColumn<bool>(
-      'completed', aliasedName, false,
-      type: DriftSqlType.bool,
-      requiredDuringInsert: true,
-      defaultConstraints: 'CHECK (completed IN (0, 1))');
-  @override
-  List<GeneratedColumn> get $columns => [id, title, completed];
-  @override
-  String get aliasedName => _alias ?? 'db_todo_table';
-  @override
-  String get actualTableName => 'db_todo_table';
-  @override
-  VerificationContext validateIntegrity(Insertable<DbTodo> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('title')) {
-      context.handle(
-          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
-    } else if (isInserting) {
-      context.missing(_titleMeta);
-    }
-    if (data.containsKey('completed')) {
-      context.handle(_completedMeta,
-          completed.isAcceptableOrUnknown(data['completed']!, _completedMeta));
-    } else if (isInserting) {
-      context.missing(_completedMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  DbTodo map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return DbTodo(
-      id: attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      title: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
-      completed: attachedDatabase.options.types
-          .read(DriftSqlType.bool, data['${effectivePrefix}completed'])!,
-    );
-  }
-
-  @override
-  $DbTodoTableTable createAlias(String alias) {
-    return $DbTodoTableTable(attachedDatabase, alias);
-  }
-}
-
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
   _$FlutterTemplateDatabase.connect(DatabaseConnection c) : super.connect(c);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
-  Iterable<TableInfo<Table, dynamic>> get allTables =>
+  Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [dbTodoTable];

@@ -43,12 +43,12 @@ import '../util/test_util.dart';
 import 'injectable_test.mocks.dart';
 import 'test_injectable.config.dart';
 
-L getLocale<L>(BuildContext context) => getIt.get<Localization>() as L;
+L getLocale<L>(BuildContext context) => Localization.of(context) as L;
 
-T getTheme<T>(BuildContext context) => getIt.get<FlutterTemplateTheme>() as T; // ignore: avoid_as
+T getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T;
 
 @InjectableInit(
-  initializerName: r'$initTestGetIt',
+  initializerName: r'initTestGetIt',
   generateForDir: ['test'],
 )
 Future<void> initTestInjectable() async {
@@ -73,8 +73,8 @@ Future<void> initTestInjectable() async {
   }
   TestWidgetsFlutterBinding.ensureInitialized();
   getIt.allowReassignment = true;
-  await $initGetIt(getIt, environment: Environments.test);
-  $initTestGetIt(getIt, environment: Environments.test);
+  await getIt.initGetIt(environment: Environments.test);
+  getIt.initTestGetIt(environment: Environments.test);
   await TestUtil.loadFonts();
 }
 
@@ -162,9 +162,6 @@ abstract class RegisterModule {
 
   @singleton
   AnalyticsPermissionViewModel get getAnalyticsPermissionViewModel => _initVM(MockAnalyticsPermissionViewModel());
-
-  @singleton
-  Localization get getLocalization => Localization();
 
   static T _initVM<T extends ChangeNotifier>(T viewModel) {
     // ignore: void_checks
