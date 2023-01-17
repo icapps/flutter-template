@@ -5,11 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
+import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../mocks/mocked_network_images.dart';
+import '../widget/test_app.dart';
 import 'test_screen_type.dart';
 
 class TestUtil {
@@ -46,12 +50,21 @@ class TestUtil {
 
   // This method should be used when taking screenshot tests of a single screen
   // Screen integration tests
-  static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
+  static Future<Widget> loadScreen(WidgetTester tester, Widget widget, {ThemeMode themeMode = ThemeMode.light}) async {
+    ThemeConfigUtil themeConfig;
+    if (getIt.isRegistered<ThemeConfigUtil>()) {
+      themeConfig = getIt();
+    } else {
+      themeConfig = ThemeConfigUtil();
+      getIt.registerSingleton(themeConfig);
+    }
+    themeConfig.themeMode = themeMode;
     await initArchitecture();
     return _internalLoadWidget(
       tester,
-      InternalApp.test(
+      TestApp(
         home: widget,
+        localeDelegate: LocalizationDelegate(showLocalizationKeys: true),
       ),
     );
   }

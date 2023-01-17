@@ -30,6 +30,10 @@ void main() {
     getIt.registerSingleton<DebugPlatformSelectorViewModel>(platformViewModel);
   });
 
+  tearDown(() async {
+    await getIt.reset();
+  });
+
   testWidgets('Test debug select platform screen initial state light mode', (tester) async {
     seedGlobalViewModel();
 
@@ -43,7 +47,7 @@ void main() {
     seedGlobalViewModel();
 
     const sut = DebugPlatformSelectorScreen();
-    final testWidget = await TestUtil.loadScreen(tester, sut);
+    final testWidget = await TestUtil.loadScreen(tester, sut, themeMode: ThemeMode.dark);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_inital_state_darkmode');
     verifyGlobalViewModel();
   });

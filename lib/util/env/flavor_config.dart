@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 enum Flavor {
@@ -51,7 +53,7 @@ class FlavorConfig {
 
   static bool isBeta() => _instance!.flavor == Flavor.beta;
 
-  static bool isInTest() => _instance!.flavor == Flavor.test;
+  static bool isInTest() => Platform.environment.containsKey('FLUTTER_TEST');
 
   static bool isDummy() => _instance!.flavor == Flavor.dummy;
 }

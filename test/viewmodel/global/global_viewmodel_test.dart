@@ -80,7 +80,7 @@ void main() {
 
     test('GlobalViewModel onSwitchToDutch', () async {
       expect(sut.showsTranslationKeys, false);
-      await sut.toggleTranslationKeys();
+      sut.toggleTranslationKeys();
       expect(sut.showsTranslationKeys, true);
     });
 

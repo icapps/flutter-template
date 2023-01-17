@@ -142,7 +142,7 @@ class GlobalViewModel with ChangeNotifierEx {
     return _localeDelegate.activeLocale?.languageCode == languageCode;
   }
 
-  Future<void> toggleTranslationKeys() async {
+  void toggleTranslationKeys() {
     _showsTranslationKeys = !showsTranslationKeys;
     _localeDelegate = LocalizationDelegate(
       newLocale: locale,

@@ -23,10 +23,14 @@ void main() {
   setUp(() async {
     debugViewModel = MockDebugViewModel();
     globalViewModel = MockGlobalViewModel();
+    getIt.registerLazySingleton<DebugViewModel>(() => debugViewModel);
+    getIt.registerLazySingleton<GlobalViewModel>(() => globalViewModel);
     seedDebugViewModel();
     seedGlobalViewModel();
-    getIt.registerLazySingleton(() => debugViewModel);
-    getIt.registerLazySingleton(() => globalViewModel);
+  });
+
+  tearDown(() async {
+    await getIt.reset();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
