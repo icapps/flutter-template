@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateThemeData {
@@ -316,8 +317,9 @@ class FlutterTemplateTheme {
   static FlutterTemplateTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
     if (forceDark) return _instanceDark;
     if (forceLight) return _instanceLight;
+    final themeConfigUtil = getIt<ThemeConfigUtil>();
 
-    final theme = FlavorConfig.instance.themeMode;
+    final theme = themeConfigUtil.themeMode;
     if (theme == ThemeMode.dark) {
       return _instanceDark;
     } else if (theme == ThemeMode.light) {

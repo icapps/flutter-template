@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/screen/home/home_screen.dart';
+import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
-import '../../di/test_injectable.dart';
 import '../../util/test_util.dart';
 import '../debug/debug_screen_test.dart';
 import '../seed.dart';
 import '../todo/todo_list/todo_list_screen_test.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+  TodoListViewModel,
+  DebugViewModel,
+  LocalStorage,
+])
 void main() {
-  setUp(() async => initTestInjectable());
-
   testWidgets('Test home screen initial state', (tester) async {
     seedGlobalViewModel();
     seedTodoListViewModel();

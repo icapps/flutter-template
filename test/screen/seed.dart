@@ -17,39 +17,33 @@ import 'package:mockito/mockito.dart';
 import '../util/test_extensions.dart';
 
 void seedDebugViewModel() {
-  final debugViewModel = getIt<DebugViewModel>();
-  when(debugViewModel.slowAnimationsEnabled).thenReturn(false);
-  // ignore: void_checks
-  when(debugViewModel.onTargetPlatformClicked()).thenReturn(1);
-  // ignore: void_checks
-  when(debugViewModel.onSelectLanguageClicked()).thenReturn(1);
-  // ignore: void_checks
-  when(debugViewModel.onLicensesClicked()).thenReturn(1);
+  final viewModel = getIt<DebugViewModel>();
+  when(viewModel.slowAnimationsEnabled).thenReturn(false);
+  when(viewModel.onTargetPlatformClicked()).thenAnswer((realInvocation) {});
+  when(viewModel.onSelectLanguageClicked()).thenAnswer((realInvocation) {});
+  when(viewModel.onLicensesClicked()).thenAnswer((realInvocation) {});
 }
 
 void seedTodoListViewModel() {
-  final todoListViewModel = getIt<TodoListViewModel>();
-  when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
+  final viewModel = getIt<TodoListViewModel>();
+  when(viewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
-  when(todoListViewModel.isLoading).thenReturn(false);
-  when(todoListViewModel.errorKey).thenReturn(null);
-  // ignore: void_checks
-  when(todoListViewModel.onAddClicked()).thenReturn(1);
+  when(viewModel.isLoading).thenReturn(false);
+  when(viewModel.errorKey).thenReturn(null);
+  when(viewModel.onAddClicked()).thenAnswer((realInvocation) {});
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = getIt<TodoAddViewModel>();
-  when(todoAddViewModel.isSaveEnabled).thenReturn(false);
-  // ignore: void_checks
-  when(todoAddViewModel.onBackClicked()).thenReturn(1);
+  final viewModel = getIt<TodoAddViewModel>();
+  when(viewModel.isSaveEnabled).thenReturn(false);
+  when(viewModel.onBackClicked()).thenAnswer((realInvocation) {});
 }
 
 void seedsLicenses() {
-  final licenseViewModel = getIt<LicenseViewModel>();
-  // ignore: void_checks
-  when(licenseViewModel.onBackClicked()).thenReturn(1);
-  when(licenseViewModel.licenses).thenReturn([
+  final viewModel = getIt<LicenseViewModel>();
+  when(viewModel.onBackClicked()).thenAnswer((realInvocation) {});
+  when(viewModel.licenses).thenReturn([
     for (var i = 0; i < 100; ++i)
       License(
         name: 'name$i',
@@ -62,31 +56,30 @@ void seedsLicenses() {
 }
 
 void seedLoginViewModel() {
-  final loginViewModel = getIt<LoginViewModel>();
-  when(loginViewModel.isLoading).thenReturn(false);
-  when(loginViewModel.isLoginEnabled).thenReturn(true);
+  final viewModel = getIt<LoginViewModel>();
+  when(viewModel.isLoading).thenReturn(false);
+  when(viewModel.isLoginEnabled).thenReturn(true);
 }
 
 void seedGlobalViewModel() {
-  final globalViewModel = getIt<GlobalViewModel>();
-  when(globalViewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
-  when(globalViewModel.showsTranslationKeys).thenAnswer((_) => false);
-  when(globalViewModel.locale).thenAnswer((_) => const Locale('en'));
-  when(globalViewModel.themeMode).thenAnswer((_) => ThemeMode.system);
-  when(globalViewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
-  when(globalViewModel.getCurrentLanguage()).thenReturn('English');
-  when(globalViewModel.localeDelegate).thenReturn(LocalizationDelegate());
-  when(globalViewModel.supportedLocales).thenReturn(const [Locale('en'), Locale('nl')]);
-  // ignore: void_checks
-  when(globalViewModel.dispose()).thenReturn(1);
+  final viewModel = getIt<GlobalViewModel>();
+  when(viewModel.targetPlatform).thenAnswer((_) => TargetPlatform.android);
+  when(viewModel.showsTranslationKeys).thenAnswer((_) => false);
+  when(viewModel.locale).thenAnswer((_) => const Locale('en'));
+  when(viewModel.themeMode).thenAnswer((_) => ThemeMode.system);
+  when(viewModel.getCurrentPlatform()).thenReturn(LocalizationKeys.generalLabelAndroid);
+  when(viewModel.getCurrentLanguage()).thenReturn('English');
+  when(viewModel.localeDelegate).thenReturn(LocalizationDelegate());
+  when(viewModel.supportedLocales).thenReturn(const [Locale('en'), Locale('nl')]);
+  when(viewModel.dispose()).thenAnswer((realInvocation) {});
 }
 
 void verifyGlobalViewModel() {
-  final globalViewModel = getIt<GlobalViewModel>();
-  verify(globalViewModel.targetPlatform);
-  verify(globalViewModel.locale);
-  verify(globalViewModel.themeMode);
-  verify(globalViewModel.init()).calledOnce();
+  final viewModel = getIt<GlobalViewModel>();
+  verify(viewModel.targetPlatform);
+  verify(viewModel.locale);
+  verify(viewModel.themeMode);
+  verify(viewModel.init()).calledOnce();
 }
 
 void seedAuthStorage() {

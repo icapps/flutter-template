@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -10,7 +9,7 @@ class DebugThemeSelectorViewModel with ChangeNotifierEx {
   final MainNavigator _navigator;
   final GlobalViewModel _globalViewModel;
 
-  ThemeMode get themeMode => FlavorConfig.instance.themeMode;
+  ThemeMode get themeMode => _globalViewModel.themeMode;
 
   DebugThemeSelectorViewModel(
     this._navigator,
@@ -18,7 +17,6 @@ class DebugThemeSelectorViewModel with ChangeNotifierEx {
   );
 
   Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
     await _globalViewModel.updateThemeMode(themeMode);
   }
 

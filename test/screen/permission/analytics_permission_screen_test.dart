@@ -1,20 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/screen/permission/analytics_permission_screen.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+  LocalStorage,
+])
 void main() {
   setUp(() async {
-    await initTestInjectable();
     seedGlobalViewModel();
     seedLocalStorage();
   });
@@ -33,11 +35,10 @@ void main() {
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'analytics_permission_screen_initial_state_dark_mode');
     verifyAnalyticsPermissionViewModel();
-    FlavorConfig.instance.themeMode = ThemeMode.system;
   });
 }
 
 void verifyAnalyticsPermissionViewModel() {
-  final analyticsPermissionViewModel = getIt.resolveAs<AnalyticsPermissionViewModel, MockAnalyticsPermissionViewModel>();
+  final analyticsPermissionViewModel = getIt<AnalyticsPermissionViewModel>();
   verify(analyticsPermissionViewModel.init()).calledOnce();
 }

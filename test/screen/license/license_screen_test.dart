@@ -3,21 +3,23 @@ import 'package:flutter_template/screen/license/license_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
+import 'license_screen_test.mocks.dart';
 
+@GenerateMocks([
+  LicenseViewModel,
+])
 void main() {
   late LicenseViewModel licenseViewModel;
 
   setUp(() async {
-    await initTestInjectable();
     seedLocalStorage();
-    licenseViewModel = getIt();
+    licenseViewModel = MockLicenseViewModel();
   });
 
   testWidgets('Test license screen initial state', (tester) async {
@@ -77,6 +79,6 @@ void main() {
 }
 
 void verifyLicenseViewModel() {
-  final licenseViewModel = getIt.resolveAs<LicenseViewModel, MockLicenseViewModel>();
+  final licenseViewModel = getIt<LicenseViewModel>();
   verify(licenseViewModel.licenses);
 }

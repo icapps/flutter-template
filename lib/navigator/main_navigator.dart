@@ -17,7 +17,6 @@ import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:flutter_template/util/snackbar/snackbar_util.dart';
-import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/navigator_page/base_page.dart';
 import 'package:get/route_manager.dart';
 import 'package:injectable/injectable.dart';
@@ -37,16 +36,16 @@ class MainNavigator {
   static final pages = [
     BasePage<void>(
       name: SplashScreen.routeName,
-      page: () => const FlavorBanner(child: SplashScreen()),
+      page: () => const SplashScreen(),
     ),
     BasePage<void>(
       name: LoginScreen.routeName,
-      page: () => const FlavorBanner(child: LoginScreen()),
+      page: () => const LoginScreen(),
       middlewares: [LoginGuard()],
     ),
     BasePage<void>(
       name: HomeScreen.routeName,
-      page: () => const FlavorBanner(child: HomeScreen()),
+      page: () => const HomeScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),
@@ -54,7 +53,7 @@ class MainNavigator {
     ),
     BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => const FlavorBanner(child: TodoAddScreen()),
+      page: () => const TodoAddScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),
@@ -62,7 +61,7 @@ class MainNavigator {
     ),
     BasePage<void>(
       name: LicenseScreen.routeName,
-      page: () => const FlavorBanner(child: LicenseScreen()),
+      page: () => const LicenseScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),
@@ -71,7 +70,7 @@ class MainNavigator {
     if (!FlavorConfig.isProd()) ...[
       BasePage<void>(
         name: DebugPlatformSelectorScreen.routeName,
-        page: () => const FlavorBanner(child: DebugPlatformSelectorScreen()),
+        page: () => const DebugPlatformSelectorScreen(),
         middlewares: [
           AuthenticationGuard(),
           AnalyticsPermissionGuard(),
@@ -79,7 +78,7 @@ class MainNavigator {
       ),
       BasePage<void>(
         name: ThemeModeSelectorScreen.routeName,
-        page: () => const FlavorBanner(child: ThemeModeSelectorScreen()),
+        page: () => const ThemeModeSelectorScreen(),
         middlewares: [
           AuthenticationGuard(),
           AnalyticsPermissionGuard(),
@@ -87,7 +86,7 @@ class MainNavigator {
       ),
       BasePage<void>(
         name: DebugScreen.routeName,
-        page: () => const FlavorBanner(child: DebugScreen()),
+        page: () => const DebugScreen(),
         middlewares: [
           AuthenticationGuard(),
           AnalyticsPermissionGuard(),
@@ -95,7 +94,7 @@ class MainNavigator {
       ),
       BasePage<void>(
         name: AnalyticsPermissionScreen.routeName,
-        page: () => const FlavorBanner(child: AnalyticsPermissionScreen()),
+        page: () => const AnalyticsPermissionScreen(),
         middlewares: [
           AuthenticationGuard(),
         ],

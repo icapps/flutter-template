@@ -5,20 +5,22 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../di/injectable_test.mocks.dart';
-import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
+import 'todo_list_screen_test.mocks.dart';
 
+@GenerateMocks([
+  TodoListViewModel,
+])
 void main() {
   late MockTodoListViewModel todoListViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    todoListViewModel = getIt.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+    todoListViewModel = MockTodoListViewModel();
     seedTodoListViewModel();
     seedGlobalViewModel();
   });
@@ -121,7 +123,7 @@ void main() {
 }
 
 void verifyTodoListViewModel() {
-  final todoListViewModel = getIt.resolveAs<TodoListViewModel, MockTodoListViewModel>();
+  final todoListViewModel = getIt<TodoListViewModel>();
   verify(todoListViewModel.dataStream);
   verify(todoListViewModel.isLoading);
   verify(todoListViewModel.errorKey);

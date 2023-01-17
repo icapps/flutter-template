@@ -4,15 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
+import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
-import '../di/test_injectable.dart';
 import '../screen/seed.dart';
 import '../util/test_util.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+  TodoAddViewModel,
+  AuthStorage,
+  LocalStorage,
+])
 void main() {
-  setUp(() async => initTestInjectable());
-
   testWidgets('Test main navigator widget todo add', (tester) async {
     seedTodoAddViewModel();
     seedGlobalViewModel();

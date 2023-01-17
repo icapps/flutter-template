@@ -1,16 +1,21 @@
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'debug_viewmodel_test.mocks.dart';
 
+@GenerateMocks([
+  MainNavigator,
+  DebugRepository,
+  LocalStorage,
+  FlutterTemplateDatabase,
+])
 void main() {
   late DebugViewModel sut;
   late MainNavigator navigator;
@@ -19,11 +24,10 @@ void main() {
   late FlutterTemplateDatabase database;
 
   setUp(() async {
-    await initTestInjectable();
     navigator = MockMainNavigator();
-    database = getIt<FlutterTemplateDatabase>();
-    debugRepo = getIt();
-    localStorage = getIt();
+    debugRepo = MockDebugRepository();
+    localStorage = MockLocalStorage();
+    database = MockFlutterTemplateDatabase();
     sut = DebugViewModel(debugRepo, navigator, database, localStorage);
   });
 

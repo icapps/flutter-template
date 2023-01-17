@@ -5,14 +5,11 @@ import 'package:flutter_template/model/exceptions/internal_server_error.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_injectable.dart';
-
 void main() {
   late NetworkLogInterceptor sut;
   late RequestOptions requestOptions;
 
   setUp(() async {
-    await initTestInjectable();
     sut = NetworkLogInterceptor();
     requestOptions = RequestOptions(
       baseUrl: 'https://test.com/',

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
-import '../../di/test_injectable.dart';
 import '../../screen/seed.dart';
 import '../../util/test_util.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+])
 void main() {
   setUp(() async {
-    await initTestInjectable();
     seedGlobalViewModel();
   });
 

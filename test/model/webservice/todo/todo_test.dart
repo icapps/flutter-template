@@ -1,11 +1,7 @@
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_injectable.dart';
-
 void main() {
-  setUp(() async => initTestInjectable());
-
   test('TodoTest', () async {
     const todo = Todo(id: 1, title: 'title', completed: true);
 

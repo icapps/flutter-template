@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,6 +13,7 @@ import 'package:injectable/injectable.dart';
 class GlobalViewModel with ChangeNotifierEx {
   final LocaleRepository _localeRepo;
   final DebugRepository _debugRepo;
+  final ThemeConfigUtil _themeConfigUtil;
   final LocalStorage _localStorage;
   var _localeDelegate = LocalizationDelegate();
   var _showsTranslationKeys = false;
@@ -23,7 +24,7 @@ class GlobalViewModel with ChangeNotifierEx {
 
   List<Locale> get supportedLocales => LocalizationDelegate.supportedLocales;
 
-  ThemeMode get themeMode => FlavorConfig.instance.themeMode;
+  ThemeMode get themeMode => _themeConfigUtil.themeMode;
 
   Locale? get locale => _localeDelegate.activeLocale;
 
@@ -35,6 +36,7 @@ class GlobalViewModel with ChangeNotifierEx {
     this._localeRepo,
     this._debugRepo,
     this._localStorage,
+    this._themeConfigUtil,
   );
 
   Future<void> init() async {
@@ -59,12 +61,12 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   void _getThemeMode() {
-    FlavorConfig.instance.themeMode = _localStorage.getThemeMode() ?? FlavorConfig.instance.themeMode;
+    _themeConfigUtil.themeMode = _localStorage.getThemeMode() ?? _themeConfigUtil.themeMode;
     notifyListeners();
   }
 
   Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
+    _themeConfigUtil.themeMode = themeMode;
     notifyListeners();
     await _localStorage.updateThemeMode(themeMode);
   }
@@ -115,7 +117,7 @@ class GlobalViewModel with ChangeNotifierEx {
   }
 
   String getAppearanceValue(Localization localization) {
-    switch (FlavorConfig.instance.themeMode) {
+    switch (_themeConfigUtil.themeMode) {
       case ThemeMode.dark:
         return localization.themeModeLabelDark;
       case ThemeMode.light:

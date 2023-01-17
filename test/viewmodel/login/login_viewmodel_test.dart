@@ -1,4 +1,3 @@
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
@@ -6,20 +5,23 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'login_viewmodel_test.mocks.dart';
 
+@GenerateMocks([
+  LoginRepository,
+  MainNavigator,
+])
 void main() {
   late LoginViewModel sut;
   late MockLoginRepository loginRepo;
   late MainNavigator navigator;
 
   setUp(() async {
-    await initTestInjectable();
-    loginRepo = getIt.resolveAs<LoginRepository, MockLoginRepository>();
+    loginRepo = MockLoginRepository();
     navigator = MockMainNavigator();
     sut = LoginViewModel(loginRepo, navigator);
   });

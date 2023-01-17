@@ -1,20 +1,21 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'secure_storage_test.mocks.dart';
 
+@GenerateMocks([
+  FlutterSecureStorage,
+])
 void main() {
   late SecureStorage sut;
   late MockFlutterSecureStorage secureStorage;
 
   setUp(() async {
-    await initTestInjectable();
-    secureStorage = getIt.resolveAs<FlutterSecureStorage, MockFlutterSecureStorage>();
+    secureStorage = MockFlutterSecureStorage();
     sut = SecureStorage(secureStorage);
 
     when(secureStorage.read(key: anyNamed('key'), iOptions: anyNamed('iOptions'))).thenAnswer((_) => Future.value(null));

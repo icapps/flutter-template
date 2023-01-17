@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
 
 void main() {
   late LoginViewModel loginViewModel;
+  late ThemeConfigUtil themeConfigUtil;
 
   setUp(() async {
-    await initTestInjectable();
     loginViewModel = getIt();
+    themeConfigUtil = getIt();
     seedLoginViewModel();
     seedGlobalViewModel();
     seedLocalStorage();
@@ -35,13 +34,12 @@ void main() {
   });
 
   testWidgets('Test login screen layout in dark mode', (tester) async {
-    FlavorConfig.instance.themeMode = ThemeMode.dark;
+    themeConfigUtil.themeMode = ThemeMode.dark;
 
     const sut = LoginScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'login_screen_initial_state_dark_mode');
-    FlavorConfig.instance.themeMode = ThemeMode.system;
   });
 
   testWidgets('Test login screen disabled button state', (tester) async {
@@ -119,7 +117,7 @@ void main() {
 }
 
 void verifyLoginViewModel() {
-  final loginViewModel = getIt.resolveAs<LoginViewModel, MockLoginViewModel>();
+  final loginViewModel = getIt<LoginViewModel>();
   verify(loginViewModel.isLoading);
   verify(loginViewModel.isLoginEnabled);
   verify(loginViewModel.init()).calledOnce();

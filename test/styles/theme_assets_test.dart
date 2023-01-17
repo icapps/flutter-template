@@ -5,12 +5,9 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../di/test_injectable.dart';
 import '../util/test_util.dart';
 
 void main() {
-  setUp(() async => initTestInjectable());
-
   group('Android Asset icons', () {
     testWidgets('ThemeAsset list', (tester) async {
       const sut = IconAssetTesterAndroid(getAsset: ThemeAssets.listIcon);

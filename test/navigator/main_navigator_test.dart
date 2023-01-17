@@ -1,15 +1,14 @@
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
-import '../di/test_injectable.dart';
 import '../screen/seed.dart';
 import '../util/test_util.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+])
 void main() {
-  setUp(() async {
-    await initTestInjectable();
-    // await initArchitecture();
-  });
-
   testWidgets('Test main navigator widget initial state', (tester) async {
     seedGlobalViewModel();
 

@@ -1,12 +1,9 @@
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../di/test_injectable.dart';
 import '../../../util/test_util.dart';
 
 void main() {
-  setUp(() async => initTestInjectable());
-
   group('FlutterTemplateBackButton dark', () {
     testWidgets('FlutterTemplateBackButton dark initial state', (tester) async {
       final sut = FlutterTemplateBackButton.dark(onClick: () {});

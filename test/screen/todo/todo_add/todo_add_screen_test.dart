@@ -1,24 +1,28 @@
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/keys.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../di/injectable_test.mocks.dart';
-import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
+import 'todo_add_screen_test.mocks.dart';
 
+@GenerateMocks([
+  TodoAddViewModel,
+  GlobalViewModel,
+])
 void main() {
   late TodoAddViewModel todoAddViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    todoAddViewModel = getIt();
+    todoAddViewModel = MockTodoAddViewModel();
     seedTodoAddViewModel();
     seedGlobalViewModel();
     seedLocalStorage();
@@ -114,6 +118,6 @@ void main() {
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = getIt.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  final todoAddViewModel = getIt<TodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
 }

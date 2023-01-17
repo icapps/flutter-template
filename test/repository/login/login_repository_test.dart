@@ -1,19 +1,21 @@
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'login_repository_test.mocks.dart';
 
+@GenerateMocks([
+  AuthStorage,
+])
 void main() {
   late AuthStorage authStorage;
   late LoginRepository sut;
 
   setUp(() async {
-    await initTestInjectable();
-    authStorage = getIt();
+    authStorage = MockAuthStorage();
     sut = LoginRepository(authStorage);
   });
 

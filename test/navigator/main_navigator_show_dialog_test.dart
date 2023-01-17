@@ -6,18 +6,21 @@ import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../di/test_injectable.dart';
 import '../screen/seed.dart';
 import '../util/test_util.dart';
+import 'main_navigator_show_dialog_test.mocks.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+])
 void main() {
   late GlobalViewModel globalViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    globalViewModel = getIt();
+    globalViewModel = MockGlobalViewModel();
   });
 
   testWidgets('Test main navigator widget show dialog', (tester) async {
