@@ -584,11 +584,9 @@ packages:
   icapps_translations:
     dependency: "direct dev"
     description:
-      path: "."
-      ref: "6bb7c224d030d352ef10d928669cd5150f22058e"
-      resolved-ref: "6bb7c224d030d352ef10d928669cd5150f22058e"
-      url: "git@github.com:icapps/flutter-icapps-translations.git"
-    source: git
+      name: icapps_translations
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "10.0.0"
   image:
     dependency: transitive

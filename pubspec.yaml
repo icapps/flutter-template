@@ -59,11 +59,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   icapps_license: ^2.0.2
-#  icapps_translations: ^9.0.0
-  icapps_translations:
-    git:
-      url: git@github.com:icapps/flutter-icapps-translations.git
-      ref: 6bb7c224d030d352ef10d928669cd5150f22058e
+  icapps_translations: ^10.0.0
 
   injectable_generator: ^2.1.3
   json_serializable: ^6.5.4
