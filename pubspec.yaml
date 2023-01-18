@@ -32,8 +32,8 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   get_it: ^7.2.0
-  icapps_architecture: ^0.8.0
-  injectable: ^1.5.4
+  icapps_architecture: ^0.8.1
+  injectable: ^2.1.0
   json_annotation: ^4.7.0
   niddler_dart: ^1.6.0
   path: ^1.8.2
@@ -43,7 +43,7 @@ dependencies:
   retrofit: ^3.3.1
   scroll_when_needed: ^2.0.0
   secure_storage_local_storage_inspector: ^0.5.0
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   shared_preferences_web: ^2.0.4
   sprintf: ^7.0.0
   sqlite3_flutter_libs: ^0.5.12
@@ -65,7 +65,7 @@ dev_dependencies:
       url: git@github.com:icapps/flutter-icapps-translations.git
       ref: 6bb7c224d030d352ef10d928669cd5150f22058e
 
-  injectable_generator: ^1.5.4
+  injectable_generator: ^2.1.3
   json_serializable: ^6.5.4
   license_generator: ^1.0.5
   mockito: ^5.3.2

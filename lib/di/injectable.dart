@@ -31,7 +31,7 @@ final getIt = GetIt.asNewInstance();
 Future<void> configureDependencies(String environment) async {
   // ignore: avoid_print
   print('Using environment: $environment');
-  await initGetIt(getIt, environment: environment);
+  await getIt.initGetIt(environment: environment);
   await getIt.allReady();
   await initMiddleWare();
 }

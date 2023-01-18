@@ -48,21 +48,21 @@ class MockTodoDaoStorage extends _i1.Mock implements _i5.TodoDaoStorage {
   }
 
   @override
-  _i3.Stream<List<dynamic>> getAllTodosStream() => (super.noSuchMethod(
+  _i3.Stream<List<_i4.Todo>> getAllTodosStream() => (super.noSuchMethod(
         Invocation.method(
           #getAllTodosStream,
           [],
         ),
-        returnValue: _i3.Stream<List<dynamic>>.empty(),
-      ) as _i3.Stream<List<dynamic>>);
+        returnValue: _i3.Stream<List<_i4.Todo>>.empty(),
+      ) as _i3.Stream<List<_i4.Todo>>);
   @override
-  _i3.Future<List<dynamic>> getAllTodos() => (super.noSuchMethod(
+  _i3.Future<List<_i4.Todo>> getAllTodos() => (super.noSuchMethod(
         Invocation.method(
           #getAllTodos,
           [],
         ),
-        returnValue: _i3.Future<List<dynamic>>.value(<dynamic>[]),
-      ) as _i3.Future<List<dynamic>>);
+        returnValue: _i3.Future<List<_i4.Todo>>.value(<_i4.Todo>[]),
+      ) as _i3.Future<List<_i4.Todo>>);
   @override
   _i3.Future<void> createTodo(String? todo) => (super.noSuchMethod(
         Invocation.method(

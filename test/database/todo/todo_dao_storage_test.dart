@@ -68,7 +68,7 @@ void main() {
       expect(data2[0].completed, false);
 
       //UPDATE
-      await sut.updateTodo(id: data2[0].id, completed: true);
+      await sut.updateTodo(id: data2[0].id!, completed: true);
       final data3 = await sut.getAllTodos();
       expect(data3.isNotEmpty, true);
       expect(data3.length, 1);
@@ -85,7 +85,7 @@ void main() {
     });
 
     group('Add data', () {
-      late Stream<List<DbTodo>> stream;
+      late Stream<List<Todo>> stream;
 
       setUp(() async {
         stream = sut.getAllTodosStream();

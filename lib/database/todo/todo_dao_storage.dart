@@ -11,9 +11,9 @@ abstract class TodoDaoStorage {
   @factoryMethod
   factory TodoDaoStorage(FlutterTemplateDatabase db) = _TodoDaoStorage;
 
-  Stream<List<DbTodo>> getAllTodosStream();
+  Stream<List<Todo>> getAllTodosStream();
 
-  Future<List<DbTodo>> getAllTodos();
+  Future<List<Todo>> getAllTodos();
 
   Future<void> createTodo(String todo);
 
@@ -29,10 +29,10 @@ class _TodoDaoStorage extends DatabaseAccessor<FlutterTemplateDatabase> with _$_
   _TodoDaoStorage(super.db);
 
   @override
-  Future<List<DbTodo>> getAllTodos() => select(db.dbTodoTable).get();
+  Future<List<Todo>> getAllTodos() => select(db.dbTodoTable).map((item) => item.getModel()).get();
 
   @override
-  Stream<List<DbTodo>> getAllTodosStream() => select(db.dbTodoTable).watch();
+  Stream<List<Todo>> getAllTodosStream() => select(db.dbTodoTable).map((item) => item.getModel()).watch();
 
   @override
   Future<void> createTodo(String todo) => into(db.dbTodoTable).insert(DbTodoTableCompanion.insert(title: todo, completed: false));

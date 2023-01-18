@@ -1,4 +1,3 @@
-import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
@@ -15,8 +14,8 @@ import 'todo_repository_test.mocks.dart';
   TodoDaoStorage,
 ])
 void main() {
-  late MockTodoService todoService;
-  late MockTodoDaoStorage todoDao;
+  late TodoService todoService;
+  late TodoDaoStorage todoDao;
   late TodoRepository sut;
 
   setUp(() async {
@@ -32,16 +31,16 @@ void main() {
 
   group('getTodos stream', () {
     test('getTodos stream is empty by default', () async {
-      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[]));
+      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<Todo>[]));
       final stream = sut.getTodos();
       final result = await stream.first;
       expect(result.isEmpty, true);
       verify(todoDao.getAllTodosStream()).calledOnce();
     });
     test('getTodos stream with some data', () async {
-      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<DbTodo>[
-            const DbTodo(id: 1, title: 'todo1', completed: true),
-            const DbTodo(id: 2, title: 'todo2', completed: false),
+      when(todoDao.getAllTodosStream()).thenAnswer((_) => Stream.value(<Todo>[
+            const Todo(id: 1, title: 'todo1', completed: true),
+            const Todo(id: 2, title: 'todo2', completed: false),
           ]));
       final stream = sut.getTodos();
       final result = await stream.first;
@@ -69,7 +68,7 @@ void main() {
       expect(data.isNotEmpty, true);
       expect(data.length, 2);
       verify(todoService.getTodos()).calledOnce();
-      verify(todoDao.createTodoWithValue(any)).calledTwice();
+      verify((todoDao as MockTodoDaoStorage).createTodoWithValue(any)).calledTwice();
     });
   });
 
