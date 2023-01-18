@@ -200,7 +200,7 @@ final removeCodeLines = [
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   '  DbTodoTable,',
   '      case TodoAddScreen.routeName:',
-  '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
+  '        return MaterialPageRoute<void>(builder: (context) => TodoAddScreen(), settings: settings);',
   '  void goToAddTodo();',
   '''  @singleton
   TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();
@@ -210,7 +210,7 @@ final removeCodeLines = [
 ''',
   '''    BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => const FlavorBanner(child: TodoAddScreen()),
+      page: () => TodoAddScreen(),
       middlewares: [AuthenticationGuard()],
     ),''',
   '  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);',
@@ -262,7 +262,7 @@ void seedTodoAddViewModel() {
   '    seedTodoListViewModel();',
   ''' BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => const FlavorBanner(child: TodoAddScreen()),
+      page: () => TodoAddScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),
