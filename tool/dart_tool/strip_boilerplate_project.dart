@@ -262,7 +262,7 @@ void seedTodoAddViewModel() {
   '    seedTodoListViewModel();',
   ''' BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => TodoAddScreen(),
+      page: () => const TodoAddScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),
