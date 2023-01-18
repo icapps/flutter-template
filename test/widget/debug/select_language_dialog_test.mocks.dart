@@ -163,14 +163,13 @@ class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
         returnValue: false,
       ) as bool);
   @override
-  _i5.Future<void> toggleTranslationKeys() => (super.noSuchMethod(
+  void toggleTranslationKeys() => super.noSuchMethod(
         Invocation.method(
           #toggleTranslationKeys,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValueForMissingStub: null,
+      );
   @override
   void dispose() => super.noSuchMethod(
         Invocation.method(

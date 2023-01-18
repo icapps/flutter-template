@@ -8,8 +8,6 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get/get.dart';
 
-import '../util/test_util.dart';
-
 class TestApp extends StatelessWidget {
   final Widget home;
   final LocalizationDelegate? localeDelegate;
@@ -22,30 +20,27 @@ class TestApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: TestUtil.loadFonts(),
-      builder: (context, data) => ProviderWidget<GlobalViewModel>(
-        create: () => getIt()..init(),
-        lazy: true,
-        consumer: (context, viewModel, consumerChild) => GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            if (localeDelegate == null && viewModel.localeDelegate != null) ...[
-              viewModel.localeDelegate!
-            ] else if (localeDelegate != null) ...[
-              localeDelegate!,
-            ],
-            ...GlobalMaterialLocalizations.delegates,
-            GlobalWidgetsLocalizations.delegate,
-            FallbackCupertinoLocalisationsDelegate.delegate,
+    return ProviderWidget<GlobalViewModel>(
+      create: () => getIt()..init(),
+      lazy: true,
+      consumer: (context, viewModel, consumerChild) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          if (localeDelegate == null && viewModel.localeDelegate != null) ...[
+            viewModel.localeDelegate!
+          ] else if (localeDelegate != null) ...[
+            localeDelegate!,
           ],
-          locale: viewModel.locale,
-          supportedLocales: viewModel.supportedLocales,
-          themeMode: viewModel.themeMode,
-          theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
-          darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
-          home: home,
-        ),
+          ...GlobalMaterialLocalizations.delegates,
+          GlobalWidgetsLocalizations.delegate,
+          FallbackCupertinoLocalisationsDelegate.delegate,
+        ],
+        locale: viewModel.locale,
+        supportedLocales: viewModel.supportedLocales,
+        themeMode: viewModel.themeMode,
+        theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
+        darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
+        home: home,
       ),
     );
   }

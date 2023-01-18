@@ -53,6 +53,8 @@ class FlavorConfig {
 
   static bool isBeta() => _instance!.flavor == Flavor.beta;
 
+  static bool isInTestEnv() => _instance!.flavor == Flavor.test;
+
   static bool isInTest() => Platform.environment.containsKey('FLUTTER_TEST');
 
   static bool isDummy() => _instance!.flavor == Flavor.dummy;

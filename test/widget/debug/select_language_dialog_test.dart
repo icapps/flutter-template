@@ -1,3 +1,4 @@
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
@@ -18,7 +19,13 @@ void main() {
 
   setUp(() async {
     globalViewModel = MockGlobalViewModel();
+    getIt.registerLazySingleton<GlobalViewModel>(() => globalViewModel);
     seedGlobalViewModel();
+  });
+
+  tearDown(() {
+    verifyGlobalViewModel();
+    getIt.reset();
   });
 
   testWidgets('SelectLanguageDialog initial state', (tester) async {
@@ -31,7 +38,6 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'select_language_dialog_initial_state');
 
     verify(globalViewModel.isLanguageSelected(any));
-    verifyGlobalViewModel();
   });
 
   group('Selected language', () {
@@ -45,7 +51,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_system_defaults_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog english selected', (tester) async {
@@ -58,7 +63,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_en_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog nederlands selected', (tester) async {
@@ -71,7 +75,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_nl_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
   });
 
@@ -94,7 +97,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToEnglish()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click nederlands', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -114,7 +116,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToDutch()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -134,7 +135,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToSystemLanguage()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog on click english', (tester) async {
@@ -155,7 +155,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToEnglish()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click nederlands', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -175,7 +174,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToDutch()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -195,7 +193,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToSystemLanguage()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
   });
 }

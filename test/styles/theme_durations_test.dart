@@ -42,7 +42,7 @@ void main() {
   group('IsNotInTest', () {
     setUp(() {
       FlavorConfig(
-        flavor: Flavor.dummy,
+        flavor: Flavor.prod,
         color: Colors.purple,
         name: 'Test',
         values: const FlavorValues(

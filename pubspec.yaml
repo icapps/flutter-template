@@ -33,7 +33,7 @@ dependencies:
   get: ^4.6.5
   get_it: ^7.2.0
   icapps_architecture: ^0.8.0
-  injectable: ^2.1.0
+  injectable: ^1.5.4
   json_annotation: ^4.7.0
   niddler_dart: ^1.6.0
   path: ^1.8.2
@@ -65,7 +65,7 @@ dev_dependencies:
       url: git@github.com:icapps/flutter-icapps-translations.git
       ref: 6bb7c224d030d352ef10d928669cd5150f22058e
 
-  injectable_generator: ^2.1.3
+  injectable_generator: ^1.5.4
   json_serializable: ^6.5.4
   license_generator: ^1.0.5
   mockito: ^5.3.2
