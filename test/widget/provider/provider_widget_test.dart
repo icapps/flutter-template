@@ -2,17 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_injectable.dart';
-import '../../screen/seed.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  setUp(() async {
-    await initTestInjectable();
-    seedGlobalViewModel();
-    // await initArchitecture();
-  });
-
   testWidgets('ProviderWidget throw exception', (tester) async {
     final sut = ProviderWidget<TestViewModel>(
       create: () => TestViewModel(),

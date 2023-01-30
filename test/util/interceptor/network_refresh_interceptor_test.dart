@@ -5,12 +5,17 @@ import 'package:flutter_template/repository/refresh/refresh_repository.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'network_refresh_interceptor_test.mocks.dart';
 
+@GenerateMocks([
+  AuthStorage,
+  RefreshRepository,
+  Dio,
+])
 void main() {
   late NetworkRefreshInterceptor sut;
   late MockAuthStorage authStorage;
@@ -18,11 +23,18 @@ void main() {
   late MockDio dio;
 
   setUp(() async {
-    await initTestInjectable();
-    authStorage = getIt.resolveAs<AuthStorage, MockAuthStorage>();
-    refreshRepo = getIt.resolveAs<RefreshRepository, MockRefreshRepository>();
-    dio = getIt.resolveAs<Dio, MockDio>();
+    authStorage = MockAuthStorage();
+    refreshRepo = MockRefreshRepository();
+    dio = MockDio();
+    getIt.registerLazySingleton<Dio>(() => dio); //This is needed because of a circular dependency
     sut = NetworkRefreshInterceptor(authStorage, refreshRepo);
+  });
+
+  tearDown(() {
+    getIt.reset();
+    verifyNoMoreInteractions(authStorage);
+    verifyNoMoreInteractions(refreshRepo);
+    verifyNoMoreInteractions(dio);
   });
 
   test('NetworkRefreshInterceptor should intercept 401', () async {
@@ -44,6 +56,7 @@ void main() {
 
     verify(refreshRepo.refresh(unAuthorizedError)).calledOnce();
     verify(dio.fetch<dynamic>(any)).calledOnce();
+    verify(authStorage.getAccessToken()).calledOnce();
   });
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
@@ -55,14 +68,11 @@ void main() {
     verifyZeroInteractions(refreshRepo);
     verifyZeroInteractions(authStorage);
     await sut.onError(dioError);
-    verifyZeroInteractions(refreshRepo);
-    verifyZeroInteractions(authStorage);
   });
 
   test('NetworkREfreshInterceptor should reset refresh repo on rsponse', () {
     verifyZeroInteractions(refreshRepo);
-    // ignore: void_checks
-    when(refreshRepo.resetFailure()).thenReturn(1);
+    when(refreshRepo.resetFailure()).thenAnswer((realInvocation) {});
     final requestOptions = RequestOptions(path: '/todo');
     final response = Response(data: 'Test', requestOptions: requestOptions);
     sut.onResponse(response);
@@ -75,13 +85,8 @@ void main() {
     final requestOption = RequestOptions(path: 'login');
     dioError.requestOptions = requestOption;
     final unAuthorizedError = UnAuthorizedError(dioError);
-
     verifyZeroInteractions(refreshRepo);
     verifyZeroInteractions(authStorage);
-
     await sut.onError(unAuthorizedError);
-
-    verifyZeroInteractions(refreshRepo);
-    verifyZeroInteractions(authStorage);
   });
 }

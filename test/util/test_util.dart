@@ -5,31 +5,50 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/app.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
+import 'package:flutter_template/util/locale/localization.dart';
+import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_template/util/snackbar/error_util.dart';
+import 'package:flutter_template/util/theme/theme_config.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:mockito/annotations.dart';
 
 import '../mocks/mocked_network_images.dart';
+import '../screen/seed.dart';
+import '../widget/test_app.dart';
 import 'test_screen_type.dart';
+import 'test_util.mocks.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+  ErrorUtil,
+  MainNavigator,
+])
 class TestUtil {
   // This method should be used when taking screenshot tests of a widget that should not display text
   // Widget snapshot tests
-  static Future<Widget> loadWidget(WidgetTester tester, Widget widget) async {
-    return _internalLoadWidget(tester, Center(child: widget));
+  static Future<Widget> loadWidget(WidgetTester tester, Widget widget, {ThemeMode themeMode = ThemeMode.light}) async {
+    return _internalLoadWidget(tester, Center(child: widget), themeMode);
   }
 
   // This method should be used when taking screenshot tests of a widget that should display text
   // Widget snapshot tests
-  static Future<Widget> loadWidgetWithText(WidgetTester tester, Widget widget) async {
+  static Future<Widget> loadWidgetWithText(WidgetTester tester, Widget widget, {ThemeMode themeMode = ThemeMode.light}) async {
     return _internalLoadWidget(
       tester,
       MaterialApp(
         theme: ThemeData(fontFamily: ThemeFonts.body),
         locale: const Locale('en'),
         supportedLocales: const [Locale('en')],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
+        localizationsDelegates: [
+          LocalizationDelegate(showLocalizationKeys: true),
+          ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],
@@ -41,28 +60,45 @@ class TestUtil {
         ),
         debugShowCheckedModeBanner: false,
       ),
+      themeMode,
     );
   }
 
   // This method should be used when taking screenshot tests of a single screen
   // Screen integration tests
-  static Future<Widget> loadScreen(WidgetTester tester, Widget widget) async {
+  static Future<Widget> loadScreen(WidgetTester tester, Widget widget, {ThemeMode themeMode = ThemeMode.light}) async {
     await initArchitecture();
+    if (getIt.isRegistered<GlobalViewModel>()) {
+      staticLogger.debug('GlobalViewModel already registered');
+    } else {
+      getIt.registerLazySingleton<GlobalViewModel>(() => MockGlobalViewModel());
+      seedGlobalViewModel();
+    }
     return _internalLoadWidget(
       tester,
-      InternalApp.test(
+      TestApp(
         home: widget,
+        localeDelegate: LocalizationDelegate(showLocalizationKeys: true),
       ),
+      themeMode,
     );
   }
 
   // This method should be used when taking screenshot tests of the full app
   // Full integration tests
-  static Future<Widget> loadFlutterTemplateApp(WidgetTester tester) async {
-    return _internalLoadWidget(tester, const MyApp());
+  static Future<Widget> loadFlutterTemplateApp(WidgetTester tester, {ThemeMode themeMode = ThemeMode.light}) async {
+    return _internalLoadWidget(tester, const MyApp(), themeMode);
   }
 
-  static Future<Widget> _internalLoadWidget(WidgetTester tester, Widget widget) async {
+  static T _getTheme<T>(BuildContext context) => FlutterTemplateTheme.of(context) as T;
+
+  static L _getLocale<L>(BuildContext context) => Localization.of(context) as L;
+
+  static Future<Widget> _internalLoadWidget(WidgetTester tester, Widget widget, ThemeMode themeMode) async {
+    localizationLookup = _getLocale;
+    themeLookup = _getTheme;
+    _configureTheme(themeMode);
+    await _loadFonts();
     final testWidget = TestWrapper(child: widget);
     await provideMockedNetworkImages(() async {
       await tester.pumpWidget(testWidget);
@@ -98,7 +134,7 @@ class TestUtil {
     await tester.pumpAndSettle(const Duration(seconds: 2));
   }
 
-  static Future<void> loadFonts() async {
+  static Future<void> _loadFonts() async {
     await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.body);
   }
 
@@ -118,6 +154,17 @@ class TestUtil {
 
   static String getVariableString() {
     return 'Title';
+  }
+
+  static void _configureTheme(ThemeMode themeMode) {
+    ThemeConfigUtil themeConfig;
+    if (getIt.isRegistered<ThemeConfigUtil>()) {
+      themeConfig = getIt();
+    } else {
+      themeConfig = ThemeConfigUtil();
+      getIt.registerSingleton(themeConfig);
+    }
+    themeConfig.themeMode = themeMode;
   }
 }
 

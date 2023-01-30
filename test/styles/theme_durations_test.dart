@@ -10,7 +10,6 @@ void main() {
         flavor: Flavor.test,
         color: Colors.purple,
         name: 'Test',
-        supportsTheming: true,
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,
@@ -43,10 +42,9 @@ void main() {
   group('IsNotInTest', () {
     setUp(() {
       FlavorConfig(
-        flavor: Flavor.dummy,
+        flavor: Flavor.prod,
         color: Colors.purple,
         name: 'Test',
-        supportsTheming: true,
         values: const FlavorValues(
           baseUrl: 'base_url',
           logNetworkInfo: false,

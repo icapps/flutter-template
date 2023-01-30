@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -7,29 +6,35 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
-import '../../util/test_themes_util.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
+import 'debug_platform_selector_screen_test.mocks.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+  DebugPlatformSelectorViewModel,
+])
 void main() {
   late MockGlobalViewModel globalViewModel;
   late MockDebugPlatformSelectorViewModel platformViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    platformViewModel = getIt.resolveAs<DebugPlatformSelectorViewModel, MockDebugPlatformSelectorViewModel>();
-    globalViewModel = getIt.resolveAs<GlobalViewModel, MockGlobalViewModel>();
-    seedLocalStorage();
+    platformViewModel = MockDebugPlatformSelectorViewModel();
+    globalViewModel = MockGlobalViewModel();
+    getIt.registerSingleton<GlobalViewModel>(globalViewModel);
+    getIt.registerSingleton<DebugPlatformSelectorViewModel>(platformViewModel);
+  });
+
+  tearDown(() async {
+    await getIt.reset();
   });
 
   testWidgets('Test debug select platform screen initial state light mode', (tester) async {
     seedGlobalViewModel();
-    TestThemeUtil.setLightMode();
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
@@ -39,10 +44,9 @@ void main() {
 
   testWidgets('Test debug select platform screen initial state dark mode', (tester) async {
     seedGlobalViewModel();
-    TestThemeUtil.setDarkMode();
 
     const sut = DebugPlatformSelectorScreen();
-    final testWidget = await TestUtil.loadScreen(tester, sut);
+    final testWidget = await TestUtil.loadScreen(tester, sut, themeMode: ThemeMode.dark);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_inital_state_darkmode');
     verifyGlobalViewModel();
   });

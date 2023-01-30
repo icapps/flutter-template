@@ -2,18 +2,20 @@ import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/license.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_injectable.dart';
-import '../../di/injectable_test.mocks.dart';
 import '../../util/test_extensions.dart';
+import 'license_viewmodel_test.mocks.dart';
 
+@GenerateMocks([
+  MainNavigator,
+])
 void main() {
   late LicenseViewModel sut;
   late MainNavigator navigator;
 
   setUp(() async {
-    await initTestInjectable();
     navigator = MockMainNavigator();
     sut = LicenseViewModel(navigator);
   });

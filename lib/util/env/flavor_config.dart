@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 enum Flavor {
@@ -27,8 +29,6 @@ class FlavorConfig {
   final String name;
   final Color color;
   final FlavorValues values;
-  final bool isThemingSupported;
-  ThemeMode themeMode;
   static FlavorConfig? _instance;
 
   factory FlavorConfig({
@@ -36,12 +36,10 @@ class FlavorConfig {
     required String name,
     required Color color,
     required FlavorValues values,
-    required bool supportsTheming,
-    ThemeMode themeMode = ThemeMode.system,
   }) =>
-      _instance = FlavorConfig._internal(flavor, name, color, values, supportsTheming, themeMode);
+      _instance = FlavorConfig._internal(flavor, name, color, values);
 
-  FlavorConfig._internal(this.flavor, this.name, this.color, this.values, this.isThemingSupported, this.themeMode);
+  FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
 
   static FlavorConfig get instance => _instance!;
 
@@ -55,7 +53,9 @@ class FlavorConfig {
 
   static bool isBeta() => _instance!.flavor == Flavor.beta;
 
-  static bool isInTest() => _instance!.flavor == Flavor.test;
+  static bool isInTestEnv() => _instance!.flavor == Flavor.test;
+
+  static bool isInTest() => Platform.environment.containsKey('FLUTTER_TEST');
 
   static bool isDummy() => _instance!.flavor == Flavor.dummy;
 }

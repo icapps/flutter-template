@@ -3,20 +3,29 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/select_language_dialog.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_injectable.dart';
 import '../../screen/seed.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
+import 'select_language_dialog_test.mocks.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+])
 void main() {
   late GlobalViewModel globalViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    globalViewModel = getIt();
+    globalViewModel = MockGlobalViewModel();
+    getIt.registerLazySingleton<GlobalViewModel>(() => globalViewModel);
     seedGlobalViewModel();
+  });
+
+  tearDown(() {
+    verifyGlobalViewModel();
+    getIt.reset();
   });
 
   testWidgets('SelectLanguageDialog initial state', (tester) async {
@@ -29,7 +38,6 @@ void main() {
     await TestUtil.takeScreenshot(tester, 'select_language_dialog_initial_state');
 
     verify(globalViewModel.isLanguageSelected(any));
-    verifyGlobalViewModel();
   });
 
   group('Selected language', () {
@@ -43,7 +51,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_system_defaults_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog english selected', (tester) async {
@@ -56,7 +63,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_en_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog nederlands selected', (tester) async {
@@ -69,7 +75,6 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'select_language_dialog_nl_selected');
 
       verify(globalViewModel.isLanguageSelected(any));
-      verifyGlobalViewModel();
     });
   });
 
@@ -92,7 +97,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToEnglish()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click nederlands', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -112,7 +116,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToDutch()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -132,7 +135,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToSystemLanguage()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
 
     testWidgets('SelectLanguageDialog on click english', (tester) async {
@@ -153,7 +155,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToEnglish()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click nederlands', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -173,7 +174,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToDutch()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
     testWidgets('SelectLanguageDialog on click system defaults', (tester) async {
       when(globalViewModel.isLanguageSelected('en')).thenAnswer((_) => false);
@@ -193,7 +193,6 @@ void main() {
       verify(globalViewModel.isLanguageSelected(any));
       verify(globalViewModel.onSwitchToSystemLanguage()).calledOnce();
       expect(clicked, true);
-      verifyGlobalViewModel();
     });
   });
 }

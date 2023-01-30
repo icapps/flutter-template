@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
-import '../../di/test_injectable.dart';
 import '../../screen/seed.dart';
 import '../../util/test_util.dart';
+import 'data_provider_widget_test.mocks.dart';
 
+@GenerateMocks([
+  GlobalViewModel,
+])
 void main() {
   setUp(() async {
-    await initTestInjectable();
+    getIt.registerLazySingleton<GlobalViewModel>(() => MockGlobalViewModel());
     seedGlobalViewModel();
+  });
+
+  tearDown(() async {
+    await getIt.reset();
   });
 
   testWidgets('DataProviderWidget throw exception', (tester) async {

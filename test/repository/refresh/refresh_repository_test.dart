@@ -1,24 +1,30 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
 import 'package:flutter_template/repository/refresh/refresh_repository.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/test_injectable.dart';
 import '../../mocks/mocked_answer.dart';
 import '../../util/test_extensions.dart';
+import 'refresh_repository_test.mocks.dart';
 
+@GenerateMocks([
+  AuthStorage,
+])
 void main() {
   late AuthStorage authStorage;
   late RefreshRepository sut;
 
   setUp(() async {
-    await initTestInjectable();
-    authStorage = getIt();
+    authStorage = MockAuthStorage();
     sut = RefreshRepository(authStorage);
+  });
+
+  tearDown(() async {
+    verifyNoMoreInteractions(authStorage);
   });
 
   group('refresh', () {

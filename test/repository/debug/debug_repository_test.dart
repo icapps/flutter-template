@@ -1,21 +1,22 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
+import 'debug_repository_test.mocks.dart';
 
+@GenerateMocks([
+  SharedPreferenceStorage,
+])
 void main() {
   late MockSharedPreferenceStorage shardPrefs;
   late DebugRepository sut;
 
   setUp(() async {
-    await initTestInjectable();
-    shardPrefs = getIt.resolveAs<SharedPreferenceStorage, MockSharedPreferenceStorage>();
+    shardPrefs = MockSharedPreferenceStorage();
     sut = DebugRepository(shardPrefs);
 
     when(shardPrefs.getBoolean(any)).thenReturn(false);

@@ -1,15 +1,18 @@
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../di/test_injectable.dart';
 
 void main() {
   late FlutterTemplateDatabase sut;
 
   setUp(() async {
-    await initTestInjectable();
-    sut = getIt();
+    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
+    sut = FlutterTemplateDatabase(NativeDatabase.memory());
+  });
+
+  tearDown(() async {
+    await sut.deleteAllData();
   });
 
   test('FlutterTemplateDatabase should have the correct version', () {

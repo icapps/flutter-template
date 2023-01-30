@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/todo/todo_add/todo_add_screen.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -5,24 +6,29 @@ import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../di/injectable_test.mocks.dart';
-import '../../../di/test_injectable.dart';
 import '../../../util/test_extensions.dart';
-import '../../../util/test_themes_util.dart';
 import '../../../util/test_util.dart';
 import '../../seed.dart';
+import 'todo_add_screen_test.mocks.dart';
 
+@GenerateMocks([
+  TodoAddViewModel,
+])
 void main() {
   late TodoAddViewModel todoAddViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    todoAddViewModel = getIt();
+    todoAddViewModel = MockTodoAddViewModel();
+    getIt.registerLazySingleton<TodoAddViewModel>(() => todoAddViewModel);
     seedTodoAddViewModel();
-    seedGlobalViewModel();
-    seedLocalStorage();
+  });
+
+  tearDown(() {
+    verifyTodoAddViewModel();
+    getIt.reset();
   });
 
   testWidgets('Test todo add screen initial state', (tester) async {
@@ -30,18 +36,13 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_add_screen_inital_state');
-    verifyTodoAddViewModel();
-    verifyGlobalViewModel();
   });
 
   testWidgets('Test todo add screen initial state darkmode', (tester) async {
-    TestThemeUtil.setDarkMode();
     const sut = TodoAddScreen();
-    final testWidget = await TestUtil.loadScreen(tester, sut);
+    final testWidget = await TestUtil.loadScreen(tester, sut, themeMode: ThemeMode.dark);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_add_screen_inital_state_darkmode');
-    verifyTodoAddViewModel();
-    verifyGlobalViewModel();
   });
 
   testWidgets('Test todo add screen button enabled', (tester) async {
@@ -50,8 +51,6 @@ void main() {
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'todo_add_screen_enabled');
-    verifyTodoAddViewModel();
-    verifyGlobalViewModel();
   });
 
   group('Actions', () {
@@ -65,8 +64,6 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(todoAddViewModel.onBackClicked()).calledOnce();
-      verifyTodoAddViewModel();
-      verifyGlobalViewModel();
     });
 
     testWidgets('Test todo add screen button disabled on save clicked', (tester) async {
@@ -80,8 +77,6 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(todoAddViewModel.onSaveClicked()).calledOnce();
-      verifyTodoAddViewModel();
-      verifyGlobalViewModel();
     });
 
     testWidgets('Test todo add screen button disabled on back clicked', (tester) async {
@@ -92,9 +87,6 @@ void main() {
       expect(finder, findsOneWidget);
       await tester.tap(finder);
       await tester.pumpAndSettle();
-
-      verifyTodoAddViewModel();
-      verifyGlobalViewModel();
     });
 
     testWidgets('Test todo add screen should have an input field', (tester) async {
@@ -109,13 +101,11 @@ void main() {
       await tester.enterText(finder, 'test');
 
       verify(todoAddViewModel.onTodoChanged('test')).calledOnce();
-      verifyTodoAddViewModel();
-      verifyGlobalViewModel();
     });
   });
 }
 
 void verifyTodoAddViewModel() {
-  final todoAddViewModel = getIt.resolveAs<TodoAddViewModel, MockTodoAddViewModel>();
+  final todoAddViewModel = getIt<TodoAddViewModel>();
   verify(todoAddViewModel.isSaveEnabled);
 }

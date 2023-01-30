@@ -4,28 +4,36 @@ import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../di/injectable_test.mocks.dart';
-import '../../di/test_injectable.dart';
 import '../../util/test_extensions.dart';
 import '../../util/test_util.dart';
 import '../seed.dart';
+import 'debug_screen_test.mocks.dart';
 
+@GenerateMocks([
+  DebugViewModel,
+  GlobalViewModel,
+])
 void main() {
   late DebugViewModel debugViewModel;
   late GlobalViewModel globalViewModel;
 
   setUp(() async {
-    await initTestInjectable();
-    debugViewModel = getIt();
-    globalViewModel = getIt();
+    debugViewModel = MockDebugViewModel();
+    globalViewModel = MockGlobalViewModel();
+    getIt.registerLazySingleton<DebugViewModel>(() => debugViewModel);
+    getIt.registerLazySingleton<GlobalViewModel>(() => globalViewModel);
+    seedDebugViewModel();
+    seedGlobalViewModel();
+  });
+
+  tearDown(() async {
+    await getIt.reset();
   });
 
   testWidgets('Test debug screen initial state', (tester) async {
-    seedDebugViewModel();
-    seedGlobalViewModel();
-
     const sut = DebugScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
 
@@ -200,7 +208,7 @@ void main() {
 }
 
 void verifyDebugViewModel() {
-  final debugViewModel = getIt.resolveAs<DebugViewModel, MockDebugViewModel>();
+  final debugViewModel = getIt<DebugViewModel>();
   verify(debugViewModel.init()).calledOnce();
   verify(debugViewModel.slowAnimationsEnabled);
 }

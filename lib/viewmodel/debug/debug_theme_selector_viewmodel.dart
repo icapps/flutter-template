@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/main_common.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class DebugThemeSelectorViewmodel with ChangeNotifierEx {
+class DebugThemeSelectorViewModel with ChangeNotifierEx {
   final MainNavigator _navigator;
-  final LocalStorage _localStorage;
+  final GlobalViewModel _globalViewModel;
 
-  ThemeMode get themeMode => FlavorConfig.instance.themeMode;
+  ThemeMode get themeMode => _globalViewModel.themeMode;
 
-  DebugThemeSelectorViewmodel(this._navigator, this._localStorage);
+  DebugThemeSelectorViewModel(
+    this._navigator,
+    this._globalViewModel,
+  );
 
   Future<void> updateThemeMode(ThemeMode themeMode) async {
-    FlavorConfig.instance.themeMode = themeMode;
-    await _localStorage.updateThemeMode(themeMode);
-    updateAppTheme();
-    if (!disposed) notifyListeners();
+    await _globalViewModel.updateThemeMode(themeMode);
   }
 
   void onBackClicked() => _navigator.goBack<void>();

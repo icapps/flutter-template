@@ -1,18 +1,17 @@
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_injectable.dart';
-
 void main() {
-  late FlutterTemplateDatabase database;
   late TodoDaoStorage sut;
+  late FlutterTemplateDatabase database;
 
   setUp(() async {
-    await initTestInjectable();
-    database = getIt();
+    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
+    database = FlutterTemplateDatabase(NativeDatabase.memory());
     sut = TodoDaoStorage(database);
   });
 
@@ -69,7 +68,7 @@ void main() {
       expect(data2[0].completed, false);
 
       //UPDATE
-      await sut.updateTodo(id: data2[0].id, completed: true);
+      await sut.updateTodo(id: data2[0].id!, completed: true);
       final data3 = await sut.getAllTodos();
       expect(data3.isNotEmpty, true);
       expect(data3.length, 1);
@@ -86,7 +85,7 @@ void main() {
     });
 
     group('Add data', () {
-      late Stream<List<DbTodo>> stream;
+      late Stream<List<Todo>> stream;
 
       setUp(() async {
         stream = sut.getAllTodosStream();

@@ -1,12 +1,9 @@
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../di/test_injectable.dart';
 import '../../util/test_util.dart';
 
 void main() {
-  setUp(() async => initTestInjectable());
-
   testWidgets('DebugRowItem without subtitle', (tester) async {
     final widget = DebugRowItem(
       title: 'Title',

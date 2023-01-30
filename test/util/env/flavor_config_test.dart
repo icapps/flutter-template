@@ -30,7 +30,6 @@ void main() {
         flavor: Flavor.test,
         name: 'flavor_config_test',
         color: Colors.amber,
-        supportsTheming: true,
         values: values,
       );
     });

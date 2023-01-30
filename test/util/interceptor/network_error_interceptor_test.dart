@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/bad_request_error.dart';
 import 'package:flutter_template/model/exceptions/code_error.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';
@@ -12,17 +11,25 @@ import 'package:flutter_template/util/interceptor/network_error_interceptor.dart
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
-import '../../di/test_injectable.dart';
+import 'network_error_interceptor_test.mocks.dart';
 
+@GenerateMocks([
+  ConnectivityHelper,
+])
 void main() {
   late NetworkErrorInterceptor sut;
   late ConnectivityHelper connectivityController;
 
   setUp(() async {
-    await initTestInjectable();
-    connectivityController = getIt();
+    connectivityController = MockConnectivityHelper();
     sut = NetworkErrorInterceptor(connectivityController);
+  });
+
+  tearDown(() {
+    verifyNoMoreInteractions(connectivityController);
   });
 
   group('GeneralError', () {
@@ -33,7 +40,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is GeneralNetworkError, true);
-      // ignore: avoid_as
       final authorizedError = newError as GeneralNetworkError;
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
@@ -51,7 +57,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is UnAuthorizedError, true);
-      // ignore: avoid_as
       final authorizedError = newError as UnAuthorizedError;
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
@@ -69,7 +74,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is InternalServerError, true);
-      // ignore: avoid_as
       final authorizedError = newError as InternalServerError;
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
@@ -87,7 +91,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is ForbiddenError, true);
-      // ignore: avoid_as
       final authorizedError = newError as ForbiddenError;
       expect(authorizedError.type, equals(dioError.type));
       expect(authorizedError.error, equals(dioError.error));
@@ -105,7 +108,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is ForbiddenError, true);
-      // ignore: avoid_as
       final authorizedError = newError as ForbiddenError;
       expect(authorizedError.response, equals(dioError.response));
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
@@ -122,7 +124,6 @@ void main() {
       expect(newError is LocalizedError, true);
       expect(newError is DioError, true);
       expect(newError is BadRequestError, true);
-      // ignore: avoid_as
       final authorizedError = newError as BadRequestError;
       expect(authorizedError.response, equals(dioError.response));
       expect(authorizedError.requestOptions, equals(dioError.requestOptions));
@@ -134,11 +135,21 @@ void main() {
 
   group('Code Error', () {
     test('NetworkErrorInterceptorTest code error', () async {
+      const values = FlavorValues(
+        baseUrl: 'https://jsonplaceholder.typicode.com/',
+        logNetworkInfo: false,
+        showFullErrorMessages: false,
+      );
+      FlavorConfig(
+        flavor: Flavor.prod,
+        color: Colors.purple,
+        name: 'Test',
+        values: values,
+      );
       final dynamic newError = await sut.onError(null);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, false);
       expect(newError is CodeError, true);
-      // ignore: avoid_as
       final codeError = newError as CodeError;
       expect(codeError.getLocalizedKey(), LocalizationKeys.errorGeneral);
     });
@@ -153,14 +164,12 @@ void main() {
         flavor: Flavor.dev,
         color: Colors.purple,
         name: 'Test',
-        supportsTheming: true,
         values: values,
       );
       final dynamic newError = await sut.onError(null);
       expect(newError is LocalizedError, true);
       expect(newError is DioError, false);
       expect(newError is CodeError, true);
-      // ignore: avoid_as
       final codeError = newError as CodeError;
       expect(codeError.getLocalizedKey(), LocalizationKeys.errorDuringDev);
     });

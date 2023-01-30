@@ -124,13 +124,13 @@ void replaceBoilerplateReferences(Directory dir) {
 void _replaceHomeScreenLine() {
   _replaceInFile(
     'lib/screen/home/home_screen.dart',
-    '''          children: const [
-            TodoListScreen(),
-            DebugScreen(),
-          ],''',
-    '''          children: const [
-            SizedBox(),
-            DebugScreen(),
+    '''        children: const [
+          TodoListScreen(),
+          DebugScreen(),
+        ],''',
+    '''        children: const [
+          SizedBox(),
+          DebugScreen(),
         ],''',
   );
 }
@@ -200,7 +200,7 @@ final removeCodeLines = [
   "import '../mocks/database/todo/mock_todo_dao_storage.dart';",
   '  DbTodoTable,',
   '      case TodoAddScreen.routeName:',
-  '        return MaterialPageRoute<void>(builder: (context) => const FlavorBanner(child: TodoAddScreen()), settings: settings);',
+  '        return MaterialPageRoute<void>(builder: (context) => TodoAddScreen(), settings: settings);',
   '  void goToAddTodo();',
   '''  @singleton
   TodoDaoStorage get getTodoDaoStoring => MockTodoDaoStorage();
@@ -210,7 +210,7 @@ final removeCodeLines = [
 ''',
   '''    BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => const FlavorBanner(child: TodoAddScreen()),
+      page: () => TodoAddScreen(),
       middlewares: [AuthenticationGuard()],
     ),''',
   '  Future<void> goToAddTodo() async => Get.toNamed<void>(TodoAddScreen.routeName);',
@@ -241,28 +241,27 @@ final removeCodeLines = [
   "import '../mocks/database/todo/mock_todo_dao_storing.dart';",
   "import '../todo/todo_list/todo_list_screen_test.dart';",
   '    verifyTodoListViewModel();',
+  "    getIt.registerLazySingleton<TodoListViewModel>(() => MockTodoListViewModel());",
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = getIt<TodoListViewModel>();
-  when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
+  final viewModel = getIt<TodoListViewModel>();
+  when(viewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
-  when(todoListViewModel.isLoading).thenReturn(false);
-  when(todoListViewModel.errorKey).thenReturn(null);
-  // ignore: void_checks
-  when(todoListViewModel.onAddClicked()).thenReturn(1);
+  when(viewModel.isLoading).thenReturn(false);
+  when(viewModel.errorKey).thenReturn(null);
+  when(viewModel.onAddClicked()).thenAnswer((realInvocation) {});
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = getIt<TodoAddViewModel>();
-  when(todoAddViewModel.isSaveEnabled).thenReturn(false);
-  // ignore: void_checks
-  when(todoAddViewModel.onBackClicked()).thenReturn(1);
+  final viewModel = getIt<TodoAddViewModel>();
+  when(viewModel.isSaveEnabled).thenReturn(false);
+  when(viewModel.onBackClicked()).thenAnswer((realInvocation) {});
 }''',
   '    seedTodoListViewModel();',
   ''' BasePage<void>(
       name: TodoAddScreen.routeName,
-      page: () => const FlavorBanner(child: TodoAddScreen()),
+      page: () => const TodoAddScreen(),
       middlewares: [
         AuthenticationGuard(),
         AnalyticsPermissionGuard(),

@@ -19,7 +19,6 @@ Future<void> main() async {
       name: 'PROD',
       color: Colors.transparent,
       values: values,
-      supportsTheming: true,
     );
     await configureDependencies(Environments.prod);
     runApp(const MyApp());

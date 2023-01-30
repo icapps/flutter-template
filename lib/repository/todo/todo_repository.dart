@@ -1,5 +1,4 @@
 import 'package:flutter_template/database/todo/todo_dao_storage.dart';
-import 'package:flutter_template/model/database/todo/db_todo_table.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/webservice/todo/todo_service.dart';
 import 'package:injectable/injectable.dart';
@@ -25,7 +24,7 @@ class _TodoRepository implements TodoRepository {
   _TodoRepository(this._todoService, this._todoDao);
 
   @override
-  Stream<List<Todo>> getTodos() => _todoDao.getAllTodosStream().map((list) => list.map((item) => item.getModel()).toList());
+  Stream<List<Todo>> getTodos() => _todoDao.getAllTodosStream();
 
   ///Get Users will be requested from
   ///https://jsonplaceholder.typicode.com/todos

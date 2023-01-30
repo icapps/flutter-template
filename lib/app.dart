@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_data.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get/get.dart';
@@ -30,26 +30,29 @@ class MyApp extends StatelessWidget {
 
 class InternalApp extends StatelessWidget {
   final Widget? home;
+  final bool _isInTest;
 
   const InternalApp({Key? key})
       : home = null,
+        _isInTest = false,
         super(key: key);
 
   @visibleForTesting
   const InternalApp.test({
     required this.home,
     super.key,
-  });
+  }) : _isInTest = true;
 
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<GlobalViewModel>(
       create: () => getIt()..init(),
-      lazy: FlavorConfig.isInTest(),
+      lazy: _isInTest,
       consumer: (context, viewModel, consumerChild) => GetMaterialApp(
-        debugShowCheckedModeBanner: !FlavorConfig.isInTest(),
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
+        debugShowCheckedModeBanner: !_isInTest,
+        localizationsDelegates: [
+          if (viewModel.localeDelegate != null) viewModel.localeDelegate!,
+          ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
           FallbackCupertinoLocalisationsDelegate.delegate,
         ],
@@ -62,8 +65,10 @@ class InternalApp extends StatelessWidget {
         getPages: MainNavigator.pages,
         home: home,
         builder: home == null
-            ? (context, child) => TextScaleFactor(
-                  child: child ?? const SizedBox.shrink(),
+            ? (context, child) => FlavorBanner(
+                  child: TextScaleFactor(
+                    child: child ?? const SizedBox.shrink(),
+                  ),
                 )
             : null,
       ),
