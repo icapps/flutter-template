@@ -85,84 +85,6 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
   }
 
   @override
-  void goToSplash() => super.noSuchMethod(
-        Invocation.method(
-          #goToSplash,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void goToLogin() => super.noSuchMethod(
-        Invocation.method(
-          #goToLogin,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void goToHome() => super.noSuchMethod(
-        Invocation.method(
-          #goToHome,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<void> goToAddTodo() => (super.noSuchMethod(
-        Invocation.method(
-          #goToAddTodo,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebugPlatformSelector() => (super.noSuchMethod(
-        Invocation.method(
-          #goToDebugPlatformSelector,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToThemeModeSelector() => (super.noSuchMethod(
-        Invocation.method(
-          #goToThemeModeSelector,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToAnalyticsPermissionScreen() => (super.noSuchMethod(
-        Invocation.method(
-          #goToAnalyticsPermissionScreen,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebug() => (super.noSuchMethod(
-        Invocation.method(
-          #goToDebug,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToLicense() => (super.noSuchMethod(
-        Invocation.method(
-          #goToLicense,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
   void closeDialog() => super.noSuchMethod(
         Invocation.method(
           #closeDialog,
@@ -254,6 +176,17 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
   _i3.Future<void> goToTodoAddScreen({_i8.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToAnalyticsPermissionScreen({_i8.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToAnalyticsPermissionScreen,
           [],
           {#key: key},
         ),
