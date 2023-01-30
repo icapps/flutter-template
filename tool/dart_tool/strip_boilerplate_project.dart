@@ -241,23 +241,22 @@ final removeCodeLines = [
   "import '../mocks/database/todo/mock_todo_dao_storing.dart';",
   "import '../todo/todo_list/todo_list_screen_test.dart';",
   '    verifyTodoListViewModel();',
+  "    getIt.registerLazySingleton<TodoListViewModel>(() => MockTodoListViewModel());",
   r'''
 void seedTodoListViewModel() {
-  final todoListViewModel = getIt<TodoListViewModel>();
-  when(todoListViewModel.dataStream).thenAnswer((_) => Stream.value([
+  final viewModel = getIt<TodoListViewModel>();
+  when(viewModel.dataStream).thenAnswer((_) => Stream.value([
         for (var i = 0; i < 100; ++i) Todo(id: i, title: 'title $i', completed: false),
       ]));
-  when(todoListViewModel.isLoading).thenReturn(false);
-  when(todoListViewModel.errorKey).thenReturn(null);
-  // ignore: void_checks
-  when(todoListViewModel.onAddClicked()).thenReturn(1);
+  when(viewModel.isLoading).thenReturn(false);
+  when(viewModel.errorKey).thenReturn(null);
+  when(viewModel.onAddClicked()).thenAnswer((realInvocation) {});
 }
 
 void seedTodoAddViewModel() {
-  final todoAddViewModel = getIt<TodoAddViewModel>();
-  when(todoAddViewModel.isSaveEnabled).thenReturn(false);
-  // ignore: void_checks
-  when(todoAddViewModel.onBackClicked()).thenReturn(1);
+  final viewModel = getIt<TodoAddViewModel>();
+  when(viewModel.isSaveEnabled).thenReturn(false);
+  when(viewModel.onBackClicked()).thenAnswer((realInvocation) {});
 }''',
   '    seedTodoListViewModel();',
   ''' BasePage<void>(
