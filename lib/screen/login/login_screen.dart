@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/navigator/middle_ware/login_guard.dart';
 import 'package:flutter_template/navigator/route_names.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -9,7 +10,14 @@ import 'package:flutter_template/widget/general/styled/flutter_template_button.d
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
+@GetXRoute(
+  navigationType: NavigationType.popAllAndPush,
+  middlewares: [
+    LoginGuard,
+  ],
+)
 class LoginScreen extends StatefulWidget {
   static const String routeName = RouteNames.loginScreen;
 

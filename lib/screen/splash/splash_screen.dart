@@ -5,7 +5,11 @@ import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
+@GetXRoute(
+  navigationType: NavigationType.popAllAndPush,
+)
 class SplashScreen extends StatefulWidget {
   static const String routeName = RouteNames.splashScreen;
 

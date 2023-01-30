@@ -31,7 +31,7 @@ void main() {
     when(loginRepo.isLoggedIn).thenAnswer((_) async => true);
     await sut.init();
     verify(loginRepo.isLoggedIn).calledOnce();
-    verify(navigator.goToHome()).calledOnce();
+    verify(navigator.goToHomeScreen()).calledOnce();
     verifyNoMoreInteractions(loginRepo);
     verifyNoMoreInteractions(navigator);
   });
@@ -40,7 +40,7 @@ void main() {
     when(loginRepo.isLoggedIn).thenAnswer((_) async => false);
     await sut.init();
     verify(loginRepo.isLoggedIn).calledOnce();
-    verify(navigator.goToLogin()).calledOnce();
+    verify(navigator.goToLoginScreen()).calledOnce();
     verifyNoMoreInteractions(loginRepo);
     verifyNoMoreInteractions(navigator);
   });

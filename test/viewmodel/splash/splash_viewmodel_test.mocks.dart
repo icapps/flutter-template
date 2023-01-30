@@ -201,26 +201,6 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
   @override
-  void goBack<T>({T? result}) => super.noSuchMethod(
-        Invocation.method(
-          #goBack,
-          [],
-          {#result: result},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<void> showCustomDialog<T>({_i5.Widget? widget}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #showCustomDialog,
-          [],
-          {#widget: widget},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
   void showErrorWithLocaleKey(
     String? errorKey, {
     List<dynamic>? args,
@@ -260,4 +240,105 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToHomeScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToHomeScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToSplashScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToSplashScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToLicenseScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLicenseScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToTodoAddScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToLoginScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLoginScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToThemeModeSelectorScreen({_i5.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToThemeModeSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToDebugPlatformSelectorScreen({_i5.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugPlatformSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToDebugScreen({_i5.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  void goBack<T>({T? result}) => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
+          {#result: result},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i3.Future<T?> showCustomDialog<T>({_i5.Widget? widget}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showCustomDialog,
+          [],
+          {#widget: widget},
+        ),
+        returnValue: _i3.Future<T?>.value(),
+      ) as _i3.Future<T?>);
 }

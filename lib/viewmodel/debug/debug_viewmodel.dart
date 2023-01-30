@@ -37,13 +37,13 @@ class DebugViewModel with ChangeNotifierEx {
     _initValues();
   }
 
-  void onTargetPlatformClicked() => _navigator.goToDebugPlatformSelector();
+  void onTargetPlatformClicked() => _navigator.goToDebugPlatformSelectorScreen();
 
-  void onThemeModeClicked() => _navigator.goToThemeModeSelector();
+  void onThemeModeClicked() => _navigator.goToThemeModeSelectorScreen();
 
   void onSelectLanguageClicked() => _navigator.showCustomDialog<void>(widget: SelectLanguageDialog(goBack: _navigator.closeDialog));
 
-  void onLicensesClicked() => _navigator.goToLicense();
+  void onLicensesClicked() => _navigator.goToLicenseScreen();
 
   void goToDatabase() => _navigator.goToDatabase(_db);
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
@@ -20,9 +22,9 @@ class SplashViewModel with ChangeNotifierEx {
     await _localStorage.checkForNewInstallation();
     final result = await _loginRepo.isLoggedIn;
     if (result) {
-      _navigator.goToHome();
+      unawaited(_navigator.goToHomeScreen());
     } else {
-      _navigator.goToLogin();
+      unawaited(_navigator.goToLoginScreen());
     }
   }
 }
