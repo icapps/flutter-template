@@ -9,7 +9,6 @@ import 'package:flutter_template/widget/general/styled/flutter_template_button.d
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = RouteNames.loginScreen;
