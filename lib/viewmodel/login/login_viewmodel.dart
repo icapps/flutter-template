@@ -38,7 +38,7 @@ class LoginViewModel with ChangeNotifierEx {
     try {
       _isLoading = true;
       await _loginRepo.login(email: _email, password: _password);
-      return _navigator.goToHome();
+      return _navigator.goToHomeScreen();
     } catch (e, stack) {
       logger.error('Failed to login', error: e, trace: stack);
       if (e is LocalizedError) {

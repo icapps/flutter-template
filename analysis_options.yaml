@@ -12,6 +12,7 @@ analyzer:
   exclude:
     - '**.g.dart'
     - '**.config.dart'
+    - '**.get_x_navigator.dart'
     - '**.mocks.dart'
     - 'lib/util/license.dart'
     - 'test/coverage_helper_test.dart'

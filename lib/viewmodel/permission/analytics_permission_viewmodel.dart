@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:get/get.dart';
@@ -21,7 +23,7 @@ class AnalyticsPermissionViewModel with ChangeNotifierEx {
       _navigator.goBack<void>();
     } else {
       // No NavigatorState to go back to, so we just go to the home screen
-      _navigator.goToHome();
+      unawaited(_navigator.goToHomeScreen());
     }
   }
 

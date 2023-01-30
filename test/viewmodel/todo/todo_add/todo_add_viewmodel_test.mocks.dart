@@ -6,8 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:drift/drift.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
-import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i8;
+import 'package:flutter/material.dart' as _i8;
+import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i7;
 import 'package:flutter_template/model/webservice/todo/todo.dart' as _i4;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i5;
 import 'package:flutter_template/repository/todo/todo_repository.dart' as _i2;
@@ -85,84 +85,6 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
   }
 
   @override
-  void goToSplash() => super.noSuchMethod(
-        Invocation.method(
-          #goToSplash,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void goToLogin() => super.noSuchMethod(
-        Invocation.method(
-          #goToLogin,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void goToHome() => super.noSuchMethod(
-        Invocation.method(
-          #goToHome,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<void> goToAddTodo() => (super.noSuchMethod(
-        Invocation.method(
-          #goToAddTodo,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebugPlatformSelector() => (super.noSuchMethod(
-        Invocation.method(
-          #goToDebugPlatformSelector,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToThemeModeSelector() => (super.noSuchMethod(
-        Invocation.method(
-          #goToThemeModeSelector,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToAnalyticsPermissionScreen() => (super.noSuchMethod(
-        Invocation.method(
-          #goToAnalyticsPermissionScreen,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebug() => (super.noSuchMethod(
-        Invocation.method(
-          #goToDebug,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToLicense() => (super.noSuchMethod(
-        Invocation.method(
-          #goToLicense,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
   void closeDialog() => super.noSuchMethod(
         Invocation.method(
           #closeDialog,
@@ -176,26 +98,6 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
         Invocation.method(
           #goToDatabase,
           [db],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  void goBack<T>({T? result}) => super.noSuchMethod(
-        Invocation.method(
-          #goBack,
-          [],
-          {#result: result},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<void> showCustomDialog<T>({_i7.Widget? widget}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #showCustomDialog,
-          [],
-          {#widget: widget},
         ),
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
@@ -225,7 +127,7 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
   _i3.Future<void> showCustomSnackBar({
     required String? message,
     String? title,
-    _i8.SnackBarStyle? style = _i8.SnackBarStyle.neutral,
+    _i7.SnackBarStyle? style = _i7.SnackBarStyle.neutral,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -240,4 +142,116 @@ class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToHomeScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToHomeScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToSplashScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToSplashScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToLicenseScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLicenseScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToTodoAddScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToAnalyticsPermissionScreen({_i8.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToAnalyticsPermissionScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToLoginScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLoginScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToThemeModeSelectorScreen({_i8.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToThemeModeSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToDebugPlatformSelectorScreen({_i8.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugPlatformSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> goToDebugScreen({_i8.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  void goBack<T>({T? result}) => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
+          {#result: result},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i3.Future<T?> showCustomDialog<T>({_i8.Widget? widget}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showCustomDialog,
+          [],
+          {#widget: widget},
+        ),
+        returnValue: _i3.Future<T?>.value(),
+      ) as _i3.Future<T?>);
 }

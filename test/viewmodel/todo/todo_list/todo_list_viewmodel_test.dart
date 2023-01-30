@@ -65,7 +65,7 @@ void main() {
 
     test('TodoListViewModel onAddClicked', () async {
       sut.onAddClicked();
-      verify(navigator.goToAddTodo()).calledOnce();
+      verify(navigator.goToTodoAddScreen()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(todoRepo);
     });
