@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -14,8 +13,6 @@ import 'package:provider/provider.dart';
 
 @getXRoute
 class DebugScreen extends StatefulWidget {
-  static const String routeName = RouteNames.debugScreen;
-
   const DebugScreen({super.key});
 
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -15,8 +14,6 @@ import 'package:get_x_navigation_generator_annotations/get_x_navigation_generato
   navigationType: NavigationType.popAllAndPush,
 )
 class LoginScreen extends StatefulWidget {
-  static const String routeName = RouteNames.loginScreen;
-
   const LoginScreen({Key? key}) : super(key: key);
 
   @override

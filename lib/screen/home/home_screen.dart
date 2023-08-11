@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -9,8 +8,6 @@ import 'package:get_x_navigation_generator_annotations/get_x_navigation_generato
   navigationType: NavigationType.popAllAndPush,
 )
 class HomeScreen extends StatefulWidget {
-  static const String routeName = RouteNames.homeScreen;
-
   const HomeScreen({super.key});
 
   @override

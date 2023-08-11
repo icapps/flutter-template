@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/viewmodel/debug/debug_theme_selector_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -10,8 +9,6 @@ import 'package:get_x_navigation_generator_annotations/get_x_navigation_generato
 
 @getXRoute
 class ThemeModeSelectorScreen extends StatefulWidget {
-  static const String routeName = RouteNames.themeModeSelectorScreen;
-
   const ThemeModeSelectorScreen({super.key});
 
   @override
