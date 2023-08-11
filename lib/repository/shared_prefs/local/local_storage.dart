@@ -48,7 +48,7 @@ class _LocalStorage implements LocalStorage {
   @override
   ThemeMode? getThemeMode() {
     final themeString = _sharedPreferences.getString(_appearanceThemeKey);
-    return ThemeMode.values.find((element) => element.toString() == themeString);
+    return ThemeMode.values.find((element) => element.value == themeString);
   }
 
   @override
