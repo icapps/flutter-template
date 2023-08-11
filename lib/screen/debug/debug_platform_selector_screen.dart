@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
-import 'package:flutter_template/navigator/middle_ware/analytics_permission_guard.dart';
-import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
-import 'package:flutter_template/navigator/middle_ware/debug_guard.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
@@ -13,13 +10,7 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 import 'package:provider/provider.dart';
 
-@GetXRoute(
-  middlewares: [
-    AuthenticationGuard,
-    AnalyticsPermissionGuard,
-    DebugGuard,
-  ],
-)
+@getXRoute
 class DebugPlatformSelectorScreen extends StatefulWidget {
   static const String routeName = RouteNames.debugPlatformSelectorScreen;
 

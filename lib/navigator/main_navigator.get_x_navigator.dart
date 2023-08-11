@@ -8,90 +8,57 @@
 import 'package:flutter/material.dart' as _i3;
 import 'package:get/route_manager.dart';
 
-import '../screen/debug/debug_platform_selector_screen.dart' as _i14;
-import '../screen/debug/debug_screen.dart' as _i15;
+import '../screen/debug/debug_platform_selector_screen.dart' as _i10;
+import '../screen/debug/debug_screen.dart' as _i11;
 import '../screen/home/home_screen.dart' as _i2;
-import '../screen/license/license_screen.dart' as _i7;
-import '../screen/login/login_screen.dart' as _i10;
-import '../screen/permission/analytics_permission_screen.dart' as _i9;
-import '../screen/splash/splash_screen.dart' as _i6;
-import '../screen/theme_mode/theme_mode_selector.dart' as _i12;
-import '../screen/todo/todo_add/todo_add_screen.dart' as _i8;
+import '../screen/license/license_screen.dart' as _i5;
+import '../screen/login/login_screen.dart' as _i8;
+import '../screen/permission/analytics_permission_screen.dart' as _i7;
+import '../screen/splash/splash_screen.dart' as _i4;
+import '../screen/theme_mode/theme_mode_selector.dart' as _i9;
+import '../screen/todo/todo_add/todo_add_screen.dart' as _i6;
 import '../widget/general/navigator_page/base_page.dart' as _i1;
-import 'middle_ware/analytics_permission_guard.dart' as _i5;
-import 'middle_ware/authentication_guard.dart' as _i4;
-import 'middle_ware/debug_guard.dart' as _i13;
-import 'middle_ware/login_guard.dart' as _i11;
 
 class BaseNavigator {
   static final pages = [
     _i1.BasePage<dynamic>(
       name: RouteNames.homeScreen,
       page: () => _i2.HomeScreen(key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-      ],
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.splashScreen,
-      page: () => _i6.SplashScreen(key: (Get.arguments?['key'] as _i3.Key?)),
+      page: () => _i4.SplashScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.licenseScreen,
-      page: () => _i7.LicenseScreen(key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-      ],
+      page: () => _i5.LicenseScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.todoAddScreen,
-      page: () => _i8.TodoAddScreen(key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-      ],
+      page: () => _i6.TodoAddScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.analyticsPermissionScreen,
-      page: () => _i9.AnalyticsPermissionScreen(
+      page: () => _i7.AnalyticsPermissionScreen(
           key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [_i4.AuthenticationGuard()],
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.loginScreen,
-      page: () => _i10.LoginScreen(key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [_i11.LoginGuard()],
+      page: () => _i8.LoginScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.themeModeSelectorScreen,
-      page: () => _i12.ThemeModeSelectorScreen(
-          key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-        _i13.DebugGuard(),
-      ],
+      page: () =>
+          _i9.ThemeModeSelectorScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.debugPlatformSelectorScreen,
-      page: () => _i14.DebugPlatformSelectorScreen(
+      page: () => _i10.DebugPlatformSelectorScreen(
           key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-        _i13.DebugGuard(),
-      ],
     ),
     _i1.BasePage<dynamic>(
       name: RouteNames.debugScreen,
-      page: () => _i15.DebugScreen(key: (Get.arguments?['key'] as _i3.Key?)),
-      middlewares: [
-        _i4.AuthenticationGuard(),
-        _i5.AnalyticsPermissionGuard(),
-        _i13.DebugGuard(),
-      ],
+      page: () => _i11.DebugScreen(key: (Get.arguments?['key'] as _i3.Key?)),
     ),
   ];
 
