@@ -152,17 +152,17 @@ end
 ########################
 
 private_lane :alpha_ios_build do
-  buildAppIOSTesting(flavor: 'alpha')
+  buildAppIOSOnly(flavor: 'alpha')
   uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
 end
 
 private_lane :beta_ios_build do
-  buildAppIOSTesting(flavor: 'beta')
+  buildAppIOSOnly(flavor: 'beta')
   uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
 end
 
 private_lane :prod_ios_build do
-  buildAppIOSAppstore(flavor: 'prod')
+  buildAppIOSOnly(flavor: 'prod')
   sh("echo","Enter `apple_id` in the prod_ios_build lane")
   #buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: '')
 end
@@ -219,24 +219,10 @@ private_lane :buildAppBundleAndroid do |options|
     upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
-private_lane :buildAppIOSAppstore do |options|
+private_lane :buildAppIOSOnly do |options|
     Dir.chdir ".." do
       podRepoUpdate
-      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
-    end
-    Dir.chdir "../build" do
-      zip(
-        path: "./",
-        include: ["**/debug-info/#{options[:flavor]}/app.ios-*", "**/ios/Release-#{options[:flavor]}-iphoneos/Runner.app.dSYM/*"],
-        output_path: "iOSSymbols.zip"
-      )
-    end
-end
-
-private_lane :buildAppIOSTesting do |options|
-    Dir.chdir ".." do
-      podRepoUpdate
-      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--export-method ad-hoc", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--export-options-plist ios/Runner/export-options.plist", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
     end
     Dir.chdir "../build" do
       zip(
