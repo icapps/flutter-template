@@ -42,7 +42,7 @@ dependencies:
   preferences_local_storage_inspector: ^0.3.1
   provider: ^6.0.5
   retrofit: ^3.3.1
-  scroll_when_needed: ^2.0.0
+  scroll_when_needed: ^3.0.1 
   secure_storage_local_storage_inspector: ^0.5.0
   shared_preferences: ^2.0.16
   shared_preferences_web: ^2.0.4

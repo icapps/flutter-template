@@ -1065,10 +1065,10 @@ packages:
     dependency: "direct main"
     description:
       name: scroll_when_needed
-      sha256: f4d3803c055f40a28c7978c916614e3f0720f8d2339449fc83b102851fb19d7b
+      sha256: "9a5522a4aac952ad42aebe3b2553c6ed7591f48db630440d8f5f636f6337ef9d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "3.0.1"
   secure_storage_local_storage_inspector:
     dependency: "direct main"
     description:
@@ -1452,4 +1452,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.0 <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.10.0"
