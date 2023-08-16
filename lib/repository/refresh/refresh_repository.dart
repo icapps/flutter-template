@@ -11,7 +11,7 @@ abstract class RefreshRepository {
   @factoryMethod
   factory RefreshRepository(AuthStorage storage) = _RefreshRepository;
 
-  Future<void> refresh(DioError err);
+  Future<void> refresh(DioException err);
 
   void resetFailure();
 
@@ -34,7 +34,7 @@ class _RefreshRepository implements RefreshRepository {
   }
 
   @override
-  Future<void> refresh(DioError err) async {
+  Future<void> refresh(DioException err) async {
     final accessToken = await _authStorage.getAccessToken();
     await _lock.synchronized(() async {
       final newAccessToken = await _authStorage.getAccessToken();
