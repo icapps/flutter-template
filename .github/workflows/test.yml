@@ -8,12 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.8.0
         with:
-          fluttter-version: '3.10.6'
           channel: 'stable'
       - run: ./tool/install_fvm.sh
       - run: fvm flutter packages get
