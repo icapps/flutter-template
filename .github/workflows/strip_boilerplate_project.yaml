@@ -1,0 +1,23 @@
+name: Strip boilerplate project
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  check_analyzer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2.8.0
+      with:
+        channel: 'stable'
+    - run: flutter packages get
+    - run: dart run ./tool/install_fvm.sh
+    - run: printf 'yes\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
+    - run: flutter analyze
+    - run: flutter test --update-goldens test/screen/home/home_screen_test.dart
+    - run: flutter test --update-goldens test/navigator/main_navigator_home_test.dart
+    - run: flutter test

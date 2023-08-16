@@ -1,4 +1,4 @@
-name: Analyzer
+name: Strip boilerplate project remove tests
 
 on:
   push:
@@ -15,5 +15,6 @@ jobs:
       with:
         channel: 'stable'
     - run: flutter packages get
-    - run: printf 'Test Project\ndescription\ntest_project\nTestProject\ncom.test.project\nn\ny\n'
-    - run: flutter pub run ./tool/dart_tool/rename_project.dart
+    - run: dart run ./tool/install_fvm.sh
+    - run: printf 'no\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
+    - run: flutter analyze
