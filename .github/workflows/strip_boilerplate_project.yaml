@@ -19,5 +19,4 @@ jobs:
     - run: printf 'yes\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
     - run: flutter analyze
     - run: flutter test --update-goldens test/screen/home/home_screen_test.dart
-    - run: flutter test --update-goldens test/navigator/main_navigator_home_test.dart
     - run: flutter test
