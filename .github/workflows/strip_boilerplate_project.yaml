@@ -16,7 +16,7 @@ jobs:
         channel: 'stable'
     - run: flutter packages get
     - run: ./tool/install_fvm.sh
-    - run: printf 'yes\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
-    - run: flutter analyze
-    - run: flutter test --update-goldens test/screen/home/home_screen_test.dart
-    - run: flutter test
+    - run: printf 'yes\n' | fvm flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
+    - run: fvm flutter analyze
+    - run: fvm flutter test --update-goldens test/screen/home/home_screen_test.dart
+    - run: fvm flutter test
