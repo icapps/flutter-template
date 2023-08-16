@@ -42,13 +42,13 @@ class _LocalStorage implements LocalStorage {
   @override
   Future<void> updateThemeMode(ThemeMode themeMode) async => _sharedPreferences.saveString(
         key: _appearanceThemeKey,
-        value: themeMode.value,
+        value: themeMode.stringValue,
       );
 
   @override
   ThemeMode? getThemeMode() {
     final themeString = _sharedPreferences.getString(_appearanceThemeKey);
-    return ThemeMode.values.find((element) => element.value == themeString);
+    return ThemeMode.values.find((element) => element.stringValue == themeString);
   }
 
   @override
