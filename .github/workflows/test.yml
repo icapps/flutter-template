@@ -14,9 +14,10 @@ jobs:
       - uses: subosito/flutter-action@v2.8.0
         with:
           channel: 'stable'
-      - run: flutter packages get
+      - run: ./tool/install_fvm.sh
+      - run: fvm flutter packages get
       - run: dart run ./tool/test_coverage_create_helper.dart
-      - run: flutter test --coverage
+      - run: fvm flutter test --coverage
       - run: dart run ./tool/test_coverage_filter.dart
       - run: dart run ./tool/test_coverage_validate_percentage.dart
       - name: Coveralls
