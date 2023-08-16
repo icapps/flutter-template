@@ -43,7 +43,7 @@ void main() {
     when(dio.fetch<dynamic>(any)).thenAnswer((_) => Future.value(Response<void>(requestOptions: RequestOptions(path: '/'))));
 
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
+    final dioError = DioException(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestHeaders = <String, dynamic>{};
     final requestOption = RequestOptions(path: 'https://somthing.com', headers: requestHeaders);
     dioError.response?.requestOptions = requestOption;
@@ -61,9 +61,8 @@ void main() {
 
   test('NetworkRefreshInterceptor should not intercept other errors', () async {
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(response: Response<void>(statusCode: 499, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestOption = RequestOptions(path: 'https://somthing.com');
-    dioError.requestOptions = requestOption;
+    final dioError = DioException(response: Response<void>(statusCode: 499, requestOptions: requestOptions), requestOptions: requestOption);
 
     verifyZeroInteractions(refreshRepo);
     verifyZeroInteractions(authStorage);
@@ -81,10 +80,10 @@ void main() {
 
   test('NetworkRefreshInterceptor should do nothing when authorization call', () async {
     final requestOptions = RequestOptions(path: '/todo');
-    final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
     final requestOption = RequestOptions(path: 'login');
-    dioError.requestOptions = requestOption;
+    final dioError = DioException(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOption);
     final unAuthorizedError = UnAuthorizedError(dioError);
+    
     verifyZeroInteractions(refreshRepo);
     verifyZeroInteractions(authStorage);
     await sut.onError(unAuthorizedError);

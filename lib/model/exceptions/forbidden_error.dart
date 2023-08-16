@@ -21,7 +21,7 @@ class ForbiddenError extends NetworkError {
     return '$statusCode [$statusCodeValue]';
   }
 
-  static NetworkError parseError(DioError err) {
+  static NetworkError parseError(DioException err) {
     final dynamic data = err.response?.data;
     if (data is! Map) return ForbiddenError(err);
     if (!data.containsKey('code')) return ForbiddenError(err);

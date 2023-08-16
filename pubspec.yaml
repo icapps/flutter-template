@@ -6,11 +6,10 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  connectivity_plus: ^2.3.9
+  connectivity_plus: ^4.0.1
   connectivity_plus_web: ^1.2.5
-  device_info_plus: ^6.0.0
-  device_info_plus_web: ^5.0.0
-  dio: ^4.0.6
+  device_info_plus: ^9.0.2
+  dio: ^5.3.2
   drift: ^2.4.2
   drift_db_viewer: ^2.0.0
   drift_local_storage_inspector: ^0.5.0
@@ -33,7 +32,7 @@ dependencies:
   get: ^4.6.5
   get_it: ^7.2.0
   get_x_navigation_generator_annotations: ^0.0.5
-  icapps_architecture: ^0.8.1
+  icapps_architecture: ^2.1.0
   injectable: ^2.1.0
   json_annotation: ^4.7.0
   niddler_dart: ^1.6.0
@@ -41,7 +40,7 @@ dependencies:
   path_provider: ^2.0.11
   preferences_local_storage_inspector: ^0.3.1
   provider: ^6.0.5
-  retrofit: ^3.3.1
+  retrofit: ^4.0.1
   scroll_when_needed: ^3.0.1 
   secure_storage_local_storage_inspector: ^0.5.0
   shared_preferences: ^2.0.16
@@ -66,7 +65,7 @@ dev_dependencies:
   license_generator: ^2.0.0
   mockito: ^5.3.2
   model_generator: ^6.0.2
-  retrofit_generator: ^4.2.0
+  retrofit_generator: ^7.0.8
 
 flutter:
   uses-material-design: true
