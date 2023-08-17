@@ -31,21 +31,21 @@ void main() {
   });
 
   test('NetworkLogInterceptor test log error', () async {
-    final error = DioError(requestOptions: requestOptions);
+    final error = DioException(requestOptions: requestOptions);
     final dynamic result = await sut.onError(error);
     expect(result, error);
   });
 
   test('NetworkLogInterceptor test log error with network error', () async {
     final error = InternalServerError(
-      DioError(requestOptions: requestOptions),
+      DioException(requestOptions: requestOptions),
     );
     final dynamic result = await sut.onError(error);
     expect(result, error);
   });
 
   test('NetworkLogInterceptor test doesn\'t log not modified', () async {
-    final error = DioError(
+    final error = DioException(
       error: HttpStatus.notModified,
       response: Response<void>(
         requestOptions: requestOptions,

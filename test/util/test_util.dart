@@ -114,12 +114,12 @@ class TestUtil {
   }
 
   static Future<void> takeScreenshotForScreenType(WidgetTester tester, Widget widget, String snapshotName, {ScreenType screen = ScreenType.iPhone11}) async {
-    tester.binding.window.physicalSizeTestValue = screen.size;
+    tester.view.physicalSize = screen.size;
     expect(widget.runtimeType, equals(TestWrapper));
     await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
     await takeScreenshot(tester, '${snapshotName}_${screen.name}');
-    tester.binding.window.clearPhysicalSizeTestValue();
+    tester.view.resetPhysicalSize();
   }
 
   static Future<void> takeScreenshot(WidgetTester tester, String snapshotName) async {
