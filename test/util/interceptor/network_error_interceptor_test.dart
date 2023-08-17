@@ -35,10 +35,10 @@ void main() {
   group('GeneralError', () {
     test('NetworkErrorInterceptorTest parse general error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 4686845, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 4686845, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is GeneralNetworkError, true);
       final authorizedError = newError as GeneralNetworkError;
       expect(authorizedError.type, equals(dioError.type));
@@ -52,10 +52,10 @@ void main() {
   group('UnAuthorizedError', () {
     test('NetworkErrorInterceptorTest parse 401 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 401, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is UnAuthorizedError, true);
       final authorizedError = newError as UnAuthorizedError;
       expect(authorizedError.type, equals(dioError.type));
@@ -69,10 +69,10 @@ void main() {
   group('InternalServerError', () {
     test('NetworkErrorInterceptorTest parse 500 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 500, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 500, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is InternalServerError, true);
       final authorizedError = newError as InternalServerError;
       expect(authorizedError.type, equals(dioError.type));
@@ -86,10 +86,10 @@ void main() {
   group('Forbidden Error', () {
     test('NetworkErrorInterceptorTest parse 403 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is ForbiddenError, true);
       final authorizedError = newError as ForbiddenError;
       expect(authorizedError.type, equals(dioError.type));
@@ -103,10 +103,10 @@ void main() {
       final data = <String, dynamic>{};
       data['code'] = '45648';
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 403, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is ForbiddenError, true);
       final authorizedError = newError as ForbiddenError;
       expect(authorizedError.response, equals(dioError.response));
@@ -119,10 +119,10 @@ void main() {
   group('BadRequestError', () {
     test('NetworkErrorInterceptorTest parse 400 error', () async {
       final requestOptions = RequestOptions(path: '/todo');
-      final dioError = DioError(response: Response<void>(statusCode: 400, requestOptions: requestOptions), requestOptions: requestOptions);
+      final dioError = DioException(response: Response<void>(statusCode: 400, requestOptions: requestOptions), requestOptions: requestOptions);
       final dynamic newError = await sut.onError(dioError);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, true);
+      expect(newError is DioException, true);
       expect(newError is BadRequestError, true);
       final authorizedError = newError as BadRequestError;
       expect(authorizedError.response, equals(dioError.response));
@@ -148,7 +148,7 @@ void main() {
       );
       final dynamic newError = await sut.onError(null);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, false);
+      expect(newError is DioException, false);
       expect(newError is CodeError, true);
       final codeError = newError as CodeError;
       expect(codeError.getLocalizedKey(), LocalizationKeys.errorGeneral);
@@ -168,7 +168,7 @@ void main() {
       );
       final dynamic newError = await sut.onError(null);
       expect(newError is LocalizedError, true);
-      expect(newError is DioError, false);
+      expect(newError is DioException, false);
       expect(newError is CodeError, true);
       final codeError = newError as CodeError;
       expect(codeError.getLocalizedKey(), LocalizationKeys.errorDuringDev);
