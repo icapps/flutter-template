@@ -29,7 +29,7 @@ class NetworkRefreshInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError error) async {
+  Future<Object?> onError(DioException error) async {
     final request = error.requestOptions;
     if (_excludedPaths.contains(request.path)) {
       logger.debug('Network refresh interceptor should not intercept');

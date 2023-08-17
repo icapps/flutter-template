@@ -13,6 +13,7 @@ class ProviderWidget<T extends ChangeNotifier> extends BaseProviderWidget<T, Flu
     Widget Function(BuildContext context, T viewModel, Widget? child)? consumer,
     Widget Function(BuildContext context, T viewModel, Widget? child, FlutterTemplateTheme theme, Localization localization)? consumerWithThemeAndLocalization,
     bool lazy = true,
+    Key? key,
   }) : super(
           create: create,
           child: child,
@@ -22,5 +23,6 @@ class ProviderWidget<T extends ChangeNotifier> extends BaseProviderWidget<T, Flu
           consumer: consumer,
           consumerWithThemeAndLocalization: consumerWithThemeAndLocalization,
           lazy: lazy,
+          key: key,
         );
 }
