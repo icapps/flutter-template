@@ -88,7 +88,7 @@ abstract class RegisterModule {
     final dio = Dio(
       BaseOptions(baseUrl: FlavorConfig.instance.values.baseUrl),
     );
-    (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
+    (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
     dio.interceptors.add(interceptor);
     return dio;
   }

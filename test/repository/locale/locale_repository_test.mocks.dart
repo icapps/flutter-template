@@ -135,6 +135,15 @@ class MockSharedPreferenceStorage extends _i1.Mock
         returnValue: false,
       ) as bool);
   @override
+  _i3.Future<void> reload() => (super.noSuchMethod(
+        Invocation.method(
+          #reload,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
   _i3.Future<String?> getValue({required String? key}) => (super.noSuchMethod(
         Invocation.method(
           #getValue,
