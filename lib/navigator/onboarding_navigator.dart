@@ -17,7 +17,7 @@ class OnboardingNavigator {
 
   Future<void> goToNextScreen() async {
     if (_localStorage.hasAnalyticsPermission == null) return _navigator.goToAnalyticsPermissionScreen();
-    if (await _loginRepository.isLoggedIn) return _navigator.goToHomeScreen();
-    return _navigator.goToLoginScreen();
+    if (!(await _loginRepository.isLoggedIn)) return _navigator.goToLoginScreen();
+    return _navigator.goToHomeScreen();
   }
 }
