@@ -20,7 +20,7 @@ class NetworkLogInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError error) async {
+  Future<Object?> onError(DioException error) async {
     final response = error.response;
     if (response != null && response.statusCode == HttpStatus.notModified) {
       logger.logNetworkResponse(response);
