@@ -38,6 +38,11 @@ class MockLoginRepository extends _i1.Mock implements _i2.LoginRepository {
         returnValue: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
   @override
+  _i3.Future<bool> get isNotLoggedIn => (super.noSuchMethod(
+        Invocation.getter(#isNotLoggedIn),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
+  @override
   _i3.Future<void> login({
     required String? email,
     required String? password,

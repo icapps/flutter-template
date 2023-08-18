@@ -78,9 +78,9 @@ void main() {
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
-        verify(navigator.goToHomeScreen()).calledOnce();
+        verify(onboardingNavigator.goToNextScreen()).calledOnce();
         verifyNoMoreInteractions(loginRepo);
-        verifyNoMoreInteractions(navigator);
+        verifyNoMoreInteractions(onboardingNavigator);
       });
 
       test('LoginViewModel onLoginClicked with FlutterTemplateError', () async {
@@ -115,9 +115,9 @@ void main() {
         expect(sut.isLoginEnabled, true);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: 'email', password: 'password')).calledOnce();
-        verify(navigator.goToHomeScreen());
+        verify(onboardingNavigator.goToNextScreen());
         verifyNoMoreInteractions(loginRepo);
-        verifyNoMoreInteractions(navigator);
+        verifyNoMoreInteractions(onboardingNavigator);
       });
     });
   });

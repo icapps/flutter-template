@@ -18,7 +18,7 @@ class AnalyticsPermissionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<AnalyticsPermissionViewModel>(
-      create: () => getIt(),
+      create: () => getIt()..init(),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => AnnotatedRegion<SystemUiOverlayStyle>(
         value: theme.isDarkTheme ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         child: Scaffold(
