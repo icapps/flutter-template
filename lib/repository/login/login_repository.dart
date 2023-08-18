@@ -9,6 +9,8 @@ abstract class LoginRepository {
 
   Future<bool> get isLoggedIn;
 
+  Future<bool> get isNotLoggedIn;
+
   Future<void> login({required String email, required String password});
 }
 
@@ -18,6 +20,9 @@ class _LoginRepository implements LoginRepository {
 
   @override
   Future<bool> get isLoggedIn => _storage.hasLoggedInUser();
+
+  @override
+  Future<bool> get isNotLoggedIn async=> !(await _storage.hasLoggedInUser());
 
   @override
   Future<void> login({required String email, required String password}) async {
