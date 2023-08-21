@@ -70,7 +70,6 @@ class LoginScreenState extends State<LoginScreen> {
                       isEnabled: viewModel.isLoginEnabled,
                       text: 'Login',
                       onClick: viewModel.onLoginClicked,
-                      isExpanded: true,
                     ),
                   ],
                 ],

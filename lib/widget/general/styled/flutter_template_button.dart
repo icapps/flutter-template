@@ -19,7 +19,7 @@ class FlutterTemplateButton extends StatelessWidget {
   const FlutterTemplateButton({
     required this.text,
     required this.onClick,
-    this.isExpanded = false,
+    this.isExpanded = true,
     this.isEnabled = true,
     this.buttonType = ButtonType.regular,
     super.key,
