@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -11,8 +10,6 @@ import 'package:get_x_navigation_generator_annotations/get_x_navigation_generato
 
 @getXRoute
 class AnalyticsPermissionScreen extends StatelessWidget {
-  static const String routeName = RouteNames.analyticsPermissionScreen;
-
   const AnalyticsPermissionScreen({Key? key}) : super(key: key);
 
   @override

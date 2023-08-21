@@ -21,7 +21,7 @@ class MainNavigator extends BaseNavigator {
 
   static final List<NavigatorObserver> _navigatorObservers = [];
 
-  static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : SplashScreen.routeName;
+  static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : RouteNames.splashScreen;
 
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
