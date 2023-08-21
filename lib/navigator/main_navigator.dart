@@ -3,7 +3,6 @@ import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
 import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
-import 'package:flutter_template/screen/splash/splash_screen.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:flutter_template/util/snackbar/snackbar_util.dart';
