@@ -20,5 +20,5 @@ class DebugThemeSelectorViewModel with ChangeNotifierEx {
     await _globalViewModel.updateThemeMode(themeMode);
   }
 
-  void onBackClicked() => _navigator.goBack<void>();
+  void onBackClicked() => _navigator.goBack();
 }

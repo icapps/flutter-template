@@ -6,14 +6,14 @@
 import 'dart:async' as _i3;
 
 import 'package:drift/drift.dart' as _i4;
-import 'package:flutter/material.dart' as _i6;
+import 'package:flutter/material.dart' as _i8;
 import 'package:flutter_template/database/flutter_template_database.dart'
     as _i9;
 import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i5;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i2;
-import 'package:flutter_template/repository/debug/debug_repository.dart' as _i7;
+import 'package:flutter_template/repository/debug/debug_repository.dart' as _i6;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
-    as _i8;
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -93,124 +93,12 @@ class MockMainNavigator extends _i1.Mock implements _i2.MainNavigator {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToHomeScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToHomeScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToSplashScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToSplashScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToLicenseScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToLicenseScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToTodoAddScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToTodoAddScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToAnalyticsPermissionScreen({_i6.Key? key}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #goToAnalyticsPermissionScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToLoginScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToLoginScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToThemeModeSelectorScreen({_i6.Key? key}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #goToThemeModeSelectorScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebugPlatformSelectorScreen({_i6.Key? key}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #goToDebugPlatformSelectorScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  _i3.Future<void> goToDebugScreen({_i6.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToDebugScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
-  @override
-  void goBack<T>({T? result}) => super.noSuchMethod(
-        Invocation.method(
-          #goBack,
-          [],
-          {#result: result},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<T?> showCustomDialog<T>({_i6.Widget? widget}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #showCustomDialog,
-          [],
-          {#widget: widget},
-        ),
-        returnValue: _i3.Future<T?>.value(),
-      ) as _i3.Future<T?>);
 }
 
 /// A class which mocks [DebugRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDebugRepository extends _i1.Mock implements _i7.DebugRepository {
+class MockDebugRepository extends _i1.Mock implements _i6.DebugRepository {
   MockDebugRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -249,7 +137,7 @@ class MockDebugRepository extends _i1.Mock implements _i7.DebugRepository {
 /// A class which mocks [LocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalStorage extends _i1.Mock implements _i8.LocalStorage {
+class MockLocalStorage extends _i1.Mock implements _i7.LocalStorage {
   MockLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -264,7 +152,7 @@ class MockLocalStorage extends _i1.Mock implements _i8.LocalStorage {
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
   @override
-  _i3.Future<void> updateThemeMode(_i6.ThemeMode? themeMode) =>
+  _i3.Future<void> updateThemeMode(_i8.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateThemeMode,

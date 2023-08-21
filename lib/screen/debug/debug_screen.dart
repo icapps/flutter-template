@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
@@ -8,10 +9,9 @@ import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_row_title.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 import 'package:provider/provider.dart';
 
-@getXRoute
+@flutterRoute
 class DebugScreen extends StatefulWidget {
   const DebugScreen({super.key});
 

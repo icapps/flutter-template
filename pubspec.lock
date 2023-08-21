@@ -173,10 +173,10 @@ packages:
     dependency: transitive
     description:
       name: code_builder
-      sha256: "0d43dd1288fd145de1ecc9a3948ad4a6d5a82f0a14c4fdd0892260787d975cbe"
+      sha256: "4ad01d6e56db961d29661561effde45e519939fdaeb46c351275b182eac70189"
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.0"
+    version: "4.5.0"
   collection:
     dependency: transitive
     description:
@@ -459,6 +459,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_navigation_generator:
+    dependency: "direct dev"
+    description:
+      name: flutter_navigation_generator
+      sha256: f691e8bbe206419c674bbdf20f9d3e0d50b2ca85382f96fbb014ffb81c3d778a
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  flutter_navigation_generator_annotations:
+    dependency: "direct main"
+    description:
+      name: flutter_navigation_generator_annotations
+      sha256: c109e019aaba48c1d23cefcb2140d5d7530cae60c3e3f9b127cb5e65d859aa5c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -549,22 +565,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.2.0"
-  get_x_navigation_generator:
-    dependency: "direct dev"
-    description:
-      name: get_x_navigation_generator
-      sha256: "723400666da35cfa24f7da0de45da5b9e2658f5bf06dbf54dd7dac2761603715"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.7"
-  get_x_navigation_generator_annotations:
-    dependency: "direct main"
-    description:
-      name: get_x_navigation_generator_annotations
-      sha256: c2027cc773615831f1946c79389d73d16d617e18de8e6119a76f250039533a23
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   glob:
     dependency: transitive
     description:

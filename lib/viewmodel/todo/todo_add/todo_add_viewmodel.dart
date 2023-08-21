@@ -21,7 +21,7 @@ class TodoAddViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  void onBackClicked() => _navigator.goBack<void>();
+  void onBackClicked() => _navigator.goBack();
 
   Future<void> onSaveClicked() async {
     final todo = _todo;
@@ -29,6 +29,6 @@ class TodoAddViewModel with ChangeNotifierEx {
       return _navigator.showError('Todo should not be empty');
     }
     await _todoRepo.saveTodo(todo);
-    _navigator.goBack(result: true);
+    _navigator.goBackWithResult(result: true);
   }
 }

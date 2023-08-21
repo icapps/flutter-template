@@ -11,5 +11,5 @@ class LicenseViewModel with ChangeNotifierEx {
 
   List<License> get licenses => LicenseUtil.getLicenses();
 
-  void onBackClicked() => _navigator.goBack<void>();
+  void onBackClicked() => _navigator.goBack();
 }

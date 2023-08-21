@@ -26,7 +26,7 @@ void main() {
 
     test('DebugPlatformSelectorViewModel onBackClicked', () async {
       sut.onBackClicked();
-      verify(navigator.goBack<void>()).calledOnce();
+      verify(navigator.goBack()).calledOnce();
       verifyNoMoreInteractions(navigator);
     });
   });

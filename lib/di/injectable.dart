@@ -10,12 +10,14 @@ import 'package:flutter_template/di/db/setup_drift_none.dart'
     if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
     if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
+import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -45,6 +47,9 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  MainNavigator mainNavigator(ErrorUtil errorUtil) => MainNavigator(errorUtil);
 
   @lazySingleton
   SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);

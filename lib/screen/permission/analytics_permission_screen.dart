@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
-@getXRoute
+@flutterRoute
 class AnalyticsPermissionScreen extends StatelessWidget {
   const AnalyticsPermissionScreen({Key? key}) : super(key: key);
 
