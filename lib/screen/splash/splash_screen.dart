@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
@@ -11,8 +10,6 @@ import 'package:get_x_navigation_generator_annotations/get_x_navigation_generato
   navigationType: NavigationType.popAllAndPush,
 )
 class SplashScreen extends StatefulWidget {
-  static const String routeName = RouteNames.splashScreen;
-
   const SplashScreen({super.key});
 
   @override

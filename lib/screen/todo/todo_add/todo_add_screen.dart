@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
-import 'package:flutter_template/navigator/middle_ware/analytics_permission_guard.dart';
-import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -13,15 +10,8 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 
-@GetXRoute(
-  middlewares: [
-    AuthenticationGuard,
-    AnalyticsPermissionGuard,
-  ],
-)
+@getXRoute
 class TodoAddScreen extends StatefulWidget {
-  static const String routeName = RouteNames.todoAddScreen;
-
   const TodoAddScreen({Key? key}) : super(key: key);
 
   @override

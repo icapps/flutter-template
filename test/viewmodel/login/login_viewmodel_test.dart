@@ -1,5 +1,6 @@
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/navigator/onboarding_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
@@ -14,16 +15,19 @@ import 'login_viewmodel_test.mocks.dart';
 @GenerateMocks([
   LoginRepository,
   MainNavigator,
+  OnboardingNavigator,
 ])
 void main() {
   late LoginViewModel sut;
   late MockLoginRepository loginRepo;
   late MainNavigator navigator;
+  late OnboardingNavigator onboardingNavigator;
 
   setUp(() async {
     loginRepo = MockLoginRepository();
     navigator = MockMainNavigator();
-    sut = LoginViewModel(loginRepo, navigator);
+    onboardingNavigator = MockOnboardingNavigator();
+    sut = LoginViewModel(loginRepo, navigator, onboardingNavigator);
   });
 
   test('LoginViewModel init with loggedin user', () async {
@@ -74,9 +78,9 @@ void main() {
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
-        verify(navigator.goToHomeScreen()).calledOnce();
+        verify(onboardingNavigator.goToNextScreen()).calledOnce();
         verifyNoMoreInteractions(loginRepo);
-        verifyNoMoreInteractions(navigator);
+        verifyNoMoreInteractions(onboardingNavigator);
       });
 
       test('LoginViewModel onLoginClicked with FlutterTemplateError', () async {
@@ -111,9 +115,9 @@ void main() {
         expect(sut.isLoginEnabled, true);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: 'email', password: 'password')).calledOnce();
-        verify(navigator.goToHomeScreen());
+        verify(onboardingNavigator.goToNextScreen());
         verifyNoMoreInteractions(loginRepo);
-        verifyNoMoreInteractions(navigator);
+        verifyNoMoreInteractions(onboardingNavigator);
       });
     });
   });

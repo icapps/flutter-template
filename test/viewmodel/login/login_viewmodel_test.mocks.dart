@@ -9,6 +9,7 @@ import 'package:drift/drift.dart' as _i5;
 import 'package:flutter/material.dart' as _i7;
 import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i6;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i4;
+import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i8;
 import 'package:flutter_template/repository/login/login_repository.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -34,6 +35,11 @@ class MockLoginRepository extends _i1.Mock implements _i2.LoginRepository {
   @override
   _i3.Future<bool> get isLoggedIn => (super.noSuchMethod(
         Invocation.getter(#isLoggedIn),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
+  @override
+  _i3.Future<bool> get isNotLoggedIn => (super.noSuchMethod(
+        Invocation.getter(#isNotLoggedIn),
         returnValue: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
   @override
@@ -233,4 +239,24 @@ class MockMainNavigator extends _i1.Mock implements _i4.MainNavigator {
         ),
         returnValue: _i3.Future<T?>.value(),
       ) as _i3.Future<T?>);
+}
+
+/// A class which mocks [OnboardingNavigator].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOnboardingNavigator extends _i1.Mock
+    implements _i8.OnboardingNavigator {
+  MockOnboardingNavigator() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> goToNextScreen() => (super.noSuchMethod(
+        Invocation.method(
+          #goToNextScreen,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

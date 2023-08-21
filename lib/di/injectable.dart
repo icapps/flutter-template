@@ -10,7 +10,6 @@ import 'package:flutter_template/di/db/setup_drift_none.dart'
     if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
     if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
 import 'package:flutter_template/di/injectable.config.dart';
-import 'package:flutter_template/navigator/middle_ware/init_middle_ware.dart';
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
@@ -33,7 +32,6 @@ Future<void> configureDependencies(String environment) async {
   print('Using environment: $environment');
   await getIt.initGetIt(environment: environment);
   await getIt.allReady();
-  await initMiddleWare();
 }
 
 @module
