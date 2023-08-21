@@ -11,15 +11,15 @@ enum ButtonType {
 
 class FlutterTemplateButton extends StatelessWidget {
   final String text;
-  final double height;
   final bool isEnabled;
+  final bool isExpanded;
   final VoidCallback? onClick;
   final ButtonType buttonType;
 
   const FlutterTemplateButton({
     required this.text,
     required this.onClick,
-    this.height = 48,
+    this.isExpanded = false,
     this.isEnabled = true,
     this.buttonType = ButtonType.regular,
     super.key,
@@ -28,7 +28,7 @@ class FlutterTemplateButton extends StatelessWidget {
   const FlutterTemplateButton.text({
     required this.text,
     required this.onClick,
-    this.height = 48,
+    this.isExpanded = false,
     this.isEnabled = true,
     this.buttonType = ButtonType.text,
     super.key,
@@ -74,20 +74,27 @@ class FlutterTemplateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) {
-        final content = Center(
-          child: AnimatedDefaultTextStyle(
-            style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
-            duration: ThemeDurations.shortAnimationDuration(),
-            child: Text(
-              text,
+        final content = Row(
+          mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
+              ),
+              child: AnimatedDefaultTextStyle(
+                style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
+                duration: ThemeDurations.shortAnimationDuration(),
+                child: Text(text),
+              ),
             ),
-          ),
+          ],
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
             onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
-              height: height,
               color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
               duration: ThemeDurations.shortAnimationDuration(),
               child: content,
@@ -99,10 +106,7 @@ class FlutterTemplateButton extends StatelessWidget {
           duration: ThemeDurations.shortAnimationDuration(),
           child: TouchFeedBack(
             onClick: isEnabled ? onClick : null,
-            child: SizedBox(
-              height: height,
-              child: content,
-            ),
+            child: content,
           ),
         );
       },
