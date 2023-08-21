@@ -80,7 +80,7 @@ class FlutterTemplateButton extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 24,
+                vertical: 16,
                 horizontal: 24,
               ),
               child: AnimatedDefaultTextStyle(
