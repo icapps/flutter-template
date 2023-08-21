@@ -4,16 +4,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
-import 'dart:ui' as _i3;
+import 'dart:ui' as _i4;
 
 import 'package:drift/drift.dart' as _i9;
-import 'package:flutter/material.dart' as _i4;
+import 'package:flutter/material.dart' as _i1;
 import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i10;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i8;
 import 'package:flutter_template/util/locale/localization.dart' as _i6;
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart' as _i2;
+import 'package:flutter_template/viewmodel/global/global_viewmodel.dart' as _i3;
 import 'package:icapps_architecture/icapps_architecture.dart' as _i7;
-import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/mockito.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,24 +26,35 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeGlobalKey_0<T extends _i1.State<_i1.StatefulWidget>>
+    extends _i2.SmartFake implements _i1.GlobalKey<T> {
+  _FakeGlobalKey_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GlobalViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
+class MockGlobalViewModel extends _i2.Mock implements _i3.GlobalViewModel {
   MockGlobalViewModel() {
-    _i1.throwOnMissingStub(this);
+    _i2.throwOnMissingStub(this);
   }
 
   @override
-  List<_i3.Locale> get supportedLocales => (super.noSuchMethod(
+  List<_i4.Locale> get supportedLocales => (super.noSuchMethod(
         Invocation.getter(#supportedLocales),
-        returnValue: <_i3.Locale>[],
-      ) as List<_i3.Locale>);
+        returnValue: <_i4.Locale>[],
+      ) as List<_i4.Locale>);
   @override
-  _i4.ThemeMode get themeMode => (super.noSuchMethod(
+  _i1.ThemeMode get themeMode => (super.noSuchMethod(
         Invocation.getter(#themeMode),
-        returnValue: _i4.ThemeMode.system,
-      ) as _i4.ThemeMode);
+        returnValue: _i1.ThemeMode.system,
+      ) as _i1.ThemeMode);
   @override
   bool get showsTranslationKeys => (super.noSuchMethod(
         Invocation.getter(#showsTranslationKeys),
@@ -69,7 +80,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i5.Future<void> updateThemeMode(_i4.ThemeMode? themeMode) =>
+  _i5.Future<void> updateThemeMode(_i1.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateThemeMode,
@@ -182,7 +193,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i3.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i4.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -190,7 +201,7 @@ class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i3.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i4.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -227,19 +238,19 @@ class MockGlobalViewModel extends _i1.Mock implements _i2.GlobalViewModel {
 /// A class which mocks [MainNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMainNavigator extends _i1.Mock implements _i8.MainNavigator {
+class MockMainNavigator extends _i2.Mock implements _i8.MainNavigator {
   MockMainNavigator() {
-    _i1.throwOnMissingStub(this);
+    _i2.throwOnMissingStub(this);
   }
 
   @override
-  void closeDialog() => super.noSuchMethod(
-        Invocation.method(
-          #closeDialog,
-          [],
+  _i1.GlobalKey<_i1.NavigatorState> get navigatorKey => (super.noSuchMethod(
+        Invocation.getter(#navigatorKey),
+        returnValue: _FakeGlobalKey_0<_i1.NavigatorState>(
+          this,
+          Invocation.getter(#navigatorKey),
         ),
-        returnValueForMissingStub: null,
-      );
+      ) as _i1.GlobalKey<_i1.NavigatorState>);
   @override
   _i5.Future<void> goToDatabase(_i9.GeneratedDatabase? db) =>
       (super.noSuchMethod(
@@ -290,4 +301,154 @@ class MockMainNavigator extends _i1.Mock implements _i8.MainNavigator {
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i1.Route<dynamic>? onGenerateRoute(_i1.RouteSettings? settings) =>
+      (super.noSuchMethod(Invocation.method(
+        #onGenerateRoute,
+        [settings],
+      )) as _i1.Route<dynamic>?);
+  @override
+  void goToHomeScreen({_i1.Key? key}) => super.noSuchMethod(
+        Invocation.method(
+          #goToHomeScreen,
+          [],
+          {#key: key},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void goToSplashScreen({_i1.Key? key}) => super.noSuchMethod(
+        Invocation.method(
+          #goToSplashScreen,
+          [],
+          {#key: key},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<void> goToLicenseScreen({_i1.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLicenseScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToAnalyticsPermissionScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  void goToLoginScreen({_i1.Key? key}) => super.noSuchMethod(
+        Invocation.method(
+          #goToLoginScreen,
+          [],
+          {#key: key},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToThemeModeSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugPlatformSelectorScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> goToDebugScreen({_i1.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToDebugScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  void goBack() => super.noSuchMethod(
+        Invocation.method(
+          #goBack,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void goBackWithResult<T>({T? result}) => super.noSuchMethod(
+        Invocation.method(
+          #goBackWithResult,
+          [],
+          {#result: result},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void popUntil(bool Function(_i1.Route<dynamic>)? predicate) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #popUntil,
+          [predicate],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void goBackTo(String? routeName) => super.noSuchMethod(
+        Invocation.method(
+          #goBackTo,
+          [routeName],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<T?> showCustomDialog<T>({_i1.Widget? widget}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showCustomDialog,
+          [],
+          {#widget: widget},
+        ),
+        returnValue: _i5.Future<T?>.value(),
+      ) as _i5.Future<T?>);
+  @override
+  _i5.Future<T?> showBottomSheet<T>({_i1.Widget? widget}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showBottomSheet,
+          [],
+          {#widget: widget},
+        ),
+        returnValue: _i5.Future<T?>.value(),
+      ) as _i5.Future<T?>);
 }
