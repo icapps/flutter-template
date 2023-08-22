@@ -25,9 +25,14 @@ class MainNavigator with BaseNavigator {
 
   Future<void> goToDatabase(GeneratedDatabase db) async => _navigator.push<void>(MaterialPageRoute(builder: (context) => DriftDbViewer(db)));
 
-  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(errorKey, args: args);
+  void showErrorWithLocaleKey({required String messageKey, String? titleKey, List<dynamic>? args}) => _errorUtil.showErrorWithLocaleKey(
+        context: navigatorKey.currentContext!,
+        messageKey: messageKey,
+        titleKey: titleKey,
+        args: args,
+      );
 
-  void showError(dynamic error) => _errorUtil.showError(error);
+  void showError(dynamic error) => _errorUtil.showError(error: error, context: navigatorKey.currentContext!);
 
   Future<void> showCustomSnackBar({
     required String message,
@@ -35,6 +40,7 @@ class MainNavigator with BaseNavigator {
     SnackBarStyle style = SnackBarStyle.neutral,
   }) async =>
       SnackBarUtil.showSnackbar(
+        context: navigatorKey.currentContext!,
         title: title,
         message: message,
         style: style,

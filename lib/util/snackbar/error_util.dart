@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/model/snackbar/snackbar_data.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:get/get.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,10 +11,13 @@ import '../locale/localization.dart';
 
 @lazySingleton
 class ErrorUtil {
-  String? showError(dynamic error) {
+  String? showError({
+    required dynamic error,
+    required BuildContext context,
+  }) {
     String key;
     if (error is String) {
-      _showError(error);
+      _showError(message: error);
       return null;
     } else if (error is NetworkError) {
       if (error.showInProduction) {
@@ -23,7 +27,11 @@ class ErrorUtil {
         if (code == null) {
           key = LocalizationKeys.errorGeneral;
         } else {
-          showErrorWithLocaleKey(LocalizationKeys.errorGeneralWithCode, args: <String>[code]);
+          showErrorWithLocaleKey(
+            context: context,
+            messageKey: LocalizationKeys.errorGeneralWithCode,
+            args: <String>[code],
+          );
           return null;
         }
       } else {
@@ -35,11 +43,33 @@ class ErrorUtil {
       logger.warning('Caught an error that is not handled by the FlutterTemplateError $error');
       key = LocalizationKeys.errorGeneral;
     }
-    showErrorWithLocaleKey(key);
+    showErrorWithLocaleKey(
+      context: context,
+      messageKey: key,
+    );
     return key;
   }
 
-  void _showError(String error) => getIt.get<MainNavigator>().showCustomSnackBar(message: error);
+  void _showError({
+    required String message,
+    String? title,
+  }) =>
+      getIt.get<MainNavigator>().showCustomSnackBar(
+            message: message,
+            title: title,
+            style: SnackBarStyle.error,
+          );
 
-  void showErrorWithLocaleKey(String errorKey, {List<dynamic>? args}) => _showError(Localization.of(Get.context!).getTranslation(errorKey));
+  void showErrorWithLocaleKey({
+    required String messageKey,
+    required BuildContext context,
+    String? titleKey,
+    List<dynamic>? args,
+  }) {
+    final localization = Localization.of(context);
+    _showError(
+      message: localization.getTranslation(messageKey),
+      title: titleKey == null ? null : localization.getTranslation(titleKey),
+    );
+  }
 }

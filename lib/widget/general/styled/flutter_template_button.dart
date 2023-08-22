@@ -85,7 +85,7 @@ class FlutterTemplateButton extends StatelessWidget {
               ),
               child: AnimatedDefaultTextStyle(
                 style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
-                duration: ThemeDurations.shortAnimationDuration(),
+                duration: ThemeDurations.shortAnimationDuration,
                 child: Text(text),
               ),
             ),
@@ -96,14 +96,14 @@ class FlutterTemplateButton extends StatelessWidget {
             onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
               color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
-              duration: ThemeDurations.shortAnimationDuration(),
+              duration: ThemeDurations.shortAnimationDuration,
               child: content,
             ),
           );
         }
         return AnimatedContainer(
           color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
-          duration: ThemeDurations.shortAnimationDuration(),
+          duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
             onClick: isEnabled ? onClick : null,
             child: content,
