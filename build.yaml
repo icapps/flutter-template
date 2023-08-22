@@ -2,10 +2,36 @@ targets:
   $default:
     builders:
       drift_dev:
+        generate_for:
+          include:
+            - lib/database/**.dart
         options:
           generate_connect_constructor: true
       # Should be removed in the future
       retrofit_generator|retrofit:
         enabled: true
+        generate_for:
+          include:
+            - lib/webservice/**.dart
         options:
           nullsafety: true
+      mockito:mockBuilder:
+        generate_for:
+          include:
+            - test/**.dart
+      json_serializable:
+        generate_for:
+          include:
+            - lib/model/**.dart
+      injectable_generator:injectable_config_builder:
+        generate_for:
+          include:
+            - lib/di/injectable.dart
+      flutter_navigation_generator:flutter_route_builder:
+        generate_for:
+          include:
+            - lib/screen/**.dart
+      flutter_navigation_generator:flutter_navigator_builder:
+        generate_for:
+          include:
+            - lib/navigator/main_navigator.dart
