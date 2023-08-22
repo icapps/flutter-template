@@ -94,7 +94,7 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase.connect(databaseConnection);
+  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase(databaseConnection);
 }
 
 dynamic _parseAndDecode(String response) => jsonDecode(response);

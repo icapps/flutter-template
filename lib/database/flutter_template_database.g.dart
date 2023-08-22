@@ -214,7 +214,6 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
-  _$FlutterTemplateDatabase.connect(DatabaseConnection c) : super.connect(c);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
