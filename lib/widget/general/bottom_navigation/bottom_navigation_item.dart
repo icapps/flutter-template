@@ -28,7 +28,7 @@ class BottomNavigationItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedColorFilter(
-              color: isSelected ? theme.colorsTheme.accent : theme.colorsTheme.text,
+              color: isSelected ? theme.colorsTheme.bottomNavbarItemActive : theme.colorsTheme.bottomNavbarItemInactive,
               builder: (context, color) => Icon(
                 icon,
                 color: color,
@@ -38,7 +38,9 @@ class BottomNavigationItem extends StatelessWidget {
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration(),
-                style: isSelected ? theme.accentTextTheme.bodySmall : theme.coreTextTheme.bodySmall,
+                style: isSelected
+                    ? theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
+                    : theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

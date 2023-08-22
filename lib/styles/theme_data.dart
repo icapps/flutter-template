@@ -59,9 +59,7 @@ class FlutterTemplateTextTheme {
   final TextStyle titleListItem;
 
   final TextStyle labelButtonBig;
-  final TextStyle labelButtonBigDisabled;
   final TextStyle labelButtonSmall;
-  final TextStyle labelButtonSmallDisabled;
 
   final TextStyle bodyNormal;
   final TextStyle bodySmall;
@@ -76,9 +74,7 @@ class FlutterTemplateTextTheme {
     required this.titleSmall,
     required this.titleListItem,
     required this.labelButtonBig,
-    required this.labelButtonBigDisabled,
     required this.labelButtonSmall,
-    required this.labelButtonSmallDisabled,
     required this.bodyNormal,
     required this.bodySmall,
     required this.bodyUltraSmall,
@@ -171,6 +167,7 @@ class FlutterTemplateTheme {
   final FlutterTemplateTextTheme coreTextTheme;
   final FlutterTemplateTextTheme inverseCoreTextTheme;
   final FlutterTemplateTextTheme accentTextTheme;
+  final FlutterTemplateTextTheme disabledTextTheme;
   final FlutterTemplateTextThemeExceptions exceptionsTextTheme;
   final FlutterTemplateColorsTheme colorsTheme;
   final bool isDarkTheme;
@@ -258,61 +255,33 @@ class FlutterTemplateTheme {
       FlutterTemplateTheme._(
         isDarkTheme: isDarkTheme,
         colorsTheme: colorTheme,
-        coreTextTheme: FlutterTemplateTextTheme(
-          titleHuge: TextStyle(fontSize: 40, color: colorTheme.text, fontFamily: ThemeFonts.title, height: 1.2),
-          titleBig: TextStyle(fontSize: 30, color: colorTheme.text, fontFamily: ThemeFonts.title, height: 1.2),
-          titleNormal: TextStyle(fontSize: 24, color: colorTheme.text, fontFamily: ThemeFonts.title),
-          titleSmall: TextStyle(fontSize: 18, color: colorTheme.text, fontFamily: ThemeFonts.title),
-          titleListItem: TextStyle(fontSize: 18, color: colorTheme.text, fontFamily: ThemeFonts.title, fontWeight: FontWeight.bold),
-          labelButtonBig: TextStyle(fontSize: 16, color: colorTheme.text, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonBigDisabled: TextStyle(fontSize: 16, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmall: TextStyle(fontSize: 14, color: colorTheme.text, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmallDisabled: TextStyle(fontSize: 14, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          bodyBig: TextStyle(fontSize: 18, color: colorTheme.text, fontFamily: ThemeFonts.body),
-          bodyNormal: TextStyle(fontSize: 16, color: colorTheme.text, fontFamily: ThemeFonts.body),
-          bodySmall: TextStyle(fontSize: 14, color: colorTheme.text, fontFamily: ThemeFonts.body),
-          bodyUltraSmall: TextStyle(fontSize: 12, color: colorTheme.text, fontFamily: ThemeFonts.body),
-          infoBodySubHeader: TextStyle(fontSize: 14, color: colorTheme.text, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
-        ),
-        inverseCoreTextTheme: FlutterTemplateTextTheme(
-          titleHuge: TextStyle(fontSize: 40, color: colorTheme.inverseText, fontFamily: ThemeFonts.title, height: 1.2),
-          titleBig: TextStyle(fontSize: 30, color: colorTheme.inverseText, fontFamily: ThemeFonts.title, height: 1.2),
-          titleNormal: TextStyle(fontSize: 24, color: colorTheme.inverseText, fontFamily: ThemeFonts.title),
-          titleSmall: TextStyle(fontSize: 18, color: colorTheme.inverseText, fontFamily: ThemeFonts.title),
-          titleListItem: TextStyle(fontSize: 18, color: colorTheme.inverseText, fontFamily: ThemeFonts.title, fontWeight: FontWeight.bold),
-          labelButtonBig: TextStyle(fontSize: 16, color: colorTheme.inverseText, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonBigDisabled: TextStyle(fontSize: 16, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmall: TextStyle(fontSize: 14, color: colorTheme.inverseText, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmallDisabled: TextStyle(fontSize: 14, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          bodyBig: TextStyle(fontSize: 18, color: colorTheme.inverseText, fontFamily: ThemeFonts.body),
-          bodyNormal: TextStyle(fontSize: 16, color: colorTheme.inverseText, fontFamily: ThemeFonts.body),
-          bodySmall: TextStyle(fontSize: 14, color: colorTheme.inverseText, fontFamily: ThemeFonts.body),
-          bodyUltraSmall: TextStyle(fontSize: 12, color: colorTheme.inverseText, fontFamily: ThemeFonts.body),
-          infoBodySubHeader: TextStyle(fontSize: 14, color: colorTheme.inverseText, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
-        ),
-        accentTextTheme: FlutterTemplateTextTheme(
-          titleHuge: TextStyle(fontSize: 40, color: colorTheme.accent, fontFamily: ThemeFonts.title, height: 1.2),
-          titleBig: TextStyle(fontSize: 30, color: colorTheme.accent, fontFamily: ThemeFonts.title, height: 1.2),
-          titleNormal: TextStyle(fontSize: 24, color: colorTheme.accent, fontFamily: ThemeFonts.title),
-          titleSmall: TextStyle(fontSize: 18, color: colorTheme.accent, fontFamily: ThemeFonts.title),
-          titleListItem: TextStyle(fontSize: 18, color: colorTheme.accent, fontFamily: ThemeFonts.title, fontWeight: FontWeight.bold),
-          labelButtonBig: TextStyle(fontSize: 16, color: colorTheme.accent, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonBigDisabled: TextStyle(fontSize: 16, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmall: TextStyle(fontSize: 14, color: colorTheme.accent, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          labelButtonSmallDisabled: TextStyle(fontSize: 14, color: colorTheme.disabled, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
-          bodyBig: TextStyle(fontSize: 18, color: colorTheme.accent, fontFamily: ThemeFonts.body),
-          bodyNormal: TextStyle(fontSize: 16, color: colorTheme.accent, fontFamily: ThemeFonts.body),
-          bodySmall: TextStyle(fontSize: 14, color: colorTheme.accent, fontFamily: ThemeFonts.body),
-          bodyUltraSmall: TextStyle(fontSize: 12, color: colorTheme.accent, fontFamily: ThemeFonts.body),
-          infoBodySubHeader: TextStyle(fontSize: 14, color: colorTheme.accent, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
-        ),
+        disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
+        coreTextTheme: _getTextThemeFromColor(colorTheme.text),
+        inverseCoreTextTheme: _getTextThemeFromColor(colorTheme.inverseText),
+        accentTextTheme: _getTextThemeFromColor(colorTheme.accent),
         exceptionsTextTheme: const FlutterTemplateTextThemeExceptions(),
+      );
+
+  static FlutterTemplateTextTheme _getTextThemeFromColor(Color color) => FlutterTemplateTextTheme(
+        titleHuge: TextStyle(fontSize: 40, color: color, fontFamily: ThemeFonts.title, height: 1.2),
+        titleBig: TextStyle(fontSize: 30, color: color, fontFamily: ThemeFonts.title, height: 1.2),
+        titleNormal: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.title),
+        titleSmall: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.title),
+        titleListItem: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.title, fontWeight: FontWeight.bold),
+        labelButtonBig: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
+        labelButtonSmall: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold),
+        bodyBig: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.body),
+        bodyNormal: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body),
+        bodySmall: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body),
+        bodyUltraSmall: TextStyle(fontSize: 12, color: color, fontFamily: ThemeFonts.body),
+        infoBodySubHeader: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
       );
 
   const FlutterTemplateTheme._({
     required this.coreTextTheme,
     required this.inverseCoreTextTheme,
     required this.accentTextTheme,
+    required this.disabledTextTheme,
     required this.exceptionsTextTheme,
     required this.colorsTheme,
     required this.isDarkTheme,
