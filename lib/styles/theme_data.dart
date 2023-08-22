@@ -107,6 +107,7 @@ class FlutterTemplateColorsTheme {
   final Color appBarAction;
   final Color inverseIcon;
   final Color inverseProgressIndicator;
+  final Color shadow;
   final Color progressIndicator;
   final Color buttonColor;
   final Color buttonText;
@@ -141,6 +142,7 @@ class FlutterTemplateColorsTheme {
     required this.appBarAction,
     required this.inverseIcon,
     required this.inverseProgressIndicator,
+    required this.shadow,
     required this.progressIndicator,
     required this.buttonColor,
     required this.buttonText,
@@ -193,6 +195,7 @@ class FlutterTemplateTheme {
       inverseIcon: ThemeColors.black,
       progressIndicator: ThemeColors.primary,
       inverseProgressIndicator: ThemeColors.white,
+      shadow: ThemeColors.shadow,
       buttonText: ThemeColors.primary,
       inverseButtonText: ThemeColors.white,
       buttonTextDisabled: ThemeColors.lightGrey,
@@ -231,6 +234,7 @@ class FlutterTemplateTheme {
       inverseIcon: ThemeColors.black,
       progressIndicator: ThemeColors.primary,
       inverseProgressIndicator: ThemeColors.white,
+      shadow: ThemeColors.shadow,
       buttonText: ThemeColors.white,
       inverseButtonText: ThemeColors.primary,
       buttonTextDisabled: ThemeColors.lightGrey,
