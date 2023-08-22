@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 
 class AnimatedColorFilter extends StatelessWidget {
-  final Color? color;
+  final Color color;
   final Widget Function(BuildContext, Color) builder;
 
   const AnimatedColorFilter({
@@ -13,8 +13,8 @@ class AnimatedColorFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder<Color?>(
-      tween: ColorTween(begin: Colors.white, end: color ?? Colors.transparent),
+    return TweenAnimationBuilder(
+      tween: ColorTween(begin: Colors.white, end: color),
       duration: ThemeDurations.shortAnimationDuration(),
       builder: (_, color, __) => builder(context, color ?? Colors.transparent),
     );

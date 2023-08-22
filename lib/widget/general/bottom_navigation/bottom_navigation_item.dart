@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/animation/animated_color_filter.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -22,6 +23,7 @@ class BottomNavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasSpaceForLabel = MediaQuery.of(context).textScaleFactor <= 1;
     final child = DataProviderWidget(
       childBuilder: (context, theme, localization) => Center(
         child: Column(
@@ -32,9 +34,10 @@ class BottomNavigationItem extends StatelessWidget {
               builder: (context, color) => Icon(
                 icon,
                 color: color,
+                size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
             ),
-            if (MediaQuery.of(context).textScaleFactor <= 1) ...[
+            if (hasSpaceForLabel) ...[
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration(),

@@ -33,5 +33,8 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _onItemTapped(BottomNavigationTab tab) => setState(() => _currentTab = tab);
+  void _onItemTapped(BottomNavigationTab tab) {
+    if (tab == _currentTab) return;
+    setState(() => _currentTab = tab);
+  }
 }
