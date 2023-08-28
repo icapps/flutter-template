@@ -347,13 +347,13 @@ end
 
 private_lane :uploadIOSSymbols do |options|
    Dir.chdir ".." do
-     sh("dart", "run", "../tool/dart/firebase/firebase_uploader.dart", "ios", "#{options[:flavor]}")
+     sh("dart", "run", "./tool/dart/firebase/firebase_uploader.dart", "ios", "#{options[:flavor]}")
    end
 end
 
 private_lane :uploadAndroidSymbols do |options|
    Dir.chdir ".." do
-     sh("dart", "run", "../tool/dart/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
+     sh("dart", "run", "./tool/dart/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
    end
 end
 
