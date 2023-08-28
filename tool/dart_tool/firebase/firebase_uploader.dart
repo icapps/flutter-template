@@ -12,11 +12,11 @@ Future<void> main(List<String> args) async {
     final packageNameOrFlavor = args[1];
     if (platform == 'android') {
       final symbolsDirectory = args[2];
-      final package = args[3];
+      final package = args.length > 3 ? args[3] : null;
       await checkIfFirebaseCliIsInstalled();
       await uploadAndroidSymbols(packageNameOrFlavor, Directory(symbolsDirectory), package);
     } else if (platform == 'ios') {
-      final package = args[2];
+      final package = args.length > 2 ? args[2] : null;
       await uploadIosSymbols(packageNameOrFlavor, package);
     } else {
       throw Exception('Platform `$platform` not supported, Supported platforms: `android, ios`');
