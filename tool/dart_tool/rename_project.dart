@@ -107,6 +107,7 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
 void _renameAndroidPackageName(String androidPackageName) {
   Logger.info('Replace the android package name ...');
   _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('tool/dart_tool/android_firebase_uploader.dart', originalAndroidPackageName, androidPackageName);
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
@@ -165,6 +166,7 @@ void _deleteOldKotlinFiles(String androidPackageName) {
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   Logger.info('Replace the ios bundle identifier ...');
   _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile('tool/dart_tool/ios_firebase_uploader.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;

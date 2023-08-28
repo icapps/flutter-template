@@ -4,14 +4,10 @@ import 'dart:io';
 import 'firebase_uploader.dart';
 
 const _bundleIdsForFlavors = {
-  'customer-dev': 'be.bluebike.rider.dev',
-  'customer-alpha': 'be.bluebike.rider.alpha',
-  'customer-beta': 'be.bluebike.rider.beta',
-  'customer-prod': 'be.bluebike.rider',
-  'service-dev': 'be.bluebike.service.dev',
-  'service-alpha': 'be.bluebike.service.alpha',
-  'service-beta': 'be.bluebike.service.beta',
-  'service-prod': 'be.bluebike.service',
+  'dev': 'com.icapps.fluttertemplate.dev',
+  'alpha': 'com.icapps.fluttertemplate.alpha',
+  'beta': 'com.icapps.fluttertemplate.beta',
+  'prod': 'com.icapps.fluttertemplate',
 };
 
 Future<void> uploadIosSymbols(String bundleIdOrFlavor, String? package) async {
