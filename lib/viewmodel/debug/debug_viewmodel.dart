@@ -41,7 +41,7 @@ class DebugViewModel with ChangeNotifierEx {
 
   void onThemeModeClicked() => _navigator.goToThemeModeSelectorScreen();
 
-  void onSelectLanguageClicked() => _navigator.showCustomDialog<void>(widget: SelectLanguageDialog(goBack: _navigator.closeDialog));
+  void onSelectLanguageClicked() => _navigator.showCustomDialog<void>(widget: SelectLanguageDialog(goBack: _navigator.goBack));
 
   void onLicensesClicked() => _navigator.goToLicenseScreen();
 

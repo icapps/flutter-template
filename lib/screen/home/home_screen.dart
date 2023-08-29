@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
-import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
-@GetXRoute(
-  navigationType: NavigationType.popAllAndPush,
+@FlutterRoute(
+  navigationType: NavigationType.pushAndReplaceAll,
 )
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

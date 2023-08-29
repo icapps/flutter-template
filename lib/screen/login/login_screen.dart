@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/util/keys.dart';
@@ -8,10 +9,9 @@ import 'package:flutter_template/widget/general/styled/flutter_template_button.d
 import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
-@GetXRoute(
-  navigationType: NavigationType.popAllAndPush,
+@FlutterRoute(
+  navigationType: NavigationType.pushAndReplaceAll,
 )
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
