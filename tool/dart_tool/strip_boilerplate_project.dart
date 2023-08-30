@@ -52,7 +52,7 @@ void main(List<String> args) {
   Logger.debug('Removing import references');
   replaceBoilerplateReferences(testDir);
   replaceBoilerplateReferences(libDir);
-  _replaceHomeTabFile();
+  _replaceHomeScreenLine();
   _replaceDatabaseTests();
   Logger.debug('Removed import references');
   executeCommand('fvm', ['flutter', 'clean']);
@@ -116,29 +116,21 @@ void replaceBoilerplateReferences(Directory dir) {
     return true;
   }).forEach((element) {
     removeCodeLines.forEach((import) {
-      _replaceSingleStringInFile(element.path, '$import\n', '');
+      _replaceInFile(element.path, '$import\n', '');
     });
   });
 }
 
-void _replaceHomeTabFile() {
-  _replaceMultipleStringsInFile(
+void _replaceHomeScreenLine() {
+  _replaceInFile(
     'lib/model/bottom_navigation/bottom_navigation_tab.dart',
-    [
-      'todo(icon: Icons.list, labelKey: LocalizationKeys.todoTitle),',
-      'static BottomNavigationTab get defaultTab => BottomNavigationTab.todo;',
-      'BottomNavigationTab.todo => const TodoListScreen(),'
-    ],
-    [
-      'home(icon: Icons.home, labelKey: "Home"),',
-      'static BottomNavigationTab get defaultTab => BottomNavigationTab.home;',
-      'BottomNavigationTab.home => const SizedBox.shrink(),',
-    ],
+    'BottomNavigationTab.todo => const TodoListScreen(),',
+    'BottomNavigationTab.todo => const SizedBox.shrink(),',
   );
 }
 
 void _replaceDatabaseTests() {
-  _replaceSingleStringInFile(
+  _replaceInFile(
     'test/database/flutter_template_database_test.dart',
     '''  test('FlutterTemplateDatabase should delete all tables', () async {
     final resultTodos1 = await sut.select(sut.dbTodoTable).get();
@@ -167,37 +159,12 @@ void _replaceDatabaseTests() {
   );
 }
 
-void _replaceInFile({
-  required File file,
-  required String originalString,
-  required String newString,
-}) {
+void _replaceInFile(String path, String originalString, String newString) {
+  final file = File(path);
+  if (!file.existsSync()) return;
   final original = file.readAsStringSync();
   final newContent = original.replaceAll(originalString, newString);
   file.writeAsStringSync(newContent);
-}
-
-void _replaceSingleStringInFile(String path, String originalString, String newString) {
-  final file = File(path);
-  if (!file.existsSync()) return;
-  return _replaceInFile(
-    file: file,
-    originalString: originalString,
-    newString: newString,
-  );
-}
-
-void _replaceMultipleStringsInFile(String path, List<String> originalStrings, List<String> newStrings) {
-  final file = File(path);
-  if (!file.existsSync()) return;
-  if (originalStrings.length != newStrings.length) throw ArgumentError('The number of  input strings and output strings should be the same');
-  for (var i = 0; i < originalStrings.length; i++) {
-    _replaceInFile(
-      file: file,
-      originalString: originalStrings[i],
-      newString: newStrings[i],
-    );
-  }
 }
 
 final removeCodeLines = [
