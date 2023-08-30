@@ -48,7 +48,7 @@ class FlutterTemplateButton extends StatelessWidget {
       case ButtonType.regular:
         return theme.inverseCoreTextTheme.labelButtonSmall;
       case ButtonType.text:
-        return theme.coreTextTheme.labelButtonSmallDisabled;
+        return theme.disabledTextTheme.labelButtonSmall;
     }
   }
 
