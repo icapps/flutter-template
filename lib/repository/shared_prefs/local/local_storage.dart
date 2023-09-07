@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
+import 'package:flutter_template/util/extension/theme_mode_extension.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -39,14 +40,15 @@ class _LocalStorage implements LocalStorage {
   }
 
   @override
-  Future<void> updateThemeMode(ThemeMode themeMode) async {
-    await _sharedPreferences.saveString(key: _appearanceThemeKey, value: themeMode.toString());
-  }
+  Future<void> updateThemeMode(ThemeMode themeMode) async => _sharedPreferences.saveString(
+        key: _appearanceThemeKey,
+        value: themeMode.stringValue,
+      );
 
   @override
   ThemeMode? getThemeMode() {
     final themeString = _sharedPreferences.getString(_appearanceThemeKey);
-    return ThemeMode.values.find((element) => element.toString() == themeString);
+    return ThemeMode.values.find((element) => element.stringValue == themeString);
   }
 
   @override

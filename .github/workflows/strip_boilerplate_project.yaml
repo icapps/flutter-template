@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  check_analyzer:
+  check_strip_boilerplate_project:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
