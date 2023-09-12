@@ -245,15 +245,35 @@ class MockErrorUtil extends _i2.Mock implements _i8.ErrorUtil {
   }
 
   @override
-  void showErrorWithLocaleKey(
-    String? errorKey, {
+  String? showError({
+    required dynamic error,
+    required _i1.BuildContext? context,
+  }) =>
+      (super.noSuchMethod(Invocation.method(
+        #showError,
+        [],
+        {
+          #error: error,
+          #context: context,
+        },
+      )) as String?);
+  @override
+  void showErrorWithLocaleKey({
+    required String? messageKey,
+    required _i1.BuildContext? context,
+    String? titleKey,
     List<dynamic>? args,
   }) =>
       super.noSuchMethod(
         Invocation.method(
           #showErrorWithLocaleKey,
-          [errorKey],
-          {#args: args},
+          [],
+          {
+            #messageKey: messageKey,
+            #context: context,
+            #titleKey: titleKey,
+            #args: args,
+          },
         ),
         returnValueForMissingStub: null,
       );
@@ -286,15 +306,20 @@ class MockMainNavigator extends _i2.Mock implements _i9.MainNavigator {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  void showErrorWithLocaleKey(
-    String? errorKey, {
+  void showErrorWithLocaleKey({
+    required String? messageKey,
+    String? titleKey,
     List<dynamic>? args,
   }) =>
       super.noSuchMethod(
         Invocation.method(
           #showErrorWithLocaleKey,
-          [errorKey],
-          {#args: args},
+          [],
+          {
+            #messageKey: messageKey,
+            #titleKey: titleKey,
+            #args: args,
+          },
         ),
         returnValueForMissingStub: null,
       );
