@@ -123,15 +123,9 @@ void replaceBoilerplateReferences(Directory dir) {
 
 void _replaceHomeScreenLine() {
   _replaceInFile(
-    'lib/screen/home/home_screen.dart',
-    '''        children: const [
-          TodoListScreen(),
-          DebugScreen(),
-        ],''',
-    '''        children: const [
-          SizedBox(),
-          DebugScreen(),
-        ],''',
+    'lib/model/bottom_navigation/bottom_navigation_tab.dart',
+    'BottomNavigationTab.todo => const TodoListScreen(),',
+    'BottomNavigationTab.todo => const SizedBox.shrink(),',
   );
 }
 

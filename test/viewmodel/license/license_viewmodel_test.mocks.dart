@@ -60,15 +60,20 @@ class MockMainNavigator extends _i2.Mock implements _i3.MainNavigator {
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
   @override
-  void showErrorWithLocaleKey(
-    String? errorKey, {
+  void showErrorWithLocaleKey({
+    required String? messageKey,
+    String? titleKey,
     List<dynamic>? args,
   }) =>
       super.noSuchMethod(
         Invocation.method(
           #showErrorWithLocaleKey,
-          [errorKey],
-          {#args: args},
+          [],
+          {
+            #messageKey: messageKey,
+            #titleKey: titleKey,
+            #args: args,
+          },
         ),
         returnValueForMissingStub: null,
       );
