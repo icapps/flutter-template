@@ -45,9 +45,9 @@ class LoginViewModel with ChangeNotifierEx {
     } catch (e, stack) {
       logger.error('Failed to login', error: e, trace: stack);
       if (e is LocalizedError) {
-        _navigator.showErrorWithLocaleKey(e.getLocalizedKey());
+        _navigator.showErrorWithLocaleKey(messageKey: e.getLocalizedKey());
       } else {
-        _navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral);
+        _navigator.showErrorWithLocaleKey(messageKey: LocalizationKeys.errorGeneral);
       }
     } finally {
       _isLoading = false;

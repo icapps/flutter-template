@@ -40,7 +40,7 @@ class BottomNavigationItem extends StatelessWidget {
             if (hasSpaceForLabel) ...[
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
-                duration: ThemeDurations.shortAnimationDuration(),
+                duration: ThemeDurations.shortAnimationDuration,
                 style: isSelected
                     ? theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
                     : theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),

@@ -15,7 +15,7 @@ class AnimatedColorFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       tween: ColorTween(begin: Colors.white, end: color),
-      duration: ThemeDurations.shortAnimationDuration(),
+      duration: ThemeDurations.shortAnimationDuration,
       builder: (_, color, __) => builder(context, color ?? Colors.transparent),
     );
   }

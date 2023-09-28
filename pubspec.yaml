@@ -6,6 +6,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  another_flushbar: ^1.12.30
   connectivity_plus: ^4.0.1
   connectivity_plus_web: ^1.2.5
   device_info_plus: ^9.0.2
@@ -30,7 +31,6 @@ dependencies:
   flutter_svg: ^1.1.6
   flutter_web_plugins:
     sdk: flutter
-  get: ^4.6.5
   get_it: ^7.2.0
   icapps_architecture: ^2.1.0
   injectable: ^2.1.0

@@ -90,7 +90,7 @@ void main() {
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
-        verify(navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral));
+        verify(navigator.showErrorWithLocaleKey(messageKey: LocalizationKeys.errorGeneral));
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });
@@ -101,7 +101,7 @@ void main() {
         expect(sut.isLoginEnabled, false);
         expect(sut.isLoading, false);
         verify(loginRepo.login(email: anyNamed('email'), password: anyNamed('password'))).calledOnce();
-        verify(navigator.showErrorWithLocaleKey(LocalizationKeys.errorGeneral));
+        verify(navigator.showErrorWithLocaleKey(messageKey: LocalizationKeys.errorGeneral));
         verifyNoMoreInteractions(loginRepo);
         verifyNoMoreInteractions(navigator);
       });
