@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -20,18 +19,18 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'flutter_template_button_default_state_android');
     });
 
-    testWidgets('FlutterTemplateButton initial state with height', (tester) async {
+    testWidgets('FlutterTemplateButton initial state not expanded', (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.android),
         child: FlutterTemplateButton(
           text: 'Hallokes',
-          height: ThemeDimens.padding96,
+          isExpanded: false,
           onClick: () {},
         ),
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_height_android');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_button_not_expanded_android');
     });
 
     testWidgets('FlutterTemplateButton initial state with key', (tester) async {
@@ -102,18 +101,18 @@ void main() {
       await TestUtil.takeScreenshot(tester, 'flutter_template_button_default_state_ios');
     });
 
-    testWidgets('FlutterTemplateButton initial state with height', (tester) async {
+    testWidgets('FlutterTemplateButton initial state expanded', (tester) async {
       final sut = Theme(
         data: ThemeData(platform: TargetPlatform.iOS),
         child: FlutterTemplateButton(
           text: 'Hallokes',
-          height: ThemeDimens.padding96,
+          isExpanded: false,
           onClick: () {},
         ),
       );
 
       await TestUtil.loadWidgetWithText(tester, sut);
-      await TestUtil.takeScreenshot(tester, 'flutter_template_button_with_height_ios');
+      await TestUtil.takeScreenshot(tester, 'flutter_template_button_not_expanded_ios');
     });
 
     testWidgets('FlutterTemplateButton initial state with key', (tester) async {

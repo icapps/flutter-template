@@ -37,7 +37,7 @@ void main() {
 
     test('TodoAddViewModel onBackClicked', () async {
       sut.onBackClicked();
-      verify(navigator.goBack<void>()).calledOnce();
+      verify(navigator.goBack()).calledOnce();
       verifyNoMoreInteractions(navigator);
       verifyZeroInteractions(todoRepo);
     });
@@ -62,7 +62,7 @@ void main() {
         sut.onTodoChanged('mytodo');
         await sut.onSaveClicked();
         verify(todoRepo.saveTodo('mytodo')).calledOnce();
-        verify(navigator.goBack(result: true)).calledOnce();
+        verify(navigator.goBackWithResult(result: true)).calledOnce();
         verifyNoMoreInteractions(todoRepo);
         verifyNoMoreInteractions(navigator);
       });
@@ -71,7 +71,7 @@ void main() {
         sut.onTodoChanged('  mytodo  ');
         await sut.onSaveClicked();
         verify(todoRepo.saveTodo('mytodo')).calledOnce();
-        verify(navigator.goBack(result: true)).calledOnce();
+        verify(navigator.goBackWithResult(result: true)).calledOnce();
         verifyNoMoreInteractions(todoRepo);
         verifyNoMoreInteractions(navigator);
       });

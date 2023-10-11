@@ -19,23 +19,23 @@ void main() {
     });
 
     test('ThemeDurations should have the correct short animation duration', () {
-      expect(ThemeDurations.shortAnimationDuration(), const Duration(milliseconds: 1));
+      expect(ThemeDurations.shortAnimationDuration, const Duration(milliseconds: 1));
     });
 
     test('ThemeDurations should have the correct medium animation duration', () {
-      expect(ThemeDurations.mediumAnimationDuration(), const Duration(milliseconds: 1));
+      expect(ThemeDurations.mediumAnimationDuration, const Duration(milliseconds: 1));
     });
 
     test('ThemeDurations should have the correct long animation duration', () {
-      expect(ThemeDurations.longAnimationDuration(), const Duration(milliseconds: 1));
+      expect(ThemeDurations.longAnimationDuration, const Duration(milliseconds: 1));
     });
 
     test('ThemeDurations should have the correct splash animation duration', () {
-      expect(ThemeDurations.splashAnimationDuration(), const Duration(milliseconds: 1));
+      expect(ThemeDurations.splashAnimationDuration, const Duration(milliseconds: 1));
     });
 
     test('ThemeDurations should have the correct demo network duration', () {
-      expect(ThemeDurations.demoNetworkCallDuration(), const Duration(milliseconds: 1));
+      expect(ThemeDurations.demoNetworkCallDuration, const Duration(milliseconds: 1));
     });
   });
 
@@ -54,23 +54,23 @@ void main() {
     });
 
     test('ThemeDurations should have the correct short animation duration', () {
-      expect(ThemeDurations.shortAnimationDuration(), const Duration(milliseconds: 200));
+      expect(ThemeDurations.shortAnimationDuration, const Duration(milliseconds: 200));
     });
 
     test('ThemeDurations should have the correct medium animation duration', () {
-      expect(ThemeDurations.mediumAnimationDuration(), const Duration(milliseconds: 350));
+      expect(ThemeDurations.mediumAnimationDuration, const Duration(milliseconds: 350));
     });
 
     test('ThemeDurations should have the correct long animation duration', () {
-      expect(ThemeDurations.longAnimationDuration(), const Duration(milliseconds: 500));
+      expect(ThemeDurations.longAnimationDuration, const Duration(milliseconds: 500));
     });
 
     test('ThemeDurations should have the correct splash animation duration', () {
-      expect(ThemeDurations.splashAnimationDuration(), const Duration(seconds: 1, milliseconds: 500));
+      expect(ThemeDurations.splashAnimationDuration, const Duration(seconds: 1, milliseconds: 500));
     });
 
     test('ThemeDurations should have the correct demo network duration', () {
-      expect(ThemeDurations.demoNetworkCallDuration(), const Duration(milliseconds: 800));
+      expect(ThemeDurations.demoNetworkCallDuration, const Duration(milliseconds: 800));
     });
   });
 }

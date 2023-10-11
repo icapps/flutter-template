@@ -9,7 +9,6 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,10 +44,12 @@ class InternalApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MainNavigator mainNavigator = getIt();
     return ProviderWidget<GlobalViewModel>(
       create: () => getIt()..init(),
       lazy: _isInTest,
-      consumer: (context, viewModel, consumerChild) => GetMaterialApp(
+      consumer: (context, viewModel, consumerChild) => MaterialApp(
+        navigatorKey: mainNavigator.navigatorKey,
         debugShowCheckedModeBanner: !_isInTest,
         localizationsDelegates: [
           if (viewModel.localeDelegate != null) viewModel.localeDelegate!,
@@ -62,7 +63,7 @@ class InternalApp extends StatelessWidget {
         theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
         darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
         initialRoute: home == null ? MainNavigator.initialRoute : null,
-        getPages: MainNavigator.pages,
+        onGenerateRoute: mainNavigator.onGenerateRoute,
         home: home,
         builder: home == null
             ? (context, child) => FlavorBanner(

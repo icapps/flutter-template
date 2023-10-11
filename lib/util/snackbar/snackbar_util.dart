@@ -1,23 +1,28 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
-import 'package:get/route_manager.dart';
+import 'package:flutter_template/styles/theme_durations.dart';
 
 class SnackBarUtil {
   SnackBarUtil._();
 
   static void showSnackbar({
     required String message,
+    required BuildContext context,
     String? title,
     SnackBarStyle style = SnackBarStyle.neutral,
   }) {
     final snackBarStyle = _getSnackBarStyle(style);
-    Get.snackbar(
-      title ?? '',
-      message,
-      colorText: snackBarStyle.textColor,
-      snackPosition: SnackPosition.BOTTOM,
+    Flushbar(
+      title: title,
+      message: message,
+      flushbarPosition: FlushbarPosition.TOP,
+      titleColor: snackBarStyle.textColor,
+      messageColor: snackBarStyle.textColor,
       backgroundColor: snackBarStyle.backgroundColor,
-    );
+      duration: ThemeDurations.snackBarDuration,
+    ).show(context);
   }
 
   static SnackBarStyleData _getSnackBarStyle(SnackBarStyle style) {
@@ -39,4 +44,4 @@ class SnackBarUtil {
         );
     }
   }
-}   
+}

@@ -184,26 +184,12 @@ private_lane :buildAppAndroid do |options|
     Dir.chdir ".." do
       sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (APK)
     end
-    Dir.chdir "../build/debug-info/#{options[:flavor]}" do
-      zip(
-        path: "./",
-        include: ["**/app.android-*"],
-        output_path: "AndroidSymbols.zip"
-      )
-    end
     upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :buildAppBundleAndroid do |options|
     Dir.chdir ".." do
       sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (AAB)
-    end
-    Dir.chdir "../build/debug-info/#{options[:flavor]}" do
-      zip(
-        path: "./",
-        include: ["**/app.android-*"],
-        output_path: "AndroidSymbols.zip"
-      )
     end
     upload_artifacts_to_s3(flavor: options[:flavor])
 end
@@ -249,34 +235,23 @@ end
 
 private_lane :uploadToAppcenterAndroid do |options|
   getAppNameAndroid(flavor: options[:flavor])
-  zip(
-    path: "build/debug-info/#{options[:flavor]}/",
-    include: ["**/app.android.*"],
-    output_path: "AndroidSymbols.zip"
-  )
-  sh("mv", "../AndroidSymbols.zip", "../AndroidSymbols.txt")
   appcenter_upload(
     app_name: appcenter_app_name,
     apk: "./build/app/outputs/apk/#{options[:flavor]}/release/app-#{options[:flavor]}-release.apk",
     notify_testers: true,
-    mapping: "./AndroidSymbols.txt",
     destinations: "*"
   )
+  uploadAndroidSymbols(flavor: options[:flavor])
 end
 
 private_lane :uploadToAppcenterIos do |options|
   getAppNameIOS(flavor: options[:flavor])
-  zip(
-    path: "build",
-    include: ["debug-info/#{options[:flavor]}/app.ios*", "ios/Release-#{options[:flavor]}-phoneos/Runner.app.dSYM/*"],
-    output_path: "iOSSymbols.zip"
-  )
   appcenter_upload(
     app_name: appcenter_app_name,
     notify_testers: true,
-    dsym: "./iOSSymbols.zip",
     destinations: "*"
   )
+  uploadIOSSymbols(flavor: options[:flavor])
 end
 
 private_lane :add_tag do
@@ -343,7 +318,7 @@ private_lane :deployToAppStore do |options|
     skip_submission:                   true,
     skip_waiting_for_build_processing: true,
   )
-  uploadSymbols()
+  uploadIOSSymbols(flavor: options[:flavor])
 end
 
 private_lane :deployToPlayStore do |options|
@@ -354,12 +329,19 @@ private_lane :deployToPlayStore do |options|
     aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
     json_key: 'google_playstore_api.json'
   )
+  uploadAndroidSymbols(flavor: options[:flavor])
 end
 
-private_lane :uploadSymbols do
-  Dir.chdir ".." do
-       sh("ios/Pods/FirebaseCrashlytics/upload-symbols", "-gsp" ,"ios/Runner/GoogleService-Info.plist", "-p", "ios", "Runner.app.dSYM.zip")    # Upload dSYM files to crashlytics
-  end
+private_lane :uploadIOSSymbols do |options|
+   Dir.chdir ".." do
+     sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "ios", "#{options[:flavor]}")
+   end
+end
+
+private_lane :uploadAndroidSymbols do |options|
+   Dir.chdir ".." do
+     sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
+   end
 end
 
 private_lane :upload_artifacts_to_s3 do |options|

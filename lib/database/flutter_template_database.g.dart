@@ -26,15 +26,12 @@ class $DbTodoTableTable extends DbTodoTable
   static const VerificationMeta _completedMeta =
       const VerificationMeta('completed');
   @override
-  late final GeneratedColumn<bool> completed =
-      GeneratedColumn<bool>('completed', aliasedName, false,
-          type: DriftSqlType.bool,
-          requiredDuringInsert: true,
-          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("completed" IN (0, 1))',
-            SqlDialect.mysql: '',
-            SqlDialect.postgres: '',
-          }));
+  late final GeneratedColumn<bool> completed = GeneratedColumn<bool>(
+      'completed', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("completed" IN (0, 1))'));
   @override
   List<GeneratedColumn> get $columns => [id, title, completed];
   @override
@@ -217,7 +214,6 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
-  _$FlutterTemplateDatabase.connect(DatabaseConnection c) : super.connect(c);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>

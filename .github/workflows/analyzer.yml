@@ -1,0 +1,18 @@
+name: Analyzer
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  check_analyzer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2.8.0
+      with:
+        channel: 'stable'
+    - run: flutter packages get
+    - run: flutter analyze

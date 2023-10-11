@@ -6,7 +6,6 @@ import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:get/get.dart';
 
 class TestApp extends StatelessWidget {
   final Widget home;
@@ -23,7 +22,7 @@ class TestApp extends StatelessWidget {
     return ProviderWidget<GlobalViewModel>(
       create: () => getIt()..init(),
       lazy: true,
-      consumer: (context, viewModel, consumerChild) => GetMaterialApp(
+      consumer: (context, viewModel, consumerChild) => MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           if (localeDelegate == null && viewModel.localeDelegate != null) ...[

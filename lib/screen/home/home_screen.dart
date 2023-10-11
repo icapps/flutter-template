@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.get_x_navigator.dart';
-import 'package:flutter_template/navigator/middle_ware/analytics_permission_guard.dart';
-import 'package:flutter_template/navigator/middle_ware/authentication_guard.dart';
-import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
+import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
+import 'package:flutter_template/model/bottom_navigation/bottom_navigation_tab.dart';
+import 'package:flutter_template/widget/general/bottom_navigation/bottom_navigation.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
-import 'package:get_x_navigation_generator_annotations/get_x_navigation_generator_annotations.dart';
 
-
-@GetXRoute(
-  navigationType: NavigationType.popAllAndPush,
-  middlewares: [
-    AuthenticationGuard,
-    AnalyticsPermissionGuard,
-  ],
+@FlutterRoute(
+  navigationType: NavigationType.pushAndReplaceAll,
 )
 class HomeScreen extends StatefulWidget {
-  static const String routeName = RouteNames.homeScreen;
-
   const HomeScreen({super.key});
 
   @override
@@ -25,41 +15,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  var _currentIndex = 0;
+  var _currentTab = BottomNavigationTab.defaultTab;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: _currentIndex,
-        children: const [
-          TodoListScreen(),
-          DebugScreen(),
-        ],
+        index: _currentTab.index,
+        children: BottomNavigationTab.values.map((tab) => tab.childBuilder(context)).toList(),
       ),
       bottomNavigationBar: DataProviderWidget(
-        childBuilder: (context, theme, localization) => BottomNavigationBar(
-          onTap: _onTap,
-          currentIndex: _currentIndex,
-          backgroundColor: theme.colorsTheme.bottomNavbarBackground,
-          selectedItemColor: theme.colorsTheme.bottomNavbarItemActive,
-          unselectedItemColor: theme.colorsTheme.bottomNavbarItemInactive,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.list),
-              label: localization.todoTitle,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.settings),
-              label: localization.settingsTitle,
-            ),
-          ],
+        childBuilder: (context, theme, localization) => BottomNavigation(
+          selectedTab: _currentTab,
+          onItemTapped: _onItemTapped,
         ),
       ),
     );
   }
 
-  void _onTap(int newIndex) {
-    setState(() => _currentIndex = newIndex);
+  void _onItemTapped(BottomNavigationTab tab) {
+    if (tab == _currentTab) return;
+    setState(() => _currentTab = tab);
   }
 }

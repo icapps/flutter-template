@@ -23,7 +23,7 @@ class NetworkErrorInterceptor extends SimpleInterceptor {
   }
 
   @override
-  Future<Object?> onError(DioError? error) async {
+  Future<Object?> onError(DioException? error) async {
     try {
       if (error == null) return CodeError();
       if (error.error is NoNetworkError) return NoInternetError(error);

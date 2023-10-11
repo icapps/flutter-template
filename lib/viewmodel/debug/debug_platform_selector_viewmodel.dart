@@ -8,5 +8,5 @@ class DebugPlatformSelectorViewModel with ChangeNotifierEx {
 
   DebugPlatformSelectorViewModel(this._navigator);
 
-  void onBackClicked() => _navigator.goBack<void>();
+  void onBackClicked() => _navigator.goBack();
 }

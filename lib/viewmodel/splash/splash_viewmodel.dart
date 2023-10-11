@@ -1,30 +1,22 @@
 import 'dart:async';
 
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/repository/login/login_repository.dart';
+import 'package:flutter_template/navigator/onboarding_navigator.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class SplashViewModel with ChangeNotifierEx {
-  final LoginRepository _loginRepo;
   final LocalStorage _localStorage;
-  final MainNavigator _navigator;
+  final OnboardingNavigator _onboardingNavigator;
 
   SplashViewModel(
-    this._loginRepo,
     this._localStorage,
-    this._navigator,
+    this._onboardingNavigator,
   );
 
   Future<void> init() async {
     await _localStorage.checkForNewInstallation();
-    final result = await _loginRepo.isLoggedIn;
-    if (result) {
-      unawaited(_navigator.goToHomeScreen());
-    } else {
-      unawaited(_navigator.goToLoginScreen());
-    }
+    await _onboardingNavigator.goToNextScreen();
   }
 }

@@ -107,6 +107,7 @@ void _renameAppCenterIds(String classNamePrefix, bool specificAppCenterIds) {
 void _renameAndroidPackageName(String androidPackageName) {
   Logger.info('Replace the android package name ...');
   _replaceInFile('android/app/build.gradle', originalAndroidPackageName, androidPackageName);
+  _replaceInFile('tool/dart_tool/firebase/android_firebase_uploader.dart', originalAndroidPackageName, androidPackageName);
   Directory('android/app/src/main').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.DS_Store')) return false;
@@ -165,6 +166,7 @@ void _deleteOldKotlinFiles(String androidPackageName) {
 void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
   Logger.info('Replace the ios bundle identifier ...');
   _replaceInFile('fastlane/Fastfile', originalIOSBundleIdentifier, iosBundleIdentifier);
+  _replaceInFile('tool/dart_tool/firebase/ios_firebase_uploader.dart', originalIOSBundleIdentifier, iosBundleIdentifier);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.DS_Store')) return false;
     if (Directory(element.path).existsSync()) return false;
@@ -236,8 +238,8 @@ void _renamePackage(String packageName, String description, String classNamePref
   Logger.info('Replace the description & name in the pubspec.yaml...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
   _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
-  _replaceInFile('coverage/filter_test_coverage.dart', originalClassNamePrefix, classNamePrefix);
-  _replaceInFile('coverage/lcov.info', originalProjectName, packageName);
+  _replaceInFile('tool/test_coverage_filter.dart', originalClassNamePrefix, classNamePrefix);
+  _replaceInFile('tool/test_coverage_create_helper.dart', originalProjectName, packageName);
 
   Logger.info('Replace the package names & class names in lib ...');
   Directory('lib').listSync(recursive: true).where((element) {
