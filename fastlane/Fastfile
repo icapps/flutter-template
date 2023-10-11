@@ -65,7 +65,7 @@ lane :ci_alpha do
     pr
     git_reset
     alpha_android
-    alpha_ios_build
+    alpha_ios
     git_reset
 end
 
@@ -74,7 +74,7 @@ lane :ci_beta do
     pr
     git_reset
     beta_android
-    beta_ios_build
+    beta_ios
     git_reset
 end
 
@@ -83,12 +83,12 @@ lane :ci_prod do
     pr
     git_reset
     prod_android
-    prod_ios_build
+    prod_ios
     git_reset
 end
 
 lane :alpha_android do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  ensure_git_status_clean # Make sure the repository is clean before starting with the alpha deployment process.
   installFvmVersion
 
   prepareBuild
@@ -108,7 +108,7 @@ lane :beta_android do
 end
 
 lane :prod_android do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  ensure_git_status_clean # Make sure the repository is clean before starting with the prod deployment process.
   installFvmVersion
 
   prepareBuild
@@ -120,11 +120,12 @@ lane :prod_android do
 end
 
 lane :alpha_ios do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  ensure_git_status_clean # Make sure the repository is clean before starting with the alpha deployment process.
   installFvmVersion
 
   prepareBuild
-  alpha_ios_build
+  buildIpaIOS(flavor: 'alpha')
+  uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
   git_reset
 end
 
@@ -133,16 +134,19 @@ lane :beta_ios do
   installFvmVersion
 
   prepareBuild
-  beta_ios_build
+  buildIpaIOS(flavor: 'beta')
+  uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
   git_reset
 end
 
 lane :prod_ios do
-  ensure_git_status_clean # Make sure the repository is clean before starting with the beta deployment process.
+  ensure_git_status_clean # Make sure the repository is clean before starting with the prod deployment process.
   installFvmVersion
 
   prepareBuild
-  prod_ios_build
+  buildIpaIOS(flavor: 'prod')
+  sh("echo","Enter `apple_id` in the prod_ios_build lane")
+  #buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: '')
   add_tag                 # Add tag
   git_reset
 end
@@ -150,22 +154,6 @@ end
 ########################
 ###   PRIVATE LANES  ###
 ########################
-
-private_lane :alpha_ios_build do
-  buildAppIOSOnly(flavor: 'alpha')
-  uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
-end
-
-private_lane :beta_ios_build do
-  buildAppIOSOnly(flavor: 'beta')
-  uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
-end
-
-private_lane :prod_ios_build do
-  buildAppIOSOnly(flavor: 'prod')
-  sh("echo","Enter `apple_id` in the prod_ios_build lane")
-  #buildAndDeployToAppStore(flavor: 'prod', configuration: 'Release-prod', identifier: 'com.icapps.fluttertemplate', apple_id: '')
-end
 
 ## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
 ## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
@@ -178,6 +166,7 @@ private_lane :checkCompilationAndAnalyzer do
       sh("fvm", "flutter", "analyze")
     end
 end
+
 private_lane :installFvmVersion do
     Dir.chdir ".." do
       sh("bash", "./tool/install_fvm.sh")
@@ -219,10 +208,10 @@ private_lane :buildAppBundleAndroid do |options|
     upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
-private_lane :buildAppIOSOnly do |options|
+private_lane :buildIpaIOS do |options|
     Dir.chdir ".." do
       podRepoUpdate
-      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--export-options-plist ios/Runner/export-options.plist", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
+      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
     end
     Dir.chdir "../build" do
       zip(
