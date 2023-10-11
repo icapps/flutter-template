@@ -61,30 +61,30 @@ lane :pr do
 end
 
 lane :ci_alpha do
-    ensure_git_status_clean
-    pr
-    git_reset
-    alpha_android
-    alpha_ios
-    git_reset
+  ensure_git_status_clean
+  pr
+  git_reset
+  alpha_android
+  alpha_ios
+  git_reset
 end
 
 lane :ci_beta do
-    ensure_git_status_clean
-    pr
-    git_reset
-    beta_android
-    beta_ios
-    git_reset
+  ensure_git_status_clean
+  pr
+  git_reset
+  beta_android
+  beta_ios
+  git_reset
 end
 
 lane :ci_prod do
-    ensure_git_status_clean
-    pr
-    git_reset
-    prod_android
-    prod_ios
-    git_reset
+  ensure_git_status_clean
+  pr
+  git_reset
+  prod_android
+  prod_ios
+  git_reset
 end
 
 lane :alpha_android do
@@ -158,48 +158,48 @@ end
 ## The analysis_options_all_files is used to check that all files can compile. even the once ignored in the original analysis_options.yaml
 ## We first check for full compilation. After that we check the rules of the original analysis_options.yaml
 private_lane :checkCompilationAndAnalyzer do
-    Dir.chdir ".." do
-      sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
-      sh("cp", "fastlane/analysis_options_check_compilation.yaml", "analysis_options.yaml")
-      sh("fvm", "flutter", "analyze")
-      sh("mv", "fastlane/analysis_options_original.yaml", "analysis_options.yaml")
-      sh("fvm", "flutter", "analyze")
-    end
+  Dir.chdir ".." do
+    sh("mv", "analysis_options.yaml", "fastlane/analysis_options_original.yaml")
+    sh("cp", "fastlane/analysis_options_check_compilation.yaml", "analysis_options.yaml")
+    sh("fvm", "flutter", "analyze")
+    sh("mv", "fastlane/analysis_options_original.yaml", "analysis_options.yaml")
+    sh("fvm", "flutter", "analyze")
+  end
 end
 
 private_lane :installFvmVersion do
-    Dir.chdir ".." do
-      sh("bash", "./tool/install_fvm.sh")
-    end
+  Dir.chdir ".." do
+    sh("bash", "./tool/install_fvm.sh")
+  end
 end
 
 private_lane :prepareBuild do
-    Dir.chdir ".." do
-      sh("fvm", "flutter", "packages", "get")
-      sh("fvm", "flutter", "clean")
-    end
+  Dir.chdir ".." do
+    sh("fvm", "flutter", "packages", "get")
+    sh("fvm", "flutter", "clean")
+  end
 end
 
 private_lane :buildAppAndroid do |options|
-    Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (APK)
-    end
-    upload_artifacts_to_s3(flavor: options[:flavor])
+  Dir.chdir ".." do
+    sh("fvm", "flutter", "build", "apk", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (APK)
+  end
+  upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :buildAppBundleAndroid do |options|
-    Dir.chdir ".." do
-      sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (AAB)
-    end
-    upload_artifacts_to_s3(flavor: options[:flavor])
+  Dir.chdir ".." do
+    sh("fvm", "flutter", "build", "appbundle", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application (AAB)
+  end
+  upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :buildIpaIOS do |options|
-    Dir.chdir ".." do
-      podRepoUpdate
-      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
-    end
-    upload_artifacts_to_s3(flavor: options[:flavor])
+  Dir.chdir ".." do
+    podRepoUpdate
+    sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
+  end
+  upload_artifacts_to_s3(flavor: options[:flavor])
 end
 
 private_lane :upload_artifacts_to_s3 do |options|
@@ -210,9 +210,9 @@ private_lane :upload_artifacts_to_s3 do |options|
 end
 
 private_lane :podRepoUpdate do |options|
-      Dir.chdir "ios" do
-        sh("pod", "repo", "update")
-      end
+  Dir.chdir "ios" do
+    sh("pod", "repo", "update")
+  end
 end
 
 private_lane :uploadToAppcenterAndroid do |options|
@@ -228,7 +228,7 @@ end
 
 private_lane :getAppNameAndroid do |options|
   flavor = options[:flavor]
-  if flavor == "alpha" &&
+  if flavor == "alpha"
       appcenter_app_name = "FlutterTemplate-Android-Alpha"
   elsif flavor == "beta"
       appcenter_app_name = "FlutterTemplate-Android-Beta"
@@ -266,7 +266,7 @@ end
 
 private_lane :getAppNameIOS do |options|
   flavor = options[:flavor]
-  if flavor == "alpha" &&
+  if flavor == "alpha"
       appcenter_app_name = "FlutterTemplate-iOS-Alpha"
   elsif flavor == "beta"
       appcenter_app_name = "FlutterTemplate-iOS-Beta"
@@ -281,21 +281,21 @@ private_lane :buildAndDeployToAppStore do |options|
 end
 
 private_lane :buildIOSAppStore do |options|
-    gym(
-      workspace: WORKSPACE,
-      scheme: options[:flavor],
-      configuration: options[:configuration],
-      clean: true,
-      export_options: {
-        method: 'app-store',
-        provisioningProfiles: {
-            "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
-            "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
-            "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
-            "com.icapps.fluttertemplate" => "Flutter Template Production"
-        }
+  gym(
+    workspace: WORKSPACE,
+    scheme: options[:flavor],
+    configuration: options[:configuration],
+    clean: true,
+    export_options: {
+      method: 'app-store',
+      provisioningProfiles: {
+          "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
+          "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
+          "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
+          "com.icapps.fluttertemplate" => "Flutter Template Production"
       }
-    )
+    }
+  )
 end
 
 private_lane :deployToAppStore do |options|
