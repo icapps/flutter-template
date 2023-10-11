@@ -250,7 +250,7 @@ end
 
 private_lane :uploadAndroidSymbols do |options|
   Dir.chdir ".." do
-    sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
+    sh("fvm", "dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
   end
 end
 
@@ -313,7 +313,7 @@ end
 
 private_lane :uploadIOSSymbols do |options|
    Dir.chdir ".." do
-     sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "ios", "#{options[:flavor]}")
+     sh("fvm", "dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "ios", "#{options[:flavor]}")
    end
 end
 
