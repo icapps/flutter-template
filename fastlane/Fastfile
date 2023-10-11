@@ -125,7 +125,7 @@ lane :alpha_ios do
 
   prepareBuild
   buildIpaIOS(flavor: 'alpha')
-  uploadToAppcenterIos(flavor: 'alpha') # Deploy the ipa to AppCenter.
+  uploadToAppcenterIOS(flavor: 'alpha') # Deploy the ipa to AppCenter.
   git_reset
 end
 
@@ -135,7 +135,7 @@ lane :beta_ios do
 
   prepareBuild
   buildIpaIOS(flavor: 'beta')
-  uploadToAppcenterIos(flavor: 'beta') # Deploy the ipa to AppCenter.
+  uploadToAppcenterIOS(flavor: 'beta') # Deploy the ipa to AppCenter.
   git_reset
 end
 
@@ -199,38 +199,20 @@ private_lane :buildIpaIOS do |options|
       podRepoUpdate
       sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
     end
-    Dir.chdir "../build" do
-      zip(
-        path: "./",
-        include: ["**/debug-info/#{options[:flavor]}/app.ios-*", "**/ios/Release-#{options[:flavor]}-iphoneos/Runner.app.dSYM/*"],
-        output_path: "iOSSymbols.zip"
-      )
-    end
+    upload_artifacts_to_s3(flavor: options[:flavor])
+end
+
+private_lane :upload_artifacts_to_s3 do |options|
+  Dir.chdir "../tool/s3/dart_s3_executor/" do
+      sh("./tool/packages_get.sh")
+  end
+  sh("fvm", "dart", "run", "../tool/s3/dart_s3_executor/bin/main.dart", "#{BUILD_NR}", options[:flavor], "../tool/s3/s3.sh", "fluttertemplate")
 end
 
 private_lane :podRepoUpdate do |options|
       Dir.chdir "ios" do
         sh("pod", "repo", "update")
       end
-end
-
-private_lane :convertAppToIpa do |options|
-     Dir.chdir "ios" do
-        gym(
-            workspace: WORKSPACE,
-            scheme: options[:flavor],
-            configuration: "Release-#{options[:flavor]}",
-            export_options: {
-                method: "enterprise",
-                provisioningProfiles: {
-                    "com.icapps.fluttertemplate.dev" => "Flutter Template Debug",
-                    "com.icapps.fluttertemplate.alpha" => "Flutter Template Alpha",
-                    "com.icapps.fluttertemplate.beta" => "Flutter Template Beta",
-                    "com.icapps.fluttertemplate" => "Flutter Template Production"
-                }
-            }
-        )
-    end
 end
 
 private_lane :uploadToAppcenterAndroid do |options|
@@ -244,24 +226,6 @@ private_lane :uploadToAppcenterAndroid do |options|
   uploadAndroidSymbols(flavor: options[:flavor])
 end
 
-private_lane :uploadToAppcenterIos do |options|
-  getAppNameIOS(flavor: options[:flavor])
-  appcenter_upload(
-    app_name: appcenter_app_name,
-    notify_testers: true,
-    destinations: "*"
-  )
-  uploadIOSSymbols(flavor: options[:flavor])
-end
-
-private_lane :add_tag do
-  add_git_tag(build_number: BUILD_NR)
-end
-
-private_lane :git_reset do
-  sh("git", "reset", "--hard")
-end
-
 private_lane :getAppNameAndroid do |options|
   flavor = options[:flavor]
   if flavor == "alpha" &&
@@ -273,6 +237,32 @@ private_lane :getAppNameAndroid do |options|
   end
 end
 
+private_lane :deployToPlayStore do |options|
+  upload_to_play_store(
+    package_name: options[:package_name],
+    track: 'internal',
+    release_status: 'draft', #completed
+    aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
+    json_key: 'google_playstore_api.json'
+  )
+  uploadAndroidSymbols(flavor: options[:flavor])
+end
+
+private_lane :uploadAndroidSymbols do |options|
+  Dir.chdir ".." do
+    sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
+  end
+end
+
+private_lane :uploadToAppcenterIOS do |options|
+  getAppNameIOS(flavor: options[:flavor])
+  appcenter_upload(
+    app_name: appcenter_app_name,
+    notify_testers: true,
+    destinations: "*"
+  )
+  uploadIOSSymbols(flavor: options[:flavor])
+end
 
 private_lane :getAppNameIOS do |options|
   flavor = options[:flavor]
@@ -286,16 +276,16 @@ private_lane :getAppNameIOS do |options|
 end
 
 private_lane :buildAndDeployToAppStore do |options|
-  buildIosAppStore options
+  buildIOSAppStore options
   deployToAppStore options
 end
 
-private_lane :buildIosAppStore do |options|
+private_lane :buildIOSAppStore do |options|
     gym(
-      workspace:     WORKSPACE,
-      scheme:        options[:flavor],
+      workspace: WORKSPACE,
+      scheme: options[:flavor],
       configuration: options[:configuration],
-      clean:         true,
+      clean: true,
       export_options: {
         method: 'app-store',
         provisioningProfiles: {
@@ -310,26 +300,15 @@ end
 
 private_lane :deployToAppStore do |options|
   pilot(
-    username:                          APP_STORE_USERNAME,
-    team_name:                         APP_STORE_TEAM_NAME,
-    team_id:                           APP_STORE_TEAM_ID,
-    app_identifier:                    options[:identifier],
-    apple_id:                          options[:apple_id],
-    skip_submission:                   true,
+    username: APP_STORE_USERNAME,
+    team_name: APP_STORE_TEAM_NAME,
+    team_id: APP_STORE_TEAM_ID,
+    app_identifier: options[:identifier],
+    apple_id: options[:apple_id],
+    skip_submission: true,
     skip_waiting_for_build_processing: true,
   )
   uploadIOSSymbols(flavor: options[:flavor])
-end
-
-private_lane :deployToPlayStore do |options|
-  upload_to_play_store(
-    package_name: options[:package_name],
-    track: 'internal',
-    release_status: 'draft', #completed
-    aab: "./build/app/outputs/bundle/#{options[:flavor]}Release/app-#{options[:flavor]}-release.aab",
-    json_key: 'google_playstore_api.json'
-  )
-  uploadAndroidSymbols(flavor: options[:flavor])
 end
 
 private_lane :uploadIOSSymbols do |options|
@@ -338,15 +317,10 @@ private_lane :uploadIOSSymbols do |options|
    end
 end
 
-private_lane :uploadAndroidSymbols do |options|
-   Dir.chdir ".." do
-     sh("dart", "run", "./tool/dart_tool/firebase/firebase_uploader.dart", "android", "#{options[:flavor]}", "build/debug-info/#{options[:flavor]}")
-   end
+private_lane :add_tag do
+  add_git_tag(build_number: BUILD_NR)
 end
 
-private_lane :upload_artifacts_to_s3 do |options|
-  Dir.chdir "../tool/s3/dart_s3_executor/" do
-      sh("./tool/packages_get.sh")
-  end
-  sh("fvm", "dart", "run", "../tool/s3/dart_s3_executor/bin/main.dart", "#{BUILD_NR}", options[:flavor], "../tool/s3/s3.sh", "fluttertemplate")
+private_lane :git_reset do
+  sh("git", "reset", "--hard")
 end
