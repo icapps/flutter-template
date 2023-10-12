@@ -1,9 +1,12 @@
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
-class GeneralError with LocalizedError {
-  GeneralError() : super();
+class GeneralNetworkError extends NetworkError {
+  GeneralNetworkError(super.dioException);
 
   @override
   String getLocalizedKey() => LocalizationKeys.errorGeneral;
+
+  @override
+  String? get getErrorCode => null;
 }

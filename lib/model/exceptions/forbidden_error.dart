@@ -8,7 +8,7 @@ class ForbiddenError extends NetworkError {
   static const statusCode = HttpStatus.forbidden;
 
   ForbiddenError(
-    super.dioError, {
+    super.dioException, {
     super.statusCodeValue,
   });
 
@@ -25,7 +25,7 @@ class ForbiddenError extends NetworkError {
     final dynamic data = err.response?.data;
     if (data is! Map) return ForbiddenError(err);
     if (!data.containsKey('code')) return ForbiddenError(err);
-    final code = data['code'] as String;
+    final code = data['code'] as String?;
     switch (code) {
       default:
         return ForbiddenError(err);
