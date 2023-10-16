@@ -1,10 +1,13 @@
 #!/bin/bash
 
-fvm flutter pub run tool/setup/dart/rename_project.dart
+echo "Setup 1/3: Rename project"
+tool/setup/rename_project.sh || exit -1
 
-fvm flutter pub run tool/setup/dart/strip_boilerplate_project.dart
+echo "Setup 2/3: Strip boilerplate project"
+tool/setup/strip_boilerplate_project.sh || exit -1
 
-fvm flutter pub run tool/setup/dart/android_keystore_generator.dart
+echo "Setup 3/3: Android keystore generator"
+tool/setup/android_keystore_generator.sh || exit -1
 
 # Cleanup setup
 echo "Remove github workflows"
