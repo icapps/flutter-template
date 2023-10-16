@@ -134,15 +134,16 @@ This script will run a dart script. The dart script itself will ask you some inp
 
 #### Add provisioning files
 
-Add the provisioning profiles in the ios/provisioning/** folder. The naming of the files should be the same as provided in the ios/Configuration/** files (underscore will be replaced with a space in the configuration files)
+Add the provisioning profiles in the ios/provisioning/ folder. The naming of the files should be the same as provided in the `ios/Configuration/{flavor}.xcconfig` files (underscore will be replaced with a space in the configuration files)
 
 #### Firebase
 
-To setup firebase you would need to add a few files which could be downloaded after setting-up your firebase project.
+To setup firebase you will need to create a new firebase project with 8 new apps, 1 for each flavor on both iOS and Android. 
 
-For iOS add a `GoogleService-Info-{flavor}.plist` file for each flavor in the ios/Configuration/GoogleService/** folder. Whenever the project is run with a different flavor it will automatically copy the correct `GoogleService-Info-{flavor}.plist` file into the ios/Runnur/** folder.
+When creating the iOS apps on firebase you will be able to download a `GoogleService-Info.plist` file which you will need to rename according to the flavor you just created an app for e.g.: You just created the iOS App for the Dev flavor so your file should be named `GoogleService-Info-dev.plist`. 
+Each `.plist` file you download from firebase needs to be placed in the ios/Configuration/GoogleService/ folder. Whenever the project is run with a different flavor from the currently active flavor, it will automatically copy the correct `GoogleService-Info-{flavor}.plist` file into the ios/Runner/ folder.
 
-For Android add the `google-services.json` file in the android/app/src/** folder.
+When creating the Android apps you will be able to download a `google-services.json` file, you only need to download this file once at the end of the last Android app setup on firebase. This `.json` file contains all the configurations for the 4 Android apps which you just created. Add the `.json` file in the android/app/src/ folder.
 
 #### Languages
 
