@@ -16,4 +16,4 @@ jobs:
         channel: 'stable'
     - run: ./tool/install_fvm.sh
     - run: fvm flutter packages get
-    - run: printf 'Test Project\ndescription\ntest_project\nTestProject\ncom.test.project\nn\ny\n' | fvm flutter pub run ./tool/dart_tool/rename_project.dart
+    - run: printf 'Test Project\ndescription\ntest_project\nTestProject\ncom.test.project\nn\ny\n' | fvm flutter pub run ./tool/setup/dart/rename_project.dart

@@ -16,10 +16,10 @@ jobs:
           channel: 'stable'
       - run: ./tool/install_fvm.sh
       - run: fvm flutter packages get
-      - run: fvm dart run ./tool/test_coverage_create_helper.dart
+      - run: fvm dart run ./tool/github/test_coverage_create_helper.dart
       - run: fvm flutter test --coverage
-      - run: fvm dart run ./tool/test_coverage_filter.dart
-      - run: fvm dart run ./tool/test_coverage_validate_percentage.dart
+      - run: fvm dart run ./tool/github/test_coverage_filter.dart
+      - run: fvm dart run ./tool/github/test_coverage_validate_percentage.dart
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
