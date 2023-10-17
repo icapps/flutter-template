@@ -14,7 +14,7 @@ jobs:
     - uses: subosito/flutter-action@v2.8.0
       with:
         channel: 'stable'
-    - run: flutter packages get
     - run: ./tool/install_fvm.sh
-    - run: printf 'no\n' | flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
-    - run: flutter analyze
+    - run: fvm flutter packages get
+    - run: printf 'no\n' | fvm flutter pub run ./tool/dart_tool/strip_boilerplate_project.dart
+    - run: fvm flutter analyze

@@ -1,18 +1,13 @@
 #!/bin/bash
 
-echo "Setup 1/3: Rename project"
+echo "Setup 1/4: Rename project"
 tool/setup/rename_project.sh || exit -1
 
-echo "Setup 2/3: Strip boilerplate project"
+echo "Setup 2/4: Strip boilerplate project"
 tool/setup/strip_boilerplate_project.sh || exit -1
 
-echo "Setup 3/3: Android keystore generator"
+echo "Setup 3/4: Android keystore generator"
 tool/setup/android_keystore_generator.sh || exit -1
 
-# Cleanup setup
-echo "Remove github workflows"
-rm -rf .github
-rm -rf tool/github
-
-echo "Remove setup scripts"
-rm -rf tool/setup
+echo "Setup 3/4: Removing setup scripts"
+tool/setup/remove_setup_scripts.sh || exit -1
