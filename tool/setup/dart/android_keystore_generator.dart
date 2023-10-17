@@ -39,5 +39,6 @@ class Logger {
   static void debug(Object value) => print(value); // ignore: avoid_print
 
   static void info(Object value) => print(value); // ignore: avoid_print
+
   static void error(Object value) => print(value); // ignore: avoid_print
 }
