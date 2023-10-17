@@ -8,7 +8,7 @@ class BadRequestError extends NetworkError {
   static const statusCode = HttpStatus.badRequest;
 
   BadRequestError(
-    super.dioError, {
+    super.dioException, {
     super.statusCodeValue,
   });
 
@@ -25,7 +25,7 @@ class BadRequestError extends NetworkError {
     final dynamic data = err.response?.data;
     if (data is! Map) return BadRequestError(err);
     if (!data.containsKey('code')) return BadRequestError(err);
-    final code = data['code'] as String;
+    final code = data['code'] as String?;
     switch (code) {
       default:
         return BadRequestError(err);

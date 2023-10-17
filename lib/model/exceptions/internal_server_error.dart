@@ -7,7 +7,7 @@ class InternalServerError extends NetworkError {
   static const statusCode = HttpStatus.internalServerError;
 
   InternalServerError(
-    super.dioError, {
+    super.dioException, {
     super.statusCodeValue,
   });
 

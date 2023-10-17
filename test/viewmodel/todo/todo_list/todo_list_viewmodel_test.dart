@@ -1,4 +1,4 @@
-import 'package:flutter_template/model/exceptions/general_network_error.dart';
+import 'package:flutter_template/model/exceptions/general_error.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
