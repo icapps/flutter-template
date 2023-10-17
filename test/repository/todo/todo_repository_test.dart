@@ -53,8 +53,8 @@ void main() {
   group('fetchTodos', () {
     test('fetchTodos', () async {
       when(todoService.getTodos()).thenAnswer((_) async => []);
-      final data = await sut.fetchTodos();
-      expect(data.isEmpty, true);
+      final result = await sut.fetchTodos();
+      expect(result.data?.isEmpty, true);
       verify(todoService.getTodos()).calledOnce();
       verifyNoMoreInteractions(todoService);
       verifyZeroInteractions(todoDao);
@@ -64,9 +64,9 @@ void main() {
             const Todo(id: 1, title: '2', completed: true),
             const Todo(id: 3, title: '3', completed: false),
           ]);
-      final data = await sut.fetchTodos();
-      expect(data.isNotEmpty, true);
-      expect(data.length, 2);
+      final result = await sut.fetchTodos();
+      expect(result.data?.isNotEmpty, true);
+      expect(result.data?.length, 2);
       verify(todoService.getTodos()).calledOnce();
       verify((todoDao as MockTodoDaoStorage).createTodoWithValue(any)).calledTwice();
     });

@@ -2,17 +2,19 @@ import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/viewmodel/mixin/error_handling_mixin.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class TodoListViewModel with ChangeNotifierEx {
+class TodoListViewModel with ChangeNotifierEx, ErrorHandlingViewModelMixin {
   final MainNavigator _navigator;
   final TodoRepository _todoRepo;
 
   late Stream<List<Todo>> _todoStream;
 
   var _isLoading = false;
+
   String? _errorKey;
 
   bool get isLoading => _isLoading;
@@ -30,24 +32,13 @@ class TodoListViewModel with ChangeNotifierEx {
     _todoStream = _todoRepo.getTodos();
   }
 
-  Future<void> onDownloadClicked() async {
-    try {
-      _isLoading = true;
-      _errorKey = null;
-      notifyListeners();
-      await _todoRepo.fetchTodos();
-    } catch (e, stack) {
-      logger.error('failed to get todos', error: e, trace: stack);
-      if (e is LocalizedError) {
-        _errorKey = e.getLocalizedKey();
-      } else {
-        _errorKey = LocalizationKeys.errorGeneral;
-      }
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+  Future<void> onDownloadClicked() => failableFuture(
+        _todoRepo.fetchTodos,
+        onError: (error) => _errorKey = _getErrorKeyFromError(error),
+        onLoadingChanged: (isLoading) => _isLoading = isLoading,
+      );
+
+  String _getErrorKeyFromError(dynamic error) => error is LocalizedError ? error.getLocalizedKey() : LocalizationKeys.errorGeneral;
 
   Future<void> onTodoChanged({required int? id, required bool value}) async {
     if (id == null) return;
