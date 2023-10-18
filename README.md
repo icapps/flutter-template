@@ -38,15 +38,14 @@ flutter:
 
 Command to run to update the translations
 ```
-flutter packages pub run icapps_translations
+fvm flutter packages pub run icapps_translations
 ```
 
 ## Json Serializable & Kiwi
 
 ```
-flutter packages pub run build_runner build
-flutter packages pub run build_runner build --delete-conflicting-outputs
-flutter packages pub run build_runner watch
+fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+fvm flutter packages pub run build_runner watch
 ```
 ## Environments
 
@@ -54,9 +53,9 @@ flutter packages pub run build_runner watch
 
 ### Dev, Debug
 ```
-flutter run --flavor dev -t lib/main.dart
+fvm flutter run --flavor dev -t lib/main.dart
 
-flutter run --release --flavor dev -t lib/main.dart
+fvm flutter run --release --flavor dev -t lib/main.dart
 ```
 
 ### Dummy
@@ -64,30 +63,30 @@ flutter run --release --flavor dev -t lib/main.dart
 Note: a hot reload is required after launch to use the correct launch file.
 
 ```
-flutter run --flavor dev -t lib/main_dummy.dart
+fvm flutter run --flavor dev -t lib/main_dummy.dart
 
-flutter run --release --flavor dev -t lib/main_dummy.dart
+fvm flutter run --release --flavor dev -t lib/main_dummy.dart
 ```
 
 ### Alpha
 ```
-flutter run --flavor alpha -t lib/main_alpha.dart
+fvm flutter run --flavor alpha -t lib/main_alpha.dart
 
-flutter run --release --flavor alpha -t lib/main_alpha.dart
+fvm flutter run --release --flavor alpha -t lib/main_alpha.dart
 ```
 
 ### Beta
 ```
-flutter run --flavor beta -t lib/main_beta.dart
+fvm flutter run --flavor beta -t lib/main_beta.dart
 
-flutter run --release --flavor beta -t lib/main_beta.dart
+fvm flutter run --release --flavor beta -t lib/main_beta.dart
 ```
 
 ### Prod, Release
 ```
-flutter run --flavor prod -t lib/main_prod.dart
+fvm flutter run --flavor prod -t lib/main_prod.dart
 
-flutter run --release --flavor prod -t lib/main_prod.dart
+fvm flutter run --release --flavor prod -t lib/main_prod.dart
 ```
 
 ## Niddler
@@ -100,7 +99,7 @@ Niddler is also available for Android & Java (OkHttp: https://github.com/icapps/
 
 ## Linting
 
-To check your code matches our linting. The analysis_options.yaml contains all our code checks.
+To check your code matches our linting. The `analysis_options.yaml` contains all our code checks.
 
 ```
 flutter analyze
@@ -111,13 +110,13 @@ flutter analyze
 In order to run our test we need to run
 
 ```
-flutter test
+fvm flutter test
 ```
 
 If we want to update our golden files we need to run
 
 ```
-flutter test --update-goldens
+fvm flutter test --update-goldens
 ```
 
 ## Fastlane
@@ -135,15 +134,21 @@ This script will run a dart script. The dart script itself will ask you some inp
 
 #### Add provisioning files
 
-```
-place the provisioning profiles -> provision_profile/**
-naming should be the same as provided in the iOS/Configuration/** files (underscore will be replaced with a space in the configuration files)
-```
+Add the provisioning profiles in the ios/provisioning/ folder. The naming of the files should be the same as provided in the `ios/Configuration/{flavor}.xcconfig` files (underscore will be replaced with a space in the configuration files)
+
+#### Firebase
+
+To setup firebase you will need to create a new firebase project with 8 new apps, 1 for each flavor on both iOS and Android. 
+
+When creating the iOS apps on firebase you will be able to download a `GoogleService-Info.plist` file which you will need to rename according to the flavor you just created an app for e.g.: You just created the iOS App for the Dev flavor so your file should be named `GoogleService-Info-dev.plist`. 
+Each `.plist` file you download from firebase needs to be placed in the ios/Configuration/GoogleService/ folder. Whenever the project is run with a different flavor from the currently active flavor, it will automatically copy the correct `GoogleService-Info-{flavor}.plist` file into the ios/Runner/ folder.
+
+When creating the Android apps you will be able to download a `google-services.json` file, you only need to download this file once at the end of the last Android app setup on firebase. This `.json` file contains all the configurations for the 4 Android apps which you just created. Add the `.json` file in the android/app/src/ folder.
 
 #### Languages
 
 ```
-Configure the required languages in xCode
+Configure the required languages in Xcode
 ```
 
 ### icapps Translations
@@ -157,34 +162,34 @@ Update the translations.py file (edit the todos)
 Obfuscation is enabled by default when using fastlane for building. The symbol files are stored in
 `./build/debug-info/#{options[:flavor]}`
 
-**Important**: Add the following regex to jenking configuration to also archive the symbol files
+**Important**: Add the following regex to jenkins configuration to also archive the symbol files
 ```
 **/*.symbols
 ```
 
 ### Icons
 
-Replace the files in assets_launcher_icons/
+Replace the files in the `assets_launcher_icons/**` folder.
 
-You can also change the adaptive_icon_background in the flutter_launcher_icons-{flavor}.yaml (currently "#CB2E63") (only available for Android 8.0 devices and above)
+You can also change the adaptive_icon_background in the `flutter_launcher_icons-{flavor}.yaml` (currently "#CB2E63") (only available for Android 8.0 devices and above)
 
 After this, run the following command
 
 ```
-flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons-dev.yaml
+fvm flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons-dev.yaml
 ```
 
 ### Common issues
 
 ```
-No Flavor provided
+No flavor provided
 ```
 
 Add a flavor to your configuration. Extra info can be found in this issue -> https://github.com/icapps/flutter-template/issues/3
 
 ### Questions?
 
-For question contact Koen Van Looveren
+For question contact William Verhaeghe
 
 ### Finish
 
