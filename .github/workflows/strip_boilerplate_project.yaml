@@ -15,7 +15,6 @@ jobs:
       with:
         channel: 'stable'
     - run: ./tool/install_fvm.sh
-    - run: flutter pub global activate fvm
     - run: fvm flutter packages get
     - run: printf 'yes\n' | fvm flutter pub run ./tool/setup/dart/strip_boilerplate_project.dart
     - run: fvm flutter analyze
