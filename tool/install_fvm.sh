@@ -1,10 +1,10 @@
 #!/bin/bash
 
-regex='"flutterSdkVersion": "(.*)",'
+regex='"flutter": "(.*)"'
 version=""
 
 flutter pub global activate fvm
-fvmFlutterConfig=`cat .fvm/fvm_config.json`
+fvmFlutterConfig=`cat .fvmrc`
 
 if [[ $fvmFlutterConfig =~ $regex ]]; then
   version="${BASH_REMATCH[1]}"
