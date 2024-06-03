@@ -10,7 +10,7 @@ jobs:
   check_strip_boilerplate_project:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: subosito/flutter-action@v2.8.0
       with:
         channel: 'stable'
