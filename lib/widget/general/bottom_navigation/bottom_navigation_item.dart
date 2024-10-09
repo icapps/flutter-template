@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
+import 'package:flutter_template/util/extension/text_scaler_extension.dart';
 import 'package:flutter_template/widget/animation/animated_color_filter.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:flutter_template/util/extension/text_scale_extension.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final bool isSelected;
