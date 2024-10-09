@@ -340,6 +340,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.dart_tool/')) return false;
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.DS_STORE')) return false;
+    if (element.path.startsWith('./android/app/src/dev/')) return false;
     if (element.path.endsWith('.png')) return false;
     if (element.path.endsWith('.ttf')) return false;
     if (element.path.endsWith('lcov.info')) return false;
