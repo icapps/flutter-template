@@ -4,6 +4,7 @@ import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/animation/animated_color_filter.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/extension/text_scaler_extension.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final bool isSelected;
@@ -23,7 +24,7 @@ class BottomNavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasSpaceForLabel = MediaQuery.of(context).textScaleFactor <= 1;
+    final hasSpaceForLabel = MediaQuery.of(context).textScaler.scaleFactor <= 1;
     final child = DataProviderWidget(
       childBuilder: (context, theme, localization) => Center(
         child: Column(

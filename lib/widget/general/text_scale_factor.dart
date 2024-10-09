@@ -15,7 +15,7 @@ class TextScaleFactor extends StatelessWidget {
     FlavorConfig.instance.devicePixelRatio = mediaQuery.devicePixelRatio;
     if (FlavorConfig.isInTest()) return child;
     return MediaQuery(
-      data: mediaQuery.copyWith(textScaleFactor: mediaQuery.textScaleFactor.clamp(0.8, 1.4)),
+      data: mediaQuery.copyWith(textScaler: mediaQuery.textScaler.clamp(minScaleFactor: 0.8, maxScaleFactor: 1.4)),
       child: child,
     );
   }
