@@ -147,7 +147,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       _image = data?.buffer.asUint8List();
       unawaited(_cacheImage(url));
     } catch (e, stack) {
-      logger.error('Failed to parse image: $originalUrl', error: e, trace: stack);
+      logger.error('Failed to parse image: $originalUrl', error: e, stackTrace: stack);
       _hasError = true;
     } finally {
       _isLoading = false;
@@ -164,7 +164,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
     try {
       await _cacheController.putFile(url, img, fileExtension: 'png');
     } catch (e, stack) {
-      logger.error('Failed to cache image: $url', error: e, trace: stack);
+      logger.error('Failed to cache image: $url', error: e, stackTrace: stack);
     }
   }
 

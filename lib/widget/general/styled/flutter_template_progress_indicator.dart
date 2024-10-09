@@ -10,13 +10,9 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
     super.key,
   });
 
-  const FlutterTemplateProgressIndicator.dark({Key? key})
-      : dark = true,
-        super(key: key);
+  const FlutterTemplateProgressIndicator.dark({super.key}) : dark = true;
 
-  const FlutterTemplateProgressIndicator.light({Key? key})
-      : dark = false,
-        super(key: key);
+  const FlutterTemplateProgressIndicator.light({super.key}) : dark = false;
 
   @override
   Widget build(BuildContext context) {

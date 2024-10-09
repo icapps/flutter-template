@@ -12,7 +12,7 @@ import 'package:scroll_when_needed/scroll_when_needed.dart';
 
 @flutterRoute
 class TodoAddScreen extends StatefulWidget {
-  const TodoAddScreen({Key? key}) : super(key: key);
+  const TodoAddScreen({super.key});
 
   @override
   TodoAddScreenState createState() => TodoAddScreenState();
@@ -23,7 +23,7 @@ class TodoAddScreenState extends State<TodoAddScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<TodoAddViewModel>(
-      create: getIt,
+      create: getIt.call,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(
