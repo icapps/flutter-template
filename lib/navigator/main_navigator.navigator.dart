@@ -7,9 +7,10 @@
 // ignore_for_file: prefer_const_constructors
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:convert';
+
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
-import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 
 import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
@@ -23,8 +24,6 @@ import '../screen/todo/todo_add/todo_add_screen.dart';
 
 mixin BaseNavigator {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-  final Set<NavigatorGuard> guards = <NavigatorGuard>{};
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     final arguments = settings.arguments is Map
@@ -111,13 +110,6 @@ mixin BaseNavigator {
     return null;
   }
 
-  /// Update a specific guard, useful for events (for example after login/logout)
-  Future<void> updateGuard<T extends NavigatorGuard>() =>
-      guards.whereType<T>().first.updateValue();
-
-  /// Update all guards, useful for web apps. Add to main file so it's called when navigating manually
-  Future<void> updateGuards<T extends NavigatorGuard>() =>
-      Future.wait(guards.map((e) => e.updateValue()));
   void goToHomeScreen({_i1.Key? key}) =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.homeScreen,

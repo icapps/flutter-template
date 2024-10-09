@@ -130,14 +130,6 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
         title: title ?? this.title,
         completed: completed ?? this.completed,
       );
-  DbTodo copyWithCompanion(DbTodoTableCompanion data) {
-    return DbTodo(
-      id: data.id.present ? data.id.value : this.id,
-      title: data.title.present ? data.title.value : this.title,
-      completed: data.completed.present ? data.completed.value : this.completed,
-    );
-  }
-
   @override
   String toString() {
     return (StringBuffer('DbTodo(')
@@ -223,8 +215,8 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
-  $FlutterTemplateDatabaseManager get managers =>
-      $FlutterTemplateDatabaseManager(this);
+  _$FlutterTemplateDatabaseManager get managers =>
+      _$FlutterTemplateDatabaseManager(this);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -233,7 +225,7 @@ abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [dbTodoTable];
 }
 
-typedef $$DbTodoTableTableCreateCompanionBuilder = DbTodoTableCompanion
+typedef $$DbTodoTableTableInsertCompanionBuilder = DbTodoTableCompanion
     Function({
   Value<int> id,
   required String title,
@@ -245,6 +237,61 @@ typedef $$DbTodoTableTableUpdateCompanionBuilder = DbTodoTableCompanion
   Value<String> title,
   Value<bool> completed,
 });
+
+class $$DbTodoTableTableTableManager extends RootTableManager<
+    _$FlutterTemplateDatabase,
+    $DbTodoTableTable,
+    DbTodo,
+    $$DbTodoTableTableFilterComposer,
+    $$DbTodoTableTableOrderingComposer,
+    $$DbTodoTableTableProcessedTableManager,
+    $$DbTodoTableTableInsertCompanionBuilder,
+    $$DbTodoTableTableUpdateCompanionBuilder> {
+  $$DbTodoTableTableTableManager(
+      _$FlutterTemplateDatabase db, $DbTodoTableTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$DbTodoTableTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$DbTodoTableTableOrderingComposer(ComposerState(db, table)),
+          getChildManagerBuilder: (p) =>
+              $$DbTodoTableTableProcessedTableManager(p),
+          getUpdateCompanionBuilder: ({
+            Value<int> id = const Value.absent(),
+            Value<String> title = const Value.absent(),
+            Value<bool> completed = const Value.absent(),
+          }) =>
+              DbTodoTableCompanion(
+            id: id,
+            title: title,
+            completed: completed,
+          ),
+          getInsertCompanionBuilder: ({
+            Value<int> id = const Value.absent(),
+            required String title,
+            required bool completed,
+          }) =>
+              DbTodoTableCompanion.insert(
+            id: id,
+            title: title,
+            completed: completed,
+          ),
+        ));
+}
+
+class $$DbTodoTableTableProcessedTableManager extends ProcessedTableManager<
+    _$FlutterTemplateDatabase,
+    $DbTodoTableTable,
+    DbTodo,
+    $$DbTodoTableTableFilterComposer,
+    $$DbTodoTableTableOrderingComposer,
+    $$DbTodoTableTableProcessedTableManager,
+    $$DbTodoTableTableInsertCompanionBuilder,
+    $$DbTodoTableTableUpdateCompanionBuilder> {
+  $$DbTodoTableTableProcessedTableManager(super.$state);
+}
 
 class $$DbTodoTableTableFilterComposer
     extends FilterComposer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
@@ -284,74 +331,9 @@ class $$DbTodoTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class $$DbTodoTableTableTableManager extends RootTableManager<
-    _$FlutterTemplateDatabase,
-    $DbTodoTableTable,
-    DbTodo,
-    $$DbTodoTableTableFilterComposer,
-    $$DbTodoTableTableOrderingComposer,
-    $$DbTodoTableTableCreateCompanionBuilder,
-    $$DbTodoTableTableUpdateCompanionBuilder,
-    (
-      DbTodo,
-      BaseReferences<_$FlutterTemplateDatabase, $DbTodoTableTable, DbTodo>
-    ),
-    DbTodo,
-    PrefetchHooks Function()> {
-  $$DbTodoTableTableTableManager(
-      _$FlutterTemplateDatabase db, $DbTodoTableTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$DbTodoTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$DbTodoTableTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> title = const Value.absent(),
-            Value<bool> completed = const Value.absent(),
-          }) =>
-              DbTodoTableCompanion(
-            id: id,
-            title: title,
-            completed: completed,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String title,
-            required bool completed,
-          }) =>
-              DbTodoTableCompanion.insert(
-            id: id,
-            title: title,
-            completed: completed,
-          ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
-          prefetchHooksCallback: null,
-        ));
-}
-
-typedef $$DbTodoTableTableProcessedTableManager = ProcessedTableManager<
-    _$FlutterTemplateDatabase,
-    $DbTodoTableTable,
-    DbTodo,
-    $$DbTodoTableTableFilterComposer,
-    $$DbTodoTableTableOrderingComposer,
-    $$DbTodoTableTableCreateCompanionBuilder,
-    $$DbTodoTableTableUpdateCompanionBuilder,
-    (
-      DbTodo,
-      BaseReferences<_$FlutterTemplateDatabase, $DbTodoTableTable, DbTodo>
-    ),
-    DbTodo,
-    PrefetchHooks Function()>;
-
-class $FlutterTemplateDatabaseManager {
+class _$FlutterTemplateDatabaseManager {
   final _$FlutterTemplateDatabase _db;
-  $FlutterTemplateDatabaseManager(this._db);
+  _$FlutterTemplateDatabaseManager(this._db);
   $$DbTodoTableTableTableManager get dbTodoTable =>
       $$DbTodoTableTableTableManager(_db, _db.dbTodoTable);
 }

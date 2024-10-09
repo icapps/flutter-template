@@ -10,12 +10,16 @@ import 'package:mockito/mockito.dart';
 import '../../util/test_extensions.dart';
 import 'debug_viewmodel_test.mocks.dart';
 
-@GenerateMocks([
-  MainNavigator,
-  DebugRepository,
-  LocalStorage,
-  FlutterTemplateDatabase,
-])
+@GenerateMocks(
+  [
+    MainNavigator,
+    DebugRepository,
+    LocalStorage,
+  ],
+  customMocks: [
+    MockSpec<FlutterTemplateDatabase>(unsupportedMembers: {#managers}),
+  ],
+)
 void main() {
   late DebugViewModel sut;
   late MainNavigator navigator;

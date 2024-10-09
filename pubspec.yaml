@@ -11,7 +11,7 @@ dependencies:
   connectivity_plus_web: ^1.2.5
   device_info_plus: ^9.0.2
   dio: ^5.3.2
-  drift: ^2.4.2
+  drift: ^2.18.0
   drift_db_viewer: ^2.0.0
   drift_local_storage_inspector: ^0.7.0
   file_local_storage_inspector: ^0.4.0
@@ -53,7 +53,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.3
-  drift_dev: ^2.11.0
+  drift_dev: ^2.18.0
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
   flutter_navigation_generator: ^2.0.1

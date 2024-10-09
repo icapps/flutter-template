@@ -8,214 +8,213 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i361;
-import 'package:drift/drift.dart' as _i500;
-import 'package:firebase_analytics/firebase_analytics.dart' as _i398;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
+import 'package:dio/dio.dart' as _i41;
+import 'package:drift/drift.dart' as _i6;
+import 'package:firebase_analytics/firebase_analytics.dart' as _i8;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i9;
 import 'package:flutter_template/database/flutter_template_database.dart'
-    as _i327;
-import 'package:flutter_template/database/todo/todo_dao_storage.dart' as _i661;
-import 'package:flutter_template/di/injectable.dart' as _i480;
-import 'package:flutter_template/navigator/main_navigator.dart' as _i861;
-import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i76;
+    as _i10;
+import 'package:flutter_template/database/todo/todo_dao_storage.dart' as _i17;
+import 'package:flutter_template/di/injectable.dart' as _i43;
+import 'package:flutter_template/navigator/main_navigator.dart' as _i11;
+import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i30;
 import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart'
-    as _i192;
+    as _i21;
 import 'package:flutter_template/repository/debug/debug_repository.dart'
-    as _i380;
+    as _i25;
 import 'package:flutter_template/repository/locale/locale_repository.dart'
-    as _i587;
+    as _i27;
 import 'package:flutter_template/repository/login/login_repository.dart'
-    as _i726;
+    as _i28;
 import 'package:flutter_template/repository/refresh/refresh_repository.dart'
-    as _i529;
+    as _i31;
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart'
-    as _i559;
+    as _i24;
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart'
-    as _i658;
+    as _i14;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
-    as _i855;
-import 'package:flutter_template/repository/todo/todo_repository.dart' as _i955;
-import 'package:flutter_template/util/cache/cache_controller.dart' as _i979;
-import 'package:flutter_template/util/cache/cache_controlling.dart' as _i40;
+    as _i26;
+import 'package:flutter_template/repository/todo/todo_repository.dart' as _i23;
+import 'package:flutter_template/util/cache/cache_controller.dart' as _i4;
+import 'package:flutter_template/util/cache/cache_controlling.dart' as _i3;
 import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart'
-    as _i1011;
+    as _i29;
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart'
-    as _i481;
+    as _i12;
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart'
-    as _i1069;
+    as _i13;
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart'
-    as _i765;
-import 'package:flutter_template/util/snackbar/error_util.dart' as _i235;
-import 'package:flutter_template/util/theme/theme_config.dart' as _i437;
+    as _i39;
+import 'package:flutter_template/util/snackbar/error_util.dart' as _i7;
+import 'package:flutter_template/util/theme/theme_config.dart' as _i16;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
-    as _i1050;
+    as _i20;
 import 'package:flutter_template/viewmodel/debug/debug_theme_selector_viewmodel.dart'
-    as _i844;
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i317;
+    as _i40;
+import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart' as _i36;
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart'
-    as _i836;
+    as _i37;
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart'
-    as _i880;
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i681;
+    as _i22;
+import 'package:flutter_template/viewmodel/login/login_viewmodel.dart' as _i38;
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart'
-    as _i527;
+    as _i35;
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart'
-    as _i532;
+    as _i32;
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart'
-    as _i200;
+    as _i33;
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart'
-    as _i772;
+    as _i34;
 import 'package:flutter_template/webservice/todo/todo_dummy_service.dart'
-    as _i698;
-import 'package:flutter_template/webservice/todo/todo_service.dart' as _i738;
-import 'package:flutter_template/webservice/todo/todo_webservice.dart' as _i100;
-import 'package:get_it/get_it.dart' as _i174;
-import 'package:icapps_architecture/icapps_architecture.dart' as _i556;
-import 'package:injectable/injectable.dart' as _i526;
-import 'package:shared_preferences/shared_preferences.dart' as _i460;
+    as _i19;
+import 'package:flutter_template/webservice/todo/todo_service.dart' as _i18;
+import 'package:flutter_template/webservice/todo/todo_webservice.dart' as _i42;
+import 'package:get_it/get_it.dart' as _i1;
+import 'package:icapps_architecture/icapps_architecture.dart' as _i5;
+import 'package:injectable/injectable.dart' as _i2;
+import 'package:shared_preferences/shared_preferences.dart' as _i15;
 
 const String _dummy = 'dummy';
 const String _dev = 'dev';
 const String _prod = 'prod';
 
-extension GetItInjectableX on _i174.GetIt {
+extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i174.GetIt> initGetIt({
+  Future<_i1.GetIt> initGetIt({
     String? environment,
-    _i526.EnvironmentFilter? environmentFilter,
+    _i2.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i526.GetItHelper(
+    final gh = _i2.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    await gh.singletonAsync<_i460.SharedPreferences>(
-      () => registerModule.prefs(),
-      preResolve: true,
-    );
-    gh.singleton<_i556.ConnectivityHelper>(
+    gh.singleton<_i3.CacheControlling>(() => _i4.CacheController());
+    gh.singleton<_i5.ConnectivityHelper>(
         () => registerModule.connectivityHelper());
-    await gh.singletonAsync<_i500.DatabaseConnection>(
+    await gh.singletonAsync<_i6.DatabaseConnection>(
       () => registerModule.provideDatabaseConnection(),
       preResolve: true,
     );
-    gh.singleton<_i1069.NetworkLogInterceptor>(
-        () => _i1069.NetworkLogInterceptor());
-    gh.lazySingleton<_i398.FirebaseAnalytics>(
+    gh.lazySingleton<_i7.ErrorUtil>(() => _i7.ErrorUtil());
+    gh.lazySingleton<_i8.FirebaseAnalytics>(
         () => registerModule.provideFirebaseAnalytics());
-    gh.lazySingleton<_i558.FlutterSecureStorage>(
-        () => registerModule.storage());
-    gh.lazySingleton<_i235.ErrorUtil>(() => _i235.ErrorUtil());
-    gh.lazySingleton<_i437.ThemeConfigUtil>(() => _i437.ThemeConfigUtil());
-    gh.singleton<_i40.CacheControlling>(() => _i979.CacheController());
-    gh.lazySingleton<_i192.FireBaseAnalyticsRepository>(
-        () => _i192.FireBaseAnalyticsRepository(gh<_i398.FirebaseAnalytics>()));
-    gh.singleton<_i481.NetworkErrorInterceptor>(
-        () => _i481.NetworkErrorInterceptor(gh<_i556.ConnectivityHelper>()));
-    gh.lazySingleton<_i556.SharedPreferenceStorage>(
-        () => registerModule.sharedPreferences(gh<_i460.SharedPreferences>()));
-    gh.singleton<_i738.TodoService>(
-      () => _i698.TodoDummyService(),
+    gh.lazySingleton<_i9.FlutterSecureStorage>(() => registerModule.storage());
+    gh.lazySingleton<_i10.FlutterTemplateDatabase>(() => registerModule
+        .provideFlutterTemplateDatabase(gh<_i6.DatabaseConnection>()));
+    gh.lazySingleton<_i11.MainNavigator>(
+        () => _i11.MainNavigator(gh<_i7.ErrorUtil>()));
+    gh.singleton<_i12.NetworkErrorInterceptor>(
+        () => _i12.NetworkErrorInterceptor(gh<_i5.ConnectivityHelper>()));
+    gh.singleton<_i13.NetworkLogInterceptor>(
+        () => _i13.NetworkLogInterceptor());
+    gh.lazySingleton<_i14.SecureStorage>(
+        () => _i14.SecureStorage(gh<_i9.FlutterSecureStorage>()));
+    await gh.singletonAsync<_i15.SharedPreferences>(
+      () => registerModule.prefs(),
+      preResolve: true,
+    );
+    gh.lazySingleton<_i16.ThemeConfigUtil>(() => _i16.ThemeConfigUtil());
+    gh.lazySingleton<_i17.TodoDaoStorage>(
+        () => _i17.TodoDaoStorage(gh<_i10.FlutterTemplateDatabase>()));
+    gh.singleton<_i18.TodoService>(
+      () => _i19.TodoDummyService(),
       registerFor: {_dummy},
     );
-    gh.lazySingleton<_i587.LocaleRepository>(
-        () => _i587.LocaleRepository(gh<_i556.SharedPreferenceStorage>()));
-    gh.lazySingleton<_i380.DebugRepository>(
-        () => _i380.DebugRepository(gh<_i556.SharedPreferenceStorage>()));
-    gh.lazySingleton<_i327.FlutterTemplateDatabase>(() => registerModule
-        .provideFlutterTemplateDatabase(gh<_i500.DatabaseConnection>()));
-    gh.lazySingleton<_i658.SecureStorage>(
-        () => _i658.SecureStorage(gh<_i558.FlutterSecureStorage>()));
-    gh.lazySingleton<_i861.MainNavigator>(
-        () => _i861.MainNavigator(gh<_i235.ErrorUtil>()));
-    gh.factory<_i880.LicenseViewModel>(
-        () => _i880.LicenseViewModel(gh<_i861.MainNavigator>()));
-    gh.factory<_i1050.DebugPlatformSelectorViewModel>(
-        () => _i1050.DebugPlatformSelectorViewModel(gh<_i861.MainNavigator>()));
-    gh.lazySingleton<_i556.SimpleKeyValueStorage>(
+    gh.factory<_i20.DebugPlatformSelectorViewModel>(
+        () => _i20.DebugPlatformSelectorViewModel(gh<_i11.MainNavigator>()));
+    gh.lazySingleton<_i21.FireBaseAnalyticsRepository>(
+        () => _i21.FireBaseAnalyticsRepository(gh<_i8.FirebaseAnalytics>()));
+    gh.factory<_i22.LicenseViewModel>(
+        () => _i22.LicenseViewModel(gh<_i11.MainNavigator>()));
+    gh.lazySingleton<_i5.SharedPreferenceStorage>(
+        () => registerModule.sharedPreferences(gh<_i15.SharedPreferences>()));
+    gh.lazySingleton<_i5.SimpleKeyValueStorage>(
         () => registerModule.keyValueStorage(
-              gh<_i556.SharedPreferenceStorage>(),
-              gh<_i658.SecureStorage>(),
+              gh<_i5.SharedPreferenceStorage>(),
+              gh<_i14.SecureStorage>(),
             ));
-    gh.lazySingleton<_i559.AuthStorage>(
-        () => _i559.AuthStorage(gh<_i556.SimpleKeyValueStorage>()));
-    gh.lazySingleton<_i661.TodoDaoStorage>(
-        () => _i661.TodoDaoStorage(gh<_i327.FlutterTemplateDatabase>()));
-    gh.lazySingleton<_i529.RefreshRepository>(
-        () => _i529.RefreshRepository(gh<_i559.AuthStorage>()));
-    gh.lazySingleton<_i726.LoginRepository>(
-        () => _i726.LoginRepository(gh<_i559.AuthStorage>()));
-    gh.lazySingleton<_i855.LocalStorage>(() => _i855.LocalStorage(
-          gh<_i559.AuthStorage>(),
-          gh<_i556.SharedPreferenceStorage>(),
+    gh.lazySingleton<_i23.TodoRepository>(() => _i23.TodoRepository(
+          gh<_i18.TodoService>(),
+          gh<_i17.TodoDaoStorage>(),
         ));
-    gh.singleton<_i765.NetworkRefreshInterceptor>(
-        () => _i765.NetworkRefreshInterceptor(
-              gh<_i559.AuthStorage>(),
-              gh<_i529.RefreshRepository>(),
+    gh.lazySingleton<_i24.AuthStorage>(
+        () => _i24.AuthStorage(gh<_i5.SimpleKeyValueStorage>()));
+    gh.lazySingleton<_i25.DebugRepository>(
+        () => _i25.DebugRepository(gh<_i5.SharedPreferenceStorage>()));
+    gh.lazySingleton<_i26.LocalStorage>(() => _i26.LocalStorage(
+          gh<_i24.AuthStorage>(),
+          gh<_i5.SharedPreferenceStorage>(),
+        ));
+    gh.lazySingleton<_i27.LocaleRepository>(
+        () => _i27.LocaleRepository(gh<_i5.SharedPreferenceStorage>()));
+    gh.lazySingleton<_i28.LoginRepository>(
+        () => _i28.LoginRepository(gh<_i24.AuthStorage>()));
+    gh.singleton<_i29.NetworkAuthInterceptor>(
+        () => _i29.NetworkAuthInterceptor(gh<_i24.AuthStorage>()));
+    gh.lazySingleton<_i30.OnboardingNavigator>(() => _i30.OnboardingNavigator(
+          gh<_i11.MainNavigator>(),
+          gh<_i26.LocalStorage>(),
+          gh<_i28.LoginRepository>(),
+        ));
+    gh.lazySingleton<_i31.RefreshRepository>(
+        () => _i31.RefreshRepository(gh<_i24.AuthStorage>()));
+    gh.factory<_i32.SplashViewModel>(() => _i32.SplashViewModel(
+          gh<_i26.LocalStorage>(),
+          gh<_i30.OnboardingNavigator>(),
+        ));
+    gh.factory<_i33.TodoAddViewModel>(() => _i33.TodoAddViewModel(
+          gh<_i23.TodoRepository>(),
+          gh<_i11.MainNavigator>(),
+        ));
+    gh.factory<_i34.TodoListViewModel>(() => _i34.TodoListViewModel(
+          gh<_i23.TodoRepository>(),
+          gh<_i11.MainNavigator>(),
+        ));
+    gh.factory<_i35.AnalyticsPermissionViewModel>(
+        () => _i35.AnalyticsPermissionViewModel(
+              gh<_i30.OnboardingNavigator>(),
+              gh<_i26.LocalStorage>(),
             ));
-    gh.lazySingleton<_i955.TodoRepository>(() => _i955.TodoRepository(
-          gh<_i738.TodoService>(),
-          gh<_i661.TodoDaoStorage>(),
+    gh.factory<_i36.DebugViewModel>(() => _i36.DebugViewModel(
+          gh<_i25.DebugRepository>(),
+          gh<_i11.MainNavigator>(),
+          gh<_i10.FlutterTemplateDatabase>(),
+          gh<_i26.LocalStorage>(),
         ));
-    gh.lazySingleton<_i76.OnboardingNavigator>(() => _i76.OnboardingNavigator(
-          gh<_i861.MainNavigator>(),
-          gh<_i855.LocalStorage>(),
-          gh<_i726.LoginRepository>(),
+    gh.lazySingleton<_i37.GlobalViewModel>(() => _i37.GlobalViewModel(
+          gh<_i27.LocaleRepository>(),
+          gh<_i25.DebugRepository>(),
+          gh<_i26.LocalStorage>(),
+          gh<_i16.ThemeConfigUtil>(),
         ));
-    gh.singleton<_i1011.NetworkAuthInterceptor>(
-        () => _i1011.NetworkAuthInterceptor(gh<_i559.AuthStorage>()));
-    gh.lazySingleton<_i836.GlobalViewModel>(() => _i836.GlobalViewModel(
-          gh<_i587.LocaleRepository>(),
-          gh<_i380.DebugRepository>(),
-          gh<_i855.LocalStorage>(),
-          gh<_i437.ThemeConfigUtil>(),
+    gh.factory<_i38.LoginViewModel>(() => _i38.LoginViewModel(
+          gh<_i28.LoginRepository>(),
+          gh<_i11.MainNavigator>(),
+          gh<_i30.OnboardingNavigator>(),
         ));
-    gh.factory<_i532.SplashViewModel>(() => _i532.SplashViewModel(
-          gh<_i855.LocalStorage>(),
-          gh<_i76.OnboardingNavigator>(),
-        ));
-    gh.factory<_i317.DebugViewModel>(() => _i317.DebugViewModel(
-          gh<_i380.DebugRepository>(),
-          gh<_i861.MainNavigator>(),
-          gh<_i327.FlutterTemplateDatabase>(),
-          gh<_i855.LocalStorage>(),
-        ));
-    gh.factory<_i527.AnalyticsPermissionViewModel>(
-        () => _i527.AnalyticsPermissionViewModel(
-              gh<_i76.OnboardingNavigator>(),
-              gh<_i855.LocalStorage>(),
+    gh.singleton<_i39.NetworkRefreshInterceptor>(
+        () => _i39.NetworkRefreshInterceptor(
+              gh<_i24.AuthStorage>(),
+              gh<_i31.RefreshRepository>(),
             ));
-    gh.factory<_i772.TodoListViewModel>(() => _i772.TodoListViewModel(
-          gh<_i955.TodoRepository>(),
-          gh<_i861.MainNavigator>(),
-        ));
-    gh.factory<_i200.TodoAddViewModel>(() => _i200.TodoAddViewModel(
-          gh<_i955.TodoRepository>(),
-          gh<_i861.MainNavigator>(),
-        ));
-    gh.factory<_i844.DebugThemeSelectorViewModel>(
-        () => _i844.DebugThemeSelectorViewModel(
-              gh<_i861.MainNavigator>(),
-              gh<_i836.GlobalViewModel>(),
-            ));
-    gh.lazySingleton<_i556.CombiningSmartInterceptor>(
+    gh.lazySingleton<_i5.CombiningSmartInterceptor>(
         () => registerModule.provideCombiningSmartInterceptor(
-              gh<_i1069.NetworkLogInterceptor>(),
-              gh<_i1011.NetworkAuthInterceptor>(),
-              gh<_i481.NetworkErrorInterceptor>(),
-              gh<_i765.NetworkRefreshInterceptor>(),
+              gh<_i13.NetworkLogInterceptor>(),
+              gh<_i29.NetworkAuthInterceptor>(),
+              gh<_i12.NetworkErrorInterceptor>(),
+              gh<_i39.NetworkRefreshInterceptor>(),
             ));
-    gh.factory<_i681.LoginViewModel>(() => _i681.LoginViewModel(
-          gh<_i726.LoginRepository>(),
-          gh<_i861.MainNavigator>(),
-          gh<_i76.OnboardingNavigator>(),
-        ));
-    gh.lazySingleton<_i361.Dio>(
-        () => registerModule.provideDio(gh<_i556.CombiningSmartInterceptor>()));
-    gh.singleton<_i738.TodoService>(
-      () => _i100.TodoWebService(gh<_i361.Dio>()),
+    gh.factory<_i40.DebugThemeSelectorViewModel>(
+        () => _i40.DebugThemeSelectorViewModel(
+              gh<_i11.MainNavigator>(),
+              gh<_i37.GlobalViewModel>(),
+            ));
+    gh.lazySingleton<_i41.Dio>(
+        () => registerModule.provideDio(gh<_i5.CombiningSmartInterceptor>()));
+    gh.singleton<_i18.TodoService>(
+      () => _i42.TodoWebService(gh<_i41.Dio>()),
       registerFor: {
         _dev,
         _prod,
@@ -225,4 +224,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$RegisterModule extends _i480.RegisterModule {}
+class _$RegisterModule extends _i43.RegisterModule {}
