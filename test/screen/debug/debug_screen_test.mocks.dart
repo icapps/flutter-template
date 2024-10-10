@@ -386,6 +386,15 @@ class MockGlobalViewModel extends _i1.Mock implements _i6.GlobalViewModel {
       );
 
   @override
+  void overrideLocalizations() => super.noSuchMethod(
+        Invocation.method(
+          #overrideLocalizations,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void dispose() => super.noSuchMethod(
         Invocation.method(
           #dispose,

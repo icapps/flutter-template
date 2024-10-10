@@ -3,6 +3,7 @@ import 'package:flutter_template/repository/debug/debug_repository.dart';
 import 'package:flutter_template/repository/locale/locale_repository.dart';
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/util/locale/localization_overrides.dart';
 import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,6 +18,7 @@ import 'global_viewmodel_test.mocks.dart';
   DebugRepository,
   LocalStorage,
   ThemeConfigUtil,
+  LocalizationOverrides,
 ])
 void main() {
   late GlobalViewModel sut;
@@ -24,17 +26,21 @@ void main() {
   late DebugRepository debugRepo;
   late LocalStorage localStorage;
   late ThemeConfigUtil themeConfigUtil;
+  late LocalizationOverrides localizationOverrides;
 
   setUp(() async {
     localeRepo = MockLocaleRepository();
     debugRepo = MockDebugRepository();
     localStorage = MockLocalStorage();
     themeConfigUtil = MockThemeConfigUtil();
+    localizationOverrides = MockLocalizationOverrides();
+
     sut = GlobalViewModel(
       localeRepo,
       debugRepo,
       localStorage,
       themeConfigUtil,
+      localizationOverrides,
     );
   });
   tearDown(() {

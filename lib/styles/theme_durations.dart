@@ -25,4 +25,6 @@ class ThemeDurations {
   static Duration get demoNetworkCallDuration => _isInTestResult ?? const Duration(milliseconds: 800);
 
   static Duration get snackBarDuration => _isInTestResult ?? const Duration(seconds: 3);
+
+  static Duration get remoteConfigTimeOut => _isInTestResult ?? const Duration(seconds: 9);
 }
