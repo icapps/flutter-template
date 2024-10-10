@@ -3,7 +3,6 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/repository/remote_config/base_remote_config_repository.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/locale/localization_overrides.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
