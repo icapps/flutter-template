@@ -4,22 +4,24 @@ import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/locale/localization_overrides.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class RemoteConfigRepository extends BaseRemoteConfigRepo {
+  final FirebaseRemoteConfig _remoteConfig;
 
-  RemoteConfigRepository();
+  RemoteConfigRepository(this._remoteConfig);
 
   @override
   Future<void> refreshRemoteConfig() async {
-    final remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.setConfigSettings(
+    await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: ThemeDurations.remoteConfigTimeOut,
         minimumFetchInterval: Duration.zero,
       ),
     );
     try {
-      await remoteConfig.fetchAndActivate();
+      await _remoteConfig.fetchAndActivate();
       await GetIt.I<LocalizationOverrides>().refreshOverrideLocalizations();
     } catch (error, trace) {
       logger.error('Unable to fetch remote config. Cached or default values will be used', error: error, stackTrace: trace);

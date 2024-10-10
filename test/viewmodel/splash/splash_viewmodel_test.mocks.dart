@@ -7,6 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i5;
+import 'package:flutter_template/repository/remote_config/remote_config_repository.dart'
+    as _i6;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -83,4 +85,89 @@ class MockOnboardingNavigator extends _i1.Mock
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+}
+
+/// A class which mocks [RemoteConfigRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoteConfigRepository extends _i1.Mock
+    implements _i6.RemoteConfigRepository {
+  MockRemoteConfigRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> refreshRemoteConfig() => (super.noSuchMethod(
+        Invocation.method(
+          #refreshRemoteConfig,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  String? getOptionalValue(String? key) =>
+      (super.noSuchMethod(Invocation.method(
+        #getOptionalValue,
+        [key],
+      )) as String?);
+
+  @override
+  String? getOptionalString(String? key) =>
+      (super.noSuchMethod(Invocation.method(
+        #getOptionalString,
+        [key],
+      )) as String?);
+
+  @override
+  int? getOptionalInt(String? key) => (super.noSuchMethod(Invocation.method(
+        #getOptionalInt,
+        [key],
+      )) as int?);
+
+  @override
+  bool? getOptionalBool(String? key) => (super.noSuchMethod(Invocation.method(
+        #getOptionalBool,
+        [key],
+      )) as bool?);
+
+  @override
+  double? getOptionalDouble(String? key) =>
+      (super.noSuchMethod(Invocation.method(
+        #getOptionalDouble,
+        [key],
+      )) as double?);
+
+  @override
+  Map<T, R> getCustomObjectMap<T, R>(
+    String? key,
+    R Function(Map<String, dynamic>)? fromJson,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCustomObjectMap,
+          [
+            key,
+            fromJson,
+          ],
+        ),
+        returnValue: <T, R>{},
+      ) as Map<T, R>);
+
+  @override
+  List<T> getCustomObjectList<T>(
+    String? key,
+    T Function(Map<String, dynamic>)? fromJson,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCustomObjectList,
+          [
+            key,
+            fromJson,
+          ],
+        ),
+        returnValue: <T>[],
+      ) as List<T>);
 }
