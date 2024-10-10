@@ -12,6 +12,8 @@ import 'package:flutter_template/repository/locale/locale_repository.dart'
     as _i2;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
     as _i6;
+import 'package:flutter_template/util/locale/localization_overrides.dart'
+    as _i9;
 import 'package:flutter_template/util/theme/theme_config.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -151,4 +153,36 @@ class MockThemeConfigUtil extends _i1.Mock implements _i8.ThemeConfigUtil {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [LocalizationOverrides].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLocalizationOverrides extends _i1.Mock
+    implements _i9.LocalizationOverrides {
+  MockLocalizationOverrides() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> refreshOverrideLocalizations() => (super.noSuchMethod(
+        Invocation.method(
+          #refreshOverrideLocalizations,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<Map<String, dynamic>> getOverriddenLocalizations(
+          _i4.Locale? locale) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getOverriddenLocalizations,
+          [locale],
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 }
