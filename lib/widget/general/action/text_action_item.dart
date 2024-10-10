@@ -24,7 +24,7 @@ class TextActionItem extends StatelessWidget {
       childBuilderTheme: (context, theme) => Center(
         child: TouchFeedBack(
           borderRadius: BorderRadius.circular(ThemeDimens.padding4),
-          onClick: enabled ? onClick : null,
+          onTapped: enabled ? onClick : null,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16, vertical: ThemeDimens.padding8),
             child: AnimatedDefaultTextStyle(

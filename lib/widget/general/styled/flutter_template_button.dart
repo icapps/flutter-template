@@ -93,7 +93,7 @@ class FlutterTemplateButton extends StatelessWidget {
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
-            onClick: isEnabled ? onClick : null,
+            onTapped: isEnabled ? onClick : null,
             child: AnimatedContainer(
               color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
               duration: ThemeDurations.shortAnimationDuration,
@@ -105,7 +105,7 @@ class FlutterTemplateButton extends StatelessWidget {
           color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
           duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
-            onClick: isEnabled ? onClick : null,
+            onTapped: isEnabled ? onClick : null,
             child: content,
           ),
         );

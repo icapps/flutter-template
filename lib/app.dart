@@ -31,10 +31,9 @@ class InternalApp extends StatelessWidget {
   final Widget? home;
   final bool _isInTest;
 
-  const InternalApp({Key? key})
+  const InternalApp({super.key})
       : home = null,
-        _isInTest = false,
-        super(key: key);
+        _isInTest = false;
 
   @visibleForTesting
   const InternalApp.test({

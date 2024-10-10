@@ -14,7 +14,7 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
   navigationType: NavigationType.pushAndReplaceAll,
 )
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   LoginScreenState createState() => LoginScreenState();

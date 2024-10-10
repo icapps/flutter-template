@@ -5,14 +5,13 @@ analyzer:
     missing_required_param: error
     missing_return: error
     todo: ignore
-    sdk_version_async_exported_from_core: ignore
   language:
     strict-casts: true
     strict-raw-types: false
   exclude:
     - '**.g.dart'
     - '**.config.dart'
-    - '**.get_x_navigator.dart'
+    - '**.navigator.dart'
     - '**.mocks.dart'
     - 'lib/util/license.dart'
     - 'test/coverage_helper_test.dart'

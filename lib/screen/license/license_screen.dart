@@ -20,7 +20,7 @@ class LicenseScreenState extends State<LicenseScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<LicenseViewModel>(
-      create: getIt,
+      create: getIt.call,
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => Scaffold(
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(

@@ -14,7 +14,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
   return Todo(
     title: json['title'] as String,
     completed: json['completed'] as bool,
-    id: json['id'] as int?,
+    id: (json['id'] as num?)?.toInt(),
   );
 }
 

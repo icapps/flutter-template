@@ -128,7 +128,7 @@ class IconAssetTesterAndroid extends StatelessWidget {
           getAsset(context),
           height: ThemeDimens.padding64,
           width: ThemeDimens.padding64,
-          color: Colors.black,
+          colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
         ),
       ),
     );
@@ -152,7 +152,7 @@ class IconAssetTesterIOS extends StatelessWidget {
           getAsset(context),
           height: ThemeDimens.padding64,
           width: ThemeDimens.padding64,
-          color: Colors.black,
+          colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
         ),
       ),
     );

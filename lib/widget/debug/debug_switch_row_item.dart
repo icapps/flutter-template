@@ -22,7 +22,7 @@ class DebugRowSwitchItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(childBuilderTheme: (context, theme) {
       return TouchFeedBack(
-        onClick: () => onChanged(!value),
+        onTapped: () => onChanged(!value),
         child: Padding(
           padding: const EdgeInsets.all(ThemeDimens.padding16),
           child: Row(

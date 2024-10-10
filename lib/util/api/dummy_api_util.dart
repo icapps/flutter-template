@@ -22,7 +22,7 @@ class DummyApiUtil {
       staticLogger.error(
         '<--------------- GET - url: $path - statucode: 404',
         error: e,
-        trace: stack,
+        stackTrace: stack,
       );
       rethrow;
     }

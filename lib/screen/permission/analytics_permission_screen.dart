@@ -10,7 +10,7 @@ import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @flutterRoute
 class AnalyticsPermissionScreen extends StatelessWidget {
-  const AnalyticsPermissionScreen({Key? key}) : super(key: key);
+  const AnalyticsPermissionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

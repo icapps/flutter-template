@@ -28,7 +28,7 @@ class ActionItem extends StatelessWidget {
             width: ThemeDimens.padding48,
             child: TouchFeedBack(
               borderRadius: BorderRadius.circular(ThemeDimens.padding48),
-              onClick: onClick,
+              onTapped: onClick,
               child: Center(
                 child: SvgIcon(
                   svgAsset: svgAsset,

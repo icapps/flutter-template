@@ -20,7 +20,7 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugThemeSelectorViewModel>(
-      create: getIt,
+      create: getIt.call,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(

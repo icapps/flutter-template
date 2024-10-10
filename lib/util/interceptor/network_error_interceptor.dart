@@ -42,7 +42,7 @@ class NetworkErrorInterceptor extends SimpleInterceptor {
           return GeneralNetworkError(error);
       }
     } catch (e, stack) {
-      logger.error('Failed to get correct error', error: e, trace: stack);
+      logger.error('Failed to get correct error', error: e, stackTrace: stack);
       return CodeError();
     }
   }

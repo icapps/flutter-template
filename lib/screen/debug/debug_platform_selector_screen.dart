@@ -22,7 +22,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<DebugPlatformSelectorViewModel>(
-      create: getIt,
+      create: getIt.call,
       consumerWithThemeAndLocalization: (context, value, _, theme, localization) => Scaffold(
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(

@@ -4,7 +4,11 @@
 // FlutterNavigatorGenerator
 // **************************************************************************
 
+// ignore_for_file: prefer_const_constructors
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:convert';
+
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
 
@@ -22,11 +26,18 @@ mixin BaseNavigator {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
+    final arguments = settings.arguments is Map
+        ? (settings.arguments as Map).cast<String, dynamic>()
+        : <String, dynamic>{};
+    final settingsUri = Uri.parse(settings.name ?? '');
+    settingsUri.queryParameters.forEach((key, value) {
+      arguments[key] ??= value;
+    });
+    switch (settingsUri.path) {
       case RouteNames.homeScreen:
         return MaterialPageRoute<void>(
           builder: (_) => HomeScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -34,7 +45,7 @@ mixin BaseNavigator {
       case RouteNames.splashScreen:
         return MaterialPageRoute<void>(
           builder: (_) => SplashScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -42,7 +53,7 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -50,7 +61,7 @@ mixin BaseNavigator {
       case RouteNames.todoAddScreen:
         return MaterialPageRoute<void>(
           builder: (_) => TodoAddScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -58,7 +69,7 @@ mixin BaseNavigator {
       case RouteNames.analyticsPermissionScreen:
         return MaterialPageRoute<void>(
           builder: (_) => AnalyticsPermissionScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -66,7 +77,7 @@ mixin BaseNavigator {
       case RouteNames.loginScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LoginScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -74,7 +85,7 @@ mixin BaseNavigator {
       case RouteNames.themeModeSelectorScreen:
         return MaterialPageRoute<void>(
           builder: (_) => ThemeModeSelectorScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -82,7 +93,7 @@ mixin BaseNavigator {
       case RouteNames.debugPlatformSelectorScreen:
         return MaterialPageRoute<void>(
           builder: (_) => DebugPlatformSelectorScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -90,7 +101,7 @@ mixin BaseNavigator {
       case RouteNames.debugScreen:
         return MaterialPageRoute<void>(
           builder: (_) => DebugScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -166,21 +177,30 @@ mixin BaseNavigator {
 }
 
 class RouteNames {
+  /// /home
   static const homeScreen = '/home';
 
+  /// /splash
   static const splashScreen = '/splash';
 
+  /// /license
   static const licenseScreen = '/license';
 
+  /// /todo-add
   static const todoAddScreen = '/todo-add';
 
+  /// /analytics-permission
   static const analyticsPermissionScreen = '/analytics-permission';
 
+  /// /login
   static const loginScreen = '/login';
 
+  /// /theme-mode-selector
   static const themeModeSelectorScreen = '/theme-mode-selector';
 
+  /// /debug-platform-selector
   static const debugPlatformSelectorScreen = '/debug-platform-selector';
 
+  /// /debug
   static const debugScreen = '/debug';
 }
