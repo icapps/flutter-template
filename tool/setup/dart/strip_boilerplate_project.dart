@@ -44,9 +44,20 @@ void main(List<String> args) {
   Logger.debug('Removed files');
 
   Logger.debug('Clearing the model_generator');
-  File('model_generator/config.yaml')
-    ..deleteSync()
-    ..createSync();
+  _replaceInFile(
+    'model_generator/config.yaml',
+    '''##################################################################################
+#####                                TODO                                    #####
+##################################################################################
+Todo:
+  path: webservice/todo/
+  properties:
+    id: int?
+    title: String
+    completed: bool
+''',
+    '',
+  );
   Logger.debug('Cleared the model_generator');
 
   Logger.debug('Removing import references');
