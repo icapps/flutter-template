@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/extension/text_scaler_extensions.dart';
@@ -31,7 +32,7 @@ class BottomNavigationItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedColorFilter(
-              color: isSelected ? theme.colorsTheme.bottomNavbarItemActive : theme.colorsTheme.bottomNavbarItemInactive,
+              color: isSelected ? theme.bottomNavbarItemActive : theme.bottomNavbarItemInactive,
               builder: (context, color) => Icon(
                 icon,
                 color: color,
@@ -43,8 +44,8 @@ class BottomNavigationItem extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
                 style: isSelected
-                    ? theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
-                    : theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),
+                    ? theme.text.bodySmall.copyWith(color: theme.bottomNavbarItemActive)
+                    : theme.text.bodySmall.copyWith(color: theme.bottomNavbarItemInactive),
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

@@ -19,12 +19,12 @@ class BottomNavigation extends StatelessWidget {
       childBuilder: (context, theme, localization) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
-          color: theme.colorsTheme.bottomNavbarBackground,
+          color: theme.bottomNavbarBackground,
           boxShadow: [
             BoxShadow(
               spreadRadius: 2,
               blurRadius: 8,
-              color: theme.colorsTheme.shadow,
+              color: theme.shadow,
             ),
           ],
         ),

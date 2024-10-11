@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_checkbox.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
@@ -30,7 +31,7 @@ class TodoRowItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: theme.coreTextTheme.bodyNormal,
+                  style: theme.text.bodyNormal,
                 ),
               ),
               FlutterTemplateCheckBox(
