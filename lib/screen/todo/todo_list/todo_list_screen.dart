@@ -27,6 +27,7 @@ class TodoListScreenState extends State<TodoListScreen> {
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) {
         final errorKey = viewModel.errorKey;
         return BaseScreen.child(
+          padding: EdgeInsets.zero,
           title: localization.todoTitle,
           actions: [
             ActionItem(
