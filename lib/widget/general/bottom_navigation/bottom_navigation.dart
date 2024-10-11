@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/model/bottom_navigation/bottom_navigation_tab.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/bottom_navigation/bottom_navigation_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
@@ -20,13 +21,7 @@ class BottomNavigation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           color: theme.bottomNavbarBackground,
-          boxShadow: [
-            BoxShadow(
-              spreadRadius: 2,
-              blurRadius: 8,
-              color: theme.shadow,
-            ),
-          ],
+          boxShadow: theme.shadow.bottomNavShadow,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

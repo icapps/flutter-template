@@ -286,3 +286,13 @@ extension TextStyleExtension on TextStyle {
 
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
 }
+
+extension ShadowsExtension on Color {
+  List<BoxShadow> get bottomNavShadow => [
+        BoxShadow(
+          spreadRadius: 2,
+          blurRadius: 8,
+          color: this,
+        )
+      ];
+}
