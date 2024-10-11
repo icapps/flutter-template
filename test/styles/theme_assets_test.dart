@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_data.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../util/test_util.dart';
@@ -126,8 +125,8 @@ class IconAssetTesterAndroid extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraint) => SvgPicture.asset(
           getAsset(context),
-          height: ThemeDimens.padding64,
-          width: ThemeDimens.padding64,
+          height: 64,
+          width: 64,
           colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
         ),
       ),
@@ -150,8 +149,8 @@ class IconAssetTesterIOS extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraint) => SvgPicture.asset(
           getAsset(context),
-          height: ThemeDimens.padding64,
-          width: ThemeDimens.padding64,
+          height: 64,
+          width: 64,
           colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
         ),
       ),

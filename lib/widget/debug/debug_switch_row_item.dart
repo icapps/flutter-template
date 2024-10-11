@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -24,7 +23,7 @@ class DebugRowSwitchItem extends StatelessWidget {
       return TouchFeedBack(
         onTapped: () => onChanged(!value),
         child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.padding16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Expanded(

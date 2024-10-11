@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -23,10 +22,10 @@ class TextActionItem extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => Center(
         child: TouchFeedBack(
-          borderRadius: BorderRadius.circular(ThemeDimens.padding4),
+          borderRadius: BorderRadius.circular(4),
           onTapped: enabled ? onClick : null,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: ThemeDimens.padding16, vertical: ThemeDimens.padding8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: AnimatedDefaultTextStyle(
               style: style ?? theme.inverseCoreTextTheme.labelButtonSmall,
               duration: ThemeDurations.shortAnimationDuration,
