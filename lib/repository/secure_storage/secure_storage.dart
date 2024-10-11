@@ -21,7 +21,7 @@ abstract class SecureStorage implements SimpleKeyValueStorage {
 class _SecureStorage implements SecureStorage {
   final FlutterSecureStorage _storage;
 
-  final iOSOptions = const IOSOptions(accessibility: KeychainAccessibility.first_unlock);
+  final iOSOptions = const IOSOptions(accessibility: KeychainAccessibility.unlocked);
 
   _SecureStorage(this._storage);
 

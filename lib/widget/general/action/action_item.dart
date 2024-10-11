@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -20,19 +19,19 @@ class ActionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => SizedBox(
-        height: ThemeDimens.padding56,
-        width: ThemeDimens.padding56,
+        height: 56,
+        width: 56,
         child: Center(
           child: SizedBox(
-            height: ThemeDimens.padding48,
-            width: ThemeDimens.padding48,
+            height: 48,
+            width: 48,
             child: TouchFeedBack(
-              borderRadius: BorderRadius.circular(ThemeDimens.padding48),
+              borderRadius: BorderRadius.circular(48),
               onTapped: onClick,
               child: Center(
                 child: SvgIcon(
                   svgAsset: svgAsset,
-                  size: ThemeDimens.padding24,
+                  size: 24,
                   color: color ?? theme.colorsTheme.icon,
                 ),
               ),

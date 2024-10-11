@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class DebugRowTitle extends StatelessWidget {
@@ -15,8 +14,8 @@ class DebugRowTitle extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: ThemeDimens.padding16,
-          vertical: ThemeDimens.padding8,
+          horizontal: 16,
+          vertical: 8,
         ),
         color: theme.colorsTheme.debugTitleBackground,
         child: Text(
