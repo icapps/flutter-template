@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
 import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
@@ -25,7 +26,7 @@ class LicenseScreenState extends State<LicenseScreen> {
         itemBuilder: (context, index) {
           final item = viewModel.licenses[index];
           return Card(
-            color: theme.colorsTheme.background,
+            color: theme.background,
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -33,12 +34,12 @@ class LicenseScreenState extends State<LicenseScreen> {
                 children: [
                   Text(
                     item.name,
-                    style: theme.coreTextTheme.titleNormal,
+                    style: theme.text.titleNormal,
                   ),
                   Container(height: 8),
                   Text(
                     item.license,
-                    style: theme.coreTextTheme.bodySmall,
+                    style: theme.text.bodySmall,
                   ),
                 ],
               ),

@@ -28,7 +28,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
                 ? Center(
                     child: SvgIcon(
                       svgAsset: ThemeAssets.doneIcon(context),
-                      color: theme.colorsTheme.accent,
+                      color: theme.accent,
                       size: 24,
                     ),
                   )
@@ -41,7 +41,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
       childBuilderTheme: (context, theme) => Checkbox(
         value: value,
         onChanged: (value) => onChanged(value ?? false),
-        activeColor: theme.colorsTheme.accent,
+        activeColor: theme.accent,
       ),
     );
   }

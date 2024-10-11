@@ -24,14 +24,14 @@ class TodoAddScreenState extends State<TodoAddScreen> {
     return ProviderWidget<TodoAddViewModel>(
       create: getIt.call,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
-        backgroundColor: theme.colorsTheme.background,
+        backgroundColor: theme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(
             onClick: viewModel.onBackClicked,
           ),
           title: Text(localization.todoAddTitle),
-          backgroundColor: theme.colorsTheme.primary,
+          backgroundColor: theme.primary,
         ),
         body: ScrollConfiguration(
           behavior: ScrollWhenNeededBehavior(),

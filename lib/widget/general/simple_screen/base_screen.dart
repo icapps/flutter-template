@@ -100,7 +100,7 @@ class BaseScreen extends StatelessWidget {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => StatusBar.dark(
         child: Scaffold(
-          backgroundColor: background ?? theme.colorsTheme.background,
+          backgroundColor: background ?? theme.background,
           body: GestureDetector(
             onTap: FocusManager.instance.primaryFocus?.unfocus,
             child: SafeArea(

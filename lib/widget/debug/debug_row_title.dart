@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class DebugRowTitle extends StatelessWidget {
@@ -17,10 +18,10 @@ class DebugRowTitle extends StatelessWidget {
           horizontal: 16,
           vertical: 8,
         ),
-        color: theme.colorsTheme.debugTitleBackground,
+        color: theme.debugTitleBackground,
         child: Text(
           title,
-          style: theme.coreTextTheme.titleNormal,
+          style: theme.text.titleNormal,
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
@@ -31,13 +32,13 @@ class LoginScreenState extends State<LoginScreen> {
           Container(height: 16),
           Text(
             'Login',
-            style: theme.coreTextTheme.titleNormal,
+            style: theme.text.titleNormal,
             textAlign: TextAlign.center,
           ),
           Container(height: 32),
           Text(
             'Just fill in some text. There is no validator for the login',
-            style: theme.coreTextTheme.labelButtonSmall,
+            style: theme.text.labelButtonSmall,
           ),
           Container(height: 32),
           FlutterTemplateInputField(

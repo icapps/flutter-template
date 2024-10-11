@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
@@ -33,13 +34,13 @@ class TodoListScreenState extends State<TodoListScreen> {
               key: Keys.downloadAction,
               svgAsset: ThemeAssets.downloadIcon(context),
               onClick: viewModel.onDownloadClicked,
-              color: theme.colorsTheme.appBarAction,
+              color: theme.appBarAction,
             ),
             ActionItem(
               key: Keys.addAction,
               svgAsset: ThemeAssets.addIcon(context),
               onClick: viewModel.onAddClicked,
-              color: theme.colorsTheme.appBarAction,
+              color: theme.appBarAction,
             ),
           ],
           child: Builder(
@@ -49,7 +50,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                 return Center(
                   child: Text(
                     localization.getTranslation(errorKey),
-                    style: theme.coreTextTheme.bodyNormal.copyWith(color: theme.colorsTheme.errorText),
+                    style: theme.errorText.bodyNormal,
                   ),
                 );
               }
@@ -67,7 +68,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                           child: Text(
                             localization.todoEmptyState,
                             textAlign: TextAlign.center,
-                            style: theme.coreTextTheme.bodyNormal,
+                            style: theme.text.bodyNormal,
                           ),
                         ),
                       );
@@ -86,7 +87,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
                           height: 1,
-                          color: theme.colorsTheme.primary.withOpacity(0.1),
+                          color: theme.primary.withOpacity(0.1),
                         ),
                       ),
                     );

@@ -3,6 +3,7 @@ import 'package:flutter_navigation_generator_annotations/flutter_navigation_gene
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
 import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -37,13 +38,13 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   const SizedBox(height: 32),
                   Text(
                     localization.permissionAnalyticsTitle,
-                    style: theme.coreTextTheme.titleNormal,
+                    style: theme.text.titleNormal,
                   ),
                   const SizedBox(height: 16),
                   Text(
                     localization.permissionAnalyticsDescription,
                     textAlign: TextAlign.center,
-                    style: theme.coreTextTheme.bodyNormal,
+                    style: theme.text.bodyNormal,
                   ),
                   const Spacer(),
                 ],

@@ -22,12 +22,12 @@ class ThemeModeSelectorScreenState extends State<ThemeModeSelectorScreen> {
     return ProviderWidget<DebugThemeSelectorViewModel>(
       create: getIt.call,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
-        backgroundColor: theme.colorsTheme.background,
+        backgroundColor: theme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
           title: const Text('Select a theme mode'),
-          backgroundColor: theme.colorsTheme.primary,
+          backgroundColor: theme.primary,
         ),
         body: ListView(
           children: [

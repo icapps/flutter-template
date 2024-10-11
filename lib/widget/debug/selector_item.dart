@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -28,14 +29,14 @@ class SelectorItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: theme.coreTextTheme.bodyNormal,
+                  style: theme.text.bodyNormal,
                 ),
               ),
               Opacity(
                 opacity: selected ? 1 : 0,
                 child: SvgIcon(
                   svgAsset: ThemeAssets.doneIcon(context),
-                  color: theme.colorsTheme.accent,
+                  color: theme.accent,
                 ),
               ),
             ],
