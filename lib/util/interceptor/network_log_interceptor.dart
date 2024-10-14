@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_template/model/exceptions/general_network_error.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,13 +10,13 @@ import 'package:injectable/injectable.dart';
 class NetworkLogInterceptor extends SimpleInterceptor {
   @override
   Future<Object?> onRequest(RequestOptions options) async {
-    logger.logNetworkRequest(options);
+    FlutterTemplateLogger.logNetworkRequest(options);
     return super.onRequest(options);
   }
 
   @override
   Future<Object?> onResponse(Response response) async {
-    logger.logNetworkResponse(response);
+    FlutterTemplateLogger.logNetworkResponse(response);
     return super.onResponse(response);
   }
 
@@ -23,13 +24,13 @@ class NetworkLogInterceptor extends SimpleInterceptor {
   Future<Object?> onError(DioException error) async {
     final response = error.response;
     if (response != null && response.statusCode == HttpStatus.notModified) {
-      logger.logNetworkResponse(response);
+      FlutterTemplateLogger.logNetworkResponse(response);
       return super.onError(error);
     }
     if (error is NetworkError) {
-      logger.logNetworkError(error);
+      FlutterTemplateLogger.logNetworkError(error);
     } else {
-      logger.logNetworkError(GeneralNetworkError(error));
+      FlutterTemplateLogger.logNetworkError(GeneralNetworkError(error));
     }
     return super.onError(error);
   }
