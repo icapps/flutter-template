@@ -191,17 +191,6 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToTodoAddScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
   _i4.Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -251,6 +240,17 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
   _i4.Future<void> goToDebugScreen({_i1.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToDebugScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
           [],
           {#key: key},
         ),

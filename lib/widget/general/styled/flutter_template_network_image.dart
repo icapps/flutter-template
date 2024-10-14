@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 
 class FlutterTemplateNetworkImage extends StatelessWidget {
   final String? url;
@@ -112,7 +112,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       return;
     }
     if (widgetWidth == double.infinity || widgetHeight == double.infinity || widgetWidth == null || widgetHeight == null) {
-      logger.warning('IMAGE-ERROR: $originalUrl ($widgetWidth/$widgetHeight');
+      FlutterTemplateLogger.logWarning('IMAGE-ERROR: $originalUrl ($widgetWidth/$widgetHeight');
       setState(() => _hasError = true);
       return;
     }
@@ -147,7 +147,12 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
       _image = data?.buffer.asUint8List();
       unawaited(_cacheImage(url));
     } catch (e, stack) {
-      logger.error('Failed to parse image: $originalUrl', error: e, stackTrace: stack);
+      FlutterTemplateLogger.logError(
+        'Failed to parse image: $originalUrl',
+        error: e,
+        stackTrace: stack,
+        sendToFirebase: false,
+      );
       _hasError = true;
     } finally {
       _isLoading = false;
@@ -164,7 +169,7 @@ class _FlutterTemplateBetterNetworkImageState extends State<_FlutterTemplateBett
     try {
       await _cacheController.putFile(url, img, fileExtension: 'png');
     } catch (e, stack) {
-      logger.error('Failed to cache image: $url', error: e, stackTrace: stack);
+      FlutterTemplateLogger.logError('Failed to cache image: $url', error: e, stackTrace: stack);
     }
   }
 

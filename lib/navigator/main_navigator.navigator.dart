@@ -58,14 +58,6 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.todoAddScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => TodoAddScreen(
-            key: arguments['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
       case RouteNames.analyticsPermissionScreen:
         return MaterialPageRoute<void>(
           builder: (_) => AnalyticsPermissionScreen(
@@ -106,6 +98,14 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.todoAddScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => TodoAddScreen(
+            key: arguments['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
     }
     return null;
   }
@@ -125,11 +125,6 @@ mixin BaseNavigator {
   Future<void> goToLicenseScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.todoAddScreen,
         arguments: {'key': key},
       );
   Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
@@ -156,6 +151,11 @@ mixin BaseNavigator {
   Future<void> goToDebugScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.todoAddScreen,
         arguments: {'key': key},
       );
   void goBack() => navigatorKey.currentState?.pop();
@@ -186,9 +186,6 @@ class RouteNames {
   /// /license
   static const licenseScreen = '/license';
 
-  /// /todo-add
-  static const todoAddScreen = '/todo-add';
-
   /// /analytics-permission
   static const analyticsPermissionScreen = '/analytics-permission';
 
@@ -203,4 +200,7 @@ class RouteNames {
 
   /// /debug
   static const debugScreen = '/debug';
+
+  /// /todo-add
+  static const todoAddScreen = '/todo-add';
 }

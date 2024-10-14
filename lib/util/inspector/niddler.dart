@@ -1,4 +1,4 @@
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:niddler_dart/niddler_dart.dart';
 
 Future<Niddler> initNiddler() async {
@@ -11,12 +11,12 @@ Future<Niddler> initNiddler() async {
   final niddler = niddlerBuilder.build();
 
   const debugger = bool.fromEnvironment('niddler_wait');
-  staticLogger.d('Starting niddler. Waiting for debugger? $debugger');
+  FlutterTemplateLogger.logDebug('Starting niddler. Waiting for debugger? $debugger');
 
   await niddler.start(waitForDebugger: debugger);
 
   niddler.install();
-  staticLogger.d('Niddler is running');
+  FlutterTemplateLogger.logDebug('Niddler is running');
 
   return niddler;
 }
