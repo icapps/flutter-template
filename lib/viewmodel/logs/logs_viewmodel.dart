@@ -19,7 +19,6 @@ class LogsViewModel with ChangeNotifierEx {
   );
 
   Future<void> init() async {
-    staticLogger.d('LogsViewModel init');
     _dates.replaceAll(await _secureLogStorage.availableDates());
     if (disposed) return;
     notifyListeners();

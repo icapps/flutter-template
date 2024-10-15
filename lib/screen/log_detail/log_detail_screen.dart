@@ -4,6 +4,7 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/viewmodel/log_detail/log_detail_viewmodel.dart';
 import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @flutterRoute
@@ -24,16 +25,27 @@ class LogDetailScreenState extends State<LogDetailScreen> {
   Widget build(BuildContext context) {
     return ProviderWidget<LogDetailViewModel>(
       create: () => getIt()..init(widget.date),
-      childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen.builder(
-        itemCount: viewModel.logs.length,
-        reversed: true,
-        itemBuilder: (context, index) {
-          final log = viewModel.logs.reversed.toList()[index];
-          return Text(
-            log,
-            style: theme.text.bodySmall,
-          );
-        },
+      childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              reverse: true,
+              itemCount: viewModel.logs.length,
+              itemBuilder: (context, index) {
+                final log = viewModel.logs.reversed.toList()[index];
+                return Text(
+                  log,
+                  style: theme.text.bodySmall,
+                );
+              },
+            ),
+          ),
+          FlutterTemplateButton(
+            isEnabled: !viewModel.isLoading,
+            text: 'Upload log',
+            onClick: viewModel.uploadLog,
+          )
+        ],
       ),
     );
   }

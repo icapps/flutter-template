@@ -370,9 +370,38 @@ class MockMainNavigator extends _i1.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
+  _i6.Future<void> goToLogDetailScreen({
+    required String? date,
+    _i2.Key? key,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToLogDetailScreen,
+          [],
+          {
+            #date: date,
+            #key: key,
+          },
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
   _i6.Future<void> goToTodoAddScreen({_i2.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> goToLogsScreen({_i2.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLogsScreen,
           [],
           {#key: key},
         ),
@@ -432,35 +461,6 @@ class MockMainNavigator extends _i1.Mock implements _i7.MainNavigator {
           #goToDebugScreen,
           [],
           {#key: key},
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> goToLogsScreen({_i2.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToLogsScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> goToLogDetailScreen({
-    required String? date,
-    _i2.Key? key,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #goToLogDetailScreen,
-          [],
-          {
-            #date: date,
-            #key: key,
-          },
         ),
         returnValue: _i6.Future<void>.value(),
         returnValueForMissingStub: _i6.Future<void>.value(),

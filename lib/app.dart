@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/repository/logging/logging_repository.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
-import 'package:flutter_template/util/logging_util.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     // init logger
-    LoggingUtil.startLogging();
+    getIt.get<LoggingRepository>().startLogging();
 
     return const InternalApp();
   }
