@@ -21,6 +21,7 @@ import 'package:flutter_template/util/interceptor/network_refresh_interceptor.da
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
+import 'package:log_to_secure_file/log_to_secure_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.asNewInstance();
@@ -59,6 +60,9 @@ abstract class RegisterModule {
   Future<DatabaseConnection> provideDatabaseConnection() {
     return createDriftDatabaseConnection('db');
   }
+
+  @lazySingleton
+  SecureLogStorage provideSecureLogStorage(SecureStorage secureStorage) => SecureLogStorage();
 
   @lazySingleton
   FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;

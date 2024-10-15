@@ -2,6 +2,8 @@ name: flutter_template
 description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
+publish_to: none
+
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
@@ -35,7 +37,12 @@ dependencies:
   get_it: ^7.2.0
   icapps_architecture: ^2.1.0
   injectable: ^2.1.0
+  intl: ^0.19.0
   json_annotation: ^4.7.0
+  log_to_secure_file:
+    git:
+      url: https://github.com/icapps/log_to_secure_file.git
+      ref: main
   niddler_dart: ^1.6.0
   path: ^1.8.2
   path_provider: ^2.0.11

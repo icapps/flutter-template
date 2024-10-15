@@ -403,6 +403,17 @@ class MockMainNavigator extends _i2.Mock implements _i9.MainNavigator {
       ) as _i5.Future<void>);
 
   @override
+  _i5.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   _i5.Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -460,11 +471,29 @@ class MockMainNavigator extends _i2.Mock implements _i9.MainNavigator {
       ) as _i5.Future<void>);
 
   @override
-  _i5.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
+  _i5.Future<void> goToLogsScreen({_i1.Key? key}) => (super.noSuchMethod(
         Invocation.method(
-          #goToTodoAddScreen,
+          #goToLogsScreen,
           [],
           {#key: key},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> goToLogDetailScreen({
+    required String? date,
+    _i1.Key? key,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToLogDetailScreen,
+          [],
+          {
+            #date: date,
+            #key: key,
+          },
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
