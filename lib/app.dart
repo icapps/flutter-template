@@ -5,12 +5,11 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_template/util/logging_util.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/general/flavor_banner.dart';
 import 'package:flutter_template/widget/general/text_scale_factor.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:log_to_secure_file/log_to_secure_file.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,9 +26,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     // init logger
-    final fileLogger = getIt.get<SecureLogStorage>();
-    fileLogger.init();
-    LoggingFactory.configure(LoggingConfiguration(onLog: (value) => fileLogger.storeLogLine(value)));
+    LoggingUtil.startLogging();
 
     return const InternalApp();
   }
