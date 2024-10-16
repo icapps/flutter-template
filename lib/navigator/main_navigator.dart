@@ -21,6 +21,8 @@ class MainNavigator with BaseNavigator {
 
   static String get initialRoute => FlavorConfig.isInTest() ? 'test_route' : RouteNames.splashScreen;
 
+  BuildContext get context => navigatorKey.currentContext!;
+
   static List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
   Future<void> goToDatabase(GeneratedDatabase db) async => _navigator.push<void>(MaterialPageRoute(builder: (context) => DriftDbViewer(db)));

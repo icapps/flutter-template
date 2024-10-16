@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class BaseScreenContent extends StatelessWidget {
   final bool useSlivers;
   final bool isScrollable;
+  final bool reversed;
   final int? itemCount;
   final Widget? child;
   final EdgeInsets padding;
@@ -16,6 +17,7 @@ class BaseScreenContent extends StatelessWidget {
     required this.children,
     required this.itemBuilder,
     required this.itemCount,
+    required this.reversed,
     this.child,
     super.key,
   });
@@ -28,16 +30,21 @@ class BaseScreenContent extends StatelessWidget {
       if (useSlivers) {
         content = CustomScrollView(
           slivers: children,
+          reverse: reversed,
         );
       } else if (isScrollable) {
         content = ListView(
           padding: padding,
+          reverse: reversed,
           children: children,
         );
       } else {
         content = Padding(
           padding: padding,
-          child: Column(children: children),
+          child: Column(
+            verticalDirection: reversed ? VerticalDirection.up : VerticalDirection.down,
+            children: children,
+          ),
         );
       }
     } else if (itemBuilder != null) {
@@ -45,6 +52,7 @@ class BaseScreenContent extends StatelessWidget {
         padding: padding,
         itemBuilder: itemBuilder!,
         itemCount: itemCount,
+        reverse: reversed,
       );
     } else {
       content = Padding(

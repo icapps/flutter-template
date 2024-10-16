@@ -7,7 +7,7 @@ import 'dart:async' as _i6;
 
 import 'package:drift/drift.dart' as _i4;
 import 'package:drift/src/runtime/executor/stream_queries.dart' as _i5;
-import 'package:flutter/material.dart' as _i1;
+import 'package:flutter/material.dart' as _i2;
 import 'package:flutter_template/database/flutter_template_database.dart'
     as _i3;
 import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i8;
@@ -15,7 +15,7 @@ import 'package:flutter_template/navigator/main_navigator.dart' as _i7;
 import 'package:flutter_template/repository/debug/debug_repository.dart' as _i9;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
     as _i10;
-import 'package:mockito/mockito.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i11;
 
 // ignore_for_file: type=lint
@@ -31,9 +31,8 @@ import 'package:mockito/src/dummies.dart' as _i11;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeGlobalKey_0<T extends _i1.State<_i1.StatefulWidget>>
-    extends _i2.SmartFake implements _i1.GlobalKey<T> {
-  _FakeGlobalKey_0(
+class _FakeBuildContext_0 extends _i1.SmartFake implements _i2.BuildContext {
+  _FakeBuildContext_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -42,9 +41,20 @@ class _FakeGlobalKey_0<T extends _i1.State<_i1.StatefulWidget>>
         );
 }
 
-class _Fake$DbTodoTableTable_1 extends _i2.SmartFake
+class _FakeGlobalKey_1<T extends _i2.State<_i2.StatefulWidget>>
+    extends _i1.SmartFake implements _i2.GlobalKey<T> {
+  _FakeGlobalKey_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _Fake$DbTodoTableTable_2 extends _i1.SmartFake
     implements _i3.$DbTodoTableTable {
-  _Fake$DbTodoTableTable_1(
+  _Fake$DbTodoTableTable_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -53,9 +63,9 @@ class _Fake$DbTodoTableTable_1 extends _i2.SmartFake
         );
 }
 
-class _FakeGeneratedDatabase_2 extends _i2.SmartFake
+class _FakeGeneratedDatabase_3 extends _i1.SmartFake
     implements _i4.GeneratedDatabase {
-  _FakeGeneratedDatabase_2(
+  _FakeGeneratedDatabase_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -64,9 +74,9 @@ class _FakeGeneratedDatabase_2 extends _i2.SmartFake
         );
 }
 
-class _FakeDriftDatabaseOptions_3 extends _i2.SmartFake
+class _FakeDriftDatabaseOptions_4 extends _i1.SmartFake
     implements _i4.DriftDatabaseOptions {
-  _FakeDriftDatabaseOptions_3(
+  _FakeDriftDatabaseOptions_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -75,9 +85,9 @@ class _FakeDriftDatabaseOptions_3 extends _i2.SmartFake
         );
 }
 
-class _FakeMigrationStrategy_4 extends _i2.SmartFake
+class _FakeMigrationStrategy_5 extends _i1.SmartFake
     implements _i4.MigrationStrategy {
-  _FakeMigrationStrategy_4(
+  _FakeMigrationStrategy_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -86,9 +96,9 @@ class _FakeMigrationStrategy_4 extends _i2.SmartFake
         );
 }
 
-class _FakeStreamQueryUpdateRules_5 extends _i2.SmartFake
+class _FakeStreamQueryUpdateRules_6 extends _i1.SmartFake
     implements _i4.StreamQueryUpdateRules {
-  _FakeStreamQueryUpdateRules_5(
+  _FakeStreamQueryUpdateRules_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -97,9 +107,9 @@ class _FakeStreamQueryUpdateRules_5 extends _i2.SmartFake
         );
 }
 
-class _FakeDatabaseConnection_6 extends _i2.SmartFake
+class _FakeDatabaseConnection_7 extends _i1.SmartFake
     implements _i4.DatabaseConnection {
-  _FakeDatabaseConnection_6(
+  _FakeDatabaseConnection_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -108,8 +118,8 @@ class _FakeDatabaseConnection_6 extends _i2.SmartFake
         );
 }
 
-class _FakeQueryExecutor_7 extends _i2.SmartFake implements _i4.QueryExecutor {
-  _FakeQueryExecutor_7(
+class _FakeQueryExecutor_8 extends _i1.SmartFake implements _i4.QueryExecutor {
+  _FakeQueryExecutor_8(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -118,9 +128,9 @@ class _FakeQueryExecutor_7 extends _i2.SmartFake implements _i4.QueryExecutor {
         );
 }
 
-class _FakeStreamQueryStore_8 extends _i2.SmartFake
+class _FakeStreamQueryStore_9 extends _i1.SmartFake
     implements _i5.StreamQueryStore {
-  _FakeStreamQueryStore_8(
+  _FakeStreamQueryStore_9(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -129,9 +139,9 @@ class _FakeStreamQueryStore_8 extends _i2.SmartFake
         );
 }
 
-class _FakeDatabaseConnectionUser_9 extends _i2.SmartFake
+class _FakeDatabaseConnectionUser_10 extends _i1.SmartFake
     implements _i4.DatabaseConnectionUser {
-  _FakeDatabaseConnectionUser_9(
+  _FakeDatabaseConnectionUser_10(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -140,8 +150,8 @@ class _FakeDatabaseConnectionUser_9 extends _i2.SmartFake
         );
 }
 
-class _FakeMigrator_10 extends _i2.SmartFake implements _i4.Migrator {
-  _FakeMigrator_10(
+class _FakeMigrator_11 extends _i1.SmartFake implements _i4.Migrator {
+  _FakeMigrator_11(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -150,8 +160,8 @@ class _FakeMigrator_10 extends _i2.SmartFake implements _i4.Migrator {
         );
 }
 
-class _FakeFuture_11<T1> extends _i2.SmartFake implements _i6.Future<T1> {
-  _FakeFuture_11(
+class _FakeFuture_12<T1> extends _i1.SmartFake implements _i6.Future<T1> {
+  _FakeFuture_12(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -160,9 +170,9 @@ class _FakeFuture_11<T1> extends _i2.SmartFake implements _i6.Future<T1> {
         );
 }
 
-class _FakeInsertStatement_12<T1 extends _i4.Table, D1> extends _i2.SmartFake
+class _FakeInsertStatement_13<T1 extends _i4.Table, D1> extends _i1.SmartFake
     implements _i4.InsertStatement<T1, D1> {
-  _FakeInsertStatement_12(
+  _FakeInsertStatement_13(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -171,9 +181,9 @@ class _FakeInsertStatement_12<T1 extends _i4.Table, D1> extends _i2.SmartFake
         );
 }
 
-class _FakeUpdateStatement_13<T extends _i4.Table, D> extends _i2.SmartFake
+class _FakeUpdateStatement_14<T extends _i4.Table, D> extends _i1.SmartFake
     implements _i4.UpdateStatement<T, D> {
-  _FakeUpdateStatement_13(
+  _FakeUpdateStatement_14(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -182,9 +192,9 @@ class _FakeUpdateStatement_13<T extends _i4.Table, D> extends _i2.SmartFake
         );
 }
 
-class _FakeSimpleSelectStatement_14<T1 extends _i4.HasResultSet, D>
-    extends _i2.SmartFake implements _i4.SimpleSelectStatement<T1, D> {
-  _FakeSimpleSelectStatement_14(
+class _FakeSimpleSelectStatement_15<T1 extends _i4.HasResultSet, D>
+    extends _i1.SmartFake implements _i4.SimpleSelectStatement<T1, D> {
+  _FakeSimpleSelectStatement_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -193,9 +203,9 @@ class _FakeSimpleSelectStatement_14<T1 extends _i4.HasResultSet, D>
         );
 }
 
-class _FakeJoinedSelectStatement_15<FirstT extends _i4.HasResultSet, FirstD>
-    extends _i2.SmartFake implements _i4.JoinedSelectStatement<FirstT, FirstD> {
-  _FakeJoinedSelectStatement_15(
+class _FakeJoinedSelectStatement_16<FirstT extends _i4.HasResultSet, FirstD>
+    extends _i1.SmartFake implements _i4.JoinedSelectStatement<FirstT, FirstD> {
+  _FakeJoinedSelectStatement_16(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -204,9 +214,9 @@ class _FakeJoinedSelectStatement_15<FirstT extends _i4.HasResultSet, FirstD>
         );
 }
 
-class _FakeDeleteStatement_16<T1 extends _i4.Table, D1> extends _i2.SmartFake
+class _FakeDeleteStatement_17<T1 extends _i4.Table, D1> extends _i1.SmartFake
     implements _i4.DeleteStatement<T1, D1> {
-  _FakeDeleteStatement_16(
+  _FakeDeleteStatement_17(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -215,8 +225,8 @@ class _FakeDeleteStatement_16<T1 extends _i4.Table, D1> extends _i2.SmartFake
         );
 }
 
-class _FakeSelectable_17<T> extends _i2.SmartFake implements _i4.Selectable<T> {
-  _FakeSelectable_17(
+class _FakeSelectable_18<T> extends _i1.SmartFake implements _i4.Selectable<T> {
+  _FakeSelectable_18(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -225,9 +235,9 @@ class _FakeSelectable_17<T> extends _i2.SmartFake implements _i4.Selectable<T> {
         );
 }
 
-class _FakeGenerationContext_18 extends _i2.SmartFake
+class _FakeGenerationContext_19 extends _i1.SmartFake
     implements _i4.GenerationContext {
-  _FakeGenerationContext_18(
+  _FakeGenerationContext_19(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -239,19 +249,28 @@ class _FakeGenerationContext_18 extends _i2.SmartFake
 /// A class which mocks [MainNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
+class MockMainNavigator extends _i1.Mock implements _i7.MainNavigator {
   MockMainNavigator() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i1.GlobalKey<_i1.NavigatorState> get navigatorKey => (super.noSuchMethod(
+  _i2.BuildContext get context => (super.noSuchMethod(
+        Invocation.getter(#context),
+        returnValue: _FakeBuildContext_0(
+          this,
+          Invocation.getter(#context),
+        ),
+      ) as _i2.BuildContext);
+
+  @override
+  _i2.GlobalKey<_i2.NavigatorState> get navigatorKey => (super.noSuchMethod(
         Invocation.getter(#navigatorKey),
-        returnValue: _FakeGlobalKey_0<_i1.NavigatorState>(
+        returnValue: _FakeGlobalKey_1<_i2.NavigatorState>(
           this,
           Invocation.getter(#navigatorKey),
         ),
-      ) as _i1.GlobalKey<_i1.NavigatorState>);
+      ) as _i2.GlobalKey<_i2.NavigatorState>);
 
   @override
   _i6.Future<void> goToDatabase(_i4.GeneratedDatabase? db) =>
@@ -313,14 +332,14 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
-  _i1.Route<dynamic>? onGenerateRoute(_i1.RouteSettings? settings) =>
+  _i2.Route<dynamic>? onGenerateRoute(_i2.RouteSettings? settings) =>
       (super.noSuchMethod(Invocation.method(
         #onGenerateRoute,
         [settings],
-      )) as _i1.Route<dynamic>?);
+      )) as _i2.Route<dynamic>?);
 
   @override
-  void goToHomeScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToHomeScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToHomeScreen,
           [],
@@ -330,7 +349,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       );
 
   @override
-  void goToSplashScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToSplashScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToSplashScreen,
           [],
@@ -340,7 +359,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       );
 
   @override
-  _i6.Future<void> goToLicenseScreen({_i1.Key? key}) => (super.noSuchMethod(
+  _i6.Future<void> goToLicenseScreen({_i2.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToLicenseScreen,
           [],
@@ -351,7 +370,47 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) =>
+  _i6.Future<void> goToLogDetailScreen({
+    required String? date,
+    _i2.Key? key,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToLogDetailScreen,
+          [],
+          {
+            #date: date,
+            #key: key,
+          },
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> goToTodoAddScreen({_i2.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> goToLogsScreen({_i2.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLogsScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+
+  @override
+  _i6.Future<void> goToAnalyticsPermissionScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToAnalyticsPermissionScreen,
@@ -363,7 +422,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
-  void goToLoginScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToLoginScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToLoginScreen,
           [],
@@ -373,7 +432,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       );
 
   @override
-  _i6.Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) =>
+  _i6.Future<void> goToThemeModeSelectorScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToThemeModeSelectorScreen,
@@ -385,7 +444,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) =>
+  _i6.Future<void> goToDebugPlatformSelectorScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToDebugPlatformSelectorScreen,
@@ -397,20 +456,9 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> goToDebugScreen({_i1.Key? key}) => (super.noSuchMethod(
+  _i6.Future<void> goToDebugScreen({_i2.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToDebugScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToTodoAddScreen,
           [],
           {#key: key},
         ),
@@ -438,7 +486,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       );
 
   @override
-  void popUntil(bool Function(_i1.Route<dynamic>)? predicate) =>
+  void popUntil(bool Function(_i2.Route<dynamic>)? predicate) =>
       super.noSuchMethod(
         Invocation.method(
           #popUntil,
@@ -457,7 +505,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       );
 
   @override
-  _i6.Future<T?> showCustomDialog<T>({_i1.Widget? widget}) =>
+  _i6.Future<T?> showCustomDialog<T>({_i2.Widget? widget}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showCustomDialog,
@@ -468,7 +516,7 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
       ) as _i6.Future<T?>);
 
   @override
-  _i6.Future<T?> showBottomSheet<T>({_i1.Widget? widget}) =>
+  _i6.Future<T?> showBottomSheet<T>({_i2.Widget? widget}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showBottomSheet,
@@ -482,9 +530,9 @@ class MockMainNavigator extends _i2.Mock implements _i7.MainNavigator {
 /// A class which mocks [DebugRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDebugRepository extends _i2.Mock implements _i9.DebugRepository {
+class MockDebugRepository extends _i1.Mock implements _i9.DebugRepository {
   MockDebugRepository() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
@@ -523,9 +571,9 @@ class MockDebugRepository extends _i2.Mock implements _i9.DebugRepository {
 /// A class which mocks [LocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalStorage extends _i2.Mock implements _i10.LocalStorage {
+class MockLocalStorage extends _i1.Mock implements _i10.LocalStorage {
   MockLocalStorage() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
@@ -539,7 +587,7 @@ class MockLocalStorage extends _i2.Mock implements _i10.LocalStorage {
       ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> updateThemeMode(_i1.ThemeMode? themeMode) =>
+  _i6.Future<void> updateThemeMode(_i2.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateThemeMode,
@@ -564,10 +612,10 @@ class MockLocalStorage extends _i2.Mock implements _i10.LocalStorage {
 /// A class which mocks [FlutterTemplateDatabase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFlutterTemplateDatabase extends _i2.Mock
+class MockFlutterTemplateDatabase extends _i1.Mock
     implements _i3.FlutterTemplateDatabase {
   MockFlutterTemplateDatabase() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
@@ -579,7 +627,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i3.$DbTodoTableTable get dbTodoTable => (super.noSuchMethod(
         Invocation.getter(#dbTodoTable),
-        returnValue: _Fake$DbTodoTableTable_1(
+        returnValue: _Fake$DbTodoTableTable_2(
           this,
           Invocation.getter(#dbTodoTable),
         ),
@@ -605,7 +653,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.GeneratedDatabase get attachedDatabase => (super.noSuchMethod(
         Invocation.getter(#attachedDatabase),
-        returnValue: _FakeGeneratedDatabase_2(
+        returnValue: _FakeGeneratedDatabase_3(
           this,
           Invocation.getter(#attachedDatabase),
         ),
@@ -614,7 +662,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.DriftDatabaseOptions get options => (super.noSuchMethod(
         Invocation.getter(#options),
-        returnValue: _FakeDriftDatabaseOptions_3(
+        returnValue: _FakeDriftDatabaseOptions_4(
           this,
           Invocation.getter(#options),
         ),
@@ -623,7 +671,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.MigrationStrategy get migration => (super.noSuchMethod(
         Invocation.getter(#migration),
-        returnValue: _FakeMigrationStrategy_4(
+        returnValue: _FakeMigrationStrategy_5(
           this,
           Invocation.getter(#migration),
         ),
@@ -632,7 +680,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.StreamQueryUpdateRules get streamUpdateRules => (super.noSuchMethod(
         Invocation.getter(#streamUpdateRules),
-        returnValue: _FakeStreamQueryUpdateRules_5(
+        returnValue: _FakeStreamQueryUpdateRules_6(
           this,
           Invocation.getter(#streamUpdateRules),
         ),
@@ -641,7 +689,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.DatabaseConnection get connection => (super.noSuchMethod(
         Invocation.getter(#connection),
-        returnValue: _FakeDatabaseConnection_6(
+        returnValue: _FakeDatabaseConnection_7(
           this,
           Invocation.getter(#connection),
         ),
@@ -659,7 +707,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.QueryExecutor get executor => (super.noSuchMethod(
         Invocation.getter(#executor),
-        returnValue: _FakeQueryExecutor_7(
+        returnValue: _FakeQueryExecutor_8(
           this,
           Invocation.getter(#executor),
         ),
@@ -668,7 +716,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i5.StreamQueryStore get streamQueries => (super.noSuchMethod(
         Invocation.getter(#streamQueries),
-        returnValue: _FakeStreamQueryStore_8(
+        returnValue: _FakeStreamQueryStore_9(
           this,
           Invocation.getter(#streamQueries),
         ),
@@ -677,7 +725,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
   @override
   _i4.DatabaseConnectionUser get resolvedEngine => (super.noSuchMethod(
         Invocation.getter(#resolvedEngine),
-        returnValue: _FakeDatabaseConnectionUser_9(
+        returnValue: _FakeDatabaseConnectionUser_10(
           this,
           Invocation.getter(#resolvedEngine),
         ),
@@ -699,7 +747,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           #createMigrator,
           [],
         ),
-        returnValue: _FakeMigrator_10(
+        returnValue: _FakeMigrator_11(
           this,
           Invocation.method(
             #createMigrator,
@@ -819,7 +867,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
               ),
               (T v) => _i6.Future<T>.value(v),
             ) ??
-            _FakeFuture_11<T>(
+            _FakeFuture_12<T>(
               this,
               Invocation.method(
                 #doWhenOpened,
@@ -836,7 +884,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           #into,
           [table],
         ),
-        returnValue: _FakeInsertStatement_12<T, D>(
+        returnValue: _FakeInsertStatement_13<T, D>(
           this,
           Invocation.method(
             #into,
@@ -853,7 +901,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           #update,
           [table],
         ),
-        returnValue: _FakeUpdateStatement_13<Tbl, R>(
+        returnValue: _FakeUpdateStatement_14<Tbl, R>(
           this,
           Invocation.method(
             #update,
@@ -873,7 +921,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           [table],
           {#distinct: distinct},
         ),
-        returnValue: _FakeSimpleSelectStatement_14<T, R>(
+        returnValue: _FakeSimpleSelectStatement_15<T, R>(
           this,
           Invocation.method(
             #select,
@@ -894,7 +942,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           [table],
           {#distinct: distinct},
         ),
-        returnValue: _FakeJoinedSelectStatement_15<T, R>(
+        returnValue: _FakeJoinedSelectStatement_16<T, R>(
           this,
           Invocation.method(
             #selectOnly,
@@ -912,7 +960,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           #delete,
           [table],
         ),
-        returnValue: _FakeDeleteStatement_16<T, D>(
+        returnValue: _FakeDeleteStatement_17<T, D>(
           this,
           Invocation.method(
             #delete,
@@ -994,7 +1042,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
             #readsFrom: readsFrom,
           },
         ),
-        returnValue: _FakeSelectable_17<_i4.QueryRow>(
+        returnValue: _FakeSelectable_18<_i4.QueryRow>(
           this,
           Invocation.method(
             #customSelect,
@@ -1022,7 +1070,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
             #readsFrom: readsFrom,
           },
         ),
-        returnValue: _FakeSelectable_17<_i4.QueryRow>(
+        returnValue: _FakeSelectable_18<_i4.QueryRow>(
           this,
           Invocation.method(
             #customSelectQuery,
@@ -1074,7 +1122,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
               ),
               (T v) => _i6.Future<T>.value(v),
             ) ??
-            _FakeFuture_11<T>(
+            _FakeFuture_12<T>(
               this,
               Invocation.method(
                 #transaction,
@@ -1110,7 +1158,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
             #startIndex: startIndex,
           },
         ),
-        returnValue: _FakeGenerationContext_18(
+        returnValue: _FakeGenerationContext_19(
           this,
           Invocation.method(
             #$write,
@@ -1138,7 +1186,7 @@ class MockFlutterTemplateDatabase extends _i2.Mock
           ],
           {#startIndex: startIndex},
         ),
-        returnValue: _FakeGenerationContext_18(
+        returnValue: _FakeGenerationContext_19(
           this,
           Invocation.method(
             #$writeInsertable,
