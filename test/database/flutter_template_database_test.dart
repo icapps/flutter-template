@@ -3,6 +3,11 @@ import 'package:drift/native.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+/// The schema version of the database that is being tested.
+/// Update this when a new migration is added.
+/// Also run ./tool/save_database_schema.sh to create the latest version schema file.
+const schemaVersion = 32;
+
 void main() {
   late FlutterTemplateDatabase sut;
 
@@ -16,7 +21,7 @@ void main() {
   });
 
   test('FlutterTemplateDatabase should have the correct version', () {
-    expect(sut.schemaVersion, 1);
+    expect(sut.schemaVersion, schemaVersion);
   });
 
   test('FlutterTemplateDatabase should delete all tables', () async {
