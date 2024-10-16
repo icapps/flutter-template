@@ -15,11 +15,9 @@ class LoggingRepository extends BaseLoggingRepository {
   );
 
   @override
-  String get userId => 'TestUser';
-
-  @override
   Future<void> uploadFile(File file, DateTime date) async {
-    final ref = _firebaseStorage.ref('logs/$userId/${date.shortDateFormat}.txt');
+    const userId = 'TestUser';
+    final ref = _firebaseStorage.ref('logs/$userId-${date.dottedShortDateFormat}.txt');
     await ref.putFile(file);
   }
 }

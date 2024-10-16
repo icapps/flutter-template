@@ -16,8 +16,6 @@ abstract class BaseLoggingRepository {
 
   String tempLogPath = '/logs';
 
-  String get userId;
-
   void startLogging() {
     _secureLogStorage.init();
     LoggingFactory.configure(LoggingConfiguration(onLog: (value) => storeLogLine(value)));
@@ -26,16 +24,14 @@ abstract class BaseLoggingRepository {
   void storeLogLine(String line) => _loggerLock.synchronized(() => _secureLogStorage.storeLogLine(line));
 
   Future<void> uploadLog(DateTime date) async {
-    final applicationDirectory = await getApplicationDocumentsDirectory();
+    final applicationDirectory = await getApplicationCacheDirectory();
     final file = File('${applicationDirectory.path}$tempLogPath');
     if (file.existsSync()) {
       file.deleteSync();
       file.createSync();
     }
     final log = await _secureLogStorage.getLogFromDate(date);
-    for (final line in log) {
-      file.writeAsStringSync(line);
-    }
+    await file.writeAsString(log.join('\n'));
     await uploadFile(file, date);
     file.deleteSync();
   }

@@ -9,6 +9,8 @@ extension DateTimeExtentions on DateTime {
 
   String get shortDateFormat => _formatDateWithFormatString(formatString: 'dd/MM/yyyy');
 
+  String get dottedShortDateFormat => _formatDateWithFormatString(formatString: 'dd.MM.yyyy');
+
   String get shortDateWeekdayFormat => _formatDateWithFormatString(formatString: 'EEEE dd/MM/yyyy');
 
   String _formatDateWithFormatString({required String formatString}) {

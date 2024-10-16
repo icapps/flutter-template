@@ -33,6 +33,7 @@ class LogDetailViewModel with ChangeNotifierEx {
     _isLoading = true;
     notifyListeners();
     await _loggingRepository.uploadLog(_date);
+    _isLoading = false;
     if (disposed) return;
     notifyListeners();
   }
