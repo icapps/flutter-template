@@ -5,6 +5,7 @@ import 'package:flutter_template/database/flutter_template_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'flutter_template_database_test.dart';
+import 'schema_versions/schema.dart';
 
 
 void main() {

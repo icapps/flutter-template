@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 /// The schema version of the database that is being tested.
 /// Update this when a new migration is added.
 /// Also run ./tool/save_database_schema.sh to create the latest version schema file.
-const schemaVersion = 32;
+const schemaVersion = 1;
 
 void main() {
   late FlutterTemplateDatabase sut;
