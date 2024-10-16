@@ -9,7 +9,7 @@ import 'schema_versions/schema.dart';
 
 
 void main() {
-  group('AmpereDatabase migration tests', () {
+  group('database migration tests', () {
     late SchemaVerifier verifier;
 
     setUpAll(() {
