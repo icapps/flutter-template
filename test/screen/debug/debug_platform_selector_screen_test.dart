@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/debug/debug_platform_selector_screen.dart';
-import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -15,17 +13,13 @@ import '../seed.dart';
 import 'debug_platform_selector_screen_test.mocks.dart';
 
 @GenerateMocks([
-  GlobalViewModel,
   DebugPlatformSelectorViewModel,
 ])
 void main() {
-  late MockGlobalViewModel globalViewModel;
   late MockDebugPlatformSelectorViewModel platformViewModel;
 
   setUp(() async {
     platformViewModel = MockDebugPlatformSelectorViewModel();
-    globalViewModel = MockGlobalViewModel();
-    getIt.registerSingleton<GlobalViewModel>(globalViewModel);
     getIt.registerSingleton<DebugPlatformSelectorViewModel>(platformViewModel);
   });
 
@@ -34,7 +28,7 @@ void main() {
   });
 
   testWidgets('Test debug select platform screen initial state light mode', (tester) async {
-    seedGlobalViewModel();
+    when(platformViewModel.selectedPlatform).thenReturn(TargetPlatform.android);
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
@@ -43,7 +37,7 @@ void main() {
   });
 
   testWidgets('Test debug select platform screen initial state dark mode', (tester) async {
-    seedGlobalViewModel();
+    when(platformViewModel.selectedPlatform).thenReturn(TargetPlatform.android);
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut, themeMode: ThemeMode.dark);
@@ -52,28 +46,26 @@ void main() {
   });
 
   testWidgets('Test debug screen select platform and select correct platform', (tester) async {
-    seedGlobalViewModel();
-    when(globalViewModel.targetPlatform).thenReturn(TargetPlatform.android);
+    when(platformViewModel.selectedPlatform).thenReturn(TargetPlatform.android);
 
     const sut = DebugPlatformSelectorScreen();
     final testWidget = await TestUtil.loadScreen(tester, sut);
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_android');
 
-    when(globalViewModel.targetPlatform).thenReturn(TargetPlatform.iOS);
-    globalViewModel.notifyListeners();
+    when(platformViewModel.selectedPlatform).thenReturn(TargetPlatform.iOS);
+    platformViewModel.notifyListeners();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_ios');
 
-    when(globalViewModel.targetPlatform).thenReturn(null);
-    globalViewModel.notifyListeners();
+    when(platformViewModel.selectedPlatform).thenReturn(null);
+    platformViewModel.notifyListeners();
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'debug_platform_selector_screen_selected_system');
   });
 
   group('setCorrectPlatform', () {
     testWidgets('Test debug screen select platform click on system', (tester) async {
-      seedGlobalViewModel();
-      when(globalViewModel.targetPlatform).thenReturn(null);
+      when(platformViewModel.selectedPlatform).thenReturn(null);
       // ignore: void_checks
       when(platformViewModel.dispose()).thenReturn(1);
 
@@ -88,13 +80,12 @@ void main() {
       await tester.tap(target);
       await tester.pumpAndSettle();
 
-      verify(globalViewModel.setSelectedPlatformToDefault()).calledOnce();
+      verify(platformViewModel.setSelectedPlatformToDefault()).calledOnce();
       verifyGlobalViewModel();
     });
 
     testWidgets('Test debug select platform screen select ios', (tester) async {
-      seedGlobalViewModel();
-      when(globalViewModel.targetPlatform).thenReturn(TargetPlatform.iOS);
+      when(platformViewModel.selectedPlatform).thenReturn(TargetPlatform.iOS);
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -107,13 +98,12 @@ void main() {
       await tester.tap(target);
       await tester.pumpAndSettle();
 
-      verify(globalViewModel.setSelectedPlatformToIOS()).calledOnce();
+      verify(platformViewModel.setSelectedPlatformToIOS()).calledOnce();
       verifyGlobalViewModel();
     });
 
     testWidgets('Test debug select platform  screen select android', (tester) async {
-      seedGlobalViewModel();
-      when(globalViewModel.targetPlatform).thenReturn(null);
+      when(platformViewModel.selectedPlatform).thenReturn(null);
 
       const sut = DebugPlatformSelectorScreen();
       await TestUtil.loadScreen(tester, sut);
@@ -125,29 +115,8 @@ void main() {
       await tester.tap(target);
       await tester.pumpAndSettle();
 
-      verify(globalViewModel.setSelectedPlatformToAndroid()).calledOnce();
+      verify(platformViewModel.setSelectedPlatformToAndroid()).calledOnce();
       verifyGlobalViewModel();
-    });
-  });
-
-  group('Actions', () {
-    testWidgets('Test debug select platform  screen on back clicked', (tester) async {
-      seedGlobalViewModel();
-      when(globalViewModel.targetPlatform).thenReturn(null);
-
-      const sut = DebugPlatformSelectorScreen();
-      await TestUtil.loadScreen(tester, sut);
-      // ignore: void_checks
-      when(platformViewModel.dispose()).thenReturn(1);
-      // ignore: void_checks
-      when(platformViewModel.onBackClicked()).thenReturn(1);
-
-      final target = find.byKey(Keys.backButton);
-      expect(target, findsOneWidget);
-      await tester.tap(target);
-      await tester.pumpAndSettle();
-
-      verify(platformViewModel.onBackClicked()).calledOnce();
     });
   });
 }
