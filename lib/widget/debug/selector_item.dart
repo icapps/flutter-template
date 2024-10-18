@@ -22,24 +22,35 @@ class SelectorItem extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => TouchFeedBack(
         onTapped: onClick,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: theme.text.bodyNormal,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: selected ? theme.fillInformative : theme.inverseBackground,
+            border: Border.all(
+              color: selected ? theme.accent : theme.inverseBackground,
+              width: 1,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: theme.text.bodyNormal,
+                  ),
                 ),
-              ),
-              Opacity(
-                opacity: selected ? 1 : 0,
-                child: SvgIcon(
-                  svgAsset: ThemeAssets.checkIcon,
-                  color: theme.accent,
+                Opacity(
+                  opacity: selected ? 1 : 0,
+                  child: SvgIcon(
+                    svgAsset: ThemeAssets.checkIcon,
+                    color: theme.accent,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

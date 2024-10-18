@@ -28,7 +28,7 @@ class DebugScreenState extends State<DebugScreen> {
       create: () => getIt()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => BaseScreen(
         title: localization.settingsTitle,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.all(24),
         isScrollable: true,
         children: [
           DebugSection(

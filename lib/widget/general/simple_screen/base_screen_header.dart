@@ -25,7 +25,7 @@ class BaseScreenHeader extends StatelessWidget {
       childBuilder: (context, theme, localization) {
         final leading = [
           if (ModalRoute.of(context)?.impliesAppBarDismissal ?? false) ...[
-            FlutterTemplateBackButton.light(onClick: onBackTapped ?? Navigator.of(context).pop),
+            FlutterTemplateBackButton.dark(onClick: onBackTapped ?? Navigator.of(context).pop),
             const SizedBox(width: 24),
           ],
         ];
