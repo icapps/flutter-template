@@ -16,7 +16,7 @@ class ThemeColors {
   static const fadedGrey = Color(0xFF6C7B89);
   static const mediumGrey = Color(0x80000000); //black 50%
   static const lightGrey = Color(0xFFDDE1E4);
-  static const backgroundGrey = Color(0xFFF1F2F3);
+  static const backgroundGrey = Color(0xFFF9FAFC);
   static const disabledGrey = Color(0xFFE6E6E6);
   static const shadow = Color(0x1e000000); //black 12%
   static const error = Color(0xFFE30000);
