@@ -89,6 +89,7 @@ enum FlutterTemplateThemeStyle {
 class FlutterTemplateTheme {
   final bool isDarkTheme;
   final Color text;
+  final Color fadedText;
   final Color inverseText;
   final Color errorText;
   final Color buttonTextDisabled;
@@ -109,6 +110,7 @@ class FlutterTemplateTheme {
   final Color buttonText;
   final Color inverseButtonText;
   final Color textButtonText;
+  final Color fillInformative;
 
   final Color bottomNavbarBackground;
   final Color bottomNavbarItemActive;
@@ -127,7 +129,8 @@ class FlutterTemplateTheme {
 
   static final _instanceDark = FlutterTemplateTheme._(
     isDarkTheme: true,
-    text: ThemeColors.white,
+    text: ThemeColors.primary,
+    fadedText: ThemeColors.fadedGrey,
     inverseText: ThemeColors.black,
     errorText: ThemeColors.error,
     primary: ThemeColors.primary,
@@ -138,7 +141,7 @@ class FlutterTemplateTheme {
     inverseBackground: ThemeColors.white,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.white,
-    appBarAction: ThemeColors.white,
+    appBarAction: ThemeColors.primary,
     inverseIcon: ThemeColors.black,
     progressIndicator: ThemeColors.primary,
     inverseProgressIndicator: ThemeColors.white,
@@ -158,24 +161,26 @@ class FlutterTemplateTheme {
     inputFieldBorderIdle: ThemeColors.white50,
     inputFieldCursor: ThemeColors.accent,
     debugTitleBackground: ThemeColors.white20,
+    fillInformative: ThemeColors.lightAccent,
   );
 
   static final _instanceLight = FlutterTemplateTheme._(
     isDarkTheme: false,
-    text: ThemeColors.black,
+    text: ThemeColors.primary,
+    fadedText: ThemeColors.fadedGrey,
     inverseText: ThemeColors.white,
     errorText: ThemeColors.error,
     primary: ThemeColors.primary,
     accent: ThemeColors.accent,
     secondary: ThemeColors.black,
-    background: ThemeColors.white,
+    background: ThemeColors.backgroundGrey,
     permissionScreenBackground: ThemeColors.white,
     inverseBackground: ThemeColors.white,
     inputFieldFill: ThemeColors.white,
     inputFieldHint: ThemeColors.mediumGrey,
     disabled: ThemeColors.disabledGrey,
     icon: ThemeColors.primary,
-    appBarAction: ThemeColors.white,
+    appBarAction: ThemeColors.primary,
     inverseIcon: ThemeColors.black,
     progressIndicator: ThemeColors.primary,
     inverseProgressIndicator: ThemeColors.white,
@@ -193,11 +198,13 @@ class FlutterTemplateTheme {
     inputFieldBorderIdle: ThemeColors.mediumGrey,
     inputFieldCursor: ThemeColors.accent,
     debugTitleBackground: ThemeColors.lightGrey,
+    fillInformative: ThemeColors.lightAccent,
   );
 
   FlutterTemplateTheme._({
     required this.isDarkTheme,
     required this.text,
+    required this.fadedText,
     required this.inverseText,
     required this.errorText,
     required this.buttonTextDisabled,
@@ -228,6 +235,7 @@ class FlutterTemplateTheme {
     required this.inputFieldBorderIdle,
     required this.inputFieldCursor,
     required this.debugTitleBackground,
+    required this.fillInformative,
   });
 
   static FlutterTemplateTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
@@ -290,8 +298,8 @@ extension TextStyleExtension on TextStyle {
 extension ShadowsExtension on Color {
   List<BoxShadow> get bottomNavShadow => [
         BoxShadow(
-          spreadRadius: 2,
-          blurRadius: 8,
+          spreadRadius: 8,
+          blurRadius: 16,
           color: this,
         )
       ];

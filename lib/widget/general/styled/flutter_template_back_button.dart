@@ -36,8 +36,8 @@ class FlutterTemplateBackButton extends StatelessWidget {
 
   String getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return ThemeAssets.closeIcon(context);
+      return ThemeAssets.arrowLeftIcon;
     }
-    return ThemeAssets.backIcon(context);
+    return ThemeAssets.arrowLeftIcon;
   }
 }

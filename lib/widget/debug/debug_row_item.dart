@@ -33,7 +33,7 @@ class DebugRowItem extends StatelessWidget {
                       style: theme.text.bodyBig,
                     ),
                     if (subTitle != null) ...[
-                      Container(height: 4),
+                      Container(height: 8),
                       Text(
                         subTitle!,
                         style: theme.text.bodySmall,

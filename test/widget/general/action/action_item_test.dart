@@ -12,7 +12,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon(context),
+          svgAsset: ThemeAssets.addIcon,
           onClick: () {},
         ),
       ),
@@ -27,7 +27,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon(context),
+          svgAsset: ThemeAssets.addIcon,
           color: Colors.black,
           onClick: () {},
         ),
@@ -45,7 +45,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon(context),
+          svgAsset: ThemeAssets.addIcon,
           onClick: () {
             clicked = true;
           },

@@ -35,7 +35,7 @@ class SelectorItem extends StatelessWidget {
               Opacity(
                 opacity: selected ? 1 : 0,
                 child: SvgIcon(
-                  svgAsset: ThemeAssets.doneIcon(context),
+                  svgAsset: ThemeAssets.checkIcon,
                   color: theme.accent,
                 ),
               ),

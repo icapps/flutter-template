@@ -8,6 +8,7 @@ import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.da
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
 
@@ -32,13 +33,13 @@ class TodoListScreenState extends State<TodoListScreen> {
           actions: [
             ActionItem(
               key: Keys.downloadAction,
-              svgAsset: ThemeAssets.downloadIcon(context),
+              svgAsset: ThemeAssets.downloadIcon,
               onClick: viewModel.onDownloadClicked,
               color: theme.appBarAction,
             ),
             ActionItem(
               key: Keys.addAction,
-              svgAsset: ThemeAssets.addIcon(context),
+              svgAsset: ThemeAssets.addIcon,
               onClick: viewModel.onAddClicked,
               color: theme.appBarAction,
             ),
@@ -65,10 +66,27 @@ class TodoListScreenState extends State<TodoListScreen> {
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32),
-                          child: Text(
-                            localization.todoEmptyState,
-                            textAlign: TextAlign.center,
-                            style: theme.text.bodyNormal,
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: theme.fillInformative,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgIcon(
+                                  svgAsset: ThemeAssets.fileIcon,
+                                  color: theme.accent,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  localization.todoEmptyState,
+                                  textAlign: TextAlign.center,
+                                  style: theme.text.bodyNormal,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

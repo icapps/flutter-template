@@ -1,33 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
-
 class ThemeAssets {
   ThemeAssets._();
 
-  static String _getIcon(BuildContext context, String name) {
-    if (context.isIOSTheme) {
-      return 'assets/images/icons/ios/$name.svg';
-    }
-    return 'assets/images/icons/android/$name.svg';
-  }
+  static const _assetPrefix = 'assets';
+  static const _imageAssetPrefix = '$_assetPrefix/images';
+  static const _iconsAssetPrefix = '$_imageAssetPrefix/icons';
 
-  static String _getImage(BuildContext context, String name) {
-    return 'assets/images/$name.svg';
-  }
+  static const addIcon = '$_iconsAssetPrefix/add.svg';
 
-  static String listIcon(BuildContext context) => _getIcon(context, 'list');
+  static const downloadIcon = '$_iconsAssetPrefix/download.svg';
 
-  static String settingsIcon(BuildContext context) => _getIcon(context, 'settings');
+  static const animationIcon = '$_iconsAssetPrefix/animation.svg';
 
-  static String addIcon(BuildContext context) => _getIcon(context, 'add');
+  static const arrowLeftIcon = '$_iconsAssetPrefix/arrow_left.svg';
 
-  static String downloadIcon(BuildContext context) => _getIcon(context, 'download');
+  static const checkIcon = '$_iconsAssetPrefix/check.svg';
 
-  static String closeIcon(BuildContext context) => _getIcon(context, 'close');
+  static const chevronRightIcon = '$_iconsAssetPrefix/chevron_right.svg';
 
-  static String backIcon(BuildContext context) => _getIcon(context, 'back');
+  static const fileIcon = '$_iconsAssetPrefix/file.svg';
 
-  static String doneIcon(BuildContext context) => _getIcon(context, 'done');
+  static const licenseIcon = '$_iconsAssetPrefix/license.svg';
 
-  static String analyticsImage(BuildContext context) => _getImage(context, 'analytics');
+  static const settingsIcon = '$_iconsAssetPrefix/settings.svg';
+
+  static const themeIcon = '$_iconsAssetPrefix/theme.svg';
+
+  static const todoIcon = '$_iconsAssetPrefix/todo.svg';
+
+  static const translationsIcon = '$_iconsAssetPrefix/translations.svg';
+
+  static const analyticsImage = '$_imageAssetPrefix/analytics.png';
 }

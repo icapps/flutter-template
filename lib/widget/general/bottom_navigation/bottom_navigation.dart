@@ -21,25 +21,28 @@ class BottomNavigation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           color: theme.bottomNavbarBackground,
-          boxShadow: theme.shadow.bottomNavShadow,
+          boxShadow: theme.fillInformative.withOpacity(0.6).bottomNavShadow,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SafeArea(
-              top: false,
-              child: Row(
-                children: BottomNavigationTab.values
-                    .map((tab) => BottomNavigationItem(
-                          isSelected: selectedTab == tab,
-                          icon: tab.icon,
-                          labelKey: tab.labelKey,
-                          onTap: () => onItemTapped(tab),
-                        ))
-                    .toList(),
+        child: ClipRect(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SafeArea(
+                top: false,
+                child: Row(
+                  children: BottomNavigationTab.values
+                      .map((tab) => BottomNavigationItem(
+                            isSelected: selectedTab == tab,
+                            iconActive: tab.iconActive,
+                            iconInactive: tab.iconInactive,
+                            labelKey: tab.labelKey,
+                            onTap: () => onItemTapped(tab),
+                          ))
+                      .toList(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

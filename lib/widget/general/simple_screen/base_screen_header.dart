@@ -34,7 +34,7 @@ class BaseScreenHeader extends StatelessWidget {
             ? null
             : Text(
                 title!.toUpperCase(),
-                style: theme.inverseText.bodyNormal,
+                style: theme.text.bodyNormal,
                 textAlign: isTitleCentered ? TextAlign.center : TextAlign.start,
               );
 
@@ -43,7 +43,6 @@ class BaseScreenHeader extends StatelessWidget {
             horizontal: 16,
             vertical: 12,
           ),
-          color: theme.primary,
           child: SafeArea(
             bottom: false,
             child: Stack(
