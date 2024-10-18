@@ -6,13 +6,13 @@ import 'package:flutter_template/util/locale/localization_keys.dart';
 
 enum BottomNavigationTab {
   todo(
-    iconActive: ThemeAssets.todoIcon,
-    iconInactive: ThemeAssets.todoIcon,
+    iconActive: ThemeAssets.todoIconActive,
+    iconInactive: ThemeAssets.todoIconInactive,
     labelKey: LocalizationKeys.todoTitle,
   ),
   settings(
-    iconActive: ThemeAssets.settingsIcon,
-    iconInactive: ThemeAssets.settingsIcon,
+    iconActive: ThemeAssets.settingsIconActive,
+    iconInactive: ThemeAssets.settingsIconInactive,
     labelKey: LocalizationKeys.settingsTitle,
   );
 

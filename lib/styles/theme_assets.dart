@@ -21,11 +21,15 @@ class ThemeAssets {
 
   static const licenseIcon = '$_iconsAssetPrefix/license.svg';
 
-  static const settingsIcon = '$_iconsAssetPrefix/settings.svg';
+  static const settingsIconActive = '$_iconsAssetPrefix/settings_active.svg';
+
+  static const settingsIconInactive = '$_iconsAssetPrefix/settings_inactive.svg';
 
   static const themeIcon = '$_iconsAssetPrefix/theme.svg';
 
-  static const todoIcon = '$_iconsAssetPrefix/todo.svg';
+  static const todoIconActive = '$_iconsAssetPrefix/todo_active.svg';
+
+  static const todoIconInactive = '$_iconsAssetPrefix/todo_inactive.svg';
 
   static const translationsIcon = '$_iconsAssetPrefix/translations.svg';
 

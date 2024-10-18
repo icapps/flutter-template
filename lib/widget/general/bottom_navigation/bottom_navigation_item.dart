@@ -3,7 +3,6 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/extension/text_scaler_extensions.dart';
-import 'package:flutter_template/widget/animation/animated_color_filter.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -34,19 +33,25 @@ class BottomNavigationItem extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AnimatedColorFilter(
-              color: isSelected ? theme.bottomNavbarItemActive : theme.bottomNavbarItemInactive,
-              builder: (context, color) => SvgIcon(
-                svgAsset: isSelected ? iconActive : iconInactive,
-                color: color,
+            AnimatedCrossFade(
+              duration: ThemeDurations.shortAnimationDuration,
+              firstChild: SvgIcon(
+                svgAsset: iconActive,
+                color: theme.bottomNavbarItemActive,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
+              secondChild: SvgIcon(
+                svgAsset: iconInactive,
+                color: theme.bottomNavbarItemInactive,
+                size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
+              ),
+              crossFadeState: isSelected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
             ),
             if (hasSpaceForLabel) ...[
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
-                style: isSelected ? theme.bottomNavbarItemActive.bodySmall : theme.bottomNavbarItemInactive.bodySmall,
+                style: isSelected ? theme.bottomNavbarItemActive.bodySmall.strong : theme.bottomNavbarItemInactive.bodySmall,
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,
