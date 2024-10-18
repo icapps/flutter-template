@@ -20,6 +20,7 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_core_web: ^2.1.0
   firebase_crashlytics: ^3.0.10
+  firebase_remote_config: ^4.4.7
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.3.0
