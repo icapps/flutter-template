@@ -37,7 +37,7 @@ class TodoListViewModel with ChangeNotifierEx {
       notifyListeners();
       await _todoRepo.fetchTodos();
     } catch (e, stack) {
-      logger.error('failed to get todos', error: e, trace: stack);
+      logger.error('failed to get todos', error: e, stackTrace: stack);
       if (e is LocalizedError) {
         _errorKey = e.getLocalizedKey();
       } else {

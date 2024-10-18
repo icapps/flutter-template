@@ -6,18 +6,16 @@ import 'package:mockito/mockito.dart';
 R provideMockedNetworkImages<R>(R Function() body, {List<int> imageBytes = TransparantImageUtil.transparentImage}) {
   return HttpOverrides.runZoned(
     body,
-    createHttpClient: (_) => _createMockImageHttpClient(_, imageBytes),
+    createHttpClient: (securityContext) => _createMockImageHttpClient(securityContext, imageBytes),
   );
 }
 
 class MockHttpClient extends Mock implements HttpClient {
-
   @override
   Future<HttpClientRequest> getUrl(Uri? url) async {
     // ignore: avoid_as
     return super.noSuchMethod(Invocation.method(#getUrl, [url]), returnValue: MockHttpClientRequest()) as HttpClientRequest;
   }
-
 }
 
 class MockHttpClientRequest extends Mock implements HttpClientRequest {}

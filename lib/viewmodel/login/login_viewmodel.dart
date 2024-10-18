@@ -43,7 +43,7 @@ class LoginViewModel with ChangeNotifierEx {
       await _loginRepo.login(email: _email, password: _password);
       return _onboardingNavigator.goToNextScreen();
     } catch (e, stack) {
-      logger.error('Failed to login', error: e, trace: stack);
+      logger.error('Failed to login', error: e, stackTrace: stack);
       if (e is LocalizedError) {
         _navigator.showErrorWithLocaleKey(messageKey: e.getLocalizedKey());
       } else {

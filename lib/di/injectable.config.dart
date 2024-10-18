@@ -4,6 +4,9 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i41;
 import 'package:drift/drift.dart' as _i6;
@@ -75,10 +78,8 @@ const String _dummy = 'dummy';
 const String _dev = 'dev';
 const String _prod = 'prod';
 
-/// ignore_for_file: unnecessary_lambdas
-/// ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
-  /// initializes the registration of main-scope dependencies inside of [GetIt]
+// initializes the registration of main-scope dependencies inside of GetIt
   Future<_i1.GetIt> initGetIt({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -89,8 +90,9 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.singleton<_i3.CacheControlling>(_i4.CacheController());
-    gh.singleton<_i5.ConnectivityHelper>(registerModule.connectivityHelper());
+    gh.singleton<_i3.CacheControlling>(() => _i4.CacheController());
+    gh.singleton<_i5.ConnectivityHelper>(
+        () => registerModule.connectivityHelper());
     await gh.singletonAsync<_i6.DatabaseConnection>(
       () => registerModule.provideDatabaseConnection(),
       preResolve: true,
@@ -104,8 +106,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i11.MainNavigator>(
         () => _i11.MainNavigator(gh<_i7.ErrorUtil>()));
     gh.singleton<_i12.NetworkErrorInterceptor>(
-        _i12.NetworkErrorInterceptor(gh<_i5.ConnectivityHelper>()));
-    gh.singleton<_i13.NetworkLogInterceptor>(_i13.NetworkLogInterceptor());
+        () => _i12.NetworkErrorInterceptor(gh<_i5.ConnectivityHelper>()));
+    gh.singleton<_i13.NetworkLogInterceptor>(
+        () => _i13.NetworkLogInterceptor());
     gh.lazySingleton<_i14.SecureStorage>(
         () => _i14.SecureStorage(gh<_i9.FlutterSecureStorage>()));
     await gh.singletonAsync<_i15.SharedPreferences>(
@@ -116,7 +119,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i17.TodoDaoStorage>(
         () => _i17.TodoDaoStorage(gh<_i10.FlutterTemplateDatabase>()));
     gh.singleton<_i18.TodoService>(
-      _i19.TodoDummyService(),
+      () => _i19.TodoDummyService(),
       registerFor: {_dummy},
     );
     gh.factory<_i20.DebugPlatformSelectorViewModel>(
@@ -149,7 +152,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i28.LoginRepository>(
         () => _i28.LoginRepository(gh<_i24.AuthStorage>()));
     gh.singleton<_i29.NetworkAuthInterceptor>(
-        _i29.NetworkAuthInterceptor(gh<_i24.AuthStorage>()));
+        () => _i29.NetworkAuthInterceptor(gh<_i24.AuthStorage>()));
     gh.lazySingleton<_i30.OnboardingNavigator>(() => _i30.OnboardingNavigator(
           gh<_i11.MainNavigator>(),
           gh<_i26.LocalStorage>(),
@@ -191,10 +194,11 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i11.MainNavigator>(),
           gh<_i30.OnboardingNavigator>(),
         ));
-    gh.singleton<_i39.NetworkRefreshInterceptor>(_i39.NetworkRefreshInterceptor(
-      gh<_i24.AuthStorage>(),
-      gh<_i31.RefreshRepository>(),
-    ));
+    gh.singleton<_i39.NetworkRefreshInterceptor>(
+        () => _i39.NetworkRefreshInterceptor(
+              gh<_i24.AuthStorage>(),
+              gh<_i31.RefreshRepository>(),
+            ));
     gh.lazySingleton<_i5.CombiningSmartInterceptor>(
         () => registerModule.provideCombiningSmartInterceptor(
               gh<_i13.NetworkLogInterceptor>(),
@@ -210,7 +214,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i41.Dio>(
         () => registerModule.provideDio(gh<_i5.CombiningSmartInterceptor>()));
     gh.singleton<_i18.TodoService>(
-      _i42.TodoWebService(gh<_i41.Dio>()),
+      () => _i42.TodoWebService(gh<_i41.Dio>()),
       registerFor: {
         _dev,
         _prod,

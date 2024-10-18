@@ -27,7 +27,7 @@ class SvgIcon extends StatelessWidget {
               data,
               height: size,
               width: size,
-              color: color,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             );
           }
           return SizedBox(
@@ -41,7 +41,7 @@ class SvgIcon extends StatelessWidget {
       svgAsset,
       height: size,
       width: size,
-      color: color,
+      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
     );
   }
 

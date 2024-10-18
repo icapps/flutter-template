@@ -21,7 +21,7 @@ class SelectorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => TouchFeedBack(
-        onClick: onClick,
+        onTapped: onClick,
         child: Padding(
           padding: const EdgeInsets.all(ThemeDimens.padding16),
           child: Row(
