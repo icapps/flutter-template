@@ -96,7 +96,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugDatabase,
-            icon: ThemeAssets.fileIcon,
+            icon: ThemeAssets.boxIcon,
             children: [
               DebugRowItem(
                 key: Keys.debugDatabase,
@@ -108,7 +108,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugPermissionsTitle,
-            icon: ThemeAssets.fileIcon,
+            icon: ThemeAssets.lockOpenIcon,
             children: [
               DebugRowItem(
                 key: Keys.debugPermissionAnalytics,
@@ -125,7 +125,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: 'logs',
-            icon: ThemeAssets.fileIcon,
+            icon: ThemeAssets.listIcon,
             children: [
               DebugRowItem(
                 key: Keys.debugPermissionAnalyticsReset,

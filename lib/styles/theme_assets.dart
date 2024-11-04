@@ -33,5 +33,11 @@ class ThemeAssets {
 
   static const translationsIcon = '$_iconsAssetPrefix/translations.svg';
 
-  static const analyticsImage = '$_imageAssetPrefix/analytics.png';
+  static const boxIcon = '$_iconsAssetPrefix/box.svg';
+
+  static const listIcon = '$_iconsAssetPrefix/list.svg';
+
+  static const lockOpenIcon = '$_iconsAssetPrefix/lock_open.svg';
+
+  static const analyticsImage = '$_imageAssetPrefix/analytics.svg';
 }
