@@ -19,38 +19,41 @@ class DebugRowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataProviderWidget(childBuilderTheme: (context, theme) {
-      return TouchFeedBack(
-        onTapped: onClick,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: theme.text.bodyBig,
-                    ),
-                    if (subTitle != null) ...[
-                      Container(height: 8),
+    return DataProviderWidget(
+      childBuilderTheme: (context, theme) {
+        return TouchFeedBack(
+          onTapped: onClick,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        subTitle!,
-                        style: theme.text.bodySmall,
+                        title,
+                        style: theme.text.bodyBig,
                       ),
+                      if (subTitle != null) ...[
+                        Container(height: 8),
+                        Text(
+                          subTitle!,
+                          style: theme.text.bodySmall,
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-              const SvgIcon(
-                svgAsset: ThemeAssets.chevronRightIcon,
-              ),
-            ],
+                SvgIcon(
+                  svgAsset: ThemeAssets.chevronRightIcon,
+                  color: theme.icon,
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

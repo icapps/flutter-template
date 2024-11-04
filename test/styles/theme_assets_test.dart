@@ -9,14 +9,14 @@ import '../util/test_util.dart';
 void main() {
   group('Android Asset icons', () {
     testWidgets('ThemeAsset list', (tester) async {
-      const sut = IconAssetTesterAndroid(asset: ThemeAssets.todoIcon);
+      const sut = IconAssetTesterAndroid(asset: ThemeAssets.todoIconActive);
 
       await TestUtil.loadWidgetWithText(tester, sut);
       await TestUtil.takeScreenshot(tester, 'theme_asset_list_android');
     });
 
     testWidgets('ThemeAsset settings', (tester) async {
-      const sut = IconAssetTesterAndroid(asset: ThemeAssets.settingsIcon);
+      const sut = IconAssetTesterAndroid(asset: ThemeAssets.todoIconActive);
 
       await TestUtil.loadWidgetWithText(tester, sut);
       await TestUtil.takeScreenshot(tester, 'theme_asset_settings_android');
@@ -60,14 +60,14 @@ void main() {
 
   group('IOS Asset icons', () {
     testWidgets('ThemeAsset list', (tester) async {
-      const sut = IconAssetTesterIOS(asset: ThemeAssets.todoIcon);
+      const sut = IconAssetTesterIOS(asset: ThemeAssets.todoIconActive);
 
       await TestUtil.loadWidgetWithText(tester, sut);
       await TestUtil.takeScreenshot(tester, 'theme_asset_list_ios');
     });
 
     testWidgets('ThemeAsset settings', (tester) async {
-      const sut = IconAssetTesterIOS(asset: ThemeAssets.settingsIcon);
+      const sut = IconAssetTesterIOS(asset: ThemeAssets.settingsIconActive);
 
       await TestUtil.loadWidgetWithText(tester, sut);
       await TestUtil.takeScreenshot(tester, 'theme_asset_settings_ios');

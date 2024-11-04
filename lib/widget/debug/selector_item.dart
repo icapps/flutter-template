@@ -26,9 +26,9 @@ class SelectorItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: selected ? theme.fillInformative : theme.inverseBackground,
+            color: selected ? theme.fillInformative : theme.cardBackground,
             border: Border.all(
-              color: selected ? theme.accent : theme.inverseBackground,
+              color: selected ? theme.accent : theme.cardBackground,
               width: 1,
             ),
           ),

@@ -38,7 +38,7 @@ class LogsScreenState extends State<LogsScreen> {
                   final item = viewModel.availableDates[index];
                   return TouchFeedBack(
                     onTapped: () => viewModel.onLogTapped(item),
-                    color: theme.inverseBackground,
+                    color: theme.cardBackground,
                     borderRadius: BorderRadius.circular(12),
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -50,8 +50,9 @@ class LogsScreenState extends State<LogsScreen> {
                               style: theme.text.bodyBig,
                             ),
                           ),
-                          const SvgIcon(
+                          SvgIcon(
                             svgAsset: ThemeAssets.chevronRightIcon,
+                            color: theme.icon,
                           )
                         ],
                       ),

@@ -7,7 +7,8 @@ class ThemeColors {
   static const primaryDark = Color(0xFF001223);
   static const accent = Color(0xFF009AC7);
   static const lightAccent = Color(0xFFECF5FE);
-  static const accentDark = Color(0xFF0080A8);
+  static const darkAccent = Color(0xFF005780);
+  static const darkBackground = Color(0xFF1B4162);
   static const white = Color(0xFFFFFFFF);
   static const white20 = Color(0x33FFFFFF);
   static const white50 = Color(0x80FFFFFF);
@@ -18,7 +19,7 @@ class ThemeColors {
   static const lightGrey = Color(0xFFDDE1E4);
   static const backgroundGrey = Color(0xFFF9FAFC);
   static const disabledGrey = Color(0xFFE6E6E6);
-  static const shadow = Color(0x1e000000); //black 12%
+  static const shadow = Color.fromARGB(255, 0, 0, 0); //black 12%
   static const error = Color(0xFFE30000);
   static const success = Color(0xFF3E9103);
 }

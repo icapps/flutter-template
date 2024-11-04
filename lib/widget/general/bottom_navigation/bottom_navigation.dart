@@ -21,7 +21,7 @@ class BottomNavigation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           color: theme.bottomNavbarBackground,
-          boxShadow: theme.fillInformative.withOpacity(0.6).bottomNavShadow,
+          boxShadow: theme.shadow.bottomNavShadow,
         ),
         child: ClipRect(
           child: Column(
