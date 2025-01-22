@@ -44,7 +44,7 @@ class LogDetailScreenState extends State<LogDetailScreen> {
             isEnabled: !viewModel.isLoading,
             text: 'Upload log',
             onClick: viewModel.uploadLog,
-          )
+          ),
         ],
       ),
     );
