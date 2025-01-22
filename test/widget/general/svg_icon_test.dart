@@ -43,15 +43,4 @@ void main() {
     await TestUtil.loadWidgetWithText(tester, sut);
     await TestUtil.takeScreenshot(tester, 'svg_icon_custom_size_and_color');
   });
-  testWidgets('SvgIcon custom size and color', (tester) async {
-    final sut = LayoutBuilder(
-        builder: (context, constraints) => const SvgIcon(
-              svgAsset: ThemeAssets.checkIcon,
-              color: Colors.purple,
-              size: 64,
-            ));
-
-    await TestUtil.loadWidgetWithText(tester, sut);
-    await TestUtil.takeScreenshot(tester, 'svg_icon_custom_size_and_color');
-  });
 }
