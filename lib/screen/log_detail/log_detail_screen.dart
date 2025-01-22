@@ -3,7 +3,7 @@ import 'package:flutter_navigation_generator_annotations/flutter_navigation_gene
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/viewmodel/log_detail/log_detail_viewmodel.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
@@ -44,7 +44,7 @@ class LogDetailScreenState extends State<LogDetailScreen> {
             isEnabled: !viewModel.isLoading,
             text: 'Upload log',
             onClick: viewModel.uploadLog,
-          )
+          ),
         ],
       ),
     );

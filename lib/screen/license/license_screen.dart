@@ -3,7 +3,7 @@ import 'package:flutter_navigation_generator_annotations/flutter_navigation_gene
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @flutterRoute
