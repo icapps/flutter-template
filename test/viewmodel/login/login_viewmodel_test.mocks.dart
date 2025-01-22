@@ -6,12 +6,12 @@
 import 'dart:async' as _i4;
 
 import 'package:drift/drift.dart' as _i6;
-import 'package:flutter/material.dart' as _i1;
+import 'package:flutter/material.dart' as _i2;
 import 'package:flutter_template/model/snackbar/snackbar_data.dart' as _i7;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i5;
 import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i8;
 import 'package:flutter_template/repository/login/login_repository.dart' as _i3;
-import 'package:mockito/mockito.dart' as _i2;
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,9 +26,19 @@ import 'package:mockito/mockito.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeGlobalKey_0<T extends _i1.State<_i1.StatefulWidget>>
-    extends _i2.SmartFake implements _i1.GlobalKey<T> {
-  _FakeGlobalKey_0(
+class _FakeBuildContext_0 extends _i1.SmartFake implements _i2.BuildContext {
+  _FakeBuildContext_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeGlobalKey_1<T extends _i2.State<_i2.StatefulWidget>>
+    extends _i1.SmartFake implements _i2.GlobalKey<T> {
+  _FakeGlobalKey_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -40,9 +50,9 @@ class _FakeGlobalKey_0<T extends _i1.State<_i1.StatefulWidget>>
 /// A class which mocks [LoginRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginRepository extends _i2.Mock implements _i3.LoginRepository {
+class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
   MockLoginRepository() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
@@ -79,19 +89,28 @@ class MockLoginRepository extends _i2.Mock implements _i3.LoginRepository {
 /// A class which mocks [MainNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
+class MockMainNavigator extends _i1.Mock implements _i5.MainNavigator {
   MockMainNavigator() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i1.GlobalKey<_i1.NavigatorState> get navigatorKey => (super.noSuchMethod(
+  _i2.BuildContext get context => (super.noSuchMethod(
+        Invocation.getter(#context),
+        returnValue: _FakeBuildContext_0(
+          this,
+          Invocation.getter(#context),
+        ),
+      ) as _i2.BuildContext);
+
+  @override
+  _i2.GlobalKey<_i2.NavigatorState> get navigatorKey => (super.noSuchMethod(
         Invocation.getter(#navigatorKey),
-        returnValue: _FakeGlobalKey_0<_i1.NavigatorState>(
+        returnValue: _FakeGlobalKey_1<_i2.NavigatorState>(
           this,
           Invocation.getter(#navigatorKey),
         ),
-      ) as _i1.GlobalKey<_i1.NavigatorState>);
+      ) as _i2.GlobalKey<_i2.NavigatorState>);
 
   @override
   _i4.Future<void> goToDatabase(_i6.GeneratedDatabase? db) =>
@@ -153,14 +172,14 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  _i1.Route<dynamic>? onGenerateRoute(_i1.RouteSettings? settings) =>
+  _i2.Route<dynamic>? onGenerateRoute(_i2.RouteSettings? settings) =>
       (super.noSuchMethod(Invocation.method(
         #onGenerateRoute,
         [settings],
-      )) as _i1.Route<dynamic>?);
+      )) as _i2.Route<dynamic>?);
 
   @override
-  void goToHomeScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToHomeScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToHomeScreen,
           [],
@@ -170,7 +189,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       );
 
   @override
-  void goToSplashScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToSplashScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToSplashScreen,
           [],
@@ -180,7 +199,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       );
 
   @override
-  _i4.Future<void> goToLicenseScreen({_i1.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToLicenseScreen({_i2.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToLicenseScreen,
           [],
@@ -191,7 +210,47 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) =>
+  _i4.Future<void> goToLogDetailScreen({
+    required String? date,
+    _i2.Key? key,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #goToLogDetailScreen,
+          [],
+          {
+            #date: date,
+            #key: key,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> goToTodoAddScreen({_i2.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> goToLogsScreen({_i2.Key? key}) => (super.noSuchMethod(
+        Invocation.method(
+          #goToLogsScreen,
+          [],
+          {#key: key},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> goToAnalyticsPermissionScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToAnalyticsPermissionScreen,
@@ -203,7 +262,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  void goToLoginScreen({_i1.Key? key}) => super.noSuchMethod(
+  void goToLoginScreen({_i2.Key? key}) => super.noSuchMethod(
         Invocation.method(
           #goToLoginScreen,
           [],
@@ -213,7 +272,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       );
 
   @override
-  _i4.Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) =>
+  _i4.Future<void> goToThemeModeSelectorScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToThemeModeSelectorScreen,
@@ -225,7 +284,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) =>
+  _i4.Future<void> goToDebugPlatformSelectorScreen({_i2.Key? key}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToDebugPlatformSelectorScreen,
@@ -237,20 +296,9 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToDebugScreen({_i1.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToDebugScreen({_i2.Key? key}) => (super.noSuchMethod(
         Invocation.method(
           #goToDebugScreen,
-          [],
-          {#key: key},
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> goToTodoAddScreen({_i1.Key? key}) => (super.noSuchMethod(
-        Invocation.method(
-          #goToTodoAddScreen,
           [],
           {#key: key},
         ),
@@ -278,7 +326,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       );
 
   @override
-  void popUntil(bool Function(_i1.Route<dynamic>)? predicate) =>
+  void popUntil(bool Function(_i2.Route<dynamic>)? predicate) =>
       super.noSuchMethod(
         Invocation.method(
           #popUntil,
@@ -297,7 +345,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       );
 
   @override
-  _i4.Future<T?> showCustomDialog<T>({_i1.Widget? widget}) =>
+  _i4.Future<T?> showCustomDialog<T>({_i2.Widget? widget}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showCustomDialog,
@@ -308,7 +356,7 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
       ) as _i4.Future<T?>);
 
   @override
-  _i4.Future<T?> showBottomSheet<T>({_i1.Widget? widget}) =>
+  _i4.Future<T?> showBottomSheet<T>({_i2.Widget? widget}) =>
       (super.noSuchMethod(
         Invocation.method(
           #showBottomSheet,
@@ -322,10 +370,10 @@ class MockMainNavigator extends _i2.Mock implements _i5.MainNavigator {
 /// A class which mocks [OnboardingNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOnboardingNavigator extends _i2.Mock
+class MockOnboardingNavigator extends _i1.Mock
     implements _i8.OnboardingNavigator {
   MockOnboardingNavigator() {
-    _i2.throwOnMissingStub(this);
+    _i1.throwOnMissingStub(this);
   }
 
   @override

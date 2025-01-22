@@ -5,6 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/database/flutter_template_database.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_template/util/interceptor/network_refresh_interceptor.da
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
+import 'package:log_to_secure_file/log_to_secure_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.asNewInstance();
@@ -61,10 +63,16 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
+  SecureLogStorage provideSecureLogStorage(SecureStorage secureStorage) => SecureLogStorage();
+
+  @lazySingleton
   FirebaseAnalytics provideFirebaseAnalytics() => FirebaseAnalytics.instance;
 
   @lazySingleton
   FirebaseCrashlytics provideFirebaseCrashlytics() => FirebaseCrashlytics.instance;
+
+  @lazySingleton
+  FirebaseStorage provideFirebaseStorage() => FirebaseStorage.instance;
 
   @lazySingleton
   FlutterSecureStorage storage() => const FlutterSecureStorage();

@@ -16,7 +16,9 @@ import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
 import '../screen/license/license_screen.dart';
+import '../screen/log_detail/log_detail_screen.dart';
 import '../screen/login/login_screen.dart';
+import '../screen/logs/logs_screen.dart';
 import '../screen/permission/analytics_permission_screen.dart';
 import '../screen/splash/splash_screen.dart';
 import '../screen/theme_mode/theme_mode_selector.dart';
@@ -53,6 +55,31 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
+            key: arguments['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.logDetailScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => LogDetailScreen(
+            date: arguments['date'] as String,
+            key: arguments['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.todoAddScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => TodoAddScreen(
+            key: arguments['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.logsScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => LogsScreen(
             key: arguments['key'] as Key?,
           ),
           settings: settings,
@@ -98,14 +125,6 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.todoAddScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => TodoAddScreen(
-            key: arguments['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
     }
     return null;
   }
@@ -125,6 +144,27 @@ mixin BaseNavigator {
   Future<void> goToLicenseScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToLogDetailScreen({
+    required String date,
+    _i1.Key? key,
+  }) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        Uri(
+          path: RouteNames.logDetailScreen,
+          queryParameters: {'date': date},
+        ).toString(),
+        arguments: {'date': date, 'key': key},
+      );
+  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.todoAddScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToLogsScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.logsScreen,
         arguments: {'key': key},
       );
   Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
@@ -151,11 +191,6 @@ mixin BaseNavigator {
   Future<void> goToDebugScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.todoAddScreen,
         arguments: {'key': key},
       );
   void goBack() => navigatorKey.currentState?.pop();
@@ -186,6 +221,15 @@ class RouteNames {
   /// /license
   static const licenseScreen = '/license';
 
+  /// /log-detail
+  static const logDetailScreen = '/log-detail';
+
+  /// /todo-add
+  static const todoAddScreen = '/todo-add';
+
+  /// /logs
+  static const logsScreen = '/logs';
+
   /// /analytics-permission
   static const analyticsPermissionScreen = '/analytics-permission';
 
@@ -200,7 +244,4 @@ class RouteNames {
 
   /// /debug
   static const debugScreen = '/debug';
-
-  /// /todo-add
-  static const todoAddScreen = '/todo-add';
 }
