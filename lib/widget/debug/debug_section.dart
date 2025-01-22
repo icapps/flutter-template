@@ -38,12 +38,13 @@ class DebugSection extends StatelessWidget {
                     final isLast = index == children.length - 1;
                     return [
                       child,
-                      if (!isLast)
+                      if (!isLast) ...[
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 8),
                           height: 1,
                           color: theme.debugTitleBackground,
                         ),
+                      ],
                     ];
                   })
                   .expand((item) => item)

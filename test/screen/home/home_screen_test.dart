@@ -5,6 +5,7 @@ import 'package:flutter_template/screen/home/home_screen.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
+import 'package:flutter_template/widget/general/bottom_navigation/bottom_navigation_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 
@@ -46,15 +47,13 @@ void main() {
     verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
 
-    final firstTab = find.byIcon(Icons.list);
-    expect(firstTab, findsOneWidget);
-    await tester.tap(firstTab);
+    final firstTab = find.byType(BottomNavigationItem);
+    await tester.tap(firstTab.first);
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_first_tab');
 
-    final secondTab = find.byIcon(Icons.settings);
-    expect(secondTab, findsOneWidget);
-    await tester.tap(firstTab);
+    final secondTab = find.byType(BottomNavigationItem);
+    await tester.tap(secondTab.last);
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_second_tab');
   });
@@ -74,15 +73,13 @@ void main() {
     verifyGlobalViewModelForDebugScreen();
     verifyGlobalViewModel();
 
-    final firstTab = find.byIcon(Icons.list);
-    expect(firstTab, findsOneWidget);
-    await tester.tap(firstTab);
+    final firstTab = find.byType(BottomNavigationItem);
+    await tester.tap(firstTab.first);
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_first_tab_darkmode');
 
-    final secondTab = find.byIcon(Icons.settings);
-    expect(secondTab, findsOneWidget);
-    await tester.tap(firstTab);
+    final secondTab = find.byType(BottomNavigationItem);
+    await tester.tap(secondTab.last);
     await tester.pumpAndSettle();
     await TestUtil.takeScreenshotForAllSizes(tester, testWidget, 'home_screen_initial_state_second_tab_darkmode');
   });

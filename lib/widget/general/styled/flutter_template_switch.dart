@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateSwitch extends StatelessWidget {
   final bool value;
@@ -16,8 +17,9 @@ class FlutterTemplateSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) {
-        return Container(
+      childBuilderTheme: (context, theme) => TouchFeedBack(
+        onTapped: () => onChanged(!value),
+        child: Container(
           height: 24,
           width: 42,
           decoration: BoxDecoration(
@@ -37,8 +39,8 @@ class FlutterTemplateSwitch extends StatelessWidget {
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
