@@ -535,6 +535,15 @@ class MockDebugViewModel extends _i1.Mock implements _i11.DebugViewModel {
       );
 
   @override
+  void onLogsTapped() => super.noSuchMethod(
+        Invocation.method(
+          #onLogsTapped,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void dispose() => super.noSuchMethod(
         Invocation.method(
           #dispose,

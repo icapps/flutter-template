@@ -3,14 +3,17 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class FlutterTemplateInputField extends StatelessWidget {
-  final String hint;
   final bool enabled;
+  final String hint;
+  final List<String>? autoFillHints;
   final ValueChanged<String> onChanged;
   final TextEditingController? controller;
+
 
   const FlutterTemplateInputField({
     required this.hint,
     required this.onChanged,
+    this.autoFillHints,
     this.enabled = true,
     this.controller,
     super.key,
@@ -24,6 +27,7 @@ class FlutterTemplateInputField extends StatelessWidget {
         controller: controller,
         enabled: enabled,
         onChanged: onChanged,
+        autofillHints: autoFillHints,
         decoration: InputDecoration(
           filled: true,
           hintText: hint,

@@ -1,5 +1,5 @@
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -22,11 +22,11 @@ class _LoginRepository implements LoginRepository {
   Future<bool> get isLoggedIn => _storage.hasLoggedInUser();
 
   @override
-  Future<bool> get isNotLoggedIn async=> !(await _storage.hasLoggedInUser());
+  Future<bool> get isNotLoggedIn async => !(await _storage.hasLoggedInUser());
 
   @override
   Future<void> login({required String email, required String password}) async {
     await _storage.saveUserCredentials(accessToken: 'test_access_token', refreshToken: 'test_refresh_token');
-    logger.debug('Login should be implemented');
+    FlutterTemplateLogger.logDebug('Login should be implemented');
   }
 }

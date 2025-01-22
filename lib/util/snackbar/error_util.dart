@@ -4,6 +4,7 @@ import 'package:flutter_template/model/snackbar/snackbar_data.dart';
 import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -40,7 +41,7 @@ class ErrorUtil {
     } else if (error is LocalizedError) {
       key = error.getLocalizedKey();
     } else {
-      logger.warning('Caught an error that is not handled by the FlutterTemplateError $error');
+      FlutterTemplateLogger.logWarning('Caught an error that is not handled by the FlutterTemplateError $error');
       key = LocalizationKeys.errorGeneral;
     }
     showErrorWithLocaleKey(

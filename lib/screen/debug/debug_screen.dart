@@ -86,6 +86,12 @@ class DebugScreenState extends State<DebugScreen> {
             title: localization.debugPermissionResetAnalytics,
             onClick: viewModel.resetAnalyticsPermission,
           ),
+          const DebugRowTitle(title: 'logs'),
+          DebugRowItem(
+            key: Keys.debugPermissionAnalyticsReset,
+            title: 'Show logs',
+            onClick: viewModel.onLogsTapped,
+          ),
         ],
       ),
     );

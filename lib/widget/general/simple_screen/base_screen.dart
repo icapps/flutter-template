@@ -12,6 +12,7 @@ class BaseScreen extends StatelessWidget {
   final bool showHeader;
   final bool isLoading;
   final bool hasBottomSafeSpace;
+  final bool reversed;
   final int? itemCount;
   final Color? background;
   final String? title;
@@ -25,6 +26,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen({
     required this.children,
+    this.reversed = false,
     this.actions,
     this.onRefresh,
     this.isLoading = false,
@@ -44,6 +46,7 @@ class BaseScreen extends StatelessWidget {
   const BaseScreen.builder({
     required this.itemBuilder,
     required this.itemCount,
+    this.reversed = false,
     this.actions,
     this.onRefresh,
     this.isLoading = false,
@@ -61,6 +64,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.slivers({
     required this.children,
+    this.reversed = false,
     this.actions,
     this.onRefresh,
     this.hasBottomSafeSpace = true,
@@ -93,7 +97,8 @@ class BaseScreen extends StatelessWidget {
         isScrollable = false,
         useSlivers = false,
         itemBuilder = null,
-        itemCount = null;
+        itemCount = null,
+        reversed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +137,7 @@ class BaseScreen extends StatelessWidget {
                           child: child,
                           itemBuilder: itemBuilder,
                           itemCount: itemCount,
+                          reversed: reversed,
                         );
                         if (onRefresh == null) return content;
 

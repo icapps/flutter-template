@@ -50,4 +50,6 @@ class DebugViewModel with ChangeNotifierEx {
   void goToAnalyticsPermissionScreen() => _navigator.goToAnalyticsPermissionScreen();
 
   void resetAnalyticsPermission() => _localStorage.updateHasAnalyticsPermission(null);
+
+  void onLogsTapped() => _navigator.goToLogsScreen();
 }
