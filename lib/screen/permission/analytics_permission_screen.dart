@@ -29,7 +29,7 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: SvgPicture.asset(
-                      ThemeAssets.analyticsImage(context),
+                      ThemeAssets.analyticsImage,
                       alignment: Alignment.center,
                       fit: BoxFit.scaleDown,
                     ),

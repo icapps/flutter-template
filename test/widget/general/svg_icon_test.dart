@@ -45,8 +45,8 @@ void main() {
   });
   testWidgets('SvgIcon custom size and color', (tester) async {
     final sut = LayoutBuilder(
-        builder: (context, constraints) => SvgIcon(
-              svgAsset: ThemeAssets.doneIcon(context),
+        builder: (context, constraints) => const SvgIcon(
+              svgAsset: ThemeAssets.checkIcon,
               color: Colors.purple,
               size: 64,
             ));

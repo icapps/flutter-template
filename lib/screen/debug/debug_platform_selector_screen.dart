@@ -29,11 +29,13 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
             onClick: viewModel.setSelectedPlatformToDefault,
             selected: viewModel.selectedPlatform == null,
           ),
+          const SizedBox(height: 8),
           SelectorItem(
             title: localization.generalLabelAndroid,
             onClick: viewModel.setSelectedPlatformToAndroid,
             selected: viewModel.selectedPlatform == TargetPlatform.android,
           ),
+          const SizedBox(height: 8),
           SelectorItem(
             title: localization.generalLabelIos,
             onClick: viewModel.setSelectedPlatformToIOS,

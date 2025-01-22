@@ -37,7 +37,7 @@ class FlutterTemplateButton extends StatelessWidget {
   TextStyle _enabledTextStyle(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseText.labelButtonSmall;
+        return theme.lightText.labelButtonSmall;
       case ButtonType.text:
         return theme.accent.labelButtonSmall;
     }
@@ -93,18 +93,26 @@ class FlutterTemplateButton extends StatelessWidget {
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
+            borderRadius: BorderRadius.circular(12),
             onTapped: isEnabled ? onClick : null,
             child: AnimatedContainer(
-              color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+              decoration: BoxDecoration(
+                color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+                borderRadius: BorderRadius.circular(12),
+              ),
               duration: ThemeDurations.shortAnimationDuration,
               child: content,
             ),
           );
         }
         return AnimatedContainer(
-          color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+          decoration: BoxDecoration(
+            color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+            borderRadius: BorderRadius.circular(12),
+          ),
           duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
+            borderRadius: BorderRadius.circular(12),
             onTapped: isEnabled ? onClick : null,
             child: content,
           ),

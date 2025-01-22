@@ -25,7 +25,7 @@ class BaseScreenHeader extends StatelessWidget {
       childBuilder: (context, theme, localization) {
         final leading = [
           if (ModalRoute.of(context)?.impliesAppBarDismissal ?? false) ...[
-            FlutterTemplateBackButton.light(onClick: onBackTapped ?? Navigator.of(context).pop),
+            FlutterTemplateBackButton.dark(onClick: onBackTapped ?? Navigator.of(context).pop),
             const SizedBox(width: 24),
           ],
         ];
@@ -34,7 +34,7 @@ class BaseScreenHeader extends StatelessWidget {
             ? null
             : Text(
                 title!.toUpperCase(),
-                style: theme.inverseText.bodyNormal,
+                style: theme.text.bodyNormal,
                 textAlign: isTitleCentered ? TextAlign.center : TextAlign.start,
               );
 
@@ -43,7 +43,6 @@ class BaseScreenHeader extends StatelessWidget {
             horizontal: 16,
             vertical: 12,
           ),
-          color: theme.primary,
           child: SafeArea(
             bottom: false,
             child: Stack(

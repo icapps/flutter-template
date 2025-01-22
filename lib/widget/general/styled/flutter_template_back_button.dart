@@ -28,7 +28,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
       childBuilderTheme: (context, theme) => ActionItem(
         key: Keys.backButton,
         svgAsset: getCorrectIcon(context),
-        color: isLight ? ThemeColors.white : theme.primary,
+        color: isLight ? ThemeColors.white : theme.appBarAction,
         onClick: onClick,
       ),
     );
@@ -36,8 +36,8 @@ class FlutterTemplateBackButton extends StatelessWidget {
 
   String getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return ThemeAssets.closeIcon(context);
+      return ThemeAssets.arrowLeftIcon;
     }
-    return ThemeAssets.backIcon(context);
+    return ThemeAssets.arrowLeftIcon;
   }
 }
