@@ -5,8 +5,8 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
 
 Future<void> _setupCrashLogging() async {
   await Firebase.initializeApp();
@@ -27,7 +27,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) async {
     } catch (_) {}
 
     try {
-      staticLogger.e('Uncaught platform error', error: error, stackTrace: trace);
+      FlutterTemplateLogger.logError('Uncaught platform error', error: error, stackTrace: trace);
     } catch (_) {
       // ignore: avoid_print
       print(error);

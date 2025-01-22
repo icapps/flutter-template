@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/platform/platform_util.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen_header_safe_area.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
@@ -33,7 +34,7 @@ class BaseScreenHeader extends StatelessWidget {
             ? null
             : Text(
                 title!.toUpperCase(),
-                style: theme.inverseCoreTextTheme.bodyNormal,
+                style: theme.inverseText.bodyNormal,
                 textAlign: isTitleCentered ? TextAlign.center : TextAlign.start,
               );
 
@@ -42,7 +43,7 @@ class BaseScreenHeader extends StatelessWidget {
             horizontal: 16,
             vertical: 12,
           ),
-          color: theme.colorsTheme.primary,
+          color: theme.primary,
           child: SafeArea(
             bottom: false,
             child: Stack(

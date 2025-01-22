@@ -14,5 +14,7 @@ class RemoteConfig {
 
   int get reviewBuild => _remoteConfig?.getOptionalInt('review_build') ?? 1;
 
+  bool get sendBlockedErrorsToFirebase => _remoteConfig?.getOptionalBool('send_blocked_errors_to_firebase') ?? false;
+
   Map<String, LocalizedMessage> get overriddenTranslations => _remoteConfig?.getCustomObjectMap('overridden_translations', LocalizedMessage.fromJson) ?? {};
 }

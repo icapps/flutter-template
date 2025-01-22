@@ -17,8 +17,8 @@ class FlutterTemplateSwitch extends StatelessWidget {
       childBuilderTheme: (context, theme) => Switch.adaptive(
         value: value,
         onChanged: onChanged,
-        activeColor: theme.colorsTheme.accent,
-        inactiveTrackColor: theme.colorsTheme.disabled,
+        activeColor: theme.accent,
+        inactiveTrackColor: theme.disabled,
       ),
     );
   }

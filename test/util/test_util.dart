@@ -12,6 +12,7 @@ import 'package:flutter_template/styles/theme_fonts.dart';
 import 'package:flutter_template/util/locale/localization.dart';
 import 'package:flutter_template/util/locale/localization_delegate.dart';
 import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:flutter_template/util/snackbar/error_util.dart';
 import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -69,7 +70,7 @@ class TestUtil {
   static Future<Widget> loadScreen(WidgetTester tester, Widget widget, {ThemeMode themeMode = ThemeMode.light}) async {
     await initArchitecture();
     if (getIt.isRegistered<GlobalViewModel>()) {
-      staticLogger.debug('GlobalViewModel already registered');
+      FlutterTemplateLogger.logDebug('GlobalViewModel already registered');
     } else {
       getIt.registerLazySingleton<GlobalViewModel>(() => MockGlobalViewModel());
       seedGlobalViewModel();

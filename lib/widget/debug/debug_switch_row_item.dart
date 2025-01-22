@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -32,12 +33,12 @@ class DebugRowSwitchItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.coreTextTheme.bodyBig,
+                      style: theme.text.bodyBig,
                     ),
                     if (subTitle != null)
                       Text(
                         subTitle!,
-                        style: theme.coreTextTheme.bodySmall,
+                        style: theme.text.bodySmall,
                       ),
                   ],
                 ),
