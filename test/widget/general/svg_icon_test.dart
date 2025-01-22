@@ -7,7 +7,7 @@ import '../../util/test_util.dart';
 
 void main() {
   testWidgets('SvgIcon initial state', (tester) async {
-    const sut = SvgIcon(svgAsset: 'assets/images/icons/android/done.svg');
+    const sut = SvgIcon(svgAsset: 'assets/images/icons/add.svg');
 
     await TestUtil.loadWidgetWithText(tester, sut);
     await TestUtil.takeScreenshot(tester, 'svg_icon_initial_state');
@@ -15,7 +15,7 @@ void main() {
 
   testWidgets('SvgIcon custom color', (tester) async {
     const sut = SvgIcon(
-      svgAsset: 'assets/images/icons/android/done.svg',
+      svgAsset: 'assets/images/icons/add.svg',
       color: Colors.purple,
     );
 
@@ -25,7 +25,7 @@ void main() {
 
   testWidgets('SvgIcon custom size', (tester) async {
     const sut = SvgIcon(
-      svgAsset: 'assets/images/icons/android/done.svg',
+      svgAsset: 'assets/images/icons/add.svg',
       size: 64,
     );
 
@@ -35,7 +35,7 @@ void main() {
 
   testWidgets('SvgIcon custom size and color', (tester) async {
     const sut = SvgIcon(
-      svgAsset: 'assets/images/icons/android/done.svg',
+      svgAsset: 'assets/images/icons/add.svg',
       color: Colors.purple,
       size: 64,
     );
