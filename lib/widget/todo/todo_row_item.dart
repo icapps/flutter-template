@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_checkbox.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
@@ -23,15 +23,15 @@ class TodoRowItem extends StatelessWidget {
         child: Container(
           color: Colors.transparent,
           padding: const EdgeInsets.symmetric(
-            horizontal: ThemeDimens.padding16,
-            vertical: ThemeDimens.padding8,
+            horizontal: 16,
+            vertical: 8,
           ),
           child: Row(
             children: [
               Expanded(
                 child: Text(
                   title,
-                  style: theme.coreTextTheme.bodyNormal,
+                  style: theme.text.bodyNormal,
                 ),
               ),
               FlutterTemplateCheckBox(

@@ -37,25 +37,25 @@ class FlutterTemplateButton extends StatelessWidget {
   TextStyle _enabledTextStyle(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseCoreTextTheme.labelButtonSmall;
+        return theme.lightText.labelButtonSmall;
       case ButtonType.text:
-        return theme.accentTextTheme.labelButtonSmall;
+        return theme.accent.labelButtonSmall;
     }
   }
 
   TextStyle _disabledTextStyle(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseCoreTextTheme.labelButtonSmall;
+        return theme.inverseText.labelButtonSmall;
       case ButtonType.text:
-        return theme.disabledTextTheme.labelButtonSmall;
+        return theme.disabled.labelButtonSmall;
     }
   }
 
   Color? _enabledButtonColor(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.buttonColor;
+        return theme.buttonColor;
       case ButtonType.text:
         return null;
     }
@@ -64,7 +64,7 @@ class FlutterTemplateButton extends StatelessWidget {
   Color? _disabledButtonColor(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.disabled;
+        return theme.disabled;
       case ButtonType.text:
         return null;
     }
@@ -93,18 +93,26 @@ class FlutterTemplateButton extends StatelessWidget {
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
+            borderRadius: BorderRadius.circular(12),
             onTapped: isEnabled ? onClick : null,
             child: AnimatedContainer(
-              color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+              decoration: BoxDecoration(
+                color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+                borderRadius: BorderRadius.circular(12),
+              ),
               duration: ThemeDurations.shortAnimationDuration,
               child: content,
             ),
           );
         }
         return AnimatedContainer(
-          color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+          decoration: BoxDecoration(
+            color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+            borderRadius: BorderRadius.circular(12),
+          ),
           duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
+            borderRadius: BorderRadius.circular(12),
             onTapped: isEnabled ? onClick : null,
             child: content,
           ),

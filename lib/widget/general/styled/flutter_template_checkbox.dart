@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -23,14 +22,14 @@ class FlutterTemplateCheckBox extends StatelessWidget {
           onTap: () => onChanged(!value),
           child: Container(
             color: Colors.transparent,
-            height: ThemeDimens.padding48,
-            width: ThemeDimens.padding48,
+            height: 48,
+            width: 48,
             child: value
                 ? Center(
                     child: SvgIcon(
-                      svgAsset: ThemeAssets.doneIcon(context),
-                      color: theme.colorsTheme.accent,
-                      size: ThemeDimens.padding24,
+                      svgAsset: ThemeAssets.checkIcon,
+                      color: theme.accent,
+                      size: 24,
                     ),
                   )
                 : Container(),
@@ -42,7 +41,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
       childBuilderTheme: (context, theme) => Checkbox(
         value: value,
         onChanged: (value) => onChanged(value ?? false),
-        activeColor: theme.colorsTheme.accent,
+        activeColor: theme.accent,
       ),
     );
   }

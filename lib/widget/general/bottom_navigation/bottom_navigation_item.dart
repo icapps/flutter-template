@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/extension/text_scaler_extensions.dart';
-import 'package:flutter_template/widget/animation/animated_color_filter.dart';
+import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final bool isSelected;
   final String labelKey;
-  final IconData icon;
+  final String iconActive;
+  final String iconInactive;
   final VoidCallback onTap;
 
   static const _itemHeight = 56.0;
@@ -17,7 +19,8 @@ class BottomNavigationItem extends StatelessWidget {
   const BottomNavigationItem({
     required this.isSelected,
     required this.labelKey,
-    required this.icon,
+    required this.iconActive,
+    required this.iconInactive,
     required this.onTap,
     super.key,
   });
@@ -30,21 +33,25 @@ class BottomNavigationItem extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AnimatedColorFilter(
-              color: isSelected ? theme.colorsTheme.bottomNavbarItemActive : theme.colorsTheme.bottomNavbarItemInactive,
-              builder: (context, color) => Icon(
-                icon,
-                color: color,
+            AnimatedCrossFade(
+              duration: ThemeDurations.shortAnimationDuration,
+              firstChild: SvgIcon(
+                svgAsset: iconActive,
+                color: theme.bottomNavbarItemActive,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
+              secondChild: SvgIcon(
+                svgAsset: iconInactive,
+                color: theme.bottomNavbarItemInactive,
+                size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
+              ),
+              crossFadeState: isSelected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
             ),
             if (hasSpaceForLabel) ...[
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
-                style: isSelected
-                    ? theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
-                    : theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),
+                style: isSelected ? theme.bottomNavbarItemActive.bodySmall.strong : theme.bottomNavbarItemInactive.bodySmall,
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

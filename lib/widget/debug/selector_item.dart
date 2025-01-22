@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
@@ -22,24 +22,35 @@ class SelectorItem extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => TouchFeedBack(
         onTapped: onClick,
-        child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.padding16),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: theme.coreTextTheme.bodyNormal,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: selected ? theme.fillInformative : theme.cardBackground,
+            border: Border.all(
+              color: selected ? theme.accent : theme.cardBackground,
+              width: 1,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: theme.text.bodyNormal,
+                  ),
                 ),
-              ),
-              Opacity(
-                opacity: selected ? 1 : 0,
-                child: SvgIcon(
-                  svgAsset: ThemeAssets.doneIcon(context),
-                  color: theme.colorsTheme.accent,
+                Opacity(
+                  opacity: selected ? 1 : 0,
+                  child: SvgIcon(
+                    svgAsset: ThemeAssets.checkIcon,
+                    color: theme.accent,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

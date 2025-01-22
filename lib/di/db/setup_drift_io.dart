@@ -5,7 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/isolate.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -17,7 +17,7 @@ Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
   final file = File(join(dbFolder.path, '$name.sqlite'));
   if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {
     file.deleteSync();
-    staticLogger.debug('Databasefile `db.sqlite` is deleted');
+    FlutterTemplateLogger.logDebug('Databasefile `db.sqlite` is deleted');
   }
   final receivePort = ReceivePort();
 

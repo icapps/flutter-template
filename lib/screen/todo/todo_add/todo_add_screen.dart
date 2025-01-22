@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
@@ -25,27 +24,27 @@ class TodoAddScreenState extends State<TodoAddScreen> {
     return ProviderWidget<TodoAddViewModel>(
       create: getIt.call,
       childBuilderWithViewModel: (context, viewModel, theme, localization) => Scaffold(
-        backgroundColor: theme.colorsTheme.background,
+        backgroundColor: theme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           leading: FlutterTemplateBackButton.light(
             onClick: viewModel.onBackClicked,
           ),
           title: Text(localization.todoAddTitle),
-          backgroundColor: theme.colorsTheme.primary,
+          backgroundColor: theme.primary,
         ),
         body: ScrollConfiguration(
           behavior: ScrollWhenNeededBehavior(),
           child: Scrollbar(
             child: ListView(
               physics: ScrollWhenNeededPhysics(targetPlatform: Theme.of(context).platform),
-              padding: const EdgeInsets.all(ThemeDimens.padding16),
+              padding: const EdgeInsets.all(16),
               children: [
                 FlutterTemplateInputField(
                   hint: localization.todoAddInputHint,
                   onChanged: viewModel.onTodoChanged,
                 ),
-                Container(height: ThemeDimens.padding16),
+                Container(height: 16),
                 FlutterTemplateButton(
                   text: localization.generalLabelSave,
                   isEnabled: viewModel.isSaveEnabled,

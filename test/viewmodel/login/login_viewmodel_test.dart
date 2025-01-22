@@ -28,6 +28,7 @@ void main() {
     navigator = MockMainNavigator();
     onboardingNavigator = MockOnboardingNavigator();
     sut = LoginViewModel(loginRepo, navigator, onboardingNavigator);
+    TestWidgetsFlutterBinding.ensureInitialized();
   });
 
   test('LoginViewModel init with loggedin user', () async {

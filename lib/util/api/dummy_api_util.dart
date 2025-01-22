@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 
 class DummyApiUtil {
   static const _apiAssetPath = 'assets/api';
@@ -13,13 +13,13 @@ class DummyApiUtil {
     }
     final path = '$_apiAssetPath/$url.json';
     try {
-      staticLogger.debug('---------------> GET - url: file://$path');
+      FlutterTemplateLogger.logDebug('---------------> GET - url: file://$path');
 
       final jsonString = await rootBundle.loadString(path);
-      staticLogger.debug('<--------------- GET - url: file://$path - statucode: 200');
+      FlutterTemplateLogger.logDebug('<--------------- GET - url: file://$path - statucode: 200');
       return json.decode(jsonString) as T;
     } catch (e, stack) {
-      staticLogger.error(
+      FlutterTemplateLogger.logError(
         '<--------------- GET - url: $path - statucode: 404',
         error: e,
         stackTrace: stack,

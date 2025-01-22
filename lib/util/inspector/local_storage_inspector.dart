@@ -4,7 +4,7 @@ import 'package:file_local_storage_inspector/file_local_storage_inspector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:preferences_local_storage_inspector/preferences_local_storage_inspector.dart';
 import 'package:secure_storage_local_storage_inspector/secure_storage_local_storage_inspector.dart';
@@ -36,7 +36,7 @@ Future<void> _initLocalStorageInspector(
   await configureServers(driver);
 
   const paused = bool.fromEnvironment('storage_inspector_wait');
-  staticLogger.d('Starting local storage inspector. Waiting for unpause? $paused');
+  FlutterTemplateLogger.logDebug('Starting local storage inspector. Waiting for unpause? $paused');
 
   await driver.start(paused: paused);
 }

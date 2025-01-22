@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/styles/theme_dimens.dart';
+import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateSwitch extends StatelessWidget {
   final bool value;
@@ -14,11 +17,29 @@ class FlutterTemplateSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) => Switch.adaptive(
-        value: value,
-        onChanged: onChanged,
-        activeColor: theme.colorsTheme.accent,
-        inactiveTrackColor: theme.colorsTheme.disabled,
+      childBuilderTheme: (context, theme) => TouchFeedBack(
+        onTapped: () => onChanged(!value),
+        child: Container(
+          height: 24,
+          width: 42,
+          decoration: BoxDecoration(
+            color: value ? theme.accent : theme.switchBackground,
+            borderRadius: ThemeDimens.circularBorderRadius,
+          ),
+          child: AnimatedAlign(
+            duration: ThemeDurations.shortAnimationDuration,
+            alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+            child: Container(
+              margin: const EdgeInsets.all(2),
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                color: theme.lightText,
+                borderRadius: ThemeDimens.circularBorderRadius,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

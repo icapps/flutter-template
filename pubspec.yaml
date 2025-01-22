@@ -2,6 +2,8 @@ name: flutter_template
 description: A Flutter Template to get started quickly
 version: 1.0.0+1
 
+publish_to: none
+
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
@@ -21,6 +23,7 @@ dependencies:
   firebase_core_web: ^2.1.0
   firebase_crashlytics: ^3.0.10
   firebase_remote_config: ^4.4.7
+  firebase_storage: ^11.7.7
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.3.0
@@ -35,7 +38,12 @@ dependencies:
   get_it: ^7.2.0
   icapps_architecture: ^2.1.0
   injectable: ^2.1.0
+  intl: ^0.19.0
   json_annotation: ^4.7.0
+  log_to_secure_file:
+    git:
+      url: https://github.com/icapps/log_to_secure_file.git
+      ref: main
   niddler_dart: ^1.6.0
   path: ^1.8.2
   path_provider: ^2.0.11
@@ -49,7 +57,7 @@ dependencies:
   sprintf: ^7.0.0
   sqlite3_flutter_libs: ^0.5.12
   storage_inspector: ^0.4.0
-  synchronized: ^3.0.1
+  synchronized: ^3.3.0+3
   url_launcher: ^6.3.1
 
 dev_dependencies:
@@ -77,8 +85,6 @@ flutter:
     - assets/locale/
     - assets/images/
     - assets/images/icons/
-    - assets/images/icons/android/
-    - assets/images/icons/ios/
   fonts:
     - family: OpenSans
       fonts:
