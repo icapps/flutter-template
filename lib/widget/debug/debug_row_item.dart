@@ -20,8 +20,7 @@ class DebugRowItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) {
-        return TouchFeedBack(
+      childBuilderTheme: (context, theme) => TouchFeedBack(
           onTapped: onClick,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -52,8 +51,7 @@ class DebugRowItem extends StatelessWidget {
               ],
             ),
           ),
-        );
-      },
+        ),
     );
   }
 }

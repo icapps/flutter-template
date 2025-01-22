@@ -16,8 +16,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) {
-        return Container(
+      childBuilderTheme: (context, theme) => Container(
           height: 24,
           width: 42,
           decoration: BoxDecoration(
@@ -37,8 +36,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
               ),
             ),
           ),
-        );
-      },
+        ),
     );
   }
 }
