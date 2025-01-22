@@ -202,6 +202,7 @@ void _renameiOSBundleIdentifier(String iosBundleIdentifier) {
 void _renameAppName(String appName) {
   Logger.info('Replace the app name ...');
   _replaceInFile('fastlane/Fastfile', originalAppName, appName);
+  _replaceInFile('ios/Runner/ExportOptions.plist', originalAppName, appName);
   Directory('ios/Configuration').listSync(recursive: true).where((element) {
     if (element.path.endsWith('.png')) return false;
     if (element.path.contains('.DS_Store')) return false;
