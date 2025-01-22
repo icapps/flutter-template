@@ -208,8 +208,7 @@ end
 private_lane :buildAppIOSOnly do |options|
     Dir.chdir ".." do
       podRepoUpdate
-      sh("fvm", "flutter", "build", "ios", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}")    # Build the application
-      convertAppToIpa(flavor: options[:flavor])
+      sh("fvm", "flutter", "build", "ipa", "--release", "--flavor", options[:flavor], "-t" "lib/main_#{options[:flavor]}.dart", "--no-codesign", "--obfuscate", "--split-debug-info=./build/debug-info/#{options[:flavor]}", "--build-number=#{BUILD_NR}", "--export-options-plist ios/Runner/ExportOptions.plist")    # Build the application
     end
     Dir.chdir "../build" do
       zip(
