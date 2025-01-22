@@ -8,7 +8,7 @@ import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
 import 'package:flutter_template/widget/debug/debug_section.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
