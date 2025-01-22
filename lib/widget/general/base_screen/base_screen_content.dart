@@ -22,37 +22,35 @@ class BaseScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget content;
-
-    if (children.isNotEmpty) {
-      if (useSlivers) {
-        content = CustomScrollView(
-          slivers: children,
-        );
-      } else if (isScrollable) {
-        content = ListView(
-          padding: padding,
-          children: children,
-        );
-      } else {
-        content = Padding(
-          padding: padding,
-          child: Column(children: children),
-        );
-      }
-    } else if (itemBuilder != null) {
-      content = ListView.builder(
+    // single child
+    if (itemBuilder != null) {
+      return ListView.builder(
         padding: padding,
         itemBuilder: itemBuilder!,
         itemCount: itemCount,
       );
-    } else {
-      content = Padding(
+    }
+    
+    // multiple children
+    if (children.isNotEmpty) {
+      if (useSlivers) {
+        return CustomScrollView(slivers: children);
+      }
+      if (isScrollable) {
+        return ListView(
+          padding: padding,
+          children: children,
+        );
+      }
+      return Padding(
         padding: padding,
-        child: child,
+        child: Column(children: children),
       );
     }
 
-    return content;
+    return Padding(
+      padding: padding,
+      child: child,
+    );
   }
 }
