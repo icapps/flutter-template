@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
+import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 
 enum BottomNavigationTab {
-  todo(icon: Icons.list, labelKey: LocalizationKeys.todoTitle),
-  settings(icon: Icons.settings, labelKey: LocalizationKeys.settingsTitle);
+  todo(
+    iconActive: ThemeAssets.todoIconActive,
+    iconInactive: ThemeAssets.todoIconInactive,
+    labelKey: LocalizationKeys.todoTitle,
+  ),
+  settings(
+    iconActive: ThemeAssets.settingsIconActive,
+    iconInactive: ThemeAssets.settingsIconInactive,
+    labelKey: LocalizationKeys.settingsTitle,
+  );
 
-  final IconData icon;
+  final String iconActive;
+  final String iconInactive;
   final String labelKey;
 
   const BottomNavigationTab({
-    required this.icon,
+    required this.iconActive,
+    required this.iconInactive,
     required this.labelKey,
   });
 

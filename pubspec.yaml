@@ -85,8 +85,6 @@ flutter:
     - assets/locale/
     - assets/images/
     - assets/images/icons/
-    - assets/images/icons/android/
-    - assets/images/icons/ios/
   fonts:
     - family: OpenSans
       fonts:

@@ -27,7 +27,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
             child: value
                 ? Center(
                     child: SvgIcon(
-                      svgAsset: ThemeAssets.doneIcon(context),
+                      svgAsset: ThemeAssets.checkIcon,
                       color: theme.accent,
                       size: 24,
                     ),

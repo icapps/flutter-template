@@ -19,8 +19,8 @@ class ActionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => SizedBox(
-        height: 56,
-        width: 56,
+        height: 48,
+        width: 48,
         child: Center(
           child: SizedBox(
             height: 48,

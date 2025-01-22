@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
+import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
 import 'package:flutter_template/widget/debug/debug_row_item.dart';
-import 'package:flutter_template/widget/debug/debug_row_title.dart';
+import 'package:flutter_template/widget/debug/debug_section.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -27,70 +28,111 @@ class DebugScreenState extends State<DebugScreen> {
       create: () => getIt()..init(),
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => BaseScreen(
         title: localization.settingsTitle,
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.all(24),
         isScrollable: true,
         children: [
-          DebugRowTitle(title: localization.debugAnimationsTitle),
-          DebugRowSwitchItem(
-            key: Keys.debugSlowAnimations,
-            title: localization.debugSlowAnimations,
-            value: viewModel.slowAnimationsEnabled,
-            onChanged: viewModel.onSlowAnimationsChanged,
+          DebugSection(
+            title: localization.debugAnimationsTitle,
+            icon: ThemeAssets.animationIcon,
+            children: [
+              DebugRowSwitchItem(
+                key: Keys.debugSlowAnimations,
+                title: localization.debugSlowAnimations,
+                value: viewModel.slowAnimationsEnabled,
+                onChanged: viewModel.onSlowAnimationsChanged,
+              ),
+            ],
           ),
-          DebugRowTitle(title: localization.debugThemeTitle),
-          DebugRowItem(
-            key: Keys.debugTargetPlatform,
-            title: localization.debugTargetPlatformTitle,
-            subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
-            onClick: viewModel.onTargetPlatformClicked,
+          const SizedBox(height: 24),
+          DebugSection(
+            title: localization.debugThemeTitle,
+            icon: ThemeAssets.themeIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugTargetPlatform,
+                title: localization.debugTargetPlatformTitle,
+                subTitle: localization.debugTargetPlatformSubtitle(localization.getTranslation(Provider.of<GlobalViewModel>(context).getCurrentPlatform())),
+                onClick: viewModel.onTargetPlatformClicked,
+              ),
+              DebugRowItem(
+                key: Keys.debugThemeMode,
+                title: localization.debugThemeModeTitle,
+                subTitle: localization.debugThemeModeSubtitle,
+                onClick: viewModel.onThemeModeClicked,
+              ),
+            ],
           ),
-          DebugRowItem(
-            key: Keys.debugThemeMode,
-            title: localization.debugThemeModeTitle,
-            subTitle: localization.debugThemeModeSubtitle,
-            onClick: viewModel.onThemeModeClicked,
+          const SizedBox(height: 24),
+          DebugSection(
+            title: localization.debugLocaleTitle,
+            icon: ThemeAssets.translationsIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugSelectLanguage,
+                title: localization.debugLocaleSelector,
+                subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
+                onClick: viewModel.onSelectLanguageClicked,
+              ),
+              DebugRowSwitchItem(
+                key: Keys.debugShowTranslations,
+                title: localization.debugShowTranslations,
+                value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
+                onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
+              ),
+            ],
           ),
-          DebugRowTitle(title: localization.debugLocaleTitle),
-          DebugRowItem(
-            key: Keys.debugSelectLanguage,
-            title: localization.debugLocaleSelector,
-            subTitle: localization.debugLocaleCurrentLanguage(Provider.of<GlobalViewModel>(context).getCurrentLanguage()),
-            onClick: viewModel.onSelectLanguageClicked,
+          const SizedBox(height: 24),
+          DebugSection(
+            title: localization.debugLicensesTitle,
+            icon: ThemeAssets.licenseIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugLicense,
+                title: localization.debugLicensesGoTo,
+                onClick: viewModel.onLicensesClicked,
+              ),
+            ],
           ),
-          DebugRowSwitchItem(
-            key: Keys.debugShowTranslations,
-            title: localization.debugShowTranslations,
-            value: Provider.of<GlobalViewModel>(context, listen: false).showsTranslationKeys,
-            onChanged: (_) => Provider.of<GlobalViewModel>(context, listen: false).toggleTranslationKeys(),
+          const SizedBox(height: 24),
+          DebugSection(
+            title: localization.debugDatabase,
+            icon: ThemeAssets.boxIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugDatabase,
+                title: localization.debugViewDatabase,
+                onClick: viewModel.goToDatabase,
+              ),
+            ],
           ),
-          DebugRowTitle(title: localization.debugLicensesTitle),
-          DebugRowItem(
-            key: Keys.debugLicense,
-            title: localization.debugLicensesGoTo,
-            onClick: viewModel.onLicensesClicked,
+          const SizedBox(height: 24),
+          DebugSection(
+            title: localization.debugPermissionsTitle,
+            icon: ThemeAssets.lockOpenIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugPermissionAnalytics,
+                title: localization.debugPermissionsShowAnalyticsPermission,
+                onClick: viewModel.goToAnalyticsPermissionScreen,
+              ),
+              DebugRowItem(
+                key: Keys.debugPermissionAnalyticsReset,
+                title: localization.debugPermissionResetAnalytics,
+                onClick: viewModel.resetAnalyticsPermission,
+              ),
+            ],
           ),
-          DebugRowTitle(title: localization.debugDatabase),
-          DebugRowItem(
-            key: Keys.debugDatabase,
-            title: localization.debugViewDatabase,
-            onClick: viewModel.goToDatabase,
-          ),
-          DebugRowTitle(title: localization.debugPermissionsTitle),
-          DebugRowItem(
-            key: Keys.debugPermissionAnalytics,
-            title: localization.debugPermissionsShowAnalyticsPermission,
-            onClick: viewModel.goToAnalyticsPermissionScreen,
-          ),
-          DebugRowItem(
-            key: Keys.debugPermissionAnalyticsReset,
-            title: localization.debugPermissionResetAnalytics,
-            onClick: viewModel.resetAnalyticsPermission,
-          ),
-          const DebugRowTitle(title: 'logs'),
-          DebugRowItem(
-            key: Keys.debugPermissionAnalyticsReset,
-            title: 'Show logs',
-            onClick: viewModel.onLogsTapped,
+          const SizedBox(height: 24),
+          DebugSection(
+            title: 'logs',
+            icon: ThemeAssets.listIcon,
+            children: [
+              DebugRowItem(
+                key: Keys.debugPermissionAnalyticsReset,
+                title: 'Show logs',
+                onClick: viewModel.onLogsTapped,
+              ),
+            ],
           ),
         ],
       ),

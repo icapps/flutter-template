@@ -3,7 +3,7 @@ import 'package:flutter_navigation_generator_annotations/flutter_navigation_gene
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
 import 'package:flutter_template/widget/debug/selector_item.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @flutterRoute
@@ -29,11 +29,13 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
             onClick: viewModel.setSelectedPlatformToDefault,
             selected: viewModel.selectedPlatform == null,
           ),
+          const SizedBox(height: 8),
           SelectorItem(
             title: localization.generalLabelAndroid,
             onClick: viewModel.setSelectedPlatformToAndroid,
             selected: viewModel.selectedPlatform == TargetPlatform.android,
           ),
+          const SizedBox(height: 8),
           SelectorItem(
             title: localization.generalLabelIos,
             onClick: viewModel.setSelectedPlatformToIOS,
