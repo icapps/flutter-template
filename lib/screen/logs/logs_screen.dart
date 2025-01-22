@@ -5,7 +5,7 @@ import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/extension/date_time_extension.dart';
 import 'package:flutter_template/viewmodel/logs/logs_viewmodel.dart';
-import 'package:flutter_template/widget/general/simple_screen/base_screen.dart';
+import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
 import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
