@@ -4,11 +4,15 @@
 Todo:
   path: webservice/todo/
   properties:
-    id:
-      type: int
-    title:
-      required: true
-      type: String
-    completed:
-      required: true
-      type: bool
+    id: int?
+    title: String
+    completed: bool
+
+##################################################################################
+#####                                REMOTE CONFIG                           #####
+##################################################################################
+
+LocalizedMessage:
+  path: data/remote_config
+  properties:
+    en: String?
