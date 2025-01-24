@@ -3,15 +3,14 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/extension/text_scaler_extensions.dart';
-import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final bool isSelected;
   final String labelKey;
-  final String iconActive;
-  final String iconInactive;
+  final IconData iconActive;
+  final IconData iconInactive;
   final VoidCallback onTap;
 
   static const _itemHeight = 56.0;
@@ -35,13 +34,13 @@ class BottomNavigationItem extends StatelessWidget {
           children: [
             AnimatedCrossFade(
               duration: ThemeDurations.shortAnimationDuration,
-              firstChild: SvgIcon(
-                svgAsset: iconActive,
+              firstChild: Icon(
+                iconActive,
                 color: theme.bottomNavbarItemActive,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
-              secondChild: SvgIcon(
-                svgAsset: iconInactive,
+              secondChild: Icon(
+                iconInactive,
                 color: theme.bottomNavbarItemInactive,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),

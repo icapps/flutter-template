@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/screen/debug/debug_screen.dart';
 import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 
 enum BottomNavigationTab {
   todo(
-    iconActive: ThemeAssets.todoIconActive,
-    iconInactive: ThemeAssets.todoIconInactive,
+    iconActive: IcappsIcons.alarmFilled,
+    iconInactive: IcappsIcons.alarm,
     labelKey: LocalizationKeys.todoTitle,
   ),
   settings(
-    iconActive: ThemeAssets.settingsIconActive,
-    iconInactive: ThemeAssets.settingsIconInactive,
+    iconActive: IcappsIcons.cogwheel1Filled,
+    iconInactive: IcappsIcons.cogwheel1,
     labelKey: LocalizationKeys.settingsTitle,
   );
 
-  final String iconActive;
-  final String iconInactive;
+  final IconData iconActive;
+  final IconData iconInactive;
   final String labelKey;
 
   const BottomNavigationTab({
