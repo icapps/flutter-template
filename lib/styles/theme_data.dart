@@ -477,39 +477,39 @@ extension TextThemeExtension on Color {
   // Design system textstyles
 
   // Heading
-  TextStyle get headingXl => TextStyle(fontSize: 32, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingXl => TextStyle(fontSize: 32, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
-  TextStyle get headingL => TextStyle(fontSize: 28, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingL => TextStyle(fontSize: 28, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
-  TextStyle get headingM => TextStyle(fontSize: 26, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingM => TextStyle(fontSize: 26, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
-  TextStyle get headingS => TextStyle(fontSize: 24, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingS => TextStyle(fontSize: 24, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
-  TextStyle get headingXs => TextStyle(fontSize: 20, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingXs => TextStyle(fontSize: 20, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
-  TextStyle get headingXXS => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+  TextStyle get headingXXS => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 
   // Paragraph
-  TextStyle get paragraphM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get paragraphM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1.5);
 
-  TextStyle get paragraphS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get paragraphS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1.5);
 
-  TextStyle get paragraphXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get paragraphXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1.5);
 
   // Label
 
-  TextStyle get labelM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get labelM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 
-  TextStyle get labelS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get labelS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 
-  TextStyle get labelXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get labelXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 
   // Data
-  TextStyle get dataM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get dataM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 
-  TextStyle get dataS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get dataS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 
-  TextStyle get dataXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+  TextStyle get dataXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 1);
 }
 
 extension TextStyleExtension on TextStyle {
