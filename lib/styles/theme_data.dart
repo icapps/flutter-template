@@ -53,6 +53,93 @@ enum FlutterTemplateThemeStyle {
   light,
 }
 
+class FlutterTemplateThemeEffects {
+  final Color elevationDefault1;
+  final Color elevationDefault2;
+  final Color elevationDefault3;
+
+  FlutterTemplateThemeEffects({
+    required this.elevationDefault1,
+    required this.elevationDefault2,
+    required this.elevationDefault3,
+  });
+
+  List<BoxShadow> get elevation1 => [
+        BoxShadow(
+          offset: const Offset(0, 4),
+          spreadRadius: 0,
+          blurRadius: 8,
+          color: elevationDefault2,
+        ),
+        BoxShadow(
+          offset: const Offset(0, 2),
+          spreadRadius: 0,
+          blurRadius: 4,
+          color: elevationDefault1,
+        ),
+      ];
+
+  List<BoxShadow> get elevation2 => [
+        BoxShadow(
+          offset: const Offset(0, 8),
+          spreadRadius: 0,
+          blurRadius: 16,
+          color: elevationDefault2,
+        ),
+        BoxShadow(
+          offset: const Offset(0, 4),
+          spreadRadius: 0,
+          blurRadius: 8,
+          color: elevationDefault1,
+        ),
+      ];
+
+  List<BoxShadow> get elevation3 => [
+        BoxShadow(
+          offset: const Offset(0, 12),
+          spreadRadius: 0,
+          blurRadius: 24,
+          color: elevationDefault2,
+        ),
+        BoxShadow(
+          offset: const Offset(0, 8),
+          spreadRadius: 0,
+          blurRadius: 16,
+          color: elevationDefault1,
+        ),
+      ];
+
+  List<BoxShadow> get elevation4 => [
+        BoxShadow(
+          offset: const Offset(0, 16),
+          spreadRadius: 0,
+          blurRadius: 32,
+          color: elevationDefault3,
+        ),
+        BoxShadow(
+          offset: const Offset(0, 12),
+          spreadRadius: 0,
+          blurRadius: 24,
+          color: elevationDefault1,
+        ),
+      ];
+
+  List<BoxShadow> get elevation5 => [
+        BoxShadow(
+          offset: const Offset(0, 24),
+          spreadRadius: 0,
+          blurRadius: 48,
+          color: elevationDefault3,
+        ),
+        BoxShadow(
+          offset: const Offset(0, 16),
+          spreadRadius: 0,
+          blurRadius: 32,
+          color: elevationDefault2,
+        ),
+      ];
+}
+
 class FlutterTemplateTheme {
   // Brand base
   final Color main;
@@ -123,6 +210,7 @@ class FlutterTemplateTheme {
   final Color actionDefault;
 
   final bool isDarkTheme;
+  final FlutterTemplateThemeEffects effects;
 
   bool get isLightTheme => !isDarkTheme;
 
@@ -174,6 +262,11 @@ class FlutterTemplateTheme {
     bodyNeutralSubtle: ThemeColors.neutral36,
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
+    effects: FlutterTemplateThemeEffects(
+      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
+      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
+      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+    ),
   );
 
   static final _instanceLight = FlutterTemplateTheme._(
@@ -224,6 +317,11 @@ class FlutterTemplateTheme {
     bodyNeutralSubtle: ThemeColors.neutral36,
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
+    effects: FlutterTemplateThemeEffects(
+      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
+      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
+      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+    ),
   );
 
   FlutterTemplateTheme._({
@@ -274,6 +372,7 @@ class FlutterTemplateTheme {
     required this.bodyNeutralSubtle,
     required this.bodyNeutralFaded,
     required this.actionDefault,
+    required this.effects,
   });
 
   static FlutterTemplateTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
@@ -359,24 +458,11 @@ extension TextStyleExtension on TextStyle {
 }
 
 extension ShadowsExtension on Color {
-  List<BoxShadow> get bottomNavShadow => [
-        BoxShadow(
-          offset: const Offset(0, -29),
+  List<BoxShadow> get elevation1 => [
+        const BoxShadow(
+          offset: Offset(0, 4),
           spreadRadius: 0,
-          blurRadius: 29,
-          color: withOpacity(0.02),
-        ),
-        BoxShadow(
-          offset: const Offset(0, -65),
-          spreadRadius: 0,
-          blurRadius: 39,
-          color: withOpacity(0.01),
-        ),
-        BoxShadow(
-          offset: const Offset(0, -115),
-          spreadRadius: 0,
-          blurRadius: 46,
-          color: withOpacity(0.01),
+          blurRadius: 8,
         ),
       ];
 }
