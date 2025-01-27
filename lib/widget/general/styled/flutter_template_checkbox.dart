@@ -27,7 +27,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
                 ? Center(
                     child: Icon(
                       IcappsIcons.checkmark,
-                      color: theme.accent,
+                      color: theme.accentThink,
                       size: 24,
                     ),
                   )
@@ -40,7 +40,7 @@ class FlutterTemplateCheckBox extends StatelessWidget {
       childBuilderTheme: (context, theme) => Checkbox(
         value: value,
         onChanged: (value) => onChanged(value ?? false),
-        activeColor: theme.accent,
+        activeColor: theme.accentThink,
       ),
     );
   }

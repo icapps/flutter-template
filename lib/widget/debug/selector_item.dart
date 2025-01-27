@@ -25,9 +25,9 @@ class SelectorItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: selected ? theme.fillInformative : theme.cardBackground,
+            color: selected ? theme.systemInformative : theme.canvas,
             border: Border.all(
-              color: selected ? theme.accent : theme.cardBackground,
+              color: selected ? theme.accentThink : theme.canvas,
               width: 1,
             ),
           ),
@@ -38,14 +38,14 @@ class SelectorItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: theme.text.bodyNormal,
+                    style: theme.bodyNeutralDefault.bodyNormal,
                   ),
                 ),
                 Opacity(
                   opacity: selected ? 1 : 0,
                   child: Icon(
                     IcappsIcons.checkmark,
-                    color: theme.accent,
+                    color: theme.accentThink,
                   ),
                 ),
               ],

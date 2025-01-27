@@ -33,12 +33,12 @@ class DebugRowSwitchItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.text.bodyBig,
+                      style: theme.bodyNeutralDefault.bodyBig,
                     ),
                     if (subTitle != null)
                       Text(
                         subTitle!,
-                        style: theme.text.bodySmall,
+                        style: theme.bodyNeutralDefault.bodySmall,
                       ),
                   ],
                 ),

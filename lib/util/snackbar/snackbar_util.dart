@@ -1,7 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/snackbar/snackbar_data.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
+import 'package:flutter_template/navigator/main_navigator.dart';
+import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 
 class SnackBarUtil {
@@ -26,21 +28,23 @@ class SnackBarUtil {
   }
 
   static SnackBarStyleData _getSnackBarStyle(SnackBarStyle style) {
+    final context = getIt<MainNavigator>().context;
+    final theme = FlutterTemplateTheme.of(context);
     switch (style) {
       case SnackBarStyle.neutral:
-        return const SnackBarStyleData(
-          textColor: ThemeColors.white,
-          backgroundColor: ThemeColors.primary,
+        return SnackBarStyleData(
+          textColor: theme.pureWhite,
+          backgroundColor: theme.main,
         );
       case SnackBarStyle.success:
-        return const SnackBarStyleData(
-          textColor: ThemeColors.white,
-          backgroundColor: ThemeColors.success,
+        return SnackBarStyleData(
+          textColor: theme.pureWhite,
+          backgroundColor: theme.systemPositive,
         );
       case SnackBarStyle.error:
-        return const SnackBarStyleData(
-          textColor: ThemeColors.white,
-          backgroundColor: ThemeColors.error,
+        return SnackBarStyleData(
+          textColor: theme.pureWhite,
+          backgroundColor: theme.systemNegative,
         );
     }
   }

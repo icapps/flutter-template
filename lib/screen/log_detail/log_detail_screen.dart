@@ -35,7 +35,7 @@ class LogDetailScreenState extends State<LogDetailScreen> {
                 final log = viewModel.logs.reversed.toList()[index];
                 return Text(
                   log,
-                  style: theme.text.bodySmall,
+                  style: theme.bodyNeutralDefault.bodySmall,
                 );
               },
             ),

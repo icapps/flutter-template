@@ -10,24 +10,24 @@ class FlutterTemplateThemeData {
 
   static final _darkThemeData = ThemeData(
     fontFamily: ThemeFonts.body,
-    primaryColor: ThemeColors.primary,
+    primaryColor: ThemeColors.main16,
     colorScheme: const ColorScheme(
-      primary: ThemeColors.primary,
-      primaryContainer: ThemeColors.primaryDark,
-      onPrimary: ThemeColors.white,
-      secondary: ThemeColors.accent,
-      secondaryContainer: ThemeColors.accent,
-      onSecondary: ThemeColors.white,
-      surface: ThemeColors.backgroundGrey,
-      onSurface: ThemeColors.primary,
-      onError: ThemeColors.primaryDark,
+      primary: ThemeColors.main16,
+      primaryContainer: ThemeColors.main16,
+      onPrimary: ThemeColors.neutral100,
+      secondary: ThemeColors.accentThink40,
+      secondaryContainer: ThemeColors.accentThink40,
+      onSecondary: ThemeColors.neutral100,
+      surface: ThemeColors.neutral96,
+      onSurface: ThemeColors.main16,
+      onError: ThemeColors.main16,
+      error: ThemeColors.systemNegative52,
       brightness: Brightness.light,
-      error: ThemeColors.error,
     ),
     textSelectionTheme: TextSelectionThemeData(
-      cursorColor: ThemeColors.accent,
-      selectionHandleColor: ThemeColors.accent,
-      selectionColor: ThemeColors.accent.withOpacity(0.4),
+      cursorColor: ThemeColors.accentThink40,
+      selectionHandleColor: ThemeColors.accentThink40,
+      selectionColor: ThemeColors.accentThink40.withOpacity(0.4),
     ),
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
@@ -54,60 +54,16 @@ enum FlutterTemplateThemeStyle {
 }
 
 class FlutterTemplateTheme {
-  final bool isDarkTheme;
-
-  // old colors, to be removed
-  final Color text;
-  final Color lightText;
-  final Color fadedText;
-  final Color inverseText;
-  final Color errorText;
-  final Color buttonTextDisabled;
-  final Color primary;
-  final Color secondary;
-  final Color accent;
-  final Color background;
-  final Color permissionScreenBackground;
-  final Color inverseBackground;
-  final Color disabled;
-  final Color icon;
-  final Color appBarAction;
-  final Color inverseIcon;
-  final Color inverseProgressIndicator;
-  final Color shadow;
-  final Color progressIndicator;
-  final Color buttonColor;
-  final Color buttonText;
-  final Color inverseButtonText;
-  final Color textButtonText;
-  final Color fillInformative;
-  final Color cardBackground;
-  final Color switchBackground;
-
-  final Color bottomNavbarBackground;
-  final Color bottomNavbarItemActive;
-  final Color bottomNavbarItemInactive;
-
-  final Color inputFieldFill;
-  final Color inputFieldHint;
-  final Color inputFieldBorderEnabled;
-  final Color inputFieldBorderFocused;
-  final Color inputFieldBorderIdle;
-  final Color inputFieldCursor;
-
-  final Color debugTitleBackground;
-
-  // Design system colors
-
   // Brand base
   final Color main;
   final Color pureWhite;
+  final Color pureBlack;
 
   // Brand Accent
-  final Color think;
-  final Color build;
-  final Color maintain;
-  final Color celebrate;
+  final Color accentThink;
+  final Color accentBuild;
+  final Color accentMaintain;
+  final Color accentCelebrate;
 
   // Fill system
   final Color systemPositive;
@@ -166,55 +122,19 @@ class FlutterTemplateTheme {
   // Text action
   final Color actionDefault;
 
+  final bool isDarkTheme;
+
   bool get isLightTheme => !isDarkTheme;
 
   static final _instanceDark = FlutterTemplateTheme._(
-    // old colors, to be removed
     isDarkTheme: true,
-    text: ThemeColors.white,
-    fadedText: ThemeColors.lightGrey,
-    inverseText: ThemeColors.black,
-    errorText: ThemeColors.error,
-    primary: ThemeColors.primary,
-    accent: ThemeColors.accent,
-    secondary: ThemeColors.white,
-    background: ThemeColors.primary,
-    permissionScreenBackground: ThemeColors.primary,
-    inverseBackground: ThemeColors.white,
-    disabled: ThemeColors.disabledGrey,
-    icon: ThemeColors.white,
-    appBarAction: ThemeColors.white,
-    inverseIcon: ThemeColors.black,
-    progressIndicator: ThemeColors.primary,
-    inverseProgressIndicator: ThemeColors.white,
-    shadow: ThemeColors.shadow,
-    buttonText: ThemeColors.primary,
-    inverseButtonText: ThemeColors.white,
-    buttonTextDisabled: ThemeColors.lightGrey,
-    buttonColor: ThemeColors.accent,
-    textButtonText: ThemeColors.white,
-    bottomNavbarBackground: ThemeColors.darkBackground,
-    bottomNavbarItemActive: ThemeColors.white,
-    bottomNavbarItemInactive: ThemeColors.white50,
-    inputFieldFill: ThemeColors.black,
-    inputFieldHint: ThemeColors.white50,
-    inputFieldBorderEnabled: ThemeColors.white50,
-    inputFieldBorderFocused: ThemeColors.white,
-    inputFieldBorderIdle: ThemeColors.white50,
-    inputFieldCursor: ThemeColors.accent,
-    debugTitleBackground: ThemeColors.white20,
-    fillInformative: ThemeColors.darkAccent,
-    cardBackground: ThemeColors.darkBackground,
-    lightText: ThemeColors.white,
-    switchBackground: ThemeColors.fadedGrey,
-
-    // Design system colors
     main: ThemeColors.main16,
     pureWhite: ThemeColors.neutral100,
-    think: ThemeColors.accentThink40,
-    build: ThemeColors.accentBuild60,
-    maintain: ThemeColors.accentMaintain52,
-    celebrate: ThemeColors.accentCelebrate60,
+    pureBlack: ThemeColors.neutral0,
+    accentThink: ThemeColors.accentThink40,
+    accentBuild: ThemeColors.accentBuild60,
+    accentMaintain: ThemeColors.accentMaintain52,
+    accentCelebrate: ThemeColors.accentCelebrate60,
     systemPositive: ThemeColors.systemPositive96,
     systemAttention: ThemeColors.systemAttention96,
     systemNegative: ThemeColors.systemNegative96,
@@ -257,52 +177,14 @@ class FlutterTemplateTheme {
   );
 
   static final _instanceLight = FlutterTemplateTheme._(
-    // old colors, to be removed
     isDarkTheme: false,
-    text: ThemeColors.primary,
-    fadedText: ThemeColors.fadedGrey,
-    inverseText: ThemeColors.white,
-    errorText: ThemeColors.error,
-    primary: ThemeColors.primary,
-    accent: ThemeColors.accent,
-    secondary: ThemeColors.black,
-    background: ThemeColors.backgroundGrey,
-    permissionScreenBackground: ThemeColors.white,
-    inverseBackground: ThemeColors.white,
-    inputFieldFill: ThemeColors.white,
-    inputFieldHint: ThemeColors.mediumGrey,
-    disabled: ThemeColors.disabledGrey,
-    icon: ThemeColors.primary,
-    appBarAction: ThemeColors.primary,
-    inverseIcon: ThemeColors.black,
-    progressIndicator: ThemeColors.primary,
-    inverseProgressIndicator: ThemeColors.white,
-    shadow: ThemeColors.shadow,
-    buttonText: ThemeColors.white,
-    inverseButtonText: ThemeColors.primary,
-    buttonTextDisabled: ThemeColors.lightGrey,
-    buttonColor: ThemeColors.primary,
-    textButtonText: ThemeColors.primary,
-    bottomNavbarBackground: ThemeColors.white,
-    bottomNavbarItemActive: ThemeColors.primary,
-    bottomNavbarItemInactive: ThemeColors.mediumGrey,
-    inputFieldBorderEnabled: ThemeColors.mediumGrey,
-    inputFieldBorderFocused: ThemeColors.primary,
-    inputFieldBorderIdle: ThemeColors.mediumGrey,
-    inputFieldCursor: ThemeColors.accent,
-    debugTitleBackground: ThemeColors.lightGrey,
-    fillInformative: ThemeColors.lightAccent,
-    cardBackground: ThemeColors.white,
-    lightText: ThemeColors.white,
-    switchBackground: ThemeColors.disabledGrey,
-
-    // Design system colors
     main: ThemeColors.main16,
     pureWhite: ThemeColors.neutral100,
-    think: ThemeColors.accentThink40,
-    build: ThemeColors.accentBuild60,
-    maintain: ThemeColors.accentMaintain52,
-    celebrate: ThemeColors.accentCelebrate60,
+    pureBlack: ThemeColors.neutral0,
+    accentThink: ThemeColors.accentThink40,
+    accentBuild: ThemeColors.accentBuild60,
+    accentMaintain: ThemeColors.accentMaintain52,
+    accentCelebrate: ThemeColors.accentCelebrate60,
     systemPositive: ThemeColors.systemPositive96,
     systemAttention: ThemeColors.systemAttention96,
     systemNegative: ThemeColors.systemNegative96,
@@ -346,48 +228,13 @@ class FlutterTemplateTheme {
 
   FlutterTemplateTheme._({
     required this.isDarkTheme,
-    required this.text,
-    required this.fadedText,
-    required this.inverseText,
-    required this.errorText,
-    required this.buttonTextDisabled,
-    required this.primary,
-    required this.secondary,
-    required this.accent,
-    required this.background,
-    required this.permissionScreenBackground,
-    required this.inverseBackground,
-    required this.disabled,
-    required this.icon,
-    required this.appBarAction,
-    required this.inverseIcon,
-    required this.inverseProgressIndicator,
-    required this.shadow,
-    required this.progressIndicator,
-    required this.buttonColor,
-    required this.buttonText,
-    required this.inverseButtonText,
-    required this.textButtonText,
-    required this.bottomNavbarBackground,
-    required this.bottomNavbarItemActive,
-    required this.bottomNavbarItemInactive,
-    required this.inputFieldFill,
-    required this.inputFieldHint,
-    required this.inputFieldBorderEnabled,
-    required this.inputFieldBorderFocused,
-    required this.inputFieldBorderIdle,
-    required this.inputFieldCursor,
-    required this.debugTitleBackground,
-    required this.fillInformative,
-    required this.cardBackground,
-    required this.lightText,
-    required this.switchBackground,
     required this.main,
     required this.pureWhite,
-    required this.think,
-    required this.build,
-    required this.maintain,
-    required this.celebrate,
+    required this.pureBlack,
+    required this.accentThink,
+    required this.accentBuild,
+    required this.accentMaintain,
+    required this.accentCelebrate,
     required this.systemPositive,
     required this.systemAttention,
     required this.systemNegative,

@@ -25,7 +25,7 @@ class SplashScreenState extends State<SplashScreen> {
       consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.animated(
         isDarkStyle: theme.isDarkTheme,
         child: Scaffold(
-          backgroundColor: theme.primary,
+          backgroundColor: theme.main,
           body: const Center(
             child: FlutterTemplateProgressIndicator.light(),
           ),

@@ -34,13 +34,13 @@ class TodoListScreenState extends State<TodoListScreen> {
               key: Keys.downloadAction,
               icon: IcappsIcons.arrowDownToLine,
               onClick: viewModel.onDownloadClicked,
-              color: theme.appBarAction,
+              color: theme.main,
             ),
             ActionItem(
               key: Keys.addAction,
               icon: IcappsIcons.plus,
               onClick: viewModel.onAddClicked,
-              color: theme.appBarAction,
+              color: theme.main,
             ),
           ],
           child: Builder(
@@ -50,7 +50,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                 return Center(
                   child: Text(
                     localization.getTranslation(errorKey),
-                    style: theme.errorText.bodyNormal,
+                    style: theme.bodySystemNegative.bodyNormal,
                   ),
                 );
               }
@@ -68,7 +68,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                           child: Container(
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: theme.fillInformative,
+                              color: theme.systemInformative,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Column(
@@ -76,13 +76,13 @@ class TodoListScreenState extends State<TodoListScreen> {
                               children: [
                                 Icon(
                                   IcappsIcons.fileData,
-                                  color: theme.accent,
+                                  color: theme.accentThink,
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
                                   localization.todoEmptyState,
                                   textAlign: TextAlign.center,
-                                  style: theme.text.bodyNormal,
+                                  style: theme.bodyNeutralDefault.bodyNormal,
                                 ),
                               ],
                             ),
@@ -104,7 +104,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
                           height: 1,
-                          color: theme.primary.withOpacity(0.1),
+                          color: theme.main.withOpacity(0.1),
                         ),
                       ),
                     );

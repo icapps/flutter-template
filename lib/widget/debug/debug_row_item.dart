@@ -31,13 +31,13 @@ class DebugRowItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.text.bodyBig,
+                      style: theme.bodyNeutralDefault.bodyBig,
                     ),
                     if (subTitle != null) ...[
                       Container(height: 8),
                       Text(
                         subTitle!,
-                        style: theme.text.bodySmall,
+                        style: theme.bodyNeutralDefault.bodySmall,
                       ),
                     ],
                   ],
@@ -45,7 +45,7 @@ class DebugRowItem extends StatelessWidget {
               ),
               Icon(
                 IcappsIcons.chevronRight,
-                color: theme.icon,
+                color: theme.bodyNeutralFaded,
               )
             ],
           ),

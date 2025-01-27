@@ -28,7 +28,7 @@ class DebugSection extends StatelessWidget {
           const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
-              color: theme.cardBackground,
+              color: theme.canvas,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -42,7 +42,7 @@ class DebugSection extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 8),
                           height: 1,
-                          color: theme.debugTitleBackground,
+                          color: theme.level3,
                         ),
                       ],
                     ];

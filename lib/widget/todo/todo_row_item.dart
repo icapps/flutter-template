@@ -31,7 +31,7 @@ class TodoRowItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: theme.text.bodyNormal,
+                  style: theme.bodyNeutralDefault.bodyNormal,
                 ),
               ),
               FlutterTemplateCheckBox(

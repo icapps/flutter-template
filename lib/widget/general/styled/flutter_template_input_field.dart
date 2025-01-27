@@ -9,7 +9,6 @@ class FlutterTemplateInputField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final TextEditingController? controller;
 
-
   const FlutterTemplateInputField({
     required this.hint,
     required this.onChanged,
@@ -23,7 +22,7 @@ class FlutterTemplateInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => TextField(
-        style: theme.text.bodyNormal,
+        style: theme.bodyNeutralDefault.bodyNormal,
         controller: controller,
         enabled: enabled,
         onChanged: onChanged,
@@ -31,16 +30,16 @@ class FlutterTemplateInputField extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           hintText: hint,
-          hintStyle: theme.inputFieldHint.bodyNormal,
-          fillColor: theme.inputFieldFill,
+          hintStyle: theme.bodyNeutralDefault.bodyNormal,
+          fillColor: theme.pureWhite,
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: theme.inputFieldBorderEnabled),
+            borderSide: BorderSide(color: theme.bodyNeutralDefault),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: theme.inputFieldBorderFocused),
+            borderSide: BorderSide(color: theme.main),
           ),
           border: UnderlineInputBorder(
-            borderSide: BorderSide(color: theme.bottomNavbarItemInactive),
+            borderSide: BorderSide(color: theme.bodyNeutralFaded),
           ),
         ),
       ),

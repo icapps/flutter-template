@@ -17,7 +17,7 @@ class SelectLanguageDialog extends StatelessWidget {
     final globalViewModel = Provider.of<GlobalViewModel>(context);
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => AlertDialog(
-        backgroundColor: theme.background,
+        backgroundColor: theme.level1,
         title: Text(localization.debugLocaleSelector),
         content: SizedBox(
           height: 150,

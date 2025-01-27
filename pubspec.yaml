@@ -82,7 +82,7 @@ flutter:
   assets:
     - assets/api/
     - assets/fonts/
-    - assets/fonts/open_sans/
+    - assets/fonts/aeonik_pro/
     - assets/locale/
     - assets/images/
     - assets/images/icons/

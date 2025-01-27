@@ -3,29 +3,6 @@ import 'package:flutter/material.dart';
 class ThemeColors {
   ThemeColors._();
 
-  // Old system, to be removed
-  static const primary = Color(0xFF002548);
-  static const primaryDark = Color(0xFF001223);
-  static const accent = Color(0xFF009AC7);
-  static const lightAccent = Color(0xFFECF5FE);
-  static const darkAccent = Color(0xFF005780);
-  static const darkBackground = Color(0xFF1B4162);
-  static const white = Color(0xFFFFFFFF);
-  static const white20 = Color(0x33FFFFFF);
-  static const white50 = Color(0x80FFFFFF);
-  static const black = Color(0xFF000000);
-  static const grey = Color(0xB3000000); //black 70%
-  static const fadedGrey = Color(0xFF6C7B89);
-  static const mediumGrey = Color(0x80000000); //black 50%
-  static const lightGrey = Color(0xFFDDE1E4);
-  static const backgroundGrey = Color(0xFFF9FAFC);
-  static const disabledGrey = Color(0xFFE6E6E6);
-  static const shadow = Color.fromARGB(255, 0, 0, 0); //black 12%
-  static const error = Color(0xFFE30000);
-  static const success = Color(0xFF3E9103);
-
-  // Design system colors
-
   // Main
   static const main4 = Color(0xFF000B14);
   static const main8 = Color(0xFF001529);
@@ -157,6 +134,7 @@ class ThemeColors {
   static const accentCelebrate96 = Color(0xFFF9F6F1);
 
   // Neutral colors
+  static const neutral0 = Color(0xFF000000);
   static const neutral4 = Color(0xFF090A0B);
   static const neutral8 = Color(0xFF121517);
   static const neutral12 = Color(0xFF1F2428);

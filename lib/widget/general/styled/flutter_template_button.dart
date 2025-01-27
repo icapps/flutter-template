@@ -37,25 +37,25 @@ class FlutterTemplateButton extends StatelessWidget {
   TextStyle _enabledTextStyle(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.lightText.labelButtonSmall;
+        return theme.pureWhite.labelButtonSmall;
       case ButtonType.text:
-        return theme.accent.labelButtonSmall;
+        return theme.accentThink.labelButtonSmall;
     }
   }
 
   TextStyle _disabledTextStyle(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseText.labelButtonSmall;
+        return theme.pureWhite.labelButtonSmall;
       case ButtonType.text:
-        return theme.disabled.labelButtonSmall;
+        return theme.level2.labelButtonSmall;
     }
   }
 
   Color? _enabledButtonColor(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.buttonColor;
+        return theme.main;
       case ButtonType.text:
         return null;
     }
@@ -64,7 +64,7 @@ class FlutterTemplateButton extends StatelessWidget {
   Color? _disabledButtonColor(FlutterTemplateTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.disabled;
+        return theme.level2;
       case ButtonType.text:
         return null;
     }
