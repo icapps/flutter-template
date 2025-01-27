@@ -5,7 +5,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 
 class DebugSection extends StatelessWidget {
   final String title;
-  final String icon;
+  final IconData icon;
   final List<Widget> children;
 
   const DebugSection({

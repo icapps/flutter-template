@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 
 class FlutterTemplateBackButton extends StatelessWidget {
   final VoidCallback? onClick;
@@ -27,17 +27,17 @@ class FlutterTemplateBackButton extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => ActionItem(
         key: Keys.backButton,
-        svgAsset: getCorrectIcon(context),
+        icon: getCorrectIcon(context),
         color: isLight ? ThemeColors.white : theme.appBarAction,
         onClick: onClick,
       ),
     );
   }
 
-  String getCorrectIcon(BuildContext context) {
+  IconData getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return ThemeAssets.arrowLeftIcon;
+      return IcappsIcons.arrowLeft;
     }
-    return ThemeAssets.arrowLeftIcon;
+    return IcappsIcons.arrowLeft;
   }
 }

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
-import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:flutter_template/widget/todo/todo_row_item.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -33,13 +32,13 @@ class TodoListScreenState extends State<TodoListScreen> {
           actions: [
             ActionItem(
               key: Keys.downloadAction,
-              svgAsset: ThemeAssets.downloadIcon,
+              icon: IcappsIcons.arrowDownToLine,
               onClick: viewModel.onDownloadClicked,
               color: theme.appBarAction,
             ),
             ActionItem(
               key: Keys.addAction,
-              svgAsset: ThemeAssets.addIcon,
+              icon: IcappsIcons.plus,
               onClick: viewModel.onAddClicked,
               color: theme.appBarAction,
             ),
@@ -75,8 +74,8 @@ class TodoListScreenState extends State<TodoListScreen> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                SvgIcon(
-                                  svgAsset: ThemeAssets.fileIcon,
+                                Icon(
+                                  IcappsIcons.fileData,
                                   color: theme.accent,
                                 ),
                                 const SizedBox(height: 8),

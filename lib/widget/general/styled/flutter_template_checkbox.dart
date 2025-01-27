@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/widget/general/svg_icon.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 
 class FlutterTemplateCheckBox extends StatelessWidget {
   final bool value;
@@ -26,8 +25,8 @@ class FlutterTemplateCheckBox extends StatelessWidget {
             width: 48,
             child: value
                 ? Center(
-                    child: SvgIcon(
-                      svgAsset: ThemeAssets.checkIcon,
+                    child: Icon(
+                      IcappsIcons.checkmark,
                       color: theme.accent,
                       size: 24,
                     ),

@@ -37,6 +37,7 @@ dependencies:
     sdk: flutter
   get_it: ^7.2.0
   icapps_architecture: ^2.1.0
+  icapps_icons: ^1.0.0
   injectable: ^2.1.0
   intl: ^0.19.0
   json_annotation: ^4.7.0
@@ -89,6 +90,9 @@ flutter:
     - family: OpenSans
       fonts:
         - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+    - family: icappsIcons
+      fonts:
+        - asset: packages/icapps_icons/fonts/icappsIcons.ttf
 
 icapps_translations:
   api_key: '16daba4a2cb331e92eeb0aa2fd219608ff7c8f0488ab4aa887411040a951392f9a8cce488463a1f38eeebf96cb06658aa02d43e53cfc7a7be2d652e8' #TODO Update this to the correct api key

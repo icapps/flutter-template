@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 
 import '../../../util/test_util.dart';
 
@@ -12,7 +12,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon,
+          icon: IcappsIcons.plus,
           onClick: () {},
         ),
       ),
@@ -27,7 +27,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon,
+          icon: IcappsIcons.plus,
           color: Colors.black,
           onClick: () {},
         ),
@@ -45,7 +45,7 @@ void main() {
       data: FlutterTemplateThemeData.lightTheme(TargetPlatform.android),
       child: LayoutBuilder(
         builder: (context, constraint) => ActionItem(
-          svgAsset: ThemeAssets.addIcon,
+          icon: IcappsIcons.plus,
           onClick: () {
             clicked = true;
           },

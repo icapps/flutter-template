@@ -685,6 +685,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
+  icapps_icons:
+    dependency: "direct main"
+    description:
+      name: icapps_icons
+      sha256: "3f78156e4dd9aedbd6b627e288d5a6a3e22700022556c25c1f8c15f156d42b8d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   icapps_translations:
     dependency: "direct dev"
     description:

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
 import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_template/widget/debug/debug_section.dart';
 import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:icapps_icons/icapps_icons.dart';
 import 'package:provider/provider.dart';
 
 @flutterRoute
@@ -33,7 +33,7 @@ class DebugScreenState extends State<DebugScreen> {
         children: [
           DebugSection(
             title: localization.debugAnimationsTitle,
-            icon: ThemeAssets.animationIcon,
+            icon: IcappsIcons.spark1,
             children: [
               DebugRowSwitchItem(
                 key: Keys.debugSlowAnimations,
@@ -46,7 +46,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugThemeTitle,
-            icon: ThemeAssets.themeIcon,
+            icon: IcappsIcons.swatches,
             children: [
               DebugRowItem(
                 key: Keys.debugTargetPlatform,
@@ -65,7 +65,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugLocaleTitle,
-            icon: ThemeAssets.translationsIcon,
+            icon: IcappsIcons.globe1,
             children: [
               DebugRowItem(
                 key: Keys.debugSelectLanguage,
@@ -84,7 +84,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugLicensesTitle,
-            icon: ThemeAssets.licenseIcon,
+            icon: IcappsIcons.rosette1,
             children: [
               DebugRowItem(
                 key: Keys.debugLicense,
@@ -96,7 +96,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugDatabase,
-            icon: ThemeAssets.boxIcon,
+            icon: IcappsIcons.boxWithLid,
             children: [
               DebugRowItem(
                 key: Keys.debugDatabase,
@@ -108,7 +108,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: localization.debugPermissionsTitle,
-            icon: ThemeAssets.lockOpenIcon,
+            icon: IcappsIcons.lockOpen1,
             children: [
               DebugRowItem(
                 key: Keys.debugPermissionAnalytics,
@@ -125,7 +125,7 @@ class DebugScreenState extends State<DebugScreen> {
           const SizedBox(height: 24),
           DebugSection(
             title: 'logs',
-            icon: ThemeAssets.listIcon,
+            icon: IcappsIcons.listBullets,
             children: [
               DebugRowItem(
                 key: Keys.debugPermissionAnalyticsReset,
