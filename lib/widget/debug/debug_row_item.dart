@@ -31,13 +31,13 @@ class DebugRowItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.bodyNeutralDefault.bodyBig,
+                      style: theme.bodyNeutralDefault.paragraphM,
                     ),
                     if (subTitle != null) ...[
                       Container(height: 8),
                       Text(
                         subTitle!,
-                        style: theme.bodyNeutralDefault.bodySmall,
+                        style: theme.bodyNeutralDefault.paragraphS,
                       ),
                     ],
                   ],

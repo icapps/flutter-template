@@ -46,7 +46,7 @@ class LogsScreenState extends State<LogsScreen> {
                           Expanded(
                             child: Text(
                               item.shortDateWeekdayFormat,
-                              style: theme.bodyNeutralDefault.bodyBig,
+                              style: theme.bodyNeutralDefault.paragraphM,
                             ),
                           ),
                           Icon(

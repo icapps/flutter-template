@@ -33,13 +33,13 @@ class LoginScreenState extends State<LoginScreen> {
             Container(height: 16),
             Text(
               'Login',
-              style: theme.bodyNeutralDefault.titleNormal,
+              style: theme.bodyNeutralDefault.headingS,
               textAlign: TextAlign.center,
             ),
             Container(height: 32),
             Text(
               'Just fill in some text. There is no validator for the login',
-              style: theme.bodyNeutralDefault.labelButtonSmall,
+              style: theme.bodyNeutralDefault.labelS,
             ),
             Container(height: 32),
             FlutterTemplateInputField(

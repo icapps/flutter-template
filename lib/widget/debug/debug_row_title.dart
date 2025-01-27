@@ -26,7 +26,7 @@ class DebugRowTitle extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             title,
-            style: theme.bodyNeutralFaded.bodySmall,
+            style: theme.bodyNeutralFaded.paragraphS,
           ),
         ],
       ),

@@ -34,12 +34,12 @@ class LicenseScreenState extends State<LicenseScreen> {
                 children: [
                   Text(
                     item.name,
-                    style: theme.bodyNeutralDefault.titleNormal,
+                    style: theme.bodyNeutralDefault.headingS,
                   ),
                   Container(height: 8),
                   Text(
                     item.license,
-                    style: theme.bodyNeutralDefault.bodySmall,
+                    style: theme.bodyNeutralDefault.paragraphS,
                   ),
                 ],
               ),

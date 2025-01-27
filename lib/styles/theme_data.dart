@@ -296,33 +296,6 @@ class FlutterTemplateTheme {
 }
 
 extension TextThemeExtension on Color {
-  // old textstyles, to be removed
-  TextStyle get titleHuge => TextStyle(fontSize: 40, color: this, fontFamily: ThemeFonts.title, height: 1.2);
-
-  TextStyle get titleBig => TextStyle(fontSize: 30, color: this, fontFamily: ThemeFonts.title, height: 1.2);
-
-  TextStyle get titleNormal => TextStyle(fontSize: 24, color: this, fontFamily: ThemeFonts.title);
-
-  TextStyle get titleSmall => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.title);
-
-  TextStyle get titleListItem => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.bold);
-
-  TextStyle get labelButtonBig => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold);
-
-  TextStyle get labelButtonSmall => TextStyle(fontSize: 14, color: this, fontFamily: ThemeFonts.button, fontWeight: FontWeight.bold);
-
-  TextStyle get bodyBig => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.body);
-
-  TextStyle get bodyNormal => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body);
-
-  TextStyle get bodySmall => TextStyle(fontSize: 14, color: this, fontFamily: ThemeFonts.body);
-
-  TextStyle get bodyUltraSmall => TextStyle(fontSize: 12, color: this, fontFamily: ThemeFonts.body);
-
-  TextStyle get infoBodySubHeader => TextStyle(fontSize: 14, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600);
-
-  // Design system textstyles
-
   // Heading
   TextStyle get headingXl => TextStyle(fontSize: 32, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700, height: 1);
 

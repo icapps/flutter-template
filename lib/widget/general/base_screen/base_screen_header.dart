@@ -34,7 +34,7 @@ class BaseScreenHeader extends StatelessWidget {
             ? null
             : Text(
                 title!.toUpperCase(),
-                style: theme.bodyNeutralDefault.bodyNormal,
+                style: theme.bodyNeutralDefault.paragraphM,
                 textAlign: isTitleCentered ? TextAlign.center : TextAlign.start,
               );
 

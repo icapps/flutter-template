@@ -38,7 +38,7 @@ class SelectorItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: theme.bodyNeutralDefault.bodyNormal,
+                    style: theme.bodyNeutralDefault.paragraphM,
                   ),
                 ),
                 Opacity(

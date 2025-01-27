@@ -50,7 +50,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                 return Center(
                   child: Text(
                     localization.getTranslation(errorKey),
-                    style: theme.bodySystemNegative.bodyNormal,
+                    style: theme.bodySystemNegative.paragraphM,
                   ),
                 );
               }
@@ -82,7 +82,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                                 Text(
                                   localization.todoEmptyState,
                                   textAlign: TextAlign.center,
-                                  style: theme.bodyNeutralDefault.bodyNormal,
+                                  style: theme.bodyNeutralDefault.paragraphM,
                                 ),
                               ],
                             ),
