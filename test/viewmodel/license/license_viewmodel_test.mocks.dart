@@ -138,128 +138,109 @@ class MockMainNavigator extends _i1.Mock implements _i3.MainNavigator {
       )) as _i2.Route<dynamic>?);
 
   @override
-  void goToHomeScreen({_i2.Key? key}) => super.noSuchMethod(
+  void goToHomeScreen() => super.noSuchMethod(
         Invocation.method(
           #goToHomeScreen,
           [],
-          {#key: key},
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void goToSplashScreen({_i2.Key? key}) => super.noSuchMethod(
+  void goToSplashScreen() => super.noSuchMethod(
         Invocation.method(
           #goToSplashScreen,
           [],
-          {#key: key},
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i4.Future<void> goToLicenseScreen({_i2.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToLicenseScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToLicenseScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToLogDetailScreen({
-    required String? date,
-    _i2.Key? key,
-  }) =>
+  _i4.Future<void> goToLogDetailScreen({required String? date}) =>
       (super.noSuchMethod(
         Invocation.method(
           #goToLogDetailScreen,
           [],
-          {
-            #date: date,
-            #key: key,
-          },
+          {#date: date},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToTodoAddScreen({_i2.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToTodoAddScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToTodoAddScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToLogsScreen({_i2.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToLogsScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToLogsScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToAnalyticsPermissionScreen({_i2.Key? key}) =>
-      (super.noSuchMethod(
+  _i4.Future<void> goToAnalyticsPermissionScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToAnalyticsPermissionScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  void goToLoginScreen({_i2.Key? key}) => super.noSuchMethod(
+  void goToLoginScreen() => super.noSuchMethod(
         Invocation.method(
           #goToLoginScreen,
           [],
-          {#key: key},
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i4.Future<void> goToThemeModeSelectorScreen({_i2.Key? key}) =>
-      (super.noSuchMethod(
+  _i4.Future<void> goToThemeModeSelectorScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToThemeModeSelectorScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToDebugPlatformSelectorScreen({_i2.Key? key}) =>
-      (super.noSuchMethod(
+  _i4.Future<void> goToDebugPlatformSelectorScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToDebugPlatformSelectorScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> goToDebugScreen({_i2.Key? key}) => (super.noSuchMethod(
+  _i4.Future<void> goToDebugScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToDebugScreen,
           [],
-          {#key: key},
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
