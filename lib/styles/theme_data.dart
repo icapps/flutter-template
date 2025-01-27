@@ -88,6 +88,8 @@ enum FlutterTemplateThemeStyle {
 
 class FlutterTemplateTheme {
   final bool isDarkTheme;
+
+  // old colors, to be removed
   final Color text;
   final Color lightText;
   final Color fadedText;
@@ -128,9 +130,79 @@ class FlutterTemplateTheme {
 
   final Color debugTitleBackground;
 
+  // Design system colors
+
+  // Brand base
+  final Color main;
+  final Color pureWhite;
+
+  // Brand Accent
+  final Color think;
+  final Color build;
+  final Color maintain;
+  final Color celebrate;
+
+  // Fill system
+  final Color systemPositive;
+  final Color systemAttention;
+  final Color systemNegative;
+  final Color systemInformative;
+
+  // Fill neutral
+  final Color canvas;
+  final Color level1;
+  final Color level2;
+  final Color level3;
+  final Color level4;
+
+  // Stroke neutral
+  final Color strokeDefault;
+  final Color strokeSubtle;
+
+  // Text heading brand
+  final Color headingBrandDefault;
+  final Color headingBrandThink;
+  final Color headingBrandBuild;
+  final Color headingBrandMaintain;
+  final Color headingBrandCelebrate;
+
+  // Text heading system
+  final Color headingSystemPositive;
+  final Color headingSystemPositiveDark;
+  final Color headingSystemNegative;
+  final Color headingSystemNegativeDark;
+  final Color headingSystemAttention;
+  final Color headingSystemAttentionDark;
+  final Color headingSystemInformative;
+  final Color headingSystemInformativeDark;
+
+  // Text body brand
+  final Color bodyBrandDefault;
+  final Color bodyBrandSubtle;
+  final Color bodyBrandFaded;
+
+  // Text body system
+  final Color bodySystemPositive;
+  final Color bodySystemPositiveDark;
+  final Color bodySystemNegative;
+  final Color bodySystemNegativeDark;
+  final Color bodySystemAttention;
+  final Color bodySystemAttentionDark;
+  final Color bodySystemInformative;
+  final Color bodySystemInformativeDark;
+
+  // Text body neutral
+  final Color bodyNeutralDefault;
+  final Color bodyNeutralSubtle;
+  final Color bodyNeutralFaded;
+
+  // Text action
+  final Color actionDefault;
+
   bool get isLightTheme => !isDarkTheme;
 
   static final _instanceDark = FlutterTemplateTheme._(
+    // old colors, to be removed
     isDarkTheme: true,
     text: ThemeColors.white,
     fadedText: ThemeColors.lightGrey,
@@ -168,9 +240,57 @@ class FlutterTemplateTheme {
     cardBackground: ThemeColors.darkBackground,
     lightText: ThemeColors.white,
     switchBackground: ThemeColors.fadedGrey,
+
+    // Design system colors
+    main: ThemeColors.main16,
+    pureWhite: ThemeColors.neutral100,
+    think: ThemeColors.accentThink40,
+    build: ThemeColors.accentBuild60,
+    maintain: ThemeColors.accentMaintain52,
+    celebrate: ThemeColors.accentCelebrate60,
+    systemPositive: ThemeColors.systemPositive96,
+    systemAttention: ThemeColors.systemAttention96,
+    systemNegative: ThemeColors.systemNegative96,
+    systemInformative: ThemeColors.systemInfo96,
+    canvas: ThemeColors.neutral100,
+    level1: ThemeColors.neutral96,
+    level2: ThemeColors.neutral92,
+    level3: ThemeColors.neutral88,
+    level4: ThemeColors.neutral84,
+    strokeDefault: ThemeColors.neutral76,
+    strokeSubtle: ThemeColors.neutral88,
+    headingBrandDefault: ThemeColors.main16,
+    headingBrandThink: ThemeColors.accentThink32,
+    headingBrandBuild: ThemeColors.accentBuild32,
+    headingBrandMaintain: ThemeColors.accentMaintain52,
+    headingBrandCelebrate: ThemeColors.accentCelebrate36,
+    headingSystemPositive: ThemeColors.systemPositive28,
+    headingSystemPositiveDark: ThemeColors.systemPositive16,
+    headingSystemNegative: ThemeColors.systemNegative52,
+    headingSystemNegativeDark: ThemeColors.systemNegative24,
+    headingSystemAttention: ThemeColors.systemAttention36,
+    headingSystemAttentionDark: ThemeColors.systemAttention24,
+    headingSystemInformative: ThemeColors.systemInfo36,
+    headingSystemInformativeDark: ThemeColors.systemInfo24,
+    bodyBrandDefault: ThemeColors.main16,
+    bodyBrandSubtle: ThemeColors.main32,
+    bodyBrandFaded: ThemeColors.main44,
+    bodySystemPositive: ThemeColors.systemPositive28,
+    bodySystemPositiveDark: ThemeColors.systemPositive16,
+    bodySystemNegative: ThemeColors.systemNegative52,
+    bodySystemNegativeDark: ThemeColors.systemNegative24,
+    bodySystemAttention: ThemeColors.systemAttention36,
+    bodySystemAttentionDark: ThemeColors.systemAttention24,
+    bodySystemInformative: ThemeColors.systemInfo36,
+    bodySystemInformativeDark: ThemeColors.systemInfo24,
+    bodyNeutralDefault: ThemeColors.neutral20,
+    bodyNeutralSubtle: ThemeColors.neutral36,
+    bodyNeutralFaded: ThemeColors.neutral48,
+    actionDefault: ThemeColors.accentThink32,
   );
 
   static final _instanceLight = FlutterTemplateTheme._(
+    // old colors, to be removed
     isDarkTheme: false,
     text: ThemeColors.primary,
     fadedText: ThemeColors.fadedGrey,
@@ -208,6 +328,53 @@ class FlutterTemplateTheme {
     cardBackground: ThemeColors.white,
     lightText: ThemeColors.white,
     switchBackground: ThemeColors.disabledGrey,
+
+    // Design system colors
+    main: ThemeColors.main16,
+    pureWhite: ThemeColors.neutral100,
+    think: ThemeColors.accentThink40,
+    build: ThemeColors.accentBuild60,
+    maintain: ThemeColors.accentMaintain52,
+    celebrate: ThemeColors.accentCelebrate60,
+    systemPositive: ThemeColors.systemPositive96,
+    systemAttention: ThemeColors.systemAttention96,
+    systemNegative: ThemeColors.systemNegative96,
+    systemInformative: ThemeColors.systemInfo96,
+    canvas: ThemeColors.neutral100,
+    level1: ThemeColors.neutral96,
+    level2: ThemeColors.neutral92,
+    level3: ThemeColors.neutral88,
+    level4: ThemeColors.neutral84,
+    strokeDefault: ThemeColors.neutral76,
+    strokeSubtle: ThemeColors.neutral88,
+    headingBrandDefault: ThemeColors.main16,
+    headingBrandThink: ThemeColors.accentThink32,
+    headingBrandBuild: ThemeColors.accentBuild32,
+    headingBrandMaintain: ThemeColors.accentMaintain52,
+    headingBrandCelebrate: ThemeColors.accentCelebrate36,
+    headingSystemPositive: ThemeColors.systemPositive28,
+    headingSystemPositiveDark: ThemeColors.systemPositive16,
+    headingSystemNegative: ThemeColors.systemNegative52,
+    headingSystemNegativeDark: ThemeColors.systemNegative24,
+    headingSystemAttention: ThemeColors.systemAttention36,
+    headingSystemAttentionDark: ThemeColors.systemAttention24,
+    headingSystemInformative: ThemeColors.systemInfo36,
+    headingSystemInformativeDark: ThemeColors.systemInfo24,
+    bodyBrandDefault: ThemeColors.main16,
+    bodyBrandSubtle: ThemeColors.main32,
+    bodyBrandFaded: ThemeColors.main44,
+    bodySystemPositive: ThemeColors.systemPositive28,
+    bodySystemPositiveDark: ThemeColors.systemPositive16,
+    bodySystemNegative: ThemeColors.systemNegative52,
+    bodySystemNegativeDark: ThemeColors.systemNegative24,
+    bodySystemAttention: ThemeColors.systemAttention36,
+    bodySystemAttentionDark: ThemeColors.systemAttention24,
+    bodySystemInformative: ThemeColors.systemInfo36,
+    bodySystemInformativeDark: ThemeColors.systemInfo24,
+    bodyNeutralDefault: ThemeColors.neutral20,
+    bodyNeutralSubtle: ThemeColors.neutral36,
+    bodyNeutralFaded: ThemeColors.neutral48,
+    actionDefault: ThemeColors.accentThink32,
   );
 
   FlutterTemplateTheme._({
@@ -248,6 +415,51 @@ class FlutterTemplateTheme {
     required this.cardBackground,
     required this.lightText,
     required this.switchBackground,
+    required this.main,
+    required this.pureWhite,
+    required this.think,
+    required this.build,
+    required this.maintain,
+    required this.celebrate,
+    required this.systemPositive,
+    required this.systemAttention,
+    required this.systemNegative,
+    required this.systemInformative,
+    required this.canvas,
+    required this.level1,
+    required this.level2,
+    required this.level3,
+    required this.level4,
+    required this.strokeDefault,
+    required this.strokeSubtle,
+    required this.headingBrandDefault,
+    required this.headingBrandThink,
+    required this.headingBrandBuild,
+    required this.headingBrandMaintain,
+    required this.headingBrandCelebrate,
+    required this.headingSystemPositive,
+    required this.headingSystemPositiveDark,
+    required this.headingSystemNegative,
+    required this.headingSystemNegativeDark,
+    required this.headingSystemAttention,
+    required this.headingSystemAttentionDark,
+    required this.headingSystemInformative,
+    required this.headingSystemInformativeDark,
+    required this.bodyBrandDefault,
+    required this.bodyBrandSubtle,
+    required this.bodyBrandFaded,
+    required this.bodySystemPositive,
+    required this.bodySystemPositiveDark,
+    required this.bodySystemNegative,
+    required this.bodySystemNegativeDark,
+    required this.bodySystemAttention,
+    required this.bodySystemAttentionDark,
+    required this.bodySystemInformative,
+    required this.bodySystemInformativeDark,
+    required this.bodyNeutralDefault,
+    required this.bodyNeutralSubtle,
+    required this.bodyNeutralFaded,
+    required this.actionDefault,
   });
 
   static FlutterTemplateTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {

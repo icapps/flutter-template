@@ -50,7 +50,7 @@ class BottomNavigationItem extends StatelessWidget {
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
-                style: isSelected ? theme.bottomNavbarItemActive.bodySmall.strong : theme.bottomNavbarItemInactive.bodySmall,
+                style: isSelected ? theme.bottomNavbarItemActive.bodySmall.bold : theme.bottomNavbarItemInactive.bodySmall,
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

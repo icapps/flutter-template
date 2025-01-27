@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeColors {
   ThemeColors._();
-  
+
   // Old system, to be removed
   static const primary = Color(0xFF002548);
   static const primaryDark = Color(0xFF001223);
@@ -26,31 +26,31 @@ class ThemeColors {
 
   // Design system colors
 
-  // Primary
-  static const primary4 = Color(0xFF000B14);
-  static const primary8 = Color(0xFF001529);
-  static const primary12 = Color(0xFF002547);
-  static const primary16 = Color(0xFF002B51);
-  static const primary20 = Color(0xFF013565);
-  static const primary24 = Color(0xFF014079);
-  static const primary28 = Color(0xFF014A8D);
-  static const primary32 = Color(0xFF0255A1);
-  static const primary36 = Color(0xFF0360B5);
-  static const primary40 = Color(0xFF046AC8);
-  static const primary44 = Color(0xFF0475DC);
-  static const primary48 = Color(0xFF067FEF);
-  static const primary52 = Color(0xFF108AF9);
-  static const primary56 = Color(0xFF2593F9);
-  static const primary60 = Color(0xFF399DF9);
-  static const primary64 = Color(0xFF4DA7F9);
-  static const primary68 = Color(0xFF62B1F9);
-  static const primary72 = Color(0xFF76BAFA);
-  static const primary76 = Color(0xFF89C4FA);
-  static const primary80 = Color(0xFF9DCEFB);
-  static const primary84 = Color(0xFFB1D8FB);
-  static const primary88 = Color(0xFFC5E2FC);
-  static const primary92 = Color(0xFFD8EBFD);
-  static const primary96 = Color(0xFFECF5FE);
+  // Main
+  static const main4 = Color(0xFF000B14);
+  static const main8 = Color(0xFF001529);
+  static const main12 = Color(0xFF002547);
+  static const main16 = Color(0xFF002B51);
+  static const main20 = Color(0xFF013565);
+  static const main24 = Color(0xFF014079);
+  static const main28 = Color(0xFF014A8D);
+  static const main32 = Color(0xFF0255A1);
+  static const main36 = Color(0xFF0360B5);
+  static const main40 = Color(0xFF046AC8);
+  static const main44 = Color(0xFF0475DC);
+  static const main48 = Color(0xFF067FEF);
+  static const main52 = Color(0xFF108AF9);
+  static const main56 = Color(0xFF2593F9);
+  static const main60 = Color(0xFF399DF9);
+  static const main64 = Color(0xFF4DA7F9);
+  static const main68 = Color(0xFF62B1F9);
+  static const main72 = Color(0xFF76BAFA);
+  static const main76 = Color(0xFF89C4FA);
+  static const main80 = Color(0xFF9DCEFB);
+  static const main84 = Color(0xFFB1D8FB);
+  static const main88 = Color(0xFFC5E2FC);
+  static const main92 = Color(0xFFD8EBFD);
+  static const main96 = Color(0xFFECF5FE);
 
   // Think colors
   static const accentThink4 = Color(0xFF001014);
@@ -181,6 +181,7 @@ class ThemeColors {
   static const neutral88 = Color(0xFFDDE1E4);
   static const neutral92 = Color(0xFFE8EBED);
   static const neutral96 = Color(0xFFF4F5F6);
+  static const neutral100 = Color(0xFFFFFFFF);
 
   // System Info colors
   static const systemInfo4 = Color(0xFF000B14);
