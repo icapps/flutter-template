@@ -36,7 +36,10 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Widgetbook.material(
       addons: [
-        DeviceFrameAddon(devices: Devices.ios.all),
+        DeviceFrameAddon(devices: [
+          ...Devices.ios.all,
+          ...Devices.android.all,
+        ]),
         InspectorAddon(),
         GridAddon(100),
         ZoomAddon(),
