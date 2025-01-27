@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/viewmodel/todo/todo_add/todo_add_viewmodel.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:flutter_template/widget/library/flutter_template_back_button.dart';
+import 'package:flutter_template/widget/library/flutter_template_button.dart';
+import 'package:flutter_template/widget/library/flutter_template_input_field.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 import 'package:scroll_when_needed/scroll_when_needed.dart';
 

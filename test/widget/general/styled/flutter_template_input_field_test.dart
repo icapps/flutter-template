@@ -1,4 +1,4 @@
-import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
+import 'package:flutter_template/widget/library/flutter_template_input_field.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../util/test_util.dart';

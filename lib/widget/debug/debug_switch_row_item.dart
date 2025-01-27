@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_data.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
+import 'package:flutter_template/widget/library/flutter_template_switch.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 

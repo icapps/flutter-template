@@ -9,6 +9,13 @@ class FlutterTemplateBackButton extends StatelessWidget {
   final bool fullScreen;
   final bool isLight;
 
+  const FlutterTemplateBackButton({
+    required this.onClick,
+    this.isLight = true,
+    this.fullScreen = false,
+    super.key,
+  });
+
   const FlutterTemplateBackButton.light({
     required this.onClick,
     this.fullScreen = false,
@@ -35,7 +42,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
 
   IconData getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return IcappsIcons.arrowLeft;
+      return IcappsIcons.x;
     }
     return IcappsIcons.arrowLeft;
   }
