@@ -296,12 +296,26 @@ extension TextThemeExtension on Color {
 }
 
 extension TextStyleExtension on TextStyle {
-  TextStyle get medium => copyWith(fontWeight: FontWeight.w400);
+  // Font weights
+  TextStyle get thin => copyWith(fontWeight: FontWeight.w100);
 
-  TextStyle get strong => copyWith(fontWeight: FontWeight.w600);
+  TextStyle get extraLight => copyWith(fontWeight: FontWeight.w200);
+
+  TextStyle get light => copyWith(fontWeight: FontWeight.w300);
+
+  TextStyle get regular => copyWith(fontWeight: FontWeight.w400);
+
+  TextStyle get medium => copyWith(fontWeight: FontWeight.w500);
+
+  TextStyle get semiBold => copyWith(fontWeight: FontWeight.w600);
+
+  TextStyle get bold => copyWith(fontWeight: FontWeight.w700);
+
+  TextStyle get extraBold => copyWith(fontWeight: FontWeight.w800);
 
   TextStyle get black => copyWith(fontWeight: FontWeight.w900);
 
+  // Font styles
   TextStyle get underLine => copyWith(decoration: TextDecoration.underline);
 
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
