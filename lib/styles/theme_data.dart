@@ -48,39 +48,6 @@ class FlutterTemplateThemeData {
   }
 }
 
-class FlutterTemplateTextTheme {
-  final TextStyle titleHuge;
-  final TextStyle titleBig;
-  final TextStyle titleNormal;
-  final TextStyle titleSmall;
-
-  final TextStyle titleListItem;
-
-  final TextStyle labelButtonBig;
-  final TextStyle labelButtonSmall;
-
-  final TextStyle bodyNormal;
-  final TextStyle bodySmall;
-  final TextStyle bodyUltraSmall;
-  final TextStyle infoBodySubHeader;
-  final TextStyle bodyBig;
-
-  const FlutterTemplateTextTheme({
-    required this.titleHuge,
-    required this.titleBig,
-    required this.titleNormal,
-    required this.titleSmall,
-    required this.titleListItem,
-    required this.labelButtonBig,
-    required this.labelButtonSmall,
-    required this.bodyNormal,
-    required this.bodySmall,
-    required this.bodyUltraSmall,
-    required this.infoBodySubHeader,
-    required this.bodyBig,
-  });
-}
-
 enum FlutterTemplateThemeStyle {
   dark,
   light,
@@ -482,6 +449,7 @@ class FlutterTemplateTheme {
 }
 
 extension TextThemeExtension on Color {
+  // old textstyles, to be removed
   TextStyle get titleHuge => TextStyle(fontSize: 40, color: this, fontFamily: ThemeFonts.title, height: 1.2);
 
   TextStyle get titleBig => TextStyle(fontSize: 30, color: this, fontFamily: ThemeFonts.title, height: 1.2);
@@ -505,6 +473,43 @@ extension TextThemeExtension on Color {
   TextStyle get bodyUltraSmall => TextStyle(fontSize: 12, color: this, fontFamily: ThemeFonts.body);
 
   TextStyle get infoBodySubHeader => TextStyle(fontSize: 14, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600);
+
+  // Design system textstyles
+
+  // Heading
+  TextStyle get headingXl => TextStyle(fontSize: 32, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  TextStyle get headingL => TextStyle(fontSize: 28, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  TextStyle get headingM => TextStyle(fontSize: 26, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  TextStyle get headingS => TextStyle(fontSize: 24, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  TextStyle get headingXs => TextStyle(fontSize: 20, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  TextStyle get headingXXS => TextStyle(fontSize: 18, color: this, fontFamily: ThemeFonts.title, fontWeight: FontWeight.w700);
+
+  // Paragraph
+  TextStyle get paragraphM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get paragraphS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get paragraphXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  // Label
+
+  TextStyle get labelM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get labelS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get labelXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  // Data
+  TextStyle get dataM => TextStyle(fontSize: 16, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get dataS => TextStyle(fontSize: 13, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
+
+  TextStyle get dataXs => TextStyle(fontSize: 11, color: this, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400);
 }
 
 extension TextStyleExtension on TextStyle {
