@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/platform/platform_util.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen_header_safe_area.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
+import 'package:flutter_template/widget/library/flutter_template_back_button.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class BaseScreenHeader extends StatelessWidget {

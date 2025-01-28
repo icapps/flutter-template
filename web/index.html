@@ -12,13 +12,13 @@
       For more details:
       * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
     -->
-  <base href="/">
+  <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
   <script defer src="main.dart.js" type="application/javascript"></script>
 
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="The icapps components library.">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,16 +26,17 @@
   <meta name="apple-mobile-web-app-title" content="temp">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <title>temp</title>
+  <title>icapps components</title>
   <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
+  <script src="flutter_bootstrap.js" async></script>
   <!-- This script installs service_worker.js to provide PWA functionality to
      application. For more information, see:
      https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = null;
+    var serviceWorkerVersion = '{{flutter_service_worker_version}}';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {

@@ -17,13 +17,13 @@ dependencies:
   drift_db_viewer: ^2.0.0
   drift_local_storage_inspector: ^0.7.0
   file_local_storage_inspector: ^0.4.0
-  firebase_analytics: ^10.1.0
+  firebase_analytics: ^11.4.1
   firebase_analytics_web: ^0.5.1+8
-  firebase_core: ^2.4.1
+  firebase_core: ^3.10.1
   firebase_core_web: ^2.1.0
-  firebase_crashlytics: ^3.0.10
-  firebase_remote_config: ^4.4.7
-  firebase_storage: ^11.7.7
+  firebase_crashlytics: ^4.3.1
+  firebase_remote_config: ^5.3.1
+  firebase_storage: ^12.4.1
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.3.0
@@ -35,7 +35,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_web_plugins:
     sdk: flutter
-  get_it: ^7.2.0
+  get_it: ^8.0.3
   icapps_architecture: ^2.1.0
   icapps_icons: ^1.0.0
   injectable: ^2.1.0
@@ -60,12 +60,14 @@ dependencies:
   storage_inspector: ^0.4.0
   synchronized: ^3.3.0+3
   url_launcher: ^6.3.1
+  widgetbook: ^3.10.2
+  widgetbook_annotation: ^3.2.0
 
 dev_dependencies:
   build_runner: ^2.3.3
   drift_dev: ^2.18.0
-  flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_lints: ^5.0.0
   flutter_navigation_generator: ^2.0.1
   flutter_test:
     sdk: flutter
@@ -75,7 +77,8 @@ dev_dependencies:
   license_generator: ^2.0.0
   mockito: ^5.3.2
   model_generator: ^7.0.0
-  retrofit_generator: ^8.2.1
+  retrofit_generator: ^9.1.5
+  widgetbook_generator: ^3.9.1
 
 flutter:
   uses-material-design: true

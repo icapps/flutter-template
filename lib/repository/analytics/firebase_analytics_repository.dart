@@ -29,8 +29,14 @@ class _FireBaseAnalyticsRepository with WidgetsBindingObserver implements FireBa
   @override
   void trackEvent(String name, {Map<String, Object?>? arguments}) => _analytics.logEvent(
         name: name,
-        parameters: arguments,
+        parameters: _parseParameters(arguments),
       );
+
+  Map<String, Object>? _parseParameters(Map<String, Object?>? options) {
+    if (options == null) return null;
+    final parsedOptions = options..removeWhere((key, value) => value == null);
+    return parsedOptions.map((key, value) => MapEntry(key, value!));
+  }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {

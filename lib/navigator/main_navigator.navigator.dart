@@ -6,10 +6,9 @@
 
 // ignore_for_file: prefer_const_constructors
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:convert';
 
-import 'package:flutter/material.dart' as _i1;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../screen/debug/debug_platform_selector_screen.dart';
@@ -32,96 +31,73 @@ mixin BaseNavigator {
         ? (settings.arguments as Map).cast<String, dynamic>()
         : <String, dynamic>{};
     final settingsUri = Uri.parse(settings.name ?? '');
-    settingsUri.queryParameters.forEach((key, value) {
-      arguments[key] ??= value;
-    });
+    final queryParameters = Map.from(settingsUri.queryParameters);
     switch (settingsUri.path) {
       case RouteNames.homeScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => HomeScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => HomeScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.splashScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => SplashScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => SplashScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => LicenseScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => LicenseScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.logDetailScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LogDetailScreen(
-            date: arguments['date'] as String,
-            key: arguments['key'] as Key?,
+            date: queryParameters['date'] ?? arguments['date'] as String,
           ),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.todoAddScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => TodoAddScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => TodoAddScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.logsScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => LogsScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => LogsScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.analyticsPermissionScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => AnalyticsPermissionScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => AnalyticsPermissionScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.loginScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => LoginScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => LoginScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.themeModeSelectorScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => ThemeModeSelectorScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => ThemeModeSelectorScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.debugPlatformSelectorScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => DebugPlatformSelectorScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => DebugPlatformSelectorScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
       case RouteNames.debugScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => DebugScreen(
-            key: arguments['key'] as Key?,
-          ),
+          builder: (_) => DebugScreen(),
           settings: settings,
           fullscreenDialog: false,
         );
@@ -129,69 +105,66 @@ mixin BaseNavigator {
     return null;
   }
 
-  void goToHomeScreen({_i1.Key? key}) =>
+  void goToHomeScreen() =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.homeScreen,
         (_) => false,
-        arguments: {'key': key},
+        arguments: {},
       );
-  void goToSplashScreen({_i1.Key? key}) =>
+  void goToSplashScreen() =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.splashScreen,
         (_) => false,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToLicenseScreen({_i1.Key? key}) async =>
+  Future<void> goToLicenseScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToLogDetailScreen({
-    required String date,
-    _i1.Key? key,
-  }) async =>
+  Future<void> goToLogDetailScreen({required String date}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         Uri(
           path: RouteNames.logDetailScreen,
-          queryParameters: {'date': date},
+          queryParameters: kIsWeb ? {'date': date} : null,
         ).toString(),
-        arguments: {'date': date, 'key': key},
+        arguments: {'date': date},
       );
-  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
+  Future<void> goToTodoAddScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.todoAddScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToLogsScreen({_i1.Key? key}) async =>
+  Future<void> goToLogsScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.logsScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
+  Future<void> goToAnalyticsPermissionScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.analyticsPermissionScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  void goToLoginScreen({_i1.Key? key}) =>
+  void goToLoginScreen() =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.loginScreen,
         (_) => false,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) async =>
+  Future<void> goToThemeModeSelectorScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.themeModeSelectorScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) async =>
+  Future<void> goToDebugPlatformSelectorScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugPlatformSelectorScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
-  Future<void> goToDebugScreen({_i1.Key? key}) async =>
+  Future<void> goToDebugScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugScreen,
-        arguments: {'key': key},
+        arguments: {},
       );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
@@ -199,7 +172,7 @@ mixin BaseNavigator {
   void popUntil(bool Function(Route<dynamic>) predicate) =>
       navigatorKey.currentState?.popUntil(predicate);
   void goBackTo(String routeName) =>
-      popUntil((route) => route.settings.name == routeName);
+      popUntil((route) => route.settings.name?.split('?').first == routeName);
   Future<T?> showCustomDialog<T>({Widget? widget}) async => showDialog<T>(
         context: navigatorKey.currentContext!,
         builder: (_) => widget ?? const SizedBox.shrink(),
