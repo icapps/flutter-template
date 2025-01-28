@@ -43,8 +43,6 @@ class WidgetbookApp extends StatelessWidget {
           ...Devices.android.all,
         ]),
         InspectorAddon(),
-        GridAddon(100),
-        ZoomAddon(),
         ThemeAddon(
           themes: [
             WidgetbookTheme(
