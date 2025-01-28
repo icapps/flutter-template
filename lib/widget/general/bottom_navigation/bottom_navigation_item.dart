@@ -36,12 +36,12 @@ class BottomNavigationItem extends StatelessWidget {
               duration: ThemeDurations.shortAnimationDuration,
               firstChild: Icon(
                 iconActive,
-                color: theme.bottomNavbarItemActive,
+                color: theme.main,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
               secondChild: Icon(
                 iconInactive,
-                color: theme.bottomNavbarItemInactive,
+                color: theme.bodyNeutralFaded,
                 size: hasSpaceForLabel ? ThemeDimens.iconSize : ThemeDimens.largeIcon,
               ),
               crossFadeState: isSelected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
@@ -50,7 +50,7 @@ class BottomNavigationItem extends StatelessWidget {
               const SizedBox(height: 2),
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
-                style: isSelected ? theme.bottomNavbarItemActive.bodySmall.strong : theme.bottomNavbarItemInactive.bodySmall,
+                style: isSelected ? theme.main.paragraphS.bold : theme.bodyNeutralFaded.paragraphS,
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

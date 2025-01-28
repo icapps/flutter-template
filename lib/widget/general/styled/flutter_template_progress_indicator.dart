@@ -20,7 +20,7 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
       childBuilderTheme: (context, theme) {
         if (FlavorConfig.isInTest()) {
           return Container(
-            color: theme.accent,
+            color: theme.accentThink,
             height: 50,
             width: 50,
             child: const Text(
@@ -30,7 +30,7 @@ class FlutterTemplateProgressIndicator extends StatelessWidget {
           );
         }
         return CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(dark ? theme.progressIndicator : theme.inverseProgressIndicator),
+          valueColor: AlwaysStoppedAnimation(dark ? theme.main : theme.pureWhite),
         );
       },
     );

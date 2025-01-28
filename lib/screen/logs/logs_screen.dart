@@ -37,7 +37,7 @@ class LogsScreenState extends State<LogsScreen> {
                   final item = viewModel.availableDates[index];
                   return TouchFeedBack(
                     onTapped: () => viewModel.onLogTapped(item),
-                    color: theme.cardBackground,
+                    color: theme.canvas,
                     borderRadius: BorderRadius.circular(12),
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -46,12 +46,12 @@ class LogsScreenState extends State<LogsScreen> {
                           Expanded(
                             child: Text(
                               item.shortDateWeekdayFormat,
-                              style: theme.text.bodyBig,
+                              style: theme.bodyNeutralDefault.paragraphM,
                             ),
                           ),
                           Icon(
                             IcappsIcons.chevronRight,
-                            color: theme.icon,
+                            color: theme.bodyNeutralFaded,
                           )
                         ],
                       ),

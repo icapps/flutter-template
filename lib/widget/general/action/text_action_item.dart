@@ -28,7 +28,7 @@ class TextActionItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: AnimatedDefaultTextStyle(
-              style: style ?? theme.inverseText.labelButtonSmall,
+              style: style ?? theme.pureWhite.labelS,
               duration: ThemeDurations.shortAnimationDuration,
               child: Text(text),
             ),

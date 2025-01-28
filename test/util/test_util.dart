@@ -136,7 +136,10 @@ class TestUtil {
   }
 
   static Future<void> _loadFonts() async {
-    await _loadFont('assets/fonts/open_sans/OpenSans-Regular.ttf', ThemeFonts.body);
+    await _loadFont('assets/fonts/aeonik_pro/AeonikPro-Bold.otf', ThemeFonts.body);
+    await _loadFont('assets/fonts/aeonik_pro/AeonikPro-Light.otf', ThemeFonts.body);
+    await _loadFont('assets/fonts/aeonik_pro/AeonikPro-Medium.otf', ThemeFonts.body);
+    await _loadFont('assets/fonts/aeonik_pro/AeonikPro-Regular.otf', ThemeFonts.body);
   }
 
   static Future<void> _loadFont(String fontPath, String fontName) async {

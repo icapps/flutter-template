@@ -1,9 +1,9 @@
 class ThemeFonts {
   ThemeFonts._();
 
-  static const _openSans = 'OpenSans';
+  static const _aeonikPro = 'AeonikPro';
 
-  static const title = _openSans;
-  static const body = _openSans;
-  static const button = _openSans;
+  static const title = _aeonikPro;
+  static const body = _aeonikPro;
+  static const button = _aeonikPro;
 }

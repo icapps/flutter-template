@@ -26,7 +26,7 @@ class LicenseScreenState extends State<LicenseScreen> {
         itemBuilder: (context, index) {
           final item = viewModel.licenses[index];
           return Card(
-            color: theme.background,
+            color: theme.level1,
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -34,12 +34,12 @@ class LicenseScreenState extends State<LicenseScreen> {
                 children: [
                   Text(
                     item.name,
-                    style: theme.text.titleNormal,
+                    style: theme.bodyNeutralDefault.headingS,
                   ),
                   Container(height: 8),
                   Text(
                     item.license,
-                    style: theme.text.bodySmall,
+                    style: theme.bodyNeutralDefault.paragraphS,
                   ),
                 ],
               ),

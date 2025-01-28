@@ -31,7 +31,7 @@ class ActionItem extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 24,
-                  color: color ?? theme.icon,
+                  color: color ?? theme.bodyNeutralFaded,
                 ),
               ),
             ),

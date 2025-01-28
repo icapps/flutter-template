@@ -20,13 +20,13 @@ class DebugRowTitle extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: theme.fadedText,
+            color: theme.bodyNeutralFaded,
             size: ThemeDimens.smallIconSize,
           ),
           const SizedBox(width: 4),
           Text(
             title,
-            style: theme.fadedText.bodySmall,
+            style: theme.bodyNeutralFaded.paragraphS,
           ),
         ],
       ),

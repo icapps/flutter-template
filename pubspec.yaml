@@ -82,14 +82,20 @@ flutter:
   assets:
     - assets/api/
     - assets/fonts/
-    - assets/fonts/open_sans/
+    - assets/fonts/aeonik_pro/
     - assets/locale/
     - assets/images/
     - assets/images/icons/
   fonts:
-    - family: OpenSans
+    - family: AeonikPro
       fonts:
-        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+        - asset: assets/fonts/aeonik_pro/AeonikPro-Regular.otf
+        - asset: assets/fonts/aeonik_pro/AeonikPro-Light.otf
+          weight: 300
+        - asset: assets/fonts/aeonik_pro/AeonikPro-Medium.otf
+          weight: 500
+        - asset: assets/fonts/aeonik_pro/AeonikPro-Bold.otf
+          weight: 700
     - family: icappsIcons
       fonts:
         - asset: packages/icapps_icons/fonts/icappsIcons.ttf

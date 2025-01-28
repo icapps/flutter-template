@@ -38,13 +38,13 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   const SizedBox(height: 32),
                   Text(
                     localization.permissionAnalyticsTitle,
-                    style: theme.text.titleNormal,
+                    style: theme.bodyNeutralDefault.headingS,
                   ),
                   const SizedBox(height: 16),
                   Text(
                     localization.permissionAnalyticsDescription,
                     textAlign: TextAlign.center,
-                    style: theme.text.bodyNormal,
+                    style: theme.bodyNeutralDefault.paragraphM,
                   ),
                   const Spacer(),
                 ],

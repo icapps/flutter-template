@@ -23,7 +23,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
           height: 24,
           width: 42,
           decoration: BoxDecoration(
-            color: value ? theme.accent : theme.switchBackground,
+            color: value ? theme.accentThink : theme.level2,
             borderRadius: ThemeDimens.circularBorderRadius,
           ),
           child: AnimatedAlign(
@@ -34,7 +34,7 @@ class FlutterTemplateSwitch extends StatelessWidget {
               height: 20,
               width: 20,
               decoration: BoxDecoration(
-                color: theme.lightText,
+                color: theme.pureWhite,
                 borderRadius: ThemeDimens.circularBorderRadius,
               ),
             ),

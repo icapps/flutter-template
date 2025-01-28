@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
@@ -28,7 +27,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
       childBuilderTheme: (context, theme) => ActionItem(
         key: Keys.backButton,
         icon: getCorrectIcon(context),
-        color: isLight ? ThemeColors.white : theme.appBarAction,
+        color: isLight ? theme.pureWhite : theme.main,
         onClick: onClick,
       ),
     );
