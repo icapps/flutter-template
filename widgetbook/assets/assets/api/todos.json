@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Todo 1",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Something I still need to do",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "Something Something",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "title": "Do something",
+    "completed": true
+  }
+]
