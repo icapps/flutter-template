@@ -319,7 +319,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.fvm/')) return false;
     if (element.path.startsWith('./.idea/')) return false;
     if (element.path.startsWith('./.DS_STORE')) return false;
-    if (element.path.startsWith('./widgetbook')) return false;
+    if (element.path.startsWith('./widgetbook/')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
@@ -348,6 +348,7 @@ void _performFinalCheck() {
     if (element.path.endsWith('lcov.info')) return false;
     if (element.path.endsWith('tool/dart_tool/rename_project.dart')) return false;
     if (element.path.endsWith('./ios/Flutter/App.framework/flutter_assets/NOTICES')) return false;
+    if (element.path.startsWith('./widgetbook/')) return false;
     if (Directory(element.path).existsSync()) return false;
     return true;
   }).forEach((element) {
