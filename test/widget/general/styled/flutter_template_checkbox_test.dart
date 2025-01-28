@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_checkbox.dart';
+import 'package:flutter_template/widget/library/flutter_template_checkbox.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../util/test_util.dart';

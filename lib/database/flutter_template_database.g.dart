@@ -130,6 +130,14 @@ class DbTodo extends DataClass implements Insertable<DbTodo> {
         title: title ?? this.title,
         completed: completed ?? this.completed,
       );
+  DbTodo copyWithCompanion(DbTodoTableCompanion data) {
+    return DbTodo(
+      id: data.id.present ? data.id.value : this.id,
+      title: data.title.present ? data.title.value : this.title,
+      completed: data.completed.present ? data.completed.value : this.completed,
+    );
+  }
+
   @override
   String toString() {
     return (StringBuffer('DbTodo(')
@@ -215,8 +223,8 @@ class DbTodoTableCompanion extends UpdateCompanion<DbTodo> {
 
 abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   _$FlutterTemplateDatabase(QueryExecutor e) : super(e);
-  _$FlutterTemplateDatabaseManager get managers =>
-      _$FlutterTemplateDatabaseManager(this);
+  $FlutterTemplateDatabaseManager get managers =>
+      $FlutterTemplateDatabaseManager(this);
   late final $DbTodoTableTable dbTodoTable = $DbTodoTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -225,7 +233,7 @@ abstract class _$FlutterTemplateDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [dbTodoTable];
 }
 
-typedef $$DbTodoTableTableInsertCompanionBuilder = DbTodoTableCompanion
+typedef $$DbTodoTableTableCreateCompanionBuilder = DbTodoTableCompanion
     Function({
   Value<int> id,
   required String title,
@@ -238,27 +246,90 @@ typedef $$DbTodoTableTableUpdateCompanionBuilder = DbTodoTableCompanion
   Value<bool> completed,
 });
 
+class $$DbTodoTableTableFilterComposer
+    extends Composer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
+  $$DbTodoTableTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get completed => $composableBuilder(
+      column: $table.completed, builder: (column) => ColumnFilters(column));
+}
+
+class $$DbTodoTableTableOrderingComposer
+    extends Composer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
+  $$DbTodoTableTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get completed => $composableBuilder(
+      column: $table.completed, builder: (column) => ColumnOrderings(column));
+}
+
+class $$DbTodoTableTableAnnotationComposer
+    extends Composer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
+  $$DbTodoTableTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<bool> get completed =>
+      $composableBuilder(column: $table.completed, builder: (column) => column);
+}
+
 class $$DbTodoTableTableTableManager extends RootTableManager<
     _$FlutterTemplateDatabase,
     $DbTodoTableTable,
     DbTodo,
     $$DbTodoTableTableFilterComposer,
     $$DbTodoTableTableOrderingComposer,
-    $$DbTodoTableTableProcessedTableManager,
-    $$DbTodoTableTableInsertCompanionBuilder,
-    $$DbTodoTableTableUpdateCompanionBuilder> {
+    $$DbTodoTableTableAnnotationComposer,
+    $$DbTodoTableTableCreateCompanionBuilder,
+    $$DbTodoTableTableUpdateCompanionBuilder,
+    (
+      DbTodo,
+      BaseReferences<_$FlutterTemplateDatabase, $DbTodoTableTable, DbTodo>
+    ),
+    DbTodo,
+    PrefetchHooks Function()> {
   $$DbTodoTableTableTableManager(
       _$FlutterTemplateDatabase db, $DbTodoTableTable table)
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$DbTodoTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$DbTodoTableTableOrderingComposer(ComposerState(db, table)),
-          getChildManagerBuilder: (p) =>
-              $$DbTodoTableTableProcessedTableManager(p),
-          getUpdateCompanionBuilder: ({
+          createFilteringComposer: () =>
+              $$DbTodoTableTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DbTodoTableTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DbTodoTableTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<String> title = const Value.absent(),
             Value<bool> completed = const Value.absent(),
@@ -268,7 +339,7 @@ class $$DbTodoTableTableTableManager extends RootTableManager<
             title: title,
             completed: completed,
           ),
-          getInsertCompanionBuilder: ({
+          createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required String title,
             required bool completed,
@@ -278,62 +349,32 @@ class $$DbTodoTableTableTableManager extends RootTableManager<
             title: title,
             completed: completed,
           ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
         ));
 }
 
-class $$DbTodoTableTableProcessedTableManager extends ProcessedTableManager<
+typedef $$DbTodoTableTableProcessedTableManager = ProcessedTableManager<
     _$FlutterTemplateDatabase,
     $DbTodoTableTable,
     DbTodo,
     $$DbTodoTableTableFilterComposer,
     $$DbTodoTableTableOrderingComposer,
-    $$DbTodoTableTableProcessedTableManager,
-    $$DbTodoTableTableInsertCompanionBuilder,
-    $$DbTodoTableTableUpdateCompanionBuilder> {
-  $$DbTodoTableTableProcessedTableManager(super.$state);
-}
+    $$DbTodoTableTableAnnotationComposer,
+    $$DbTodoTableTableCreateCompanionBuilder,
+    $$DbTodoTableTableUpdateCompanionBuilder,
+    (
+      DbTodo,
+      BaseReferences<_$FlutterTemplateDatabase, $DbTodoTableTable, DbTodo>
+    ),
+    DbTodo,
+    PrefetchHooks Function()>;
 
-class $$DbTodoTableTableFilterComposer
-    extends FilterComposer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
-  $$DbTodoTableTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<String> get title => $state.composableBuilder(
-      column: $state.table.title,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnFilters<bool> get completed => $state.composableBuilder(
-      column: $state.table.completed,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-}
-
-class $$DbTodoTableTableOrderingComposer
-    extends OrderingComposer<_$FlutterTemplateDatabase, $DbTodoTableTable> {
-  $$DbTodoTableTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<String> get title => $state.composableBuilder(
-      column: $state.table.title,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
-  ColumnOrderings<bool> get completed => $state.composableBuilder(
-      column: $state.table.completed,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-}
-
-class _$FlutterTemplateDatabaseManager {
+class $FlutterTemplateDatabaseManager {
   final _$FlutterTemplateDatabase _db;
-  _$FlutterTemplateDatabaseManager(this._db);
+  $FlutterTemplateDatabaseManager(this._db);
   $$DbTodoTableTableTableManager get dbTodoTable =>
       $$DbTodoTableTableTableManager(_db, _db.dbTodoTable);
 }

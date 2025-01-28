@@ -456,13 +456,3 @@ extension TextStyleExtension on TextStyle {
 
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
 }
-
-extension ShadowsExtension on Color {
-  List<BoxShadow> get elevation1 => [
-        const BoxShadow(
-          offset: Offset(0, 4),
-          spreadRadius: 0,
-          blurRadius: 8,
-        ),
-      ];
-}

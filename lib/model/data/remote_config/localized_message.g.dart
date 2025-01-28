@@ -11,15 +11,7 @@ LocalizedMessage _$LocalizedMessageFromJson(Map<String, dynamic> json) =>
       en: json['en'] as String?,
     );
 
-Map<String, dynamic> _$LocalizedMessageToJson(LocalizedMessage instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('en', instance.en);
-  return val;
-}
+Map<String, dynamic> _$LocalizedMessageToJson(LocalizedMessage instance) =>
+    <String, dynamic>{
+      if (instance.en case final value?) 'en': value,
+    };

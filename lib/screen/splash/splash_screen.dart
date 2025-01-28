@@ -3,7 +3,7 @@ import 'package:flutter_navigation_generator_annotations/flutter_navigation_gene
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/library/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @FlutterRoute(

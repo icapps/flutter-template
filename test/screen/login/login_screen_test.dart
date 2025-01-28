@@ -3,7 +3,7 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/login/login_screen.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
+import 'package:flutter_template/widget/library/flutter_template_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

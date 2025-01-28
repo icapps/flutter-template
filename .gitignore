@@ -93,5 +93,4 @@ Gemfile.lock
 
 # Fvm
 .fvm/
-/lib/generated_plugin_registrant.dart
 /test/coverage_helper_test.dart

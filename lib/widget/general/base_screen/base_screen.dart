@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen_content.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen_header.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/library/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 
 class BaseScreen extends StatelessWidget {

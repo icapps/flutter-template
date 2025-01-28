@@ -16,6 +16,7 @@ analyzer:
     - 'lib/util/license.dart'
     - 'test/coverage_helper_test.dart'
     - 'tool/'
+    - 'widgetbook/'
 
 linter:
   rules:

@@ -4,33 +4,33 @@
     //  For more information, visit: https:go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-         {
-             "name": "dev",
-             "request": "launch",
-             "type": "dart",
-             "program": "lib/main.dart",
-             "args": [
-                 "--flavor=dev"
-             ]
-         },
-         {
-             "name": "alpha",
-             "request": "launch",
-             "type": "dart",
-             "program": "lib/main_alpha.dart",
-             "args": [
-                 "--flavor=alpha"
-             ]
-         },
-         {
-             "name": "beta",
-             "request": "launch",
-             "type": "dart",
-             "program": "lib/main_beta.dart",
-             "args": [
-                 "--flavor=beta"
-             ]
-         },
+        {
+            "name": "dev",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=dev"
+            ]
+        },
+        {
+            "name": "alpha",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_alpha.dart",
+            "args": [
+                "--flavor=alpha"
+            ]
+        },
+        {
+            "name": "beta",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_beta.dart",
+            "args": [
+                "--flavor=beta"
+            ]
+        },
         {
             "name": "dummy",
             "request": "launch",
@@ -40,14 +40,20 @@
                 "--flavor=dev"
             ]
         },
-         {
-             "name": "prod",
-             "request": "launch",
-             "type": "dart",
-             "program": "lib/main_prod.dart",
-             "args": [
-                 "--flavor=prod"
-             ]
-         }
+        {
+            "name": "prod",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--flavor=prod"
+            ]
+        },
+        {
+            "name": "widgetbook",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/widgetbook/widgetbook.dart",
+        }
     ]
 }

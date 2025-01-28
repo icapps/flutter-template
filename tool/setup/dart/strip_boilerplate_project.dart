@@ -276,6 +276,7 @@ void seedTodoAddViewModel() {
 ];
 
 final removeDirectories = [
+  'widgetbook',
   'lib/database/todo',
   'lib/model/database/todo',
   'lib/model/webservice/todo',

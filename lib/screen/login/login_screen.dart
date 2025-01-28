@@ -5,9 +5,9 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
 import 'package:flutter_template/widget/general/base_screen/base_screen.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
+import 'package:flutter_template/widget/library/flutter_template_button.dart';
+import 'package:flutter_template/widget/library/flutter_template_input_field.dart';
+import 'package:flutter_template/widget/library/flutter_template_progress_indicator.dart';
 import 'package:flutter_template/widget/provider/provider_widget.dart';
 
 @FlutterRoute(
