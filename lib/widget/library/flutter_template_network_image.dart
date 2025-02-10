@@ -7,13 +7,16 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/util/cache/cache_controlling.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/logging/flutter_template_logger.dart';
+import 'package:widget_book_widget_generator_annotations/widget_book_widget_generator_annotations.dart';
 
+@widgetBookWidget
 class FlutterTemplateNetworkImage extends StatelessWidget {
   final String? url;
   final String? fallbackUrl;
   final BoxFit fit;
   final double? height;
   final double? width;
+  @WidgetBookWidgetField(ignore: true)
   final Duration? duration;
 
   const FlutterTemplateNetworkImage({

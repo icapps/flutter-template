@@ -5,6 +5,7 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_template/widgetbook/widgetbook.directories.g.dart';
+import 'package:flutter_template/widgetbook/widgetbook_widgets/widgetbook_screen.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -43,6 +44,10 @@ class WidgetbookApp extends StatelessWidget {
           ...Devices.android.all,
         ]),
         InspectorAddon(),
+        BuilderAddon(
+          name: 'main',
+          builder: (context, widget) => WidgetBookScreen(child: widget),
+        ),
         ThemeAddon(
           themes: [
             WidgetbookTheme(

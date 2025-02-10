@@ -1584,6 +1584,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  widget_book_widget_generator:
+    dependency: "direct dev"
+    description:
+      name: widget_book_widget_generator
+      sha256: a3a7a804531e33a3d1afa2fca5613197caf962e00c786e81b6b165477b5d6adf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  widget_book_widget_generator_annotations:
+    dependency: "direct main"
+    description:
+      name: widget_book_widget_generator_annotations
+      sha256: adc89d5d8caebe1ede6e8d14d958ad970229e7cb552cb1f146bf5122eef9bfdd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   widgetbook:
     dependency: "direct main"
     description:

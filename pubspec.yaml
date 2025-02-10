@@ -60,6 +60,7 @@ dependencies:
   storage_inspector: ^0.4.0
   synchronized: ^3.3.0+3
   url_launcher: ^6.3.1
+  widget_book_widget_generator_annotations: ^1.0.0
   widgetbook: ^3.10.2
   widgetbook_annotation: ^3.2.0
 
@@ -79,6 +80,7 @@ dev_dependencies:
   model_generator: ^7.0.0
   retrofit_generator: ^9.1.5
   widgetbook_generator: ^3.9.1
+  widget_book_widget_generator: ^1.0.0
 
 flutter:
   uses-material-design: true

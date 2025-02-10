@@ -3,12 +3,14 @@ import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:widget_book_widget_generator_annotations/widget_book_widget_generator_annotations.dart';
 
 enum ButtonType {
   regular,
   text,
 }
 
+@widgetBookWidget
 class FlutterTemplateButton extends StatelessWidget {
   final String text;
   final bool isEnabled;

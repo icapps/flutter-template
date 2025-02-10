@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:icapps_icons/icapps_icons.dart';
+import 'package:widget_book_widget_generator_annotations/widget_book_widget_generator_annotations.dart';
 
+@widgetBookWidget
 class FlutterTemplateCheckBox extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
