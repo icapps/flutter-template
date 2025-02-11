@@ -56,7 +56,6 @@ dependencies:
   shared_preferences: ^2.0.16
   shared_preferences_web: ^2.0.4
   sprintf: ^7.0.0
-  sqlite3_flutter_libs: ^0.5.12
   storage_inspector: ^0.4.0
   synchronized: ^3.3.0+3
   url_launcher: ^6.3.1

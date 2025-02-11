@@ -28,10 +28,14 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   const Spacer(),
                   Expanded(
                     flex: 5,
-                    child: SvgPicture.asset(
-                      ThemeAssets.analyticsImage,
-                      alignment: Alignment.center,
-                      fit: BoxFit.scaleDown,
+                    child: Semantics(
+                      label: 'Analytics permission',
+                      image: true,
+                      child: SvgPicture.asset(
+                        ThemeAssets.analyticsImage,
+                        alignment: Alignment.center,
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
                   ),
                   const Spacer(),

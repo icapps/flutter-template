@@ -43,9 +43,12 @@ class DebugRowSwitchItem extends StatelessWidget {
                   ],
                 ),
               ),
-              FlutterTemplateSwitch(
-                value: value,
-                onChanged: onChanged,
+              Semantics(
+                label: 'Toggle ${value ? 'off' : 'on'}',
+                child: FlutterTemplateSwitch(
+                  value: value,
+                  onChanged: onChanged,
+                ),
               )
             ],
           ),

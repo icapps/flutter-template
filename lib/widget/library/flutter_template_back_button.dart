@@ -37,6 +37,7 @@ class FlutterTemplateBackButton extends StatelessWidget {
         key: Keys.backButton,
         icon: getCorrectIcon(context),
         color: isLight ? theme.pureWhite : theme.main,
+        semanticsLabel: 'Back',
         onClick: onClick,
       ),
     );

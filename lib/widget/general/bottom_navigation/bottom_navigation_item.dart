@@ -64,32 +64,44 @@ class BottomNavigationItem extends StatelessWidget {
     );
     if (context.isIOSTheme) {
       return Expanded(
-        child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            color: Colors.transparent,
-            height: _itemHeight,
-            child: child,
+        child: DataProviderWidget(
+          childBuilderLocalization: (context, localization) => Semantics(
+            button: true,
+            label: 'Bottom navigation item ${localization.getTranslation(labelKey)}',
+            child: GestureDetector(
+              onTap: onTap,
+              child: Container(
+                color: Colors.transparent,
+                height: _itemHeight,
+                child: child,
+              ),
+            ),
           ),
         ),
       );
     }
     return Expanded(
-      child: LayoutBuilder(
-        builder: (context, constraint) => Container(
-          height: _itemHeight,
-          decoration: const BoxDecoration(color: Colors.transparent),
-          child: OverflowBox(
-            maxHeight: constraint.maxHeight < _itemHeight * 2 ? _itemHeight * 2 : constraint.maxHeight * 3,
-            maxWidth: constraint.maxWidth < _itemHeight * 2 ? _itemHeight * 2 : constraint.maxWidth,
-            child: ClipOval(
-              child: SizedBox(
-                height: 128,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: onTap,
-                    child: child,
+      child: DataProviderWidget(
+        childBuilderLocalization: (context, localization) => LayoutBuilder(
+          builder: (context, constraint) => Container(
+            height: _itemHeight,
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: OverflowBox(
+              maxHeight: constraint.maxHeight < _itemHeight * 2 ? _itemHeight * 2 : constraint.maxHeight * 3,
+              maxWidth: constraint.maxWidth < _itemHeight * 2 ? _itemHeight * 2 : constraint.maxWidth,
+              child: ClipOval(
+                child: Semantics(
+                  button: true,
+                  label: 'Bottom navigation item ${localization.getTranslation(labelKey)}',
+                  child: SizedBox(
+                    height: 128,
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: onTap,
+                        child: child,
+                      ),
+                    ),
                   ),
                 ),
               ),
