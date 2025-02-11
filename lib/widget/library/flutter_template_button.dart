@@ -12,6 +12,7 @@ enum ButtonType {
 
 @widgetBookWidget
 class FlutterTemplateButton extends StatelessWidget {
+  @WidgetBookWidgetField(defaultValue: 'Button')
   final String text;
   final bool isEnabled;
   final bool isExpanded;

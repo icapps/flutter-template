@@ -1588,18 +1588,18 @@ packages:
     dependency: "direct dev"
     description:
       name: widget_book_widget_generator
-      sha256: a3a7a804531e33a3d1afa2fca5613197caf962e00c786e81b6b165477b5d6adf
+      sha256: "942e43d49d09f3dca2d89cfd24fac6f5c126998a0f5c02b5822ea316ceb2e964"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   widget_book_widget_generator_annotations:
     dependency: "direct main"
     description:
       name: widget_book_widget_generator_annotations
-      sha256: adc89d5d8caebe1ede6e8d14d958ad970229e7cb552cb1f146bf5122eef9bfdd
+      sha256: "2ea4d9536b5731212c1a2dff9d4e4e0b82685d4fc8b6843e5a864f6e102d1b25"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   widgetbook:
     dependency: "direct main"
     description:

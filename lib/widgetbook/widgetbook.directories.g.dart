@@ -28,19 +28,35 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'library',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _i1.WidgetbookComponent(
             name: 'FlutterTemplateBackButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'FlutterTemplateBackButton',
-              builder: _i3.flutterTemplateBackButtonUseCase,
-            ),
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton',
+                builder: _i3.flutterTemplateBackButtonUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton (dark)',
+                builder: _i3.flutterTemplateBackButtonUseCaseDark,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton (light)',
+                builder: _i3.flutterTemplateBackButtonUseCaseLight,
+              ),
+            ],
           ),
-          _i1.WidgetbookLeafComponent(
+          _i1.WidgetbookComponent(
             name: 'FlutterTemplateButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'FlutterTemplateButton',
-              builder: _i3.flutterTemplateButtonUseCase,
-            ),
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateButton',
+                builder: _i3.flutterTemplateButtonUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateButton (text)',
+                builder: _i3.flutterTemplateButtonUseCaseText,
+              ),
+            ],
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FlutterTemplateCheckBox',
@@ -63,12 +79,22 @@ final directories = <_i1.WidgetbookNode>[
               builder: _i3.flutterTemplateNetworkImageUseCase,
             ),
           ),
-          _i1.WidgetbookLeafComponent(
+          _i1.WidgetbookComponent(
             name: 'FlutterTemplateProgressIndicator',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'FlutterTemplateProgressIndicator',
-              builder: _i3.flutterTemplateProgressIndicatorUseCase,
-            ),
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator',
+                builder: _i3.flutterTemplateProgressIndicatorUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator (dark)',
+                builder: _i3.flutterTemplateProgressIndicatorUseCaseDark,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator (light)',
+                builder: _i3.flutterTemplateProgressIndicatorUseCaseLight,
+              ),
+            ],
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FlutterTemplateSwitch',

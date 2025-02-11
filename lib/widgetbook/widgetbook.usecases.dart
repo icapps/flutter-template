@@ -38,6 +38,40 @@ Widget flutterTemplateBackButtonUseCase(BuildContext context) {
 }
 
 @UseCase(
+  name: 'FlutterTemplateBackButton (light)',
+  type: FlutterTemplateBackButton,
+)
+Widget flutterTemplateBackButtonUseCaseLight(BuildContext context) {
+  void Function()? onClick = null;
+
+  bool fullScreen =
+      context.knobs.boolean(label: 'fullScreen', initialValue: false);
+
+  return Center(
+      child: FlutterTemplateBackButton.light(
+    onClick: onClick,
+    fullScreen: fullScreen,
+  ));
+}
+
+@UseCase(
+  name: 'FlutterTemplateBackButton (dark)',
+  type: FlutterTemplateBackButton,
+)
+Widget flutterTemplateBackButtonUseCaseDark(BuildContext context) {
+  void Function()? onClick = null;
+
+  bool fullScreen =
+      context.knobs.boolean(label: 'fullScreen', initialValue: false);
+
+  return Center(
+      child: FlutterTemplateBackButton.dark(
+    onClick: onClick,
+    fullScreen: fullScreen,
+  ));
+}
+
+@UseCase(
   name: 'FlutterTemplateInputField',
   type: FlutterTemplateInputField,
 )
@@ -106,6 +140,22 @@ Widget flutterTemplateProgressIndicatorUseCase(BuildContext context) {
 }
 
 @UseCase(
+  name: 'FlutterTemplateProgressIndicator (dark)',
+  type: FlutterTemplateProgressIndicator,
+)
+Widget flutterTemplateProgressIndicatorUseCaseDark(BuildContext context) {
+  return Center(child: FlutterTemplateProgressIndicator.dark());
+}
+
+@UseCase(
+  name: 'FlutterTemplateProgressIndicator (light)',
+  type: FlutterTemplateProgressIndicator,
+)
+Widget flutterTemplateProgressIndicatorUseCaseLight(BuildContext context) {
+  return Center(child: FlutterTemplateProgressIndicator.light());
+}
+
+@UseCase(
   name: 'FlutterTemplateNetworkImage',
   type: FlutterTemplateNetworkImage,
 )
@@ -132,6 +182,24 @@ Widget flutterTemplateNetworkImageUseCase(BuildContext context) {
   double? width =
       context.knobs.doubleOrNull.input(label: 'width', initialValue: null);
 
+  int durationDays =
+      context.knobs.int.input(label: 'days (duration)', initialValue: 0);
+
+  int durationHours =
+      context.knobs.int.input(label: 'hours (duration)', initialValue: 0);
+
+  int durationMinutes =
+      context.knobs.int.input(label: 'minutes (duration)', initialValue: 0);
+
+  int durationSeconds =
+      context.knobs.int.input(label: 'seconds (duration)', initialValue: 0);
+
+  int durationMilliseconds = context.knobs.int
+      .input(label: 'milliseconds (duration)', initialValue: 0);
+
+  int durationMicroseconds = context.knobs.int
+      .input(label: 'microseconds (duration)', initialValue: 0);
+
   return Center(
       child: FlutterTemplateNetworkImage(
     url: url,
@@ -139,6 +207,14 @@ Widget flutterTemplateNetworkImageUseCase(BuildContext context) {
     fit: fit,
     height: height,
     width: width,
+    duration: Duration(
+      days: durationDays,
+      hours: durationHours,
+      minutes: durationMinutes,
+      seconds: durationSeconds,
+      milliseconds: durationMilliseconds,
+      microseconds: durationMicroseconds,
+    ),
   ));
 }
 
@@ -147,7 +223,7 @@ Widget flutterTemplateNetworkImageUseCase(BuildContext context) {
   type: FlutterTemplateButton,
 )
 Widget flutterTemplateButtonUseCase(BuildContext context) {
-  String text = context.knobs.string(label: 'text', initialValue: '');
+  String text = context.knobs.string(label: 'text', initialValue: 'Button');
 
   void Function()? onClick = null;
 
@@ -164,6 +240,36 @@ Widget flutterTemplateButtonUseCase(BuildContext context) {
 
   return Center(
       child: FlutterTemplateButton(
+    text: text,
+    onClick: onClick,
+    isExpanded: isExpanded,
+    isEnabled: isEnabled,
+    buttonType: buttonType,
+  ));
+}
+
+@UseCase(
+  name: 'FlutterTemplateButton (text)',
+  type: FlutterTemplateButton,
+)
+Widget flutterTemplateButtonUseCaseText(BuildContext context) {
+  String text = context.knobs.string(label: 'text', initialValue: 'Button');
+
+  void Function()? onClick = null;
+
+  bool isExpanded =
+      context.knobs.boolean(label: 'isExpanded', initialValue: false);
+
+  bool isEnabled =
+      context.knobs.boolean(label: 'isEnabled', initialValue: true);
+
+  ButtonType buttonType = context.knobs.list(
+      label: 'buttonType',
+      initialOption: ButtonType.text,
+      options: [ButtonType.regular, ButtonType.text]);
+
+  return Center(
+      child: FlutterTemplateButton.text(
     text: text,
     onClick: onClick,
     isExpanded: isExpanded,

@@ -16,7 +16,6 @@ class FlutterTemplateNetworkImage extends StatelessWidget {
   final BoxFit fit;
   final double? height;
   final double? width;
-  @WidgetBookWidgetField(ignore: true)
   final Duration? duration;
 
   const FlutterTemplateNetworkImage({
