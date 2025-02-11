@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_colors.dart';
 import 'package:flutter_template/styles/theme_fonts.dart';
+import 'package:flutter_template/util/extension/color_extension.dart';
 import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
@@ -27,7 +28,7 @@ class FlutterTemplateThemeData {
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: ThemeColors.accentThink40,
       selectionHandleColor: ThemeColors.accentThink40,
-      selectionColor: ThemeColors.accentThink40.withOpacity(0.4),
+      selectionColor: ThemeColors.accentThink40.withOpacityValue(0.4),
     ),
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
@@ -263,9 +264,9 @@ class FlutterTemplateTheme {
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
     effects: FlutterTemplateThemeEffects(
-      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
-      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
-      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+      elevationDefault1: ThemeColors.main16.withOpacityValue(0.04),
+      elevationDefault2: ThemeColors.main16.withOpacityValue(0.08),
+      elevationDefault3: ThemeColors.main16.withOpacityValue(0.12),
     ),
   );
 
@@ -318,9 +319,9 @@ class FlutterTemplateTheme {
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
     effects: FlutterTemplateThemeEffects(
-      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
-      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
-      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+      elevationDefault1: ThemeColors.main16.withOpacityValue(0.04),
+      elevationDefault2: ThemeColors.main16.withOpacityValue(0.08),
+      elevationDefault3: ThemeColors.main16.withOpacityValue(0.12),
     ),
   );
 

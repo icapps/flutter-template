@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:widget_book_widget_generator_annotations/widget_book_widget_generator_annotations.dart';
 
+@widgetBookWidget
 class FlutterTemplateProgressIndicator extends StatelessWidget {
   final bool dark;
 

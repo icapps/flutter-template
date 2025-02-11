@@ -3,7 +3,9 @@ import 'package:flutter_template/styles/theme_dimens.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:widget_book_widget_generator_annotations/widget_book_widget_generator_annotations.dart';
 
+@widgetBookWidget
 class FlutterTemplateSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;

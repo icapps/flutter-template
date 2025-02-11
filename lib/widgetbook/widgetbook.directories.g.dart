@@ -9,6 +9,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_template/widgetbook/widgetbook.usecases.dart' as _i3;
 import 'package:flutter_template/widgetbook/widgetbook_widgets/use_cases.dart'
     as _i2;
 import 'package:widgetbook/widgetbook.dart' as _i1;
@@ -27,45 +28,79 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'library',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _i1.WidgetbookComponent(
             name: 'FlutterTemplateBackButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Default',
-              builder: _i2.backButton,
-            ),
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton',
+                builder: _i3.flutterTemplateBackButtonUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton (dark)',
+                builder: _i3.flutterTemplateBackButtonUseCaseDark,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateBackButton (light)',
+                builder: _i3.flutterTemplateBackButtonUseCaseLight,
+              ),
+            ],
           ),
           _i1.WidgetbookComponent(
             name: 'FlutterTemplateButton',
             useCases: [
               _i1.WidgetbookUseCase(
-                name: 'Default',
-                builder: _i2.button,
+                name: 'FlutterTemplateButton',
+                builder: _i3.flutterTemplateButtonUseCase,
               ),
               _i1.WidgetbookUseCase(
-                name: 'Text',
-                builder: _i2.textButton,
+                name: 'FlutterTemplateButton (text)',
+                builder: _i3.flutterTemplateButtonUseCaseText,
               ),
             ],
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FlutterTemplateCheckBox',
             useCase: _i1.WidgetbookUseCase(
-              name: 'Default',
-              builder: _i2.checkBox,
+              name: 'FlutterTemplateCheckBox',
+              builder: _i3.flutterTemplateCheckBoxUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
-            name: 'FlutterTemplateProgressIndicator',
+            name: 'FlutterTemplateInputField',
             useCase: _i1.WidgetbookUseCase(
-              name: 'Default',
-              builder: _i2.progressIndicator,
+              name: 'FlutterTemplateInputField',
+              builder: _i3.flutterTemplateInputFieldUseCase,
             ),
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'FlutterTemplateNetworkImage',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'FlutterTemplateNetworkImage',
+              builder: _i3.flutterTemplateNetworkImageUseCase,
+            ),
+          ),
+          _i1.WidgetbookComponent(
+            name: 'FlutterTemplateProgressIndicator',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator',
+                builder: _i3.flutterTemplateProgressIndicatorUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator (dark)',
+                builder: _i3.flutterTemplateProgressIndicatorUseCaseDark,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'FlutterTemplateProgressIndicator (light)',
+                builder: _i3.flutterTemplateProgressIndicatorUseCaseLight,
+              ),
+            ],
           ),
           _i1.WidgetbookLeafComponent(
             name: 'FlutterTemplateSwitch',
             useCase: _i1.WidgetbookUseCase(
-              name: 'Default',
-              builder: _i2.switchWidget,
+              name: 'FlutterTemplateSwitch',
+              builder: _i3.flutterTemplateSwitchUseCase,
             ),
           ),
         ],

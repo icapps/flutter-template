@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/architecture.dart';
+import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/styles/theme_data.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/theme/theme_config.dart';
 import 'package:flutter_template/widgetbook/widgetbook.directories.g.dart';
+import 'package:flutter_template/widgetbook/widgetbook_widgets/widgetbook_screen.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 Future<void> main() async {
   await initArchitecture();
-  final themeConfig = ThemeConfigUtil();
-  getIt.registerSingleton(themeConfig);
 
   const values = FlavorValues(
     baseUrl: 'https://jsonplaceholder.typicode.com/',
@@ -26,6 +26,7 @@ Future<void> main() async {
     color: Colors.red,
     values: values,
   );
+  await configureDependencies(Environments.dev);
 
   runApp(const WidgetbookApp());
 }
@@ -43,6 +44,10 @@ class WidgetbookApp extends StatelessWidget {
           ...Devices.android.all,
         ]),
         InspectorAddon(),
+        BuilderAddon(
+          name: 'main',
+          builder: (context, widget) => WidgetBookScreen(child: widget),
+        ),
         ThemeAddon(
           themes: [
             WidgetbookTheme(

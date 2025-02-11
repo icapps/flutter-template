@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/webservice/todo/todo.dart';
 import 'package:flutter_template/styles/theme_data.dart';
+import 'package:flutter_template/util/extension/color_extension.dart';
 import 'package:flutter_template/util/keys.dart';
 import 'package:flutter_template/viewmodel/todo/todo_list/todo_list_viewmodel.dart';
 import 'package:flutter_template/widget/general/action/action_item.dart';
@@ -104,7 +105,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
                           height: 1,
-                          color: theme.main.withOpacity(0.1),
+                          color: theme.main.withOpacityValue(0.1),
                         ),
                       ),
                     );
