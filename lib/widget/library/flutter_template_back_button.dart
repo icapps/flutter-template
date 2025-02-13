@@ -33,10 +33,11 @@ class FlutterTemplateBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) => ActionItem(
+      childBuilder: (context, theme, localization) => ActionItem(
         key: Keys.backButton,
         icon: getCorrectIcon(context),
         color: isLight ? theme.pureWhite : theme.main,
+        semanticsLabel: localization.semanticBack,
         onClick: onClick,
       ),
     );

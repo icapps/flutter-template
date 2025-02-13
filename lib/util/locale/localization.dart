@@ -421,6 +421,62 @@ class Localization {
   /// en:  **'Reset analytics permission'**
   String get debugPermissionResetAnalytics => _t(LocalizationKeys.debugPermissionResetAnalytics);
 
+  /// Translations:
+  ///
+  /// nl:  **'Analytics permissie'**
+  ///
+  /// en:  **'Analytics permission'**
+  String get semanticAnalyticsScreenImage => _t(LocalizationKeys.semanticAnalyticsScreenImage);
+
+  /// Translations:
+  ///
+  /// nl:  **'Download todo's'**
+  ///
+  /// en:  **'Download todo's'**
+  String get semanticTodoListScreenDownloadAction => _t(LocalizationKeys.semanticTodoListScreenDownloadAction);
+
+  /// Translations:
+  ///
+  /// nl:  **'Add todo'**
+  ///
+  /// en:  **'Voeg todo toe'**
+  String get semanticTodoListScreenAddAction => _t(LocalizationKeys.semanticTodoListScreenAddAction);
+
+  /// Translations:
+  ///
+  /// nl:  **'Toggle $1%s'**
+  ///
+  /// en:  **'Toggle $1%s'**
+  String semanticToggle(String arg1) => _t(LocalizationKeys.semanticToggle, args: <dynamic>[arg1]);
+
+  /// Translations:
+  ///
+  /// nl:  **'On'**
+  ///
+  /// en:  **'Aan'**
+  String get semanticToggleOn => _t(LocalizationKeys.semanticToggleOn);
+
+  /// Translations:
+  ///
+  /// nl:  **'Uit'**
+  ///
+  /// en:  **'Off'**
+  String get semanticToggleOff => _t(LocalizationKeys.semanticToggleOff);
+
+  /// Translations:
+  ///
+  /// nl:  **'Bottom navigation item $1%s'**
+  ///
+  /// en:  **'Bottom navigation item $1%s'**
+  String semanticBottomNavigationItem(String arg1) => _t(LocalizationKeys.semanticBottomNavigationItem, args: <dynamic>[arg1]);
+
+  /// Translations:
+  ///
+  /// nl:  **'Terug'**
+  ///
+  /// en:  **'Back'**
+  String get semanticBack => _t(LocalizationKeys.semanticBack);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

@@ -50,5 +50,13 @@
   "permission_button_more_info": "More info",
   "debug_permissions_title": "Permissions",
   "debug_permissions_show_analytics_permission": "Show analytics permission screen",
-  "debug_permission_reset_analytics": "Reset analytics permission"
+  "debug_permission_reset_analytics": "Reset analytics permission",
+  "semantic_analytics_screen_image": "Analytics permission",
+  "semantic_todo_list_screen_download_action": "Download todo's",
+  "semantic_todo_list_screen_add_action": "Voeg todo toe",
+  "semantic_toggle": "Toggle $1%s",
+  "semantic_toggle_on": "Aan",
+  "semantic_toggle_off": "Off",
+  "semantic_bottom_navigation_item": "Bottom navigation item $1%s",
+  "semantic_back": "Back"
 }

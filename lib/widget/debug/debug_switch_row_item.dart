@@ -20,8 +20,8 @@ class DebugRowSwitchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataProviderWidget(childBuilderTheme: (context, theme) {
-      return TouchFeedBack(
+    return DataProviderWidget(
+      childBuilder: (context, theme, localization) => TouchFeedBack(
         onTapped: () => onChanged(!value),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -43,14 +43,17 @@ class DebugRowSwitchItem extends StatelessWidget {
                   ],
                 ),
               ),
-              FlutterTemplateSwitch(
-                value: value,
-                onChanged: onChanged,
-              )
+              Semantics(
+                label: localization.semanticToggle(value ? localization.semanticToggleOff : localization.semanticToggleOn),
+                child: FlutterTemplateSwitch(
+                  value: value,
+                  onChanged: onChanged,
+                ),
+              ),
             ],
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

@@ -5,11 +5,13 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class ActionItem extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onClick;
+  final String? semanticsLabel;
   final Color? color;
 
-  const ActionItem( {
+  const ActionItem({
     required this.icon,
     required this.onClick,
+    this.semanticsLabel,
     this.color,
     super.key,
   });
@@ -25,6 +27,7 @@ class ActionItem extends StatelessWidget {
             height: 48,
             width: 48,
             child: TouchFeedBack(
+              semanticsLabel: semanticsLabel,
               borderRadius: BorderRadius.circular(48),
               onTapped: onClick,
               child: Center(

@@ -36,12 +36,14 @@ class TodoListScreenState extends State<TodoListScreen> {
               icon: IcappsIcons.arrowDownToLine,
               onClick: viewModel.onDownloadClicked,
               color: theme.main,
+              semanticsLabel: localization.semanticTodoListScreenDownloadAction,
             ),
             ActionItem(
               key: Keys.addAction,
               icon: IcappsIcons.plus,
               onClick: viewModel.onAddClicked,
               color: theme.main,
+              semanticsLabel: localization.semanticTodoListScreenAddAction,
             ),
           ],
           child: Builder(
