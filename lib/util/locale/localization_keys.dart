@@ -367,4 +367,60 @@ class LocalizationKeys {
   /// en:  **'Reset analytics permission'**
   static const debugPermissionResetAnalytics = 'debug_permission_reset_analytics';
 
+  /// Translations:
+  ///
+  /// nl:  **'Analytics permissie'**
+  ///
+  /// en:  **'Analytics permission'**
+  static const semanticAnalyticsScreenImage = 'semantic_analytics_screen_image';
+
+  /// Translations:
+  ///
+  /// nl:  **'Download todo's'**
+  ///
+  /// en:  **'Download todo's'**
+  static const semanticTodoListScreenDownloadAction = 'semantic_todo_list_screen_download_action';
+
+  /// Translations:
+  ///
+  /// nl:  **'Add todo'**
+  ///
+  /// en:  **'Voeg todo toe'**
+  static const semanticTodoListScreenAddAction = 'semantic_todo_list_screen_add_action';
+
+  /// Translations:
+  ///
+  /// nl:  **'Toggle $1%s'**
+  ///
+  /// en:  **'Toggle $1%s'**
+  static const semanticToggle = 'semantic_toggle';
+
+  /// Translations:
+  ///
+  /// nl:  **'On'**
+  ///
+  /// en:  **'Aan'**
+  static const semanticToggleOn = 'semantic_toggle_on';
+
+  /// Translations:
+  ///
+  /// nl:  **'Uit'**
+  ///
+  /// en:  **'Off'**
+  static const semanticToggleOff = 'semantic_toggle_off';
+
+  /// Translations:
+  ///
+  /// nl:  **'Bottom navigation item $1%s'**
+  ///
+  /// en:  **'Bottom navigation item $1%s'**
+  static const semanticBottomNavigationItem = 'semantic_bottom_navigation_item';
+
+  /// Translations:
+  ///
+  /// nl:  **'Terug'**
+  ///
+  /// en:  **'Back'**
+  static const semanticBack = 'semantic_back';
+
 }

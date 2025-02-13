@@ -29,7 +29,7 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: Semantics(
-                      label: 'Analytics permission',
+                      label: localization.semanticAnalyticsScreenImage,
                       image: true,
                       child: SvgPicture.asset(
                         ThemeAssets.analyticsImage,

@@ -92,7 +92,7 @@ class BottomNavigationItem extends StatelessWidget {
               child: ClipOval(
                 child: Semantics(
                   button: true,
-                  label: 'Bottom navigation item ${localization.getTranslation(labelKey)}',
+                  label: localization.semanticBottomNavigationItem(localization.getTranslation(labelKey)),
                   child: SizedBox(
                     height: 128,
                     child: Material(
