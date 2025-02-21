@@ -3,14 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
-import 'package:flutter/material.dart' as _i4;
-import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i5;
-import 'package:flutter_template/repository/remote_config/remote_config_repository.dart'
-    as _i6;
+import 'package:flutter/material.dart' as _i5;
+import 'package:flutter_template/model/data/remote_config/localized_message.dart'
+    as _i8;
+import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i6;
+import 'package:flutter_template/remote_config/remote_config.dart' as _i7;
+import 'package:flutter_template/remote_config/remote_config_data.dart' as _i2;
 import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart'
-    as _i2;
+    as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -26,85 +28,111 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeRemoteConfigData_0 extends _i1.SmartFake
+    implements _i2.RemoteConfigData {
+  _FakeRemoteConfigData_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [LocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalStorage extends _i1.Mock implements _i2.LocalStorage {
+class MockLocalStorage extends _i1.Mock implements _i3.LocalStorage {
   MockLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> checkForNewInstallation() => (super.noSuchMethod(
+  _i4.Future<void> checkForNewInstallation() => (super.noSuchMethod(
         Invocation.method(
           #checkForNewInstallation,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i3.Future<void> updateThemeMode(_i4.ThemeMode? themeMode) =>
+  _i4.Future<void> updateThemeMode(_i5.ThemeMode? themeMode) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateThemeMode,
           [themeMode],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i3.Future<void> updateHasAnalyticsPermission(bool? permissionGranted) =>
+  _i4.Future<void> updateHasAnalyticsPermission(bool? permissionGranted) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateHasAnalyticsPermission,
           [permissionGranted],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [OnboardingNavigator].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOnboardingNavigator extends _i1.Mock
-    implements _i5.OnboardingNavigator {
+    implements _i6.OnboardingNavigator {
   MockOnboardingNavigator() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> goToNextScreen() => (super.noSuchMethod(
+  _i4.Future<void> goToNextScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToNextScreen,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
-/// A class which mocks [RemoteConfigRepository].
+/// A class which mocks [RemoteConfig].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoteConfigRepository extends _i1.Mock
-    implements _i6.RemoteConfigRepository {
-  MockRemoteConfigRepository() {
+class MockRemoteConfig extends _i1.Mock implements _i7.RemoteConfig {
+  MockRemoteConfig() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> refreshRemoteConfig() => (super.noSuchMethod(
+  Map<String, _i8.LocalizedMessage> get overriddenTranslations =>
+      (super.noSuchMethod(
+        Invocation.getter(#overriddenTranslations),
+        returnValue: <String, _i8.LocalizedMessage>{},
+      ) as Map<String, _i8.LocalizedMessage>);
+
+  @override
+  _i2.RemoteConfigData get remoteConfigValues => (super.noSuchMethod(
+        Invocation.getter(#remoteConfigValues),
+        returnValue: _FakeRemoteConfigData_0(
+          this,
+          Invocation.getter(#remoteConfigValues),
+        ),
+      ) as _i2.RemoteConfigData);
+
+  @override
+  _i4.Future<void> refreshRemoteConfig() => (super.noSuchMethod(
         Invocation.method(
           #refreshRemoteConfig,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   String? getOptionalValue(String? key) =>
@@ -170,4 +198,14 @@ class MockRemoteConfigRepository extends _i1.Mock
         ),
         returnValue: <T>[],
       ) as List<T>);
+
+  @override
+  _i4.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

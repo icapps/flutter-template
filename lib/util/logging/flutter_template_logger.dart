@@ -4,7 +4,7 @@ import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/model/exceptions/forbidden_error.dart';
 import 'package:flutter_template/model/exceptions/no_internet_error.dart';
 import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
-import 'package:flutter_template/repository/remote_config/remote_config.dart';
+import 'package:flutter_template/remote_config/remote_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class FlutterTemplateLogger {
@@ -39,7 +39,7 @@ class FlutterTemplateLogger {
   }) async {
     try {
       final shouldNotSendError = error is UnAuthorizedError || error is ForbiddenError || error is NoInternetError || isInDebug;
-      if (shouldNotSendError && !getIt.get<RemoteConfig>().sendBlockedErrorsToFirebase) return;
+      if (shouldNotSendError && !getIt.get<RemoteConfig>().values.sendBlockedErrorsToFirebase) return;
       await _firebaseCrashlytics.recordError(error, stackTrace, reason: message);
     } catch (error, trace) {
       staticLogger.error('Failed to log to firebase', error: error, stackTrace: trace);

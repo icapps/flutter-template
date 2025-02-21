@@ -50,6 +50,10 @@ dependencies:
   path_provider: ^2.0.11
   preferences_local_storage_inspector: ^0.4.0
   provider: ^6.0.5
+  remote_config_generator:
+    git:
+      url: git@github.com:icapps/flutter_remote_config_generator.git
+      ref: main
   retrofit: ^4.0.1
   scroll_when_needed: ^3.0.1 
   secure_storage_local_storage_inspector: ^0.7.0

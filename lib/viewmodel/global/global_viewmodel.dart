@@ -48,13 +48,13 @@ class GlobalViewModel with ChangeNotifierEx {
     _getThemeMode();
   }
 
-  Future<void> _initLocale() async {
+  Future<void> _initLocale({bool override = false}) async {
     final locale = _localeRepo.getCustomLocale();
     if (locale != null) {
       _localeDelegate = LocalizationDelegate(
         newLocale: locale,
         showLocalizationKeys: _localeDelegate.showLocalizationKeys,
-        localizationOverrides: _localizationOverrides,
+        localizationOverrides: override ? _localizationOverrides : null,
       );
     }
     notifyListeners();
@@ -158,5 +158,5 @@ class GlobalViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  void overrideLocalizations() => _initLocale();
+  void overrideLocalizations() => _initLocale(override: true);
 }

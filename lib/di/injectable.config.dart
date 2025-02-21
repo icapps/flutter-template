@@ -21,6 +21,7 @@ import 'package:flutter_template/database/todo/todo_dao_storage.dart' as _i661;
 import 'package:flutter_template/di/injectable.dart' as _i480;
 import 'package:flutter_template/navigator/main_navigator.dart' as _i861;
 import 'package:flutter_template/navigator/onboarding_navigator.dart' as _i76;
+import 'package:flutter_template/remote_config/remote_config.dart' as _i788;
 import 'package:flutter_template/repository/analytics/firebase_analytics_repository.dart'
     as _i192;
 import 'package:flutter_template/repository/debug/debug_repository.dart'
@@ -33,10 +34,6 @@ import 'package:flutter_template/repository/login/login_repository.dart'
     as _i726;
 import 'package:flutter_template/repository/refresh/refresh_repository.dart'
     as _i529;
-import 'package:flutter_template/repository/remote_config/remote_config.dart'
-    as _i379;
-import 'package:flutter_template/repository/remote_config/remote_config_repository.dart'
-    as _i44;
 import 'package:flutter_template/repository/secure_storage/auth/auth_storage.dart'
     as _i559;
 import 'package:flutter_template/repository/secure_storage/secure_storage.dart'
@@ -119,7 +116,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i1069.NetworkLogInterceptor>(
         () => _i1069.NetworkLogInterceptor());
-    gh.lazySingleton<_i379.RemoteConfig>(() => _i379.RemoteConfig());
     gh.lazySingleton<_i398.FirebaseAnalytics>(
         () => registerModule.provideFirebaseAnalytics());
     gh.lazySingleton<_i141.FirebaseCrashlytics>(
@@ -132,8 +128,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => registerModule.provideFirebaseRemoteConfig());
     gh.lazySingleton<_i235.ErrorUtil>(() => _i235.ErrorUtil());
     gh.lazySingleton<_i437.ThemeConfigUtil>(() => _i437.ThemeConfigUtil());
-    gh.lazySingleton<_i44.RemoteConfigRepository>(
-        () => _i44.RemoteConfigRepository(gh<_i627.FirebaseRemoteConfig>()));
+    gh.lazySingleton<_i788.RemoteConfig>(
+        () => _i788.RemoteConfig(gh<_i627.FirebaseRemoteConfig>()));
     gh.singleton<_i40.CacheControlling>(() => _i979.CacheController());
     gh.lazySingleton<_i192.FireBaseAnalyticsRepository>(
         () => _i192.FireBaseAnalyticsRepository(gh<_i398.FirebaseAnalytics>()));
@@ -232,16 +228,16 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i955.TodoRepository>(),
           gh<_i861.MainNavigator>(),
         ));
+    gh.factory<_i532.SplashViewModel>(() => _i532.SplashViewModel(
+          gh<_i855.LocalStorage>(),
+          gh<_i76.OnboardingNavigator>(),
+          gh<_i788.RemoteConfig>(),
+        ));
     gh.factory<_i844.DebugThemeSelectorViewModel>(
         () => _i844.DebugThemeSelectorViewModel(
               gh<_i861.MainNavigator>(),
               gh<_i836.GlobalViewModel>(),
             ));
-    gh.factory<_i532.SplashViewModel>(() => _i532.SplashViewModel(
-          gh<_i855.LocalStorage>(),
-          gh<_i76.OnboardingNavigator>(),
-          gh<_i44.RemoteConfigRepository>(),
-        ));
     gh.lazySingleton<_i556.CombiningSmartInterceptor>(
         () => registerModule.provideCombiningSmartInterceptor(
               gh<_i1069.NetworkLogInterceptor>(),

@@ -1,18 +1,22 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/repository/remote_config/base_remote_config_repository.dart';
+import 'package:flutter_template/model/data/remote_config/localized_message.dart';
+import 'package:flutter_template/remote_config/remote_config_base.dart';
+import 'package:flutter_template/remote_config/remote_config_keys.dart';
 import 'package:flutter_template/styles/theme_durations.dart';
 import 'package:flutter_template/util/locale/localization_overrides.dart';
 import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-class RemoteConfigRepository extends BaseRemoteConfigRepo {
+class RemoteConfig extends RemoteConfigBase {
   final FirebaseRemoteConfig _remoteConfig;
 
-  RemoteConfigRepository(this._remoteConfig);
+  RemoteConfig(this._remoteConfig);
 
   @override
+  @protected
   Future<void> refreshRemoteConfig() async {
     await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
@@ -29,9 +33,12 @@ class RemoteConfigRepository extends BaseRemoteConfigRepo {
   }
 
   @override
+  @protected
   String? getOptionalValue(String key) {
     final remoteConfig = FirebaseRemoteConfig.instance;
     if (remoteConfig.getAll().containsKey(key)) return remoteConfig.getValue(key).asString();
     return null;
   }
+
+  Map<String, LocalizedMessage> get overriddenTranslations => getCustomObjectMap(RemoteConfigKeys.overriddenTranslations, LocalizedMessage.fromJson);
 }
