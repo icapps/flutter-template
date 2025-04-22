@@ -1142,11 +1142,10 @@ packages:
   remote_config_generator:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "3a347cbfd8bf836229cf6dae9982cf21624f8f32"
-      url: "git@github.com:icapps/flutter_remote_config_generator.git"
-    source: git
+      name: remote_config_generator
+      sha256: e4b5ac1a266caafece79755e92243051c900646e84719fbdf7fd42b95273fd48
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
   resizable_widget:
     dependency: transitive
