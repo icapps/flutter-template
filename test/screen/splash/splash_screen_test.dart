@@ -1,5 +1,6 @@
 import 'package:flutter_template/di/injectable.dart';
 import 'package:flutter_template/screen/splash/splash_screen.dart';
+import 'package:flutter_template/util/logging/sentry_performance_logger.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -11,10 +12,12 @@ import 'splash_screen_test.mocks.dart';
 
 @GenerateMocks([
   SplashViewModel,
+  SentryPerformanceLogger,
 ])
 void main() {
   setUp(() {
     getIt.registerLazySingleton<SplashViewModel>(() => MockSplashViewModel());
+    getIt.registerLazySingleton<SentryPerformanceLogger>(() => MockSentryPerformanceLogger());
   });
 
   tearDown(() async {

@@ -6,6 +6,9 @@
 import 'dart:async' as _i3;
 import 'dart:ui' as _i4;
 
+import 'package:flutter_template/util/logging/app_transactions.dart' as _i7;
+import 'package:flutter_template/util/logging/sentry_performance_logger.dart'
+    as _i6;
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart' as _i2;
 import 'package:icapps_architecture/icapps_architecture.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -108,4 +111,56 @@ class MockSplashViewModel extends _i1.Mock implements _i2.SplashViewModel {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [SentryPerformanceLogger].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSentryPerformanceLogger extends _i1.Mock
+    implements _i6.SentryPerformanceLogger {
+  MockSentryPerformanceLogger() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> startAppLoadTransaction() => (super.noSuchMethod(
+        Invocation.method(
+          #startAppLoadTransaction,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> finishAppLoadTransaction() => (super.noSuchMethod(
+        Invocation.method(
+          #finishAppLoadTransaction,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> startTransaction(_i7.AppTransactions? transaction) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #startTransaction,
+          [transaction],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> finishTransaction(_i7.AppTransactions? transaction) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #finishTransaction,
+          [transaction],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
