@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -117,11 +118,8 @@ mixin BaseNavigator {
         (_) => false,
         arguments: {},
       );
-  Future<void> goToLicenseScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.licenseScreen,
-        arguments: {},
-      );
+  Future<void> goToLicenseScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.licenseScreen, arguments: {});
   Future<void> goToLogDetailScreen({required String date}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         Uri(
@@ -130,42 +128,28 @@ mixin BaseNavigator {
         ).toString(),
         arguments: {'date': date},
       );
-  Future<void> goToTodoAddScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.todoAddScreen,
-        arguments: {},
-      );
-  Future<void> goToLogsScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.logsScreen,
-        arguments: {},
-      );
-  Future<void> goToAnalyticsPermissionScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.analyticsPermissionScreen,
-        arguments: {},
-      );
+  Future<void> goToTodoAddScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.todoAddScreen, arguments: {});
+  Future<void> goToLogsScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.logsScreen, arguments: {});
+  Future<void> goToAnalyticsPermissionScreen() async => navigatorKey
+      .currentState
+      ?.pushNamed<dynamic>(RouteNames.analyticsPermissionScreen, arguments: {});
   void goToLoginScreen() =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.loginScreen,
         (_) => false,
         arguments: {},
       );
-  Future<void> goToThemeModeSelectorScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.themeModeSelectorScreen,
-        arguments: {},
-      );
+  Future<void> goToThemeModeSelectorScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.themeModeSelectorScreen, arguments: {});
   Future<void> goToDebugPlatformSelectorScreen() async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugPlatformSelectorScreen,
         arguments: {},
       );
-  Future<void> goToDebugScreen() async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.debugScreen,
-        arguments: {},
-      );
+  Future<void> goToDebugScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.debugScreen, arguments: {});
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
       navigatorKey.currentState?.pop(result);

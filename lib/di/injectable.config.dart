@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -58,6 +59,8 @@ import 'package:flutter_template/util/locale/localization_overrides.dart'
     as _i613;
 import 'package:flutter_template/util/locale/localization_overrides_impl.dart'
     as _i908;
+import 'package:flutter_template/util/logging/sentry_performance_logger.dart'
+    as _i1012;
 import 'package:flutter_template/util/snackbar/error_util.dart' as _i235;
 import 'package:flutter_template/util/theme/theme_config.dart' as _i437;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
@@ -132,6 +135,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => registerModule.provideFirebaseRemoteConfig());
     gh.lazySingleton<_i235.ErrorUtil>(() => _i235.ErrorUtil());
     gh.lazySingleton<_i437.ThemeConfigUtil>(() => _i437.ThemeConfigUtil());
+    gh.lazySingleton<_i1012.SentryPerformanceLogger>(
+        () => _i1012.SentryPerformanceLogger());
     gh.lazySingleton<_i44.RemoteConfigRepository>(
         () => _i44.RemoteConfigRepository(gh<_i627.FirebaseRemoteConfig>()));
     gh.singleton<_i40.CacheControlling>(() => _i979.CacheController());
@@ -212,6 +217,12 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i327.FlutterTemplateDatabase>(),
           gh<_i855.LocalStorage>(),
         ));
+    gh.factory<_i532.SplashViewModel>(() => _i532.SplashViewModel(
+          gh<_i855.LocalStorage>(),
+          gh<_i76.OnboardingNavigator>(),
+          gh<_i44.RemoteConfigRepository>(),
+          gh<_i1012.SentryPerformanceLogger>(),
+        ));
     gh.lazySingleton<_i836.GlobalViewModel>(() => _i836.GlobalViewModel(
           gh<_i587.LocaleRepository>(),
           gh<_i380.DebugRepository>(),
@@ -237,11 +248,6 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i861.MainNavigator>(),
               gh<_i836.GlobalViewModel>(),
             ));
-    gh.factory<_i532.SplashViewModel>(() => _i532.SplashViewModel(
-          gh<_i855.LocalStorage>(),
-          gh<_i76.OnboardingNavigator>(),
-          gh<_i44.RemoteConfigRepository>(),
-        ));
     gh.lazySingleton<_i556.CombiningSmartInterceptor>(
         () => registerModule.provideCombiningSmartInterceptor(
               gh<_i1069.NetworkLogInterceptor>(),

@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_template/architecture.dart';
 import 'package:flutter_template/util/logging/flutter_template_logger.dart';
 import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> _setupCrashLogging() async {
   await Firebase.initializeApp();
@@ -23,7 +23,7 @@ Future<void> _setupCrashLogging() async {
 FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) async {
   PlatformDispatcher.instance.onError = (error, trace) {
     try {
-      WidgetsFlutterBinding.ensureInitialized();
+      SentryWidgetsFlutterBinding.ensureInitialized();
     } catch (_) {}
 
     try {
@@ -41,7 +41,7 @@ FutureOr<R>? wrapMain<R>(FutureOr<R> Function() appCode) async {
     return true; // Handled
   };
 
-  WidgetsFlutterBinding.ensureInitialized();
+  SentryWidgetsFlutterBinding.ensureInitialized();
   configureWebApp();
   await _setupCrashLogging();
   await initArchitecture();
