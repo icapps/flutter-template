@@ -24,8 +24,10 @@ if (flutterVersionName == null) {
 }
 
 android {
-  buildToolsVersion "30.0.0"
-  compileSdkVersion 34
+  buildToolsVersion "34.0.0"
+  compileSdkVersion 36
+  ndkVersion "29.0.14033849"
+  namespace "com.icapps.fluttertemplate"
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
@@ -39,7 +41,7 @@ android {
   defaultConfig {
     applicationId "com.icapps.fluttertemplate"
     minSdkVersion flutter.minSdkVersion
-    targetSdkVersion 34
+    targetSdkVersion 35
     multiDexEnabled true
     versionCode flutterVersionCode.toInteger()
     versionName flutterVersionName
@@ -92,6 +94,19 @@ android {
     prod {
       dimension "flavors"
     }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_17
+  }
+
+  buildFeatures {
+    buildConfig = true
   }
 }
 
