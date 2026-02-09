@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.000216">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: is_ci" time="8.5e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: install_provisioning_profiles" time="0.255852">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: is_ci" time="0.000113">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: echo No\ build\ nr\ set,\ USING\ DEFAULT\ \(1\)" time="0.007293">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: clean_build_artifacts" time="0.000155">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: Switch to installFvmVersion lane" time="0.000189">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: bash ./tool/install_fvm.sh" time="4.057174">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: Switch to checkCompilationAndAnalyzer lane" time="0.000154">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: mv analysis_options.yaml fastlane/analysis_options_original.yaml" time="0.006641">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: cp fastlane/analysis_options_check_compilation.yaml analysis_options.yaml" time="0.019332">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: fvm flutter analyze" time="5.423929">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: mv fastlane/analysis_options_original.yaml analysis_options.yaml" time="0.005804">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="13: fvm flutter analyze" time="4.944816">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="14: fvm flutter test" time="27.366002">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="15: fvm flutter test --coverage" time="36.339764">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="16: fvm dart --version" time="0.137934">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="17: fvm dart coverage/test_coverage_filter.dart" time="0.342697">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="18: genhtml coverage/lcov.info -o coverage/html" time="0.478001">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="19: Switch to git_reset lane" time="0.000242">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="20: git reset --hard" time="0.03282">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
