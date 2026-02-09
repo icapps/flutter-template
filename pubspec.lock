@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: accessibility_tools
-      sha256: b49df78d786610d642f16787a84da737bcc4dd18533a9cb41cb35eb5ceee5e4c
+      sha256: c29732e423175a51e0a6ace7df1255f5d77812c7c7b7101d8ba0186a43d533aa
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.8.0"
   analyzer:
     dependency: transitive
     description:
@@ -273,14 +273,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.11"
-  device_frame:
+  device_frame_plus:
     dependency: transitive
     description:
-      name: device_frame
-      sha256: d031a06f5d6f4750009672db98a5aa1536aa4a231713852469ce394779a23d75
+      name: device_frame_plus
+      sha256: ccc94abccd4d9f0a9f19ef239001b3a59896e678ad42601371d7065889f2bf78
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.5.0"
   device_info_plus:
     dependency: "direct main"
     description:
@@ -629,14 +629,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  freezed_annotation:
-    dependency: transitive
-    description:
-      name: freezed_annotation
-      sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.4.4"
   frontend_server_client:
     dependency: transitive
     description:
@@ -1614,18 +1606,18 @@ packages:
     dependency: "direct main"
     description:
       name: widgetbook
-      sha256: "8738bfa29cc314b68ac5068cb0d086a0ddf8db4e167d0e4d0f539e1ad1042949"
+      sha256: "0ffadb039b1811870b2f643e1730d419d38435b0e1931cc83f32ecd7e50200e4"
       url: "https://pub.dev"
     source: hosted
-    version: "3.10.2"
+    version: "3.20.2"
   widgetbook_annotation:
     dependency: "direct main"
     description:
       name: widgetbook_annotation
-      sha256: b58cf08d21c36e946da510d7a8ee0307c4ec597c270d402e7b4edf4a4840c872
+      sha256: "55504431b15eedef3c1fc4af2d108ac98b32610b59d4a4e2eea87a8515d17eef"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.0"
+    version: "3.9.0"
   widgetbook_generator:
     dependency: "direct dev"
     description:
@@ -1675,5 +1667,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.8.0-0 <4.0.0"
-  flutter: ">=3.24.0"
+  dart: ">=3.9.0 <4.0.0"
+  flutter: ">=3.38.0"

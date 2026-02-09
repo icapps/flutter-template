@@ -70,6 +70,8 @@ List<LcovSection> getFilteredSections(List<LcovSection> sections) {
       return false;
     } else if (header.startsWith('SF:lib/util/locale')) {
       return false;
+    } else if (header.contains('widgetbook/')) {
+      return false;
     }
     return true;
   }).toList();
