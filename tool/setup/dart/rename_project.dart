@@ -320,6 +320,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.idea/')) return false;
     if (element.path.startsWith('./.DS_STORE')) return false;
     if (element.path.startsWith('./widgetbook/')) return false;
+    if (element.path.startsWith('./coverage/')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||
