@@ -35,7 +35,7 @@ Future<void> main() async {
           ..dsn = ''
           ..debug = true
           ..enableLogs = true
-          ..diagnosticLevel = SentryLevel.error
+          ..diagnosticLevel = SentryLevel.debug
           ..environment = 'development';
       },
       appRunner: () => runApp(const MyApp()),
