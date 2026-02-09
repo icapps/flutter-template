@@ -7,6 +7,7 @@ import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/inspector/database_inspector.dart';
 import 'package:flutter_template/util/inspector/local_storage_inspector.dart';
 import 'package:flutter_template/util/inspector/niddler.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
   await wrapMain(() async {
@@ -28,6 +29,16 @@ Future<void> main() async {
     await addDatabaseInspector();
     await initAllStorageInspectors();
 
-    runApp(const MyApp());
+    await SentryFlutter.init(
+      (options) {
+        options
+          ..dsn = ''
+          ..debug = true
+          ..enableLogs = true
+          ..diagnosticLevel = SentryLevel.error
+          ..environment = 'development';
+      },
+      appRunner: () => runApp(const MyApp()),
+    );
   });
 }
