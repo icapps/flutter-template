@@ -19,7 +19,6 @@ import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart'
 import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
 import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
-import 'package:flutter_template/util/logging/sentry_performance_logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';

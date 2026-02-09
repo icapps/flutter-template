@@ -22,7 +22,6 @@ linter:
   rules:
     - unawaited_futures
     - always_declare_return_types
-    - unsafe_html
     - use_full_hex_values_for_flutter_colors
     - prefer_final_in_for_each
     - prefer_final_fields
