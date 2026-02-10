@@ -50,10 +50,10 @@ lane :pr do
   # installFvmVersion
   # checkCompilationAndAnalyzer
   Dir.chdir ".." do
-    # sh("fvm", "flutter", "test")
-    # sh("fvm", "flutter", "test", "--coverage")
-    # sh("fvm", "dart", "--version")
-    # sh("fvm", "dart", "coverage/test_coverage_filter.dart")
+    sh("fvm", "flutter", "test")
+    sh("fvm", "flutter", "test", "--coverage")
+    sh("fvm", "dart", "--version")
+    sh("fvm", "dart", "coverage/test_coverage_filter.dart")
     sh("cobertura", "convert", "-i", "coverage/lcov.info", "-o", "coverage/coverage.xml")
     # sh("fvm", "dart", "run", "cobertura:convert", "coverage/lcov.info", "-o", "coverage/coverage.xml")
     # sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
