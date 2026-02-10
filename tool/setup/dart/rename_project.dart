@@ -232,6 +232,7 @@ void _renamePackage(String packageName, String description, String classNamePref
   Logger.info('Replace the description & name in the pubspec.yaml...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
   _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
+  _replaceInFile('coverage/test_coverage_filter.dart', originalClassNamePrefix, classNamePrefix);
   _replaceInFile('tool/test_coverage_filter.dart', originalClassNamePrefix, classNamePrefix);
   _replaceInFile('tool/test_coverage_create_helper.dart', originalProjectName, packageName);
 
