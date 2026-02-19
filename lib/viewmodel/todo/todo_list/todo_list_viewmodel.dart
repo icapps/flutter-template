@@ -3,6 +3,7 @@ import 'package:flutter_template/navigator/main_navigator.dart';
 import 'package:flutter_template/repository/todo/todo_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logging/flutter_template_logger.dart';
+import 'package:flutter_template/util/logging/log_types.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,7 +39,7 @@ class TodoListViewModel with ChangeNotifierEx {
       notifyListeners();
       await _todoRepo.fetchTodos();
     } catch (e, stack) {
-      FlutterTemplateLogger.logError('failed to get todos', error: e, stackTrace: stack);
+      FlutterTemplateLogger.logError('failed to get todos', error: e, stackTrace: stack, type: LogType.todo);
       if (e is LocalizedError) {
         _errorKey = e.getLocalizedKey();
       } else {

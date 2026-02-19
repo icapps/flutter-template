@@ -64,6 +64,12 @@ class LogsScreenState extends State<LogsScreen> {
               text: 'Trigger crash',
               onClick: viewModel.triggerError,
             ),
+            ...viewModel.availableLogLevels.map(
+              (level) => FlutterTemplateButton(
+                text: level.name,
+                onClick: () => viewModel.triggerLog(level),
+              ),
+            ),
           ],
         ),
       ),

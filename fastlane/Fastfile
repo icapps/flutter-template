@@ -51,10 +51,10 @@ lane :pr do
   checkCompilationAndAnalyzer
   Dir.chdir ".." do
     sh("fvm", "flutter", "test")
-    #sh("fvm", "flutter", "test", "--coverage")
-    #sh("dart", "--version")
-    #sh("dart", "coverage/filter_test_coverage.dart")
-    #sh("python3", "coverage/lcov_cobertura.py", "coverage/lcov.info", "--output", "coverage/coverage.xml")
+    sh("fvm", "flutter", "test", "--coverage")
+    sh("fvm", "dart", "--version")
+    sh("fvm", "dart", "coverage/test_coverage_filter.dart")
+    sh("cobertura", "convert", "-i", "coverage/lcov.info", "-o", "coverage/coverage.xml")
   end
   git_reset
 end

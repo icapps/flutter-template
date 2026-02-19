@@ -4,6 +4,7 @@ import 'package:flutter_template/navigator/onboarding_navigator.dart';
 import 'package:flutter_template/repository/login/login_repository.dart';
 import 'package:flutter_template/util/locale/localization_keys.dart';
 import 'package:flutter_template/util/logging/flutter_template_logger.dart';
+import 'package:flutter_template/util/logging/log_types.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 
@@ -46,7 +47,7 @@ class LoginViewModel with ChangeNotifierEx {
       TextInput.finishAutofillContext();
       return _onboardingNavigator.goToNextScreen();
     } catch (e, stack) {
-      FlutterTemplateLogger.logError('Failed to login', error: e, stackTrace: stack);
+      FlutterTemplateLogger.logError('Failed to login', error: e, stackTrace: stack, type: LogType.login);
       if (e is LocalizedError) {
         _navigator.showErrorWithLocaleKey(messageKey: e.getLocalizedKey());
       } else {

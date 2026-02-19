@@ -13,8 +13,11 @@ import 'splash_screen_test.mocks.dart';
   SplashViewModel,
 ])
 void main() {
+  late MockSplashViewModel splashViewModel;
   setUp(() {
-    getIt.registerLazySingleton<SplashViewModel>(() => MockSplashViewModel());
+    splashViewModel = MockSplashViewModel();
+    getIt.registerLazySingleton<SplashViewModel>(() => splashViewModel);
+    when(splashViewModel.finishAppLoadTransaction()).thenAnswer((_) => Future.value());
   });
 
   tearDown(() async {

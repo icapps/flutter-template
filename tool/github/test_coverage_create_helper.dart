@@ -9,6 +9,7 @@ void main() {
     if (!element.path.endsWith('.dart')) return false;
     if (element.path.endsWith('.g.dart')) return false;
     if (element.path.endsWith('_web.dart')) return false;
+    if (element.path.contains('/widgetbook/')) return false;
     return true;
   }).map((element) {
     final importPath = element.path.replaceFirst('lib', packageName);

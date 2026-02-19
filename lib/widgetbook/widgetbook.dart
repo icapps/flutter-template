@@ -18,6 +18,7 @@ Future<void> main() async {
     baseUrl: 'https://jsonplaceholder.typicode.com/',
     logNetworkInfo: true,
     showFullErrorMessages: true,
+    dsn: '',
   );
 
   FlavorConfig(
@@ -38,10 +39,12 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Widgetbook.material(
       addons: [
-        DeviceFrameAddon(devices: [
-          ...Devices.ios.all,
-          ...Devices.android.all,
-        ]),
+        ViewportAddon(
+          [
+            IosViewports.iPhone12ProMax,
+            AndroidViewports.onePlus8Pro,
+          ],
+        ),
         InspectorAddon(),
         ThemeAddon(
           themes: [

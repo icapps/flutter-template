@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_import, prefer_relative_imports, directives_ordering
@@ -10,62 +11,71 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter_template/widgetbook/widgetbook_widgets/use_cases.dart'
-    as _i2;
-import 'package:widgetbook/widgetbook.dart' as _i1;
+    as _flutter_template_widgetbook_widgetbook_widgets_use_cases;
+import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
-final directories = <_i1.WidgetbookNode>[
-  _i1.WidgetbookFolder(
+final directories = <_widgetbook.WidgetbookNode>[
+  _widgetbook.WidgetbookFolder(
     name: 'widget',
     children: [
-      _i1.WidgetbookLeafComponent(
+      _widgetbook.WidgetbookLeafComponent(
         name: 'Icon',
-        useCase: _i1.WidgetbookUseCase(
+        useCase: _widgetbook.WidgetbookUseCase(
           name: 'Default',
-          builder: _i2.icons,
+          builder:
+              _flutter_template_widgetbook_widgetbook_widgets_use_cases.icons,
         ),
       ),
-      _i1.WidgetbookFolder(
+      _widgetbook.WidgetbookFolder(
         name: 'library',
         children: [
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FlutterTemplateBackButton',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i2.backButton,
+              builder: _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                  .backButton,
             ),
           ),
-          _i1.WidgetbookComponent(
+          _widgetbook.WidgetbookComponent(
             name: 'FlutterTemplateButton',
             useCases: [
-              _i1.WidgetbookUseCase(
+              _widgetbook.WidgetbookUseCase(
                 name: 'Default',
-                builder: _i2.button,
+                builder:
+                    _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                        .button,
               ),
-              _i1.WidgetbookUseCase(
+              _widgetbook.WidgetbookUseCase(
                 name: 'Text',
-                builder: _i2.textButton,
+                builder:
+                    _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                        .textButton,
               ),
             ],
           ),
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FlutterTemplateCheckBox',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i2.checkBox,
+              builder: _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                  .checkBox,
             ),
           ),
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FlutterTemplateProgressIndicator',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i2.progressIndicator,
+              builder: _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                  .progressIndicator,
             ),
           ),
-          _i1.WidgetbookLeafComponent(
+          _widgetbook.WidgetbookLeafComponent(
             name: 'FlutterTemplateSwitch',
-            useCase: _i1.WidgetbookUseCase(
+            useCase: _widgetbook.WidgetbookUseCase(
               name: 'Default',
-              builder: _i2.switchWidget,
+              builder: _flutter_template_widgetbook_widgetbook_widgets_use_cases
+                  .switchWidget,
             ),
           ),
         ],

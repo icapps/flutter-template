@@ -232,6 +232,7 @@ void _renamePackage(String packageName, String description, String classNamePref
   Logger.info('Replace the description & name in the pubspec.yaml...');
   _replaceInFile('pubspec.yaml', 'name: $originalProjectName', 'name: $packageName');
   _replaceInFile('pubspec.yaml', 'description: $originalDescription', 'description: $description');
+  _replaceInFile('coverage/test_coverage_filter.dart', originalClassNamePrefix, classNamePrefix);
   _replaceInFile('tool/test_coverage_filter.dart', originalClassNamePrefix, classNamePrefix);
   _replaceInFile('tool/test_coverage_create_helper.dart', originalProjectName, packageName);
 
@@ -320,6 +321,7 @@ void _performFinalCheck() {
     if (element.path.startsWith('./.idea/')) return false;
     if (element.path.startsWith('./.DS_STORE')) return false;
     if (element.path.startsWith('./widgetbook/')) return false;
+    if (element.path.startsWith('./coverage/')) return false;
     return true;
   }).forEach((element) {
     if (element.path.contains(originalProjectName) ||

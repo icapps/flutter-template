@@ -27,7 +27,7 @@ class FlutterTemplateThemeData {
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: ThemeColors.accentThink40,
       selectionHandleColor: ThemeColors.accentThink40,
-      selectionColor: ThemeColors.accentThink40.withOpacity(0.4),
+      selectionColor: ThemeColors.accentThink40.withValues(alpha: 0.4),
     ),
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
@@ -263,9 +263,9 @@ class FlutterTemplateTheme {
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
     effects: FlutterTemplateThemeEffects(
-      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
-      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
-      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+      elevationDefault1: ThemeColors.main16.withValues(alpha: 0.04),
+      elevationDefault2: ThemeColors.main16.withValues(alpha: 0.08),
+      elevationDefault3: ThemeColors.main16.withValues(alpha: 0.12),
     ),
   );
 
@@ -318,9 +318,9 @@ class FlutterTemplateTheme {
     bodyNeutralFaded: ThemeColors.neutral48,
     actionDefault: ThemeColors.accentThink32,
     effects: FlutterTemplateThemeEffects(
-      elevationDefault1: ThemeColors.main16.withOpacity(0.04),
-      elevationDefault2: ThemeColors.main16.withOpacity(0.08),
-      elevationDefault3: ThemeColors.main16.withOpacity(0.12),
+      elevationDefault1: ThemeColors.main16.withValues(alpha: 0.04),
+      elevationDefault2: ThemeColors.main16.withValues(alpha: 0.08),
+      elevationDefault3: ThemeColors.main16.withValues(alpha: 0.12),
     ),
   );
 

@@ -18,6 +18,13 @@ class SplashScreen extends StatefulWidget {
 
 @visibleForTesting
 class SplashScreenState extends State<SplashScreen> {
+  
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => getIt<SplashViewModel>().finishAppLoadTransaction());
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<SplashViewModel>(

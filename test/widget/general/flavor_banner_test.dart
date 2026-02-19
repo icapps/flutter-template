@@ -11,6 +11,7 @@ void main() {
       baseUrl: 'http://${TestUtil.getVariableString()}',
       logNetworkInfo: false,
       showFullErrorMessages: false,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.test,
@@ -20,7 +21,7 @@ void main() {
     );
     final sut = FlavorBanner(
       child: Container(
-        color: Colors.amber.withOpacity(0.5),
+        color: Colors.amber.withValues(alpha: 0.5),
       ),
     );
 

@@ -104,7 +104,7 @@ class TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
                           height: 1,
-                          color: theme.main.withOpacity(0.1),
+                          color: theme.main.withValues(alpha: 0.1),
                         ),
                       ),
                     );

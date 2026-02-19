@@ -14,6 +14,7 @@ void main() {
           baseUrl: 'base_url',
           logNetworkInfo: false,
           showFullErrorMessages: false,
+          dsn: '',
         ),
       );
     });
@@ -49,6 +50,7 @@ void main() {
           baseUrl: 'base_url',
           logNetworkInfo: false,
           showFullErrorMessages: false,
+          dsn: '',
         ),
       );
     });
