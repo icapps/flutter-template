@@ -11,6 +11,7 @@ void main() {
         baseUrl: 'https://url.com/',
         logNetworkInfo: false,
         showFullErrorMessages: false,
+        dsn: '',
       );
       expect(config.baseUrl, 'https://url.com/');
       expect(config.logNetworkInfo, false);
@@ -25,6 +26,7 @@ void main() {
         baseUrl: 'http://${TestUtil.getVariableString()}',
         logNetworkInfo: false,
         showFullErrorMessages: false,
+        dsn: '',
       );
       FlavorConfig(
         flavor: Flavor.test,
