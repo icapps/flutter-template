@@ -514,10 +514,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_key_value_file_storage
-      sha256: a39cb3814eae20aa58747c874235d94411955df4bb287afb3aab12f1f2bbdfe6
+      sha256: bd41274a2f11e45d146d8f1da7a063790a398007fd2fe404f384b9672e4e2b53
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8"
+    version: "0.1.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -559,10 +559,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_secure_file_storage
-      sha256: ea582e959c9ab8916041bf39c93ce0e5ccbd9e93c38d8424ef48b4cb4dd6a0c6
+      sha256: b44256b8d599bfbd3404f56729ccd35a800b8b20f7c2a72e2db9c9c00e5ed7fd
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -840,11 +840,10 @@ packages:
   log_to_secure_file:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "44e7f61a7c31e474274f613fcdd15bdd758e8a50"
-      url: "https://github.com/icapps/log_to_secure_file.git"
-    source: git
+      name: log_to_secure_file
+      sha256: "28d5e7330d0e8271b8e4d86538db3941e7f637da1b3ba0898f708a28dfb0e2c6"
+      url: "https://pub.dev"
+    source: hosted
     version: "1.0.0"
   logger:
     dependency: transitive
