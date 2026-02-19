@@ -11,6 +11,7 @@ Future<void> main() async {
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: false,
       showFullErrorMessages: true,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.dummy,

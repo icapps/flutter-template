@@ -3,6 +3,7 @@ import 'package:flutter_template/app.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.dart' as di;
 import 'package:flutter_template/main_common.dart';
+import 'package:flutter_template/util/env/sentry_config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/inspector/database_inspector.dart';
 import 'package:flutter_template/util/inspector/local_storage_inspector.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: true,
       showFullErrorMessages: true,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.dev,
@@ -31,15 +33,7 @@ Future<void> main() async {
     await initAllStorageInspectors();
 
     await SentryFlutter.init(
-      (options) {
-        options
-          ..dsn = ''
-          ..debug = true
-          ..enableLogs = true
-          ..diagnosticLevel = SentryLevel.debug
-          ..environment = 'development'
-          ..tracesSampleRate = 1.0;
-      },
+      (options) => SentryConfig.development(options),
       appRunner: () {
         di.getIt<SentryPerformanceLogger>().startAppLoadTransaction();
         runApp(const MyApp());

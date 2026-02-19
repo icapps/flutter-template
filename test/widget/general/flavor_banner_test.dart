@@ -11,6 +11,7 @@ void main() {
       baseUrl: 'http://${TestUtil.getVariableString()}',
       logNetworkInfo: false,
       showFullErrorMessages: false,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.test,

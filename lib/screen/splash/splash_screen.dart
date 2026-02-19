@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/util/logging/sentry_performance_logger.dart';
 import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
 import 'package:flutter_template/widget/general/status_bar.dart';
 import 'package:flutter_template/widget/library/flutter_template_progress_indicator.dart';
@@ -23,7 +22,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => getIt<SentryPerformanceLogger>().finishAppLoadTransaction());
+    WidgetsBinding.instance.addPostFrameCallback((_) => getIt<SplashViewModel>().finishAppLoadTransaction());
   }
 
   @override

@@ -29,4 +29,6 @@ class SplashViewModel with ChangeNotifierEx {
     await _sentryPerformanceLogger.finishTransaction(AppTransactions.splashComplete);
     await _onboardingNavigator.goToNextScreen();
   }
+
+  void finishAppLoadTransaction() => _sentryPerformanceLogger.finishAppLoadTransaction();
 }

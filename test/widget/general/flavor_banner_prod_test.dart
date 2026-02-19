@@ -11,6 +11,7 @@ void main() {
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: false,
       showFullErrorMessages: false,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.prod,
