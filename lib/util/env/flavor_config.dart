@@ -9,18 +9,29 @@ enum Flavor {
   dev, //We use DEV instead of DEBUG because android already has a release type Debug.
   alpha,
   beta,
-  prod,
+  prod;
+
+  String get name => switch (this) {
+        Flavor.dev => 'development',
+        Flavor.alpha => 'alpha',
+        Flavor.beta => 'beta',
+        Flavor.prod => 'production',
+        Flavor.test => 'test',
+        Flavor.dummy => 'dummy',
+      };
 }
 
 class FlavorValues {
   final String baseUrl;
   final bool logNetworkInfo;
   final bool showFullErrorMessages;
+  final String dsn;
 
   const FlavorValues({
     required this.baseUrl,
     required this.logNetworkInfo,
     required this.showFullErrorMessages,
+    required this.dsn,
   });
 }
 

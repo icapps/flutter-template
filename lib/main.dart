@@ -3,7 +3,7 @@ import 'package:flutter_template/app.dart';
 import 'package:flutter_template/di/environments.dart';
 import 'package:flutter_template/di/injectable.dart' as di;
 import 'package:flutter_template/main_common.dart';
-import 'package:flutter_template/model/data/environment/sentry_config.dart';
+import 'package:flutter_template/util/env/sentry_config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/inspector/database_inspector.dart';
 import 'package:flutter_template/util/inspector/local_storage_inspector.dart';
@@ -18,6 +18,7 @@ Future<void> main() async {
       baseUrl: 'https://jsonplaceholder.typicode.com/',
       logNetworkInfo: true,
       showFullErrorMessages: true,
+      dsn: '',
     );
     FlavorConfig(
       flavor: Flavor.dev,
