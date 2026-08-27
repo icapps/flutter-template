@@ -428,7 +428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#! /bin/sh\n\n\necho \"💾 Prepare firebase plist\"\nconfig=${CONFIGURATION}\nconfig=${config//Release-/}\nconfig=${config//Debug-/}\ncp \"${PROJECT_DIR}/Configuration/GoogleService/GoogleService-Info-${config}.plist\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\necho \"Run {PODS_ROOT}/FirebaseCrashlytics/run\"\n${PODS_ROOT}/FirebaseCrashlytics/run\n";
+			shellScript = "#! /bin/sh\nset -e\n\necho \"💾 Prepare firebase plist\"\nconfig=\"${CONFIGURATION}\"\nconfig=\"${config#Release-}\"\nconfig=\"${config#Debug-}\"\nconfig=\"${config#Profile-}\"\n\nSRC_PLIST=\"${PROJECT_DIR}/Configuration/GoogleService/GoogleService-Info-${config}.plist\"\nif [ ! -f \"$SRC_PLIST\" ]; then\n  echo \"error: no GoogleService-Info plist for configuration '${CONFIGURATION}' (expected $SRC_PLIST). Available:\"\n  ls \"${PROJECT_DIR}/Configuration/GoogleService/\"\n  exit 1\nfi\n\ncp \"$SRC_PLIST\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\nPRODUCT_PLIST=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\"\ncp \"$SRC_PLIST\" \"$PRODUCT_PLIST\"\necho \"✅ Firebase config: GoogleService-Info-${config}.plist\"\n\nCRASHLYTICS_RUN=\"${PROJECT_DIR}/../build/ios/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nif [ ! -f \"$CRASHLYTICS_RUN\" ]; then\n  CRASHLYTICS_RUN=\"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\necho \"Run $CRASHLYTICS_RUN\"\n\"$CRASHLYTICS_RUN\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
