@@ -26,8 +26,8 @@ Future<void> main() async {
       color: Colors.transparent,
       values: values,
     );
-    final sentryEventFilter = di.getIt<SentryEventFilter>()..init(minimumLevelToKeep: SentryLevel.error);
     await configureDependencies(Environments.prod);
+    final sentryEventFilter = di.getIt<SentryEventFilter>()..init(minimumLevelToKeep: SentryLevel.error);
     await SentryFlutter.init(
       (options) => SentryConfig.prod(
         options..beforeSend = sentryEventFilter.beforeSend,
