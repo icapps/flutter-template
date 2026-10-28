@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Blocks a push of a ticket branch that has no finished .ai/<TICKET>-pr-description.md.
+# Blocks a push of a ticket branch that has no finished .ai/pr-descriptions/<TICKET>.md.
 # Checks the pushed commit, not the working tree, so the file must be committed.
 # Bypass: PR_DESCRIPTION_SKIP=1 git push, or git push --no-verify.
 
@@ -23,7 +23,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     continue
   fi
 
-  path=".ai/${ticket}-pr-description.md"
+  path=".ai/pr-descriptions/${ticket}.md"
   if ! git cat-file -e "${local_sha}:${path}" 2>/dev/null; then
     echo "pr-description: ${path} is missing from the pushed commit of '$branch'."
     echo "  Generate it with the pr-description skill, complete it and commit it."

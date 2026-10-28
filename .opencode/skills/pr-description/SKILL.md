@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: "PR description preparation: builds `.ai/<TICKET>-pr-description.md` from the branch, the Jira ticket and the diff, using `.bitbucket/pull_request_template.md`, and reports gaps for the author. Use when a branch is ready for a pull request, or when the PR description must be refreshed after more commits."
+description: "PR description preparation: builds `.ai/pr-descriptions/<TICKET>.md` from the branch, the Jira ticket and the diff, using `.bitbucket/pull_request_template.md`, and reports gaps for the author. Use when a branch is ready for a pull request, or when the PR description must be refreshed after more commits."
 metadata:
   domain: "delivery"
   version: "0.2"
@@ -16,7 +16,7 @@ Prepare the pull request description so the reviewer can spend time on what matt
 
 1. Read the branch with `git branch --show-current`.
 2. Take the first match of `[A-Z][A-Z0-9]+-[0-9]+` (uppercase only, so `fix/dark-mode-2` is not a ticket).
-3. The output path is `.ai/<TICKET>-pr-description.md`.
+3. The output path is `.ai/pr-descriptions/<TICKET>.md`.
 
 No match, or a detached HEAD: stop and ask the author for the ticket key and to rename the branch. Do not invent one.
 
