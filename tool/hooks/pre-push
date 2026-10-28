@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Blokkeert een push van een ticket-branch zonder afgewerkte .ai/<TICKET>-pr-description.md.
+# Controleert de gepushte commit, niet de werkmap: het bestand moet dus gecommit zijn.
+# Omzeilen: PR_DESCRIPTION_SKIP=1 git push, of git push --no-verify.
+
+[ "${PR_DESCRIPTION_SKIP:-}" = "1" ] && exit 0
+
+ZERO=0000000000000000000000000000000000000000
+status=0
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_ref" in refs/heads/*) ;; *) continue ;; esac
+  [ "$local_sha" = "$ZERO" ] && continue
+
+  branch=${local_ref#refs/heads/}
+  case "$branch" in master | main | develop | release/*) continue ;; esac
+
+  ticket=$(printf '%s' "$branch" | grep -oE '[A-Z][A-Z0-9]+-[0-9]+' | head -n 1)
+  if [ -z "$ticket" ]; then
+    echo "pr-description: geen ticketnummer in branchnaam '$branch'."
+    echo "  Noem de branch bv. feat/ABC-123 (hoofdletters)."
+    status=1
+    continue
+  fi
+
+  path=".ai/${ticket}-pr-description.md"
+  if ! git cat-file -e "${local_sha}:${path}" 2>/dev/null; then
+    echo "pr-description: ${path} ontbreekt in de gepushte commit van '$branch'."
+    echo "  Genereer het met de pr-description skill, vul het aan en commit het."
+    status=1
+    continue
+  fi
+
+  # HTML-commentaar (de uitleg uit het template) telt niet mee.
+  body=$(git show "${local_sha}:${path}" | perl -0pe 's/<!--.*?-->//gs')
+  problems=""
+
+  printf '%s\n' "$body" | grep -q 'TODO' &&
+    problems="${problems}  - er staat nog 'TODO' in\n"
+  printf '%s\n' "$body" | grep -q 'Ja / Nee / Gedeeltelijk' &&
+    problems="${problems}  - de tabel in sectie 3 is niet ingevuld\n"
+  printf '%s\n' "$body" | grep -Eq '^## 1\. Risico: (S|M|L)([^A-Za-z]|$)' ||
+    problems="${problems}  - sectie 1 mist een risico-maat (S, M of L)\n"
+  printf '%s\n' "$body" | grep -q '^## 2\. What changed and why' ||
+    problems="${problems}  - sectie 2 'What changed and why' ontbreekt\n"
+  printf '%s\n' "$body" | grep -q '^## 3\. Evidence' ||
+    problems="${problems}  - sectie 3 'Evidence' ontbreekt\n"
+
+  if [ -n "$problems" ]; then
+    echo "pr-description: ${path} is nog niet klaar:"
+    printf '%b' "$problems"
+    status=1
+  fi
+done
+
+exit $status
