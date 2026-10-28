@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Blokkeert een push van een ticket-branch zonder afgewerkte .ai/<TICKET>-pr-description.md.
-# Controleert de gepushte commit, niet de werkmap: het bestand moet dus gecommit zijn.
-# Omzeilen: PR_DESCRIPTION_SKIP=1 git push, of git push --no-verify.
+# Blocks a push of a ticket branch that has no finished .ai/<TICKET>-pr-description.md.
+# Checks the pushed commit, not the working tree, so the file must be committed.
+# Bypass: PR_DESCRIPTION_SKIP=1 git push, or git push --no-verify.
 
 [ "${PR_DESCRIPTION_SKIP:-}" = "1" ] && exit 0
 
@@ -31,7 +31,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     continue
   fi
 
-  # HTML-commentaar (de uitleg uit het template) telt niet mee.
+  # HTML comments (the guidance from the template) are ignored.
   body=$(git show "${local_sha}:${path}" | perl -0pe 's/<!--.*?-->//gs')
   problems=""
 

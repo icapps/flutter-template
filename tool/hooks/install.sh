@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Activeert de gedeelde git hooks in tool/hooks. Eenmalig uitvoeren na het clonen.
+# Activates the shared git hooks in tool/hooks. Run once after cloning.
 set -e
 cd "$(git rev-parse --show-toplevel)"
 chmod +x tool/hooks/pre-push
