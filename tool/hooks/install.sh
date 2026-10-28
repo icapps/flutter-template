@@ -4,4 +4,4 @@ set -e
 cd "$(git rev-parse --show-toplevel)"
 chmod +x tool/hooks/pre-push
 git config core.hooksPath tool/hooks
-echo "Git hooks actief: tool/hooks (pre-push controleert de PR-beschrijving)"
+echo "Git hooks active: tool/hooks (pre-push checks the PR description)"

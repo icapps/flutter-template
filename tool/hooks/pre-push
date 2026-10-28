@@ -17,16 +17,16 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 
   ticket=$(printf '%s' "$branch" | grep -oE '[A-Z][A-Z0-9]+-[0-9]+' | head -n 1)
   if [ -z "$ticket" ]; then
-    echo "pr-description: geen ticketnummer in branchnaam '$branch'."
-    echo "  Noem de branch bv. feat/ABC-123 (hoofdletters)."
+    echo "pr-description: no ticket number in branch name '$branch'."
+    echo "  Name the branch e.g. feat/ABC-123 (uppercase)."
     status=1
     continue
   fi
 
   path=".ai/${ticket}-pr-description.md"
   if ! git cat-file -e "${local_sha}:${path}" 2>/dev/null; then
-    echo "pr-description: ${path} ontbreekt in de gepushte commit van '$branch'."
-    echo "  Genereer het met de pr-description skill, vul het aan en commit het."
+    echo "pr-description: ${path} is missing from the pushed commit of '$branch'."
+    echo "  Generate it with the pr-description skill, complete it and commit it."
     status=1
     continue
   fi
@@ -36,18 +36,18 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   problems=""
 
   printf '%s\n' "$body" | grep -q 'TODO' &&
-    problems="${problems}  - er staat nog 'TODO' in\n"
-  printf '%s\n' "$body" | grep -q 'Ja / Nee / Gedeeltelijk' &&
-    problems="${problems}  - de tabel in sectie 3 is niet ingevuld\n"
-  printf '%s\n' "$body" | grep -Eq '^## 1\. Risico: (S|M|L)([^A-Za-z]|$)' ||
-    problems="${problems}  - sectie 1 mist een risico-maat (S, M of L)\n"
+    problems="${problems}  - a TODO is still present\n"
+  printf '%s\n' "$body" | grep -q 'Yes / No / Partial' &&
+    problems="${problems}  - the evidence table in section 3 is not filled in\n"
+  printf '%s\n' "$body" | grep -Eq '^## 1\. Risk: (S|M|L)([^A-Za-z]|$)' ||
+    problems="${problems}  - section 1 has no risk size (S, M or L)\n"
   printf '%s\n' "$body" | grep -q '^## 2\. What changed and why' ||
-    problems="${problems}  - sectie 2 'What changed and why' ontbreekt\n"
+    problems="${problems}  - section 2 \"What changed and why\" is missing\n"
   printf '%s\n' "$body" | grep -q '^## 3\. Evidence' ||
-    problems="${problems}  - sectie 3 'Evidence' ontbreekt\n"
+    problems="${problems}  - section 3 \"Evidence\" is missing\n"
 
   if [ -n "$problems" ]; then
-    echo "pr-description: ${path} is nog niet klaar:"
+    echo "pr-description: ${path} is not finished yet:"
     printf '%b' "$problems"
     status=1
   fi

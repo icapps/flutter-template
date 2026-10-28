@@ -40,12 +40,12 @@ Fill only what the evidence supports. Everything else keeps its `TODO`.
 
 | Field | Rule |
 |---|---|
-| Risico and "Waarom deze maat?" | The proposal from step 3, naming the criterion. |
-| "Kijk vooral naar / onzeker" | Keep `TODO`. You may add one `<!-- hint: ... -->` comment naming the largest or most unusual change. |
+| Risk and "Why this size?" | The proposal from step 3, naming the criterion. |
+| "Where should the reviewer look, and what am I unsure about?" | Keep `TODO`. You may add one `<!-- hint: ... -->` comment naming the largest or most unusual change. |
 | Jira | The ticket link. |
 | What changed and why | Keep `TODO`. It must be the author's own words. |
-| Acceptance criteria rows | Copy each criterion verbatim. Fill "Bewijs" with a test file and test name only when a test in the diff covers it, and mark "Gedekt?" **Ja** only then. Otherwise keep `TODO`. |
-| Edge cases, getest op, recordings, Maestro | Keep `TODO`. Only the author ran them. |
+| Acceptance criteria rows | Copy each criterion verbatim. Fill "Evidence" with a test file and test name only when a test in the diff covers it, and mark "Covered?" **Yes** only then. Otherwise keep `TODO`. |
+| Edge cases, "Tested on", recordings, Maestro | Keep `TODO`. Only the author ran them. |
 
 For size S, the evidence minimum is a test or screenshot per criterion; for M and L the template asks for more. Do not weaken the template's minimum.
 

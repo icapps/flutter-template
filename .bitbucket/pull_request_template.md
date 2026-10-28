@@ -1,56 +1,54 @@
 <!--
-Compact PR-template (pilot: flutter-template)
-1. Kies eerst je risico-maat (sectie 1). Die bepaalt hoeveel bewijs je levert.
-2. Vervang elke TODO. Niet van toepassing? Schrijf "n.v.t." met een korte reden.
-3. Haal deze commentaarblokken er niet uit; ze zijn onzichtbaar in de PR.
+Compact PR template (pilot: flutter-template)
+1. Pick your risk size first (section 1). It decides how much evidence you provide.
+2. Replace every TODO. Not applicable? Write "n/a" with a short reason.
+3. Do not remove these comment blocks; they are invisible in the rendered PR.
 -->
 
-## 1. Risico: TODO (S / M / L)
+## 1. Risk: TODO (S / M / L)
 
 <!--
-L: minstens één van
-   - auth, sessies, secure storage of tokens
-   - betalingen of persoonlijke data
-   - database-schema of migratie (lib/database)
-   - navigatie, routes of deeplinks (lib/navigator)
-   - nieuwe dependency in pubspec, of nieuwe permissie (Info.plist, AndroidManifest)
-   - gedeelde kern: lib/styles, lib/widget, lib/di, lib/webservice
-   - flavors, signing of fastlane
-M: nieuw gedrag of een nieuwe flow binnen één feature, of platformspecifiek gedrag
-S: copy, styling, interne refactor met bestaande tests, kleine bugfix met regressietest
-De reviewer mag de maat verhogen, nooit verlagen.
+L: at least one of
+   - auth, sessions, secure storage or tokens
+   - payments or personal data
+   - database schema or migration (lib/database)
+   - navigation, routes or deeplinks (lib/navigator)
+   - new dependency in pubspec, or new permission (Info.plist, AndroidManifest)
+   - shared core: lib/styles, lib/widget, lib/di, lib/webservice
+   - flavors, signing or fastlane
+M: new behaviour or a new flow inside one feature, or platform-specific behaviour
+S: copy, styling, internal refactor with existing tests, small bugfix with a regression test
+The reviewer may raise the size, never lower it.
 -->
 
-**Waarom deze maat?** TODO (1 zin, noem het criterium)
+**Why this size?** TODO (1 sentence, name the criterion)
 
-**Kijk vooral naar / hier ben ik onzeker over:** TODO
+**Where should the reviewer look, and what am I unsure about?** TODO
 
 ## 2. What changed and why
 
 **Jira:** TODO (link)
 
-TODO (2 tot 4 zinnen, in eigen woorden. Wat verandert er voor de gebruiker, wat voor de code, en waarom zo?)
+TODO (2 to 4 sentences, in your own words. What changes for the user, what changes in the code, and why this way?)
 
 ## 3. Evidence: Flow / Proof of Delivery
 
 <!--
-Eén rij per acceptance criterium uit het ticket. "Bewijs" is een link of testnaam, geen bewering.
-Minimaal bewijs per maat:
-  S: een test of screenshot per criterium
-  M: S + een screen recording of Maestro-flow van de hoofdflow + de belangrijkste edge cases
-  L: M + getest op iOS én Android (toestel/emulator + OS-versie)
+One row per acceptance criterion from the ticket. "Evidence" is a link or a test name, not a claim.
+Minimum evidence per size:
+  S: a test or screenshot per criterion
+  M: S + a screen recording or Maestro flow of the main flow + the key edge cases
+  L: M + tested on both iOS and Android (device/emulator + OS version)
 -->
 
-| Acceptance criterium | Bewijs (test / screenshot / recording / Maestro) | Gedekt? |
+| Acceptance criterion | Evidence (test / screenshot / recording / Maestro) | Covered? |
 |---|---|---|
-| TODO | TODO | Ja / Nee / Gedeeltelijk |
+| TODO | TODO | Yes / No / Partial |
 
-**Edge cases getest (M en L):** TODO (bv. geen netwerk, lege staat, foutmelding, lange tekst, rotatie)
+**Edge cases tested (M and L):** TODO (e.g. no network, empty state, error message, long text, rotation)
 
-**Getest op (M en L):** TODO (toestel/emulator + OS-versie)
+**Tested on (M and L):** TODO (device/emulator + OS version)
 
-**Wijkt iets af van het ticket?** TODO (zo niet: "Nee")
+**Does anything deviate from the ticket?** TODO (if not: "No")
 
----
-
-<!-- Klaar om te reviewen als alle velden zijn ingevuld. De pre-push hook en de pipeline controleren dit. -->
+<!-- Ready for review when every field is filled in. The pre-push hook and the pipeline check this. -->
