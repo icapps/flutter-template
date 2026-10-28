@@ -8,6 +8,7 @@ import 'package:flutter_template/main_common.dart';
 import 'package:flutter_template/util/env/sentry_config.dart';
 import 'package:flutter_template/util/env/flavor_config.dart';
 import 'package:flutter_template/util/logging/sentry_performance_logger.dart';
+import 'package:flutter_template/util/sentry/sentry_event_filter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
@@ -26,8 +27,11 @@ Future<void> main() async {
       values: values,
     );
     await configureDependencies(Environments.prod);
+    final sentryEventFilter = di.getIt<SentryEventFilter>()..init(minimumLevelToKeep: SentryLevel.error);
     await SentryFlutter.init(
-      (options) => SentryConfig.prod(options),
+      (options) => SentryConfig.prod(
+        options..beforeSend = sentryEventFilter.beforeSend,
+      ),
       appRunner: () {
         di.getIt<SentryPerformanceLogger>().startAppLoadTransaction();
         runApp(const MyApp());
