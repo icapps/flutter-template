@@ -60,6 +60,12 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.todoAddScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => TodoAddScreen(),
+          settings: settings,
+          fullscreenDialog: false,
+        );
       case RouteNames.logsScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LogsScreen(),
@@ -96,12 +102,6 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.todoAddScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => TodoAddScreen(),
-          settings: settings,
-          fullscreenDialog: false,
-        );
     }
     return null;
   }
@@ -128,6 +128,8 @@ mixin BaseNavigator {
         ).toString(),
         arguments: {'date': date},
       );
+  Future<void> goToTodoAddScreen() async => navigatorKey.currentState
+      ?.pushNamed<dynamic>(RouteNames.todoAddScreen, arguments: {});
   Future<void> goToLogsScreen() async => navigatorKey.currentState
       ?.pushNamed<dynamic>(RouteNames.logsScreen, arguments: {});
   Future<void> goToAnalyticsPermissionScreen() async => navigatorKey
@@ -148,8 +150,6 @@ mixin BaseNavigator {
       );
   Future<void> goToDebugScreen() async => navigatorKey.currentState
       ?.pushNamed<dynamic>(RouteNames.debugScreen, arguments: {});
-  Future<void> goToTodoAddScreen() async => navigatorKey.currentState
-      ?.pushNamed<dynamic>(RouteNames.todoAddScreen, arguments: {});
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
       navigatorKey.currentState?.pop(result);
@@ -181,6 +181,9 @@ class RouteNames {
   /// /log-detail
   static const logDetailScreen = '/log-detail';
 
+  /// /todo-add
+  static const todoAddScreen = '/todo-add';
+
   /// /logs
   static const logsScreen = '/logs';
 
@@ -198,7 +201,4 @@ class RouteNames {
 
   /// /debug
   static const debugScreen = '/debug';
-
-  /// /todo-add
-  static const todoAddScreen = '/todo-add';
 }

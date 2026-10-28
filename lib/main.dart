@@ -9,6 +9,7 @@ import 'package:flutter_template/util/inspector/database_inspector.dart';
 import 'package:flutter_template/util/inspector/local_storage_inspector.dart';
 import 'package:flutter_template/util/inspector/niddler.dart';
 import 'package:flutter_template/util/logging/sentry_performance_logger.dart';
+import 'package:flutter_template/util/sentry/sentry_event_filter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
@@ -31,9 +32,11 @@ Future<void> main() async {
     await di.configureDependencies(Environments.dev);
     await addDatabaseInspector();
     await initAllStorageInspectors();
-
+    final sentryEventFilter = di.getIt<SentryEventFilter>()..init(minimumLevelToKeep: SentryLevel.debug);
     await SentryFlutter.init(
-      (options) => SentryConfig.development(options),
+      (options) => SentryConfig.development(
+        options..beforeSend = sentryEventFilter.beforeSend,
+      ),
       appRunner: () {
         di.getIt<SentryPerformanceLogger>().startAppLoadTransaction();
         runApp(const MyApp());

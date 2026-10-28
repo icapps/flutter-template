@@ -236,6 +236,16 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
       ) as _i4.Future<void>);
 
   @override
+  _i4.Future<void> goToTodoAddScreen() => (super.noSuchMethod(
+        Invocation.method(
+          #goToTodoAddScreen,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
   _i4.Future<void> goToLogsScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToLogsScreen,
@@ -288,16 +298,6 @@ class MockMainNavigator extends _i1.Mock implements _i6.MainNavigator {
   _i4.Future<void> goToDebugScreen() => (super.noSuchMethod(
         Invocation.method(
           #goToDebugScreen,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> goToTodoAddScreen() => (super.noSuchMethod(
-        Invocation.method(
-          #goToTodoAddScreen,
           [],
         ),
         returnValue: _i4.Future<void>.value(),

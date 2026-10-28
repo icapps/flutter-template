@@ -61,6 +61,7 @@ import 'package:flutter_template/util/locale/localization_overrides_impl.dart'
     as _i908;
 import 'package:flutter_template/util/logging/sentry_performance_logger.dart'
     as _i1012;
+import 'package:flutter_template/util/sentry/sentry_event_filter.dart' as _i563;
 import 'package:flutter_template/util/snackbar/error_util.dart' as _i235;
 import 'package:flutter_template/util/theme/theme_config.dart' as _i437;
 import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart'
@@ -135,6 +136,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => registerModule.provideFirebaseRemoteConfig());
     gh.lazySingleton<_i235.ErrorUtil>(() => _i235.ErrorUtil());
     gh.lazySingleton<_i437.ThemeConfigUtil>(() => _i437.ThemeConfigUtil());
+    gh.lazySingleton<_i563.SentryEventFilter>(() => _i563.SentryEventFilter());
     gh.lazySingleton<_i1012.SentryPerformanceLogger>(
         () => _i1012.SentryPerformanceLogger());
     gh.lazySingleton<_i44.RemoteConfigRepository>(
